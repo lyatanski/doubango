@@ -30,7 +30,7 @@
 #ifndef TINYROHC_TROHC_H
 #define TINYROHC_TROHC_H
 
-#include "tinyROHC_config.h"
+#include "tinyrohc_config.h"
 
 TROHC_BEGIN_DECLS
 

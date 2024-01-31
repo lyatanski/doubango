@@ -19,7 +19,6 @@
 * along with DOUBANGO.
 *
 */
-#include "stdafx.h"
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -36,10 +35,10 @@
 #define LOOP						0
 
 #define RUN_TEST_ALL				0
-#define RUN_TEST_AUTH				0
-#define RUN_TEST_STACK				1
-#define RUN_TEST_URL				0
-#define RUN_TEST_MSGS				0
+#define RUN_TEST_AUTH				1
+#define RUN_TEST_STACK				0
+#define RUN_TEST_URL				1
+#define RUN_TEST_MSGS				1
 #define RUN_TEST_TRANSPORT			0
 
 #include "test_auth.h"

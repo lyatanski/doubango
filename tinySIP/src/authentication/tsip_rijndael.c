@@ -76,8 +76,6 @@
 
 #if defined(_MSC_VER)
 #	define __INLINE	__forceinline
-#elif defined(__GNUC__) && !defined(__APPLE__) && !defined(__ANDROID__)
-#	define __INLINE	__inline
 #else
 #	define __INLINE
 #endif

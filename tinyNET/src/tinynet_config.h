@@ -104,8 +104,6 @@
 
 #if defined(_MSC_VER)
 #	define TNET_INLINE	__forceinline
-#elif defined(__GNUC__) && !defined(__APPLE__)
-#	define TNET_INLINE	__inline
 #else
 #	define TNET_INLINE
 #endif
@@ -113,7 +111,7 @@
 /* have poll()? */
 /* Do not use WSAPoll event if it's supported under Vista */
 #if !HAVE_CONFIG_H
-#	if defined(__ANDROID__) || defined(ANDROID) || defined(__APPLE__)
+#	if defined(__ANDROID__) || defined(ANDROID) || defined(__APPLE__) || defined(__linux__)
 #		define USE_POLL	1
 #		define HAVE_POLL	1
 #		define HAVE_POLL_H	1

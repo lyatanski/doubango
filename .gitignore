@@ -22,3 +22,5 @@ Debug
 *.db
 *.ipch
 *.opendb
+tags
+out

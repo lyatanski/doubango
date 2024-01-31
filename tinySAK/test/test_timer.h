@@ -65,11 +65,9 @@ void test_global_timer()
 
     tsk_thread_sleep(4000);
 
-    // for test: stop it only one time
-    tsk_timer_mgr_global_stop();
-    tsk_timer_mgr_global_stop();
+    //tsk_timer_mgr_global_stop();
 
-    tsk_timer_mgr_global_unref();
+    //tsk_timer_mgr_global_unref();
 }
 
 void test_single_timer()

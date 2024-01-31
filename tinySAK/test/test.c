@@ -19,7 +19,6 @@
 * along with DOUBANGO.
 *
 */
-#include "stdafx.h"
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -31,29 +30,27 @@
 #endif
 
 
-#define LOOP						1
-
-#define RUN_TEST_ALL				0
+#define RUN_TEST_ALL				1
 #define RUN_TEST_LISTS				1
-#define RUN_TEST_HEAP				0
-#define RUN_TEST_STRINGS			0
-#define RUN_TEST_URL				0
-#define RUN_TEST_THREADS			0
-#define RUN_TEST_MUTEX				0
-#define RUN_TEST_CONDWAIT			0
-#define RUN_TEST_SEMAPHORE			0
-#define RUN_TEST_SAFEOBJECT			0
-#define RUN_TEST_OBJECT				0
-#define RUN_TEST_PARAMS				0
-#define RUN_TEST_OPTIONS			0
-#define RUN_TEST_TIMER				0
-#define RUN_TEST_RUNNABLE			0
-#define RUN_TEST_BUFFER				0
-#define RUN_TEST_MD5				0
-#define RUN_TEST_SHA1				0
-#define RUN_TEST_BASE64				0
-#define RUN_TEST_UUID				0
-#define RUN_TEST_FSM				0
+#define RUN_TEST_HEAP				1
+#define RUN_TEST_STRINGS			1
+#define RUN_TEST_URL				1
+#define RUN_TEST_THREADS			1
+#define RUN_TEST_MUTEX				1
+#define RUN_TEST_CONDWAIT			1
+#define RUN_TEST_SEMAPHORE			1
+#define RUN_TEST_SAFEOBJECT			1
+#define RUN_TEST_OBJECT				1
+#define RUN_TEST_PARAMS				1
+#define RUN_TEST_OPTIONS			1
+#define RUN_TEST_TIMER				1
+#define RUN_TEST_RUNNABLE			1
+#define RUN_TEST_BUFFER				1
+#define RUN_TEST_MD5				1
+#define RUN_TEST_SHA1				1
+#define RUN_TEST_BASE64				1
+#define RUN_TEST_UUID				1
+#define RUN_TEST_FSM				1
 
 #if RUN_TEST_LISTS || RUN_TEST_ALL
 #include "test_lists.h"
@@ -142,7 +139,6 @@ int _tmain(int argc, _TCHAR* argv[])
 int main()
 #endif
 {
-    do {
         int y, x;
 
         for(y = 0; y < 16; ++y) {
@@ -278,11 +274,6 @@ int main()
         /* test FSM */
         test_fsm();
 #endif
-
-    }
-    while(LOOP);
-
-    getchar();
 
     return 0;
 }

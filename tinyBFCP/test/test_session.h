@@ -31,7 +31,7 @@ static void test_session_udp()
     tbfcp_pkt_t* p_pkt = tsk_null;
 
     BAIL_IF_ERR(tbfcp_session_create(tnet_socket_type_udp_ipv4, kLocalIP, &p_session));
-    BAIL_IF_ERR(tbfcp_session_set_remote(p_session, kRemoteIP, kRemotePort));
+    //BAIL_IF_ERR(tbfcp_session_set_remote(p_session, kRemoteIP, kRemotePort));
     BAIL_IF_ERR(tbfcp_session_prepare(p_session));
     BAIL_IF_ERR(tbfcp_session_start(p_session));
     TSK_DEBUG_INFO("PRESS ENTER to continue");

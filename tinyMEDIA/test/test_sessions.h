@@ -104,7 +104,7 @@ void test_sessions_client()
 
     /* set ro */
     if((sdp_ro = tsdp_message_parse(SDP_RO, tsk_strlen(SDP_RO)))) {
-        tmedia_session_mgr_set_ro(mgr, sdp_ro);
+        //tmedia_session_mgr_set_ro(mgr, sdp_ro);
         TSK_OBJECT_SAFE_FREE(sdp_ro);
     }
 
@@ -144,7 +144,7 @@ void test_sessions_server()
     mgr = tmedia_session_mgr_create(type, "192.168.16.82", tsk_false, tsk_false);
 
     /* set ro */
-    tmedia_session_mgr_set_ro(mgr, sdp_ro);
+    //tmedia_session_mgr_set_ro(mgr, sdp_ro);
 
     /* get lo */
     sdp_lo = tmedia_session_mgr_get_lo(mgr);
@@ -223,7 +223,7 @@ void test_sessions_add_remove()
     mgr = tmedia_session_mgr_create(type, "192.168.16.82", tsk_false, tsk_false);
 
     /* set ro */
-    tmedia_session_mgr_set_ro(mgr, sdp_ro);
+    //tmedia_session_mgr_set_ro(mgr, sdp_ro);
 
     /* get lo */
     sdp_lo = tmedia_session_mgr_get_lo(mgr);

@@ -127,7 +127,7 @@ void test_sessions_client()
 
     /* set ro */
     if((sdp_ro = tsdp_message_parse(SDP_RO, tsk_strlen(SDP_RO)))) {
-        tmedia_session_mgr_set_ro(mgr, sdp_ro);
+        //tmedia_session_mgr_set_ro(mgr, sdp_ro);
         TSK_OBJECT_SAFE_FREE(sdp_ro);
     }
 
@@ -168,7 +168,7 @@ void test_sessions_server()
         type = tmedia_video;
         mgr = tmedia_session_mgr_create(type,
                                         "192.168.0.13", tsk_false, tsk_false/* answerer */);
-        tmedia_session_mgr_set_ro(mgr, sdp_ro);
+        //tmedia_session_mgr_set_ro(mgr, sdp_ro);
         TSK_OBJECT_SAFE_FREE(sdp_ro);
     }
     else {

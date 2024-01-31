@@ -19,11 +19,10 @@
 * along with DOUBANGO.
 *
 */
-#include "stdafx.h"
 
 #include "tinyxcap.h"
 
-#define LOOP						1
+#define LOOP						0
 
 #define RUN_TEST_ALL				0
 #define RUN_TEST_SELECTOR			0
@@ -55,10 +54,7 @@ int main()
     /* Print copyright information */
     printf("Doubango Project\nCopyright (C) 2009 Mamadou Diop \n\n");
 
-#if LOOP
-    while(1)
-#endif
-    {
+    do {
         /* XCAP document/node selector */
 #if RUN_TEST_SELECTOR || RUN_TEST_ALL
         test_selector();
@@ -71,6 +67,7 @@ int main()
 
 
     }
+    while(LOOP);
 
     tnet_cleanup();
 

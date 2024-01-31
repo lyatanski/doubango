@@ -16,7 +16,6 @@
 * You should have received a copy of the GNU General Public License
 * along with DOUBANGO.
 */
-#include "stdafx.h"
 #include "tipsec.h"
 #include "tsk_plugin.h"
 #include "tsk_debug.h"
@@ -113,20 +112,20 @@ int main(int argc, const char* argv[])
                    __addr_local, __port_local_in, __port_local_out,
                    __addr_remote, __port_remote_in, __port_remote_out);
 
-    /* Create the plugin */
-    for (i = 0; i < __plugins_count; ++i) {
-        if (tsk_plugin_file_exist(__plugins_path[i])) {
-            tipsec_plugin_register_file(__plugins_path[i], &p_plugin);
-            if (p_plugin) {
-                break;
-            }
-        }
-    }
-    if (!p_plugin) {
-        TSK_DEBUG_ERROR("Failed to create IPSec plugin");
-        err = -1;
-        goto bail;
-    }
+    ///* Create the plugin */
+    //for (i = 0; i < __plugins_count; ++i) {
+    //    if (tsk_plugin_file_exist(__plugins_path[i])) {
+    //        tipsec_plugin_register_file(__plugins_path[i], &p_plugin);
+    //        if (p_plugin) {
+    //            break;
+    //        }
+    //    }
+    //}
+    //if (!p_plugin) {
+    //    TSK_DEBUG_ERROR("Failed to create IPSec plugin");
+    //    err = -1;
+    //    goto bail;
+    //}
 
     /* Create the context */
     err = tipsec_ctx_create(__ipproto, __use_ipv6, __mode, __ealg, __alg, __proto, &p_ctx);

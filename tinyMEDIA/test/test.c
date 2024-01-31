@@ -30,7 +30,7 @@
 #include "test_qos.h"
 #include "test_contents.h"
 
-#define RUN_TEST_LOOP		1
+#define RUN_TEST_LOOP		0
 
 #define RUN_TEST_ALL		0
 #define RUN_TEST_CODECS		0

@@ -91,11 +91,6 @@ For more information, please refer to <a href='http://news.vzw.com/OneVoiceProfi
 </ul>
 <br>
 
-<h2>Support</h2>
-Please check our <a href='https://github.com/DoubangoTelecom/doubango/issues'>issue tracker</a> or <a href='https://groups.google.com/group/doubango'>developer group</a> if you have any problem.<br>
-<br>
-For more information, please visit <a href='https://www.doubango.org'><a href='https://www.doubango.org'>https://www.doubango.org</a></a>
-
 <br />
 <b>© 2010-2015 Doubango Telecom</b> <br />
 <i>Inspiring the future</i>

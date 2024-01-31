@@ -16,7 +16,6 @@
 * along with DOUBANGO.
 *
 */
-#include "stdafx.h"
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>

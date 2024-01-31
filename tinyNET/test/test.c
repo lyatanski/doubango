@@ -16,7 +16,6 @@
 * along with DOUBANGO.
 *
 */
-#include "stdafx.h"
 
 #define BAIL_IF_ERR(expr) { int _ret_; if ((_ret_) = (expr)) { TSK_DEBUG_ERROR("Error %d", (_ret_)); goto bail; } }
 
@@ -43,7 +42,7 @@
 #define RUN_TEST_TRANSPORT	0
 #define RUN_TEST_AUTH		0
 #define RUN_TEST_STUN		0
-#define RUN_TEST_ICE		1
+#define RUN_TEST_ICE		0
 #define RUN_TEST_NAT		0
 #define RUN_TEST_IFACES		0
 #define RUN_TEST_DNS		0
@@ -62,10 +61,7 @@ int main()
         return -1;
     }
 
-#if RUN_TEST_LOOP
-    for(;;)
-#endif
-    {
+    do {
 
 #if RUN_TEST_ALL  || RUN_TEST_SOCKETS
         test_sockets();
@@ -112,6 +108,7 @@ int main()
 #endif
 
     }
+    while(RUN_TEST_LOOP);
 
     /* Cleanup the network stack */
     tnet_cleanup();

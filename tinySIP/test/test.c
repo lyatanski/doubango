@@ -20,8 +20,6 @@
 *
 */
 
-#include "stdafx.h"
-
 #include "tinysip.h"
 
 #include "test_sipmessages.h"
@@ -31,7 +29,7 @@
 #include "test_imsaka.h"
 
 
-#define RUN_TEST_LOOP		1
+#define RUN_TEST_LOOP		0
 
 #define RUN_TEST_ALL		0
 #define RUN_TEST_MESSAGES	1

@@ -32,7 +32,7 @@
 #define SMS 2048 //2048//4096//8192//65536
 #define CPB	16 // 16//32//64//128
 
-#define RUN_TEST_LOOP	1
+#define RUN_TEST_LOOP	0
 
 #define RUN_TEST_ALL	1
 #define RUN_TEST_NO		68

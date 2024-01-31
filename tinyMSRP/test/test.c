@@ -1,6 +1,7 @@
 /*
 * Copyright (C) 2009 Mamadou Diop.
-* Copyright (C) 2012 Doubango Telecom <http://doubango.org>.
+*
+* Contact: Mamadou Diop <diopmamadou(at)yahoo.fr>
 *
 * This file is part of Open Source Doubango Framework.
 *
@@ -19,22 +20,24 @@
 *
 */
 
-#include "tsk_string.h"
-#include "tsk_debug.h"
+#include "tnet.h"
 
-#include "tcomp_manager.h" /* TinySIGCOMP API functions. */
+#include "tsk.h"
 
-#define STREAM_ID					1983
-#define IS_STREAM			0	// Using reliable transport
-#define MAX_BUFFER_SIZE		0xfff0
+#include "tinymsrp.h"
 
-#include "test_manager.h"
-#include "test_osc.h"
-#include "test_tortures.h"
 
-#define TEST_TORTURES	1
-#define TEST_MANAGER	0
-#define TEST_OSC		0
+#include "test_parser.h"
+#include "test_uri.h"
+//#include "test_session.h"
+
+
+#define RUN_TEST_LOOP		0
+
+#define RUN_TEST_ALL		0
+#define RUN_TEST_URI		1
+#define RUN_TEST_PARSER		1
+#define RUN_TEST_SESSION	0
 
 #ifdef _WIN32_WCE
 int _tmain(int argc, _TCHAR* argv[])
@@ -42,19 +45,25 @@ int _tmain(int argc, _TCHAR* argv[])
 int main()
 #endif
 {
-#if TEST_TORTURES
-    test_tortures();
+    do {
+        tnet_startup();
+
+        /* Print copyright information */
+        printf("Doubango Project\nCopyright (C) 2009 - 2010 Mamadou Diop \n\n");
+
+#if RUN_TEST_ALL  || RUN_TEST_URI
+        test_uri();
 #endif
 
-#if TEST_MANAGER
-    test_manager();
+#if RUN_TEST_ALL  || RUN_TEST_PARSER
+        test_parser();
 #endif
 
-#if TEST_OSC
-    test_osc();
+#if RUN_TEST_ALL  || RUN_TEST_SESSION
+        test_session();
 #endif
 
-    getchar();
-
-    return 0;
+        tnet_cleanup();
+    }
+    while(RUN_TEST_LOOP);
 }
