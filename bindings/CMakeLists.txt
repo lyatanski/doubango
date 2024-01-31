@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.14)
+get_filename_component(name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+project(${name})
+
+find_package(SWIG 4.0 COMPONENTS python)
+find_package(Python COMPONENTS Development)
+
+file(GLOB src _common/*.cxx)
+add_library(wrap ${src})
+target_include_directories(wrap PUBLIC _common)
+target_link_libraries(wrap tinySIP tinyDAV tinySMS tinyXCAP)
+
+include(${SWIG_USE_FILE})
+set_property(SOURCE _common/tinyWRAP.i PROPERTY CPLUSPLUS ON)
+
+swig_add_library(pyWRAP LANGUAGE python SOURCES _common/tinyWRAP.i)
+target_include_directories(pyWRAP PUBLIC ${Python_INCLUDE_DIRS})
+target_link_libraries(pyWRAP wrap)

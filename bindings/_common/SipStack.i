@@ -48,10 +48,10 @@
 /* ====== From "tinySIP\include\tsip.h"  ====== */
 typedef enum tsip_stack_mode_e
 {
-	tsip_stack_mode_ua,
-	tsip_stack_mode_p2p,
-	tsip_stack_mode_mediaproxy,
-	tsip_stack_mode_mcu
+    tsip_stack_mode_ua,
+    tsip_stack_mode_p2p,
+    tsip_stack_mode_webrtc2sip,
+    tsip_stack_mode_mcu
 }
 tsip_stack_mode_t;
 
@@ -299,30 +299,29 @@ tmedia_srtp_type_t;
 /* ====== From "tinymedia/tmedia_common.h"  ====== */
 typedef enum tmedia_t140_data_type_e
 {
-	tmedia_t140_data_type_utf8,
-	tmedia_t140_data_type_zero_width_no_break_space = 0xefbbbf,
-	tmedia_t140_data_type_backspace = 0x08,
-	tmedia_t140_data_type_esc = 0x1b,
-	tmedia_t140_data_type_cr = 0x0d,
-	tmedia_t140_data_type_lf = 0x0a,
-	tmedia_t140_data_type_cr_lf = 0x0d0a,
-	tmedia_t140_data_type_interrupt2 = 0x61,
-	tmedia_t140_data_type_bell = 0x07,
-	tmedia_t140_data_type_sos = 0x98,
-	tmedia_t140_data_type_string_term = 0x9c,
-	tmedia_t140_data_type_graphic_start = 0x9b,
-	tmedia_t140_data_type_graphic_end = 0x6d,
-	tmedia_t140_data_type_loss_char_char = 0xfffd,
-	tmedia_t140_data_type_loss_utf8 = 0xefbfbd,
+    tmedia_t140_data_type_utf8,
+    tmedia_t140_data_type_zero_width_no_break_space = 0xefbbbf,
+    tmedia_t140_data_type_backspace = 0x08,
+    tmedia_t140_data_type_esc = 0x1b,
+    tmedia_t140_data_type_cr = 0x0d,
+    tmedia_t140_data_type_lf = 0x0a,
+    tmedia_t140_data_type_cr_lf = 0x0d0a,
+    tmedia_t140_data_type_bell = 0x07,
+    tmedia_t140_data_type_sos = 0x98,
+    tmedia_t140_data_type_string_term = 0x9c,
+    tmedia_t140_data_type_graphic_start = 0x9b,
+    tmedia_t140_data_type_graphic_end = 0x6d,
+    tmedia_t140_data_type_loss_char_char = 0xfffd,
+    tmedia_t140_data_type_loss_utf8 = 0xefbfbd,
 }
 tmedia_t140_data_type_t;
 
 /* ====== From "tinymedia/tmedia_common.h"  ====== */
-#typedef enum tmedia_rtcp_event_type_e
-#{
-#	tmedia_rtcp_event_type_fir, // Full Intra Refresh
-#}
-#tmedia_rtcp_event_type_t;
+typedef enum tmedia_rtcp_event_type_e
+{
+	tmedia_rtcp_event_type_fir, // Full Intra Refresh
+}
+tmedia_rtcp_event_type_t;
 
 /* ====== From "tinymedia/tmedia_common.h"  ====== */
 typedef enum tmedia_profile_e
