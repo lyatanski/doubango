@@ -91,6 +91,16 @@ For more information, please refer to <a href='http://news.vzw.com/OneVoiceProfi
 </ul>
 <br>
 
+
+## Building
+    cmake -S . -B out --graphviz=out/dep.dot
+    dot -Tpng -o out/dep.png out/dep.dot
+    cmake --build out/ -j 16
+
+    cd out/
+    ctest -V
+
+
 <br />
 <b>© 2010-2015 Doubango Telecom</b> <br />
 <i>Inspiring the future</i>

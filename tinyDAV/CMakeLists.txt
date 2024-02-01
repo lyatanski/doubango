@@ -9,7 +9,7 @@ endif()
 file(GLOB src src/*.c src/*/*.c src/*/*/*.c)
 add_library(${name} ${src})
 target_include_directories(${name} PUBLIC include)
-target_link_libraries(${name} tinyMEDIA tinyRTP tinyBFCP tinyMSRP tinyIPSec m)
+target_link_libraries(${name} tinyRTP tinyBFCP tinyMSRP tinyIPSec m)
 
 file(GLOB tests test/*.c)
 foreach(test_src ${tests})
