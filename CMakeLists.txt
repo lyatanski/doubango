@@ -27,5 +27,6 @@ add_subdirectory(tinyXCAP)
 add_subdirectory(tinyMSRP)
 add_subdirectory(tinyROHC)
 
+add_subdirectory(tinyDEMO)
 add_subdirectory(bindings)
 
