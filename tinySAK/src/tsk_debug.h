@@ -30,7 +30,7 @@ TSK_BEGIN_DECLS
 
 
 #if !defined(DEBUG_LEVEL)
-#	define DEBUG_LEVEL DEBUG_LEVEL_ERROR
+#	define DEBUG_LEVEL DEBUG_LEVEL_INFO
 #endif
 
 /**@ingroup tsk_debug_group
