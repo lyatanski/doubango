@@ -25,13 +25,13 @@
 
 #if HAVE_SRTP
 
-extern err_status_t
-crypto_get_random(unsigned char *buffer, unsigned int length);
+extern srtp_err_status_t
+RAND_bytes(unsigned char *buffer, unsigned int length);
 
 int trtp_srtp_ctx_internal_init(struct trtp_srtp_ctx_internal_xs* ctx, int32_t tag, trtp_srtp_crypto_type_t type, uint32_t ssrc)
 {
     char* key_str = ctx->key_str;
-    err_status_t srtp_err;
+    srtp_err_status_t srtp_err;
     tsk_size_t size;
 
     if (!ctx) {
@@ -46,8 +46,8 @@ int trtp_srtp_ctx_internal_init(struct trtp_srtp_ctx_internal_xs* ctx, int32_t t
     ctx->tag = tag;
     ctx->crypto_type = type;
     if (!ctx->have_valid_key) { // use same key to avoid unseless SRTP re-negs (also fix interop-issues against buggy clients -reINVITEs-)
-        if ((srtp_err = crypto_get_random((unsigned char*)ctx->key_bin, sizeof(ctx->key_bin))) != err_status_ok) {
-            TSK_DEBUG_ERROR("crypto_get_random() failed");
+        if ((srtp_err = RAND_bytes((unsigned char*)ctx->key_bin, sizeof(ctx->key_bin))) != srtp_err_status_ok) {
+            TSK_DEBUG_ERROR("RAND_bytes() failed");
             return -2;
         }
         size = tsk_base64_encode((const uint8_t*)ctx->key_bin, sizeof(ctx->key_bin), &key_str);
@@ -57,14 +57,14 @@ int trtp_srtp_ctx_internal_init(struct trtp_srtp_ctx_internal_xs* ctx, int32_t t
 
     switch(ctx->crypto_type) {
     case HMAC_SHA1_80: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtcp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtcp);
         break;
     }
     case HMAC_SHA1_32:
     default: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_32(&ctx->policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtcp); // RTCP always 80
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_32(&ctx->policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&ctx->policy.rtcp); // RTCP always 80
         break;
     }
     }
@@ -74,7 +74,7 @@ int trtp_srtp_ctx_internal_init(struct trtp_srtp_ctx_internal_xs* ctx, int32_t t
     ctx->policy.ssrc.value = ssrc;
     ctx->policy.window_size = 2048;
     ctx->policy.allow_repeat_tx = 1;
-    if ((srtp_err = srtp_create(&ctx->session, &ctx->policy)) != err_status_ok) {
+    if ((srtp_err = srtp_create(&ctx->session, &ctx->policy)) != srtp_err_status_ok) {
         TSK_DEBUG_ERROR("srtp_create() failed");
         return -3;
     }
@@ -89,7 +89,7 @@ int trtp_srtp_ctx_internal_deinit(struct trtp_srtp_ctx_internal_xs* ctx)
         return -1;
     }
     if(ctx->initialized) {
-        /*err_status_t srtp_err =*/ srtp_dealloc(ctx->session);
+        /*srtp_err_status_t srtp_err =*/ srtp_dealloc(ctx->session);
         memset(&ctx->policy, 0, sizeof(ctx->policy));
         ctx->initialized = tsk_false;
     }
@@ -201,7 +201,7 @@ int trtp_srtp_set_crypto(struct trtp_manager_s* rtp_mgr, const char* crypto_line
     trtp_srtp_ctx_xt* srtp_ctx;
     int ret;
     uint8_t *key_bin;
-    err_status_t srtp_err;
+    srtp_err_status_t srtp_err;
     int32_t tag, crypto_type;
     char key_str[SRTP_MAX_KEY_LEN + 1];
 
@@ -220,8 +220,8 @@ int trtp_srtp_set_crypto(struct trtp_manager_s* rtp_mgr, const char* crypto_line
 
     switch(srtp_ctx->rtp.crypto_type) {
     case HMAC_SHA1_80: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtcp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtcp);
         if (idx == TRTP_SRTP_LINE_IDX_REMOTE) {
             trtp_srtp_ctx_deinit(&rtp_mgr->srtp_contexts[TRTP_SRTP_LINE_IDX_LOCAL][HMAC_SHA1_32]);
             rtp_mgr->srtp_contexts[TRTP_SRTP_LINE_IDX_LOCAL][HMAC_SHA1_80].rtp.tag =
@@ -230,8 +230,8 @@ int trtp_srtp_set_crypto(struct trtp_manager_s* rtp_mgr, const char* crypto_line
         break;
     }
     case HMAC_SHA1_32: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_32(&srtp_ctx->rtp.policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtcp); // RTCP always 80
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_32(&srtp_ctx->rtp.policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->rtp.policy.rtcp); // RTCP always 80
         if (idx == TRTP_SRTP_LINE_IDX_REMOTE) {
             trtp_srtp_ctx_deinit(&rtp_mgr->srtp_contexts[TRTP_SRTP_LINE_IDX_LOCAL][HMAC_SHA1_80]);
             rtp_mgr->srtp_contexts[TRTP_SRTP_LINE_IDX_LOCAL][HMAC_SHA1_32].rtp.tag =
@@ -249,7 +249,7 @@ int trtp_srtp_set_crypto(struct trtp_manager_s* rtp_mgr, const char* crypto_line
     srtp_ctx->rtp.policy.ssrc.type = idx == TRTP_SRTP_LINE_IDX_REMOTE ? ssrc_any_inbound : ssrc_any_outbound;
     srtp_ctx->rtp.policy.window_size = 2048;
     srtp_ctx->rtp.policy.allow_repeat_tx = 1;
-    if ((srtp_err = srtp_create(&srtp_ctx->rtp.session, &srtp_ctx->rtp.policy)) != err_status_ok) {
+    if ((srtp_err = srtp_create(&srtp_ctx->rtp.session, &srtp_ctx->rtp.policy)) != srtp_err_status_ok) {
         TSK_DEBUG_ERROR("srtp_create() failed: %d", srtp_err);
         return -3;
     }
@@ -261,7 +261,7 @@ int trtp_srtp_set_key_and_salt(trtp_manager_t* rtp_mgr, trtp_srtp_crypto_type_t 
 {
     int ret;
     trtp_srtp_ctx_internal_xt* srtp_ctx;
-    err_status_t srtp_err;
+    srtp_err_status_t srtp_err;
     if (!rtp_mgr || !key || !key_size || !salt || !salt_size) {
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
@@ -275,13 +275,13 @@ int trtp_srtp_set_key_and_salt(trtp_manager_t* rtp_mgr, trtp_srtp_crypto_type_t 
     switch ((srtp_ctx->crypto_type = crypto_type)) {
     case HMAC_SHA1_80:
     default: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtcp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtcp);
         break;
     }
     case HMAC_SHA1_32: {
-        crypto_policy_set_aes_cm_128_hmac_sha1_32(&srtp_ctx->policy.rtp);
-        crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtcp); // always 80
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_32(&srtp_ctx->policy.rtp);
+        srtp_crypto_policy_set_aes_cm_128_hmac_sha1_80(&srtp_ctx->policy.rtcp); // always 80
         break;
     }
     }
@@ -297,7 +297,7 @@ int trtp_srtp_set_key_and_salt(trtp_manager_t* rtp_mgr, trtp_srtp_crypto_type_t 
     srtp_ctx->policy.ssrc.type = idx == TRTP_SRTP_LINE_IDX_REMOTE ? ssrc_any_inbound : ssrc_any_outbound;
     srtp_ctx->policy.window_size = 2048;
     srtp_ctx->policy.allow_repeat_tx = 1;
-    if((srtp_err = srtp_create(&srtp_ctx->session, &srtp_ctx->policy)) != err_status_ok) {
+    if((srtp_err = srtp_create(&srtp_ctx->session, &srtp_ctx->policy)) != srtp_err_status_ok) {
         TSK_DEBUG_ERROR("srtp_create() failed: %d", srtp_err);
         return -3;
     }

@@ -354,12 +354,12 @@ static trtp_manager_t* _trtp_manager_create(tsk_bool_t use_rtcp, const char* loc
 
 #if HAVE_SRTP
     static tsk_bool_t __strp_initialized = tsk_false;
-    err_status_t srtp_err;
+    srtp_err_status_t srtp_err;
     if(!__strp_initialized) {
-        if((srtp_err = srtp_init()) != err_status_ok) {
+        if((srtp_err = srtp_init()) != srtp_err_status_ok) {
             TSK_DEBUG_ERROR("srtp_init() failed with error code = %d", srtp_err);
         }
-        __strp_initialized = (srtp_err == err_status_ok);
+        __strp_initialized = (srtp_err == srtp_err_status_ok);
     }
 #endif
 
@@ -464,13 +464,13 @@ static int _trtp_manager_recv_data(const trtp_manager_t* self, const uint8_t* da
 
         if(self->rtcp.session) {
 #if HAVE_SRTP
-            err_status_t status;
+            srtp_err_status_t status;
             if(self->srtp_ctx_neg_remote) {
                 srtp_t session = self->srtp_ctx_neg_remote->rtcp.initialized ? self->srtp_ctx_neg_remote->rtcp.session : self->srtp_ctx_neg_remote->rtp.session;
-                if((status = srtp_unprotect_rtcp(session, (void*)data_ptr, (int*)&data_size)) != err_status_ok) {
-                    if (status == err_status_replay_fail) {
+                if((status = srtp_unprotect_rtcp(session, (void*)data_ptr, (int*)&data_size)) != srtp_err_status_ok) {
+                    if (status == srtp_err_status_replay_fail) {
                         // replay (because of RTCP-NACK nothing to worry about)
-                        TSK_DEBUG_INFO("srtp_unprotect(RTCP) returned 'err_status_replay_fail'");
+                        TSK_DEBUG_INFO("srtp_unprotect(RTCP) returned 'srtp_err_status_replay_fail'");
                         return 0;
                     }
                     else {
@@ -497,12 +497,12 @@ static int _trtp_manager_recv_data(const trtp_manager_t* self, const uint8_t* da
         if(self->rtp.cb.fun) {
             trtp_rtp_packet_t* packet_rtp = tsk_null;
 #if HAVE_SRTP
-            err_status_t status;
+            srtp_err_status_t status;
             if(self->srtp_ctx_neg_remote) {
-                if((status = srtp_unprotect(self->srtp_ctx_neg_remote->rtp.session, (void*)data_ptr, (int*)&data_size)) != err_status_ok) {
-                    if (status == err_status_replay_fail) {
+                if((status = srtp_unprotect(self->srtp_ctx_neg_remote->rtp.session, (void*)data_ptr, (int*)&data_size)) != srtp_err_status_ok) {
+                    if (status == srtp_err_status_replay_fail) {
                         // replay (because of RTCP-NACK nothing to worry about)
-                        TSK_DEBUG_INFO("srtp_unprotect(RTP) returned 'err_status_replay_fail'");
+                        TSK_DEBUG_INFO("srtp_unprotect(RTP) returned 'srtp_err_status_replay_fail'");
                         return 0;
                     }
                     else {
@@ -1663,9 +1663,9 @@ tsk_size_t trtp_manager_send_rtp_packet(trtp_manager_t* self, const struct trtp_
         void* data_ptr = self->rtp.serial_buffer.ptr;
         int data_size = ret;
 #if HAVE_SRTP
-        err_status_t status;
+        srtp_err_status_t status;
         if(self->srtp_ctx_neg_local && !bypass_encrypt) {
-            if((status = srtp_protect(self->srtp_ctx_neg_local->rtp.session, data_ptr, &data_size)) != err_status_ok) {
+            if((status = srtp_protect(self->srtp_ctx_neg_local->rtp.session, data_ptr, &data_size)) != srtp_err_status_ok) {
                 TSK_DEBUG_ERROR("srtp_protect() failed with error code =%d", (int)status);
                 goto bail;
             }

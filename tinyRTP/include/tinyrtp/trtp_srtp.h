@@ -26,8 +26,8 @@
 #include "tinyrtp_config.h"
 
 #if HAVE_SRTP
-#	include "tsk_common.h"
-#	include <srtp/srtp.h>
+#include "tsk_common.h"
+#include <srtp2/srtp.h>
 
 struct trtp_manager_s;
 

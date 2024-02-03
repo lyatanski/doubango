@@ -961,7 +961,7 @@ static tsk_size_t _trtp_rtcp_session_send_pkt(trtp_rtcp_session_t* self, trtp_rt
         int size = (int)buffer->size;
 #if HAVE_SRTP
         if(self->srtp.session) {
-            if(srtp_protect_rtcp(((srtp_t)*self->srtp.session), data, &size) != err_status_ok) {
+            if(srtp_protect_rtcp(((srtp_t)*self->srtp.session), data, &size) != srtp_err_status_ok) {
                 TSK_DEBUG_ERROR("srtp_protect_rtcp() failed");
             }
         }
@@ -1260,7 +1260,7 @@ static void SendBYEPacket(trtp_rtcp_session_t* session, event_ e)
             int size = (int)buffer->size;
 #if HAVE_SRTP
             if(session->srtp.session) {
-                if(srtp_protect_rtcp(((srtp_t)*session->srtp.session), data, &size) != err_status_ok) {
+                if(srtp_protect_rtcp(((srtp_t)*session->srtp.session), data, &size) != srtp_err_status_ok) {
                     TSK_DEBUG_ERROR("srtp_protect_rtcp() failed");
                 }
             }
