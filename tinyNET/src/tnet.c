@@ -95,14 +95,10 @@ int tnet_startup()
         TSK_DEBUG_ERROR("Big endian on Windows machine. Is it right?");
     }
 #endif
-    // Print messages regardless the debug level
-#if TNET_UNDER_WINDOWS_CE && (BUILD_TYPE_GE && SIN_CITY)
-#	define PRINT_INFO TSK_DEBUG_INFO
-#	define PRINT_ERROR TSK_DEBUG_ERROR
-#else
-#	define PRINT_INFO(FMT, ...) fprintf(stdout, FMT "\n", ##__VA_ARGS__)
-#	define PRINT_ERROR(FMT, ...) fprintf(stderr, FMT "\n", ##__VA_ARGS__)
-#endif
+
+// Print messages regardless the debug level
+#define PRINT_INFO TSK_DEBUG_INFO
+#define PRINT_ERROR TSK_DEBUG_ERROR
 
 #if TNET_UNDER_WINDOWS
     {
