@@ -1,1 +1,0 @@
-swig -c++ -csharp -namespace org.doubango.ipsecWRAP -outdir . -o ./ipsecWRAP.cxx ./swig.i
