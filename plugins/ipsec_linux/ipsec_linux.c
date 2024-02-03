@@ -26,8 +26,7 @@
 
 #include <arpa/inet.h>
 
-#define LOGTIC(ctx, fmt, args...) \
-	fprintf(stderr, "LINUX_IPSEC: (%p) %s: " fmt, ctx, __func__, ## args)
+#define LOGTIC(ctx, fmt, args...) TSK_DEBUG_INFO("%p " fmt, ctx, ## args)
 
 typedef struct plugin_linux_ipsec_ctx_s {
 	TIPSEC_DECLARE_CTX;
@@ -110,7 +109,7 @@ _plugin_linux_ipsec_ctx_set_local(tipsec_ctx_t *_p_ctx, const char *addr_local, 
 	struct sockaddr_storage sa_local, sa_remote;
 	int rc;
 
-	LOGTIC(_p_ctx, "%s:%u+%u -> %s\n", addr_local, port_uc, port_us, addr_remote);
+	LOGTIC(_p_ctx, "%s:%u+%u -> %s", addr_local, port_uc, port_us, addr_remote);
 
 	_p_ctx->addr_local = tsk_realloc(_p_ctx->addr_local, _p_ctx->use_ipv6 ? 16 : 4);
 	if (!_p_ctx->addr_local)
@@ -164,7 +163,7 @@ _plugin_linux_ipsec_ctx_set_remote(tipsec_ctx_t *_p_ctx, tipsec_spi_t spi_pc, ti
 {
 	//plugin_linux_ipsec_ctx_t *p_ctx = (plugin_linux_ipsec_ctx_t *) _p_ctx;
 
-	LOGTIC(_p_ctx, "SPI_PC=0x%08x SPI_PS=0x%08x PORT_PC=%u, PORT_PS=%u lifetime=%lu\n",
+	LOGTIC(_p_ctx, "SPI_PC=0x%08x SPI_PS=0x%08x PORT_PC=%u, PORT_PS=%u lifetime=%lu",
 		spi_pc, spi_ps, port_pc, port_ps, lifetime);
 
 	_p_ctx->lifetime = lifetime;
@@ -188,7 +187,7 @@ _plugin_linux_ipsec_ctx_set_keys(tipsec_ctx_t *_p_ctx, const tipsec_key_t *ik, c
 {
 	//plugin_linux_ipsec_ctx_t *p_ctx = (plugin_linux_ipsec_ctx_t *) _p_ctx;
 
-	LOGTIC(_p_ctx, "entered\n");
+	LOGTIC(_p_ctx, "entered");
 
 	_p_ctx->ik = tsk_realloc(_p_ctx->ik, TIPSEC_KEY_LEN);
 	if (!_p_ctx->ik)
@@ -212,7 +211,7 @@ _plugin_linux_ipsec_ctx_start(tipsec_ctx_t *_p_ctx)
 	struct xfrm_algobuf auth, ciph;
 	int rc;
 
-	LOGTIC(_p_ctx, "entered\n");
+	LOGTIC(_p_ctx, "entered");
 
 	memset(&auth, 0, sizeof(auth));
 	memset(&ciph, 0, sizeof(ciph));
@@ -229,7 +228,7 @@ _plugin_linux_ipsec_ctx_start(tipsec_ctx_t *_p_ctx)
 		strcpy(auth.algo.alg_name, "sha1");
 		break;
 	default:
-		LOGTIC(_p_ctx, "Unsupported authentication algorithm %d\n", _p_ctx->alg);
+		LOGTIC(_p_ctx, "Unsupported authentication algorithm %d", _p_ctx->alg);
 		return tipsec_error_notimplemented;
 	}
 	auth.algo.alg_key_len = TIPSEC_KEY_LEN * 8;
@@ -251,7 +250,7 @@ _plugin_linux_ipsec_ctx_start(tipsec_ctx_t *_p_ctx)
 		memcpy(ciph.algo.alg_key+16, _p_ctx->ck, 8);
 		break;
 	default:
-		LOGTIC(_p_ctx, "Unsupported encryption algorithm %d\n", _p_ctx->ealg);
+		LOGTIC(_p_ctx, "Unsupported encryption algorithm %d", _p_ctx->ealg);
 		return tipsec_error_notimplemented;
 	}
 
@@ -329,7 +328,7 @@ _plugin_linux_ipsec_ctx_stop(tipsec_ctx_t *_p_ctx)
 	//plugin_linux_ipsec_ctx_t *p_ctx = (plugin_linux_ipsec_ctx_t *) _p_ctx;
 	struct sockaddr_storage uc_saddr, us_saddr, pc_saddr, ps_saddr;
 
-	LOGTIC(_p_ctx, "entered\n");
+	LOGTIC(_p_ctx, "entered");
 
 	/* build sockaddrs from the internal representations */
 	gen_sockaddrs(&uc_saddr, &us_saddr, &pc_saddr, &ps_saddr, _p_ctx);
@@ -366,7 +365,7 @@ static tsk_object_t *_plugin_linux_ipsec_ctx_ctor(tsk_object_t *self, va_list *a
 		p_ctx->pc_base = TIPSEC_CTX(p_ctx);
 
 	g_mnl_s = xfrm_init_mnl_socket();
-	LOGTIC(p_ctx, "context created\n");
+	LOGTIC(p_ctx, "context created");
 
 	return self;
 }
@@ -389,7 +388,7 @@ static tsk_object_t *_plugin_linux_ipsec_ctx_dtor(tsk_object_t *self)
 	TSK_FREE(p_ctx->pc_base->ik);
 	TSK_FREE(p_ctx->pc_base->ck);
 
-	LOGTIC(p_ctx, "context destroyed\n");
+	LOGTIC(p_ctx, "context destroyed");
 
 	return self;
 }

@@ -26,6 +26,7 @@
 #include <arpa/inet.h>
 
 #include "netlink_xfrm.h"
+#include "tsk_debug.h"
 
 #define XFRM_USER_ID	0x240299 /* some random number; let's use TS 24.299 */
 
@@ -33,12 +34,12 @@ struct mnl_socket *xfrm_init_mnl_socket(void)
 {
 	struct mnl_socket *mnl_socket = mnl_socket_open(NETLINK_XFRM);
 	if (!mnl_socket) {
-		fprintf(stderr, "ERR: Could not open XFRM netlink socket: %s", strerror(errno));
+        TSK_DEBUG_ERROR("Could not open XFRM netlink socket: %s", strerror(errno));
 		return NULL;
 	}
 
 	if (mnl_socket_bind(mnl_socket, 0, MNL_SOCKET_AUTOPID) < 0) {
-		fprintf(stderr, "ERR: Could not open XFRM netlink socket: %s", strerror(errno));
+        TSK_DEBUG_ERROR("Could not open XFRM netlink socket: %s", strerror(errno));
 		mnl_socket_close(mnl_socket);
 		return NULL;
 	}
@@ -73,7 +74,7 @@ static int transceive_mnl(struct mnl_socket *mnl_sock, const struct nlmsghdr *tx
 
 	rc = mnl_socket_sendto(mnl_sock, tx, tx->nlmsg_len);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot create IPsec SA: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot create IPsec SA: %s", strerror(errno));
 		return -1;
 	}
 
@@ -81,13 +82,13 @@ static int transceive_mnl(struct mnl_socket *mnl_sock, const struct nlmsghdr *tx
 	while (1) {
 		rc = mnl_socket_recvfrom(mnl_sock, rx_buf, rx_buf_size);
 		if (rc == -1) {
-			perror("mnl_socket_recvfrom");
+            TSK_DEBUG_ERROR("mnl_socket_recvfrom: %s", strerror(errno));
 			return -EIO;
 		}
 
 		rc = mnl_cb_run(rx_buf, rc, tx->nlmsg_seq, mnl_socket_get_portid(mnl_sock), data_cb, rx);
 		if (rc == -1) {
-			perror("mnl_cb_run");
+            TSK_DEBUG_ERROR("mnl_cb_run: %s", strerror(errno));
 			return -EIO;
 		} else if (rc <= MNL_CB_STOP)
 			break;
@@ -173,10 +174,10 @@ int xfrm_spi_alloc(struct mnl_socket *mnl_sock, uint32_t reqid, uint32_t *spi_ou
 	switch (src->sa_family) {
 	case AF_INET:
 		sin = (const struct sockaddr_in *) src;
-		printf("src=%s ", inet_ntoa(sin->sin_addr));
+        TSK_DEBUG_INFO("src=%s", inet_ntoa(sin->sin_addr));
 		xui->info.saddr.a4 = sin->sin_addr.s_addr;
 		sin = (const struct sockaddr_in *) dst;
-		printf("dst=%s ", inet_ntoa(sin->sin_addr));
+		TSK_DEBUG_INFO("dst=%s", inet_ntoa(sin->sin_addr));
 		xui->info.id.daddr.a4 = sin->sin_addr.s_addr;
 		//xui->info.sel.prefixlen_d = 32;
 		break;
@@ -189,7 +190,7 @@ int xfrm_spi_alloc(struct mnl_socket *mnl_sock, uint32_t reqid, uint32_t *spi_ou
 		//xui->info.sel.prefixlen_d = 128;
 		break;
 	default:
-		fprintf(stderr, "ERR: unsupported address family %u\n", src->sa_family);
+        TSK_DEBUG_ERROR("unsupported address family %u", src->sa_family);
 		return -1;
 	}
 
@@ -200,13 +201,13 @@ int xfrm_spi_alloc(struct mnl_socket *mnl_sock, uint32_t reqid, uint32_t *spi_ou
 
 	rc = transceive_mnl(mnl_sock, nlh, rx_buf, MNL_SOCKET_BUFFER_SIZE, &rx_nlh);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot create IPsec SA: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot create IPsec SA: %s", strerror(errno));
 		return -1;
 	}
 
 	/* parse response */
 	rx_xui = (void *)rx_nlh + sizeof(*rx_nlh);
-	//printf("Allocated SPI=0x%08x\n", ntohl(xui->info.id.spi));
+	//TSK_DEBUG_INFO("Allocated SPI=0x%08x", ntohl(xui->info.id.spi));
 	*spi_out = ntohl(rx_xui->info.id.spi);
 
 	return 0;
@@ -255,7 +256,7 @@ int xfrm_sa_del(struct mnl_socket *mnl_sock,
 		memcpy(said->daddr.a6, &sin6->sin6_addr, sizeof(said->daddr.a6));
 		break;
 	default:
-		fprintf(stderr, "ERR: unsupported address family %u\n", src->sa_family);
+        TSK_DEBUG_ERROR("unsupported address family %u", src->sa_family);
 		return -1;
 	}
 
@@ -263,7 +264,7 @@ int xfrm_sa_del(struct mnl_socket *mnl_sock,
 
 	rc = transceive_mnl(mnl_sock, nlh, rx_buf, MNL_SOCKET_BUFFER_SIZE, &rx_nlh);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot delete IPsec SA: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot delete IPsec SA: %s", strerror(errno));
 		return -1;
 	}
 
@@ -317,7 +318,7 @@ int xfrm_sa_add(struct mnl_socket *mnl_sock, uint32_t reqid,
 
 	rc = transceive_mnl(mnl_sock, nlh, rx_buf, MNL_SOCKET_BUFFER_SIZE, &rx_nlh);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot create IPsec SA: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot create IPsec SA: %s", strerror(errno));
 		return -1;
 	}
 
@@ -382,7 +383,7 @@ int xfrm_policy_add(struct mnl_socket *mnl_sock,
 
 	rc = transceive_mnl(mnl_sock, nlh, rx_buf, MNL_SOCKET_BUFFER_SIZE, &rx_nlh);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot create IPsec policy: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot create IPsec policy: %s", strerror(errno));
 		return -1;
 	}
 
@@ -422,7 +423,7 @@ int xfrm_policy_del(struct mnl_socket *mnl_sock,
 
 	rc = transceive_mnl(mnl_sock, nlh, rx_buf, MNL_SOCKET_BUFFER_SIZE, &rx_nlh);
 	if (rc < 0) {
-		fprintf(stderr, "ERR: cannot delete IPsec policy: %s\n", strerror(errno));
+        TSK_DEBUG_ERROR("cannot delete IPsec policy: %s", strerror(errno));
 		return -1;
 	}
 
