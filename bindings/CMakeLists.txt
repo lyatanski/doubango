@@ -7,7 +7,7 @@ if(DOXYGEN_FOUND)
 endif()
 
 find_package(SWIG 4.0 COMPONENTS python java)
-find_package(Python COMPONENTS Development)
+find_package(Python COMPONENTS Development Interpreter)
 find_package(JNI)
 
 file(GLOB src _common/*.cxx)
@@ -24,6 +24,8 @@ if(SWIG_FOUND)
         target_include_directories(pyWRAP PUBLIC ${Python_INCLUDE_DIRS})
         set_target_properties(pyWRAP PROPERTIES LIBRARY_OUTPUT_DIRECTORY python)
         target_link_libraries(pyWRAP wrap)
+        install(TARGETS pyWRAP DESTINATION ${Python_SITELIB})
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/python/tinyWRAP.py DESTINATION ${Python_SITELIB})
     endif()
 
     if(JNI_FOUND)
