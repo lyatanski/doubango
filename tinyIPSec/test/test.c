@@ -88,7 +88,8 @@ int main(int argc, const char* argv[])
     {
         "pluginWinIPSecVista.DLL",
         "pluginWinIPSecXP.DLL",
-        "pluginLinIPsecTools.so"
+        "pluginLinIPsecTools.so",
+        "/code/out/plugins/ipsec.so"
     };
     static const tsk_size_t __plugins_count = sizeof(__plugins_path)/sizeof(__plugins_path[0]);
 
@@ -112,20 +113,22 @@ int main(int argc, const char* argv[])
                    __addr_local, __port_local_in, __port_local_out,
                    __addr_remote, __port_remote_in, __port_remote_out);
 
-    ///* Create the plugin */
-    //for (i = 0; i < __plugins_count; ++i) {
-    //    if (tsk_plugin_file_exist(__plugins_path[i])) {
-    //        tipsec_plugin_register_file(__plugins_path[i], &p_plugin);
-    //        if (p_plugin) {
-    //            break;
-    //        }
-    //    }
-    //}
-    //if (!p_plugin) {
-    //    TSK_DEBUG_ERROR("Failed to create IPSec plugin");
-    //    err = -1;
-    //    goto bail;
-    //}
+    /* Create the plugin */
+    for (i = 0; i < __plugins_count; ++i) {
+        TSK_DEBUG_INFO("checking plugin %s", __plugins_path[i]);
+        if (tsk_plugin_file_exist(__plugins_path[i])) {
+            TSK_DEBUG_INFO("loading plugin %s", __plugins_path[i]);
+            tipsec_plugin_register_file(__plugins_path[i], &p_plugin);
+            if (p_plugin) {
+                break;
+            }
+        }
+    }
+    if (!p_plugin) {
+        TSK_DEBUG_ERROR("Failed to create IPSec plugin");
+        err = -1;
+        goto bail;
+    }
 
     /* Create the context */
     err = tipsec_ctx_create(__ipproto, __use_ipv6, __mode, __ealg, __alg, __proto, &p_ctx);

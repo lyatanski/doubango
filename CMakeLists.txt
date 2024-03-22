@@ -1,13 +1,24 @@
 cmake_minimum_required(VERSION 3.14)
 project(tinyWRAP C CXX)
 
-#set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
-set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
+#include(GetOpenSSL)
+#include(GetSRTP)
+#include(GetiLBC)
 
 #find_package(Doxygen
 #             REQUIRED dot
 #             OPTIONAL_COMPONENTS mscgen dia)
+
+#if(DOXYGEN_FOUND)
+#    set(DOXYGEN_EXCLUDE_PATTERNS "out")
+#    doxygen_add_docs(api-${name} ${CMAKE_CURRENT_SOURCE_DIR} ALL)
+#endif()
+
+#set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
+#set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 enable_testing()
 
@@ -31,3 +42,8 @@ add_subdirectory(tinyDEMO)
 add_subdirectory(bindings)
 add_subdirectory(plugins)
 
+set(CMAKE_INSTALL_PREFIX /usr)
+set(CPACK_GENERATOR "TGZ")
+set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
+set(CPACK_PACKAGE_FILE_NAME ${CMAKE_PROJECT_NAME})
+include(CPack)
