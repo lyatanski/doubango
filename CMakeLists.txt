@@ -5,9 +5,9 @@ set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-find_package(Doxygen
-             REQUIRED dot
-             OPTIONAL_COMPONENTS mscgen dia)
+#find_package(Doxygen
+#             REQUIRED dot
+#             OPTIONAL_COMPONENTS mscgen dia)
 
 enable_testing()
 
