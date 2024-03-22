@@ -35,12 +35,9 @@
 #	endif
 #endif
 
-#if !defined(__GNUC__) && defined(TINYSIGCOMP_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYSIGCOMP_API		__declspec(dllexport)
 # 	define TINYSIGCOMP_GEXTERN	__declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYSIGCOMP_IMPORTS_IGNORE)
-# 	define TINYSIGCOMP_API		__declspec(dllimport)
-# 	define TINYSIGCOMP_GEXTERN	__declspec(dllimport)
 #else
 #	define TINYSIGCOMP_API
 #	define TINYSIGCOMP_GEXTERN	extern

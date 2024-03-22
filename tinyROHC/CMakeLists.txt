@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.16)
 get_filename_component(name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${name})
 
@@ -15,6 +15,9 @@ foreach(test_src ${tests})
     get_filename_component(test ${test_src} NAME_WE)
     add_executable(${test}-${name} ${test_src})
     target_link_libraries(${test}-${name} ${name})
+    if(APPLE)
+        target_link_libraries(${test}-${name} "-framework Foundation" "-framework IOKit")
+    endif()
     add_test(${name} ./${test}-${name})
 endforeach()
 

@@ -31,12 +31,9 @@
 #	endif
 #endif
 
-#if (TBFCP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYBFCP_EXPORTS)
+#if (TBFCP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYBFCP_API		__declspec(dllexport)
 # 	define TINYBFCP_GEXTERN extern __declspec(dllexport)
-#elif (TBFCP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYBFCP_IMPORTS_IGNORE)
-# 	define TINYBFCP_API __declspec(dllimport)
-# 	define TINYBFCP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYBFCP_API
 #	define TINYBFCP_GEXTERN	extern

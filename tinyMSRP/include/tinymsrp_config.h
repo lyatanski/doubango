@@ -48,12 +48,9 @@
 
 /* Used on Windows and Symbian systems to export/import public functions and global variables.
 */
-#if !defined(__GNUC__) && defined(TINYMSRP_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYMSRP_API		__declspec(dllexport)
 #	define TINYMSRP_GEXTERN	extern __declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYMSRP_IMPORTS_IGNORE)
-# 	define TINYMSRP_API		__declspec(dllimport)
-#	define TINYMSRP_GEXTERN	__declspec(dllimport)
 #else
 #	define TINYMSRP_API
 #	define TINYMSRP_GEXTERN	extern

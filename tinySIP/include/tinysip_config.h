@@ -44,12 +44,9 @@
 #	define TSIP_UNDER_APPLE		1
 #endif
 
-#if !defined(__GNUC__) && defined(TINYSIP_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYSIP_API		__declspec(dllexport)
 # 	define TINYSIP_GEXTERN	extern __declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYSIP_IMPORTS_IGNORE)
-# 	define TINYSIP_API		__declspec(dllimport)
-# 	define TINYSIP_GEXTERN	__declspec(dllimport)
 #else
 #	define TINYSIP_API
 #	define TINYSIP_GEXTERN	extern

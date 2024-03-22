@@ -38,12 +38,9 @@
 #	endif
 #endif
 
-#if (TRTP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYRTP_EXPORTS)
+#if (TRTP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYRTP_API		__declspec(dllexport)
 # 	define TINYRTP_GEXTERN __declspec(dllexport)
-#elif (TRTP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYRTP_IMPORTS_IGNORE)
-# 	define TINYRTP_API __declspec(dllimport)
-# 	define TINYRTP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYRTP_API
 #	define TINYRTP_GEXTERN	extern

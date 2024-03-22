@@ -33,12 +33,9 @@
 
 /* Used on Windows and Symbian systems to export/import public functions and global variables.
 */
-#if !defined(__GNUC__) && defined(TINYIPSEC_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYIPSEC_API		__declspec(dllexport)
 #	define TINYIPSEC_GEXTERN	__declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYIPSEC_IMPORTS_IGNORE)
-# 	define TINYIPSEC_API		__declspec(dllimport)
-#	define TINYIPSEC_GEXTERN	__declspec(dllimport)
 #else
 #	define TINYIPSEC_API
 #	define TINYIPSEC_GEXTERN	extern

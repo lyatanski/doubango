@@ -35,12 +35,9 @@
 #	endif
 #endif
 
-#if (TWRAP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYWRAP_EXPORTS)
+#if (TWRAP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYWRAP_API		__declspec(dllexport)
 # 	define TINYWRAP_GEXTERN extern __declspec(dllexport)
-#elif (TWRAP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYWRAP_IMPORTS_IGNORE)
-# 	define TINYWRAP_API __declspec(dllimport)
-# 	define TINYWRAP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYWRAP_API
 #	define TINYWRAP_GEXTERN	extern

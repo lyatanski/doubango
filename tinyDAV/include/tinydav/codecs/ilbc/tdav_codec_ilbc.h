@@ -36,9 +36,9 @@
 
 #include "tinymedia/tmedia_codec.h"
 
-#include <ilbc/iLBC_define.h>
-#include <ilbc/iLBC_encode.h>
-#include <ilbc/iLBC_decode.h>
+#include <iLBC_define.h>
+#include <iLBC_encode.h>
+#include <iLBC_decode.h>
 
 TDAV_BEGIN_DECLS
 

@@ -208,7 +208,7 @@ static __declspec(align(DDRAW_MEM_ALIGNMENT)) const uint16_t kUV128[8] = {
 #endif /* DDRAW_HAVE_RGB32_TO_I420_INTRIN || DDRAW_HAVE_RGB32_TO_I420_ASM */
 
 // public function used to check that we can use DDRAW plugin before loading it
-tsk_bool_t tdav_producer_screencast_ddraw_plugin_is_supported()
+TINYDAV_API tsk_bool_t tdav_producer_screencast_ddraw_plugin_is_supported()
 {
     static tsk_bool_t __checked = tsk_false; // static guard to avoid checking more than once
     static tsk_bool_t __supported = tsk_false;

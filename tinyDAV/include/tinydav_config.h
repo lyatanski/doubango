@@ -67,12 +67,9 @@
 #	define TDAV_UNDER_MOBILE	1
 #endif
 
-#if (TDAV_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYDAV_EXPORTS)
+#if (TDAV_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYDAV_API		__declspec(dllexport)
 # 	define TINYDAV_GEXTERN extern __declspec(dllexport)
-#elif (TDAV_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYDAV_IMPORTS_IGNORE)
-# 	define TINYDAV_API __declspec(dllimport)
-# 	define TINYDAV_GEXTERN __declspec(dllimport)
 #else
 #	define TINYDAV_API
 #	define TINYDAV_GEXTERN	extern

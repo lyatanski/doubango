@@ -72,12 +72,9 @@
 
 /* Used on Windows and Symbian systems to export/import public functions and global variables.
 */
-#if !defined(__GNUC__) && defined(TINYSAK_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYSAK_API		__declspec(dllexport)
 #	define TINYSAK_GEXTERN	extern __declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYSAK_IMPORTS_IGNORE)
-# 	define TINYSAK_API		__declspec(dllimport)
-#	define TINYSAK_GEXTERN	__declspec(dllimport)
 #else
 #	define TINYSAK_API
 #	define TINYSAK_GEXTERN	extern

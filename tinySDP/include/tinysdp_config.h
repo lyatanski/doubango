@@ -52,12 +52,9 @@
 #endif
 
 
-#if (TSDP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYSDP_EXPORTS)
+#if (TSDP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYSDP_API		__declspec(dllexport)
 # 	define TINYSDP_GEXTERN extern __declspec(dllexport)
-#elif (TSDP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYSDP_IMPORTS_IGNORE)
-# 	define TINYSDP_API __declspec(dllimport)
-# 	define TINYSDP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYSDP_API
 #	define TINYSDP_GEXTERN	extern

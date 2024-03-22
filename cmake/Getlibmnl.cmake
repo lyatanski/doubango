@@ -17,12 +17,12 @@ ExternalProject_Add(libmnl
     INSTALL_COMMAND make install
     INSTALL_DIR ${MNL_INSTALL_DIR}
 )
-ExternalProject_Add_Step(
-    libmnl ld
-    DEPENDEES install
-    COMMAND echo ${MNL_INSTALL_DIR}/lib > ${PREFIX}/libmnl.conf
-    COMMAND ldconfig -f ${PREFIX}/libmnl.conf
-)
+#ExternalProject_Add_Step(
+#    libmnl ld
+#    DEPENDEES install
+#    COMMAND echo ${MNL_INSTALL_DIR}/lib > ${PREFIX}/libmnl.conf
+#    COMMAND ldconfig -f ${PREFIX}/libmnl.conf
+#)
 
 file(MAKE_DIRECTORY ${MNL_INCLUDE_DIR})
 

@@ -51,12 +51,9 @@
 #	define THTTP_UNDER_IPHONE_SIMULATOR	1
 #endif
 
-#if (THTTP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYHTTP_EXPORTS)
+#if (THTTP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYHTTP_API		__declspec(dllexport)
 # 	define TINYHTTP_GEXTERN extern __declspec(dllexport)
-#elif (THTTP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYHTTP_IMPORTS_IGNORE)
-# 	define TINYHTTP_API __declspec(dllimport)
-# 	define TINYHTTP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYHTTP_API
 #	define TINYHTTP_GEXTERN	extern

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.16)
 get_filename_component(name ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${name})
 
@@ -9,13 +9,20 @@ endif()
 file(GLOB src src/*.c src/*/*.c)
 add_library(${name} ${src})
 target_include_directories(${name} PUBLIC src)
-target_link_libraries(${name} tinyNET m)
+target_link_libraries(${name} tinyNET)
+if(NOT MSVC)
+    target_link_libraries(${name} m)
+endif()
+
 
 file(GLOB tests test/*.c)
 foreach(test_src ${tests})
     get_filename_component(test ${test_src} NAME_WE)
     add_executable(${test}-${name} ${test_src})
     target_link_libraries(${test}-${name} ${name})
+    if(APPLE)
+        target_link_libraries(${test}-${name} "-framework Foundation" "-framework IOKit")
+    endif()
     add_test(${name} ./${test}-${name})
 endforeach()
 

@@ -72,12 +72,9 @@
 /**@def  TINYNET_API
 * Used on Windows and Sysbian systems to export public functions.
 */
-#if !defined(__GNUC__) && defined(TINYNET_EXPORTS)
+#if !defined(__GNUC__)
 # 	define TINYNET_API __declspec(dllexport)
 # 	define TINYNET_GEXTERN extern __declspec(dllexport)
-#elif !defined(__GNUC__) && !defined(TINYNET_IMPORTS_IGNORE)
-# 	define TINYNET_API __declspec(dllimport)
-# 	define TINYNET_GEXTERN __declspec(dllimport)
 #else
 #	define TINYNET_API
 #	define TINYNET_GEXTERN	extern

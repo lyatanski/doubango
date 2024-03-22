@@ -35,12 +35,9 @@
 #	endif
 #endif
 
-#if (TXCAP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYXCAP_EXPORTS)
+#if (TXCAP_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYXCAP_API		__declspec(dllexport)
 # 	define TINYXCAP_GEXTERN extern __declspec(dllexport)
-#elif (TXCAP_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYXCAP_IMPORTS_IGNORE)
-# 	define TINYXCAP_API __declspec(dllimport)
-# 	define TINYXCAP_GEXTERN __declspec(dllimport)
 #else
 #	define TINYXCAP_API
 #	define TINYXCAP_GEXTERN	extern

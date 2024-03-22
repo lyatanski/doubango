@@ -19,6 +19,7 @@
 #include "tipsec.h"
 #include "tsk_plugin.h"
 #include "tsk_debug.h"
+#include <stdlib.h>
 
 static tipsec_ipproto_t __ipproto = tipsec_ipproto_udp;
 static tsk_bool_t __use_ipv6 = tsk_false;

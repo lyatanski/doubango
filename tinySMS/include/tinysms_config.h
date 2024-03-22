@@ -35,12 +35,9 @@
 #	endif
 #endif
 
-#if (TSMS_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYSMS_EXPORTS)
+#if (TSMS_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYSMS_API		__declspec(dllexport)
 # 	define TINYSMS_GEXTERN extern __declspec(dllexport)
-#elif (TSMS_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYSMS_IMPORTS_IGNORE)
-# 	define TINYSMS_API __declspec(dllimport)
-# 	define TINYSMS_GEXTERN __declspec(dllimport)
 #else
 #	define TINYSMS_API
 #	define TINYSMS_GEXTERN	extern

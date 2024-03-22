@@ -51,12 +51,9 @@
 #	define TMEDIA_UNDER_IPHONE_SIMULATOR	1
 #endif
 
-#if (TMEDIA_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(TINYMEDIA_EXPORTS)
+#if (TMEDIA_UNDER_WINDOWS || defined(__SYMBIAN32__))
 # 	define TINYMEDIA_API		__declspec(dllexport)
 # 	define TINYMEDIA_GEXTERN extern __declspec(dllexport)
-#elif (TMEDIA_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(TINYMEDIA_IMPORTS_IGNORE)
-# 	define TINYMEDIA_API __declspec(dllimport)
-# 	define TINYMEDIA_GEXTERN __declspec(dllimport)
 #else
 #	define TINYMEDIA_API
 #	define TINYMEDIA_GEXTERN	extern
