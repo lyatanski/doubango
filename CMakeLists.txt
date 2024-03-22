@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(tinyWRAP C CXX)
 
-set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
+#set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
