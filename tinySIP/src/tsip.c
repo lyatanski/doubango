@@ -137,7 +137,9 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
         case tsip_pname_password: {
             /* (const char*)PASSORD_STR */
             const char* PASSORD_STR = va_arg(*app, const char*);
-            tsk_strupdate(&self->identity.password, PASSORD_STR);
+            uint8_t PASSWORD_BIN[16];
+            tsk_str_to_hex(PASSORD_STR, tsk_strlen(PASSORD_STR), PASSWORD_BIN);
+            tsk_strupdate(&self->identity.password, PASSWORD_BIN);
             break;
         }
 
@@ -373,35 +375,35 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
             self->security.amf[1] = (amf & 0xFF);
             break;
         }
+        case tsip_pname_operator_id_concealed:
         case tsip_pname_operator_id: {
             /* (const char*)OPID_HEX_STR */
             const char* hexstr = va_arg(*app, const char*);
             tsk_size_t len = tsk_strlen(hexstr);
-            if(len && !(len & 0x01)) {
-                tsk_size_t i, j;
-                if(tsk_strindexOf(hexstr, tsk_strlen(hexstr), "0x") == 0) {
-                    hexstr += 2;
-                    len -= 2;
-                }
-                /* reset old value */
-                memset(self->security.operator_id, 0, sizeof(self->security.operator_id));
 
+            /* reset old value */
+            memset(self->security.operator_id, 0, sizeof(self->security.operator_id));
+
+            if(len == sizeof(operator_id_t) * 2 + 2 && hexstr[0] == '0' && hexstr[1] == 'x') {
+                hexstr += 2;
+                len -= 2;
+            }
+
+            if(len == sizeof(operator_id_t) * 2) {
                 /* set new value */
-                if(len) { /* perhaps there were only 2 chars*/
-                    for(i = 0, j = 0; (i<(sizeof(operator_id_t) * 2) && i<len); i+=2, j++) {
-#if 0	/* Could cause SIGBUS error (if memory misaligned) */
-                        sscanf(&hexstr[i], "%2x", &self->security.operator_id[j]);
-#else
-                        static unsigned _1bytes; /* do not use neither int8_t nor uint8_t */
-                        sscanf(&hexstr[i], "%2x", &_1bytes);
-                        self->security.operator_id[j] = (_1bytes & 0xFF);
-#endif
-                    }
-                }
+                tsk_str_to_hex(hexstr, len, self->security.operator_id);
             }
             else {
                 TSK_DEBUG_ERROR("%s is invalid for an Operator Id value.", hexstr);
             }
+
+            if(curr == tsip_pname_operator_id) {
+                self->security.opc = tsk_false;
+            }
+            else {
+                self->security.opc = tsk_true;
+            }
+
             break;
         }
         case tsip_pname_ipsec_params: {

@@ -140,6 +140,13 @@ bool SipStack::setOperatorId(const char* opid)
                            TSIP_STACK_SET_NULL()) == 0);
 }
 
+bool SipStack::setOperatorIdConcealed(const char* opid)
+{
+    return (tsip_stack_set(m_pHandle,
+                           TSIP_STACK_SET_IMS_AKA_OPERATOR_ID_CONCEALED(opid),
+                           TSIP_STACK_SET_NULL()) == 0);
+}
+
 bool SipStack::setProxyCSCF(const char* fqdn, unsigned short port, const char* transport, const char* ipversion)
 {
     unsigned _port = port;//promote

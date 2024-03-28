@@ -49,6 +49,7 @@ public: /* API functions */
     bool setPassword(const char* password);
     bool setAMF(const char* amf);
     bool setOperatorId(const char* opid);
+    bool setOperatorIdConcealed(const char* opid);
     bool setProxyCSCF(const char* fqdn, unsigned short port, const char* transport, const char* ipversion);
     bool setLocalIP(const char* ip, const char* transport=tsk_null);
     bool setLocalPort(unsigned short port, const char* transport=tsk_null);

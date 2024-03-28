@@ -101,6 +101,7 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
     AKA_XXX_DECLARE(CK);
     AKA_XXX_DECLARE(IK);
     AKA_XXX_DECLARE(K);
+    AKA_XXX_DECLARE(OPC);
     AKA_XXX_DECLARE(SQN);
     AKA_XXX_DECLARE(MAC_A);
     AKA_XXX_DECLARE(AUTN);
@@ -111,6 +112,7 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
     AKA_XXX_BZERO(CK);
     AKA_XXX_BZERO(IK);
     AKA_XXX_BZERO(K);
+    AKA_XXX_BZERO(OPC);
     AKA_XXX_BZERO(SQN);
     AKA_XXX_BZERO(MAC_A);
     AKA_XXX_BZERO(AUTN);
@@ -138,8 +140,24 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
     memcpy(AMF, (AUTN + AKA_SQN_SIZE), AKA_AMF_SIZE);
     memcpy(MAC_A, (AUTN + AKA_SQN_SIZE + AKA_AMF_SIZE), AKA_MAC_A_SIZE);
 
-    /* compute OP */
-    ComputeOP(TSIP_CHALLENGE_STACK(self)->security.operator_id);
+    /* compute OPc */
+    if(!TSIP_CHALLENGE_STACK(self)->security.opc) {
+        ComputeOPc(TSIP_CHALLENGE_STACK(self)->security.operator_id, OPC);
+    }
+    else {
+        memcpy(OPC, TSIP_CHALLENGE_STACK(self)->security.operator_id, AKA_OPC_SIZE);
+    }
+
+
+    char str[33];
+    tsk_str_from_hex(K, AKA_K_SIZE, str); str[32] = 0;
+    TSK_DEBUG_INFO("---    K=%s", str);
+    tsk_str_from_hex(RAND, AKA_RAND_SIZE, str); str[32] = 0;
+    TSK_DEBUG_INFO("--- RAND=%s", str);
+    tsk_str_from_hex(OPC, AKA_OPC_SIZE, str); str[32] = 0;
+    TSK_DEBUG_INFO("---  OPC=%s", str);
+    tsk_str_from_hex(AUTN, AKA_AUTN_SIZE, str); str[32] = 0;
+    TSK_DEBUG_INFO("--- AUTN=%s", str);
 
     /* Checks that we hold the same AMF */
     for(n=0; n<AKA_AMF_SIZE; n++) {
@@ -150,7 +168,7 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
     }
 
     /* Calculate CK, IK and AK */
-    f2345(K, RAND, akares, CK, IK, AK);
+    f2345(K, RAND, OPC, akares, CK, IK, AK);
 
     /* Calculate SQN from SQN_XOR_AK */
     for(n=0; n<AKA_SQN_SIZE; n++) {
@@ -162,7 +180,7 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
         AKA_MAC_A_T XMAC_A;
         memset(XMAC_A, '\0', sizeof(XMAC_A));
 
-        f1(K, RAND, SQN, AMF, XMAC_A);
+        f1(K, RAND, OPC, SQN, AMF, XMAC_A);
         if(!tsk_strnequals(MAC_A, XMAC_A, AKA_MAC_A_SIZE)) {
             TSK_DEBUG_ERROR("IMS-AKA error: XMAC_A [%s] <> MAC_A[%s]", XMAC_A, MAC_A);
             goto bail;

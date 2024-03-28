@@ -53,16 +53,6 @@
 #include "tinysip/authentication/tsip_milenage.h"
 #include "tinysip/authentication/tsip_rijndael.h"
 
-/*--------- Operator Variant Algorithm Configuration Field --------*/
-
-/*------- Insert your value of OP here -------*/
-//uint8_t OP[16] = {0x63, 0xbf, 0xa5, 0x0e, 0xe6, 0x52, 0x33, 0x65,
-//             0xff, 0x14, 0xc1, 0xf4, 0x5f, 0x88, 0x73, 0x7d};
-/*------- Insert your value of OP here -------*/
-uint8_t OP[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                 };
-
 /*-------------------------------------------------------------------
 *                            Algorithm f1
 *-------------------------------------------------------------------
@@ -73,10 +63,9 @@ uint8_t OP[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 *
 *-----------------------------------------------------------------*/
 
-void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
+void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16], uint8_t sqn[6], uint8_t amf[2],
              uint8_t mac_a[8] )
 {
-    uint8_t op_c[16];
     uint8_t temp[16];
     uint8_t in1[16];
     uint8_t out1[16];
@@ -84,8 +73,6 @@ void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
     uint8_t i;
 
     RijndaelKeySchedule( k );
-
-    ComputeOPc( op_c );
 
     for (i=0; i<16; i++) {
         rijndaelInput[i] = rand[i] ^ op_c[i];
@@ -138,18 +125,15 @@ void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
 *
 *-----------------------------------------------------------------*/
 
-void f2345 ( uint8_t k[16], uint8_t rand[16],
+void f2345 ( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16],
              uint8_t res[8], uint8_t ck[16], uint8_t ik[16], uint8_t ak[6] )
 {
-    uint8_t op_c[16];
     uint8_t temp[16];
     uint8_t out[16];
     uint8_t rijndaelInput[16];
     uint8_t i;
 
     RijndaelKeySchedule( k );
-
-    ComputeOPc( op_c );
 
     for (i=0; i<16; i++) {
         rijndaelInput[i] = rand[i] ^ op_c[i];
@@ -227,10 +211,9 @@ void f2345 ( uint8_t k[16], uint8_t rand[16],
 *
 *-----------------------------------------------------------------*/
 
-void f1star( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
+void f1star( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16], uint8_t sqn[6], uint8_t amf[2],
              uint8_t mac_s[8] )
 {
-    uint8_t op_c[16];
     uint8_t temp[16];
     uint8_t in1[16];
     uint8_t out1[16];
@@ -238,8 +221,6 @@ void f1star( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
     uint8_t i;
 
     RijndaelKeySchedule( k );
-
-    ComputeOPc( op_c );
 
     for (i=0; i<16; i++) {
         rijndaelInput[i] = rand[i] ^ op_c[i];
@@ -290,18 +271,15 @@ void f1star( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
 *
 *-----------------------------------------------------------------*/
 
-void f5star( uint8_t k[16], uint8_t rand[16],
+void f5star( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16],
              uint8_t ak[6] )
 {
-    uint8_t op_c[16];
     uint8_t temp[16];
     uint8_t out[16];
     uint8_t rijndaelInput[16];
     uint8_t i;
 
     RijndaelKeySchedule( k );
-
-    ComputeOPc( op_c );
 
     for (i=0; i<16; i++) {
         rijndaelInput[i] = rand[i] ^ op_c[i];
@@ -335,22 +313,15 @@ void f5star( uint8_t k[16], uint8_t rand[16],
 already been performed.
 *-----------------------------------------------------------------*/
 
-void ComputeOPc( uint8_t op_c[16] )
+void ComputeOPc( uint8_t op[16], uint8_t op_c[16]  )
 {
     uint8_t i;
 
-    RijndaelEncrypt( OP, op_c );
+    RijndaelEncrypt( op, op_c );
     for (i=0; i<16; i++) {
-        op_c[i] ^= OP[i];
+        op_c[i] ^= op[i];
     }
 
     return;
 } /* end of function ComputeOPc */
 
-void ComputeOP( uint8_t op[16] )
-{
-    int i;
-    for(i=0; i<16; i++) {
-        OP[i]=op[i];
-    }
-}

@@ -102,6 +102,7 @@ typedef enum tsip_stack_param_type_e {
     tsip_pname_secagree_tls,
     tsip_pname_amf,
     tsip_pname_operator_id,
+    tsip_pname_operator_id_concealed,
     tsip_pname_tls_certs,
     tsip_pname_ipsec_params,
 
@@ -454,6 +455,7 @@ int ret = tsip_stack_set(stack,
 #define TSIP_STACK_SET_SECAGREE_TLS(ENABLED_BOOL)											tsip_pname_secagree_tls, (tsk_bool_t)ENABLED_BOOL
 #define TSIP_STACK_SET_IMS_AKA_AMF(AMF_UINT16)												tsip_pname_amf, (uint16_t)AMF_UINT16
 #define TSIP_STACK_SET_IMS_AKA_OPERATOR_ID(OPID_HEX_STR)									tsip_pname_operator_id, (const char*)OPID_HEX_STR
+#define TSIP_STACK_SET_IMS_AKA_OPERATOR_ID_CONCEALED(OPID_HEX_STR)							tsip_pname_operator_id_concealed, (const char*)OPID_HEX_STR
 #define TSIP_STACK_SET_IPSEC_PARAMS(ALG_STR, EALG_STR, MODE_STR, PROTOCOL_STR)				tsip_pname_ipsec_params, (const char*)ALG_STR, (const char*)EALG_STR, (const char*)MODE_STR, (const char*)PROTOCOL_STR
 #define TSIP_STACK_SET_TLS_CERTS(CA_FILE_STR, PUB_FILE_STR, PRIV_FILE_STR)					TSIP_STACK_SET_TLS_CERTS_2(CA_FILE_STR, PUB_FILE_STR, PRIV_FILE_STR, tsk_false)
 #define TSIP_STACK_SET_TLS_CERTS_2(CA_FILE_STR, PUB_FILE_STR, PRIV_FILE_STR, VERIF_BOOL)	tsip_pname_tls_certs, (const char*)CA_FILE_STR, (const char*)PUB_FILE_STR, (const char*)PRIV_FILE_STR, (tsk_bool_t)VERIF_BOOL
@@ -599,6 +601,7 @@ typedef struct tsip_stack_s {
     struct {
         char* secagree_mech;
         tsk_bool_t earlyIMS;
+        tsk_bool_t opc;
         operator_id_t operator_id;
         amf_t amf;
 

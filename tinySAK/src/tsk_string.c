@@ -594,8 +594,20 @@ void tsk_str_from_hex(const uint8_t *hex, tsk_size_t size, char* str)
  **/
 void tsk_str_to_hex(const char *str, tsk_size_t size, uint8_t* hex)
 {
-    // to avoid SIGBUS error when memory is misaligned do not use sscanf("%2x")
-    TSK_DEBUG_FATAL("Not implemented.");
+    for (tsk_size_t i = 0; i < size; i+=2) {
+        switch(str[i]) {
+        case '0' ... '9': hex[i/2] = (str[i] - '0'     ) << 4; break;
+        case 'A' ... 'F': hex[i/2] = (str[i] - 'A' + 10) << 4; break;
+        case 'a' ... 'f': hex[i/2] = (str[i] - 'a' + 10) << 4; break;
+        default: TSK_DEBUG_FATAL("parsing hex %s at [%d]", str, i);
+        }
+        switch(str[i+1]) {
+        case '0' ... '9': hex[i/2] |= (str[i+1] - '0'     ); break;
+        case 'A' ... 'F': hex[i/2] |= (str[i+1] - 'A' + 10); break;
+        case 'a' ... 'f': hex[i/2] |= (str[i+1] - 'a' + 10); break;
+        default: TSK_DEBUG_FATAL("parsing hex %s at [%d]", str, i+1);
+        }
+    }
 }
 
 

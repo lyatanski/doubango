@@ -171,17 +171,15 @@ typedef uint8_t AKA_AUTN_T[AKA_AUTN_SIZE + 1];
 #define AKA_XXX_DECLARE(name) AKA_##name##_T name
 #define AKA_XXX_BZERO(name)	memset(name, '\0', AKA_##name##_SIZE + 1)
 
-void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
-             uint8_t mac_a[8] );
-void f2345 ( uint8_t k[16], uint8_t rand[16],
+void f1    ( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16], uint8_t sqn[6],
+             uint8_t amf[2], uint8_t mac_a[8] );
+void f2345 ( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16],
              uint8_t res[8], uint8_t ck[16], uint8_t ik[16], uint8_t ak[6] );
-void f1star( uint8_t k[16], uint8_t rand[16], uint8_t sqn[6], uint8_t amf[2],
-             uint8_t mac_s[8] );
-void f5star( uint8_t k[16], uint8_t rand[16],
+void f1star( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16], uint8_t sqn[6],
+             uint8_t amf[2], uint8_t mac_s[8] );
+void f5star( uint8_t k[16], uint8_t rand[16], uint8_t op_c[16],
              uint8_t ak[6] );
-void ComputeOPc( uint8_t op_c[16] );
-void ComputeOP( uint8_t op[16] );
-
+void ComputeOPc( uint8_t op[16], uint8_t op_c[16] );
 
 TSIP_END_DECLS
 
