@@ -34,19 +34,13 @@ static void test_session_udp()
     //BAIL_IF_ERR(tbfcp_session_set_remote(p_session, kRemoteIP, kRemotePort));
     BAIL_IF_ERR(tbfcp_session_prepare(p_session));
     BAIL_IF_ERR(tbfcp_session_start(p_session));
-    TSK_DEBUG_INFO("PRESS ENTER to continue");
-    getchar();
 
     BAIL_IF_ERR(tbfcp_pkt_create_FloorRequest_2(kConfId, kTransacId, kUserId, kFloorId, &p_pkt));
     BAIL_IF_ERR(tbfcp_session_send_pkt(p_session, p_pkt));
-    TSK_DEBUG_INFO("PRESS ENTER to continue");
-    getchar();
 
     TSK_OBJECT_SAFE_FREE(p_pkt);
     BAIL_IF_ERR(tbfcp_pkt_create_Hello(kConfId, kTransacId, kUserId, &p_pkt));
     BAIL_IF_ERR(tbfcp_session_send_pkt(p_session, p_pkt));
-    TSK_DEBUG_INFO("PRESS ENTER to continue");
-    getchar();
 
 bail:
     TSK_OBJECT_SAFE_FREE(p_pkt);

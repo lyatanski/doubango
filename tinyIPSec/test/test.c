@@ -183,9 +183,6 @@ int main(int argc, const char* argv[])
 
     TSK_DEBUG_INFO("!!! IPSec SAs started (Press any key to stop) !!!");
 
-    /* Wait */
-    getchar();
-
 bail:
     // Stop the SAs, cleanup and destroy the context
     TSK_OBJECT_SAFE_FREE(p_ctx); // must destroy the contect before unloading the plugin (*.DLL or *.SO)

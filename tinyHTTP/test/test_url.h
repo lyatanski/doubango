@@ -74,9 +74,6 @@ void test_url_parser()
             printf("INVALID HTTP URL.\n");
         }
 
-        printf("\n\n");
-        getchar();
-
         TSK_OBJECT_SAFE_FREE(url);
     }
 }

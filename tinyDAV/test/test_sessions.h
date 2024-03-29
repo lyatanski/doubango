@@ -137,19 +137,16 @@ void test_sessions_client()
     /* send file */
     //tmedia_session_mgr_send_file(mgr, "C:\\avatar.png", TMEDIA_SESSION_SET_NULL());
 
-    //getchar();
 
     /* for fun, send DTMF */
     //tmedia_session_mgr_send_dtmf(mgr, 1);
     //tmedia_session_mgr_send_dtmf(mgr, 10);
     //tmedia_session_mgr_send_dtmf(mgr, 11);
 
-    getchar();
 
     /* stop() */
     //tmedia_session_mgr_stop(mgr);
 
-    //getchar();
 
     TSK_OBJECT_SAFE_FREE(mgr);
 }
@@ -188,12 +185,10 @@ void test_sessions_server()
     /* start() */
     tmedia_session_mgr_start(mgr);
 
-    getchar();
 
     /* stop() */
     //tmedia_session_mgr_stop(mgr);
 
-    //getchar();
 
     TSK_OBJECT_SAFE_FREE(mgr);
 }

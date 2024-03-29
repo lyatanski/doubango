@@ -94,9 +94,6 @@ void test_uri_parser()
             printf("INVALID MSRP URI.\n");
         }
 
-        printf("\n\n");
-        getchar();
-
         TSK_OBJECT_SAFE_FREE(uri);
     }
 }

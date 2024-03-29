@@ -363,14 +363,12 @@ void test_stack()
 
                          TSIP_ACTION_SET_NULL());
 
-    getchar();
     //tsk_thread_sleep(2000);
 
     tsip_action_UNREGISTER(op,
                            TSIP_ACTION_SET_NULL()
                           );
 
-    getchar();
     tsk_thread_sleep(2000);
 
     //tsip_unregister(op,
@@ -424,8 +422,6 @@ void test_stack()
 
     //		tsk_null);
 
-    //	getchar();
-
     //	tsip_unsubscribe(ss2,
     //		TSIP_ACTION_SET_HEADER("Test", "unsubscribing"),
     //
@@ -465,22 +461,18 @@ void test_stack()
 
     		tsk_null);
 
-    	getchar();
-
     	tsip_unpublish(ss4,
     		TSIP_ACTION_SET_HEADER("Description", "unpublish"),
 
     		tsk_null);
     }
     */
-    //	/*getchar();
     //	tsip_ssession_set(op4,
     //		TSIP_SSESSION_SET_PARAM("content", TEST_STACK_PIDF),
 
     //		TSIP_SSESSION_SET_NULL());
     //	tsip_publish(stack, op4);*/
     //
-    //	getchar();
     //	tsip_ssession_hangup(op4);
     //
     //}
@@ -488,7 +480,6 @@ bail:
     //while(1);//tsk_thread_sleep(500);
     //while(1)
     //tsk_thread_sleep(50000);
-    getchar();
 
     tsip_stack_stop(stack);
 

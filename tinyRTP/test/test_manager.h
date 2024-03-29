@@ -58,8 +58,6 @@ void test_manager()
         }
     }
 
-    getchar();
-
 bail:
     /* stop and destroy */
     TSK_OBJECT_SAFE_FREE(manager);

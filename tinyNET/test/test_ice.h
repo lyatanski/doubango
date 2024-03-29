@@ -220,8 +220,6 @@ void test_ice()
     //	goto bail;
     //}
 
-    getchar();
-
     // ret = tnet_ice_ctx_stop(p_ice_ctx1);
     // ret = tnet_ice_ctx_stop(p_ice_ctx2);
 

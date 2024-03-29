@@ -229,9 +229,6 @@ static void test_turn_session()
     BAIL_IF_ERR(tnet_turn_session_allocate(__pc_ss1));
     BAIL_IF_ERR(tnet_turn_session_allocate(__pc_ss2));
 
-    TSK_DEBUG_INFO("*** Press ENTER to continue ***");
-    getchar();
-
 bail:
     TSK_OBJECT_SAFE_FREE(__pc_ss1);
     TSK_OBJECT_SAFE_FREE(__pc_ss2);

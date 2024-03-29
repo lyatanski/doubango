@@ -343,7 +343,6 @@ static void test_transport()
         goto bail;
     }
 
-    getchar();
 
     // Send data to google.com
     peer = test_http_transport_connect_to(p_transport, TEST_HTTP_REMOTE_IP, TEST_HTTP_REMOTE_PORT);
@@ -354,9 +353,6 @@ static void test_transport()
     }
     ret = test_http_transport_send_data(p_transport, peer->fd, __get_msg, tsk_strlen(__get_msg));
     TSK_DEBUG_INFO("Sent %d bytes", ret);
-
-    getchar();
-
 
 bail:
     TSK_OBJECT_SAFE_FREE(p_transport); // stop server and free memory

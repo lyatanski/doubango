@@ -194,11 +194,7 @@ void test_transport()
     test_transport_tcp_ipv4(tcp);
 #endif
 
-//#if defined(ANDROID)
     tsk_thread_sleep(1000000);
-//#else
-    getchar();
-//#endif
 
 #if TEST_UDP
     TSK_OBJECT_SAFE_FREE(udp);

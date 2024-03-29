@@ -119,14 +119,11 @@ void test_stack()
     //
     //	tsk_null);
 
-    //getchar();
 
     //thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index",
     //	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
     //
     //	tsk_null);
-
-    //getchar();
 
     // HTTPS
     thttp_action_GET(session, "https://msp.f-secure.com/web-test/common/test.html",
@@ -138,8 +135,6 @@ void test_stack()
                      THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
 
                      THTTP_ACTION_SET_NULL());
-    getchar();
-
 
     // IPv6
     /*thttp_action_GET(session, "http://ipv6.google.com",
@@ -151,7 +146,6 @@ void test_stack()
     	THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
 
     	THTTP_ACTION_SET_NULL());
-    getchar();*/
 
     /*ret = thttp_action_GET(session, "http://doubango.org",
     		// action-level options
@@ -159,7 +153,6 @@ void test_stack()
 
     		THTTP_ACTION_SET_NULL());
 
-    getchar();*/
 
     //thttp_action_GET(session, "http://www.google.com",
     //THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
@@ -176,11 +169,9 @@ void test_stack()
 
     	tsk_null);
 
-    getchar();*/
 
     //TSK_OBJECT_SAFE_FREE(session);
 
-    //getchar();
 
     /* Gets xcap-caps document */
     /*thttp_action_GET(session, "http://siptest.doubango.org:8080/services/xcap-caps/global/index",
@@ -188,14 +179,12 @@ void test_stack()
 
     	tsk_null);
 
-    getchar();*/
 
     /*thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/properties-resource-list.xml",
     	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
 
     	tsk_null);
 
-    getchar();*/
 
     //thttp_operation_perform(op);
 
@@ -218,7 +207,6 @@ void test_stack()
     	THTTP_OPERATION_SET_NULL());
     thttp_operation_perform(op);*/
 
-    getchar();
 bail:
     TSK_OBJECT_SAFE_FREE(session);
     TSK_OBJECT_SAFE_FREE(stack);

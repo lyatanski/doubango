@@ -114,8 +114,6 @@ void test_session()
                        tsk_null);
 
 
-        getchar();
-
         tmedia_stop(msrp);
 
         TSK_OBJECT_SAFE_FREE(msrp);

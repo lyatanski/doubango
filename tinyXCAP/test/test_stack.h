@@ -109,7 +109,6 @@ void test_stack()
                                       TXCAP_ACTION_SET_NULL()
                                      );
 
-    getchar();
     /*
     	//== get resource-lists document
     	ret = txcap_action_fetch_document(stack,
@@ -124,7 +123,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    	getchar();
 
     	//== get 'rcs' list
     	ret = txcap_action_fetch_element(stack,
@@ -140,7 +138,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    	getchar();
 
     	//== Retrieve the 2nd list
     	ret = txcap_action_fetch_element(stack,
@@ -156,7 +153,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    	getchar();
 
     	//== Retrieve the 4th list (wildcard)
     	ret = txcap_action_fetch_element(stack,
@@ -172,7 +168,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    	getchar();
 
     	//== Retrieve the entry with: uri=XUI and list='rcs'
     	ret = txcap_action_fetch_element(stack,
@@ -189,7 +184,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    	getchar();
 
     	//== Retrieve XUI's display-name ==> 404
     	ret = txcap_action_fetch_attribute(stack,
@@ -207,7 +201,6 @@ void test_stack()
     	TXCAP_ACTION_SET_NULL()
     	);
 
-    	getchar();
 
     	//== Retrieve the display-name of the fisrt entry from the 'rcs' list ==> 404
     	ret = txcap_action_fetch_attribute(stack,
@@ -225,7 +218,6 @@ void test_stack()
     		TXCAP_ACTION_SET_NULL()
     		);
 
-    		getchar();
 
     	//== Retrieve the entry with: uri='XUI' from position 1 from 'rcs' list
     	ret = txcap_action_fetch_element(stack,
@@ -242,7 +234,6 @@ void test_stack()
     	TXCAP_ACTION_SET_NULL()
     	);
 
-    	getchar();
 
     	//== Add newlist
     	ret = txcap_action_create_element(stack,
@@ -255,7 +246,6 @@ void test_stack()
     		// ends parameters
     		TXCAP_ACTION_SET_NULL()
     		);
-    	getchar();
 
     	//== Add entry
     	ret = txcap_action_create_element(stack,
@@ -269,7 +259,6 @@ void test_stack()
     		// ends parameters
     		TXCAP_ACTION_SET_NULL()
     		);
-    	getchar();
 
     	//== Add entry using dummy URI
     	ret = txcap_action_create_element(stack,
@@ -280,7 +269,6 @@ void test_stack()
     		// ends parameters
     		TXCAP_ACTION_SET_NULL()
     		);
-    	getchar();
 
     	//== Delete entry
     	ret = txcap_action_delete_element(stack,
@@ -292,7 +280,6 @@ void test_stack()
     		// ends parameters
     		TXCAP_ACTION_SET_NULL()
     		);
-    	getchar();
 
 
 
@@ -310,8 +297,6 @@ void test_stack()
     		);
     	*/
 bail:
-    getchar();
-
 
     TSK_OBJECT_SAFE_FREE(stack);
 }

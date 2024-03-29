@@ -132,7 +132,6 @@ static void test_messages()
 
     TSK_OBJECT_SAFE_FREE(message);
 
-    getchar();
 }
 
 #endif /* _TEST_MESSAGES_H_ */

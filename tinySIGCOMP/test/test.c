@@ -54,7 +54,5 @@ int main()
     test_osc();
 #endif
 
-    getchar();
-
     return 0;
 }

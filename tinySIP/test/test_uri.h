@@ -107,9 +107,6 @@ void test_uri_parser()
             printf("INVALID SIP URI.\n");
         }
 
-        printf("\n\n");
-        getchar();
-
         TSK_OBJECT_SAFE_FREE(uri);
     }
 }

@@ -74,8 +74,6 @@ int main()
 
     tnet_cleanup();
 
-    getchar();
-
     return 0;
 }
 

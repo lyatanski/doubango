@@ -85,8 +85,6 @@ bail:
     TSK_OBJECT_SAFE_FREE(request);
     TSK_OBJECT_SAFE_FREE(challenge);
     TSK_OBJECT_SAFE_FREE(stack);
-
-    getchar();
 }
 
 #endif /* _TEST_IMS_AKA_H */
