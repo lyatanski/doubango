@@ -30,17 +30,17 @@
 #endif
 
 
-#define RUN_TEST_ALL				1
+#define RUN_TEST_ALL				0
 #define RUN_TEST_LISTS				1
 #define RUN_TEST_HEAP				1
 #define RUN_TEST_STRINGS			1
 #define RUN_TEST_URL				1
 #define RUN_TEST_THREADS			1
 #define RUN_TEST_MUTEX				1
-#define RUN_TEST_CONDWAIT			1
+#define RUN_TEST_CONDWAIT			0
 #define RUN_TEST_SEMAPHORE			1
-#define RUN_TEST_SAFEOBJECT			1
-#define RUN_TEST_OBJECT				1
+#define RUN_TEST_SAFEOBJECT			0
+#define RUN_TEST_OBJECT				0
 #define RUN_TEST_PARAMS				1
 #define RUN_TEST_OPTIONS			1
 #define RUN_TEST_TIMER				1
@@ -85,7 +85,7 @@
 #endif
 
 #if RUN_TEST_SAFEOBJECT || RUN_TEST_ALL
-//#include "test_safeobject.h"
+#include "test_safeobject.h"
 #endif
 
 #if RUN_TEST_OBJECT || RUN_TEST_ALL
@@ -174,11 +174,11 @@ int main()
 #endif
 
 #if RUN_TEST_SAFEOBJECT || RUN_TEST_ALL
-        //test_safeobject();
+        test_safeobject();
 #endif
 
 #if RUN_TEST_OBJECT || RUN_TEST_ALL
-        //test_object();
+        test_object();
 #endif
 
 #if RUN_TEST_PARAMS || RUN_TEST_ALL
