@@ -29,9 +29,16 @@ if(SWIG_FOUND)
         target_include_directories(pyWRAP PUBLIC ${Python_INCLUDE_DIRS})
         set_target_properties(pyWRAP PROPERTIES LIBRARY_OUTPUT_DIRECTORY python)
         target_link_libraries(pyWRAP wrap)
-        STRING(REGEX REPLACE "^/usr/" "" Pylib_install_path ${Python_SITELIB})
-        install(TARGETS pyWRAP DESTINATION ${Pylib_install_path})
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/python/tinyWRAP.py DESTINATION ${Pylib_install_path})
+        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/python/setup.py [[
+from setuptools import setup
+setup(name='tinyWRAP',
+    version='1.0',
+    py_modules=['tinyWRAP'],
+    packages=[''],
+    package_dir={'': '.'},
+    package_data={'': ['_pyWRAP.so']},
+)
+]])
     endif()
 
     if(JNI_FOUND)

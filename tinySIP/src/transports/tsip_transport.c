@@ -328,7 +328,7 @@ tsk_size_t tsip_transport_send_raw(const tsip_transport_t* self, const char* dst
 {
     tsk_size_t ret = 0;
 
-    TSK_DEBUG_INFO("\n\nSEND: %.*s\n\n", size, (const char*)data);
+    TSK_DEBUG_INFO("\nSEND: %.*s\n", size, (const char*)data);
 
     if(TNET_SOCKET_TYPE_IS_DGRAM(self->type)) { // "udp" or "dtls"
         const struct sockaddr_storage* to = &self->pcscf_addr;
@@ -434,7 +434,7 @@ tsk_size_t tsip_transport_send_raw_ws(const tsip_transport_t* self, tnet_fd_t lo
     }
     if(peer->ws.snd_buffer_size < data_size) {
         if(!(peer->ws.snd_buffer = tsk_realloc(peer->ws.snd_buffer, (tsk_size_t)data_size))) {
-            TSK_DEBUG_ERROR("Failed to allocate buffer with size = %llu", data_size);
+            TSK_DEBUG_ERROR("Failed to allocate buffer with size = %lu", data_size);
             peer->ws.snd_buffer_size = 0;
             TSK_OBJECT_SAFE_FREE(peer);
             return 0;
@@ -902,7 +902,7 @@ int tsip_transport_stream_peers_cleanup(tsip_transport_t *self)
                 }
                 if (close) {
                     fd = peer->local_fd;
-                    TSK_DEBUG_INFO("Peer with fd=%d, type=%d, got_valid_sip_msg=%d, time_added=%llu, time_latest_activity=%llu, now=%llu in '%s' transport timedout",
+                    TSK_DEBUG_INFO("Peer with fd=%d, type=%d, got_valid_sip_msg=%d, time_added=%lu, time_latest_activity=%lu, now=%lu in '%s' transport timedout",
                                    fd, peer->type, peer->got_valid_sip_msg,  peer->time_added, peer->time_latest_activity, now, tsip_transport_get_description(self));
                     tsip_transport_remove_socket(self, (tnet_fd_t *)&fd);
                 }

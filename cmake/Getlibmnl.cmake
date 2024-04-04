@@ -1,6 +1,6 @@
 include(ExternalProject)
 
-set(PREFIX ${CMAKE_CURRENT_BINARY_DIR}/_deps/libmnl)
+set(PREFIX ${CMAKE_BINARY_DIR}/_deps/libmnl)
 set(MNL_INSTALL_DIR ${PREFIX}/usr)
 set(MNL_INCLUDE_DIR ${MNL_INSTALL_DIR}/include)
 set(MNL_LIBRARY_SUFFIX so)
@@ -17,12 +17,6 @@ ExternalProject_Add(libmnl
     INSTALL_COMMAND make install
     INSTALL_DIR ${MNL_INSTALL_DIR}
 )
-#ExternalProject_Add_Step(
-#    libmnl ld
-#    DEPENDEES install
-#    COMMAND echo ${MNL_INSTALL_DIR}/lib > ${PREFIX}/libmnl.conf
-#    COMMAND ldconfig -f ${PREFIX}/libmnl.conf
-#)
 
 file(MAKE_DIRECTORY ${MNL_INCLUDE_DIR})
 

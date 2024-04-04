@@ -81,7 +81,7 @@ void *run(void* self)
 
     if(curr = TSK_RUNNABLE_POP_FIRST(self)) {
         const tsk_obj_t *obj = (const tsk_obj_t*)curr->data;
-        printf("\n\nRunnable event-id===>[%llu]\n\n", obj->timer_id);
+        printf("\n\nRunnable event-id===>[%lu]\n\n", obj->timer_id);
         tsk_object_unref(curr);
     }
 

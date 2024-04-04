@@ -522,7 +522,7 @@ void tsk_strunquote_2(char **str, char lquote, char rquote)
 void tsk_itoa(int64_t i, tsk_istr_t *result)
 {
     memset(result, 0, sizeof(*result));
-    sprintf(*result, "%lld", i);
+    sprintf(*result, "%ld", i);
 }
 
 /**@ingroup tsk_string_group
@@ -599,13 +599,13 @@ void tsk_str_to_hex(const char *str, tsk_size_t size, uint8_t* hex)
         case '0' ... '9': hex[i/2] = (str[i] - '0'     ) << 4; break;
         case 'A' ... 'F': hex[i/2] = (str[i] - 'A' + 10) << 4; break;
         case 'a' ... 'f': hex[i/2] = (str[i] - 'a' + 10) << 4; break;
-        default: TSK_DEBUG_FATAL("parsing hex %s at [%d]", str, i);
+        default: TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i);
         }
         switch(str[i+1]) {
         case '0' ... '9': hex[i/2] |= (str[i+1] - '0'     ); break;
         case 'A' ... 'F': hex[i/2] |= (str[i+1] - 'A' + 10); break;
         case 'a' ... 'f': hex[i/2] |= (str[i+1] - 'a' + 10); break;
-        default: TSK_DEBUG_FATAL("parsing hex %s at [%d]", str, i+1);
+        default: TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i+1);
         }
     }
 }

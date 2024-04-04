@@ -666,7 +666,7 @@ int tsip_ssession_handle(const tsip_ssession_t *self, const struct tsip_action_s
             tsk_object_unref(dialog);
         }
         else {
-            TSK_DEBUG_ERROR("Failed to find dialog with this opid [%lld]", self->id);
+            TSK_DEBUG_ERROR("Failed to find dialog with this opid [%ld]", self->id);
         }
     }
     else {

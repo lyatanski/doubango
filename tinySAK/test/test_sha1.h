@@ -41,12 +41,8 @@ void test_sha1()
 
     for(i=0; i< sizeof(msgs)/sizeof(struct sha1_result); i++) {
         tsk_sha1compute(msgs[i].msg, strlen(msgs[i].msg), &sha1result);
-        if(tsk_striequals(msgs[i].xres, sha1result)) {
-            TSK_DEBUG_INFO("[SHA1-%d] ==> OK", i);
-        }
-        else {
-            TSK_DEBUG_INFO("[SHA1-%d] ==> NOK", i);
-        }
+        TSK_DEBUG_INFO("[SHA1-%ld] ==> %s",
+            i, tsk_striequals(msgs[i].xres, sha1result)? "PASS": "FAIL");
     }
 }
 
@@ -79,14 +75,9 @@ void test_hmac_sha1()
 
     for(i=0; i< sizeof(hmac_sha1_msgs)/sizeof(struct hmac_sha1_result); i++) {
         hmac_sha1_compute((const uint8_t*)hmac_sha1_msgs[i].msg, strlen(hmac_sha1_msgs[i].msg), hmac_sha1_msgs[i].key, strlen(hmac_sha1_msgs[i].key), &sha1result);
-        if(tsk_striequals(hmac_sha1_msgs[i].xres, sha1result)) {
-            TSK_DEBUG_INFO("[SHA1-%d] ==> OK", i);
-        }
-        else {
-            TSK_DEBUG_INFO("[SHA1-%d] ==> NOK", i);
-        }
+        TSK_DEBUG_INFO("[HMAC-SHA1-%ld] ==> %s",
+            i, tsk_striequals(hmac_sha1_msgs[i].xres, sha1result)? "PASS": "FAIL");
     }
 }
-
 
 #endif /* _TEST_SHA1_H_ */

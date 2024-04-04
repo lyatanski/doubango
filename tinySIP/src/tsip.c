@@ -384,7 +384,7 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
             /* reset old value */
             memset(self->security.operator_id, 0, sizeof(self->security.operator_id));
 
-            if(len == sizeof(operator_id_t) * 2 + 2 && hexstr[0] == '0' && hexstr[1] == 'x') {
+            if(hexstr[0] == '0' && hexstr[1] == 'x') {
                 hexstr += 2;
                 len -= 2;
             }
@@ -397,12 +397,7 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
                 TSK_DEBUG_ERROR("%s is invalid for an Operator Id value.", hexstr);
             }
 
-            if(curr == tsip_pname_operator_id) {
-                self->security.opc = tsk_false;
-            }
-            else {
-                self->security.opc = tsk_true;
-            }
+            self->security.opc = (curr == tsip_pname_operator_id_concealed);
 
             break;
         }

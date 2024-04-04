@@ -27,6 +27,7 @@
 #include "DDebug.h"
 
 #include "Common.h"
+#include "tipsec.h"
 
 bool SipStack::g_bInitialized = false;
 
@@ -175,6 +176,11 @@ bool SipStack::setEarlyIMS(bool enabled)
     return (tsip_stack_set(m_pHandle,
                            TSIP_STACK_SET_EARLY_IMS(enabled? tsk_true : tsk_false),
                            TSIP_STACK_SET_NULL()) == 0);
+}
+
+bool SipStack::setIPsecPlugin(const char* name)
+{
+    return !tipsec_plugin_register_file(name, &m_ipsec);
 }
 
 bool SipStack::addHeader(const char* name, const char* value)
@@ -434,8 +440,7 @@ bool SipStack::isValid()
 
 bool SipStack::stop()
 {
-    int ret = tsip_stack_stop(m_pHandle);
-    return (ret == 0);
+    return !tsip_stack_stop(m_pHandle);
 }
 
 bool SipStack::initialize()

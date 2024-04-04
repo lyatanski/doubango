@@ -54,6 +54,7 @@ public: /* API functions */
     bool setLocalIP(const char* ip, const char* transport=tsk_null);
     bool setLocalPort(unsigned short port, const char* transport=tsk_null);
     bool setEarlyIMS(bool enabled);
+    bool setIPsecPlugin(const char* name);
     bool addHeader(const char* name, const char* value);
     bool removeHeader(const char* name);
     bool addDnsServer(const char* ip);
@@ -117,6 +118,7 @@ private:
     SipCallback* m_pCallback;
     DDebugCallback* m_pDebugCallback;
     tsip_stack_handle_t* m_pHandle;
+    tsk_plugin_s* m_ipsec;
 
     static bool g_bInitialized;
 };

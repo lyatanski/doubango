@@ -139,7 +139,7 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
 
     switch(e->type) {
     case event_data: {
-        TSK_DEBUG_INFO("\n\nRECV:%.*s\n\n", e->size, (const char*)e->data);
+        TSK_DEBUG_INFO("\nRECV:%.*s\n", e->size, (const char*)e->data);
         break;
     }
     case event_closed:
@@ -569,7 +569,7 @@ parse_buffer:
                 // create ws buffer tohold unmasked data
                 if(peer->ws.rcv_buffer_size < pay_len) {
                     if(!(peer->ws.rcv_buffer = tsk_realloc(peer->ws.rcv_buffer, (tsk_size_t)pay_len))) {
-                        TSK_DEBUG_ERROR("Failed to allocate buffer of size %lld", pay_len);
+                        TSK_DEBUG_ERROR("Failed to allocate buffer of size %ld", pay_len);
                         peer->ws.rcv_buffer_size = 0;
                         goto bail;
                     }
@@ -655,7 +655,7 @@ static int tsip_transport_layer_dgram_cb(const tnet_transport_event_t* e)
 
     switch(e->type) {
     case event_data: {
-        TSK_DEBUG_INFO("\n\nRECV:%.*s\n\n", e->size, (const char*)e->data);
+        TSK_DEBUG_INFO("\nRECV:%.*s\n", e->size, (const char*)e->data);
         break;
     }
     case event_closed:

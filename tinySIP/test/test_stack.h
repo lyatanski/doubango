@@ -76,7 +76,7 @@
 
 int test_stack_callback(const tsip_event_t *sipevent)
 {
-    TSK_DEBUG_INFO("\n====\nSTACK event: %d [%s] with opid=%lld\n=====",
+    TSK_DEBUG_INFO("==== STACK event: %d [%s] with opid=%ld =====",
                    sipevent->code, sipevent->phrase, tsip_ssession_get_id(sipevent->ss));
 
     // For ssessions created by the stack ==> call tsk_object_ref(sipevent->ssession);

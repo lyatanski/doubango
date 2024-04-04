@@ -499,7 +499,7 @@ int twrap_consumer_proxy_video_consume(tmedia_consumer_t* self, const void* buff
         }
     }
     else if(!video->pcConsumer) {
-        TSK_DEBUG_ERROR("Cannot find consumer with id=%lld", TWRAP_CONSUMER_PROXY_VIDEO(self)->id);
+        TSK_DEBUG_ERROR("Cannot find consumer with id=%ld", TWRAP_CONSUMER_PROXY_VIDEO(self)->id);
     }
 
 

@@ -71,7 +71,7 @@ static uint16_t fcstab[256] = {
 /**@ingroup tsk_ppfcs16_group
 * Calculates a new fcs given the current fcs and the new data.
 */
-uint16_t tsk_pppfcs16(register uint16_t fcs, register const uint8_t* cp, register int32_t len)
+uint16_t tsk_pppfcs16(uint16_t fcs, const uint8_t* cp, int32_t len)
 {
     while (len--) {
         fcs = (fcs >> 8) ^ fcstab[(fcs ^ *cp++) & 0xff];

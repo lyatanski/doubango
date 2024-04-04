@@ -143,7 +143,7 @@ void tsk_timer_manager_debug(tsk_timer_manager_handle_t *self)
 
         tsk_list_foreach(item, manager->timers) {
             tsk_timer_t* timer = (tsk_timer_t*)item->data;
-            TSK_DEBUG_INFO("timer [%ld]- %llu, %llu", timer->id, timer->timeout, tsk_time_now());
+            TSK_DEBUG_INFO("timer [%ld]- %lu, %lu", timer->id, timer->timeout, tsk_time_now());
         }
 
         tsk_mutex_unlock(manager->mutex);
