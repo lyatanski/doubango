@@ -1,106 +1,99 @@
-<h2>Welcome to <a href='https://www.doubango.org'>doubango</a> project!</h2>
-<p><a href='http://en.wikipedia.org/wiki/IP_Multimedia_Subsystem'>3GPP IMS</a> (IP Multimedia Subsystem) is the next generation network for delivering<br>
-IP multimedia services. IMS is standardized by the 3rd Generation Partnership Project (3GPP). <br />
-IMS services could be used over any type of network, such as <a href='http://en.wikipedia.org/wiki/3GPP_Long_Term_Evolution'>3GPP LTE</a>, GPRS, Wireless LAN, CDMA2000 or fixed line.<br>
-</p>
-<p>
-<a href='https://www.doubango.org'>doubango</a> is a mature, open source, 3GPP IMS/LTE framework for both embedded and desktop systems.<br />
-The framework is written in ANSI-C to ease portability and has been carefully designed to efficiently work on embedded systems with limited memory and low computing power and to be extremely portable.</p>
+# Welcome to [doubango](https://www.doubango.org) project!
 
-<h2>Proof Of Concept</h2>
-<table border='1'>
-<tr><td><b>Client-side components</b></td></tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/boghe/'>Boghe</a></td>
-<td>- SIP Video Client for Windows Phone 8 and Surface Pro<br /> - IMS/RCS Client for Windows XP, Vista, 7 and 8</td>
-</tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/imsdroid/'>IMSDroid</a></td>
-<td>SIP/IMS Client for Android</td>
-</tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/idoubs/'>iDoubs</a></td>
-<td>SIP/IMS VideoPhone for iOS (iPhone, iPad and iPod Touch) and MAC OS X</td>
-</tr>
+[3GPP IMS](http://en.wikipedia.org/wiki/IP_Multimedia_Subsystem) (IP Multimedia Subsystem) is the next generation network for delivering
+IP multimedia services. IMS is standardized by the 3rd Generation Partnership Project (3GPP).
+IMS services could be used over any type of network, such as [3GPP LTE](http://en.wikipedia.org/wiki/3GPP_Long_Term_Evolution), GPRS, Wireless LAN, CDMA2000 or fixed line.
 
-<tr><td><b>Server-side components</b></td></tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/webrtc2sip'>webrtc2sip</a></td>
-<td>Smart SIP and Media Gateway to connect WebRTC endpoints to any SIP-legacy network</td>
-</tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/telepresence/'>telepresence</a></td>
-<td>the open source SIP TelePresence system with a porwerfull <a href='http://en.wikipedia.org/wiki/Multipoint_Control_Unit'>MCU</a>
-</td>
-</tr>
-<tr>
-<td><a href='https://github.com/DoubangoTelecom/flash2ims/'>Flash2IMS</a></td>
-<td>Adobe® Flash® to SIP/IMS Gateway.</td>
-</tr>
-</table>
+[doubango](https://www.doubango.org) is a mature, open source, 3GPP IMS/LTE framework for both embedded and desktop systems.
+The framework is written in ANSI-C to ease portability and has been carefully designed to efficiently work on embedded systems with limited memory and low computing power and to be extremely portable.
 
-See also [webrtc4all](https://github.com/DoubangoTelecom/webrtc4all/), [sipML5](https://github.com/DoubangoTelecom/sipml5/) and [click2dial](https://github.com/DoubangoTelecom/click-2-dial/) components.
 
-<h2>Features</h2>
-<ul>
-<blockquote><li>SIP (RFC 3261, 3GPP TS 24.229 Rel-9)</li>
-<li>IMS-AKA (RFC 3310, 3GPP TS 33.203, 35.205, 35.206, 35.207, 35.208 and 35.909)</li>
-<li>Private extension headers for 3GPP</li>
-<li>IPv4/IPv6 dual stack</li>
-<li>UDP, TCP and TLS</li>
-<li>Service-Route Discovery (RFC 3608)</li>
-<li>Proxy-CSCF discovery using DHCPv4/v6 or/and DNS NAPTR</li>
-<li>SigComp (RFC 3320, 3485, 4077, 4464, 4465, 4896, 5049, 5112 and 1951)</li>
-<li>IPSec</li>
-<li>Security Agreement (RFC 3329)</li>
-<li>NAT Traversal (STUN, TURN and ICE)</li>
-<li>Preconditions (RFC 3312, 4032 and 5027)</li>
-<li>SMS over IP (3GPP TS 23.038, 24.040, 24.011, 24.341 and 24.451)</li>
-<li>ENUM (RFC 3761)</li>
-<li>The tel URI for Telephone Numbers (RFC 3966)</li>
-<li>SIP SIMPLE (Presence Subscription/Publication and Pager Mode IM)</li>
-<li>MMTel (UNI)</li>
-<li>SDP (RFC 3264)</li>
-<li>(S)RTP and (S)RTCP</li>
-<li>(S)AVP, (S)AVP(F) and UDP/TLS/RTP/(S)AVP(F) profiles</li>
-<li>DTLS-SRTP(RFC 5763 and 5764)</li>
-<li>XCAP (RFC 4825)</li>
-<li>MSRP (RFC 4975 and 5547)</li>
-<li>Audio/Video (AMR, Speex, G.729, G.722, Opus, G.711, GSM, iLBC, VP8, H.264, H.263, Theora, MP4V-ES...)</li>
-<li>Full HD (1080p) video</li>
-<li>T.140: Text Over IP (<a href='http://en.wikipedia.org/wiki/Text_over_IP'>http://en.wikipedia.org/wiki/Text_over_IP</a>)</li>
-<li>...and many other features</li>
-</ul></blockquote>
+## The One Voice Profile (4G/LTE)
 
-<h2>The One Voice Profile (4G/LTE)</h2>
-<p><a href='https://www.doubango.org'>doubango</a> supports both Voice and SMS over LTE as defined by the <b>One Voice initiative</b>.<br />
-For more information, please refer to <a href='http://news.vzw.com/OneVoiceProfile.pdf'>Voice over IMS profile V1.0.0(2009-11)</a>.<br>
-<blockquote></p>
-<img src='https://doubango.org/LTE_Architecture.png' alt='3GPP LTE Architecture' title='3GPP LTE Architecture' /></blockquote>
+[doubango](https://www.doubango.org) supports both Voice and SMS over LTE as defined by the **One Voice initiative**.
+For more information, please refer to [Voice over IMS profile V1.0.0(2009-11)](http://news.vzw.com/OneVoiceProfile.pdf).
+[3GPP LTE Architecture](https://doubango.org/LTE_Architecture.png "3GPP LTE Architecture")
 
-<h2>Multimedia Telephony (MMTel)</h2>
-<ul>
-<li>MMTel Supplementary Services (3GPP TS 24.173, 24607, 24.608, 24.607, 24.604, 24.611, 24.610, 24.606, 24.615 and 24.605)</li>
-<li>Supplementary Service Configuration(3GPP TS 24.623)</li>
-<li>Ad-Hoc Multi Party Conference (3GPP TS 24.605)</li>
-<li>Communication Waiting(3GPP TS 24.615)</li>
-<li>Message Waiting Indication(3GPP TS 24.606 and RFC 3842)</li>
-<li>Originating/Terminating Identification Restriction(3GPP TS 24.607/608)</li>
-<li>Communication Diversion(3GPP TS 24.604)</li>
-<li>Communication Barring(3GPP TS 24.611)</li>
-</ul>
-<br>
+
+## Features
+
+*   SIP (RFC 3261, 3GPP TS 24.229 Rel-9)
+*   IMS-AKA (RFC 3310, 3GPP TS 33.203, 35.205, 35.206, 35.207, 35.208 and 35.909)
+*   Private extension headers for 3GPP
+*   IPv4/IPv6 dual stack
+*   UDP, TCP and TLS
+*   Service-Route Discovery (RFC 3608)
+*   Proxy-CSCF discovery using DHCPv4/v6 or/and DNS NAPTR
+*   SigComp (RFC 3320, 3485, 4077, 4464, 4465, 4896, 5049, 5112 and 1951)
+*   IPSec
+*   Security Agreement (RFC 3329)
+*   NAT Traversal (STUN, TURN and ICE)
+*   Preconditions (RFC 3312, 4032 and 5027)
+*   SMS over IP (3GPP TS 23.038, 24.040, 24.011, 24.341 and 24.451)
+*   ENUM (RFC 3761)
+*   The tel URI for Telephone Numbers (RFC 3966)
+*   SIP SIMPLE (Presence Subscription/Publication and Pager Mode IM)
+*   MMTel (UNI)
+*   SDP (RFC 3264)
+*   (S)RTP and (S)RTCP
+*   (S)AVP, (S)AVP(F) and UDP/TLS/RTP/(S)AVP(F) profiles
+*   DTLS-SRTP(RFC 5763 and 5764)
+*   XCAP (RFC 4825)
+*   MSRP (RFC 4975 and 5547)
+*   Audio/Video (AMR, Speex, G.729, G.722, Opus, G.711, GSM, iLBC, VP8, H.264, H.263, Theora, MP4V-ES...)
+*   Full HD (1080p) video
+*   T.140: Text Over IP ([http://en.wikipedia.org/wiki/Text\_over\_IP](http://en.wikipedia.org/wiki/Text_over_IP))
+*   ...and many other features
+
+
+## Multimedia Telephony (MMTel)
+
+*   MMTel Supplementary Services (3GPP TS 24.173, 24607, 24.608, 24.607, 24.604, 24.611, 24.610, 24.606, 24.615 and 24.605)
+*   Supplementary Service Configuration(3GPP TS 24.623)
+*   Ad-Hoc Multi Party Conference (3GPP TS 24.605)
+*   Communication Waiting(3GPP TS 24.615)
+*   Message Waiting Indication(3GPP TS 24.606 and RFC 3842)
+*   Originating/Terminating Identification Restriction(3GPP TS 24.607/608)
+*   Communication Diversion(3GPP TS 24.604)
+*   Communication Barring(3GPP TS 24.611)
+
+
+## Proof Of Concept
+
+**Client-side components**
+
+* [Boghe](https://github.com/DoubangoTelecom/boghe/)
+    * SIP Video Client for Windows Phone 8 and Surface Pro
+    * IMS/RCS Client for Windows XP, Vista, 7 and 8
+* [IMSDroid](https://github.com/DoubangoTelecom/imsdroid/)
+    * SIP/IMS Client for Android
+* [iDoubs](https://github.com/DoubangoTelecom/idoubs/)
+    * SIP/IMS VideoPhone for iOS (iPhone, iPad and iPod Touch) and MAC OS X
+
+
+**Server-side components**
+
+* [webrtc2sip](https://github.com/DoubangoTelecom/webrtc2sip)
+    * Smart SIP and Media Gateway to connect WebRTC endpoints to any SIP-legacy network
+* [telepresence](https://github.com/DoubangoTelecom/telepresence/)
+    * the open source SIP TelePresence system with a porwerfull [MCU](http://en.wikipedia.org/wiki/Multipoint_Control_Unit)
+* [Flash2IMS](https://github.com/DoubangoTelecom/flash2ims/)
+    * Adobe® Flash® to SIP/IMS Gateway.
+
+See also:
+* [webrtc4all](https://github.com/DoubangoTelecom/webrtc4all/)
+* [sipML5](https://github.com/DoubangoTelecom/sipml5/)
+* [click2dial](https://github.com/DoubangoTelecom/click-2-dial/)
 
 
 ## Building
-    cmake -S . -B out --graphviz=out/dep.dot
-    dot -Tpng -o out/dep.png out/dep.dot
-    cmake --build out/ -j 16
 
-    cd out/
-    ctest -V
+```
+cmake -S . -B out --graphviz=out/dep.dot dot -Tpng -o out/dep.png out/dep.dot
+cmake --build out/ -j 16
+cd out/
+ctest -V
+```
 
-
-<br />
-<b>© 2010-2015 Doubango Telecom</b> <br />
-<i>Inspiring the future</i>
+**© 2010-2015 Doubango Telecom**
+_Inspiring the future_
