@@ -5,10 +5,6 @@ project(${name})
 find_file(IFADDR ifaddrs.h)
 find_package(OpenSSL REQUIRED)
 
-if(DOXYGEN_FOUND)
-doxygen_add_docs(api-${name} ${CMAKE_CURRENT_SOURCE_DIR} ALL)
-endif()
-
 file(GLOB src src/*.c src/*/*.c)
 add_library(${name} ${src})
 target_include_directories(${name} PUBLIC src)

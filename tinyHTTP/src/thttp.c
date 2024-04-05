@@ -44,7 +44,7 @@
 #include "tsk_string.h"
 
 
-/** @mainpage TinyHTTP API Overview
+/** TinyHTTP API Overview
 * <h1>15 HTTP/HTTPS</h1>
 * <p>
 * The HTTP/HTTPS stack is a basic thread-safe client API and is used in conjunction with the XCAP protocol.

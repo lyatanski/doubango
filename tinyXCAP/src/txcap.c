@@ -34,7 +34,7 @@
 */
 
 
-/**@mainpage tinyXCAP API Overview
+/** tinyXCAP API Overview
 *
 *
 * <h1>16 XCAP</h1>

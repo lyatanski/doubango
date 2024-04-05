@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(tinyWRAP C CXX)
+project(Doubango C CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
@@ -7,14 +7,12 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 #include(GetSRTP)
 #include(GetiLBC)
 
-#find_package(Doxygen
-#             REQUIRED dot
-#             OPTIONAL_COMPONENTS mscgen dia)
+find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 
-#if(DOXYGEN_FOUND)
-#    set(DOXYGEN_EXCLUDE_PATTERNS "out")
-#    doxygen_add_docs(api-${name} ${CMAKE_CURRENT_SOURCE_DIR} ALL)
-#endif()
+if(DOXYGEN_FOUND)
+    set(DOXYGEN_EXCLUDE_PATTERNS ${CMAKE_CURRENT_BINARY_DIR} README.md */test/*)
+    doxygen_add_docs(api-doc ${CMAKE_CURRENT_SOURCE_DIR} ALL)
+endif()
 
 #set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
 #set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})

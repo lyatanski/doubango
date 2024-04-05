@@ -35,7 +35,7 @@
 #	include <openssl/ssl.h>
 #endif
 
-/** @mainpage tinyNET API Overview
+/** tinyNET API Overview
 *
 * <h1>10 Sockets and Network Functions</h1>
 *
