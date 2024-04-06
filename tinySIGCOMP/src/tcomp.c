@@ -177,7 +177,3 @@
 * @endcode
 */
 
-
-/** @page tcomp_udp_decompression_page SigComp UDP decompression
-* Decompression is as easy as compression (thread-safe).
-*/

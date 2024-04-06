@@ -10,8 +10,10 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 
 if(DOXYGEN_FOUND)
-    set(DOXYGEN_EXCLUDE_PATTERNS ${CMAKE_CURRENT_BINARY_DIR} README.md */test/*)
-    doxygen_add_docs(api-doc ${CMAKE_CURRENT_SOURCE_DIR} ALL)
+    #include(GetDoxygenAwesome)
+    #set(DOXYGEN_HTML_EXTRA_STYLESHEET ${CMAKE_BINARY_DIR}/doxygen-awesome-css-2.3.2/doxygen-awesome.css)
+    set(DOXYGEN_EXCLUDE_PATTERNS ${CMAKE_BINARY_DIR} README.md Licensing.md Wall_of_Shame.md */test/*)
+    doxygen_add_docs(api-doc ALL)
 endif()
 
 #set(CMAKE_C_FLAGS "-Wformat=0 -Wno-int-to-pointer-cast")
