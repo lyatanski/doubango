@@ -51,6 +51,23 @@ The framework is written in ANSI-C to ease portability and has been carefully de
 *   Communication Barring(3GPP TS 24.611)
 
 
+## Projects
+
+| Name | Prefix | Functionalities | Dependencies |
+| ---- | ------ | --------------- | ------------ |
+| tinySAK (tiny Swiss Army Knife) | tsk | ANSI-C Object Programing<br>Linked lists<br>String utility functions<br>Memory management<br>Dynamic buffers<br>Threading<br>Runnable<br>Mutexes<br>Semaphores<br>Conditional Variables<br>Timers<br>Time<br>Final State Machine (FSM) manager<br>Base64 encoder/decoder<br>UUID generator<br>CRC32 and CRC16<br>URL encoder/decoder<br>SHA-1, MD5, HMAC-MD5, HMAC-SHA-1 | None |
+| tinyNET (Networking) | tnet | IPv4/IPv6 Sockets (UDP, TCP, TLS and SCTP)<br>DHCPv4/v6<br>DNS (NAPTR, PTR, SRV, MX, A, AAAA, OPT, CNAME ...)<br>ENUM<br>NAT Traversal (STUN, TURN and ICE)| tinySAK |
+| tinyHTTP (HTTP/HTTPS stack) | thttp | Digest/Basic Authentication<br>Pipelining<br>CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT and TRACE | tinySAK<br>tinyNET |
+| tinyXCAP (XCAP implementation) | txcap | AUID manager<br>URL generator | tinySAK<br>tinyNET<br>tinyHTTP |
+| tinySMS (Binary SMS over IMS/LTE networks) | tsms | SM-TL (3GPP TS 23.040)<br>SM-RL (3GPP TS 24.011)<br>SMS over 3GPP IMS/LTE networks (3GPP TS 24.341)| tinySAK |
+| tinySigComp (Signalling Compression) | tcomp | Stream and Dgram compression/decompression<br>SIP/SDP and Presence dictionaries<br>Deflate Compressor<br>UDVM | tinySAK |
+| tinyIPSec (IPSec) | tipsec | Mode: Transport and Tunnel<br>Protocol: AH, ESP or both<br>IP Protocol: UDP and TCP<br>Algorithm: HMAC-MD5-96 and HMAC-SHA-1-96<br>Encryption Algorithm: NULL, DES-EDE3-CBC and AES | tinySAK |
+| tinySDP (Session Description Protocol) | tsdp | SDP Offer Answer (RFC 3262) | tinySAK |
+| tinyMSRP (Message Session Relay Protocol) | tmsrp | Large Message IM (RFC 4975 and OMA SIMPLE IM)<br>File Transfer (RFC 5547)<br>Image Sharing (GSMA IR.79) | tinySDP |
+| tinyMEDIA (Audio, Video, File Transfer ...) | tmedia | Plugins<br>Codecs | tinySAK<br>tinyNET<br>tinySDP |
+| tinySIP (Session Initiation Protocol) | tsip | SIP (RFC 3261, 3GPP TS 24.229 Rel-9)<br>IMS-AKA (RFC 3310, 3GPP TS 33.203)<br>IPv4/IPv6 dual stack<br>UDP, TCP, TLS and SCTP transports<br>Service-Route Discovery (RFC 3608)<br>Proxy-CSCF discovery using DHCPv4/v6 or/and DNS<br>NAPTR+SRV<br>SigComp (RFC 3320, 3485, 4077, 4464, 4465, 4896, 5049, 5112 and 1951)<br>IPSec<br>Security Agreement (RFC 3329)<br>NAT Traversal (STUN, TURN and ICE)<br>Preconditions (RFC 3312, 4032 and 5027)<br>SMS over IP (3GPP TS 23.038, 24.040, 24.011, 24.341 and 24.451)<br>ENUM (RFC 3761)<br>The tel URI for Telephone Numbers (RFC 3966)<br>SIP SIMPLE (Presence subsciption/publication, Pager Mode IM, ...)<br>MMTel (UNI)<br>SDP Offer-Answer (SOA)<br>Session Timers<br>File transfer (RFC 5547) and Image Sharing(GSMA IR.79)<br>Large Message IM (OMA SIMPLE IM) | tinySAK<br>tinyNET<br>tinySDP<br>tinyMEDIA<br>tinyHTTP<br>tinyIPSec |
+
+
 ## Proof Of Concept
 
 **Client-side components**
