@@ -49,7 +49,7 @@
 #	include <mach/mach_time.h>
 #endif
 
-/**@defgroup tsk_time_group Datetime functions.
+/**@defgroup tsk_time_group Utility Datetime functions
 */
 
 #if !HAVE_GETTIMEOFDAY

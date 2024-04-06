@@ -29,7 +29,7 @@
  */
 #include "tcomp.h"
 
-/** tinySigComp API Overview
+/** @page sigcomp_overview tinySigComp API Overview
 *
 * This file is an overview of <b>tinySigComp</b> API.
 *

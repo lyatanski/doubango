@@ -29,7 +29,7 @@
  */
 #include "tinysms/tsms.h"
 
-/** tinySMS API Overview
+/** @page sms_overview tinySMS API Overview
 *
 * ======
 *

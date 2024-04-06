@@ -38,7 +38,7 @@
 
 #include <limits.h> /* INT_MAX */
 
-/**@defgroup tmedia_codec_group Codecs
+/**@defgroup tmedia_codec_group Media Codecs
 */
 
 /* pointer to all registered codecs */

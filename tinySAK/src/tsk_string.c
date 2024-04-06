@@ -51,7 +51,7 @@
 #	endif
 #endif
 
-/**@defgroup tsk_string_group String utillity functions.
+/**@defgroup tsk_string_group Utillity String functions
 */
 
 /**@ingroup tsk_string_group

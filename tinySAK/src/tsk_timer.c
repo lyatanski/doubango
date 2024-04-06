@@ -41,7 +41,7 @@
 #endif /* TSK_UNDER_WINDOWS */
 
 
-/**@defgroup tsk_timer_group Timers Management
+/**@defgroup tsk_timer_group Utility Timers Management
 */
 
 #define TSK_TIMER_CREATE(timeout, callback, arg)	tsk_object_new(tsk_timer_def_t, timeout, callback, arg)

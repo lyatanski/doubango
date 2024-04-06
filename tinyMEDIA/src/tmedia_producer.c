@@ -26,7 +26,7 @@
 
 #include "tsk_debug.h"
 
-/**@defgroup tmedia_producer_group Producers
+/**@defgroup tmedia_producer_group Media Producers
 */
 
 /* pointer to all registered producers */

@@ -37,7 +37,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/**@defgroup tsk_uuid_group niversally Unique Identifier (UUID version 5) implementation (RFC 4122).
+/**@defgroup tsk_uuid_group Utility Universally Unique Identifier (UUID version 5) implementation (RFC 4122).
 */
 
 /**@ingroup tsk_uuid_group

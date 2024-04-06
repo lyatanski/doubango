@@ -33,7 +33,7 @@
 
 #include "tsk_debug.h"
 
-/**@defgroup thttp_action_group Sending Requests
+/**@defgroup thttp_action_group HTTP Sending Requests
 */
 
 thttp_action_t* thttp_action_create(thttp_action_type_t type, const char* urlstring, const char* method, va_list* app)

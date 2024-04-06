@@ -56,7 +56,7 @@ static void* TSK_STDCALL run(void* self);
  */
 
 
-/**@defgroup tsip_stack_group 3GPP IMS/LTE Stack
+/**@defgroup tsip_stack_group SIP 3GPP IMS/LTE Stack
  */
 
 extern tsip_event_t* tsip_event_create(tsip_ssession_t* ss, short code, const char* phrase, const tsip_message_t* sipmessage, tsip_event_type_t type);

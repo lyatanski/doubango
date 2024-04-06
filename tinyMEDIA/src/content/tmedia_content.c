@@ -29,9 +29,6 @@
 
 #include <string.h>
 
-/**@defgroup tmedia_content_group Contents
-*/
-
 typedef struct tmedia_content_plugin_entry_s {
     const char* type;
     const tmedia_content_plugin_def_t* plugin;

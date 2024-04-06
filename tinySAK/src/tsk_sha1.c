@@ -94,7 +94,7 @@
 
 #include "tsk_string.h"
 
-/**@defgroup tsk_sha1_group SHA1 (RFC 3174) utility functions.
+/**@defgroup tsk_sha1_group Utility SHA1 (RFC 3174)
  *  Copyright (C) The Internet Society (2001).  All Rights Reserved.<br>
  *  Copyright (C) Mamadou Diop		   (2009)<br>
  *

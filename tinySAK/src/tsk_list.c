@@ -27,7 +27,7 @@
 
 #include <string.h>
 
-/**@defgroup tsk_list_group Linked list.
+/**@defgroup tsk_list_group Utility Linked list
 * @brief Linked list. For more information about linked list you can check @ref _Page_TinySAK_AnsiC_Linked_List "this page".
 */
 
