@@ -1,18 +1,11 @@
-# Welcome to [doubango](https://www.doubango.org) project!
+# Welcome to [doubango](https://lyatanski.github.io/doubango/) project!
 
 [3GPP IMS](http://en.wikipedia.org/wiki/IP_Multimedia_Subsystem) (IP Multimedia Subsystem) is the next generation network for delivering
 IP multimedia services. IMS is standardized by the 3rd Generation Partnership Project (3GPP).
 IMS services could be used over any type of network, such as [3GPP LTE](http://en.wikipedia.org/wiki/3GPP_Long_Term_Evolution), GPRS, Wireless LAN, CDMA2000 or fixed line.
 
-[doubango](https://www.doubango.org) is a mature, open source, 3GPP IMS/LTE framework for both embedded and desktop systems.
-The framework is written in ANSI-C to ease portability and has been carefully designed to efficiently work on embedded systems with limited memory and low computing power and to be extremely portable.
-
-
-## The One Voice Profile (4G/LTE)
-
-[doubango](https://www.doubango.org) supports both Voice and SMS over LTE as defined by the **One Voice initiative**.
-For more information, please refer to [Voice over IMS profile V1.0.0(2009-11)](http://news.vzw.com/OneVoiceProfile.pdf).
-[3GPP LTE Architecture](https://doubango.org/LTE_Architecture.png "3GPP LTE Architecture")
+[doubango](https://lyatanski.github.io/doubango/) is a mature, open source, 3GPP IMS/LTE framework for both embedded and desktop systems.
+The framework is written in ANSI-C to ease portability and has been carefully designed to efficiently work on embedded systems with limited memory and low computing power and to be extremely portable. [doubango](https://lyatanski.github.io/doubango/) supports both Voice and SMS over LTE as defined by the **One Voice initiative**.
 
 
 ## Features
