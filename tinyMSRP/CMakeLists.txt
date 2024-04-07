@@ -5,7 +5,7 @@ project(${name})
 file(GLOB src src/*.c src/*/*.c)
 add_library(${name} ${src})
 target_include_directories(${name} PUBLIC include)
-target_link_libraries(${name} tinyHTTP tinySDP)
+target_link_libraries(${name} tinyHTTP)
 
 file(GLOB tests test/*.c)
 foreach(test_src ${tests})

@@ -27,7 +27,7 @@ void test_manager()
     tsk_size_t i;
     trtp_manager_t* manager;
 
-    if(!(manager = trtp_manager_create(tsk_true, "192.168.0.12", tsk_false))) {
+    if(!(manager = trtp_manager_create(tsk_true, "0.0.0.0", tsk_false, tmedia_srtp_type_none, tmedia_srtp_mode_none))) {
         goto bail;
     }
 
@@ -53,7 +53,7 @@ void test_manager()
 
     /* send data */
     for(i=0; i<2; i++) {
-        if(trtp_manager_send_rtp(manager, "test", tsk_strlen("test"), 160, tsk_true)) {
+        if(trtp_manager_send_rtp(manager, "test", tsk_strlen("test"), 160, tsk_true, tsk_true)) {
             goto bail;
         }
     }

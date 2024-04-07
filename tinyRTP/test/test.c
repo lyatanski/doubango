@@ -27,8 +27,8 @@
 #define LOOP						0
 
 #define RUN_TEST_ALL				0
-#define RUN_TEST_PARSER				0
-#define RUN_TEST_MANAGER			0
+#define RUN_TEST_PARSER				1
+#define RUN_TEST_MANAGER			1
 
 #include "test_parser.h"
 #include "test_manager.h"
@@ -44,9 +44,6 @@ int main()
     tnet_startup();
 
     do {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009-2010 Mamadou Diop \n\n");
-
 #if RUN_TEST_PARSER || RUN_TEST_ALL
         test_parser();
 #endif

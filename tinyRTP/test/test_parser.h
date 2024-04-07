@@ -291,7 +291,7 @@ char packet_10[] = {
 	/* deserialize the packet*/ \
 	if((packet = trtp_rtp_packet_deserialize(packet_##n, sizeof(packet_##n)))){ \
 		/* serialize the packet */ \
-		if((buffer = trtp_rtp_packet_serialize(packet))){ \
+		if((buffer = trtp_rtp_packet_serialize(packet, 0))){ \
 			/* compare data */ \
 			if(sizeof(packet_##n) != buffer->size){ \
 				TSK_DEBUG_ERROR("Test-%d: Sizes are different", n); \
