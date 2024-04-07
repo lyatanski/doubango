@@ -57,9 +57,6 @@ int main()
     tnet_startup();
 
     do {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009-2013 Mamadou Diop \n\n");
-
 #if RUN_TEST_AUTH || RUN_TEST_ALL
         test_ws_auth();
         test_basic_auth();

@@ -33,10 +33,10 @@
 
 #define RUN_TEST_ALL		0
 #define RUN_TEST_MESSAGES	1
-#define RUN_TEST_URI		0
-#define RUN_TEST_TRANSAC	0
-#define RUN_TEST_STACK		0
-#define RUN_TEST_IMS_AKA	0
+#define RUN_TEST_URI		1
+#define RUN_TEST_TRANSAC	1
+#define RUN_TEST_STACK		1
+#define RUN_TEST_IMS_AKA	1
 
 #ifdef _WIN32_WCE
 int _tmain(int argc, _TCHAR* argv[])
@@ -46,15 +46,7 @@ int main()
 {
     tnet_startup();
 
-#if RUN_TEST_LOOP
-    for(;;)
-#endif
-    {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009 - 2010 Mamadou Diop \n\n");
-
-
-
+    do {
 #if RUN_TEST_ALL  || RUN_TEST_MESSAGES
         test_messages();
 #endif
@@ -75,6 +67,7 @@ int main()
         test_imsaka();
 #endif
     }
+    while(RUN_TEST_LOOP);
 
     tnet_cleanup();
 

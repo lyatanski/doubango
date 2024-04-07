@@ -79,13 +79,7 @@ int _tmain(int argc, _TCHAR* argv[])
 int main()
 #endif
 {
-#if RUN_TEST_LOOP
-    for(;;)
-#endif
-    {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009 - 2010 Mamadou Diop \n\n");
-
+    do {
 #if RUN_TEST_ALL  || RUN_TEST_PACKING
         test_packing();
 #endif
@@ -97,6 +91,6 @@ int main()
 #if RUN_TEST_ALL  || RUN_TEST_RPDU
         test_rpdu();
 #endif
-
     }
+    while(RUN_TEST_LOOP);
 }

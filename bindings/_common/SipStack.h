@@ -46,7 +46,7 @@ public: /* API functions */
     bool setRealm(const char* realm_uri);
     bool setIMPI(const char* impi);
     bool setIMPU(const char* impu_uri);
-    bool setPassword(const char* password);
+    bool setPassword(const char* password, bool hex=true);
     bool setAMF(const char* amf);
     bool setOperatorId(const char* opid);
     bool setOperatorIdConcealed(const char* opid);

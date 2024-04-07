@@ -39,9 +39,6 @@ int main()
 #endif
 {
     do {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009 - 2010 Mamadou Diop \n\n");
-
         test_parser();
 #if RUN_TEST_ALL  || RUN_TEST_PARSER
         test_parser();

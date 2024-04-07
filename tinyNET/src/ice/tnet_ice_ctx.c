@@ -2160,7 +2160,7 @@ static int _tnet_ice_ctx_fsm_ConnChecking_2_ConnCheckingCompleted_X_Success(va_l
             self->turn.peer_id_rtp = pair_offer->turn_peer_id;
             TSK_DEBUG_INFO("ICE: nominated TURN peer id [RTP] = %ld", self->turn.peer_id_rtp);
         }
-        TSK_DEBUG_INFO("ICE: nominated symetric RTP pairs: offer:%llu, answer-src:%llu, answser-dest:%llu",
+        TSK_DEBUG_INFO("ICE: nominated symetric RTP pairs: offer:%lu, answer-src:%lu, answser-dest:%lu",
                        pair_offer ? pair_offer->id : 0, pair_answer_src ? pair_answer_src->id : 0, pair_answer_dest ? pair_answer_dest->id : 0);
     }
     if (ret == 0 && pair_offer) {
@@ -2174,7 +2174,7 @@ static int _tnet_ice_ctx_fsm_ConnChecking_2_ConnCheckingCompleted_X_Success(va_l
             self->turn.peer_id_rtcp = pair_offer->turn_peer_id;
             TSK_DEBUG_INFO("ICE: nominated TURN peer id [RTCP] = %ld", self->turn.peer_id_rtp);
         }
-        TSK_DEBUG_INFO("ICE: nominated symetric RTCP(use:%d, mux:%d) pairs: offer:%llu, answer-src:%llu, answser-dest:%llu",
+        TSK_DEBUG_INFO("ICE: nominated symetric RTCP(use:%d, mux:%d) pairs: offer:%lu, answer-src:%lu, answser-dest:%lu",
                        self->use_rtcp ? 1 : 0, self->use_rtcpmux ? 1 : 0,
                        pair_offer ? pair_offer->id : 0, pair_answer_src ? pair_answer_src->id : 0, pair_answer_dest ? pair_answer_dest->id : 0);
     }
@@ -2499,7 +2499,7 @@ static int _tnet_ice_ctx_build_pairs(struct tnet_ice_ctx_s* self, tnet_ice_candi
             }
 
             if ((pair = tnet_ice_pair_create(cand_local, cand_remote, is_controlling, tie_breaker, is_ice_jingle))) {
-                TSK_DEBUG_INFO("ICE Pair(%llu, %llu): [%s %u %u %s %d] -> [%s %u %u %s %d]",
+                TSK_DEBUG_INFO("ICE Pair(%lu, %lu): [%s %u %u %s %d] -> [%s %u %u %s %d]",
                                pair->id,
                                pair->priority,
 

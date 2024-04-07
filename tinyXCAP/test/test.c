@@ -51,9 +51,6 @@ int main()
 {
     tnet_startup();
 
-    /* Print copyright information */
-    printf("Doubango Project\nCopyright (C) 2009 Mamadou Diop \n\n");
-
     do {
         /* XCAP document/node selector */
 #if RUN_TEST_SELECTOR || RUN_TEST_ALL
@@ -64,8 +61,6 @@ int main()
 #if RUN_TEST_STACK || RUN_TEST_ALL
         test_stack();
 #endif
-
-
     }
     while(LOOP);
 

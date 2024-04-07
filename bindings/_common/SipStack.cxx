@@ -119,10 +119,17 @@ bool SipStack::setIMPU(const char* impu_uri)
                            TSIP_STACK_SET_NULL()) == 0);
 }
 
-bool SipStack::setPassword(const char* password)
+bool SipStack::setPassword(const char* password, bool hex /*=true*/)
 {
+
+    char* pass = const_cast<char*>(password);
+    if(hex) {
+        uint8_t Ki[16];
+        tsk_str_to_hex(password, tsk_strlen(password), Ki);
+        pass = reinterpret_cast<char*>(Ki);
+    }
     return (tsip_stack_set(m_pHandle,
-                           TSIP_STACK_SET_PASSWORD(password),
+                           TSIP_STACK_SET_PASSWORD(pass),
                            TSIP_STACK_SET_NULL()) == 0);
 }
 

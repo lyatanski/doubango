@@ -10,8 +10,13 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 
 if(DOXYGEN_FOUND)
-    #include(GetDoxygenAwesome)
-    #set(DOXYGEN_HTML_EXTRA_STYLESHEET ${CMAKE_BINARY_DIR}/doxygen-awesome-css-2.3.2/doxygen-awesome.css)
+    include(FetchContent)
+    FetchContent_Declare(doxygen_css
+        URL      https://github.com/jothepro/doxygen-awesome-css/archive/refs/tags/v2.3.2.tar.gz
+        URL_HASH MD5=9571966298ee8bcb33aa7b296d439561
+    )
+    FetchContent_MakeAvailable(doxygen_css)
+    set(DOXYGEN_HTML_EXTRA_STYLESHEET ${doxygen_css_SOURCE_DIR}/doxygen-awesome.css)
     set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${CMAKE_SOURCE_DIR}/README.md)
     set(DOXYGEN_EXCLUDE_PATTERNS ${CMAKE_BINARY_DIR} Licensing.md Wall_of_Shame.md */test/* website)
     doxygen_add_docs(api-doc ALL)

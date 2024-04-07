@@ -186,7 +186,7 @@ tnet_ice_pair_t* tnet_ice_pair_prflx_create(tnet_ice_pairs_L_t* pairs, tnet_fd_t
             memcpy(cand_remote->connection_addr, remote_ip, sizeof(tnet_ip_t));
             cand_remote->port = remote_port;
 
-            TSK_DEBUG_INFO("ICE Pair Reflexive Candidate (%llu, %llu): [%s %u %u %s %d] -> [%s %u %u %s %d]",
+            TSK_DEBUG_INFO("ICE Pair Reflexive Candidate (%lu, %lu): [%s %u %u %s %d] -> [%s %u %u %s %d]",
                            pair->id,
                            pair->priority,
 
@@ -673,7 +673,7 @@ int tnet_ice_pair_recv_response(tnet_ice_pair_t *self, const tnet_stun_pkt_resp_
                 uint16_t u_code;
                 int ret;
                 if ((ret = tnet_stun_pkt_get_errorcode(response, &u_code)) == 0 && u_code == kStunErrCodeIceConflict) {
-                    TSK_DEBUG_INFO("ICE Pair %llu received conflict error message", self->id);
+                    TSK_DEBUG_INFO("ICE Pair %lu received conflict error message", self->id);
                     // If this code is called this means that we have lower tie-breaker and we must toggle our role
                     self->is_controlling = !self->is_controlling;
                     TSK_OBJECT_SAFE_FREE(self->last_request); // delete the "last_request" to make sure a new one will be created with right attributes

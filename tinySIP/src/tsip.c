@@ -136,10 +136,8 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
         }
         case tsip_pname_password: {
             /* (const char*)PASSORD_STR */
-            const char* PASSORD_STR = va_arg(*app, const char*);
-            uint8_t PASSWORD_BIN[16];
-            tsk_str_to_hex(PASSORD_STR, tsk_strlen(PASSORD_STR), PASSWORD_BIN);
-            tsk_strupdate(&self->identity.password, PASSWORD_BIN);
+            const char* PASSWORD_STR = va_arg(*app, const char*);
+            tsk_strupdate(&self->identity.password, PASSWORD_STR);
             break;
         }
 

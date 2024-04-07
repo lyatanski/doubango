@@ -60,9 +60,6 @@ int main()
     tnet_startup();
 
     do {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2014 Mamadou Diop \n\n");
-
 #if RUN_TEST_PARSER || RUN_TEST_ALL
         test_parser();
 #endif

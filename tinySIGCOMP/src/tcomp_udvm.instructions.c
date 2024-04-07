@@ -55,7 +55,7 @@
 	udvm->consumed_cycles += (uint64_t)(cycles);					\
 	if( udvm->consumed_cycles > udvm->maximum_UDVM_cycles )			\
 	{																\
-		TSK_DEBUG_ERROR("%s (%llu > %llu)", TCOMP_NACK_DESCRIPTIONS[NACK_CYCLES_EXHAUSTED].desc, udvm->consumed_cycles, udvm->maximum_UDVM_cycles);					\
+		TSK_DEBUG_ERROR("%s (%lu > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_CYCLES_EXHAUSTED].desc, udvm->consumed_cycles, udvm->maximum_UDVM_cycles);					\
 		tcomp_udvm_createNackInfo2(udvm, NACK_CYCLES_EXHAUSTED);	\
 		return tsk_false;													\
 	}

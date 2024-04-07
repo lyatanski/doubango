@@ -43,9 +43,6 @@ int main()
     tdav_init();
 
     do {
-        /* Print copyright information */
-        printf("Doubango Project\nCopyright (C) 2009-2010 Mamadou Diop \n\n");
-
 #if RUN_TEST_SESSIONS || RUN_TEST_ALL
         test_sessions();
 #endif
