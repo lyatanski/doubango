@@ -185,11 +185,6 @@ bool SipStack::setEarlyIMS(bool enabled)
                            TSIP_STACK_SET_NULL()) == 0);
 }
 
-bool SipStack::setIPsecPlugin(const char* name)
-{
-    return !tipsec_plugin_register_file(name, &m_ipsec);
-}
-
 bool SipStack::addHeader(const char* name, const char* value)
 {
     return (tsip_stack_set(m_pHandle,
@@ -326,6 +321,11 @@ bool SipStack::setSSLCertificates(const char* privKey, const char* pubKey, const
     return (tsip_stack_set(m_pHandle,
                            TSIP_STACK_SET_TLS_CERTS_2(caKey, pubKey, privKey, (verify ? tsk_true : tsk_false)),
                            TSIP_STACK_SET_NULL()) == 0);
+}
+
+bool SipStack::setIPsecPlugin(const char* name)
+{
+    return !tipsec_plugin_register_file(name, &m_ipsec);
 }
 
 bool SipStack::setIPSecSecAgree(bool enabled)

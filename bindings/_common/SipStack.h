@@ -54,7 +54,6 @@ public: /* API functions */
     bool setLocalIP(const char* ip, const char* transport=tsk_null);
     bool setLocalPort(unsigned short port, const char* transport=tsk_null);
     bool setEarlyIMS(bool enabled);
-    bool setIPsecPlugin(const char* name);
     bool addHeader(const char* name, const char* value);
     bool removeHeader(const char* name);
     bool addDnsServer(const char* ip);
@@ -76,6 +75,7 @@ public: /* API functions */
     bool setTLSSecAgree(bool enabled);
     bool setSSLCertificates(const char* privKey, const char* pubKey, const char* caKey, bool verify = false);
     bool setSSLCretificates(const char* privKey, const char* pubKey, const char* caKey, bool verify = false); /*@deprecated: typo */
+    bool setIPsecPlugin(const char* name);
     bool setIPSecSecAgree(bool enabled);
     bool setIPSecParameters(const char* algo, const char* ealgo, const char* mode, const char* proto);
 

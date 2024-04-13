@@ -103,17 +103,17 @@ struct auth_digest_msg {
 
 struct auth_digest_msg auth_digest_msgs[] = {
     {
-        "Mufasa",
-        "Circle Of Life",
-        "testrealm@host.com",
-        "dcd98b7102dd2f0e8b11d0f600bfb0c093",
-        "GET",
-        "/dir/index.html",
-        "auth",
-        "00000001",
-        "0a4f113b",
-        "5ccc069c403ebaf9f0171e9517f40e41",
-        0,
+        .username="Mufasa",
+        .password="Circle Of Life",
+        .realm="testrealm@host.com",
+        .nonce="dcd98b7102dd2f0e8b11d0f600bfb0c093",
+        .method="GET",
+        .uri="/dir/index.html",
+        .qop="auth",
+        .nc="00000001",
+        .cnonce="0a4f113b",
+        .opaque="5ccc069c403ebaf9f0171e9517f40e41",
+        .entitybody="",
 
         "6629fae49393a05397450978507c4ef1"
     }
