@@ -42,6 +42,10 @@
 
 #include "tsk_debug.h"
 
+#if !defined(TSIP_CONNECT_TIMEOUT)
+#	define	TSIP_CONNECT_TIMEOUT 1000
+#endif
+
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_ipsec_association_def_t;
 
 tsip_ipsec_association_t* tsip_ipsec_association_create(const tsip_transport_t* transport)
@@ -53,7 +57,6 @@ tsip_transport_ipsec_t* tsip_transport_ipsec_create(struct tsip_stack_s* stack, 
 {
     return tsk_object_new(tsip_transport_ipsec_def_t, stack, host, port, type, description);
 }
-
 
 int tsip_transport_ipsec_createTempSAs(tsip_transport_ipsec_t* self)
 {
@@ -101,7 +104,6 @@ bail:
 int tsip_transport_ipsec_ensureTempSAs(tsip_transport_ipsec_t* self, const tsip_response_t *r401_407, int64_t expires)
 {
     int ret = -1;
-    struct sockaddr_storage to;
     tsk_size_t index;
     const tsip_header_Security_Server_t *ssHdr;
     double maxQ = -2.0; /* The Q value in the SIP header will be equal to -1 by default. */
@@ -185,16 +187,6 @@ copy:
         goto bail;
     }
 
-    /* Connect Sockets: port_uc to port_ps*/
-    if((ret = tnet_sockaddr_init(self->asso_temporary->ip_remote, self->asso_temporary->ctx->port_ps, TSIP_TRANSPORT(self)->type, &to))) {
-        TSK_DEBUG_ERROR("Invalid HOST/PORT [%s/%u].", (const char*)self->asso_temporary->ctx->addr_remote, self->asso_temporary->ctx->port_ps);
-        goto bail;
-    }
-    if((ret = tnet_sockfd_connectto(self->asso_temporary->socket_uc->fd, &to))) {
-        TSK_DEBUG_ERROR("Failed to connect port_uc to port_ps.");
-        goto bail;
-    }
-
 bail:
     return ret;
 }
@@ -202,6 +194,7 @@ bail:
 int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key_t* ik, const tipsec_key_t* ck)
 {
     int ret = -1;
+    struct sockaddr_storage to;
 
     if (!self) {
         TSK_DEBUG_ERROR("Invalid parameter");
@@ -222,6 +215,25 @@ int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key
     if ((ret = tipsec_ctx_set_keys(self->asso_active->ctx, ik, ck)) == 0) {
         ret = tipsec_ctx_start(self->asso_active->ctx);
     }
+
+    /* Connect Sockets: port_uc to port_ps*/
+    if((ret = tnet_sockaddr_init(self->asso_active->ip_remote, self->asso_active->ctx->port_ps, TSIP_TRANSPORT(self)->type, &to))) {
+        TSK_DEBUG_ERROR("Invalid HOST/PORT [%s/%u].", (const char*)self->asso_active->ctx->addr_remote, self->asso_active->ctx->port_ps);
+        goto bail;
+    }
+    if((ret = tnet_sockfd_connectto(self->asso_active->socket_uc->fd, &to))) {
+        TSK_DEBUG_ERROR("Failed to connect port_uc to port_ps.");
+        goto bail;
+    }
+    if((ret = tnet_sockfd_waitUntilWritable(self->asso_active->socket_uc->fd, TSIP_CONNECT_TIMEOUT))
+    || (ret = tnet_sockfd_waitUntilReadable(self->asso_active->socket_uc->fd, TSIP_CONNECT_TIMEOUT))) {
+        TSK_DEBUG_WARN("%d milliseconds elapsed and the socket is still not connected.", TSIP_CONNECT_TIMEOUT);
+        // dot not exit, store the outgoing data until connection succeed
+    }
+
+    /* Add client and server sockets to the network transport */
+    tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_us->fd, TSIP_TRANSPORT(self)->type, 0, 0);
+    tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_uc->fd, TSIP_TRANSPORT(self)->type, 0, 1);
 
 bail:
     return ret;
@@ -336,7 +348,7 @@ tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest
         /*
         	=== UDP ===
         	port_uc -> REGISTER -> port_ps
-        	port_ps <- 200 OK <- port_pc
+        	port_uc <- 200 OK <- port_ps
         */
         return self->asso_active->socket_uc->fd;
     }
@@ -359,14 +371,6 @@ tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest
 
     return TNET_INVALID_FD;
 }
-
-
-
-
-
-
-
-
 
 //========================================================
 //	SIP/IPSec transport object definition
@@ -426,16 +430,6 @@ static const tsk_object_def_t tsip_transport_ipsec_def_s = {
 };
 const tsk_object_def_t *tsip_transport_ipsec_def_t = &tsip_transport_ipsec_def_s;
 
-
-
-
-
-
-
-
-
-
-
 //=================================================================================================
 //	IPSec association object definition
 //
@@ -464,13 +458,9 @@ static tsk_object_t* tsip_ipsec_association_ctor(tsk_object_t * self, va_list * 
             return tsk_null;
         }
 
-        /* Create Both client and Server legs */
+        /* Create client and server sockets */
         association->socket_us = tnet_socket_create(association->ip_local, TNET_SOCKET_PORT_ANY, transport->type);
         association->socket_uc = tnet_socket_create(association->ip_local, TNET_SOCKET_PORT_ANY, transport->type);
-
-        /* Add Both sockets to the network transport */
-        tsip_transport_add_socket(transport, association->socket_us->fd, transport->type, 0, 0);
-        tsip_transport_add_socket(transport, association->socket_uc->fd, transport->type, 0, 1);
 
         /* Set local */
         if (tnet_get_peerip(transport->connectedFD, &association->ip_remote) == 0) { /* Get remote IP string */

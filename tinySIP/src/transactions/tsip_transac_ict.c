@@ -81,7 +81,7 @@
 
 #include "tsk_debug.h"
 
-#define DEBUG_STATE_MACHINE						0
+#define DEBUG_STATE_MACHINE						1
 
 #define TRANSAC_ICT_TIMER_SCHEDULE(TX)			TRANSAC_TIMER_SCHEDULE(ict, TX)
 

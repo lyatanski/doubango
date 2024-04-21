@@ -507,7 +507,7 @@ int tnet_transport_prepare(tnet_transport_t *transport)
     context->pipeW = pipes[1];
 
     /* add R side */
-    TSK_DEBUG_INFO("pipeR fd=%d, pipeW=%d", context->pipeR, context->pipeW);
+    TSK_DEBUG_INFO("pipeR=%d, pipeW=%d", context->pipeR, context->pipeW);
     if((ret = addSocket(context->pipeR, transport->master->type, transport, tsk_true, tsk_false, tsk_null))) {
         goto bail;
     }
@@ -594,6 +594,10 @@ void *tnet_transport_mainthread(void *param)
                    transport->master->type,
                    sizeof(context->ufds)/sizeof(context->ufds[0]));
 
+    for(i=0; i<context->count; i++) {
+        TSK_DEBUG_INFO("Socket events for fd=%d[%d]: Requested = %d", context->ufds[i].fd, i, context->ufds[i].events);
+    }
+
     while(TSK_RUNNABLE(transport)->running || TSK_RUNNABLE(transport)->started) {
         context->polling = tsk_true;
         ret = tnet_poll(context->ufds, context->count, -1);
@@ -617,7 +621,7 @@ void *tnet_transport_mainthread(void *param)
                 continue;
             }
 
-            // TSK_DEBUG_INFO("REVENTS(i=%d) = %d", i, context->ufds[i].revents);
+            TSK_DEBUG_INFO("Socket events for fd=%d[%d]: Requested = %d, Returned = %d", context->ufds[i].fd, i, context->ufds[i].events, context->ufds[i].revents);
 
             if(context->ufds[i].fd == context->pipeR) {
                 TSK_DEBUG_INFO("PipeR event = %d", context->ufds[i].revents);
@@ -679,7 +683,7 @@ void *tnet_transport_mainthread(void *param)
                 void* buffer = tsk_null;
                 tnet_transport_event_t* e;
 
-                // TSK_DEBUG_INFO("NETWORK EVENT FOR SERVER [%s] -- TNET_POLLIN(%d)", transport->description, active_socket->fd);
+                TSK_DEBUG_INFO("NETWORK EVENT FOR SERVER [%s] -- TNET_POLLIN(%d)", transport->description, active_socket->fd);
 
                 /* check whether the socket is paused or not */
                 if(active_socket->paused) {
@@ -906,6 +910,6 @@ static const tsk_object_def_t tnet_transport_context_def_s = {
 };
 const tsk_object_def_t *tnet_transport_context_def_t = &tnet_transport_context_def_s;
 
-#endif /* HAVE_POLL_H */
+#endif /* USE_POLL */
 
 

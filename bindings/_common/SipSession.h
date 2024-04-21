@@ -189,12 +189,6 @@ public: /* ctor() and dtor() */
     virtual ~CallSession();
 
 public: /* Public functions */
-    bool callAudio(const char* remoteUriString, ActionConfig* config=tsk_null); /* @deprecated */
-    bool callAudio(const SipUri* remoteUri, ActionConfig* config=tsk_null); /* @deprecated */
-    bool callAudioVideo(const char* remoteUriString, ActionConfig* config=tsk_null); /* @deprecated */
-    bool callAudioVideo(const SipUri* remoteUri, ActionConfig* config=tsk_null); /* @deprecated */
-    bool callVideo(const char* remoteUriString, ActionConfig* config=tsk_null); /* @deprecated */
-    bool callVideo(const SipUri* remoteUri, ActionConfig* config=tsk_null); /* @deprecated */
 
     bool call(const char* remoteUriString, twrap_media_type_t media, ActionConfig* config=tsk_null);
     bool call(const SipUri* remoteUri, twrap_media_type_t media, ActionConfig* config=tsk_null);

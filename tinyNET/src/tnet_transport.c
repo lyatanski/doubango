@@ -1051,7 +1051,11 @@ static void* TSK_STDCALL run(void* self)
         const tnet_transport_event_t *e = (const tnet_transport_event_t*)curr->data;
 
         if (transport->callback) {
+            TSK_DEBUG_INFO("Transport::run(%s) callback", transport->description);
             transport->callback(e);
+        }
+        else {
+            TSK_DEBUG_WARN("Transport::run(%s) has no callback", transport->description);
         }
         tsk_object_unref(curr);
     }

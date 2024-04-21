@@ -328,8 +328,6 @@ tsk_size_t tsip_transport_send_raw(const tsip_transport_t* self, const char* dst
 {
     tsk_size_t ret = 0;
 
-    TSK_DEBUG_INFO("\nSEND: %.*s\n", size, (const char*)data);
-
     if(TNET_SOCKET_TYPE_IS_DGRAM(self->type)) { // "udp" or "dtls"
         const struct sockaddr_storage* to = &self->pcscf_addr;
         struct sockaddr_storage dst_addr; // must be local scope
@@ -531,6 +529,8 @@ tsk_size_t tsip_transport_send(const tsip_transport_t* self, const char *branch,
 
         if((buffer = tsk_buffer_create_null())) {
             tsip_message_tostring(msg, buffer);
+
+            TSK_DEBUG_INFO("\nSEND: %.*s\n", buffer->size, (const char*)buffer->data);
 
             if(buffer->size >1300) {
                 /*	RFC 3261 - 18.1.1 Sending Requests (FIXME)

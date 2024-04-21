@@ -43,7 +43,7 @@
 
 
 
-#define DEBUG_STATE_MACHINE											0
+#define DEBUG_STATE_MACHINE											1
 #define TSIP_DIALOG_SUBSCRIBE_TIMER_SCHEDULE(TX)						TSIP_DIALOG_TIMER_SCHEDULE(subscribe, TX)
 #define TSIP_DIALOG_SUBSCRIBE_SIGNAL(self, type, code, phrase, message)	\
 	tsip_subscribe_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, message)
@@ -172,7 +172,7 @@ int tsip_dialog_subscribe_event_callback(const tsip_dialog_subscribe_t *self, ts
             else {
                 // Alert User
                 ret = tsip_dialog_fsm_act(TSIP_DIALOG(self), _fsm_action_error, msg, action);
-                /* TSK_DEBUG_WARN("Not supported status code: %d", TSIP_RESPONSE_CODE(msg)); */
+                TSK_DEBUG_WARN("Not supported status code: %d", TSIP_RESPONSE_CODE(msg));
             }
         }
         else {

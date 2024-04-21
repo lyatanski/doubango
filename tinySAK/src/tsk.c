@@ -196,7 +196,7 @@ bob->girlfriend = PERSON_CREATE("alice");
 TSK_OBJECT_SAFE_FREE(bob);
 * @endcode
 *
-* <h2>6.8	Lists</h2>
+* <h2>6.8 Lists</h2>
 *
 * <h2>7	Threading</h2>
 * The framework provides an operating system agnostic threading functions for both WIN32 and Unix-like systems.<br>
@@ -276,10 +276,6 @@ tsk_semaphore_destroy(&sem);
 * <h2>7.6 Runnable</h2>
 * A <i>runnable</i> object is a well-defined object and is declared using @ref TSK_DECLARE_RUNNABLE() macro.<br>
 * A <i>runnable</i> object must be explicitly started using @ref tsk_runnable_start() and is implicitly stopped when destroyed. You can explicitly stop the object by calling @ref tsk_runnable_stop().<br>
-*
-* <h2>8	Final Sate Machine</h2>
-*
-* <h2>9	Timer Manager</h2>
 *
 */
 

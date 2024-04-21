@@ -170,8 +170,7 @@ TINYNET_API const char* tnet_proxy_type_to_string(tnet_proxy_type_t type);
 	{ \
 		tnet_error_t error; \
 		tnet_getlasterror(&error); \
-		TSK_DEBUG_ERROR(FMT, ##__VA_ARGS__); \
-		TSK_DEBUG_ERROR("(SYSTEM)NETWORK ERROR ==>%s", error) \
+		TSK_DEBUG_ERROR("(SYSTEM)NETWORK ==> '%s' " FMT, error, ##__VA_ARGS__); \
 	}
 
 

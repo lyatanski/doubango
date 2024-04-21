@@ -302,42 +302,6 @@ CallSession::~CallSession()
 {
 }
 
-/* @deprecated */
-bool CallSession::callAudio(const SipUri* remoteUri, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUri, twrap_media_audio, config);
-}
-
-/* @deprecated */
-bool CallSession::callAudio(const char* remoteUriString, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUriString, twrap_media_audio, config);
-}
-
-/* @deprecated */
-bool CallSession::callAudioVideo(const SipUri* remoteUri, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUri, twrap_media_audio_video, config);
-}
-
-/* @deprecated */
-bool CallSession::callAudioVideo(const char* remoteUriString, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUriString, twrap_media_audio_video, config);
-}
-
-/* @deprecated */
-bool CallSession::callVideo(const SipUri* remoteUri, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUri, twrap_media_video, config);
-}
-
-/* @deprecated */
-bool CallSession::callVideo(const char* remoteUriString, ActionConfig* config/*=tsk_null*/)
-{
-    return call(remoteUriString, twrap_media_video, config);
-}
-
 bool CallSession::call(const char* remoteUriString, twrap_media_type_t media, ActionConfig* config/*=tsk_null*/)
 {
 

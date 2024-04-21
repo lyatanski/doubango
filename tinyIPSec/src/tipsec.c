@@ -174,8 +174,8 @@ tipsec_error_t tipsec_ctx_set_keys(tipsec_ctx_t* p_ctx, const tipsec_key_t* ik, 
 */
 tipsec_error_t tipsec_ctx_set_remote(tipsec_ctx_t* p_ctx, tipsec_spi_t spi_pc, tipsec_spi_t spi_ps, tipsec_port_t port_pc, tipsec_port_t port_ps, tipsec_lifetime_t lifetime)
 {
-    if (!p_ctx || !p_ctx->pc_plugin || port_pc < 1024 || port_ps < 1024 || !lifetime) {
-        TSK_DEBUG_ERROR("Invalid parameter");
+    if (!p_ctx || !p_ctx->pc_plugin || port_pc < 1024 || port_ps < 1024) {
+        TSK_DEBUG_ERROR("Invalid parameter pc=%d, ps=%d", port_pc, port_ps);
         return tipsec_error_invalid_param;
     }
     if (!p_ctx->initialized || p_ctx->state != tipsec_state_inbound) {

@@ -1936,7 +1936,7 @@ tsk_size_t tnet_sockfd_send(tnet_fd_t fd, const void* buf, tsk_size_t size, int 
                 }
             }
             else {
-                TNET_PRINT_LAST_ERROR("send failed");
+                TNET_PRINT_LAST_ERROR("send failed for fd=%d", fd);
                 // Under Windows XP if WSAGetLastError()==WSAEINTR then try to disable both the ICS and the Firewall
                 // More info about How to disable the ISC: http://support.microsoft.com/?scid=kb%3Ben-us%3B230112&x=6&y=11
                 goto bail;

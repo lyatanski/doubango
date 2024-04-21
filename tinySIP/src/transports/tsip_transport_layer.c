@@ -195,8 +195,10 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
 #endif
             return tsip_transport_add_stream_peer(transport, e->local_fd, transport->type, tsk_true);
         }
+        break;
     }
     default: {
+        TSK_DEBUG_WARN("Stream received unhandled event type %d\n", e->type);
         return 0;
     }
     }
@@ -1246,9 +1248,6 @@ tsk_bool_t tsip_transport_layer_have_stream_peer_with_remote_ip(const tsip_trans
     return tsk_false;
 }
 
-
-
-
 int tsip_transport_layer_start(tsip_transport_layer_t* self)
 {
     if(self) {
@@ -1302,7 +1301,7 @@ int tsip_transport_layer_start(tsip_transport_layer_t* self)
                         tsip_transport_stream_peers_unlock(transport);
                         // give the socket chance to connect
                         if((ret = tnet_sockfd_waitUntilWritable(transport->connectedFD, TSIP_CONNECT_TIMEOUT)) || (ret = tnet_sockfd_waitUntilReadable(transport->connectedFD, TSIP_CONNECT_TIMEOUT))) {
-                            TSK_DEBUG_INFO("%d milliseconds elapsed and the socket is still not connected.", TSIP_CONNECT_TIMEOUT);
+                            TSK_DEBUG_WARN("%d milliseconds elapsed and the socket is still not connected.", TSIP_CONNECT_TIMEOUT);
                             // dot not exit, store the outgoing data until connection succeed
                         }
                     }
@@ -1324,7 +1323,6 @@ int tsip_transport_layer_start(tsip_transport_layer_t* self)
     }
     return -1;
 }
-
 
 int tsip_transport_layer_shutdown(tsip_transport_layer_t* self)
 {
@@ -1348,11 +1346,6 @@ int tsip_transport_layer_shutdown(tsip_transport_layer_t* self)
         return -1;
     }
 }
-
-
-
-
-
 
 //========================================================
 //	SIP transport layer object definition

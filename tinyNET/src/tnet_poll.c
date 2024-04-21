@@ -67,6 +67,7 @@ int tnet_poll(tnet_pollfd_t fds[ ], tnet_nfds_t nfds, int timeout)
     for(i = 0; i<nfds; i++) {
         if(fds[i].fd != TNET_INVALID_FD) {
             if(fds[i].events & TNET_POLLIN) {
+                TSK_DEBUG_INFO("Adding socket %d for reading", fds[i].fd);
                 FD_SET(fds[i].fd, &readfds);
             }
             if(fds[i].events & TNET_POLLOUT) {
@@ -89,6 +90,7 @@ int tnet_poll(tnet_pollfd_t fds[ ], tnet_nfds_t nfds, int timeout)
                 fds[i].revents = 0;
 
                 if(FD_ISSET(fds[i].fd, &readfds)) {
+                    TSK_DEBUG_INFO("Something to read on socket %d", fds[i].fd);
                     fds[i].revents |= TNET_POLLIN;
                 }
                 if(FD_ISSET(fds[i].fd, &writefds)) {

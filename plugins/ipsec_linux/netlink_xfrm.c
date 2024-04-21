@@ -210,7 +210,7 @@ int xfrm_spi_alloc(struct mnl_socket *mnl_sock, uint32_t reqid, uint32_t *spi_ou
 
     /* parse response */
     rx_xui = (void *)rx_nlh + sizeof(*rx_nlh);
-    //TSK_DEBUG_INFO("Allocated SPI=0x%08x", ntohl(xui->info.id.spi));
+    TSK_DEBUG_INFO("Allocated SPI=0x%08x", ntohl(xui->info.id.spi));
     *spi_out = ntohl(rx_xui->info.id.spi);
 
     return 0;
