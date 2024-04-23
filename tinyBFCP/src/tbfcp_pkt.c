@@ -203,7 +203,7 @@ int tbfcp_pkt_write_with_padding(const tbfcp_pkt_t* pc_self, uint8_t* p_buff_ptr
         return ret;
     }
     if ((n_buff_size < *p_written)) {
-        TSK_DEBUG_ERROR("Buffer too short: %u<%u", n_buff_size, *p_written);
+        TSK_DEBUG_ERROR("Buffer too short: %lu<%lu", n_buff_size, *p_written);
         return -1;
     }
 
@@ -260,7 +260,7 @@ int tbfcp_pkt_read(const uint8_t* pc_buff_ptr, tsk_size_t n_buff_size, tbfcp_pkt
         return ret;
     }
     if (!b_is_complete) {
-        TSK_DEBUG_ERROR("Buffer too short(%u)", n_buff_size);
+        TSK_DEBUG_ERROR("Buffer too short(%lu)", n_buff_size);
         return -2;
     }
     Ver = (pc_buff_ptr[0] >> 5) & 0x07;

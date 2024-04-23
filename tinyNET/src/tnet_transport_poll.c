@@ -595,7 +595,7 @@ void *tnet_transport_mainthread(void *param)
                    sizeof(context->ufds)/sizeof(context->ufds[0]));
 
     for(i=0; i<context->count; i++) {
-        TSK_DEBUG_INFO("Socket events for fd=%d[%d]: Requested = %d", context->ufds[i].fd, i, context->ufds[i].events);
+        TSK_DEBUG_INFO("Socket events for fd=%d[%lu]: Requested = %d", context->ufds[i].fd, i, context->ufds[i].events);
     }
 
     while(TSK_RUNNABLE(transport)->running || TSK_RUNNABLE(transport)->started) {
@@ -621,7 +621,7 @@ void *tnet_transport_mainthread(void *param)
                 continue;
             }
 
-            TSK_DEBUG_INFO("Socket events for fd=%d[%d]: Requested = %d, Returned = %d", context->ufds[i].fd, i, context->ufds[i].events, context->ufds[i].revents);
+            TSK_DEBUG_INFO("Socket events for fd=%d[%lu]: Requested = %d, Returned = %d", context->ufds[i].fd, i, context->ufds[i].events, context->ufds[i].revents);
 
             if(context->ufds[i].fd == context->pipeR) {
                 TSK_DEBUG_INFO("PipeR event = %d", context->ufds[i].revents);

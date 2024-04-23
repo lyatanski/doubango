@@ -238,7 +238,7 @@ int tdav_codec_ulpfec_enc_protect(tdav_codec_ulpfec_t* self, const trtp_rtp_pack
         }
         if (level0->payload.size < rtp_packet->payload.size) {
             if (!(level0->payload.ptr = tsk_realloc(level0->payload.ptr, rtp_packet->payload.size))) {
-                TSK_DEBUG_ERROR("Failed to realloc size %d", rtp_packet->payload.size);
+                TSK_DEBUG_ERROR("Failed to realloc size %ld", rtp_packet->payload.size);
                 level0->payload.size = 0;
                 return -3;
             }
@@ -271,7 +271,7 @@ tsk_size_t tdav_codec_ulpfec_enc_serialize(const tdav_codec_ulpfec_t* self, void
 
     if (*out_max_size < xsize) {
         if (!(*out_data = tsk_realloc(*out_data, xsize))) {
-            TSK_DEBUG_ERROR("Failed to reallocate buffer with size =%d", xsize);
+            TSK_DEBUG_ERROR("Failed to reallocate buffer with size %ld", xsize);
             *out_max_size = 0;
             return 0;
         }

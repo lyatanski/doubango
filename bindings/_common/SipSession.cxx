@@ -632,7 +632,7 @@ const T140Callback* CallSession::getT140Callback() const
 
 int CallSession::t140OnDataCallback(const void* context, enum tmedia_t140_data_type_e data_type, const void* data_ptr, unsigned data_size)
 {
-    const CallSession* session = dyn_cast<const CallSession*>((const CallSession*)context);
+    const CallSession* session = static_cast<const CallSession*>((const CallSession*)context);
     if(session && session->getT140Callback()) {
         T140CallbackData* dataObj = new T140CallbackData(data_type, data_ptr, data_size);
         if(dataObj) {
@@ -651,7 +651,7 @@ const RtcpCallback* CallSession::getRtcpCallback() const
 
 int CallSession::rtcpOnCallback(const void* context, enum tmedia_rtcp_event_type_e event_type, uint32_t ssrc_media)
 {
-    const CallSession* session = dyn_cast<const CallSession*>((const CallSession*)context);
+    const CallSession* session = static_cast<const CallSession*>((const CallSession*)context);
     if(session && session->getRtcpCallback()) {
         RtcpCallbackData* dataObj = new RtcpCallbackData(event_type, ssrc_media);
         if(dataObj) {

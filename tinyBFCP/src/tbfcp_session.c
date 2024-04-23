@@ -617,7 +617,7 @@ static int _tbfcp_session_send_buff(tbfcp_session_t* p_self, const void* pc_buff
     }
 
     if (u_sent_bytes != u_buff_size) {
-        TSK_DEBUG_ERROR("Failed to send %u bytes. Only %u sent", (unsigned)u_buff_size, u_sent_bytes);
+        TSK_DEBUG_ERROR("Failed to send %lu bytes. Only %lu sent", u_buff_size, u_sent_bytes);
         ret = -2;
         goto bail;
     }
@@ -695,7 +695,7 @@ int _tbfcp_session_send_pkt(tbfcp_session_t* p_self, const tbfcp_pkt_t* pc_pkt)
     u_min_size += kBfcpBuffMinPad;
     if (p_self->u_buff_send_size < u_min_size) {
         if (!(p_self->p_buff_send_ptr = tsk_realloc(p_self->p_buff_send_ptr, u_min_size))) {
-            TSK_DEBUG_ERROR("Failed to allocate buffer with size = %u", u_min_size);
+            TSK_DEBUG_ERROR("Failed to allocate buffer with size %lu", u_min_size);
             ret = -3;
             p_self->u_buff_send_size = 0;
             goto bail;

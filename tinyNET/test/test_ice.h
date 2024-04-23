@@ -83,7 +83,7 @@ static int test_ice_rtp_callback(const void* callback_data, const uint8_t* data_
 {
     struct tnet_ice_ctx_s *p_ice_ctx = (struct tnet_ice_ctx_s *)callback_data;
 
-    TSK_DEBUG_INFO("\n\nICE rtp callback (incoming data): %.*s\n\n", data_size, data_ptr);
+    TSK_DEBUG_INFO("\n\nICE rtp callback (incoming data): %.*s\n\n", (int)data_size, data_ptr);
 
 #if 0
     tnet_ice_ctx_send_turn_rtp(p_ice_ctx, data_ptr, data_size);

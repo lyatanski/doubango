@@ -543,7 +543,7 @@ int stack_callback(const thttp_event_t *httpevent)
     XcapEvent* e = tsk_null;
 
     const txcap_stack_handle_t* stack_handle = thttp_session_get_userdata(httpevent->session);
-    if(!stack_handle || !(stack = dyn_cast<const XcapStack*>((const XcapStack*)stack_handle))) {
+    if(!stack_handle || !(stack = static_cast<const XcapStack*>((const XcapStack*)stack_handle))) {
         TSK_DEBUG_ERROR("Invalid user data");
         return -1;
     }

@@ -201,7 +201,7 @@ static int _test_turn_session_callback(const struct tnet_turn_session_event_xs *
         break;
     }
     case tnet_turn_session_event_type_recv_data: {
-        TSK_DEBUG_INFO("RECV DATA:%.*s", e->data.u_data_size, (const char*)e->data.pc_data_ptr);
+        TSK_DEBUG_INFO("RECV DATA:%.*s", (int)e->data.u_data_size, (const char*)e->data.pc_data_ptr);
         break;
     }
     default: {

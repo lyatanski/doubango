@@ -24,14 +24,6 @@
 
 #include "tinyWRAP_config.h"
 
-#if defined(__ANDROID__) || defined(ANDROID)
-#	define dyn_cast	static_cast
-#	define __JNIENV JNIEnv
-#else
-#	define dyn_cast	dynamic_cast
-#	define __JNIENV void
-#endif
-
 typedef enum twrap_media_type_e {
     // because of Java don't use OR
     twrap_media_none = 0x00,

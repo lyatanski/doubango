@@ -27,10 +27,10 @@ int test_stack_callback(const thttp_event_t *httpevent)
     thttp_session_id_t id = thttp_session_get_id(httpevent->session);
     switch(httpevent->type) {
     case thttp_event_message: { /* New HTTP message */
-        TSK_DEBUG_INFO("sid=%llu", id);
+        TSK_DEBUG_INFO("sid=%lu", id);
         if(THTTP_MESSAGE_IS_RESPONSE(httpevent->message)) {
             const thttp_header_ETag_t* etag;
-            TSK_DEBUG_INFO("=== %d ==> %s", THTTP_RESPONSE_CODE(httpevent->message), THTTP_MESSAGE_CONTENT(httpevent->message));
+            TSK_DEBUG_INFO("=== %d ==> %s", THTTP_RESPONSE_CODE(httpevent->message), (char*)THTTP_MESSAGE_CONTENT(httpevent->message));
             // You can use
             if((etag = (const thttp_header_ETag_t*)thttp_message_get_header(httpevent->message, thttp_htype_ETag))) {
                 TSK_DEBUG_INFO("Etag=%s", etag->value);
@@ -45,17 +45,17 @@ int test_stack_callback(const thttp_event_t *httpevent)
     }
 
     case thttp_event_auth_failed: {
-        TSK_DEBUG_INFO("auth failed sid=%llu", id);
+        TSK_DEBUG_INFO("auth failed sid=%lu", id);
         break;
     }
 
     case thttp_event_closed: { /* HTTP connection closed (informational) */
-        TSK_DEBUG_INFO("closed sid=%llu", id);
+        TSK_DEBUG_INFO("closed sid=%lu", id);
         break;
     }
 
     case thttp_event_transport_error: { /* HTTP connection closed (informational) */
-        TSK_DEBUG_INFO("Transport sid=%llu", id);
+        TSK_DEBUG_INFO("Transport sid=%lu", id);
         break;
     }
     }

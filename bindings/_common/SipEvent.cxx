@@ -72,7 +72,7 @@ const SipSession* SipEvent::getBaseSession() const
 {
     const void* userdata = tsip_ssession_get_userdata(this->sipevent->ss);
     if(userdata) {
-        return dyn_cast<const SipSession*>((const SipSession*)userdata);
+        return static_cast<const SipSession*>((const SipSession*)userdata);
     }
     return tsk_null;
 }
@@ -87,7 +87,7 @@ SipStack* SipEvent::getStack()const
     const tsip_stack_handle_t* stack_handle = tsip_ssession_get_stack(sipevent->ss);
     const void* userdata;
     if(stack_handle && (userdata = tsip_stack_get_userdata(stack_handle))) {
-        return dyn_cast<SipStack*>((SipStack*)userdata);
+        return static_cast<SipStack*>((SipStack*)userdata);
     }
     return tsk_null;
 }
@@ -139,7 +139,7 @@ twrap_media_type_t InviteEvent::getMediaType() const
 
 const InviteSession* InviteEvent::getSession() const
 {
-    return dyn_cast<const InviteSession*>(this->getBaseSession());
+    return static_cast<const InviteSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Invite, Call, CallSession);
@@ -162,7 +162,7 @@ tsip_message_event_type_t MessagingEvent::getType() const
 
 const MessagingSession* MessagingEvent::getSession() const
 {
-    return dyn_cast<const MessagingSession*>(this->getBaseSession());
+    return static_cast<const MessagingSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Messaging, Messaging, Session);
@@ -185,7 +185,7 @@ tsip_info_event_type_t InfoEvent::getType() const
 
 const InfoSession* InfoEvent::getSession() const
 {
-    return dyn_cast<const InfoSession*>(this->getBaseSession());
+    return static_cast<const InfoSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Info, Info, Session);
@@ -209,7 +209,7 @@ tsip_options_event_type_t OptionsEvent::getType() const
 
 const OptionsSession* OptionsEvent::getSession() const
 {
-    return dyn_cast<const OptionsSession*>(this->getBaseSession());
+    return static_cast<const OptionsSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Options, Options, Session);
@@ -232,7 +232,7 @@ tsip_publish_event_type_t PublicationEvent::getType() const
 
 const PublicationSession* PublicationEvent::getSession() const
 {
-    return dyn_cast<const PublicationSession*>(this->getBaseSession());
+    return static_cast<const PublicationSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Publication, Publication, Session);
@@ -255,7 +255,7 @@ tsip_register_event_type_t RegistrationEvent::getType() const
 
 const RegistrationSession* RegistrationEvent::getSession() const
 {
-    return dyn_cast<const RegistrationSession*>(this->getBaseSession());
+    return static_cast<const RegistrationSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Registration, Registration, Session);
@@ -278,7 +278,7 @@ tsip_subscribe_event_type_t SubscriptionEvent::getType() const
 
 const SubscriptionSession* SubscriptionEvent::getSession() const
 {
-    return dyn_cast<const SubscriptionSession*>(this->getBaseSession());
+    return static_cast<const SubscriptionSession*>(this->getBaseSession());
 }
 
 takeOwnership_Implement(Subscription, Subscription, Session);

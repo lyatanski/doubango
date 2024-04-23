@@ -71,6 +71,8 @@ static const fmtp_size_t fmtp_sizes[] = {
 
 typedef int (*plugin_register)(const void* plugin_def);
 typedef int (*plugin_unregister)(const void* plugin_def);
+#define TMEDIA_REGISTER_F(self) (plugin_register)(self)
+#define TMEDIA_UNREGISTER_F(self) (plugin_unregister)(self)
 
 typedef struct plugin_decl_s {
     tsk_plugin_def_type_t type;
@@ -80,13 +82,13 @@ typedef struct plugin_decl_s {
 plugin_decl_t;
 
 static const struct plugin_decl_s __plugin_def_types[] = {
-    {tsk_plugin_def_type_consumer, tmedia_consumer_plugin_register, tmedia_consumer_plugin_unregister },
-    {tsk_plugin_def_type_producer, tmedia_producer_plugin_register, tmedia_producer_plugin_unregister },
-    {tsk_plugin_def_type_session, tmedia_session_plugin_register, tmedia_session_plugin_unregister },
-    {tsk_plugin_def_type_codec, tmedia_codec_plugin_register, tmedia_codec_plugin_unregister },
-    {tsk_plugin_def_type_converter, tmedia_converter_video_plugin_register, tmedia_converter_video_plugin_unregister },
-    {tsk_plugin_def_type_resampler, tmedia_resampler_plugin_register, tmedia_resampler_plugin_unregister },
-    {tsk_plugin_def_type_denoiser, tmedia_denoise_plugin_register, tmedia_denoise_plugin_unregister },
+    {tsk_plugin_def_type_consumer,  TMEDIA_REGISTER_F(tmedia_consumer_plugin_register),        TMEDIA_UNREGISTER_F(tmedia_consumer_plugin_unregister) },
+    {tsk_plugin_def_type_producer,  TMEDIA_REGISTER_F(tmedia_producer_plugin_register),        TMEDIA_UNREGISTER_F(tmedia_producer_plugin_unregister) },
+    {tsk_plugin_def_type_session,   TMEDIA_REGISTER_F(tmedia_session_plugin_register),         TMEDIA_UNREGISTER_F(tmedia_session_plugin_unregister) },
+    {tsk_plugin_def_type_codec,     TMEDIA_REGISTER_F(tmedia_codec_plugin_register),           TMEDIA_UNREGISTER_F(tmedia_codec_plugin_unregister) },
+    {tsk_plugin_def_type_converter, TMEDIA_REGISTER_F(tmedia_converter_video_plugin_register), TMEDIA_UNREGISTER_F(tmedia_converter_video_plugin_unregister) },
+    {tsk_plugin_def_type_resampler, TMEDIA_REGISTER_F(tmedia_resampler_plugin_register),       TMEDIA_UNREGISTER_F(tmedia_resampler_plugin_unregister) },
+    {tsk_plugin_def_type_denoiser,  TMEDIA_REGISTER_F(tmedia_denoise_plugin_register),         TMEDIA_UNREGISTER_F(tmedia_denoise_plugin_unregister) },
 };
 static const tsk_size_t __plugin_def_types_count = sizeof(__plugin_def_types)/sizeof(__plugin_def_types[0]);
 static const tsk_plugin_def_media_type_t __plugin_def_media_types[] = {

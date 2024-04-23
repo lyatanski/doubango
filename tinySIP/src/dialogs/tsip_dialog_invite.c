@@ -1448,7 +1448,7 @@ int tsip_dialog_invite_notify_parent(tsip_dialog_invite_t *self, const tsip_resp
         TSK_OBJECT_SAFE_FREE(dlg_parent);
     }
     else {
-        TSK_DEBUG_ERROR("Failed to find parent with id = %llu", TSIP_DIALOG_GET_SS(self)->id_parent);
+        TSK_DEBUG_ERROR("Failed to find parent with id = %lu", TSIP_DIALOG_GET_SS(self)->id_parent);
     }
     return ret;
 }

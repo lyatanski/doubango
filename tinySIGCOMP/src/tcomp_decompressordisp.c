@@ -98,7 +98,7 @@ tsk_bool_t tcomp_decompressordisp_decompress(tcomp_decompressordisp_t *dispatche
 
         item_const = tsk_list_find_item_by_pred(dispatcher->streamBuffers, pred_find_streambuffer_by_id, &streamId);
         if(!item_const || !(lpBuffer = item_const->data)) {
-            TSK_DEBUG_ERROR("Failed to find stream buffer by id %llu.", streamId);
+            TSK_DEBUG_ERROR("Failed to find stream buffer by id %lu.", streamId);
             return 0;
         }
 
@@ -143,7 +143,7 @@ tsk_bool_t tcomp_decompressordisp_getNextMessage(tcomp_decompressordisp_t *dispa
 
     item_const = tsk_list_find_item_by_pred(dispatcher->streamBuffers, pred_find_streambuffer_by_id, &streamId);
     if(!item_const || !(lpBuffer = item_const->data)) {
-        TSK_DEBUG_ERROR("Failed to find stream buffer by id %llu.", streamId);
+        TSK_DEBUG_ERROR("Failed to find stream buffer by id %lu.", streamId);
         return tsk_false;
     }
 
@@ -282,7 +282,7 @@ tsk_bool_t tcomp_decompressordisp_getNextStreamMsg(tcomp_decompressordisp_t *dis
     */
     item_const = tsk_list_find_item_by_pred(dispatcher->streamBuffers, pred_find_streambuffer_by_id, &streamId);
     if(!item_const || !(lpBuffer = item_const->data)) {
-        TSK_DEBUG_ERROR("Failed to find stream buffer by id %llu.", streamId);
+        TSK_DEBUG_ERROR("Failed to find stream buffer by id %lu.", streamId);
         return tsk_false;
     }
 

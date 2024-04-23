@@ -63,7 +63,7 @@
 #define SET_2BYTES_VAL(position, value) \
 	if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
 	{ \
-		TSK_DEBUG_ERROR("%s (%u > %u)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
+		TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
 		tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);	\
 		return tsk_false;	\
 	}\
@@ -72,7 +72,7 @@
 #define GET_2BYTES_VAL(position, ret_val) \
 	if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
 	{ \
-		TSK_DEBUG_ERROR("%s (%u > %u)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
+		TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
 		tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);	\
 		return tsk_false;	\
 	}\

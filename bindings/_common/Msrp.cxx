@@ -278,7 +278,7 @@ tmsrp_event_type_t MsrpEvent::getType()
 const MsrpSession* MsrpEvent::getSipSession()
 {
     if(this->_event && this->_event->callback_data) {
-        return dyn_cast<const MsrpSession*>((const MsrpSession*)this->_event->callback_data);
+        return static_cast<const MsrpSession*>((const MsrpSession*)this->_event->callback_data);
     }
     return tsk_null;
 }

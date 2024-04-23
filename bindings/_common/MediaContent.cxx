@@ -100,7 +100,7 @@ MediaContentCPIM* MediaContent::parse(const void* pData, unsigned nSize)
 {
     MediaContent* pMediaContent;
     if((pMediaContent = MediaContent::parse(pData, nSize, TMEDIA_CONTENT_CPIM_TYPE))) {
-        return dyn_cast<MediaContentCPIM*>(pMediaContent);
+        return static_cast<MediaContentCPIM*>(pMediaContent);
     }
     return tsk_null;
 }

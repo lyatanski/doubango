@@ -219,7 +219,7 @@ static int test_http_transport_callback(const tnet_transport_event_t* e)
     }
 
     case event_data: {
-        TSK_DEBUG_INFO("\n\nRECV: %.*s\n\n", e->size, (const char*)e->data);
+        TSK_DEBUG_INFO("\n\nRECV: %.*s\n\n", (int)e->size, (const char*)e->data);
         break;
     }
     default:

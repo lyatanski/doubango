@@ -132,7 +132,7 @@ uint8_t* tcomp_buffer_getBufferAtPos(const tcomp_buffer_handle_t* handle, tsk_si
 {
     if(handle) {
         if(position && ((tcomp_buffer_t*)handle)->size <= position) {
-            TSK_DEBUG_ERROR("%u <= %u", ((tcomp_buffer_t*)handle)->size, position);
+            TSK_DEBUG_ERROR("%lu <= %lu", ((tcomp_buffer_t*)handle)->size, position);
             return tsk_null;
         }
         return (((tcomp_buffer_t*)handle)->lpbuffer + position);

@@ -132,7 +132,7 @@ void tcomp_statehandler_deleteCompartment(tcomp_statehandler_t *statehandler, ui
 
     item_const = tsk_list_find_item_by_pred(statehandler->compartments, pred_find_compartment_by_id, &id);
     if(item_const && (compartment = item_const->data)) {
-        TSK_DEBUG_INFO("SigComp - Delete compartment %lld", id);
+        TSK_DEBUG_INFO("SigComp - Delete compartment %ld", id);
         tsk_list_remove_item_by_data(statehandler->compartments, compartment);
     }
 

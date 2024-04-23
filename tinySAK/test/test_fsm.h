@@ -229,7 +229,7 @@ void test_fsm()
         test_fsm_ctx_t ctx;
         ctx.unsubscribing = 0;
 
-        tsk_fsm_set_callback_terminated(fsm, test_fsm_onterminated, &ctx);
+        tsk_fsm_set_callback_terminated(fsm, TSK_FSM_ONTERMINATED_F(test_fsm_onterminated), &ctx);
 
         tsk_fsm_set(fsm,
 

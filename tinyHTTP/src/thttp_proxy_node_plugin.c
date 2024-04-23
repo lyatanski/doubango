@@ -237,7 +237,7 @@ static int _thttp_proxy_node_plugin_set_handshaking_data(tnet_proxy_node_t* self
 
     // input parameters already checked by the caller
 
-    TSK_DEBUG_INFO("HTTP(s) incoming proxy handshaking data:%.*s", (int)data_size, data_ptr);
+    TSK_DEBUG_INFO("HTTP(s) incoming proxy handshaking data:%.*s", (int)data_size, (char *)data_ptr);
 
     tsk_safeobj_lock(node);
 

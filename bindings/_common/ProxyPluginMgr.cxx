@@ -199,7 +199,7 @@ const ProxyAudioConsumer* ProxyPluginMgr::findAudioConsumer(uint64_t id)
 {
     const ProxyPlugin* audioConsumer = this->findPlugin(id);
     if(audioConsumer && audioConsumer->getType() == twrap_proxy_plugin_audio_consumer) {
-        return dyn_cast<const ProxyAudioConsumer*>(audioConsumer);
+        return static_cast<const ProxyAudioConsumer*>(audioConsumer);
     }
     return tsk_null;
 }
@@ -208,7 +208,7 @@ const ProxyVideoConsumer* ProxyPluginMgr::findVideoConsumer(uint64_t id)
 {
     const ProxyPlugin* videoConsumer = this->findPlugin(id);
     if(videoConsumer && videoConsumer->getType() == twrap_proxy_plugin_video_consumer) {
-        return dyn_cast<const ProxyVideoConsumer*>(videoConsumer);
+        return static_cast<const ProxyVideoConsumer*>(videoConsumer);
     }
     return tsk_null;
 }
@@ -217,7 +217,7 @@ const ProxyAudioProducer* ProxyPluginMgr::findAudioProducer(uint64_t id)
 {
     const ProxyPlugin* audioProducer = this->findPlugin(id);
     if(audioProducer && audioProducer->getType() == twrap_proxy_plugin_audio_producer) {
-        return dyn_cast<const ProxyAudioProducer*>(audioProducer);
+        return static_cast<const ProxyAudioProducer*>(audioProducer);
     }
     return tsk_null;
 }
@@ -226,7 +226,7 @@ const ProxyVideoProducer* ProxyPluginMgr::findVideoProducer(uint64_t id)
 {
     const ProxyPlugin* videoProducer = this->findPlugin(id);
     if(videoProducer && videoProducer->getType() == twrap_proxy_plugin_video_producer) {
-        return dyn_cast<const ProxyVideoProducer*>(videoProducer);
+        return static_cast<const ProxyVideoProducer*>(videoProducer);
     }
     return tsk_null;
 }
@@ -237,7 +237,7 @@ const ProxyVideoProducer* ProxyPluginMgr::findVideoProducer(uint64_t id)
 //
 static tsk_object_t* twrap_proxy_plugin_ctor(tsk_object_t * self, va_list * app)
 {
-    twrap_proxy_plugin_t *_self = dyn_cast<twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(self));
+    twrap_proxy_plugin_t *_self = static_cast<twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(self));
     if(_self) {
     }
     return self;
@@ -245,7 +245,7 @@ static tsk_object_t* twrap_proxy_plugin_ctor(tsk_object_t * self, va_list * app)
 
 static tsk_object_t* twrap_proxy_plugin_dtor(tsk_object_t * self)
 {
-    twrap_proxy_plugin_t *_self = dyn_cast<twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(self));
+    twrap_proxy_plugin_t *_self = static_cast<twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(self));
     if(_self) {
         if(_self->plugin) {
             delete _self->plugin, _self->plugin = tsk_null;
@@ -257,8 +257,8 @@ static tsk_object_t* twrap_proxy_plugin_dtor(tsk_object_t * self)
 
 static int twrap_proxy_plugin_cmp(const tsk_object_t *_c1, const tsk_object_t *_c2)
 {
-    const twrap_proxy_plugin_t *c1 = dyn_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(_c1));
-    const twrap_proxy_plugin_t *c2 = dyn_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(_c2));
+    const twrap_proxy_plugin_t *c1 = static_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(_c1));
+    const twrap_proxy_plugin_t *c2 = static_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(_c2));
 
     if(c1 && c2) {
         return (c1->plugin == c2->plugin); // See "ProxyPlugin::operator =="
@@ -282,8 +282,8 @@ const tsk_object_def_t *twrap_proxy_plugin_def_t = &twrap_proxy_plugin_def_s;
 static int pred_find_plugin_by_value(const tsk_list_item_t *item, const void *proxyPlugin)
 {
     if(item && item->data) {
-        const twrap_proxy_plugin_t *twrap_plugin = dyn_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(item->data));
-        return (twrap_plugin->plugin == dyn_cast<const ProxyPlugin *>((const ProxyPlugin*)proxyPlugin)) ? 0 : -1;
+        const twrap_proxy_plugin_t *twrap_plugin = static_cast<const twrap_proxy_plugin_t *>(TWRAP_PROXY_PLUGIN(item->data));
+        return (twrap_plugin->plugin == static_cast<const ProxyPlugin *>((const ProxyPlugin*)proxyPlugin)) ? 0 : -1;
     }
     return -1;
 }

@@ -526,14 +526,14 @@ static int stack_callback(const tsip_event_t *sipevent)
     else {
         if(sipevent->type == tsip_event_stack && sipevent->userdata) {
             /* sessionless event */
-            sipStack = dyn_cast<const SipStack*>((const SipStack*)sipevent->userdata);
+            sipStack = static_cast<const SipStack*>((const SipStack*)sipevent->userdata);
         }
         else {
             const void* userdata;
             /* gets the stack from the session */
             const tsip_stack_handle_t* stack_handle = tsip_ssession_get_stack(sipevent->ss);
             if(stack_handle && (userdata = tsip_stack_get_userdata(stack_handle))) {
-                sipStack = dyn_cast<const SipStack*>((const SipStack*)userdata);
+                sipStack = static_cast<const SipStack*>((const SipStack*)userdata);
             }
         }
     }

@@ -141,7 +141,7 @@ static int _tbfcp_attr_write(const tbfcp_attr_t* pc_self, uint8_t* p_buff_ptr, t
         return ret;
     }
     if (n_min_req_size > n_buff_size) {
-        TSK_DEBUG_ERROR("Buffer too short %u<%u", n_buff_size, n_min_req_size);
+        TSK_DEBUG_ERROR("Buffer too short %lu<%lu", n_buff_size, n_min_req_size);
         return -2;
     }
 
@@ -240,13 +240,13 @@ int tbfcp_attr_read(const uint8_t* pc_buff_ptr, tsk_size_t n_buff_size, tsk_size
         return -1;
     }
     if (n_buff_size < TBFCP_ATTR_HDR_SIZE_IN_OCTETS) {
-        TSK_DEBUG_ERROR("Buffer too short(%u)", n_buff_size);
+        TSK_DEBUG_ERROR("Buffer too short(%lu)", n_buff_size);
         return -2;
     }
 
     Length = pc_buff_ptr[1];
     if (Length > n_buff_size) {
-        TSK_DEBUG_ERROR("Buffer too short(%u). Length=%u", n_buff_size, Length);
+        TSK_DEBUG_ERROR("Buffer too short(%lu). Length=%u", n_buff_size, Length);
         return -3;
     }
 

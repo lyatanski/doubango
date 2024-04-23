@@ -40,13 +40,7 @@ void test_basic_auth()
 
     for(i=0; i<sizeof(auth_basic_msgs)/sizeof(struct auth_basic_msg); i++) {
         size = thttp_auth_basic_response(auth_basic_msgs[i].userid, auth_basic_msgs[i].password, &response);
-        if(tsk_striequals(auth_basic_msgs[i].xres, response)) {
-            TSK_DEBUG_INFO("[HTTP_BASIC-%d] ==> OK", i);
-        }
-        else {
-            TSK_DEBUG_INFO("[HTTP_BASIC-%d] ==> NOK", i);
-        }
-
+        TSK_DEBUG_INFO("[HTTP_BASIC-%ld] ==> %s", i, tsk_striequals(auth_basic_msgs[i].xres, response)? "PASS": "FAIL");
         TSK_FREE(response);
     }
 }
@@ -71,12 +65,7 @@ void test_ws_auth()
 
     for(i=0; i<sizeof(auth_ws_msgs)/sizeof(struct auth_ws); i++) {
         size = thttp_auth_ws_response(auth_ws_msgs[i].key, &response);
-        if(tsk_striequals(auth_ws_msgs[i].xres, response)) {
-            TSK_DEBUG_INFO("[WS_AUTH-%d] ==> OK", i);
-        }
-        else {
-            TSK_DEBUG_INFO("[WS_AUTH-%d] ==> NOK", i);
-        }
+        TSK_DEBUG_INFO("[WS_AUTH-%ld] ==> %s", i, tsk_striequals(auth_ws_msgs[i].xres, response)? "PASS": "FAIL");
     }
 }
 
@@ -153,12 +142,7 @@ void test_digest_auth()
                                    &ha2,
                                    &response);
 
-        if(tsk_striequals(auth_digest_msgs[i].response, response)) {
-            TSK_DEBUG_INFO("[HTTP_DIGEST-%d] ==> OK", i);
-        }
-        else {
-            TSK_DEBUG_INFO("[HTTP_DIGEST-%d] ==> NOK", i);
-        }
+        TSK_DEBUG_INFO("[HTTP_DIGEST-%ld] ==> %s", i, tsk_striequals(auth_digest_msgs[i].response, response)? "PASS": "FAIL");
     }
 }
 

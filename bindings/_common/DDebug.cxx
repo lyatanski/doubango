@@ -48,7 +48,7 @@ int debug_xxx_cb(const void* arg, const char* fmt, enum cb_type type, va_list *a
         return -1;
     }
 
-    const SipStack* stack = dyn_cast<const SipStack*>((const SipStack*)arg);
+    const SipStack* stack = static_cast<const SipStack*>((const SipStack*)arg);
 
     if(stack && stack->getDebugCallback()) {
         char* message = tsk_null;
