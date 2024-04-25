@@ -36,7 +36,7 @@
 
 TDAV_BEGIN_DECLS
 
-#define TDAV_CONSUMER_VIDEO(self)		((tdav_consumer_video_t*)(self))
+#define TDAV_CONSUMER_VIDEO(self)       ((tdav_consumer_video_t*)(self))
 
 typedef struct tdav_consumer_video_s {
     TMEDIA_DECLARE_CONSUMER;

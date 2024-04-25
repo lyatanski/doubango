@@ -26,7 +26,7 @@
 
 #include "tinyrtp/rtcp/trtp_rtcp_sdes_item.h"
 
-#define TRTP_RTCP_SDES_CHUNCK_MIN_SIZE			4
+#define TRTP_RTCP_SDES_CHUNCK_MIN_SIZE          4
 #define TRTP_RTCP_SDES_CHUNCK_SSRC_OR_CSRC_SIZE 4
 
 #define TRTP_RTCP_SDES_CHUNCK(self) ((trtp_rtcp_sdes_chunck_t*)(self))

@@ -40,16 +40,16 @@
 #include <stdlib.h> /* strtol() */
 
 /*
-*	ITU H.264 - http://www.itu.int/rec/T-REC-H.264-200903-S/en
+*   ITU H.264 - http://www.itu.int/rec/T-REC-H.264-200903-S/en
 */
 
 uint8_t H264_START_CODE_PREFIX[4] = { 0x00, 0x00, 0x00, 0x01 };
 
-#define H264_NAL_UNIT_TYPE_HEADER_SIZE		1
-#define H264_F_UNIT_TYPE_HEADER_SIZE		1
-#define H264_FUA_HEADER_SIZE				2
-#define H264_FUB_HEADER_SIZE				4
-#define H264_NAL_AGG_MAX_SIZE			65535
+#define H264_NAL_UNIT_TYPE_HEADER_SIZE      1
+#define H264_F_UNIT_TYPE_HEADER_SIZE        1
+#define H264_FUA_HEADER_SIZE                2
+#define H264_FUB_HEADER_SIZE                4
+#define H264_NAL_AGG_MAX_SIZE           65535
 
 static int tdav_codec_h264_get_fua_pay(const uint8_t* in_data, tsk_size_t in_size, const void** out_data, tsk_size_t *out_size, tsk_bool_t* append_scp, tsk_bool_t* end_of_unit);
 static int tdav_codec_h264_get_nalunit_pay(const uint8_t* in_data, tsk_size_t in_size, const void** out_data, tsk_size_t *out_size);
@@ -208,7 +208,7 @@ static int tdav_codec_h264_get_fua_pay(const uint8_t* in_data, tsk_size_t in_siz
     }
     /* RFC 3984 - 5.8. Fragmentation Units (FUs)
 
-    	 0                   1                   2                   3
+         0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       | FU indicator  |   FU header   |                               |
@@ -273,9 +273,9 @@ static int tdav_codec_h264_get_fua_pay(const uint8_t* in_data, tsk_size_t in_siz
 static int tdav_codec_h264_get_nalunit_pay(const uint8_t* in_data, tsk_size_t in_size, const void** out_data, tsk_size_t *out_size)
 {
 
-    /*	5.6. Single NAL Unit Packet
+    /*  5.6. Single NAL Unit Packet
 
-    	 0                   1                   2                   3
+         0                   1                   2                   3
            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           |F|NRI|  type   |                                               |

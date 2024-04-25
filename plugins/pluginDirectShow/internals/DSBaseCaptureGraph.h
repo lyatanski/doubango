@@ -25,11 +25,11 @@
 #include "internals/DSCaptureFormat.h"
 
 #if defined(_WIN32_WCE)
-#	include <internals/wince/DSSampleGrabber.h>
-#	include <internals/wince/DSNullFilter.h>
-#	include <internals/wince/DSISampleGrabberCB.h>
+#   include <internals/wince/DSSampleGrabber.h>
+#   include <internals/wince/DSNullFilter.h>
+#   include <internals/wince/DSISampleGrabberCB.h>
 #else
-#	include <qedit.h>
+#   include <qedit.h>
 #endif
 
 class DSBaseCaptureGraph

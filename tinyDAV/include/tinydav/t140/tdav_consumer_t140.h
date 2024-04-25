@@ -33,7 +33,7 @@
 
 TDAV_BEGIN_DECLS
 
-#define TDAV_CONSUMER_T140(self)		((tdav_consumer_t140_t*)(self))
+#define TDAV_CONSUMER_T140(self)        ((tdav_consumer_t140_t*)(self))
 
 typedef struct tdav_consumer_t140_s {
     TMEDIA_DECLARE_CONSUMER;

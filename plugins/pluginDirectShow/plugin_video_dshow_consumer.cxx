@@ -25,13 +25,13 @@
 #include "tsk_debug.h"
 
 
-#define DSCONSUMER(self)			((plugin_video_dshow_consumer_t*)(self))
+#define DSCONSUMER(self)            ((plugin_video_dshow_consumer_t*)(self))
 
 // Whether to use Direct3D device for direct rendering or DirectShow graph and custom source
 // Using DirectShow (DS) introduce delay when the input fps is different than the one in the custom src.
 // It's very hard to have someting accurate when using DS because the input FPS change depending on the congestion control. D3D is the best choice as frames are displayed as they arrive
 #if !defined(PLUGIN_DS_CV_USE_D3D9) && !defined(_WIN32_WCE)
-#	define PLUGIN_DS_CV_USE_D3D9	 1
+#   define PLUGIN_DS_CV_USE_D3D9     1
 #endif
 
 /******* ********/
@@ -64,7 +64,7 @@ const DWORD NUM_BACK_BUFFERS = 2;
 typedef struct _DSRatio {
     DWORD Numerator;
     DWORD Denominator;
-} 	DSRatio;
+}   DSRatio;
 
 static HRESULT CreateDeviceD3D9(
     HWND hWnd,
@@ -471,7 +471,7 @@ static int _plugin_video_dshow_consumer_unprepare(plugin_video_dshow_consumer_t*
 
 
 //
-//	D3D9 video consumer object definition
+//  D3D9 video consumer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_video_dshow_consumer_ctor(tsk_object_t * self, va_list * app)
@@ -1177,7 +1177,7 @@ static int plugin_video_dshow_consumer_stop(tmedia_consumer_t* self)
 
 
 //
-//	DirectShow consumer object definition
+//  DirectShow consumer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_video_dshow_consumer_ctor(tsk_object_t * self, va_list * app)

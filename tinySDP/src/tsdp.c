@@ -193,7 +193,7 @@ const tsdp_message_t* tsdp_ctx_negotiated_get_sdp(const tsdp_ctx_handle_t* self)
 
 
 //=================================================================================================
-//	Sdp ctx object definition
+//  Sdp ctx object definition
 //
 static void* tsdp_ctx_create(void * self, va_list * app)
 {

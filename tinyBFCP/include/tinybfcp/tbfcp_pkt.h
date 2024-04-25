@@ -29,7 +29,7 @@
 TBFCP_BEGIN_DECLS
 
 #if !defined(TBFCP_PKT_HDR_SIZE_IN_OCTETS)
-#	define TBFCP_PKT_HDR_SIZE_IN_OCTETS 12
+#   define TBFCP_PKT_HDR_SIZE_IN_OCTETS 12
 #endif /* TBFCP_PKT_HDR_SIZE_IN_OCTETS */
 
 typedef tsk_list_t tbfcp_pkts_L_t;

@@ -87,7 +87,7 @@ typedef struct tdav_codec_h264_s {
 tdav_codec_h264_t;
 
 #if !defined(TDAV_H264_GOP_SIZE_IN_SECONDS)
-#   define TDAV_H264_GOP_SIZE_IN_SECONDS		25
+#   define TDAV_H264_GOP_SIZE_IN_SECONDS        25
 #endif
 
 #define kResetRotationTrue tsk_true
@@ -205,12 +205,12 @@ static int tdav_codec_h264_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if((ret = tdav_codec_h264_open_encoder(h264))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = tdav_codec_h264_open_decoder(h264))) {
         return ret;
     }
@@ -229,10 +229,10 @@ static int tdav_codec_h264_close(tmedia_codec_t* self)
 
     /* the caller (base class) alreasy checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     tdav_codec_h264_close_encoder(h264, kResetRotationTrue);
 
-    //	Decoder
+    //  Decoder
     tdav_codec_h264_close_decoder(h264);
 
     return 0;
@@ -263,7 +263,7 @@ static tsk_size_t tdav_codec_h264_encode(tmedia_codec_t* self, const void* in_da
         tdav_codec_h264_rtp_encap(TDAV_CODEC_H264_COMMON(h264), (const uint8_t*)in_data, in_size);
     }
     else { // !h264->encoder.passthrough
-#if HAVE_FFMPEG		// wrap yuv420 buffer
+#if HAVE_FFMPEG     // wrap yuv420 buffer
         size = avpicture_fill((AVPicture *)h264->encoder.picture, (uint8_t*)in_data, PIX_FMT_YUV420P, h264->encoder.context->width, h264->encoder.context->height);
         if (size != in_size) {
             /* guard */
@@ -272,9 +272,9 @@ static tsk_size_t tdav_codec_h264_encode(tmedia_codec_t* self, const void* in_da
         }
 
         // send IDR for:
-        //	- the first frame
+        //  - the first frame
         //  - remote peer requested an IDR
-        //	- every second within the first 4seconds
+        //  - every second within the first 4seconds
         send_idr = (
                        h264->encoder.frame_count++ == 0
                        || h264 ->encoder.force_idr
@@ -699,7 +699,7 @@ int tdav_codec_h264_open_encoder(tdav_codec_h264_t* self)
     self->encoder.context->dsp_mask = (FF_MM_MMX | FF_MM_MMXEXT | FF_MM_SSE);
 #endif
 
-    self->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    self->encoder.context->pix_fmt      = PIX_FMT_YUV420P;
     self->encoder.context->time_base.num  = 1;
     self->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(self)->out.fps;
     self->encoder.context->width = (self->encoder.rotation == 90 || self->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(self)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;

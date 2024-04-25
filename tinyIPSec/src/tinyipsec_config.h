@@ -25,50 +25,50 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TIPSEC_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TIPSEC_UNDER_WINDOWS_RT		1
-#	endif
+#   define TIPSEC_UNDER_WINDOWS 1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TIPSEC_UNDER_WINDOWS_RT      1
+#   endif
 #endif
 
 /* Used on Windows and Symbian systems to export/import public functions and global variables.
 */
 #if !defined(__GNUC__)
-# 	define TINYIPSEC_API		__declspec(dllexport)
-#	define TINYIPSEC_GEXTERN	__declspec(dllexport)
+#   define TINYIPSEC_API        __declspec(dllexport)
+#   define TINYIPSEC_GEXTERN    __declspec(dllexport)
 #else
-#	define TINYIPSEC_API
-#	define TINYIPSEC_GEXTERN	extern
+#   define TINYIPSEC_API
+#   define TINYIPSEC_GEXTERN    extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TIPSEC_BEGIN_DECLS extern "C" {
-#	define TIPSEC_END_DECLS }
+#   define TIPSEC_BEGIN_DECLS extern "C" {
+#   define TIPSEC_END_DECLS }
 #else
-#	define TIPSEC_BEGIN_DECLS
-#	define TIPSEC_END_DECLS
+#   define TIPSEC_BEGIN_DECLS
+#   define TIPSEC_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
-#	pragma warning( disable : 4996 )
+#   define _CRT_SECURE_NO_WARNINGS
+#   pragma warning( disable : 4996 )
 #endif
 
 //
 // IPSEC
 //
 #if HAVE_IPSEC
-#	if (_WIN32_WINNT >= 0x0600)
-#		define HAVE_IPSEC_VISTA		1
-#	elif (_WIN32_WINNT >= 0x0501)
-#		define HAVE_IPSEC_XP		0
-#	elif HAVE_IPSEC_TOOLS
-#		define HAVE_IPSEC_RACOON	1
-#	endif
+#   if (_WIN32_WINNT >= 0x0600)
+#       define HAVE_IPSEC_VISTA     1
+#   elif (_WIN32_WINNT >= 0x0501)
+#       define HAVE_IPSEC_XP        0
+#   elif HAVE_IPSEC_TOOLS
+#       define HAVE_IPSEC_RACOON    1
+#   endif
 #endif
 
 

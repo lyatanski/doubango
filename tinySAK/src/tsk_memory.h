@@ -50,9 +50,9 @@ TSK_BEGIN_DECLS
 #define TSK_FREE(ptr) TSK_SAFE_FREE((ptr))
 #define TSK_FREE_ALIGNED(ptr) TSK_SAFE_FREE_ALIGNED((ptr))
 #define TSK_SAFE_FREE_ARRAY(pptr, count){ \
-	int __i; \
-	for(__i = 0; __i < (count); ++__i) \
-		TSK_SAFE_FREE((pptr)[__i]); \
+    int __i; \
+    for(__i = 0; __i < (count); ++__i) \
+        TSK_SAFE_FREE((pptr)[__i]); \
 }
 #define TSK_FREE_ARRAY(pptr, count) TSK_SAFE_FREE_ARRAY((pptr), (count))
 #define TSK_SAFE_FREE_TABLE(pptr) TSK_SAFE_FREE_ARRAY((pptr), (sizeof((pptr))/sizeof((pptr)[0])))

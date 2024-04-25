@@ -40,7 +40,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 65 "./ragel/tsip_parser_header_RSeq.rl" */
@@ -245,7 +245,7 @@ _match:
             {
             }
             break;
-            /* #line 242 "./src/headers/tsip_header_RSeq.c" */
+                /* #line 242 "./src/headers/tsip_header_RSeq.c" */
             }
         }
 
@@ -283,7 +283,7 @@ _out: {
 
 
 //========================================================
-//	RSeq header object definition
+//  RSeq header object definition
 //
 
 static tsk_object_t* tsip_header_RSeq_ctor(tsk_object_t *self, va_list * app)

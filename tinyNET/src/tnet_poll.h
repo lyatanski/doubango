@@ -58,9 +58,9 @@ typedef struct pollfd tnet_pollfd_t;
 #define TNET_POLLNVAL    POLLNVAL
 
 #if TNET_UNDER_WINDOWS
-#	define tnet_poll	WSAPoll
+#   define tnet_poll    WSAPoll
 #else
-#	define tnet_poll	poll
+#   define tnet_poll    poll
 #endif /* TNET_UNDER_WINDOWS */
 
 #else

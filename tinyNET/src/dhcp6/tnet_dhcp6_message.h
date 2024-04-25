@@ -40,7 +40,7 @@ TNET_BEGIN_DECLS
 struct tnet_dhcp6_ctx_s;
 
 /** List of all supported DHCPv6 messages.
-*	For more info: RFC 3315 - 5.3. DHCP Message Types
+*   For more info: RFC 3315 - 5.3. DHCP Message Types
 */
 typedef enum tnet_dhcp6_message_type_e {
     /* A client sends a Solicit message to locate servers. */

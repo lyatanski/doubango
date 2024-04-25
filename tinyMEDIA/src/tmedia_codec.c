@@ -323,9 +323,9 @@ int tmedia_codec_plugin_register_2(const tmedia_codec_plugin_def_t* plugin, int 
         return -1;
     }
 
-	// clamp prio (must be done here before unregistering the plugin)
-	max = tmedia_codec_plugin_registered_count(__tmedia_codec_plugins, sizeof(__tmedia_codec_plugins)/sizeof(__tmedia_codec_plugins[0]));
-	prio = TSK_CLAMP(0, prio, (int)(max > 0 ? (max - 1) : 0));
+    // clamp prio (must be done here before unregistering the plugin)
+    max = tmedia_codec_plugin_registered_count(__tmedia_codec_plugins, sizeof(__tmedia_codec_plugins)/sizeof(__tmedia_codec_plugins[0]));
+    prio = TSK_CLAMP(0, prio, (int)(max > 0 ? (max - 1) : 0));
 
     // unregister and compact
     if (already_registered) {
@@ -334,7 +334,7 @@ int tmedia_codec_plugin_register_2(const tmedia_codec_plugin_def_t* plugin, int 
         }
     }
 
-	
+
 
     // put current plugin at prio and old (which was at prio) at the end
     tmp = __tmedia_codec_plugins[prio];
@@ -408,9 +408,9 @@ const struct tmedia_codec_plugin_def_s* tmedia_codec_plugin_registered_get_const
 */
 tsk_size_t tmedia_codec_plugin_registered_count(const struct tmedia_codec_plugin_def_s** plugins, tsk_size_t count)
 {
-	tsk_size_t i;
+    tsk_size_t i;
     for (i = 0; i < count && plugins[i]; ++i) ;
-	return i;
+    return i;
 }
 
 /**@ingroup tmedia_codec_group
@@ -899,11 +899,11 @@ float tmedia_codec_audio_get_timestamp_multiplier(tmedia_codec_id_t id, uint32_t
     }
     case tmedia_codec_id_g722: {
         /* http://www.ietf.org/rfc/rfc3551.txt
-        	 Even though the actual sampling rate for G.722 audio is 16,000 Hz,
-        	   the RTP clock rate for the G722 payload format is 8,000 Hz because
-        	   that value was erroneously assigned in RFC 1890 and must remain
-        	   unchanged for backward compatibility.  The octet rate or sample-pair
-        	   rate is 8,000 Hz.
+             Even though the actual sampling rate for G.722 audio is 16,000 Hz,
+               the RTP clock rate for the G722 payload format is 8,000 Hz because
+               that value was erroneously assigned in RFC 1890 and must remain
+               unchanged for backward compatibility.  The octet rate or sample-pair
+               rate is 8,000 Hz.
         */
         return .5f;
     }

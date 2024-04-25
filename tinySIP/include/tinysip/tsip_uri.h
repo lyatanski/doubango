@@ -38,7 +38,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_URI_IS_SECURE(uri)		((uri && uri->type==uri_sips) ? tsk_true : tsk_false)
+#define TSIP_URI_IS_SECURE(uri)     ((uri && uri->type==uri_sips) ? tsk_true : tsk_false)
 
 typedef enum tsip_uri_type_e {
     uri_unknown,
@@ -58,7 +58,7 @@ tsip_host_type_t;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP/SIPS/TEL URI.
+/// @brief  SIP/SIPS/TEL URI.
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_uri_s {

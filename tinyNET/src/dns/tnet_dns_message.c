@@ -89,7 +89,7 @@ tsk_buffer_t* tnet_dns_message_serialize(const tnet_dns_message_t *message)
     output = tsk_buffer_create_null();
 
     /* ==============================
-    *	HEADER
+    *   HEADER
     */
     //tsk_buffer_append(output, &(message->Header), sizeof(message->Header));
 
@@ -142,7 +142,7 @@ tsk_buffer_t* tnet_dns_message_serialize(const tnet_dns_message_t *message)
 
 
     /* ==============================
-    *	QUESTION
+    *   QUESTION
     */
     if (TNET_DNS_MESSAGE_IS_QUERY(message)) {
         /* QNAME */
@@ -156,21 +156,21 @@ tsk_buffer_t* tnet_dns_message_serialize(const tnet_dns_message_t *message)
     }
 
     /* ==============================
-    *	ANSWERS
+    *   ANSWERS
     */
     tsk_list_foreach(item, message->Answers) {
         tnet_dns_rr_serialize((tnet_dns_rr_t *)item->data, output);
     }
 
     /* ==============================
-    *	AUTHORITIES
+    *   AUTHORITIES
     */
     tsk_list_foreach(item, message->Authorities) {
         tnet_dns_rr_serialize((tnet_dns_rr_t *)item->data, output);
     }
 
     /* ==============================
-    *	ADDITIONALS
+    *   ADDITIONALS
     */
     tsk_list_foreach(item, message->Additionals) {
         tnet_dns_rr_serialize((tnet_dns_rr_t *)item->data, output);
@@ -295,7 +295,7 @@ bail:
 }
 
 //=================================================================================================
-//	[[DNS MESSAGE]] object definition
+//  [[DNS MESSAGE]] object definition
 //
 static tsk_object_t* tnet_dns_message_ctor(tsk_object_t * self, va_list * app)
 {

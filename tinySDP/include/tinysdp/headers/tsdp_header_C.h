@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_C_VA_ARGS(nettype, addrtype, addr)		tsdp_header_C_def_t, (const char*)(nettype), (const char*)(addrtype), (const char*)(addr)
+#define TSDP_HEADER_C_VA_ARGS(nettype, addrtype, addr)      tsdp_header_C_def_t, (const char*)(nettype), (const char*)(addrtype), (const char*)(addr)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "c=" header	(Connection Data).
+/// @brief  SDP "c=" header (Connection Data).
 /// A session description MUST contain either at least one "c=" field in
 ///    each media description or a single "c=" field at the session level.
 ///    It MAY contain a single session-level "c=" field and additional "c="

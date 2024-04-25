@@ -31,7 +31,7 @@
 
 #include <string.h>
 
-/* ===	Ragel state machine === */
+/* ===  Ragel state machine === */
 
 /* #line 71 "./ragel/tnet_dns_regexp.rl" */
 
@@ -261,7 +261,7 @@ _match:
                 }
             }
             break;
-            /* #line 258 "./src/dns/tnet_dns_regexp.c" */
+                /* #line 258 "./src/dns/tnet_dns_regexp.c" */
             }
         }
 

@@ -29,40 +29,40 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TSMS_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TSMS_UNDER_WINDOWS_RT		1
-#	endif
+#   define TSMS_UNDER_WINDOWS   1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TSMS_UNDER_WINDOWS_RT        1
+#   endif
 #endif
 
 #if (TSMS_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define TINYSMS_API		__declspec(dllexport)
-# 	define TINYSMS_GEXTERN extern __declspec(dllexport)
+#   define TINYSMS_API      __declspec(dllexport)
+#   define TINYSMS_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYSMS_API
-#	define TINYSMS_GEXTERN	extern
+#   define TINYSMS_API
+#   define TINYSMS_GEXTERN  extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TSMS_BEGIN_DECLS extern "C" {
-#	define TSMS_END_DECLS }
+#   define TSMS_BEGIN_DECLS extern "C" {
+#   define TSMS_END_DECLS }
 #else
-#	define TSMS_BEGIN_DECLS
-#	define TSMS_END_DECLS
+#   define TSMS_BEGIN_DECLS
+#   define TSMS_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

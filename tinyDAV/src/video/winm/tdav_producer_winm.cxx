@@ -56,13 +56,15 @@ class CaptureSampleSink :
 
 public:
 
-    STDMETHODIMP RuntimeClassInitialize(const struct tdav_producer_winm_s* pProducer) {
+    STDMETHODIMP RuntimeClassInitialize(const struct tdav_producer_winm_s* pProducer)
+    {
         m_dwSampleCount = 0;
         m_pProducer = pProducer;
         return S_OK;
     }
 
-    DWORD GetSampleCount() {
+    DWORD GetSampleCount()
+    {
         return m_dwSampleCount;
     }
 
@@ -71,7 +73,8 @@ public:
         ULONGLONG hnsPresentationTime,
         ULONGLONG hnsSampleDuration,
         DWORD cbSample,
-        BYTE* pSample) {
+        BYTE* pSample)
+    {
         m_dwSampleCount++;
         if(m_pProducer && TMEDIA_PRODUCER(m_pProducer)->enc_cb.callback) {
             TMEDIA_PRODUCER(m_pProducer)->enc_cb.callback(TMEDIA_PRODUCER(m_pProducer)->enc_cb.callback_data, pSample, cbSample);
@@ -611,7 +614,7 @@ void VideoCapturePhone::ToggleCameraThread(Windows::Foundation::IAsyncAction^ op
 
 
 //
-//	Windows Media video producer object definition
+//  Windows Media video producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_winm_ctor(tsk_object_t * self, va_list * app)

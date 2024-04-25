@@ -33,7 +33,7 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_URL_IS_SECURE(url)		((url && url->type==thttp_url_https) ? 1 : 0)
+#define THTTP_URL_IS_SECURE(url)        ((url && url->type==thttp_url_https) ? 1 : 0)
 
 /** Url type.
 */
@@ -53,9 +53,9 @@ typedef enum thttp_host_type_e {
 thttp_host_type_t;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @struct	thttp_url_t
+/// @struct thttp_url_t
 ///
-/// @brief	HTTP/HTTPS URL.
+/// @brief  HTTP/HTTPS URL.
 ///
 /// ABNF (Compact: From RFC 1738): httpurl        = "http://" hostport [ "/" hpath [ "?" search ]]
 /// hpath          = hsegment *[ "/" hsegment ]

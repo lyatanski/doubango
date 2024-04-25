@@ -45,8 +45,8 @@ typedef enum tsms_tpdu_status_type_e {
     tsms_tpdu_status_received = 0x00, /**< Short message received by the SME. */
     tsms_tpdu_status_forwarded = 0x01, /**< Short message forwarded by the SC to the SME but the SC is unable to confirm delivery. */
     tsms_tpdu_status_replaced = 0x02, /**< Short message replaced by the SC. */
-    /* 0000011..0001111		Reserved */
-    /* 0010000..0011111		Values specific to each SC */
+    /* 0000011..0001111     Reserved */
+    /* 0010000..0011111     Values specific to each SC */
 
     /*== Temporary error, SC still trying to transfer SM ==*/
     tsms_tpdu_status_congestion = 0x20, /**< Congestion. */
@@ -55,8 +55,8 @@ typedef enum tsms_tpdu_status_type_e {
     tsms_tpdu_status_serv_rejected = 0x23, /**< Service rejected. */
     tsms_tpdu_status_no_qos = 0x24, /**< Quality of service not available. */
     tsms_tpdu_status_error_in_sme= 0x25, /**< Error in SME. */
-    /* 0100110..0101111		Reserved */
-    /* 0110000..0111111		Values specific to each SC */
+    /* 0100110..0101111     Reserved */
+    /* 0110000..0111111     Values specific to each SC */
 
     /*== Permanent error, SC is not making any more transfer attempts ==*/
     tsms_tpdu_status_remote_error = 0x40, /**< Remote procedure error. */
@@ -68,9 +68,9 @@ typedef enum tsms_tpdu_status_type_e {
     tsms_tpdu_status_vp_expired = 0x46, /**< SM Validity Period Expired. */
     tsms_tpdu_status_deleted_by_orig = 0x47, /**< SM Deleted by originating SME. */
     tsms_tpdu_status_deleted_by_admin = 0x48, /**< SM Deleted by SC Administration. */
-    tsms_tpdu_status_sm_not_exist = 0x49, /**< SM does not exist (The SM may have previously existed in the SC but the SC 	no longer has knowledge of it or the SM may never have previously existed in the SC). */
-    /* 1001010..1001111		Reserved */
-    /* 1010000..1011111		Values specific to each SC */
+    tsms_tpdu_status_sm_not_exist = 0x49, /**< SM does not exist (The SM may have previously existed in the SC but the SC   no longer has knowledge of it or the SM may never have previously existed in the SC). */
+    /* 1001010..1001111     Reserved */
+    /* 1010000..1011111     Values specific to each SC */
 
     /*== Temporary error, SC is not making any more transfer attempts ==*/
     tsms_tpdu_status_congestion_3 = 0x50, /**< Congestion. */
@@ -79,9 +79,9 @@ typedef enum tsms_tpdu_status_type_e {
     tsms_tpdu_status_serv_rejected_3 = 0x53, /**< Service rejected. */
     tsms_tpdu_status_temp_no_qos_3 = 0x54, /**< Quality of service not available. */
     tsms_tpdu_status_error_in_sme_3 = 0x55, /**< Error in SME. */
-    /* 1100110..1101001		Reserved */
-    /* 1101010..1101111		Reserved */
-    /* 1110000..1111111		Values specific to each SC */
+    /* 1100110..1101001     Reserved */
+    /* 1101010..1101111     Reserved */
+    /* 1110000..1111111     Values specific to each SC */
 
 }
 tsms_tpdu_status_type_t;

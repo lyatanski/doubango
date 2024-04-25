@@ -34,19 +34,19 @@
 #include "tsk_debug.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <Winsock2.h> // timeval
+#   include <Winsock2.h> // timeval
 #elif defined(__SYMBIAN32__)
-#	include <_timeval.h>
+#   include <_timeval.h>
 #else
-#	include <sys/time.h>
+#   include <sys/time.h>
 #endif
 
-#define TDAV_BITS_PER_SAMPLE_DEFAULT	16
-#define TDAV_CHANNELS_DEFAULT			2
-#define TDAV_RATE_DEFAULT				8000
-#define TDAV_PTIME_DEFAULT				20
+#define TDAV_BITS_PER_SAMPLE_DEFAULT    16
+#define TDAV_CHANNELS_DEFAULT           2
+#define TDAV_RATE_DEFAULT               8000
+#define TDAV_PTIME_DEFAULT              20
 
-#define TDAV_AUDIO_GAIN_MAX				15
+#define TDAV_AUDIO_GAIN_MAX             15
 
 /** Initialize audio consumer */
 int tdav_consumer_audio_init(tdav_consumer_audio_t* self)

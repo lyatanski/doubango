@@ -32,9 +32,9 @@
 #include <windows.h>
 #include <audioclient.h>
 #if PLUGIN_WASAPI_UNDER_WINDOWS_PHONE
-#	include <phoneaudioclient.h>
+#   include <phoneaudioclient.h>
 #else
-#	include <Mmdeviceapi.h>
+#   include <Mmdeviceapi.h>
 #endif
 #include <initguid.h>
 

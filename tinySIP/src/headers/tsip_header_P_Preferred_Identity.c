@@ -47,7 +47,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 94 "./ragel/tsip_parser_header_P_Preferred_Identity.rl" */
@@ -596,7 +596,7 @@ _match:
             {
             }
             break;
-            /* #line 593 "./src/headers/tsip_header_P_Preferred_Identity.c" */
+                /* #line 593 "./src/headers/tsip_header_P_Preferred_Identity.c" */
             }
         }
 
@@ -634,7 +634,7 @@ _out: {
 
 
 //========================================================
-//	P_Preferred_Identity header object definition
+//  P_Preferred_Identity header object definition
 //
 
 static tsk_object_t* tsip_header_P_Preferred_Identity_ctor(tsk_object_t *self, va_list * app)

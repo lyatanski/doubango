@@ -36,17 +36,17 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_SERVER_VA_ARGS(server)		tsip_header_Server_def_t, (const char*)server
+#define TSIP_HEADER_SERVER_VA_ARGS(server)      tsip_header_Server_def_t, (const char*)server
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Server'.
+/// @brief  SIP header 'Server'.
 ///
-/// @par ABNF: Server	= 	"Server" HCOLON server-val *(LWS server-val)
-/// server-val	= 	product / comment
-/// product	= 	token [SLASH product-version]
-/// product-version	= 	token
+/// @par ABNF: Server   =   "Server" HCOLON server-val *(LWS server-val)
+/// server-val  =   product / comment
+/// product =   token [SLASH product-version]
+/// product-version =   token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Server_s {

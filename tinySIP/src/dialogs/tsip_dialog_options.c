@@ -41,9 +41,9 @@
 #include "tsk_debug.h"
 #include "tsk_time.h"
 
-#define DEBUG_STATE_MACHINE											1
-#define TSIP_DIALOG_OPTIONS_SIGNAL(self, type, code, phrase, options)	\
-	tsip_options_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, options)
+#define DEBUG_STATE_MACHINE                                         1
+#define TSIP_DIALOG_OPTIONS_SIGNAL(self, type, code, phrase, options)   \
+    tsip_options_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, options)
 
 /* ======================== internal functions ======================== */
 static int send_OPTIONS(tsip_dialog_options_t *self);
@@ -212,7 +212,7 @@ int tsip_dialog_options_init(tsip_dialog_options_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 
@@ -250,7 +250,7 @@ int tsip_dialog_options_Started_2_Receiving_X_recvOPTIONS(va_list *app)
     return 0;
 }
 
-/*	Sending -> (1xx) -> Sending
+/*  Sending -> (1xx) -> Sending
 */
 int tsip_dialog_options_Sending_2_Sending_X_1xx(va_list *app)
 {
@@ -260,7 +260,7 @@ int tsip_dialog_options_Sending_2_Sending_X_1xx(va_list *app)
     return 0;
 }
 
-/*	Sending -> (2xx) -> Sending
+/*  Sending -> (2xx) -> Sending
 */
 int tsip_dialog_options_Sending_2_Terminated_X_2xx(va_list *app)
 {
@@ -277,7 +277,7 @@ int tsip_dialog_options_Sending_2_Terminated_X_2xx(va_list *app)
     return 0;
 }
 
-/*	Sending -> (401/407/421/494) -> Sending
+/*  Sending -> (401/407/421/494) -> Sending
 */
 int tsip_dialog_options_Sending_2_Sending_X_401_407_421_494(va_list *app)
 {
@@ -296,7 +296,7 @@ int tsip_dialog_options_Sending_2_Sending_X_401_407_421_494(va_list *app)
     return send_OPTIONS(self);
 }
 
-/*	Sending -> (300 to 699) -> Terminated
+/*  Sending -> (300 to 699) -> Terminated
 */
 int tsip_dialog_options_Sending_2_Terminated_X_300_to_699(va_list *app)
 {
@@ -310,7 +310,7 @@ int tsip_dialog_options_Sending_2_Terminated_X_300_to_699(va_list *app)
     return 0;
 }
 
-/*	Sending -> (cancel) -> Terminated
+/*  Sending -> (cancel) -> Terminated
 */
 int tsip_dialog_options_Sending_2_Terminated_X_cancel(va_list *app)
 {
@@ -331,7 +331,7 @@ int tsip_dialog_options_Sending_2_Terminated_X_cancel(va_list *app)
     return ret;
 }
 
-/*	Receiving -> (accept) -> Terminated
+/*  Receiving -> (accept) -> Terminated
 */
 int tsip_dialog_options_Receiving_2_Terminated_X_accept(va_list *app)
 {
@@ -372,7 +372,7 @@ int tsip_dialog_options_Receiving_2_Terminated_X_accept(va_list *app)
     return 0;
 }
 
-/*	Receiving -> (reject) -> Terminated
+/*  Receiving -> (reject) -> Terminated
 */
 int tsip_dialog_options_Receiving_2_Terminated_X_reject(va_list *app)
 {
@@ -413,7 +413,7 @@ int tsip_dialog_options_Receiving_2_Terminated_X_reject(va_list *app)
     return 0;
 }
 
-/*	Any -> (transport error) -> Terminated
+/*  Any -> (transport error) -> Terminated
 */
 int tsip_dialog_options_Any_2_Terminated_X_transportError(va_list *app)
 {
@@ -423,7 +423,7 @@ int tsip_dialog_options_Any_2_Terminated_X_transportError(va_list *app)
     return 0;
 }
 
-/*	Any -> (error) -> Terminated
+/*  Any -> (error) -> Terminated
 */
 int tsip_dialog_options_Any_2_Terminated_X_Error(va_list *app)
 {
@@ -434,7 +434,7 @@ int tsip_dialog_options_Any_2_Terminated_X_Error(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 int send_OPTIONS(tsip_dialog_options_t *self)
@@ -521,7 +521,7 @@ int tsip_dialog_options_OnTerminated(tsip_dialog_options_t *self)
 
 
 //========================================================
-//	SIP dialog OPTIONS object definition
+//  SIP dialog OPTIONS object definition
 //
 static tsk_object_t* tsip_dialog_options_ctor(tsk_object_t * self, va_list * app)
 {

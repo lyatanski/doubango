@@ -17,7 +17,7 @@
 */
 /**@file tdav_consumer_video_mf.h
  * @brief Microsoft Media Foundation video consumer (header).
- *	http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
+ *  http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
  */
 #ifndef TINYDAV_CONSUMER_VIDEO_MF_H
 #define TINYDAV_CONSUMER_VIDEO_MF_H

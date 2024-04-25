@@ -36,16 +36,16 @@
 #include <string.h> /* memcpy */
 
 #define TSMS_ERROR_TOO_SHORT()\
-	TSK_DEBUG_ERROR("SMS-DELIVER-REPORT/MS-SUBMIT-REPORT == Data too short.");\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("SMS-DELIVER-REPORT/MS-SUBMIT-REPORT == Data too short.");\
+    failed = tsk_true;\
+    goto bail;
 
 tsms_tpdu_message_t* _tsms_tpdu_report_deserialize_2(const void* data, tsk_size_t size, tsk_bool_t error)
 {
     /* You don't need to test data and test, this is an internal function called by tsms_tpdu_message_deserialize() */
     tsms_tpdu_report_t* self = tsms_tpdu_report_create(tsk_null, tsk_false, error);
     tsk_bool_t failed = tsk_false;
-//	tsk_size_t any_len;
+//  tsk_size_t any_len;
     const uint8_t* pdata = data;
     const uint8_t* pend = pdata + size;
 
@@ -64,12 +64,12 @@ tsms_tpdu_message_t* _tsms_tpdu_report_deserialize_2(const void* data, tsk_size_
 #endif
 
     /* SMS-DELIVER-REPORT/MS-SUBMIT-REPORT (both ACK and ERROR) first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-User-Data-Header-Indication(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-User-Data-Header-Indication(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI|    |	|	 |    | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI|    |    |    |    | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     TSMS_TPDU_MESSAGE(self)->mti = *pdata & 0x03;
     self->udhi = (*pdata & 0x40)>>6;
@@ -84,8 +84,8 @@ tsms_tpdu_message_t* _tsms_tpdu_report_deserialize_2(const void* data, tsk_size_
 
     /* 3GPP TS 23.040 ==> 9.2.3.27 TP-Parameter-Indicator (TP-PI)
     * 1o
-    bit 7			bit 6		bit 5		bit 4		bit 3		bit 2	bit 1	bit 0
-    Extension bit	Reserved	Reserved	Reserved	Reserved	TP UDL	TP DCS	TP PID
+    bit 7           bit 6       bit 5       bit 4       bit 3       bit 2   bit 1   bit 0
+    Extension bit   Reserved    Reserved    Reserved    Reserved    TP UDL  TP DCS  TP PID
     */
     self->pi = *pdata;
     if((++pdata) >= pend) {
@@ -158,12 +158,12 @@ int _tsms_tpdu_report_serialize(const tsms_tpdu_report_t* self, tsk_buffer_t* ou
 #endif
 
     /* SMS-DELIVER-REPORT/MS-SUBMIT-REPORT (both ACK and ERROR) first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-User-Data-Header-Indication(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-User-Data-Header-Indication(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI|    |	|	 |    | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI|    |    |    |    | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     _1byte = (TSMS_TPDU_MESSAGE(self)->mti & 0xF3); /*2b*/
     _1byte |= ((uint8_t)self->udhi) << 6; /*1b*/
@@ -175,9 +175,9 @@ int _tsms_tpdu_report_serialize(const tsms_tpdu_report_t* self, tsk_buffer_t* ou
     }
 
     /* 3GPP TS 23.040 ==> 9.2.3.27 TP-Parameter-Indicator (TP-PI)
-    	bit 7			bit 6		bit 5		bit 4		bit 3		bit 2	bit 1	bit 0
-    	Extension bit	Reserved	Reserved	Reserved	Reserved	TP UDL	TP DCS	TP PID
-    	As we are the serializer, we know which field should be added or not ==> append our own TP-PI field
+        bit 7           bit 6       bit 5       bit 4       bit 3       bit 2   bit 1   bit 0
+        Extension bit   Reserved    Reserved    Reserved    Reserved    TP UDL  TP DCS  TP PID
+        As we are the serializer, we know which field should be added or not ==> append our own TP-PI field
     */
     _1byte = self->pi | 0x07 /* Bits 2,1 and 0 to '1' */;
     tsk_buffer_append(output, &_1byte, 1); /* 1o*/
@@ -226,7 +226,7 @@ int tsms_tpdu_report_set_fcs(tsms_tpdu_report_t* self, uint8_t code)
 }
 
 //=================================================================================================
-//	SMS TPDU SMS-DELIVER-REPORT/SMS-SUBMIT-REPORT object definition
+//  SMS TPDU SMS-DELIVER-REPORT/SMS-SUBMIT-REPORT object definition
 //
 static tsk_object_t* tsms_tpdu_report_ctor(tsk_object_t * self, va_list * app)
 {

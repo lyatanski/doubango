@@ -37,7 +37,7 @@
 #include <speex/speex_buffer.h>
 
 #if !defined(TDAV_WASAPI_PRODUCER_NOTIF_POS_COUNT)
-#	define TDAV_WASAPI_PRODUCER_NOTIF_POS_COUNT		10
+#   define TDAV_WASAPI_PRODUCER_NOTIF_POS_COUNT     10
 #endif
 #define WASAPI_MILLIS_TO_100NS(MILLIS) (((LONGLONG)(MILLIS)) * 10000ui64)
 #define WASAPI_100NS_TO_MILLIS(NANOS) (((LONGLONG)(NANOS)) / 10000ui64)
@@ -122,12 +122,12 @@ static int tdav_producer_wasapi_set(tmedia_producer_t* self, const tmedia_param_
                 //wasapi->mute = (TSK_TO_INT32((uint8_t*)param->value) != 0);
 #if !FIXME_SEND_SILENCE_ON_MUTE
                 //if(wasapi->started){
-                //	if(wasapi->mute){
+                //  if(wasapi->mute){
                 //IDirectSoundCaptureBuffer_Stop(wasapi->captureBuffer);
-                //	}
-                //	else{
+                //  }
+                //  else{
                 //IDirectSoundCaptureBuffer_Start(wasapi->captureBuffer, DSBPLAY_LOOPING);
-                //	}
+                //  }
                 //}
 #endif
                 return 0;
@@ -538,7 +538,7 @@ void Doubango::VoIP::AudioCapture::AsyncThread(Windows::Foundation::IAsyncAction
 
     HANDLE eventHandles[] = {
         m_hCaptureEvent,        // WAIT_OBJECT0
-        m_hShutdownEvent		// WAIT_OBJECT1
+        m_hShutdownEvent        // WAIT_OBJECT1
     };
 
     WASAPI_DEBUG_INFO("#WASAPI: __record_thread -- START");
@@ -600,7 +600,7 @@ void Doubango::VoIP::AudioCapture::AsyncThread(Windows::Foundation::IAsyncAction
 
 
 //
-//	WaveAPI producer object definition
+//  WaveAPI producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_wasapi_ctor(tsk_object_t * self, va_list * app)

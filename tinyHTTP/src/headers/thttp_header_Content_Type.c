@@ -31,7 +31,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 73 "./ragel/thttp_parser_header_Content_Type.rl" */
@@ -344,7 +344,7 @@ _match:
             {
             }
             break;
-            /* #line 341 "./src/headers/thttp_header_Content_Type.c" */
+                /* #line 341 "./src/headers/thttp_header_Content_Type.c" */
             }
         }
 
@@ -383,7 +383,7 @@ _out: {
 
 
 //========================================================
-//	Content_Type header object definition
+//  Content_Type header object definition
 //
 
 /**@ingroup thttp_header_Content_Type_group

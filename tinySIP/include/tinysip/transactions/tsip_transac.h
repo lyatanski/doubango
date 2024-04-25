@@ -44,28 +44,28 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_TRANSAC(self)						((tsip_transac_t*)(self))
-#define TSIP_TRANSAC_GET_TYPE(self)				TSIP_TRANSAC((self))->type
-#define TSIP_TRANSAC_GET_FSM(self)				TSIP_TRANSAC((self))->fsm
-#define TSIP_TRANSAC_GET_SESSION(self)			((struct tsip_ssession_s*)(TSIP_TRANSAC_GET_DIALOG((self)) ? TSIP_TRANSAC_GET_DIALOG((self))->ss : tsk_null))
-#define TSIP_TRANSAC_GET_DIALOG(self)			((struct tsip_dialog_s*)(TSIP_TRANSAC_GET_DST((self))->type == tsip_transac_dst_type_dialog ? TSIP_TRANSAC_GET_DST((self))->dialog.dlg : tsk_null))
-#define TSIP_TRANSAC_GET_DST(self)				TSIP_TRANSAC((self))->dst
-#define TSIP_TRANSAC_GET_STACK(self)			TSIP_TRANSAC_GET_DST((self))->stack
-#define TSIP_TRANSAC_GET_TIMER_MGR(self)		TSIP_TRANSAC_GET_STACK((self))->timer_mgr
+#define TSIP_TRANSAC(self)                      ((tsip_transac_t*)(self))
+#define TSIP_TRANSAC_GET_TYPE(self)             TSIP_TRANSAC((self))->type
+#define TSIP_TRANSAC_GET_FSM(self)              TSIP_TRANSAC((self))->fsm
+#define TSIP_TRANSAC_GET_SESSION(self)          ((struct tsip_ssession_s*)(TSIP_TRANSAC_GET_DIALOG((self)) ? TSIP_TRANSAC_GET_DIALOG((self))->ss : tsk_null))
+#define TSIP_TRANSAC_GET_DIALOG(self)           ((struct tsip_dialog_s*)(TSIP_TRANSAC_GET_DST((self))->type == tsip_transac_dst_type_dialog ? TSIP_TRANSAC_GET_DST((self))->dialog.dlg : tsk_null))
+#define TSIP_TRANSAC_GET_DST(self)              TSIP_TRANSAC((self))->dst
+#define TSIP_TRANSAC_GET_STACK(self)            TSIP_TRANSAC_GET_DST((self))->stack
+#define TSIP_TRANSAC_GET_TIMER_MGR(self)        TSIP_TRANSAC_GET_STACK((self))->timer_mgr
 
-#define TSIP_TRANSAC_IS_CLIENT(self)			((self) && ((self)->type == tsip_transac_type_ict || (self)->type == tsip_transac_type_nict))
-#define TSIP_TRANSAC_IS_SERVER(self)			!TSIP_TRANSAC_IS_CLIENT((self))
+#define TSIP_TRANSAC_IS_CLIENT(self)            ((self) && ((self)->type == tsip_transac_type_ict || (self)->type == tsip_transac_type_nict))
+#define TSIP_TRANSAC_IS_SERVER(self)            !TSIP_TRANSAC_IS_CLIENT((self))
 
-#define TSIP_TRANSAC_MAGIC_COOKIE				"z9hG4bK"
+#define TSIP_TRANSAC_MAGIC_COOKIE               "z9hG4bK"
 
-#define TSIP_TRANSAC_SYNC_BEGIN(self)			tsk_safeobj_lock(TSIP_TRANSAC(self))
-#define TSIP_TRANSAC_SYNC_END(self)				tsk_safeobj_unlock(TSIP_TRANSAC(self))
+#define TSIP_TRANSAC_SYNC_BEGIN(self)           tsk_safeobj_lock(TSIP_TRANSAC(self))
+#define TSIP_TRANSAC_SYNC_END(self)             tsk_safeobj_unlock(TSIP_TRANSAC(self))
 
 #define TRANSAC_TIMER_SCHEDULE(name, TX) \
-	self->timer##TX.id = tsk_timer_mgr_global_schedule(self->timer##TX.timeout, TSK_TIMER_CALLBACK_F(tsip_transac_##name##_timer_callback), self)
+    self->timer##TX.id = tsk_timer_mgr_global_schedule(self->timer##TX.timeout, TSK_TIMER_CALLBACK_F(tsip_transac_##name##_timer_callback), self)
 
 #define TRANSAC_TIMER_CANCEL(TX) \
-	tsk_timer_mgr_global_cancel(self->timer##TX.id)
+    tsk_timer_mgr_global_cancel(self->timer##TX.id)
 
 typedef enum tsip_transac_event_type_e {
     tsip_transac_incoming_msg,
@@ -80,17 +80,17 @@ tsip_transac_event_type_t;
 
 /*typedef struct tsip_transac_event_s
 {
-	tsip_transac_event_type_t type;
-	const tsip_message_t *msg;
+    tsip_transac_event_type_t type;
+    const tsip_message_t *msg;
 }
 tsip_transac_event_t;
 
-#define TSIP_TRANSAC_EVENT_INIT(transac_event, type, msg)	\
-	transac_event.type = type;								\
-	transac_event.msg = msg;*/
+#define TSIP_TRANSAC_EVENT_INIT(transac_event, type, msg)   \
+    transac_event.type = type;                              \
+    transac_event.msg = msg;*/
 
 typedef int (*tsip_transac_event_callback_f)(const void *arg, tsip_transac_event_type_t type, const tsip_message_t *msg);
-#define TSIP_TRANSAC_EVENT_CALLBACK_F(callback)	 ((tsip_transac_event_callback_f)(callback))
+#define TSIP_TRANSAC_EVENT_CALLBACK_F(callback)  ((tsip_transac_event_callback_f)(callback))
 
 typedef enum tsip_transac_type_e {
     tsip_transac_type_ict, /**< Invite Client Transaction. */
@@ -124,7 +124,7 @@ typedef struct tsip_transac_dst_s {
     };
 }
 tsip_transac_dst_t;
-#define TSIP_TRANSAC_DST(self)	((tsip_transac_dst_t*)(self))
+#define TSIP_TRANSAC_DST(self)  ((tsip_transac_dst_t*)(self))
 #define TSIP_DECLARE_TRANSAC_DST tsip_transac_dst_t __transac__
 
 
@@ -164,7 +164,7 @@ int tsip_transac_deliver(tsip_transac_t* self, tsip_dialog_event_type_t event_ty
 int tsip_transac_send(tsip_transac_t *self, const char *branch, tsip_message_t *msg);
 int tsip_transac_cmp(const tsip_transac_t *t1, const tsip_transac_t *t2);
 int tsip_transac_remove(const tsip_transac_t* self);
-int tsip_transac_fsm_act(tsip_transac_t* self, tsk_fsm_action_id , const tsip_message_t*);
+int tsip_transac_fsm_act(tsip_transac_t* self, tsk_fsm_action_id, const tsip_message_t*);
 
 
 struct tsip_transac_dst_s* tsip_transac_dst_dialog_create(tsip_dialog_t *dlg);

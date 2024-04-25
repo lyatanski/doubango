@@ -29,7 +29,7 @@
 #include "tsk_debug.h"
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 82 "./ragel/thttp_parser_url.rl" */
@@ -438,7 +438,7 @@ _match:
             {
             }
             break;
-            /* #line 425 "./src/parsers/thttp_parser_url.c" */
+                /* #line 425 "./src/parsers/thttp_parser_url.c" */
             }
         }
 
@@ -487,7 +487,7 @@ _test_eof: {
                     TSK_PARSER_SET_STRING(url->search);
                 }
                 break;
-                /* #line 472 "./src/parsers/thttp_parser_url.c" */
+                    /* #line 472 "./src/parsers/thttp_parser_url.c" */
                 }
             }
         }

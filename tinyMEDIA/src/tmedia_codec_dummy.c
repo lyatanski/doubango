@@ -33,7 +33,7 @@
 #include "tsk_debug.h"
 
 //=================================================================================================
-//	Dummy G.711u object definition
+//  Dummy G.711u object definition
 //
 
 #define tmedia_codec_dpcmu_sdp_att_get tsk_null
@@ -106,7 +106,7 @@ static const tmedia_codec_plugin_def_t tmedia_codec_dpcmu_plugin_def_s = {
 const tmedia_codec_plugin_def_t *tmedia_codec_dpcmu_plugin_def_t = &tmedia_codec_dpcmu_plugin_def_s;
 
 //=================================================================================================
-//	Dummy G.711a object definition
+//  Dummy G.711a object definition
 //
 
 #define tmedia_codec_dpcma_sdp_att_get tsk_null
@@ -182,7 +182,7 @@ const tmedia_codec_plugin_def_t *tmedia_codec_dpcma_plugin_def_t = &tmedia_codec
 
 
 //=================================================================================================
-//	Dummy H.263 object definition
+//  Dummy H.263 object definition
 //
 
 tsk_size_t tmedia_codec_dh263_fmtp_encode(tmedia_codec_t* self, const void* in_data, tsk_size_t in_size, void** out_data, tsk_size_t* out_max_size)
@@ -274,7 +274,7 @@ const tmedia_codec_plugin_def_t *tmedia_codec_dh263_plugin_def_t = &tmedia_codec
 
 
 //=================================================================================================
-//	Dummy H.264 (Base profile 10) object definition
+//  Dummy H.264 (Base profile 10) object definition
 //
 
 tsk_size_t tmedia_codec_dh264_fmtp_encode(tmedia_codec_t* self, const void* in_data, tsk_size_t in_size, void** out_data, tsk_size_t* out_max_size)

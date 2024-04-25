@@ -32,7 +32,7 @@
 
 
 #if !defined(PLUGIN_WASAPI_ENABLE)
-#	define PLUGIN_WASAPI_ENABLE 1
+#   define PLUGIN_WASAPI_ENABLE 1
 #endif
 
 extern const tmedia_producer_plugin_def_t *plugin_wasapi_producer_audio_plugin_def_t;
@@ -96,7 +96,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     return tsk_plugin_def_type_none;
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
 #if PLUGIN_WASAPI_ENABLE
     switch(index) {

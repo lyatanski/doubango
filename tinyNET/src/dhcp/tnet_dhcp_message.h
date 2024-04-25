@@ -41,14 +41,14 @@ TNET_BEGIN_DECLS
 
 struct tnet_dhcp_ctx_s;
 
-#define TNET_DHCP_MESSAGE_IS_REQUEST(self)	((self) && ((self)->op==dhcp_op_bootrequest))
-#define TNET_DHCP_MESSAGE_IS_REPLY(self)	((self) && ((self)->op==dhcp_op_bootreply))
+#define TNET_DHCP_MESSAGE_IS_REQUEST(self)  ((self) && ((self)->op==dhcp_op_bootrequest))
+#define TNET_DHCP_MESSAGE_IS_REPLY(self)    ((self) && ((self)->op==dhcp_op_bootreply))
 
-#define TNET_DHCP_MAGIC_COOKIE		0x63825363 /**< DHCP magic cookie (99, 130, 83 and 99 in decimal).*/
+#define TNET_DHCP_MAGIC_COOKIE      0x63825363 /**< DHCP magic cookie (99, 130, 83 and 99 in decimal).*/
 
-#define TNET_DHCP_MESSAGE_MIN_SIZE	223 /* Is it rigth? */
+#define TNET_DHCP_MESSAGE_MIN_SIZE  223 /* Is it rigth? */
 
-/**	List of all supported DHCP message (see RFC 2131).
+/** List of all supported DHCP message (see RFC 2131).
 */
 typedef enum tnet_dhcp_message_type_e {
     /**< DHCPDISCOVER -  Client broadcast to locate available servers.
@@ -153,7 +153,7 @@ typedef struct tnet_dhcp_message_s {
     */
     tnet_dhcp_message_op_t op;
     /**< Hardware address type, see ARP section in "Assigned Numbers" RFC; e.g., '1' = 10mb ethernet.
-    	For more information see RFC 1340.
+        For more information see RFC 1340.
     */
     tnet_hardware_type_t htype;
     /**< Hardware address length (e.g.  '6' for 10mb ethernet). tsk_strlen(chaddr).
@@ -163,7 +163,7 @@ typedef struct tnet_dhcp_message_s {
     */
     uint8_t hops;
     /**< Transaction ID, a random number chosen by the client, used by the client
-    	 and server to associate messages and responses between a client and a server.
+         and server to associate messages and responses between a client and a server.
      */
     uint32_t xid;
     /**< Filled in by client, seconds elapsed since client began address acquisition or renewal process.

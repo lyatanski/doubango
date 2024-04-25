@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_MESSAGE_EVENT(self)		((tsip_message_event_t*)(self))
+#define TSIP_MESSAGE_EVENT(self)        ((tsip_message_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_message_event_type_e {
@@ -59,7 +59,7 @@ TINYSIP_API int tsip_api_message_send_message(const tsip_ssession_handle_t *ss, 
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_message_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_MESSAGE	tsip_api_message_send_message
+#   define tsip_action_MESSAGE  tsip_api_message_send_message
 #endif
 
 TSIP_END_DECLS

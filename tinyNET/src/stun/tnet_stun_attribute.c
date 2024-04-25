@@ -269,13 +269,13 @@
 //        break;
 //    }
 //
-//    /*	RFC 5389 - 15.10.  SOFTWARE */
+//    /*    RFC 5389 - 15.10.  SOFTWARE */
 //    case stun_software: {
 //        attribute = (tnet_stun_attr_t *)tnet_stun_attribute_software_create(dataPtr, length);
 //        break;
 //    }
 //
-//    /*	RFC 5389 - 15.11.  ALTERNATE-SERVER */
+//    /*    RFC 5389 - 15.11.  ALTERNATE-SERVER */
 //    case stun_alternate_server: {
 //        attribute = (tnet_stun_attr_t *)tnet_stun_attribute_altserver_create(dataPtr, length);
 //        break;
@@ -294,7 +294,7 @@
 //    case stun_reserved3:
 //    case stun_reservation_token: {
 //        //attribute = tnet_turn_attribute_deserialize(type, length, dataPtr, length);
-//		attribute = 0;
+//      attribute = 0;
 //        break;
 //    }
 //
@@ -471,14 +471,14 @@
 //        return -3;
 //    }
 //
-//    /*	RFC 5389 - 15.10.  SOFTWARE */
+//    /*    RFC 5389 - 15.10.  SOFTWARE */
 //    case stun_software: {
 //        tnet_stun_attribute_software_t *software = (tnet_stun_attribute_software_t*)attribute;
 //        tsk_buffer_append(output, software->value, tsk_strlen(software->value));
 //        return 0;
 //    }
 //
-//    /*	RFC 5389 - 15.11.  ALTERNATE-SERVER */
+//    /*    RFC 5389 - 15.11.  ALTERNATE-SERVER */
 //    case stun_alternate_server: {
 //        TSK_DEBUG_ERROR("NOT IMPLEMENTED");
 //        return -3;
@@ -547,7 +547,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.  STUN Attributes]] object definition
+////    [[RFC 5389 - 15.  STUN Attributes]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -575,7 +575,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.1.  MAPPED-ADDRESS]] object definition
+////    [[RFC 5389 - 15.1.  MAPPED-ADDRESS]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_mapped_addr_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -592,7 +592,7 @@
 //            attribute->port = tnet_ntohs_2(payloadPtr);
 //            payloadPtr+=2;
 //
-//            {	/*=== Compute IP address */
+//            { /*=== Compute IP address */
 //                tsk_size_t addr_size = (attribute->family == stun_ipv6) ? 16 : (attribute->family == stun_ipv4 ? 4 : 0);
 //                if(addr_size) {
 //                    tsk_size_t i;
@@ -635,7 +635,7 @@
 //const tsk_object_def_t *tnet_stun_attribute_mapped_addr_def_t = &tnet_stun_attribute_mapped_addr_def_s;
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS]] object definition
+////    [[RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_xmapped_addr_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -650,22 +650,22 @@
 //
 //            attribute->family = (tnet_stun_addr_family_t)(*(payloadPtr++));
 //
-//            /*	RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS
-//            	X-Port is computed by taking the mapped port in host byte order,
-//            	XOR'ing it with the most significant 16 bits of the magic cookie, and
-//            	then the converting the result to network byte order.
+//            /*    RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS
+//              X-Port is computed by taking the mapped port in host byte order,
+//              XOR'ing it with the most significant 16 bits of the magic cookie, and
+//              then the converting the result to network byte order.
 //            */
 //            attribute->xport = tnet_ntohs_2(payloadPtr);
 //            attribute->xport ^= 0x2112;
 //            payloadPtr+=2;
 //
 //
-//            {	/*=== Compute IP address */
+//            { /*=== Compute IP address */
 //
-//                /*	RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS
-//                	If the IP address family is IPv4, X-Address is computed by taking the mapped IP
-//                	address in host byte order, XOR'ing it with the magic cookie, and
-//                	converting the result to network byte order.
+//                /*    RFC 5389 - 15.2.  XOR-MAPPED-ADDRESS
+//                  If the IP address family is IPv4, X-Address is computed by taking the mapped IP
+//                  address in host byte order, XOR'ing it with the magic cookie, and
+//                  converting the result to network byte order.
 //                */
 //                tsk_size_t addr_size = (attribute->family == stun_ipv6) ? 16 : (attribute->family == stun_ipv4 ? 4 : 0);
 //                if(addr_size) {
@@ -709,7 +709,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.3.  USERNAME]] object definition
+////    [[RFC 5389 - 15.3.  USERNAME]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_username_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -745,7 +745,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.4.  MESSAGE-INTEGRITY]] object definition
+////    [[RFC 5389 - 15.4.  MESSAGE-INTEGRITY]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_integrity_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -782,7 +782,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.5.  FINGERPRINT]] object definition
+////    [[RFC 5389 - 15.5.  FINGERPRINT]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_fingerprint_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -815,7 +815,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.6.  ERROR-CODE]] object definition
+////    [[RFC 5389 - 15.6.  ERROR-CODE]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_errorcode_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -858,7 +858,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.7.  REALM]] object definition
+////    [[RFC 5389 - 15.7.  REALM]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_realm_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -894,7 +894,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.8.  NONCE]] object definition
+////    [[RFC 5389 - 15.8.  NONCE]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_nonce_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -930,7 +930,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.9.  UNKNOWN-ATTRIBUTES]] object definition
+////    [[RFC 5389 - 15.9.  UNKNOWN-ATTRIBUTES]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_unknowns_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -963,7 +963,7 @@
 //const tsk_object_def_t *tnet_stun_attribute_unknowns_def_t = &tnet_stun_attribute_unknowns_def_s;
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.10.  SOFTWARE]] object definition
+////    [[RFC 5389 - 15.10.  SOFTWARE]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_software_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -998,7 +998,7 @@
 //const tsk_object_def_t *tnet_stun_attribute_software_def_t = &tnet_stun_attribute_software_def_s;
 //
 ////=================================================================================================
-////	[[RFC 5389 - 15.11.  ALTERNATE-SERVER]] object definition
+////    [[RFC 5389 - 15.11.  ALTERNATE-SERVER]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_altserver_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -1050,7 +1050,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5245 - 19.1.  PRIORITY]] object definition
+////    [[RFC 5245 - 19.1.  PRIORITY]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_ice_priority_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -1082,7 +1082,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5245 - 19.1.  USE-CANDIDATE]] object definition
+////    [[RFC 5245 - 19.1.  USE-CANDIDATE]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_ice_use_candidate_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -1112,7 +1112,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5245 - 19.1.  ICE-CONTROLLED]] object definition
+////    [[RFC 5245 - 19.1.  ICE-CONTROLLED]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_ice_controlled_ctor(tsk_object_t * self, va_list * app)
 //{
@@ -1145,7 +1145,7 @@
 //
 //
 ////=================================================================================================
-////	[[RFC 5245 - 19.1.  ICE-CONTROLLING]] object definition
+////    [[RFC 5245 - 19.1.  ICE-CONTROLLING]] object definition
 ////
 //static tsk_object_t* tnet_stun_attribute_ice_controlling_ctor(tsk_object_t * self, va_list * app)
 //{

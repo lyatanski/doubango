@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 106 "./ragel/tmsrp_parser_uri.rl" */
@@ -592,7 +592,7 @@ _match:
                 TSK_PARSER_ADD_PARAM(uri->params);
             }
             break;
-            /* #line 583 "./src/parsers/tmsrp_parser_uri.c" */
+                /* #line 583 "./src/parsers/tmsrp_parser_uri.c" */
             }
         }
 
@@ -628,7 +628,7 @@ _test_eof: {
                     TSK_PARSER_ADD_PARAM(uri->params);
                 }
                 break;
-                /* #line 617 "./src/parsers/tmsrp_parser_uri.c" */
+                    /* #line 617 "./src/parsers/tmsrp_parser_uri.c" */
                 }
             }
         }

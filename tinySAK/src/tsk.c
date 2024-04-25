@@ -33,7 +33,7 @@
 * This API is designed to efficiently work on embedded systems with limited memory and low computing power.<br>
 * This library provide a base object class to ease Object Oriented Programming in C. There are many other
 * features like multi-threading, time management, encoding, encryption or content management.
-* <h1>6	ANSI-C Object Programming</h1>
+* <h1>6 ANSI-C Object Programming</h1>
 * As you probably know, C is not an object oriented language.<br>
 * Today, OOP (Object-Oriented Programing) is the best way to program well designed softwares.<br>
 * In this chapter a “well-defined object” is a special C structure. All functions shown in this chapter are part of tinySAK project.<br>
@@ -42,14 +42,14 @@
 * @code
 * typedef struct person_s
 {
-	TSK_DECLARE_OBJECT; // Mandatory
+    TSK_DECLARE_OBJECT; // Mandatory
 
-	char* name;
-	struct person_s* girlfriend;
+    char* name;
+    struct person_s* girlfriend;
 }
 person_t;
 * @endcode
-<h2>6.1	Object Definition</h2>
+<h2>6.1 Object Definition</h2>
 * An object definition could be considered as a class definition. The definition holds the object’s mandatory functions, size and a reference counter.<br>
 * The mandatory functions are the constructor, the destructor and the comparator.<br>
 * A C structure is defined as an object by using @ref TSK_DECLARE_OBJECT macro in its body.<br>
@@ -57,14 +57,14 @@ person_t;
 * @code
 typedef struct tsk_object_def_s
 {
-	//! The size of the object.
-	tsk_size_t size;
-	//! Pointer to the constructor.
-	tsk_object_t*	(* constructor) (tsk_object_t *, va_list *);
-	//! Pointer to the destructor.
-	tsk_object_t*	(* destructor) (tsk_object_t *);
-	//! Pointer to the comparator.
-	int		(*comparator) (const tsk_object_t *, const tsk_object_t *);
+    //! The size of the object.
+    tsk_size_t size;
+    //! Pointer to the constructor.
+    tsk_object_t*   (* constructor) (tsk_object_t *, va_list *);
+    //! Pointer to the destructor.
+    tsk_object_t*   (* destructor) (tsk_object_t *);
+    //! Pointer to the comparator.
+    int     (*comparator) (const tsk_object_t *, const tsk_object_t *);
 }
 tsk_object_def_t;
 * @endcode
@@ -81,71 +81,71 @@ tsk_object_def_t;
 * //(Object defnition)
  static const tsk_object_def_t person_def_t =
  {
- 	sizeof(person_t),
- 	person_ctor,
- 	person_dtor,
- 	person_cmp
+    sizeof(person_t),
+    person_ctor,
+    person_dtor,
+    person_cmp
  };
 * @endcode
-* <h2>6.2	Constructor</h2>
+* <h2>6.2   Constructor</h2>
 * The constructor is only responsible for the initialization and won’t allocate the object. When passed to the constructor, the object is already allocated.<br>
 * Here is an example:<br>
 * @code
 // (constructor)
 static tsk_object_t* person_ctor(tsk_object_t * self, va_list * app)
 {
- 	person_t *person = self;
- 	if(person){
- 		person->name = tsk_strdup(va_arg(*app, const char *));
- 	}
- 	return self;
+    person_t *person = self;
+    if(person){
+        person->name = tsk_strdup(va_arg(*app, const char *));
+    }
+    return self;
  }
 * @endcode
-* <h2>6.3	Destructor</h2>
+* <h2>6.3   Destructor</h2>
 * The destructor will free the object’s members and won’t destroy the object itself (Phase 1). The destructor function must return a pointer to itself to allow the caller to perform the second phase.<br>
 * Here is an example:<br>
 * @code
 // (destructor)
  static tsk_object_t * person_dtor(tsk_object_t * self)
  {
- 	person_t *person = self;
- 	if(person){
- 		TSK_FREE(person->name);
-		tsk_object_unref(person->girlfriend);
- 	}
- 	return self;
+    person_t *person = self;
+    if(person){
+        TSK_FREE(person->name);
+        tsk_object_unref(person->girlfriend);
+    }
+    return self;
  }
 * @endcode
-* <h2>6.4	Comparator</h2>
+* <h2>6.4   Comparator</h2>
 * The comparator function is used to compare two well-defined objects. The objects to compare shall have the same definition (or type). <br>
 * Here is an example:<br>
 * @code
 // (comparator)
 static int person_cmp(const tsk_object_t *_p1, const tsk_object_t *_p2)
  {
- 	const person_t *p1 = _p1;
- 	const person_t *p1 = _p2;
-	int ret;
+    const person_t *p1 = _p1;
+    const person_t *p1 = _p2;
+    int ret;
 
-	// do they have the same name?
-	if((ret = tsk_stricmp(p1->name, p2->name))){
-		return ret;
-	}
-	// do they have the same girlfriend?
-	if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
-		return ret;
-	}
+    // do they have the same name?
+    if((ret = tsk_stricmp(p1->name, p2->name))){
+        return ret;
+    }
+    // do they have the same girlfriend?
+    if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
+        return ret;
+    }
 
-	// they are the same
-	return 0;
+    // they are the same
+    return 0;
  }
 * @endcode
-<h2>6.5	Reference counting</h2>
+<h2>6.5 Reference counting</h2>
 * Reference counting is used to emulate garbage collection. Each well-defined object contains a reference counter field which indicates how many object have a reference to the actual object.<br>
 * When an object is created (see below) the counter value is initialized to 1; this is automatically done and you have nothing to do. The counter is incremented by 1 when you call @ref tsk_object_ref() and decremented (by 1) when you call @ref tsk_object_unref().<br>
 * When the counter value reaches zero, then the object is garbaged (freed).<br>
 *
-* <h2>6.6	Inheritence</h2>
+* <h2>6.6   Inheritence</h2>
 * As you expect, inheritance is not supported in ANSI-C. <br>
 * As any C Structure could be casted to a pointer to its first element, inheritance could be achieved like this:<br>
 * @code
@@ -153,8 +153,8 @@ static int person_cmp(const tsk_object_t *_p1, const tsk_object_t *_p2)
 // (a student is a person)
 typedef struct student_s
 {
-	person_t* person; // Must be the first element
-	char* school;
+    person_t* person; // Must be the first element
+    char* school;
 }
 student_t;
 
@@ -165,7 +165,7 @@ student_t* s = tsk_null;
 * @endcode
 *
 * As @code person_t is a well-defined object, then @code student_t is also well-defined.<br>
-* <h2>6.7	Usage</h2>
+* <h2>6.7   Usage</h2>
 * Once the object’s definition is declared and all its mandatory functions implemented, it is used like this:<br>
 * @code
 // creates a person: will call the constructor
@@ -178,7 +178,7 @@ tsk_object_unref(bob);
 * As it’s hard to guest which parameters the construct expects, it’s common to use macro (or function) helpers. In our example the macro will look like this:
 * @code
 // create a person
-#define PERSON_CREATE(name)	tsk_object_new(&person_def_t, (const char*)name)
+#define PERSON_CREATE(name) tsk_object_new(&person_def_t, (const char*)name)
 * @endcode
 *
 * As the destructor has fixed parameters, there is a common macro to destroy all kind of well-defined objects. <br>
@@ -198,10 +198,10 @@ TSK_OBJECT_SAFE_FREE(bob);
 *
 * <h2>6.8 Lists</h2>
 *
-* <h2>7	Threading</h2>
+* <h2>7 Threading</h2>
 * The framework provides an operating system agnostic threading functions for both WIN32 and Unix-like systems.<br>
 *
-* <h2>7.1	Threads</h2>
+* <h2>7.1   Threads</h2>
 * You don’t need thousands of functions to manage threads. In the Framework we only need to create, pause and destroy threads.<br>
 * Threads can be created using @ref tsk_thread_create() and joined using @ref tsk_thread_join().<br>
 * You can temporary cease the executing of a thread by calling @ref tsk_thread_sleep().<br>
@@ -210,20 +210,20 @@ TSK_OBJECT_SAFE_FREE(bob);
 
 void* MyThreadFunction(void *arg)
 {
-	printf("arg=%d", *((int*)arg));
-	return tsk_null;
+    printf("arg=%d", *((int*)arg));
+    return tsk_null;
 }
 
 void test_threads()
 {
-	void* tid[1] = {tsk_null}; // thread id
-	int arg = 112; // arg to pass to the function
+    void* tid[1] = {tsk_null}; // thread id
+    int arg = 112; // arg to pass to the function
 
-	// creates the thread
-	tsk_thread_create(&tid[0], MyThreadFunction, &arg);
+    // creates the thread
+    tsk_thread_create(&tid[0], MyThreadFunction, &arg);
 
-	// joins the thread
-	tsk_thread_join(&(tid[0]));
+    // joins the thread
+    tsk_thread_join(&(tid[0]));
 }
 * @endcode
 *

@@ -18,7 +18,7 @@
 
 // Function prototypes
 HDIB BitmapToDIB (HBITMAP hBitmap, HPALETTE hPal);
-HDIB ChangeBitmapFormat (HBITMAP	hBitmap,
+HDIB ChangeBitmapFormat (HBITMAP    hBitmap,
                          WORD     wBitCount,
                          DWORD    dwCompression,
                          HPALETTE hPal);
@@ -71,7 +71,7 @@ WORD SaveDIB (HDIB, LPSTR);
 
 // Function prototypes
 HDIB BitmapToDIB (HBITMAP hBitmap, HPALETTE hPal);
-HDIB ChangeBitmapFormat (HBITMAP	hBitmap,
+HDIB ChangeBitmapFormat (HBITMAP    hBitmap,
                          WORD     wBitCount,
                          DWORD    dwCompression,
                          HPALETTE hPal);

@@ -37,25 +37,25 @@
 #define DS_SECONDS_FROM_100NS(SEC) (10000000ui64/(SEC))
 
 #define COCREATE(cls, iid, target) \
-	CoCreateInstance(cls, NULL, CLSCTX_INPROC_SERVER, iid, reinterpret_cast<void**>(&target))
+    CoCreateInstance(cls, NULL, CLSCTX_INPROC_SERVER, iid, reinterpret_cast<void**>(&target))
 #define QUERY(source, iid, target) \
-	source->QueryInterface(iid, reinterpret_cast<void**>(&target))
+    source->QueryInterface(iid, reinterpret_cast<void**>(&target))
 
 // --------------------------------------------------------------------------------
 
 
-#define FILTER_WEBCAM					_T("WEBCAM")
-#define FILTER_SCREENCAST				_T("SCREENCAST")
-#define FILTER_FRAMERATE				_T("TDSHOW_FRAMERATE")
-#define FILTER_OUTPUT					_T("TDSHOW_OUTPUT")
-#define	FITLER_SAMPLE_GRABBER			_T("SAMPLE_GRABBER")
-#define FILTER_AVI_DECOMPRESSOR			_T("AVI_DECOMPRESSOR")
+#define FILTER_WEBCAM                   _T("WEBCAM")
+#define FILTER_SCREENCAST               _T("SCREENCAST")
+#define FILTER_FRAMERATE                _T("TDSHOW_FRAMERATE")
+#define FILTER_OUTPUT                   _T("TDSHOW_OUTPUT")
+#define FITLER_SAMPLE_GRABBER           _T("SAMPLE_GRABBER")
+#define FILTER_AVI_DECOMPRESSOR         _T("AVI_DECOMPRESSOR")
 
-#define FILTER_COLORSPACE_CONVERTOR		_T("COLORSPACE_CONVERTOR")
-#define FILTER_NULL_RENDERER			_T("NULL_RENDERER")
-#define FILTER_VIDEO_RENDERER			_T("VIDEO_RENDERER")
-#define FILTER_VIDEO_MIXING_RENDERER	_T("VIDEO_MIXING_RENDERER")
-#define FILTER_COLOR_CONVERTOR_565		_T("COLOR_CONVERTOR_565")
+#define FILTER_COLORSPACE_CONVERTOR     _T("COLORSPACE_CONVERTOR")
+#define FILTER_NULL_RENDERER            _T("NULL_RENDERER")
+#define FILTER_VIDEO_RENDERER           _T("VIDEO_RENDERER")
+#define FILTER_VIDEO_MIXING_RENDERER    _T("VIDEO_MIXING_RENDERER")
+#define FILTER_COLOR_CONVERTOR_565      _T("COLOR_CONVERTOR_565")
 
 // --------------------------------------------------------------------------------
 

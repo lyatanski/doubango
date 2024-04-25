@@ -40,7 +40,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 89 "./ragel/tsip_parser_header_Refer_To.rl" */
@@ -762,7 +762,7 @@ _match:
             {
             }
             break;
-            /* #line 759 "./src/headers/tsip_header_Refer_To.c" */
+                /* #line 759 "./src/headers/tsip_header_Refer_To.c" */
             }
         }
 
@@ -800,7 +800,7 @@ _out: {
 
 
 //========================================================
-//	Refer_To header object definition
+//  Refer_To header object definition
 //
 
 static tsk_object_t* tsip_header_Refer_To_ctor(tsk_object_t *self, va_list * app)

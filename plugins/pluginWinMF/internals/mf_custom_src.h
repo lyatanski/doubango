@@ -91,7 +91,8 @@ private:
     CMFSource(HRESULT &hr, IMFMediaType *pMediaType);
     virtual ~CMFSource();
 
-    HRESULT CheckShutdown() const {
+    HRESULT CheckShutdown() const
+    {
         if (m_IsShutdown) {
             return MF_E_SHUTDOWN;
         }
@@ -106,21 +107,22 @@ private:
     HRESULT     ValidatePresentationDescriptor(IMFPresentationDescriptor *pPD);
 
     LONGLONG    GetCurrentPosition() const;
-    State       GetState() const {
+    State       GetState() const
+    {
         return m_state;
     }
 
     IMFMediaEventQueue          *m_pEventQueue;             // Event generator helper
     IMFPresentationDescriptor   *m_pPresentationDescriptor; // Default presentation
 
-    CMFStreamSource				*m_pStream;                 // Media stream. Can be NULL is no stream is selected.
+    CMFStreamSource             *m_pStream;                 // Media stream. Can be NULL is no stream is selected.
 
     long                        m_nRefCount;                // reference count
     CRITICAL_SECTION            m_critSec;
     BOOL                        m_IsShutdown;               // Flag to indicate if Shutdown() method was called.
     State                       m_state;                    // Current state (running, stopped, paused)
 
-    IMFMediaType				*m_pMediaType;				// The supported mediaType
+    IMFMediaType                *m_pMediaType;              // The supported mediaType
 };
 
 
@@ -134,14 +136,17 @@ protected:
         Node *next;
         IMFSample*  item;
 
-        Node() : prev(NULL), next(NULL) {
+        Node() : prev(NULL), next(NULL)
+        {
         }
 
-        Node(IMFSample* item) : prev(NULL), next(NULL) {
+        Node(IMFSample* item) : prev(NULL), next(NULL)
+        {
             this->item = item;
         }
 
-        IMFSample* Item() const {
+        IMFSample* Item() const
+        {
             return item;
         }
     };
@@ -152,16 +157,19 @@ protected:
 
 public:
 
-    SampleQueue() {
+    SampleQueue()
+    {
         m_anchor.next = &m_anchor;
         m_anchor.prev = &m_anchor;
     }
 
-    virtual ~SampleQueue() {
+    virtual ~SampleQueue()
+    {
         Clear();
     }
 
-    HRESULT Queue(IMFSample* item) {
+    HRESULT Queue(IMFSample* item)
+    {
         if (item == NULL) {
             return E_POINTER;
         }
@@ -187,7 +195,8 @@ public:
 
     }
 
-    HRESULT Dequeue(IMFSample**ppItem) {
+    HRESULT Dequeue(IMFSample**ppItem)
+    {
         if (IsEmpty()) {
             return E_FAIL;
         }
@@ -209,11 +218,13 @@ public:
         return S_OK;
     }
 
-    BOOL IsEmpty() const {
+    BOOL IsEmpty() const
+    {
         return m_anchor.next == &m_anchor;
     }
 
-    void Clear() {
+    void Clear()
+    {
         Node *n = m_anchor.next;
 
         // Delete the nodes
@@ -273,7 +284,8 @@ private:
     ~CMFStreamSource();
 
 
-    HRESULT CheckShutdown() const {
+    HRESULT CheckShutdown() const
+    {
         if (m_IsShutdown) {
             return MF_E_SHUTDOWN;
         }
@@ -282,14 +294,15 @@ private:
         }
     }
 
-    HRESULT		InitializeParams();
+    HRESULT     InitializeParams();
     HRESULT     Shutdown();
     HRESULT     CreateSample(IMFSample **pSample);
     HRESULT     DeliverSample(IMFSample *pSample);
     HRESULT     DeliverQueuedSamples();
     HRESULT     Flush();
 
-    LONGLONG    GetCurrentPosition() const {
+    LONGLONG    GetCurrentPosition() const
+    {
         return m_rtCurrentPosition;
     }
     HRESULT     SetPosition(LONGLONG rtNewPosition);
@@ -300,7 +313,7 @@ private:
     CRITICAL_SECTION            m_critSec;
     BOOL                        m_IsShutdown;           // Flag to indicate if source's Shutdown() method was called.
     LONGLONG                    m_rtCurrentPosition;    // Current position in the stream, in 100-ns units
-    UINT64						m_rtDuration;			// Sample duration, in 100-ns units
+    UINT64                      m_rtDuration;           // Sample duration, in 100-ns units
     BOOL                        m_discontinuity;        // Is the next sample a discontinuity?
     BOOL                        m_EOS;                  // Did we reach the end of the stream?
 
@@ -309,10 +322,10 @@ private:
     IMFStreamDescriptor         *m_pStreamDescriptor;   // Stream descriptor for this stream.
 
     SampleQueue                  m_sampleQueue;          // Queue for samples while paused.
-    GUID						m_guidMajorType;		// major media type (e.g. MFMediaType_Video or MFMediaType_Audio)
-    GUID						m_guidSubType;			// Media subtype (e.g. MFVideoFormat_RGB32 or MFVideoFormat_H264)
-    IMFMediaBuffer				*m_pMediaBuffer;			// Pointer to the data to deliver
-    UINT32						m_nBufferSize;			// Size of the data to deliver
+    GUID                        m_guidMajorType;        // major media type (e.g. MFMediaType_Video or MFMediaType_Audio)
+    GUID                        m_guidSubType;          // Media subtype (e.g. MFVideoFormat_RGB32 or MFVideoFormat_H264)
+    IMFMediaBuffer              *m_pMediaBuffer;            // Pointer to the data to deliver
+    UINT32                      m_nBufferSize;          // Size of the data to deliver
 
     struct {
         UINT32 nWidth;

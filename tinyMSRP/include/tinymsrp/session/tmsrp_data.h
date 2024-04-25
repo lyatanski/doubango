@@ -38,8 +38,8 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_DATA(self)					((tmsrp_data_t*)(self))
-#define TMSRP_DATA_IS_OUTGOING(self)		(TMSRP_DATA(self)->outgoing)
+#define TMSRP_DATA(self)                    ((tmsrp_data_t*)(self))
+#define TMSRP_DATA_IS_OUTGOING(self)        (TMSRP_DATA(self)->outgoing)
 
 
 typedef struct tmsrp_data_s {

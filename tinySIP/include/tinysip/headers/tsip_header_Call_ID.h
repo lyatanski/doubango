@@ -37,15 +37,15 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_CALL_ID_VA_ARGS(call_id)	tsip_header_Call_ID_def_t, (const char*)call_id
+#define TSIP_HEADER_CALL_ID_VA_ARGS(call_id)    tsip_header_Call_ID_def_t, (const char*)call_id
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Call-ID'.
+/// @brief  SIP header 'Call-ID'.
 ///
 /// @par ABNF: Call-ID / i
-/// callid	=  	word  [ "@" word ]
-/// Call-ID	= 	( "Call-ID" / "i" ) HCOLON callid
+/// callid  =   word  [ "@" word ]
+/// Call-ID =   ( "Call-ID" / "i" ) HCOLON callid
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Call_ID_s {

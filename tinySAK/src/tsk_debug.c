@@ -156,10 +156,10 @@ void tsk_debug_set_level(int level)
 *
 * The framework offers 4 debugging levels. The minimum level could be defined by setting the value of @ref DEBUG_LEVEL macro in your <b>CFLAGS</b> or using @ref tsk_debug_set_level. <br />
 * Supported level values are @ref DEBUG_LEVEL_INFO, @ref DEBUG_LEVEL_WARN, @ref DEBUG_LEVEL_ERROR or @ref DEBUG_LEVEL_FATAL.
-* -	@ref DEBUG_LEVEL_INFO is the minimum value. Used to log user information, application progress, configuration ...
-* -	@ref DEBUG_LEVEL_WARN signals that something that could change the normal process happened. This type of error should not block the application.
-* -	@ref DEBUG_LEVEL_ERROR is the <b>default</b> minimum value. Signals that the current operation has failed. If the operation was critical (e.g. thread creation) then, this will badly change the application behavior, otherwise (e.g. sending data over network) the application will continue to behave as expected.
-* -	@ref DEBUG_LEVEL_FATAL is the maximum value. This kind of errors are signaled just before the application crashes or enters in a state from which it's impossible to recover from.
+* - @ref DEBUG_LEVEL_INFO is the minimum value. Used to log user information, application progress, configuration ...
+* - @ref DEBUG_LEVEL_WARN signals that something that could change the normal process happened. This type of error should not block the application.
+* - @ref DEBUG_LEVEL_ERROR is the <b>default</b> minimum value. Signals that the current operation has failed. If the operation was critical (e.g. thread creation) then, this will badly change the application behavior, otherwise (e.g. sending data over network) the application will continue to behave as expected.
+* - @ref DEBUG_LEVEL_FATAL is the maximum value. This kind of errors are signaled just before the application crashes or enters in a state from which it's impossible to recover from.
 *
 * At any time you can change the debug level using @ref tsk_debug_set_level().
 *
@@ -187,16 +187,16 @@ FILE* file = fopen("logs.txt", "w+"); // do not forget to close the file using f
 // defines your INFO callback
 *static int _debug_info_write_to_file(const void* arg, const char* fmt, ...)
 {
-	va_list ap;
-	char* msg = tsk_null;
-	const this_t* _this = (this_t*)arg; // value passed to the framework using tsk_debug_set_arg_data()
-	va_start(ap, fmt);
-	tsk_sprintf_2(&msg, fmt, &ap);
-	fputs(msg, file);
-	TSK_FREE(msg);
-	va_end(ap);
+    va_list ap;
+    char* msg = tsk_null;
+    const this_t* _this = (this_t*)arg; // value passed to the framework using tsk_debug_set_arg_data()
+    va_start(ap, fmt);
+    tsk_sprintf_2(&msg, fmt, &ap);
+    fputs(msg, file);
+    TSK_FREE(msg);
+    va_end(ap);
 
-	return 0;
+    return 0;
 }
 // optional: set callback data (will be passed to _debug_info_write_to_file() as "arg" parameter)
 const this_t* _this = tsk_null;

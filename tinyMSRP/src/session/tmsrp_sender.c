@@ -248,7 +248,7 @@ static void* TSK_STDCALL run(void* self)
 
 
 //=================================================================================================
-//	MSRP sender object definition
+//  MSRP sender object definition
 //
 static void* tmsrp_sender_ctor(tsk_object_t * self, va_list *app)
 {

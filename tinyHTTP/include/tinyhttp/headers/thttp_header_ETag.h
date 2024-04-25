@@ -35,15 +35,15 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_ETAG_VA_ARGS(value)		thttp_header_ETag_def_t, (const char*)value
+#define THTTP_HEADER_ETAG_VA_ARGS(value)        thttp_header_ETag_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// HTTP ETag header.
 ///
 /// @par ABNF : ETag = "ETag" ":" entity-tag
-/// 	entity-tag = [ weak ] opaque-tag
-/// 	weak       = "W/"
-/// 	opaque-tag = quoted-string
+///     entity-tag = [ weak ] opaque-tag
+///     weak       = "W/"
+///     opaque-tag = quoted-string
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct thttp_header_ETag_s {
     THTTP_DECLARE_HEADER;

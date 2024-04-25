@@ -38,7 +38,7 @@ TSK_BEGIN_DECLS
 * SHA-1 error codes.
 */
 typedef enum tsk_sha1_errcode_e {
-    shaSuccess = 0,		/**< Success */
+    shaSuccess = 0,     /**< Success */
     shaNull,            /**< Null pointer parameter */
     shaInputTooLong,    /**< input data too long */
     shaStateError       /**< called Input after Result */
@@ -63,10 +63,10 @@ tsk_sha1_errcode_t;
 * SHA-1 digest bytes.
 */
 
-#define TSK_SHA1_DIGEST_SIZE			20
-#define TSK_SHA1_BLOCK_SIZE				64
+#define TSK_SHA1_DIGEST_SIZE            20
+#define TSK_SHA1_BLOCK_SIZE             64
 
-#define TSK_SHA1_STRING_SIZE		(TSK_SHA1_DIGEST_SIZE*2)
+#define TSK_SHA1_STRING_SIZE        (TSK_SHA1_DIGEST_SIZE*2)
 typedef uint8_t tsk_sha1string_t[TSK_SHA1_STRING_SIZE+1];
 typedef uint8_t tsk_sha1digest_t[TSK_SHA1_DIGEST_SIZE]; /**< SHA-1 digest bytes. */
 
@@ -77,13 +77,13 @@ typedef uint8_t tsk_sha1digest_t[TSK_SHA1_DIGEST_SIZE]; /**< SHA-1 digest bytes.
 * @param digest @ref tsk_sha1digest_t object conaining the sha1 digest result.
 * @sa @ref tsk_sha1compute.
 */
-#define TSK_SHA1_DIGEST_CALC(input, input_size, digest)			\
-			{													\
-				tsk_sha1context_t ctx;							\
-				tsk_sha1reset(&ctx);							\
-				tsk_sha1input(&ctx, (input), (input_size));		\
-				tsk_sha1result(&ctx, (digest));					\
-			}
+#define TSK_SHA1_DIGEST_CALC(input, input_size, digest)         \
+            {                                                   \
+                tsk_sha1context_t ctx;                          \
+                tsk_sha1reset(&ctx);                            \
+                tsk_sha1input(&ctx, (input), (input_size));     \
+                tsk_sha1result(&ctx, (digest));                 \
+            }
 
 /**@ingroup tsk_sha1_group
  *  This structure will hold context information for the SHA-1

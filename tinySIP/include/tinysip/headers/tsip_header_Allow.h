@@ -35,12 +35,12 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_ALLOW_DEFAULT	"ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE"
-#define TSIP_HEADER_STR				"Allow:" TSIP_HEADER_ALLOW_DEFAULT "\r\n"
+#define TSIP_HEADER_ALLOW_DEFAULT   "ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE"
+#define TSIP_HEADER_STR             "Allow:" TSIP_HEADER_ALLOW_DEFAULT "\r\n"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Allow'.
+/// @brief  SIP header 'Allow'.
 ///
 /// @par ABNF
 ///

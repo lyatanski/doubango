@@ -98,8 +98,8 @@ void test_enum()
 {
     tnet_dns_ctx_t *ctx = tnet_dns_ctx_create();
     tnet_dns_response_t* response = tsk_null;
-//	const tsk_list_item_t* item;
-//	const tnet_dns_naptr_t* record;
+//  const tsk_list_item_t* item;
+//  const tnet_dns_naptr_t* record;
     char* uri = tsk_null;
     const char* e164num = "+1-800-555-5555";
     //const char* e164num = "+33660188661";
@@ -116,24 +116,24 @@ void test_enum()
     }
 
     /*if((response = tnet_dns_enum(ctx, "+1-800-555-5555", "e164.org"))){
-    	if(TNET_DNS_RESPONSE_IS_SUCCESS(response)){
-    		TSK_DEBUG_INFO("We got a success response from the DNS server.");
-    		// loop through the answers
-    		tsk_list_foreach(item, response->Answers){
-    			record = item->data;
+        if(TNET_DNS_RESPONSE_IS_SUCCESS(response)){
+            TSK_DEBUG_INFO("We got a success response from the DNS server.");
+            // loop through the answers
+            tsk_list_foreach(item, response->Answers){
+                record = item->data;
 
-    			TSK_DEBUG_INFO("order=%u pref=%u flags=%s services=%s regexp=%s replacement=%s",
-    				record->order,
-    				record->preference,
-    				record->flags,
-    				record->services,
-    				record->regexp,
-    				record->replacement);
-    		}
-    	}
-    	else{
-    		TSK_DEBUG_ERROR("We got an error response from the DNS server. Erro code: %u", response->Header.RCODE);
-    	}
+                TSK_DEBUG_INFO("order=%u pref=%u flags=%s services=%s regexp=%s replacement=%s",
+                    record->order,
+                    record->preference,
+                    record->flags,
+                    record->services,
+                    record->regexp,
+                    record->replacement);
+            }
+        }
+        else{
+            TSK_DEBUG_ERROR("We got an error response from the DNS server. Erro code: %u", response->Header.RCODE);
+        }
     }*/
 
 

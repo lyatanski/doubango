@@ -22,11 +22,11 @@
 
 #include "tinyxcap.h"
 
-#define LOOP						0
+#define LOOP                        0
 
-#define RUN_TEST_ALL				0
-#define RUN_TEST_SELECTOR			0
-#define RUN_TEST_STACK				1
+#define RUN_TEST_ALL                0
+#define RUN_TEST_SELECTOR           0
+#define RUN_TEST_STACK              1
 
 
 #define XUI "sip:mamadou@micromethod.com"

@@ -146,7 +146,7 @@ static char* tdav_codec_g722_sdp_att_get(const tmedia_codec_t* codec, const char
 }
 
 //
-//	g722 Plugin definition
+//  g722 Plugin definition
 //
 
 /* constructor */

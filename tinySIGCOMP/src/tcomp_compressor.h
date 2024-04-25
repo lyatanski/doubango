@@ -36,11 +36,11 @@
 TCOMP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @typedef	int (*tcomp_compressor_compress_f)(tcomp_compartment_t *lpCompartment,
-/// 			const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size,
-/// 			int stream)
+/// @typedef    int (*tcomp_compressor_compress_f)(tcomp_compartment_t *lpCompartment,
+///             const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size,
+///             int stream)
 ///
-/// @brief	Function pointer definition for compression method.
+/// @brief  Function pointer definition for compression method.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef tsk_bool_t (*tcomp_compressor_compress_f)(tcomp_compartment_t *lpCompartment, const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size, tsk_bool_t stream);
 

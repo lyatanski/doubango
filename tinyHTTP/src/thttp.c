@@ -60,7 +60,7 @@
 *
 *
 *
-* <h2>15.1	Initialization</h2>
+* <h2>15.1  Initialization</h2>
 * <p>
 * As the HTTP/HTTPS stack depends on the network library (tinyNET), you MUST call @ref tnet_startup() before using any HTTP/Network function (thttp_*).
 * @ref tnet_cleanup() is used to terminate use of network functions.
@@ -79,55 +79,55 @@ int ret;
 // Callback function used for test
 int test_stack_callback(const thttp_event_t *httpevent)
 {
-	thttp_session_id_t id = thttp_session_get_id(httpevent->session);
-	switch(httpevent->type){
-		case thttp_event_message: // New HTTP message
-			{
-				TSK_DEBUG_INFO("sid=%llu", id);
-				if(THTTP_MESSAGE_IS_RESPONSE(httpevent->message)){
-					const thttp_header_ETag_t* etag;
-					TSK_DEBUG_INFO("=== %d ==> %s", THTTP_RESPONSE_CODE(httpevent->message), THTTP_MESSAGE_CONTENT(httpevent->message));
-					// You can use
-					if((etag = (const thttp_header_ETag_t*)thttp_message_get_header(httpevent->message, thttp_htype_ETag))){
-						TSK_DEBUG_INFO("Etag=%s", etag->value);
-					}
-				}
-				break;
-			}
+    thttp_session_id_t id = thttp_session_get_id(httpevent->session);
+    switch(httpevent->type){
+        case thttp_event_message: // New HTTP message
+            {
+                TSK_DEBUG_INFO("sid=%llu", id);
+                if(THTTP_MESSAGE_IS_RESPONSE(httpevent->message)){
+                    const thttp_header_ETag_t* etag;
+                    TSK_DEBUG_INFO("=== %d ==> %s", THTTP_RESPONSE_CODE(httpevent->message), THTTP_MESSAGE_CONTENT(httpevent->message));
+                    // You can use
+                    if((etag = (const thttp_header_ETag_t*)thttp_message_get_header(httpevent->message, thttp_htype_ETag))){
+                        TSK_DEBUG_INFO("Etag=%s", etag->value);
+                    }
+                }
+                break;
+            }
 
-		case thttp_event_auth_failed:
-			{
-				TSK_DEBUG_INFO("auth failed sid=%llu", id);
-				break;
-			}
+        case thttp_event_auth_failed:
+            {
+                TSK_DEBUG_INFO("auth failed sid=%llu", id);
+                break;
+            }
 
-		case thttp_event_closed: // HTTP connection closed (informational)
-			{
-				TSK_DEBUG_INFO("closed sid=%llu", id);
-				break;
-			}
+        case thttp_event_closed: // HTTP connection closed (informational)
+            {
+                TSK_DEBUG_INFO("closed sid=%llu", id);
+                break;
+            }
 
-		case thttp_event_transport_error: // HTTP connection closed (informational)
-			{
-				TSK_DEBUG_INFO("Transport sid=%llu", id);
-				break;
-			}
-	}
+        case thttp_event_transport_error: // HTTP connection closed (informational)
+            {
+                TSK_DEBUG_INFO("Transport sid=%llu", id);
+                break;
+            }
+    }
 
-	return 0;
+    return 0;
 }
 
 // Creates the HTTP/HTTPS stacks
 thttp_stack_handle_t* stack = thttp_stack_create(test_stack_callback,
-	// TLS certificates (not mandatory) to show how parameters are passed to the stack
-	THTTP_STACK_SET_TLS_CERTS("C:\\tls\\ca.pki-crt.pem", "C:\\tls\\pub-crt.pem", "C:\\tls\\pub-key.pem"),
-	THTTP_STACK_SET_NULL() // MUST always be present
-	);
+    // TLS certificates (not mandatory) to show how parameters are passed to the stack
+    THTTP_STACK_SET_TLS_CERTS("C:\\tls\\ca.pki-crt.pem", "C:\\tls\\pub-crt.pem", "C:\\tls\\pub-key.pem"),
+    THTTP_STACK_SET_NULL() // MUST always be present
+    );
 
 // Starts the HTTP stack
 if((ret = thttp_stack_start(stack))){
-	TSK_DEBUG_ERROR("Failed to start the HTTP/HTTPS stack.");
-	goto bail;
+    TSK_DEBUG_ERROR("Failed to start the HTTP/HTTPS stack.");
+    goto bail;
 }
 * @endcode
 *
@@ -135,7 +135,7 @@ if((ret = thttp_stack_start(stack))){
 *
 *
 *
-*<h2>15.2	Sessions</h2>
+*<h2>15.2   Sessions</h2>
 * <p>
 * A session could be seen as a peer2peer persistent connection and will be maintained by the stack as long as you wish to keep the network connection opened (not explicitly destroyed). <br>
 * If the connection is closed by the remote peer, then the stack will automatically reopen it when you try to send a new HTTP/HTTP request. <br>
@@ -158,18 +158,18 @@ if((ret = thttp_stack_start(stack))){
 
 // creates session
 thttp_session_handle_t * session = thttp_session_create(stack,
-	// session-level credentials
+    // session-level credentials
 THTTP_SESSION_SET_CRED("ali baba", "open sesame"),
 
-	// session-level options
-	THTTP_SESSION_SET_OPTION(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
+    // session-level options
+    THTTP_SESSION_SET_OPTION(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
 
-	// session-level headers
-	THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
+    // session-level headers
+    THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
 
-	THTTP_SESSION_SET_NULL());// MUST always be present
+    THTTP_SESSION_SET_NULL());// MUST always be present
 
 * @endcode
 *
@@ -215,17 +215,17 @@ THTTP_SESSION_SET_CRED("ali baba", "open sesame"),
 *
 * @code
 int ret = thttp_action_PUT(session, "http://www.doubango.org",
-		// action-level options
-		THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
+        // action-level options
+        THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
 
-		// payload
-		THTTP_ACTION_SET_PAYLOAD("Comment allez-vous?", tsk_strlen("Comment allez-vous?")),
+        // payload
+        THTTP_ACTION_SET_PAYLOAD("Comment allez-vous?", tsk_strlen("Comment allez-vous?")),
 
-		// action-level headers
-		THTTP_ACTION_SET_HEADER("Content-Type", "text/plain"),
-		THTTP_ACTION_SET_HEADER("Expect", "100-continue"),
+        // action-level headers
+        THTTP_ACTION_SET_HEADER("Content-Type", "text/plain"),
+        THTTP_ACTION_SET_HEADER("Expect", "100-continue"),
 
-		THTTP_ACTION_SET_NULL());
+        THTTP_ACTION_SET_NULL());
 
 * @endcode
 
@@ -233,10 +233,10 @@ int ret = thttp_action_PUT(session, "http://www.doubango.org",
 *
 * @code
 int ret = thttp_action_GET(session, "http://ipv6.google.com",
-		// action-level options
-		THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "4500"),
+        // action-level options
+        THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "4500"),
 
-		THTTP_ACTION_SET_NULL());
+        THTTP_ACTION_SET_NULL());
 
 * @endcode
 *
@@ -244,7 +244,7 @@ int ret = thttp_action_GET(session, "http://ipv6.google.com",
 *
 *
 *
-* <h3>15.3.1	Options</h3>
+* <h3>15.3.1    Options</h3>
 * <p>
 * All options shall be set by using @ref THTTP_ACTION_SET_OPTION(id, value) macro.
 * Action-level options and headers are only applied to the current request.
@@ -366,7 +366,7 @@ static int thttp_transport_layer_stream_cb(const tnet_transport_event_t* e)
 
     /* Check if buffer is too big to be valid (have we missed some chuncks?) */
     //if(TSK_BUFFER_SIZE(buf) >= THTTP_MAX_CONTENT_SIZE){
-    //	tsk_buffer_cleanup(dialog->buf);
+    //  tsk_buffer_cleanup(dialog->buf);
     //}
 
     /* Append new content. */
@@ -380,7 +380,7 @@ parse_buffer:
     }
 
     /* If we are here this mean that we have all HTTP headers.
-    *	==> Parse the HTTP message without the content.
+    *   ==> Parse the HTTP message without the content.
     */
     tsk_ragel_state_init(&state, TSK_BUFFER_DATA(dialog->buf), endOfheaders + 4/*2CRLF*/);
     if(!(ret = thttp_message_parse(&state, &message, tsk_false/* do not extract the content */))) {
@@ -468,9 +468,9 @@ int __thttp_stack_set(thttp_stack_t *self, va_list* app)
 
     while((curr = va_arg(*app, thttp_stack_param_type_t)) != thttp_pname_null) {
         switch(curr) {
-            //
-            // Network
-            //
+        //
+        // Network
+        //
         case thttp_pname_local_ip: {
             /* STR */
             tsk_strupdate(&self->local_ip, va_arg(*app, const char*));
@@ -490,7 +490,7 @@ int __thttp_stack_set(thttp_stack_t *self, va_list* app)
 
 
         //
-        //	Modes
+        //  Modes
         //
         case thttp_pname_mode_client: {
             /* VOID */
@@ -557,8 +557,8 @@ bail:
 *
 * @code
 * thttp_stack_create(callback,
-*	THTTP_STACK_SET_*(),
-*	THTTP_STACK_SET_NULL());
+*   THTTP_STACK_SET_*(),
+*   THTTP_STACK_SET_NULL());
 * @endcode
 *
 * @sa @ref thttp_stack_set
@@ -643,8 +643,8 @@ bail:
 *
 * @code
 * thttp_stack_set(stack,
-*	THTTP_STACK_SET_*(),
-*	THTTP_STACK_SET_NULL());
+*   THTTP_STACK_SET_*(),
+*   THTTP_STACK_SET_NULL());
 * @endcode
 */
 int thttp_stack_set(thttp_stack_handle_t *self, ...)
@@ -762,7 +762,7 @@ int thttp_stack_alert(const thttp_stack_t *self, const thttp_event_t* e)
 
 
 //========================================================
-//	HTTP stack object definition
+//  HTTP stack object definition
 //
 static tsk_object_t* thttp_stack_ctor(tsk_object_t * self, va_list * app)
 {

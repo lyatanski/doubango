@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 105 "./ragel/tsip_parser_header_Record_Route.rl" */
@@ -480,7 +480,7 @@ _match:
             {
             }
             break;
-            /* #line 477 "./src/headers/tsip_header_Record_Route.c" */
+                /* #line 477 "./src/headers/tsip_header_Record_Route.c" */
             }
         }
 
@@ -519,7 +519,7 @@ _out: {
 
 
 //========================================================
-//	Record_Route header object definition
+//  Record_Route header object definition
 //
 
 static tsk_object_t* tsip_header_Record_Route_ctor(tsk_object_t *self, va_list * app)

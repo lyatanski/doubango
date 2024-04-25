@@ -37,7 +37,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_TRANSAC_NIST(self)															((tsip_transac_nist_t*)(self))
+#define TSIP_TRANSAC_NIST(self)                                                         ((tsip_transac_nist_t*)(self))
 
 typedef struct tsip_transac_nist {
     TSIP_DECLARE_TRANSAC;

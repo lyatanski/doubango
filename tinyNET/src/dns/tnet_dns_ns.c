@@ -41,7 +41,7 @@ tnet_dns_ns_t* tnet_dns_ns_create(const char* name, tnet_dns_qclass_t qclass, ui
 }
 
 //=================================================================================================
-//	[[DNS NS]] object definition
+//  [[DNS NS]] object definition
 //
 static tsk_object_t* tnet_dns_ns_ctor(tsk_object_t * self, va_list * app)
 {

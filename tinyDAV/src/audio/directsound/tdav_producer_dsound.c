@@ -27,16 +27,16 @@
 #if HAVE_DSOUND_H
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "dsound.lib")
-// #	pragma comment(lib, "dxguid.lib")
+#   pragma comment(lib, "dsound.lib")
+// #    pragma comment(lib, "dxguid.lib")
 #endif
 
 #if !defined(SEND_SILENCE_ON_MUTE)
-#	if METROPOLIS
-#		define SEND_SILENCE_ON_MUTE	1
-#	else
-#		define SEND_SILENCE_ON_MUTE	0
-#	endif
+#   if METROPOLIS
+#       define SEND_SILENCE_ON_MUTE 1
+#   else
+#       define SEND_SILENCE_ON_MUTE 0
+#   endif
 #endif /* SEND_SILENCE_ON_MUTE */
 
 #include "tsk_string.h"
@@ -50,7 +50,7 @@
 extern void tdav_win32_print_error(const char* func, HRESULT hr);
 
 #if !defined(TDAV_DSOUND_PRODUCER_NOTIF_POS_COUNT)
-#	define TDAV_DSOUND_PRODUCER_NOTIF_POS_COUNT		10
+#   define TDAV_DSOUND_PRODUCER_NOTIF_POS_COUNT     10
 #endif /* TDAV_DSOUND_PRODUCER_NOTIF_POS_COUNT */
 
 typedef struct tdav_producer_dsound_s {
@@ -341,7 +341,7 @@ static int tdav_producer_dsound_stop(tmedia_producer_t* self)
 
 
 //
-//	WaveAPI producer object definition
+//  WaveAPI producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_dsound_ctor(tsk_object_t * self, va_list * app)

@@ -35,7 +35,7 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_Z_VA_ARGS(time, shifted_back, typed_time)		tsdp_header_Z_def_t, (uint64_t)time, (tsk_bool_t)shifted_back, (const char*)typed_time
+#define TSDP_HEADER_Z_VA_ARGS(time, shifted_back, typed_time)       tsdp_header_Z_def_t, (uint64_t)time, (tsk_bool_t)shifted_back, (const char*)typed_time
 
 typedef struct tsdp_zone_s {
     TSK_DECLARE_OBJECT;
@@ -53,13 +53,13 @@ TINYSDP_API tsdp_zone_t* tsdp_zone_create_null();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "z=" header (Time Zones).
+/// @brief  SDP "z=" header (Time Zones).
 ///
 /// @par ABNF :  z=time  SP ["-"] typed-time
 /// *(SP time SP ["-"] typed-time)
-/// time	=  	POS-DIGIT 9*DIGIT
-/// typed-time	=  	1*DIGIT [fixed-len-time-unit]
-/// fixed-len-time-unit	= 	"d" / "h" / "m" / "s"
+/// time    =   POS-DIGIT 9*DIGIT
+/// typed-time  =   1*DIGIT [fixed-len-time-unit]
+/// fixed-len-time-unit =   "d" / "h" / "m" / "s"
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_Z_s {

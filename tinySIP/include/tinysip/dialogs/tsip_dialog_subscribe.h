@@ -35,7 +35,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_DIALOG_SUBSCRIBE(self)							((tsip_dialog_subscribe_t*)(self))
+#define TSIP_DIALOG_SUBSCRIBE(self)                         ((tsip_dialog_subscribe_t*)(self))
 
 typedef struct tsip_dialog_subscribe {
     TSIP_DECLARE_DIALOG;

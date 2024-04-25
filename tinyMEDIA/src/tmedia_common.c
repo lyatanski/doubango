@@ -214,26 +214,26 @@ int tmedia_parse_rtpmap(const char* rtpmap, char** name, int32_t* rate, int32_t*
 
     ///* e.g. AMR-WB/16000/2 */
     //if(sscanf(rtpmap, "%*s/%*d/%*d") != EOF){
-    //	int index = tsk_strindexOf(rtpmap, len, "/");
-    //	*name = tsk_strndup(rtpmap, index);
-    //	sscanf(&rtpmap[index+1], "%d/%d", rate, channels);
-    //	return 0;
+    //  int index = tsk_strindexOf(rtpmap, len, "/");
+    //  *name = tsk_strndup(rtpmap, index);
+    //  sscanf(&rtpmap[index+1], "%d/%d", rate, channels);
+    //  return 0;
     //}
     ///* e.g. AMR-WB/16000 */
     //else if(sscanf(rtpmap, "%*s/%*d") != EOF){
-    //	int index = tsk_strindexOf(rtpmap, len, "/");
-    //	*name = tsk_strndup(rtpmap, index);
-    //	*rate = atoi(&rtpmap[index+1]);
-    //	return 0;
+    //  int index = tsk_strindexOf(rtpmap, len, "/");
+    //  *name = tsk_strndup(rtpmap, index);
+    //  *rate = atoi(&rtpmap[index+1]);
+    //  return 0;
     //}
     ///* e.g. AMR-WB */
     //else if(sscanf(rtpmap, "%*s") != EOF){
-    //	*name = tsk_strdup(rtpmap);
-    //	return 0;
+    //  *name = tsk_strdup(rtpmap);
+    //  return 0;
     //}
     //else{
-    //	TSK_DEBUG_ERROR("%s is not a valid rtpmap value", rtpmap);
-    //	return -2;
+    //  TSK_DEBUG_ERROR("%s is not a valid rtpmap value", rtpmap);
+    //  return -2;
     //}
 }
 
@@ -457,12 +457,12 @@ int32_t tmedia_get_video_bandwidth_kbps_3()
 
 int32_t tmedia_get_video_motion_rank(unsigned width, unsigned height, unsigned fps, int32_t bw_kbps)
 {
-	if (!width || !height || !fps || bw_kbps <= 0) {
-		TSK_DEBUG_ERROR("Invalid parameter");
-		return 0;
-	}
-	else {
-		float mr = (bw_kbps * 1024.f) / (width * height * fps * 0.07f);
-		return (int32_t)(TSK_MAX(1.f, (mr + 0.5f)));
-	}	
+    if (!width || !height || !fps || bw_kbps <= 0) {
+        TSK_DEBUG_ERROR("Invalid parameter");
+        return 0;
+    }
+    else {
+        float mr = (bw_kbps * 1024.f) / (width * height * fps * 0.07f);
+        return (int32_t)(TSK_MAX(1.f, (mr + 0.5f)));
+    }
 }

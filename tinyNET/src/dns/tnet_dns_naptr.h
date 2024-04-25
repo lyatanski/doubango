@@ -40,9 +40,9 @@ TNET_BEGIN_DECLS
 typedef struct tnet_dns_naptr_s {
     TNET_DECLARE_DNS_RR;
 
-    /*	RFC 3403 - 4.1 Packet Format
+    /*  RFC 3403 - 4.1 Packet Format
 
-    	The packet format for the NAPTR record is as follows
+        The packet format for the NAPTR record is as follows
                                        1  1  1  1  1  1
          0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
        +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
@@ -59,7 +59,7 @@ typedef struct tnet_dns_naptr_s {
        /                  REPLACEMENT                  /
        /                                               /
        +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    	<character-string> and <domain-name> as used here are defined in RFC 1035.
+        <character-string> and <domain-name> as used here are defined in RFC 1035.
     */
     uint16_t order;
     uint16_t preference;

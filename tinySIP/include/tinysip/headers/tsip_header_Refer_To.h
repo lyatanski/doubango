@@ -37,14 +37,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_REFER_TO_VA_ARGS(uri)	tsip_header_Refer_To_def_t, (const tsip_uri_t*)uri
+#define TSIP_HEADER_REFER_TO_VA_ARGS(uri)   tsip_header_Refer_To_def_t, (const tsip_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Refer-To' .
+/// @brief  SIP header 'Refer-To' .
 ///
-/// @par ABNF: Refer-To	= 	( "Refer-To" / "r" ) HCOLON ( name-addr / addr-spec ) *(SEMI refer-param)
-/// refer-param	= 	generic-param / feature-param
+/// @par ABNF: Refer-To =   ( "Refer-To" / "r" ) HCOLON ( name-addr / addr-spec ) *(SEMI refer-param)
+/// refer-param =   generic-param / feature-param
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Refer_To_s {

@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_SUBSCRIBE_EVENT(self)		((tsip_subscribe_event_t*)(self))
+#define TSIP_SUBSCRIBE_EVENT(self)      ((tsip_subscribe_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_subscribe_event_type_e {
@@ -66,8 +66,8 @@ TINYSIP_API int tsip_api_subscribe_send_unsubscribe(const tsip_ssession_handle_t
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_subscribe_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_SUBSCRIBE	tsip_api_subscribe_send_subscribe
-#	define tsip_action_UNSUBSCRIBE	tsip_api_subscribe_send_unsubscribe
+#   define tsip_action_SUBSCRIBE    tsip_api_subscribe_send_subscribe
+#   define tsip_action_UNSUBSCRIBE  tsip_api_subscribe_send_unsubscribe
 #endif
 
 TSIP_END_DECLS

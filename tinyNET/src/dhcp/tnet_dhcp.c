@@ -19,7 +19,7 @@
 */
 /**@file tnet_dhcp.c
  * @brief DHCP/BOOTP (RFC 2131 - Dynamic Host Configuration Protocol) utilities function for P-CSCF discovery(RFC 3319 and 3361).
- *		  Also implement: RFC 3315, 3118, 3319, 3825 (Geoconf), 4676 (Civic Addresses Configuration Information) ...
+ *        Also implement: RFC 3315, 3118, 3319, 3825 (Geoconf), 4676 (Civic Addresses Configuration Information) ...
  */
 #include "tnet_dhcp.h"
 
@@ -113,10 +113,10 @@ tnet_dhcp_reply_t* tnet_dhcp_send_request(tnet_dhcp_ctx_t* ctx, tnet_dhcp_reques
 
     do {
         /* RFC 2131 - 3.6 Use of DHCP in clients with multiple interfaces
-        	A client with multiple network interfaces must use DHCP through each
-        	interface independently to obtain configuration information
-        	parameters for those separate interfaces.
-        	*/
+            A client with multiple network interfaces must use DHCP through each
+            interface independently to obtain configuration information
+            parameters for those separate interfaces.
+            */
 
         tsk_list_foreach(item, ctx->interfaces) {
             iface = item->data;
@@ -152,7 +152,7 @@ tnet_dhcp_reply_t* tnet_dhcp_send_request(tnet_dhcp_ctx_t* ctx, tnet_dhcp_reques
                 goto next_iface;
             }
             /* wait for response */
-            if ((ret = select(localsocket4->fd + 1, &set, NULL, NULL, &tv)) < 0) {	/* Error */
+            if ((ret = select(localsocket4->fd + 1, &set, NULL, NULL, &tv)) < 0) {  /* Error */
                 TNET_PRINT_LAST_ERROR("select have failed.");
                 tsk_thread_sleep(150); // wait 150ms before trying the next iface.
                 goto next_iface;
@@ -254,7 +254,7 @@ int tnet_dhcp_params_add_code(tnet_dhcp_params_t* params, tnet_dhcp_option_code_
 
 
 //=================================================================================================
-//	[[DHCP CONTEXT]] object definition
+//  [[DHCP CONTEXT]] object definition
 //
 static tsk_object_t* tnet_dhcp_ctx_ctor(tsk_object_t * self, va_list * app)
 {
@@ -304,7 +304,7 @@ static const tsk_object_def_t tnet_dhcp_ctx_def_s = {
 const tsk_object_def_t *tnet_dhcp_ctx_def_t = &tnet_dhcp_ctx_def_s;
 
 //=================================================================================================
-//	[[DHCP PARAMS]] object definition
+//  [[DHCP PARAMS]] object definition
 //
 static tsk_object_t* tnet_dhcp_params_ctor(tsk_object_t * self, va_list * app)
 {

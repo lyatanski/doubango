@@ -36,13 +36,13 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_PROXY_REQUIRE_VA_ARGS(option)	tsip_header_Proxy_Require_def_t, (const char*)option
+#define TSIP_HEADER_PROXY_REQUIRE_VA_ARGS(option)   tsip_header_Proxy_Require_def_t, (const char*)option
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Proxy-Proxy_Require'.
+/// @brief  SIP header 'Proxy-Proxy_Require'.
 ///
-/// @par ABNF: Proxy_Require	= 	"Proxy_Require" HCOLON option-tag *(COMMA option-tag)
+/// @par ABNF: Proxy_Require    =   "Proxy_Require" HCOLON option-tag *(COMMA option-tag)
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Proxy_Require_s {

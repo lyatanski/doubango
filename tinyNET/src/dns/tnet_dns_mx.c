@@ -42,7 +42,7 @@ tnet_dns_mx_t* tnet_dns_mx_create(const char* name, tnet_dns_qclass_t qclass, ui
 }
 
 //=================================================================================================
-//	[[DNS MX]] object definition
+//  [[DNS MX]] object definition
 //
 static tsk_object_t* tnet_dns_mx_ctor(tsk_object_t * self, va_list * app)
 {

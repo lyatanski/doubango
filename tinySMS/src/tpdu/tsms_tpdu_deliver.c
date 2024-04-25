@@ -36,9 +36,9 @@
 #include <string.h> /* memcpy */
 
 #define TSMS_ERROR_TOO_SHORT()\
-	TSK_DEBUG_ERROR("SMS-DELIVER == Data too short.");\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("SMS-DELIVER == Data too short.");\
+    failed = tsk_true;\
+    goto bail;
 
 /** internal function used to deserialize a buffer containing a SMS-DELIVER message. */
 tsms_tpdu_message_t* _tsms_tpdu_deliver_deserialize(const void* data, tsk_size_t size)
@@ -65,15 +65,15 @@ tsms_tpdu_message_t* _tsms_tpdu_deliver_deserialize(const void* data, tsk_size_t
 #endif
 
     /* SMS-DELIVER first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-More-Messages-to-Send(1b)
-    	- TP-Loop-Prevention(1b)
-    	- TP-Reply-Path(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Indication(1b)
-    	+----+----+----+----+----+----+----+----+
-    	|  RP|UDHI|SRI |	|LP	 |MMS | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        - TP-Message-Type-Indicator(2b)
+        - TP-More-Messages-to-Send(1b)
+        - TP-Loop-Prevention(1b)
+        - TP-Reply-Path(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Indication(1b)
+        +----+----+----+----+----+----+----+----+
+        |  RP|UDHI|SRI |    |LP  |MMS | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     TSMS_TPDU_MESSAGE(self)->mti = (*pdata & 0x03);
     self->mms = (*pdata & 0x04)>>2,
@@ -152,15 +152,15 @@ int _tsms_tpdu_deliver_serialize(const tsms_tpdu_deliver_t* self, tsk_buffer_t* 
 #endif
 
     /* SMS-DELIVER first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-More-Messages-to-Send(1b)
-    	- TP-Loop-Prevention(1b)
-    	- TP-Reply-Path(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Indication(1b)
-    	+----+----+----+----+----+----+----+----+
-    	|  RP|UDHI|SRI |	|LP	 |MMS | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        - TP-Message-Type-Indicator(2b)
+        - TP-More-Messages-to-Send(1b)
+        - TP-Loop-Prevention(1b)
+        - TP-Reply-Path(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Indication(1b)
+        +----+----+----+----+----+----+----+----+
+        |  RP|UDHI|SRI |    |LP  |MMS | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     _1byte = (TSMS_TPDU_MESSAGE(self)->mti & 0xF3); /*2b*/
     _1byte |= ((uint8_t)self->mms) << 2 /*1b*/
@@ -215,7 +215,7 @@ bail:
 }
 
 //=================================================================================================
-//	SMS TPDU SMS-DELIVER object definition
+//  SMS TPDU SMS-DELIVER object definition
 //
 static tsk_object_t* tsms_tpdu_deliver_ctor(tsk_object_t * self, va_list * app)
 {

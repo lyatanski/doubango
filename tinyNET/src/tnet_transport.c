@@ -21,7 +21,7 @@
 /**@file tnet_transport.c
  * @brief Network transport layer.
  *
- * <h2>10.2	Tansport</h2>
+ * <h2>10.2 Tansport</h2>
  * A transport layer always has a master socket which determine what kind of network traffic we expect (stream or dgram).
  * Stream transport can manage TCP, TLS and SCTP sockets. Datagram socket can only manage UDP sockets. <br>
  * A transport can hold both IPv4 and IPv6 sockets.
@@ -43,24 +43,24 @@
 #include <string.h> /* memcpy, ...(<#void * #>, <#const void * #>, <#tsk_size_t #>) */
 
 #ifndef TNET_CIPHER_LIST
-#	define TNET_CIPHER_LIST  "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
+#   define TNET_CIPHER_LIST  "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"
 #endif
 
 // https://mta.openssl.org/pipermail/openssl-dev/2015-May/001449.html
 #if BUILD_TYPE_GE
-#	define TNET_DTLS_method				DTLSv1_2_method
-#	define TNET_SSL_client_method		TLSv1_2_client_method
-#	define TNET_SSL_server_method		TLSv1_2_server_method
+#   define TNET_DTLS_method             DTLSv1_2_method
+#   define TNET_SSL_client_method       TLSv1_2_client_method
+#   define TNET_SSL_server_method       TLSv1_2_server_method
 #else // For backward compatibility, negotiate
-#	if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
-#		define TNET_DTLS_method				DTLS_method // 1.1 or 1.2 (negotiated)
-#		define TNET_SSL_client_method		TLS_client_method // Any method (from SSLv23 to TLS1.2)
-#		define TNET_SSL_server_method		TLS_server_method // Any method (from SSLv23 to TLS1.2)
-#	else
-#		define TNET_DTLS_method				DTLSv1_method 
-#		define TNET_SSL_client_method		SSLv23_client_method
-#		define TNET_SSL_server_method		SSLv23_server_method
-#	endif
+#   if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+#       define TNET_DTLS_method             DTLS_method // 1.1 or 1.2 (negotiated)
+#       define TNET_SSL_client_method       TLS_client_method // Any method (from SSLv23 to TLS1.2)
+#       define TNET_SSL_server_method       TLS_server_method // Any method (from SSLv23 to TLS1.2)
+#   else
+#       define TNET_DTLS_method             DTLSv1_method
+#       define TNET_SSL_client_method       SSLv23_client_method
+#       define TNET_SSL_server_method       SSLv23_server_method
+#   endif
 #endif
 
 extern int tnet_transport_prepare(tnet_transport_t *transport);
@@ -91,11 +91,11 @@ static int _tnet_transport_ssl_init(tnet_transport_t* transport)
             return -1;
         }
         if ((transport->tls.enabled = is_tls)) {
-			if (!transport->tls.ctx_client && !(transport->tls.ctx_client = SSL_CTX_new(TNET_SSL_client_method()))) {
+            if (!transport->tls.ctx_client && !(transport->tls.ctx_client = SSL_CTX_new(TNET_SSL_client_method()))) {
                 TSK_DEBUG_ERROR("Failed to create SSL client context");
                 return -2;
             }
-			if (!transport->tls.ctx_server && !(transport->tls.ctx_server = SSL_CTX_new(TNET_SSL_server_method()))) {
+            if (!transport->tls.ctx_server && !(transport->tls.ctx_server = SSL_CTX_new(TNET_SSL_server_method()))) {
                 TSK_DEBUG_ERROR("Failed to create SSL server context");
                 return -3;
             }
@@ -110,7 +110,7 @@ static int _tnet_transport_ssl_init(tnet_transport_t* transport)
         }
 #if HAVE_OPENSSL_DTLS
         if ((transport->dtls.enabled = is_dtls)) {
-			if (!transport->dtls.ctx && !(transport->dtls.ctx = SSL_CTX_new(TNET_DTLS_method()))) {
+            if (!transport->dtls.ctx && !(transport->dtls.ctx = SSL_CTX_new(TNET_DTLS_method()))) {
                 TSK_DEBUG_ERROR("Failed to create DTLSv1 context");
                 TSK_OBJECT_SAFE_FREE(transport);
                 return -5;
@@ -172,7 +172,7 @@ tnet_transport_t* tnet_transport_create(const char* host, tnet_port_t port, tnet
         if ((transport->master = tnet_socket_create(transport->local_host, transport->req_local_port, transport->type))) {
             transport->local_ip = tsk_strdup(transport->master->ip);
             transport->bind_local_port = transport->master->port;
-			transport->type = transport->master->type;
+            transport->type = transport->master->type;
         }
         else {
             TSK_DEBUG_ERROR("Failed to create master socket");
@@ -827,7 +827,7 @@ tnet_fd_t tnet_transport_connectto_3(const tnet_transport_handle_t *handle, stru
         }
     }
 
-    TSK_DEBUG_INFO("tnet_transport_connectto_3(host=%s, port=%d, type=%d, fd=%d, use_proxy=%d, to_host=%s, to_port=%d, to_type=%d, proxy_type=%d)" , host, port, type, fd, use_proxy, to_host, to_port, to_type, proxy_info ? proxy_info->type : 0);
+    TSK_DEBUG_INFO("tnet_transport_connectto_3(host=%s, port=%d, type=%d, fd=%d, use_proxy=%d, to_host=%s, to_port=%d, to_type=%d, proxy_type=%d)", host, port, type, fd, use_proxy, to_host, to_port, to_type, proxy_info ? proxy_info->type : 0);
 
     /* Init destination sockaddr fields */
     if ((status = tnet_sockaddr_init(to_host, to_port, to_type, &to))) {
@@ -1071,7 +1071,7 @@ static void* TSK_STDCALL run(void* self)
 
 
 //=================================================================================================
-//	Transport object definition
+//  Transport object definition
 //
 static tsk_object_t* tnet_transport_ctor(tsk_object_t * self, va_list * app)
 {
@@ -1120,7 +1120,7 @@ const tsk_object_def_t *tnet_transport_def_t = &tnet_transport_def_s;
 
 
 //=================================================================================================
-//	Transport event object definition
+//  Transport event object definition
 //
 static tsk_object_t* tnet_transport_event_ctor(tsk_object_t * self, va_list * app)
 {

@@ -45,7 +45,7 @@ tnet_dns_naptr_t* tnet_dns_naptr_create(const char* name, tnet_dns_qclass_t qcla
 
 
 //=================================================================================================
-//	[[DNS NAPTR]] object definition
+//  [[DNS NAPTR]] object definition
 //
 static tsk_object_t* tnet_dns_naptr_ctor(tsk_object_t * self, va_list * app)
 {

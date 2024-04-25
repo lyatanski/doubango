@@ -58,50 +58,50 @@ public:
 #ifdef _WIN32_WCE
     /*STDMETHODIMP QueryInterface(REFIID riid, void **ppv)
     {
-    	 CheckPointer(ppv, E_POINTER);
+         CheckPointer(ppv, E_POINTER);
 
-    	if (riid == IID_IBaseFilter
-    		|| riid == IID_IBaseFilter
-    		|| riid == IID_IUnknown
-    		|| riid == IID_IMediaFilter
-    		)
-    	{
-    		return GetInterface((IBaseFilter *) this, ppv);
-    	}
-    	else
-    	{
-    		*ppv = NULL;
-    		return E_NOINTERFACE;
-    	}
+        if (riid == IID_IBaseFilter
+            || riid == IID_IBaseFilter
+            || riid == IID_IUnknown
+            || riid == IID_IMediaFilter
+            )
+        {
+            return GetInterface((IBaseFilter *) this, ppv);
+        }
+        else
+        {
+            *ppv = NULL;
+            return E_NOINTERFACE;
+        }
     };
 
     STDMETHODIMP_(ULONG) AddRef() {
-    	//return GetOwner()->AddRef();
-    	//return 1;
-    	return (ULONG)InterlockedIncrement(&m_cRef);
+        //return GetOwner()->AddRef();
+        //return 1;
+        return (ULONG)InterlockedIncrement(&m_cRef);
     };
 
     STDMETHODIMP_(ULONG) Release() {
         LONG lRefCount = InterlockedDecrement(&m_cRef);
-    	if(m_cRef < 1) delete this;
-    	return (ULONG)m_cRef;
+        if(m_cRef < 1) delete this;
+        return (ULONG)m_cRef;
     };
 
     STDMETHODIMP_(ULONG) NonDelegatingAddRef()
     {
-    	return InterlockedIncrement(&m_cRef);
+        return InterlockedIncrement(&m_cRef);
     }*/
 #endif
     /*
-    	STDMETHODIMP_(ULONG) NonDelegatingRelease()
-    	{
-    		if(InterlockedDecrement(&m_cRef) == 0)
-    		{
-    			delete this;
-    			return 0;
-    		}
-    		return m_cRef;
-    	}*/
+        STDMETHODIMP_(ULONG) NonDelegatingRelease()
+        {
+            if(InterlockedDecrement(&m_cRef) == 0)
+            {
+                delete this;
+                return 0;
+            }
+            return m_cRef;
+        }*/
 
 private:
     DSOutputStream *outputStream;

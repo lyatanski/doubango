@@ -35,11 +35,11 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_RACK_VA_ARGS(seq, cseq, method)		tsip_header_RAck_def_t, (uint32_t)seq, (uint32_t)cseq, (const char*)method
+#define TSIP_HEADER_RACK_VA_ARGS(seq, cseq, method)     tsip_header_RAck_def_t, (uint32_t)seq, (uint32_t)cseq, (const char*)method
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'RAck' as per RFC 3262.
+/// @brief  SIP header 'RAck' as per RFC 3262.
 ///
 /// @par ABNF : "RAck" HCOLON response-num  LWS  CSeq-num  LWS  Method
 ///

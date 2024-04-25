@@ -62,16 +62,20 @@ public:
     virtual bool IsReady();
     virtual HRESULT Process(const void* pcInputPtr, UINT32 nInputSize, IMFSample **ppSampleOut);
     static enum tmedia_chroma_e GetUncompressedChroma();
-    inline IMFTransform* GetMFT() {
+    inline IMFTransform* GetMFT()
+    {
         return m_pMFT;
     }
-    inline MFCodecId_t GetId() {
+    inline MFCodecId_t GetId()
+    {
         return m_eId;
     }
-    inline MFCodecType_t GetType() {
+    inline MFCodecType_t GetType()
+    {
         return m_eType;
     }
-    inline void setBundled(BOOL bBundled) {
+    inline void setBundled(BOOL bBundled)
+    {
         m_bIsBundled = bBundled;
     }
 
@@ -85,20 +89,20 @@ public:
     STDMETHODIMP Invoke(IMFAsyncResult *pAsyncResult);
 
 private:
-    long				m_nRefCount;
+    long                m_nRefCount;
 
 protected:
-    MFCodecId_t			m_eId;			// Codec Id
-    MFCodecType_t		m_eType;		// Codec type.
-    MFCodecMediaType_t	m_eMediaType;	// Codec Media type.
-    DWORD				m_dwInputID;     // Input stream ID.
-    DWORD				m_dwOutputID;    // Output stream ID.
+    MFCodecId_t         m_eId;          // Codec Id
+    MFCodecType_t       m_eType;        // Codec type.
+    MFCodecMediaType_t  m_eMediaType;   // Codec Media type.
+    DWORD               m_dwInputID;     // Input stream ID.
+    DWORD               m_dwOutputID;    // Output stream ID.
 
-    GUID				m_guidCompressedFormat;	// Compressed Media format (e.g. MFVideoFormat_H264)
-    IMFTransform		*m_pMFT;         // Pointer to the encoder MFT.
-    ICodecAPI			*m_pCodecAPI;	// Pointer to CodecAPI.
-    IMFMediaType		*m_pOutputType;  // Output media type of the codec.
-    IMFMediaType		*m_pInputType;  // Input media type of the codec.
+    GUID                m_guidCompressedFormat; // Compressed Media format (e.g. MFVideoFormat_H264)
+    IMFTransform        *m_pMFT;         // Pointer to the encoder MFT.
+    ICodecAPI           *m_pCodecAPI;   // Pointer to CodecAPI.
+    IMFMediaType        *m_pOutputType;  // Output media type of the codec.
+    IMFMediaType        *m_pInputType;  // Input media type of the codec.
 
     LONGLONG m_rtStart;
     UINT64 m_rtDuration;
@@ -135,13 +139,16 @@ public:
     virtual HRESULT RequestKeyFrame();
 
     virtual HRESULT IsSetSliceMaxSizeInBytesSupported(BOOL &supported);
-    virtual inline UINT32 GetFrameRate() {
+    virtual inline UINT32 GetFrameRate()
+    {
         return m_nFrameRate;
     }
-    virtual inline UINT32 GetWidth() {
+    virtual inline UINT32 GetWidth()
+    {
         return m_nWidth;
     }
-    virtual inline UINT32 GetHeight() {
+    virtual inline UINT32 GetHeight()
+    {
         return m_nHeight;
     }
 

@@ -70,7 +70,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     }
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
     switch(index) {
     case PLUGIN_INDEX_AUDIO_CONSUMER:
@@ -291,7 +291,7 @@ int audio_webrtc_instance_prepare_consumer(audio_webrtc_instance_handle_t* _self
     }
 
     //if((ret = self->device->SetPlayoutBuffer(AudioDeviceModule::kFixedBufferSize, (*_consumer)->audio.ptime))){
-    //	DOUBANGO_AUDIO_WEBRTC_DEBUG_ERROR("SetPlayoutBuffer(%d ms) failed with error code=%d", (*_consumer)->audio.ptime, ret);
+    //  DOUBANGO_AUDIO_WEBRTC_DEBUG_ERROR("SetPlayoutBuffer(%d ms) failed with error code=%d", (*_consumer)->audio.ptime, ret);
     //}
     // always request 10ms buffers. In all cases WebRTC don't support anything else
     if((ret = self->device->SetPlayoutBuffer(AudioDeviceModule::kFixedBufferSize, 10))) {

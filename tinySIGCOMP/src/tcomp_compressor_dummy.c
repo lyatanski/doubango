@@ -33,26 +33,26 @@
 
 #include <string.h>
 
-#define UNCOMPRESSED_BYTECODE_LENGTH				13
-#define UNCOMPRESSED_BYTECODE_DESTINATION_CODE		0x01 /* 128 */
+#define UNCOMPRESSED_BYTECODE_LENGTH                13
+#define UNCOMPRESSED_BYTECODE_DESTINATION_CODE      0x01 /* 128 */
 #define DUMMYCOMPRESSOR_UNCOMPRESSED_BYTECODE \
-	"\xf8\x00\xa1\x1c\x01\x86\x09\x22\x86\x01\x16\xf9\x23"
+    "\xf8\x00\xa1\x1c\x01\x86\x09\x22\x86\x01\x16\xf9\x23"
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	Dummy compressor as per RFC 4896 subclause 11. This function is used to create uncompressed sigcomp message.
+/// @brief  Dummy compressor as per RFC 4896 subclause 11. This function is used to create uncompressed sigcomp message.
 /// Used if none match.
 ///
-/// @param [in,out]	lpCompartment	The compartment to use.
-/// @param [in,out]	input_ptr		The input buffer containing the message to compress.
-/// @param	input_size				The size of the input buffer.
-/// @param [in,out]	output_ptr		The output buffer where to copy the compressed message.
-/// @param [in,out]	output_size		The size of the output buffer.
-/// @param	stream					Indicates whether it's a stream buffer or not.
+/// @param [in,out] lpCompartment   The compartment to use.
+/// @param [in,out] input_ptr       The input buffer containing the message to compress.
+/// @param  input_size              The size of the input buffer.
+/// @param [in,out] output_ptr      The output buffer where to copy the compressed message.
+/// @param [in,out] output_size     The size of the output buffer.
+/// @param  stream                  Indicates whether it's a stream buffer or not.
 ///
-/// @return	1 if succedd and 0 otherwise.
+/// @return 1 if succedd and 0 otherwise.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t tcomp_compressor_dummy_compress(tcomp_compartment_t *lpCompartment, const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size, tsk_bool_t stream)
 {
@@ -86,13 +86,13 @@ tsk_bool_t tcomp_compressor_dummy_compress(tcomp_compartment_t *lpCompartment, c
     *tcomp_buffer_getBufferAtPos(output_buffer, pointer++) |= UNCOMPRESSED_BYTECODE_DESTINATION_CODE;
 
     /*
-    *	Upload UDVM bytecode
+    *   Upload UDVM bytecode
     */
     memcpy(tcomp_buffer_getBufferAtPos(output_buffer, pointer), (uint8_t*)DUMMYCOMPRESSOR_UNCOMPRESSED_BYTECODE, codeLen);
     pointer += codeLen;
 
     /*
-    *	Copy data uncompressed
+    *   Copy data uncompressed
     */
     memcpy(tcomp_buffer_getBufferAtPos(output_buffer, pointer), input_ptr, input_size);
     pointer += input_size;

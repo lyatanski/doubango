@@ -35,7 +35,7 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_FAILURE_REPORT_VA_ARGS(freport_type)		tmsrp_header_Failure_Report_def_t, (tmsrp_freport_type_t)freport_type
+#define TMSRP_HEADER_FAILURE_REPORT_VA_ARGS(freport_type)       tmsrp_header_Failure_Report_def_t, (tmsrp_freport_type_t)freport_type
 
 /** Failure report type;
 */
@@ -49,7 +49,7 @@ tmsrp_freport_type_t;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Failure-Report' header.
+/// @brief  MSRP 'Failure-Report' header.
 ///
 /// @par ABNF :  "Failure-Report:" ( "yes" / "no" / "partial" )
 ///

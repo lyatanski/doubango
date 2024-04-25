@@ -33,17 +33,17 @@
 #       pragma comment(lib, "mf")
 #       pragma comment(lib, "mfuuid")
 #       pragma comment(lib, "shlwapi")
-#		pragma comment(lib, "Strmiids")
+#       pragma comment(lib, "Strmiids")
 #endif
 
 #if !defined(PLUGIN_MF_ENABLE_AUDIO_IO)
-#	define PLUGIN_MF_ENABLE_AUDIO_IO 0 /* audio not good as DirectSound */
+#   define PLUGIN_MF_ENABLE_AUDIO_IO 0 /* audio not good as DirectSound */
 #endif
 #if !defined(PLUGIN_MF_ENABLE_VIDEO_CONVERTER)
-#	define PLUGIN_MF_ENABLE_VIDEO_CONVERTER 1
+#   define PLUGIN_MF_ENABLE_VIDEO_CONVERTER 1
 #endif
 #if !defined(PLUGIN_MF_ENABLE_VIDEO_IO)
-#	define PLUGIN_MF_ENABLE_VIDEO_IO 1
+#   define PLUGIN_MF_ENABLE_VIDEO_IO 1
 #endif
 
 extern const tmedia_codec_plugin_def_t *mf_codec_h264_main_plugin_def_t;
@@ -150,7 +150,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     }
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
     switch(index) {
 #if PLUGIN_MF_ENABLE_AUDIO_IO

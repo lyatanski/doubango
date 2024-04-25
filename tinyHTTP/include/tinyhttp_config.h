@@ -29,58 +29,58 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define THTTP_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define THTTP_UNDER_WINDOWS_RT		1
-#	endif
+#   define THTTP_UNDER_WINDOWS  1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define THTTP_UNDER_WINDOWS_RT       1
+#   endif
 #endif
 
 // OS X or iOS
 #if defined(__APPLE__)
-#	define THTTP_UNDER_APPLE				1
+#   define THTTP_UNDER_APPLE                1
 #   include <TargetConditionals.h>
 #   include <Availability.h>
 #endif
 #if TARGET_OS_MAC
-#	define THTTP_UNDER_MAC				1
+#   define THTTP_UNDER_MAC              1
 #endif
 #if TARGET_OS_IPHONE
-#	define THTTP_UNDER_IPHONE			1
+#   define THTTP_UNDER_IPHONE           1
 #endif
 #if TARGET_IPHONE_SIMULATOR
-#	define THTTP_UNDER_IPHONE_SIMULATOR	1
+#   define THTTP_UNDER_IPHONE_SIMULATOR 1
 #endif
 
 #if (THTTP_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define TINYHTTP_API		__declspec(dllexport)
-# 	define TINYHTTP_GEXTERN extern __declspec(dllexport)
+#   define TINYHTTP_API     __declspec(dllexport)
+#   define TINYHTTP_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYHTTP_API
-#	define TINYHTTP_GEXTERN	extern
+#   define TINYHTTP_API
+#   define TINYHTTP_GEXTERN extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define THTTP_BEGIN_DECLS extern "C" {
-#	define THTTP_END_DECLS }
+#   define THTTP_BEGIN_DECLS extern "C" {
+#   define THTTP_END_DECLS }
 #else
-#	define THTTP_BEGIN_DECLS
-#	define THTTP_END_DECLS
+#   define THTTP_BEGIN_DECLS
+#   define THTTP_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	if !defined(_CRT_SECURE_NO_WARNINGS)
-#		define _CRT_SECURE_NO_WARNINGS
-#	endif /* _CRT_SECURE_NO_WARNINGS */
+#   if !defined(_CRT_SECURE_NO_WARNINGS)
+#       define _CRT_SECURE_NO_WARNINGS
+#   endif /* _CRT_SECURE_NO_WARNINGS */
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

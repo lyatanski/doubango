@@ -58,7 +58,7 @@ int tsip_dialog_invite_qos_init(tsip_dialog_invite_t *self)
 }
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 // Any -> (tiner RSVP) -> Any
@@ -69,7 +69,7 @@ int x0300_Any_2_Any_X_timerRSVP(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -84,7 +84,7 @@ int tsip_dialog_invite_qos_timer_cancel(tsip_dialog_invite_t* self)
 /* schedule the timer */
 int tsip_dialog_invite_qos_timer_schedule(tsip_dialog_invite_t* self)
 {
-    /*	To emulate bandwidth reservation (Because RSVP protocol is not supported) */
+    /*  To emulate bandwidth reservation (Because RSVP protocol is not supported) */
     self->qos.timer.id = tsk_timer_mgr_global_schedule(TSIP_DIALOG_INVITE_QOS_RES_TIMEOUT, TSK_TIMER_CALLBACK_F(tsip_dialog_invite_timer_callback), self);
 
     return 0;

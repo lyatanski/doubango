@@ -586,7 +586,7 @@ tsk_list_t* tsk_list_clone(const tsk_list_t* list)
 
 
 //=================================================================================================
-//	Item object definition
+//  Item object definition
 //
 static tsk_object_t* tsk_list_item_ctor(tsk_object_t * self, va_list * app)
 {
@@ -630,7 +630,7 @@ static const tsk_object_def_t tsk_list_item_def_s = {
 const tsk_object_def_t *tsk_list_item_def_t = &tsk_list_item_def_s;
 
 //=================================================================================================
-//	List object definition
+//  List object definition
 //
 static tsk_object_t* tsk_list_ctor(tsk_object_t *self, va_list *app)
 {
@@ -709,62 +709,62 @@ const tsk_object_def_t *tsk_list_def_t = &tsk_list_def_s;
 // (well-defined object declaration)
 typedef struct student_s
 {
-	TSK_DECLARE_OBJECT;
+    TSK_DECLARE_OBJECT;
 
-	char *id;
-	char *name;
+    char *id;
+    char *name;
 }
 student_t;
 
 // (constructor)
 static tsk_object_t* student_ctor(tsk_object_t* self, va_list * app)
 {
-	student_t* student = (tsk_object_t*)self;
-	if(student){
-	}
-	return self;
+    student_t* student = (tsk_object_t*)self;
+    if(student){
+    }
+    return self;
 }
 
 // (destructor)
 static tsk_object_t* student_dtor(tsk_object_t* self)
 {
-	student_t* student = (tsk_object_t*)self;
-	TSK_FREE(student->id);
-	TSK_FREE(student->name);
-	return self;
+    student_t* student = (tsk_object_t*)self;
+    TSK_FREE(student->id);
+    TSK_FREE(student->name);
+    return self;
 }
 
 // (case insensitive comparator)
 static int student_icmp(const tsk_object_t *self, const tsk_object_t *object)
 {
-	const student_t* student1 = (const tsk_object_t*)self;
-	const student_t* student2 = (const tsk_object_t*)object;
+    const student_t* student1 = (const tsk_object_t*)self;
+    const student_t* student2 = (const tsk_object_t*)object;
 
-	if(!student1 || !student2){
-		return 0;// must never happen
-	}
+    if(!student1 || !student2){
+        return 0;// must never happen
+    }
 
-	return tsk_stricmp(student1->id, student2->id);
+    return tsk_stricmp(student1->id, student2->id);
 }
 
 // (well-defined object declaration)
 static const tsk_object_def_t student_def_s =
 {
-	sizeof(student_t),
-	student_ctor,
-	student_dtor,
-	student_icmp
+    sizeof(student_t),
+    student_ctor,
+    student_dtor,
+    student_icmp
 };
 
 // create a student object
 static student_t* student_create(const char* id, const char* name)
 {
-	student_t* student;
-	if((student = (student_t*)tsk_object_new(&student_def_s))){
-		student->id = tsk_strdup(id);
-		student->name = tsk_strdup(name);
-	}
-	return student;
+    student_t* student;
+    if((student = (student_t*)tsk_object_new(&student_def_s))){
+        student->id = tsk_strdup(id);
+        student->name = tsk_strdup(name);
+    }
+    return student;
 }
 *@endcode
 *
@@ -776,20 +776,20 @@ static student_t* student_create(const char* id, const char* name)
 // predicate to find a student by name
 static int pred_find_student_by_name(const tsk_list_item_t *item, const void *name)
 {
-	if(item && item->data){
-		const student_t *student = (const student_t *)item->data;
-		return tsk_striequals(student->name, name);
-	}
-	return -1;
+    if(item && item->data){
+        const student_t *student = (const student_t *)item->data;
+        return tsk_striequals(student->name, name);
+    }
+    return -1;
 }
 // predicate to find a student by id
 static int pred_find_student_by_id(const tsk_list_item_t *item, const void *id)
 {
-	if(item && item->data){
-		const student_t *student = (const student_t *)item->data;
-		return tsk_striequals(student->id, id);
-	}
-	return -1;
+    if(item && item->data){
+        const student_t *student = (const student_t *)item->data;
+        return tsk_striequals(student->id, id);
+    }
+    return -1;
 }
 *@endcode
 *
@@ -853,8 +853,8 @@ static int pred_find_student_by_id(const tsk_list_item_t *item, const void *id)
 * const tsk_list_item_t* item;
 * const student_t *student;
 * tsk_list_foreach(item, list) {
-*	student = (const student_t *)item->data;
-*	TSK_DEBUG_INFO("id = %s, name = %s", student->id, student->name);
+*   student = (const student_t *)item->data;
+*   TSK_DEBUG_INFO("id = %s, name = %s", student->id, student->name);
 * }
 * @endcode
 *

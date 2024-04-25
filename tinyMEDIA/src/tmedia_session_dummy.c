@@ -319,7 +319,7 @@ int tmedia_session_dmsrp_set_ro(tmedia_session_t* self, const tsdp_header_M_t* m
 }
 
 //=================================================================================================
-//	Dummy Audio session object definition
+//  Dummy Audio session object definition
 //
 /* constructor */
 static tsk_object_t* tmedia_session_daudio_ctor(tsk_object_t * self, va_list * app)
@@ -374,7 +374,7 @@ const tmedia_session_plugin_def_t *tmedia_session_daudio_plugin_def_t = &tmedia_
 
 
 //=================================================================================================
-//	Dummy Video session object definition
+//  Dummy Video session object definition
 //
 /* constructor */
 static tsk_object_t* tmedia_session_dvideo_ctor(tsk_object_t * self, va_list * app)
@@ -429,7 +429,7 @@ const tmedia_session_plugin_def_t *tmedia_session_dvideo_plugin_def_t = &tmedia_
 
 
 //=================================================================================================
-//	Dummy Msrp session object definition
+//  Dummy Msrp session object definition
 //
 /* constructor */
 static tsk_object_t* tmedia_session_dmsrp_ctor(tsk_object_t * self, va_list * app)

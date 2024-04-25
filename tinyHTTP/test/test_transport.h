@@ -6,22 +6,22 @@
 #define TEST_HTTP_STRING_(A) #A
 #define TEST_HTTP_STRING(A) TEST_HTTP_STRING_(A)
 
-#define TEST_HTTP_LOCAL_IP				"0.0.0.0"
-#define TEST_HTTP_LOCAL_PORT			8080
-#define TEST_HTTP_REMOTE_IP				"google.com"
-#define TEST_HTTP_REMOTE_PORT			80
-#define TEST_HTTP_MIN_STREAM_CHUNCK_SIZE	0x32
+#define TEST_HTTP_LOCAL_IP              "0.0.0.0"
+#define TEST_HTTP_LOCAL_PORT            8080
+#define TEST_HTTP_REMOTE_IP             "google.com"
+#define TEST_HTTP_REMOTE_PORT           80
+#define TEST_HTTP_MIN_STREAM_CHUNCK_SIZE    0x32
 #define TEST_HTTP_GET "GET / HTTP/1.1\r\n" \
-	"Host: " TEST_HTTP_REMOTE_IP ":" TEST_HTTP_STRING(TEST_HTTP_REMOTE_PORT) "\r\n" \
-	"Connection: keep-alive\r\n" \
-	"Cache-Control: max-age=0\r\n" \
-	"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n" \
-	"User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko)\r\n" \
-	"Doubango 2.0\r\n" \
-	"Accept-Encoding: gzip,deflate,sdch\r\n" \
-	"Accept-Language: en-US,en;q=0.8\r\n" \
-	"\r\n" \
- 
+    "Host: " TEST_HTTP_REMOTE_IP ":" TEST_HTTP_STRING(TEST_HTTP_REMOTE_PORT) "\r\n" \
+    "Connection: keep-alive\r\n" \
+    "Cache-Control: max-age=0\r\n" \
+    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n" \
+    "User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko)\r\n" \
+    "Doubango 2.0\r\n" \
+    "Accept-Encoding: gzip,deflate,sdch\r\n" \
+    "Accept-Language: en-US,en;q=0.8\r\n" \
+    "\r\n" \
+
 static int test_http_transport_callback(const tnet_transport_event_t* e);
 
 /************************************************
@@ -244,7 +244,7 @@ parse_buffer:
     }
 
     /* If we are here this mean that we have all HTTP headers.
-    *	==> Parse the HTTP message without the content.
+    *   ==> Parse the HTTP message without the content.
     */
     tsk_ragel_state_init(&state, TSK_BUFFER_DATA(_peer->buff), endOfheaders + 4/*2CRLF*/);
     if (!(ret = thttp_message_parse(&state, &message, tsk_false/* do not extract the content */))) {

@@ -37,8 +37,8 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_URI_IS_SECURE(uri)		((uri) && (tsk_striequals(uri->scheme, "msrps") ? 1 : 0))
-#define TMSRP_URI(self)					((tmsrp_uri_t*)(self))
+#define TMSRP_URI_IS_SECURE(uri)        ((uri) && (tsk_striequals(uri->scheme, "msrps") ? 1 : 0))
+#define TMSRP_URI(self)                 ((tmsrp_uri_t*)(self))
 
 /** The type of the authority host.
 */
@@ -51,9 +51,9 @@ typedef enum tmsrp_host_type_e {
 tmsrp_host_type_t;
 
 /**
- * @struct	tmsrp_uri_s
+ * @struct  tmsrp_uri_s
  *
- * @brief	MSRP/MSRPS/TEL URI.
+ * @brief   MSRP/MSRPS/TEL URI.
 **/
 typedef struct tmsrp_uri_s {
     TSK_DECLARE_OBJECT;

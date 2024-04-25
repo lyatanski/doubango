@@ -81,28 +81,28 @@ int tsip_dialog_invite_stimers_init(tsip_dialog_invite_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 int x0200_Connected_2_Connected_X_timerRefresh(va_list *app)
 {
     /* We are the refresher and the session timedout
-    	==> Refresh the session
+        ==> Refresh the session
     */
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
     int ret;
 
-    /*	RFC 4028 - 7.4. Generating Subsequent Session Refresh Requests
+    /*  RFC 4028 - 7.4. Generating Subsequent Session Refresh Requests
 
-    	A re-INVITE generated to refresh the session is a normal re-INVITE,
-    	and an UPDATE generated to refresh a session is a normal UPDATE.  If
-    	a UAC knows that its peer supports the UPDATE method, it is
-    	RECOMMENDED that UPDATE be used instead of a re-INVITE.  A UA can
-    	make this determination if it has seen an Allow header field from its
-    	peer with the value 'UPDATE', or through a mid-dialog OPTIONS
-    	request.  It is RECOMMENDED that the UPDATE request not contain an
-    	offer [4], but a re-INVITE SHOULD contain one, even if the details of
-    	the session have not changed
+        A re-INVITE generated to refresh the session is a normal re-INVITE,
+        and an UPDATE generated to refresh a session is a normal UPDATE.  If
+        a UAC knows that its peer supports the UPDATE method, it is
+        RECOMMENDED that UPDATE be used instead of a re-INVITE.  A UA can
+        make this determination if it has seen an Allow header field from its
+        peer with the value 'UPDATE', or through a mid-dialog OPTIONS
+        request.  It is RECOMMENDED that the UPDATE request not contain an
+        offer [4], but a re-INVITE SHOULD contain one, even if the details of
+        the session have not changed
     */
     /* 2xx will be handled by tsip_dialog_invite_stimers_handle() */
     ret = send_INVITEorUPDATE(self, !self->support_update, tsk_false);
@@ -113,7 +113,7 @@ int x0200_Connected_2_Connected_X_timerRefresh(va_list *app)
 int x0201_Connected_2_Trying_X_timerRefresh(va_list *app)
 {
     /* We are not the refresher and the session timedout
-    	==> send BYE
+        ==> send BYE
     */
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
     int ret;
@@ -134,19 +134,19 @@ int x0250_Any_2_Any_X_i422(va_list *app)
 
     const tsip_header_Min_SE_t* Min_SE;
 
-    /*	RFC 4825 - 3. Overview of Operation
-    	If the Session-Expires interval is too low for a proxy (i.e., lower
-    	than the value of Min-SE that the proxy would wish to assert), the
-    	proxy rejects the request with a 422 response.  That response
-    	contains a Min-SE header field identifying the minimum session
-    	interval it is willing to support.  The UAC will try again, this time
-    	including the Min-SE header field in the request.  The header field
-    	contains the largest Min-SE header field it observed in all 422
-    	responses previously received.  This way, the minimum timer meets the
-    	constraints of all proxies along the path.
+    /*  RFC 4825 - 3. Overview of Operation
+        If the Session-Expires interval is too low for a proxy (i.e., lower
+        than the value of Min-SE that the proxy would wish to assert), the
+        proxy rejects the request with a 422 response.  That response
+        contains a Min-SE header field identifying the minimum session
+        interval it is willing to support.  The UAC will try again, this time
+        including the Min-SE header field in the request.  The header field
+        contains the largest Min-SE header field it observed in all 422
+        responses previously received.  This way, the minimum timer meets the
+        constraints of all proxies along the path.
 
-    	RFC 4825 - 6. 422 Response Code Definition
-    	The 422 response MUST contain a Min-SE header field with the minimum timer for that server.
+        RFC 4825 - 6. 422 Response Code Definition
+        The 422 response MUST contain a Min-SE header field with the minimum timer for that server.
     */
 
     if((Min_SE = (const tsip_header_Min_SE_t* )tsip_message_get_header(r422, tsip_htype_Min_SE))) {
@@ -163,7 +163,7 @@ int x0250_Any_2_Any_X_i422(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -179,8 +179,8 @@ int tsip_dialog_invite_stimers_cancel(tsip_dialog_invite_t* self)
 /* schedule the timer */
 int tsip_dialog_invite_stimers_schedule(tsip_dialog_invite_t* self, uint64_t timeout)
 {
-    /*	Used in SIP requests ==> do not change the value
-    	self->stimers.timer.timeout = timeout;
+    /*  Used in SIP requests ==> do not change the value
+        self->stimers.timer.timeout = timeout;
     */
     self->stimers.timer.id = tsk_timer_mgr_global_schedule(timeout, TSK_TIMER_CALLBACK_F(tsip_dialog_invite_timer_callback), self);
 
@@ -228,20 +228,20 @@ int tsip_dialog_invite_stimers_handle(tsip_dialog_invite_t* self, const tsip_mes
         }
         /* Process the response only if it includes "Require: timer"
 
-        	RFC 4028 - 7.2. Processing a 2xx Response
-        	When a 2xx response to a session refresh request arrives, it may or
-        	may not contain a Require header field with the value 'timer'.  If it
-        	does, the UAC MUST look for the Session-Expires header field to
-        	process the response.
+            RFC 4028 - 7.2. Processing a 2xx Response
+            When a 2xx response to a session refresh request arrives, it may or
+            may not contain a Require header field with the value 'timer'.  If it
+            does, the UAC MUST look for the Session-Expires header field to
+            process the response.
 
-        	If there was a Require header field in the response with the value
-        	'timer', the Session-Expires header field will always be present.
-        	UACs MUST be prepared to receive a Session-Expires header field in a
-        	response, even if none were present in the request.  The 'refresher'
-        	parameter will be present in the Session-Expires header field,
-        	indicating who will perform the refreshes.  The UAC MUST set the
-        	identity of the refresher to the value of this parameter.  If the
-        	parameter contains the value 'uac', the UAC will perform them.
+            If there was a Require header field in the response with the value
+            'timer', the Session-Expires header field will always be present.
+            UACs MUST be prepared to receive a Session-Expires header field in a
+            response, even if none were present in the request.  The 'refresher'
+            parameter will be present in the Session-Expires header field,
+            indicating who will perform the refreshes.  The UAC MUST set the
+            identity of the refresher to the value of this parameter.  If the
+            parameter contains the value 'uac', the UAC will perform them.
         */
         if(tsip_message_required(message, "timer")) {
             if((hdr_SessionExpires = (const tsip_header_Session_Expires_t*)tsip_message_get_header(message, tsip_htype_Session_Expires))) {
@@ -267,13 +267,13 @@ int tsip_dialog_invite_stimers_handle(tsip_dialog_invite_t* self, const tsip_mes
         }
         else {
             /*
-            	RFC 4028 - 7.2. Processing a 2xx Response
-            	If the 2xx response did not contain a Session-Expires header field,
-            	there is no session expiration.  In this case, no refreshes need to
-            	be sent.  A 2xx without a Session-Expires can come for both initial
-            	and subsequent session refresh requests.  This means that the session
-            	timer can be 'turned-off' in mid dialog by receiving a response
-            	without a Session-Expires header field.
+                RFC 4028 - 7.2. Processing a 2xx Response
+                If the 2xx response did not contain a Session-Expires header field,
+                there is no session expiration.  In this case, no refreshes need to
+                be sent.  A 2xx without a Session-Expires can come for both initial
+                and subsequent session refresh requests.  This means that the session
+                timer can be 'turned-off' in mid dialog by receiving a response
+                without a Session-Expires header field.
             */
             self->stimers.timer.timeout = 0; /* turned-off */
             self->supported.timer = tsk_false;
@@ -288,8 +288,8 @@ int tsip_dialog_invite_stimers_handle(tsip_dialog_invite_t* self, const tsip_mes
     if(self->stimers.timer.timeout) {
         if(self->stimers.is_refresher) {
             /* RFC 4028 - 9. UAS Behavior
-            	It is RECOMMENDED that this refresh be sent oncehalf the session interval has elapsed.
-            	Additional procedures for this refresh are described in Section 10.
+                It is RECOMMENDED that this refresh be sent oncehalf the session interval has elapsed.
+                Additional procedures for this refresh are described in Section 10.
             */
             tsip_dialog_invite_stimers_schedule(self, (self->stimers.timer.timeout*1000)/2);
         }

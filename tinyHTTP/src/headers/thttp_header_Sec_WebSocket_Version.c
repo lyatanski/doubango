@@ -278,7 +278,7 @@ _match:
                 TSK_PARSER_ADD_STRING(hdr_Sec_WebSocket_Version->values);
             }
             break;
-            /* #line 273 "./src/headers/thttp_header_Sec_WebSocket_Version.c" */
+                /* #line 273 "./src/headers/thttp_header_Sec_WebSocket_Version.c" */
             }
         }
 
@@ -317,7 +317,7 @@ _out: {
 
 
 //========================================================
-//	Sec_WebSocket_Version header object definition
+//  Sec_WebSocket_Version header object definition
 //
 
 static tsk_object_t* thttp_header_Sec_WebSocket_Version_ctor(tsk_object_t *self, va_list * app)

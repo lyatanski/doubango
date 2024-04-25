@@ -26,7 +26,7 @@
 
 #include "tsk_debug.h"
 
-#define TRTP_RTCP_PACKET_RR_MIN_SIZE	(TRTP_RTCP_HEADER_SIZE + 4)
+#define TRTP_RTCP_PACKET_RR_MIN_SIZE    (TRTP_RTCP_HEADER_SIZE + 4)
 
 static tsk_object_t* trtp_rtcp_report_rr_ctor(tsk_object_t * self, va_list * app)
 {

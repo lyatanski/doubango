@@ -62,21 +62,21 @@ const tnet_dns_cache_entry_t* tnet_dns_cache_entry_get(tnet_dns_ctx_t *ctx, cons
 * The stack also implements the ENUM protocol (RFC 3761).
 * </p>
 *
-* <h2>11.1	Resource Records</h2>
+* <h2>11.1  Resource Records</h2>
 * The table below lists all DNS Resource Records (RR) for which we provide a parser.
 *
 * <table>
-* <tr><td>Code</td>	<td>RFC</td>	<td>Description</td>	<td>Well-defined type</td></tr>
-* <tr><td>A</td>	<td>RFC 1035</td>	<td>IPv4 address</td> 	<td>tnet_dns_a_t</td></tr>
-* <tr><td>AAAA</td>	<td>RFC 3596</td>	<td>IPv6 address</td>	<td>tnet_dns_aaaa_t</td></tr>
-* <tr><td>CNAME</td>	<td>RFC 1035</td>	<td>Canonical name</td>	<td>tnet_dns_cname_t</td></tr>
-* <tr><td>MX</td>	<td>RFC 2035</td>	<td>Mail exchange</td>	<td>tnet_dns_mx_t</td></tr>
-* <tr><td>NAPTR</td>	<td>RFC 3403</td>	<td>Naming Authority Pointer</td>	<td>tnet_dns_naptr_t</td></tr>
-* <tr><td>NS</td>	<td>RFC 1035</td>	<td>Name Server</td>	<td>tnet_dns_ns_t</td></tr>
-* <tr><td>OPT</td>	<td>RFC 2671</td>	<td>Option</td>	<td>tnet_dns_opt_t</td></tr>
-* <tr><td>PTR</td>	<td>RFC 1035</td>	<td>Pointer record</td>	<td>tnet_dns_ptr_t</td></tr>
-* <tr><td>SOA</td>	<td>RFC1035</td>	<td>Start Of Authority record</td>	<td>tnet_dns_soa_t</td></tr>
-* <tr><td>SRV</td>	<td>RFC 2782</td>	<td>Service locator</td>	<td>tnet_dns_srv_t</td></tr>
+* <tr><td>Code</td> <td>RFC</td>    <td>Description</td>    <td>Well-defined type</td></tr>
+* <tr><td>A</td>    <td>RFC 1035</td>   <td>IPv4 address</td>   <td>tnet_dns_a_t</td></tr>
+* <tr><td>AAAA</td> <td>RFC 3596</td>   <td>IPv6 address</td>   <td>tnet_dns_aaaa_t</td></tr>
+* <tr><td>CNAME</td>    <td>RFC 1035</td>   <td>Canonical name</td> <td>tnet_dns_cname_t</td></tr>
+* <tr><td>MX</td>   <td>RFC 2035</td>   <td>Mail exchange</td>  <td>tnet_dns_mx_t</td></tr>
+* <tr><td>NAPTR</td>    <td>RFC 3403</td>   <td>Naming Authority Pointer</td>   <td>tnet_dns_naptr_t</td></tr>
+* <tr><td>NS</td>   <td>RFC 1035</td>   <td>Name Server</td>    <td>tnet_dns_ns_t</td></tr>
+* <tr><td>OPT</td>  <td>RFC 2671</td>   <td>Option</td> <td>tnet_dns_opt_t</td></tr>
+* <tr><td>PTR</td>  <td>RFC 1035</td>   <td>Pointer record</td> <td>tnet_dns_ptr_t</td></tr>
+* <tr><td>SOA</td>  <td>RFC1035</td>    <td>Start Of Authority record</td>  <td>tnet_dns_soa_t</td></tr>
+* <tr><td>SRV</td>  <td>RFC 2782</td>   <td>Service locator</td>    <td>tnet_dns_srv_t</td></tr>
 * </table>
 *
 * Here is an example of how to use the DNS stack to perform DNS NAPTR resolution and print the result to the console.
@@ -121,12 +121,12 @@ TSK_OBJECT_SAFE_FREE(ctx);
 * <i>INFO: We got a success response from the DNS server.</i><br>
 * <i>INFO: order=10 pref=0 flags=S services=SIP+d2u regexp=(null) replacement=_sip._udp.sip2sip.info</i><br>
 *
-* <h2>11.2	ENUM</h2>
+* <h2>11.2  ENUM</h2>
 * ENUM (E.164 Number Mapping) protocol has been defined in RFC 3761.
 * ENUM protocol is used to transform telephone numbers of the PSTN network (e.g. +33600000) into internet resource addresses (e.g. sip:diopmamadou@example.com) by using DNS lookup (NAPTR). The internet resource address could be an email, ICQ, IAX2, H.323 …
 * In our case (3GPP IMS) it is typically used to convert TEL URIs (e.g. tel:+33600000) into SIP URIs (sip:+33600000;user=phone). The telephone number to convert should be a valid E.164 number.
 *
-* <h3>11.2.1	Usage</h3>
+* <h3>11.2.1    Usage</h3>
 * The code below shows how to gets the SIP address (with the higher order) associated to an E.164 telephone number.
 *
 * @code
@@ -317,7 +317,7 @@ done:
     }
 
     /* ============================ */
-    //	Send and Recaive data
+    //  Send and Recaive data
     /* ============================ */
     {
         int ret = -1;
@@ -345,7 +345,7 @@ done:
 
         do {
             //
-            //	Send data (loop through all intefaces)
+            //  Send data (loop through all intefaces)
             //
             tsk_list_foreach(item, ctx->servers) {
                 address = item->data;
@@ -377,7 +377,7 @@ done:
             }
 
             //
-            //	Received data
+            //  Received data
             //
             /* First time? ==> set timeout value */
             if (!timeout) {
@@ -510,25 +510,25 @@ tnet_dns_response_t* tnet_dns_enum(tnet_dns_ctx_t* ctx, const char* e164num, con
 
     memset(e164domain, '\0', sizeof(e164domain));
 
-    /*	RFC 3761 - 2.4.  Valid Databases
-    	1. Remove all characters with the exception of the digits.  For
-    	example, the First Well Known Rule produced the Key
-    	"+442079460148".  This step would simply remove the leading "+",
-    	producing "442079460148".
+    /*  RFC 3761 - 2.4.  Valid Databases
+        1. Remove all characters with the exception of the digits.  For
+        example, the First Well Known Rule produced the Key
+        "+442079460148".  This step would simply remove the leading "+",
+        producing "442079460148".
 
-    	2. Put dots (".") between each digit.  Example:
-    	4.4.2.0.7.9.4.6.0.1.4.8
+        2. Put dots (".") between each digit.  Example:
+        4.4.2.0.7.9.4.6.0.1.4.8
 
-    	3. Reverse the order of the digits.  Example:
-    	8.4.1.0.6.4.9.7.0.2.4.4
+        3. Reverse the order of the digits.  Example:
+        8.4.1.0.6.4.9.7.0.2.4.4
 
-    	4. Append the string ".e164.arpa" to the end.  Example:
-    	8.4.1.0.6.4.9.7.0.2.4.4.e164.arpa
+        4. Append the string ".e164.arpa" to the end.  Example:
+        8.4.1.0.6.4.9.7.0.2.4.4.e164.arpa
 
-    	This domain-name is used to request NAPTR records which may contain
-    	the end result or, if the flags field is blank, produces new keys in
-    	the form of domain-names from the DNS.
-    	*/
+        This domain-name is used to request NAPTR records which may contain
+        the end result or, if the flags field is blank, produces new keys in
+        the form of domain-names from the DNS.
+        */
     for (i = e164size - 1, j = 0; i >= 0; i--) {
         if (!isdigit(e164num[i])) {
             continue;
@@ -580,18 +580,18 @@ char* tnet_dns_enum_2(tnet_dns_ctx_t* ctx, const char* service, const char* e164
                 rr = item->data;
                 if (rr->qtype == qtype_naptr) {
                     const tnet_dns_naptr_t *naptr = (const tnet_dns_naptr_t*)rr;
-                    /*	RFC 3403 - 6.2 E164 Example
-                    	Both the ENUM [18] and URI  Resolution [4] Applications use the 'u'
-                    	flag.  This flag states that the Rule is terminal and that the output
-                    	is a URI which contains the information needed to contact that
-                    	telephone service.
-                    	*/
+                    /*  RFC 3403 - 6.2 E164 Example
+                        Both the ENUM [18] and URI  Resolution [4] Applications use the 'u'
+                        flag.  This flag states that the Rule is terminal and that the output
+                        is a URI which contains the information needed to contact that
+                        telephone service.
+                        */
                     if (tsk_striequals(naptr->flags, "u") && tsk_striequals(naptr->services, service)) {
                         /* RFC 3403 - 4.1 Packet Format
-                        	The fields (replacement and regexp) are also mutually exclusive.  If a record is
-                        	returned that has values for both fields then it is considered to
-                        	be in error and SHOULD be either ignored or an error returned.
-                        	*/
+                            The fields (replacement and regexp) are also mutually exclusive.  If a record is
+                            returned that has values for both fields then it is considered to
+                            be in error and SHOULD be either ignored or an error returned.
+                            */
                         if (naptr->regexp && naptr->replacement) {
                             continue;
                         }
@@ -629,7 +629,7 @@ char* tnet_dns_enum_2(tnet_dns_ctx_t* ctx, const char* service, const char* e164
 * tnet_port_t port = 0;
 *
 * if(!tnet_dns_query_srv(ctx, "_sip._udp.sip2sip.info", &hostname, &port)){
-* 	TSK_DEBUG_INFO("DNS SRV succeed ==> hostname=%s and port=%u", hostname, port);
+*   TSK_DEBUG_INFO("DNS SRV succeed ==> hostname=%s and port=%u", hostname, port);
 * }
 *
 * TSK_FREE(hostname);
@@ -682,7 +682,7 @@ int tnet_dns_query_srv(tnet_dns_ctx_t *ctx, const char* service, char** hostname
 * tnet_port_t port = 0;
 *
 * if(!tnet_dns_query_naptr_srv(ctx, "sip2sip.info", "SIP+D2U", &hostname, &port)){
-* 	TSK_DEBUG_INFO("DNS NAPTR+SRV succeed ==> hostname=%s and port=%u", hostname, port);
+*   TSK_DEBUG_INFO("DNS NAPTR+SRV succeed ==> hostname=%s and port=%u", hostname, port);
 * }
 *
 * TSK_FREE(hostname);
@@ -870,7 +870,7 @@ int tnet_dns_add_server(tnet_dns_ctx_t *ctx, const char* host)
 }
 
 //=================================================================================================
-//	[[DNS CACHE ENTRY]] object definition
+//  [[DNS CACHE ENTRY]] object definition
 //
 static tsk_object_t* tnet_dns_cache_entry_ctor(tsk_object_t * self, va_list * app)
 {
@@ -905,7 +905,7 @@ const tsk_object_def_t *tnet_dns_cache_entry_def_t = &tnet_dns_cache_entry_def_s
 
 
 //=================================================================================================
-//	[[DNS CONTEXT]] object definition
+//  [[DNS CONTEXT]] object definition
 //
 static tsk_object_t* tnet_dns_ctx_ctor(tsk_object_t * self, va_list * app)
 {

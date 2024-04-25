@@ -84,14 +84,14 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
     while((curr = va_arg(*app, tsip_stack_param_type_t)) != tsip_pname_null) {
         switch(curr) {
 
-            /* === Identity === */
+        /* === Identity === */
         case tsip_pname_display_name: {
             /* (const char*)NAME_STR */
             const char* NAME_STR = va_arg(*app, const char*);
             tsk_strupdate(&self->identity.display_name, NAME_STR);
-			if (self->identity.impu) {
-				tsk_strupdate(&self->identity.impu->display_name, NAME_STR);
-			}
+            if (self->identity.impu) {
+                tsk_strupdate(&self->identity.impu->display_name, NAME_STR);
+            }
             break;
         }
         case tsip_pname_impu:
@@ -101,7 +101,7 @@ static int __tsip_stack_set(tsip_stack_t *self, va_list* app)
             if(!tsk_strnullORempty(URI_STR)) {
                 tsip_uri_t *uri = tsip_uri_parse(URI_STR, tsk_strlen(URI_STR));
                 if(uri) {
-					tsk_strupdate(&uri->display_name, self->identity.display_name);
+                    tsk_strupdate(&uri->display_name, self->identity.display_name);
                     if(curr == tsip_pname_impu) {
                         TSK_OBJECT_SAFE_FREE(self->identity.impu);
                         self->identity.impu = uri;
@@ -502,9 +502,9 @@ bail:
  // ...other macros...
  TSIP_STACK_SET_NULL());
 
-	// ...whatever
+    // ...whatever
 
-	TSK_OBJECT_SAFE_FREE(stack);
+    TSK_OBJECT_SAFE_FREE(stack);
  * @endcode
  * @sa @ref tsip_stack_set()<br>@ref tsip_stack_start()
  */
@@ -603,7 +603,7 @@ tsip_stack_handle_t* tsip_stack_create(tsip_stack_callback_f callback, const cha
         stack->headers = tsk_list_create();
     }
 
-    /* ===	Layers === */
+    /* ===  Layers === */
     if(!(stack->layer_dialog = tsip_dialog_layer_create(stack))) {
         TSK_DEBUG_ERROR("Failed to create Dialog layer");
         TSK_OBJECT_SAFE_FREE(stack);
@@ -824,7 +824,7 @@ int tsip_stack_start(tsip_stack_handle_t *self)
     }
 
 
-    /* ===	ALL IS OK === */
+    /* ===  ALL IS OK === */
 
     stack->started = tsk_true;
 
@@ -1149,7 +1149,7 @@ static void* TSK_STDCALL run(void* self)
 
 
 //========================================================
-//	SIP stack object definition
+//  SIP stack object definition
 //
 static tsk_object_t* tsip_stack_ctor(tsk_object_t * self, va_list * app)
 {

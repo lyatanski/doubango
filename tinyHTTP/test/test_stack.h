@@ -64,8 +64,8 @@ int test_stack_callback(const thttp_event_t *httpevent)
 }
 
 #define PAYLOAD "<entry uri=\"sip:samba@micromethod.com\" xmlns=\"urn:ietf:params:xml:ns:resource-lists\">" \
-				"<display-name>samba</display-name>" \
-				"</entry>"
+                "<display-name>samba</display-name>" \
+                "</entry>"
 
 void test_stack()
 {
@@ -89,16 +89,16 @@ void test_stack()
 
     // http://ipv6.google.com/
     //op = THTTP_OPERATION_CREATE(stack,
-    //	THTTP_OPERATION_SET_PARAM("method", "GET"),
-    //	THTTP_OPERATION_SET_PARAM("URL", "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index"),
+    //  THTTP_OPERATION_SET_PARAM("method", "GET"),
+    //  THTTP_OPERATION_SET_PARAM("URL", "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index"),
     //
-    //	THTTP_OPERATION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
-    //	THTTP_OPERATION_SET_HEADER("Pragma", "No-Cache"),
-    //	THTTP_OPERATION_SET_HEADER("Connection", "Keep-Alive"),
-    //	THTTP_OPERATION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
-    //	THTTP_OPERATION_SET_HEADER("X-3GPP-Intended-Identity", "sip:mercuro1@doubango.org"),
+    //  THTTP_OPERATION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
+    //  THTTP_OPERATION_SET_HEADER("Pragma", "No-Cache"),
+    //  THTTP_OPERATION_SET_HEADER("Connection", "Keep-Alive"),
+    //  THTTP_OPERATION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
+    //  THTTP_OPERATION_SET_HEADER("X-3GPP-Intended-Identity", "sip:mercuro1@doubango.org"),
     //
-    //	THTTP_OPERATION_SET_NULL());
+    //  THTTP_OPERATION_SET_NULL());
     //thttp_operation_perform(op);
 
     /* creates session */
@@ -115,15 +115,15 @@ void test_stack()
                                    THTTP_SESSION_SET_NULL()); /* MUST always be present */
 
     //ret = thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index",
-    //	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
+    //  THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
     //
-    //	tsk_null);
+    //  tsk_null);
 
 
     //thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index",
-    //	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
+    //  THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
     //
-    //	tsk_null);
+    //  tsk_null);
 
     // HTTPS
     thttp_action_GET(session, "https://msp.f-secure.com/web-test/common/test.html",
@@ -138,36 +138,36 @@ void test_stack()
 
     // IPv6
     /*thttp_action_GET(session, "http://ipv6.google.com",
-    	// action-level options
-    	THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
+        // action-level options
+        THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
 
-    	// action-level headers
-    	THTTP_ACTION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
-    	THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
+        // action-level headers
+        THTTP_ACTION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
+        THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
 
-    	THTTP_ACTION_SET_NULL());
+        THTTP_ACTION_SET_NULL());
 
     /*ret = thttp_action_GET(session, "http://doubango.org",
-    		// action-level options
-    		THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
+            // action-level options
+            THTTP_ACTION_SET_OPTION(THTTP_ACTION_OPTION_TIMEOUT, "2500"),
 
-    		THTTP_ACTION_SET_NULL());
+            THTTP_ACTION_SET_NULL());
 
 
     //thttp_action_GET(session, "http://www.google.com",
     //THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
 
-    //	THTTP_ACTION_SET_NULL());
+    //  THTTP_ACTION_SET_NULL());
 
     //thttp_action_GET(session, "http://www.doubango.org",
 
-    //	THTTP_ACTION_SET_NULL());
+    //  THTTP_ACTION_SET_NULL());
 
     /* Gets resource-lists document */
     /*thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/index",
-    	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
+        THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
 
-    	tsk_null);
+        tsk_null);
 
 
     //TSK_OBJECT_SAFE_FREE(session);
@@ -175,36 +175,36 @@ void test_stack()
 
     /* Gets xcap-caps document */
     /*thttp_action_GET(session, "http://siptest.doubango.org:8080/services/xcap-caps/global/index",
-    	THTTP_ACTION_SET_HEADER("Content-Type", "application/xcap-caps+xml"),
+        THTTP_ACTION_SET_HEADER("Content-Type", "application/xcap-caps+xml"),
 
-    	tsk_null);
+        tsk_null);
 
 
     /*thttp_action_GET(session, "http://siptest.doubango.org:8080/services/resource-lists/users/sip:mercuro1@doubango.org/properties-resource-list.xml",
-    	THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
+        THTTP_ACTION_SET_HEADER("Content-Type", "application/resource-lists+xml"),
 
-    	tsk_null);
+        tsk_null);
 
 
     //thttp_operation_perform(op);
 
     /*
-    	op = THTTP_OPERATION_CREATE(stack,
-    		THTTP_OPERATION_SET_PARAM("method", "GET"),
-    		//THTTP_OPERATION_SET_PARAM("URL", "https://msp.f-secure.com/web-test/common/test.html"),
-    		THTTP_OPERATION_SET_PARAM("URL", "http://www.doubango.org"),
+        op = THTTP_OPERATION_CREATE(stack,
+            THTTP_OPERATION_SET_PARAM("method", "GET"),
+            //THTTP_OPERATION_SET_PARAM("URL", "https://msp.f-secure.com/web-test/common/test.html"),
+            THTTP_OPERATION_SET_PARAM("URL", "http://www.doubango.org"),
 
-    		THTTP_OPERATION_SET_HEADER("Pragma", "No-Cache"),
-    		THTTP_OPERATION_SET_HEADER("Connection", "Keep-Alive"),
-    		THTTP_OPERATION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
+            THTTP_OPERATION_SET_HEADER("Pragma", "No-Cache"),
+            THTTP_OPERATION_SET_HEADER("Connection", "Keep-Alive"),
+            THTTP_OPERATION_SET_HEADER("User-Agent", "XDM-client/OMA1.1"),
 
-    		THTTP_OPERATION_SET_NULL());
-    	thttp_operation_perform(op);
+            THTTP_OPERATION_SET_NULL());
+        thttp_operation_perform(op);
     */
     /*thttp_operation_set(op,
-    	THTTP_OPERATION_SET_PARAM("method", "HEAD"),
+        THTTP_OPERATION_SET_PARAM("method", "HEAD"),
 
-    	THTTP_OPERATION_SET_NULL());
+        THTTP_OPERATION_SET_NULL());
     thttp_operation_perform(op);*/
 
 bail:

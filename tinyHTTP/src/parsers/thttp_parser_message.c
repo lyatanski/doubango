@@ -36,7 +36,7 @@ static void thttp_message_parser_init(tsk_ragel_state_t *state);
 static void thttp_message_parser_eoh(tsk_ragel_state_t *state, thttp_message_t *message, tsk_bool_t extract_content);
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 159 "./ragel/thttp_parser_message.rl" */
@@ -163,14 +163,14 @@ static const int thttp_machine_parser_message_en_main = 1;
 /* #line 165 "./ragel/thttp_parser_message.rl" */
 TSK_RAGEL_DISABLE_WARNINGS_END()
 
-/**	Parses raw HTTP buffer.
+/** Parses raw HTTP buffer.
  *
- * @param state	Ragel state containing the buffer references.
+ * @param state Ragel state containing the buffer references.
  * @param result @ref thttp_message_t object representing the raw buffer.
- * @param	extract_content	Indicates wheteher to parse the message content or not. If set to true, then
+ * @param   extract_content Indicates wheteher to parse the message content or not. If set to true, then
  * only headers will be parsed.
  *
- * @retval	Zero if succeed and non-zero error code otherwise.
+ * @retval  Zero if succeed and non-zero error code otherwise.
 **/
 int thttp_message_parse(tsk_ragel_state_t *state, thttp_message_t **result, tsk_bool_t extract_content)
 {
@@ -186,7 +186,7 @@ int thttp_message_parse(tsk_ragel_state_t *state, thttp_message_t **result, tsk_
     thttp_message_parser_init(state);
 
     /*
-    *	State mechine execution.
+    *   State mechine execution.
     */
     thttp_message_parser_execute(state, *result, extract_content);
 
@@ -421,7 +421,7 @@ _match:
                 eof = state->eof;
             }
             break;
-            /* #line 418 "./src/parsers/thttp_parser_message.c" */
+                /* #line 418 "./src/parsers/thttp_parser_message.c" */
             }
         }
 

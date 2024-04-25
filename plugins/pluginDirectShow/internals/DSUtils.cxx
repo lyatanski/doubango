@@ -127,8 +127,8 @@ bail:
 
 IPin *GetPin(IBaseFilter *filter, PIN_DIRECTION direction)
 {
-    IEnumPins	*enumPins = NULL;
-    IPin		*pin = NULL;
+    IEnumPins   *enumPins = NULL;
+    IPin        *pin = NULL;
 
     HRESULT hr = filter->EnumPins(&enumPins);
     if(!enumPins) {
@@ -252,9 +252,9 @@ bool RemoveAllFilters(IGraphBuilder *graphBuilder)
 #include "internals/DSDisplay.h"
 #include "internals/DSGrabber.h"
 
-#define WM_CREATE_DISPLAY_ON_UI_THREAD				(WM_USER + 101)
-#define WM_CREATE_GRABBER_ON_UI_THREAD				(WM_CREATE_DISPLAY_ON_UI_THREAD + 1)
-#define WM_CREATE_ON_UI_THREAD_TIMEOUT		1000
+#define WM_CREATE_DISPLAY_ON_UI_THREAD              (WM_USER + 101)
+#define WM_CREATE_GRABBER_ON_UI_THREAD              (WM_CREATE_DISPLAY_ON_UI_THREAD + 1)
+#define WM_CREATE_ON_UI_THREAD_TIMEOUT      1000
 
 // C Callback that dispatch event to create display on UI thread
 static LRESULT CALLBACK __create__WndProcWindow(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)

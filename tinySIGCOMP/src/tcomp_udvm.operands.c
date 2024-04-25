@@ -36,7 +36,7 @@
 /**
 literal (#)<br>
 <table>
-<tr> <td>Bytecode</td>                       <td>Operand value</td>		<td>Range</td></tr>
+<tr> <td>Bytecode</td>                       <td>Operand value</td>     <td>Range</td></tr>
 <tr> <td>0nnnnnnn</td>                        <td>N</td>                  <td>0 - 127</td></tr>
 <tr> <td>10nnnnnn nnnnnnnn</td>               <td>N</td>                  <td>0 - 16383</td></tr>
 <tr> <td>11000000 nnnnnnnn nnnnnnnn</td>      <td>N</td>                  <td>0 - 65535</td></tr>
@@ -127,14 +127,14 @@ uint32_t tcomp_udvm_opget_reference_param(tcomp_udvm_t *udvm)
 multitype(%)<br>
 <table>
 <tr><td>Bytecode</td>               <td>Operand value</td>     <td>Range</td></tr>
-<tr><td>00nnnnnn</td>                        <td>N</td>					<td>0 - 63</td></tr>
+<tr><td>00nnnnnn</td>                        <td>N</td>                 <td>0 - 63</td></tr>
 <tr><td>01nnnnnn</td>                        <td>memory[2 * N]</td>       <td>0 - 65535</td></tr>
-<tr><td>1000011n</td>                        <td>2 ^ (N + 6)</td>			<td>64 , 128</td></tr>
-<tr><td>10001nnn</td>                        <td>2 ^ (N + 8)</td>			<td>256 , ... , 32768</td></tr>
-<tr><td>111nnnnn</td>						<td>N + 65504</td>			<td>65504 - 65535</td></tr>
-<tr><td>1001nnnn nnnnnnnn</td>               <td>N + 61440</td>			<td>61440 - 65535</td></tr>
-<tr><td>101nnnnn nnnnnnnn</td>              <td>N</td>					<td>0 - 8191</td></tr>
-<tr><td>110nnnnn nnnnnnnn</td>				<td>memory[N]</td>           <td>0 - 65535</td></tr>
+<tr><td>1000011n</td>                        <td>2 ^ (N + 6)</td>           <td>64 , 128</td></tr>
+<tr><td>10001nnn</td>                        <td>2 ^ (N + 8)</td>           <td>256 , ... , 32768</td></tr>
+<tr><td>111nnnnn</td>                       <td>N + 65504</td>          <td>65504 - 65535</td></tr>
+<tr><td>1001nnnn nnnnnnnn</td>               <td>N + 61440</td>         <td>61440 - 65535</td></tr>
+<tr><td>101nnnnn nnnnnnnn</td>              <td>N</td>                  <td>0 - 8191</td></tr>
+<tr><td>110nnnnn nnnnnnnn</td>              <td>memory[N]</td>           <td>0 - 65535</td></tr>
 <tr><td>10000000 nnnnnnnn nnnnnnnn</td>      <td>N</td>                   <td>0 - 65535</td></tr>
 <tr><td>10000001 nnnnnnnn nnnnnnnn</td>      <td>memory[N]</td>           <td>0 - 65535</td></tr>
 </table>

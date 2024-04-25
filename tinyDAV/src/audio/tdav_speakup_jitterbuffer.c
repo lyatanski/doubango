@@ -46,9 +46,9 @@
 #       include <sys/time.h>
 #endif
 
-#define TDAV_SPEAKUP_10MS						10
-#define TDAV_SPEAKUP_10MS_FRAME_SIZE(self)		(((self)->rate * TDAV_SPEAKUP_10MS)/1000)
-#define TDAV_SPEAKUP_PTIME_FRAME_SIZE(self)		(((self)->rate * (self)->framesize)/1000)
+#define TDAV_SPEAKUP_10MS                       10
+#define TDAV_SPEAKUP_10MS_FRAME_SIZE(self)      (((self)->rate * TDAV_SPEAKUP_10MS)/1000)
+#define TDAV_SPEAKUP_PTIME_FRAME_SIZE(self)     (((self)->rate * (self)->framesize)/1000)
 
 static int tdav_speakup_jitterbuffer_set(tmedia_jitterbuffer_t *self, const tmedia_param_t* param)
 {
@@ -221,7 +221,7 @@ static int tdav_speakup_jitterbuffer_close(tmedia_jitterbuffer_t* self)
 
 
 //
-//	Speakup jitterbufferr Plugin definition
+//  Speakup jitterbufferr Plugin definition
 //
 
 /* constructor */

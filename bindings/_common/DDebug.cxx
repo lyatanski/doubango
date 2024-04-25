@@ -26,8 +26,8 @@
 #include "Common.h"
 
 #if defined(__ANDROID__) || defined(ANDROID) /* callbacks will fail with jni */
-#	include <android/log.h>
-#	define ANDROID_DEBUG_TAG "tinyWRAP"
+#   include <android/log.h>
+#   define ANDROID_DEBUG_TAG "tinyWRAP"
 #endif
 
 /* Very Important ==> never call functions which could raise debug callbacks into callback functions

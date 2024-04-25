@@ -45,23 +45,23 @@ private:
     void internalUpdate();
 
 private:
-    HWND				 window;
+    HWND                 window;
 
-    DSDisplayGraph		*displayGraph;
-    int					 ticks;
+    DSDisplayGraph      *displayGraph;
+    int                  ticks;
 
 #if defined(VMR)
-    HDC					 hdcBmp;
+    HDC                  hdcBmp;
     HBITMAP              hbmOld;
-    VMRALPHABITMAP		 alphaBitmap;
-    float				 alphaStep;
+    VMRALPHABITMAP       alphaBitmap;
+    float                alphaStep;
 #elif defined(VMR9) || defined(VMR9_WINDOWLESS)
-    IDirect3D9			*direct3D;
-    IDirect3DDevice9	*direct3DDevice;
+    IDirect3D9          *direct3D;
+    IDirect3DDevice9    *direct3DDevice;
     IDirect3DSurface9   *direct3DSurface;
-    D3DXIMAGE_INFO		 overlayInfo;
-    VMR9AlphaBitmap		 alphaBitmap;
-    float				 alphaStep;
+    D3DXIMAGE_INFO       overlayInfo;
+    VMR9AlphaBitmap      alphaBitmap;
+    float                alphaStep;
 #endif
 };
 

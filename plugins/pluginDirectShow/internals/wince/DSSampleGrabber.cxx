@@ -9,7 +9,7 @@
 TDSHOW_DEFINE_GUID(CLSID_SampleGrabber,
                    0x38589364, 0x71fd, 0x4641, 0xb4, 0x26, 0xe4, 0x43, 0xdb, 0x2, 0x35, 0x68);
 
-#define RGB565_MASK_RED				0xF800
+#define RGB565_MASK_RED             0xF800
 #define RGB565_MASK_GREEN           0x07E0
 #define RGB565_MASK_BLUE            0x001F
 
@@ -166,20 +166,20 @@ HRESULT DSSampleGrabber::SetSize(int width, int height)
 
     ZeroMemory(pvi, sizeof(VIDEOINFO));
 
-    pvi->bmiHeader.biCompression	= BI_RGB;
-    pvi->bmiHeader.biBitCount		= 24;
-    pvi->bmiHeader.biSize			= sizeof(BITMAPINFOHEADER);
-    pvi->bmiHeader.biWidth			= width;
-    pvi->bmiHeader.biHeight			= height;
-    pvi->bmiHeader.biPlanes			= 1;
-    pvi->bmiHeader.biSizeImage		= GetBitmapSize(&pvi->bmiHeader);
-    pvi->bmiHeader.biClrImportant	= 0;
+    pvi->bmiHeader.biCompression    = BI_RGB;
+    pvi->bmiHeader.biBitCount       = 24;
+    pvi->bmiHeader.biSize           = sizeof(BITMAPINFOHEADER);
+    pvi->bmiHeader.biWidth          = width;
+    pvi->bmiHeader.biHeight         = height;
+    pvi->bmiHeader.biPlanes         = 1;
+    pvi->bmiHeader.biSizeImage      = GetBitmapSize(&pvi->bmiHeader);
+    pvi->bmiHeader.biClrImportant   = 0;
 
     // Frame rate
-    pvi->AvgTimePerFrame			= 10000000/this->m_outputFps;
+    pvi->AvgTimePerFrame            = 10000000/this->m_outputFps;
 
-    SetRectEmpty(&(pvi->rcSource));	// we want the whole image area rendered.
-    SetRectEmpty(&(pvi->rcTarget));	// no particular destination rectangle
+    SetRectEmpty(&(pvi->rcSource)); // we want the whole image area rendered.
+    SetRectEmpty(&(pvi->rcTarget)); // no particular destination rectangle
 
     this->mt.SetType(&MEDIATYPE_Video);
     this->mt.SetFormatType(&FORMAT_VideoInfo);

@@ -37,20 +37,20 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Proxy-Authenticate'.
+/// @brief  SIP header 'Proxy-Authenticate'.
 ///
-/// @par ABNF = Proxy-Authenticate	= 	"Proxy-Authenticate" HCOLON challenge
-///				challenge	= 	("Digest" LWS digest-cln *(COMMA digest-cln)) / other-challenge
-///				other-challenge	= 	auth-scheme / auth-param *(COMMA auth-param)
-///				digest-cln	= 	realm / domain / nonce / opaque / stale / algorithm / qop-options / auth-param
-///				realm	= 	"realm" EQUAL realm-value
-///				realm-value	= 	quoted-string
-///				domain	= 	"domain" EQUAL LDQUOT URI *( 1*SP URI ) RDQUOT
-///				URI	= 	absoluteURI / abs-path
-///				opaque	= 	"opaque" EQUAL quoted-string
-///				stale	= 	"stale" EQUAL ( "true" / "false" )
-///				qop-options	= 	"qop" EQUAL LDQUOT qop-value *("," qop-value) RDQUOT
-///				qop-value	= 	"auth" / "auth-int" / token
+/// @par ABNF = Proxy-Authenticate  =   "Proxy-Authenticate" HCOLON challenge
+///             challenge   =   ("Digest" LWS digest-cln *(COMMA digest-cln)) / other-challenge
+///             other-challenge =   auth-scheme / auth-param *(COMMA auth-param)
+///             digest-cln  =   realm / domain / nonce / opaque / stale / algorithm / qop-options / auth-param
+///             realm   =   "realm" EQUAL realm-value
+///             realm-value =   quoted-string
+///             domain  =   "domain" EQUAL LDQUOT URI *( 1*SP URI ) RDQUOT
+///             URI =   absoluteURI / abs-path
+///             opaque  =   "opaque" EQUAL quoted-string
+///             stale   =   "stale" EQUAL ( "true" / "false" )
+///             qop-options =   "qop" EQUAL LDQUOT qop-value *("," qop-value) RDQUOT
+///             qop-value   =   "auth" / "auth-int" / token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Proxy_Authenticate_s {

@@ -26,31 +26,31 @@
 #include "tsk.h"
 
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN32_WCE)
-#	define strdup _strdup
+#   define strdup _strdup
 #endif
 
 
-#define RUN_TEST_ALL				0
-#define RUN_TEST_LISTS				1
-#define RUN_TEST_HEAP				1
-#define RUN_TEST_STRINGS			1
-#define RUN_TEST_URL				1
-#define RUN_TEST_THREADS			0
-#define RUN_TEST_MUTEX				0
-#define RUN_TEST_CONDWAIT			0
-#define RUN_TEST_SEMAPHORE			0
-#define RUN_TEST_SAFEOBJECT			0
-#define RUN_TEST_OBJECT				0
-#define RUN_TEST_PARAMS				1
-#define RUN_TEST_OPTIONS			1
-#define RUN_TEST_TIMER				0
-#define RUN_TEST_RUNNABLE			0
-#define RUN_TEST_BUFFER				1
-#define RUN_TEST_MD5				1
-#define RUN_TEST_SHA1				1
-#define RUN_TEST_BASE64				1
-#define RUN_TEST_UUID				1
-#define RUN_TEST_FSM				1
+#define RUN_TEST_ALL                0
+#define RUN_TEST_LISTS              1
+#define RUN_TEST_HEAP               1
+#define RUN_TEST_STRINGS            1
+#define RUN_TEST_URL                1
+#define RUN_TEST_THREADS            0
+#define RUN_TEST_MUTEX              0
+#define RUN_TEST_CONDWAIT           0
+#define RUN_TEST_SEMAPHORE          0
+#define RUN_TEST_SAFEOBJECT         0
+#define RUN_TEST_OBJECT             0
+#define RUN_TEST_PARAMS             1
+#define RUN_TEST_OPTIONS            1
+#define RUN_TEST_TIMER              0
+#define RUN_TEST_RUNNABLE           0
+#define RUN_TEST_BUFFER             1
+#define RUN_TEST_MD5                1
+#define RUN_TEST_SHA1               1
+#define RUN_TEST_BASE64             1
+#define RUN_TEST_UUID               1
+#define RUN_TEST_FSM                1
 
 #if RUN_TEST_LISTS || RUN_TEST_ALL
 #include "test_lists.h"
@@ -140,89 +140,89 @@ int main()
 #endif
 {
 #if RUN_TEST_LISTS || RUN_TEST_ALL
-        test_basic_list();
-        test_complex_list();
-        test_filtered_list();
+    test_basic_list();
+    test_complex_list();
+    test_filtered_list();
 #endif
 
 #if RUN_TEST_HEAP || RUN_TEST_ALL
-        test_heap();
+    test_heap();
 #endif
 
 #if RUN_TEST_STRINGS || RUN_TEST_ALL
-        test_strings();
+    test_strings();
 #endif
 
 #if RUN_TEST_URL || RUN_TEST_ALL
-        test_url();
+    test_url();
 #endif
 
 #if RUN_TEST_THREADS || RUN_TEST_ALL
-        test_threads();
+    test_threads();
 #endif
 
 #if RUN_TEST_MUTEX || RUN_TEST_ALL
-        test_mutex();
+    test_mutex();
 #endif
 
 #if RUN_TEST_CONDWAIT || RUN_TEST_ALL
-        test_condwait();
+    test_condwait();
 #endif
 
 #if RUN_TEST_SEMAPHORE || RUN_TEST_ALL
-        test_semaphore();
+    test_semaphore();
 #endif
 
 #if RUN_TEST_SAFEOBJECT || RUN_TEST_ALL
-        test_safeobject();
+    test_safeobject();
 #endif
 
 #if RUN_TEST_OBJECT || RUN_TEST_ALL
-        test_object();
+    test_object();
 #endif
 
 #if RUN_TEST_PARAMS || RUN_TEST_ALL
-        test_params();
+    test_params();
 #endif
 
 #if RUN_TEST_OPTIONS || RUN_TEST_ALL
-        test_options();
+    test_options();
 #endif
 
 #if RUN_TEST_TIMER || RUN_TEST_ALL
-        test_timer();
+    test_timer();
 #endif
 
 #if RUN_TEST_RUNNABLE || RUN_TEST_ALL
-        test_runnable();
+    test_runnable();
 #endif
 
 
 #if RUN_TEST_BUFFER || RUN_TEST_ALL
-        test_buffer();
+    test_buffer();
 #endif
 
 
 #if RUN_TEST_MD5 || RUN_TEST_ALL
-        test_md5();
-        test_hmac_md5();
+    test_md5();
+    test_hmac_md5();
 #endif
 
 #if RUN_TEST_SHA1 || RUN_TEST_ALL
-        test_sha1();
-        test_hmac_sha1();
+    test_sha1();
+    test_hmac_sha1();
 #endif
 
 #if RUN_TEST_BASE64 || RUN_TEST_ALL
-        test_base64();
+    test_base64();
 #endif
 
 #if RUN_TEST_UUID || RUN_TEST_ALL
-        test_uuid();
+    test_uuid();
 #endif
 
 #if RUN_TEST_FSM || RUN_TEST_ALL
-        test_fsm();
+    test_fsm();
 #endif
 
     return 0;

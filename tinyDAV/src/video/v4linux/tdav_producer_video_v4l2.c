@@ -43,7 +43,7 @@
 #include "tsk_debug.h"
 
 #if !defined(V4L2_FAKE_UYVY)
-#	define V4L2_FAKE_UYVY 0
+#   define V4L2_FAKE_UYVY 0
 #endif /* V4L2_FAKE_UYVY */
 
 #define V4L2_CLEAR(x) memset(&(x), 0, sizeof(x))
@@ -883,7 +883,7 @@ static int _v4l2_send_frame(tdav_producer_video_v4l2_t* p_self)
     unsigned int i;
 
 #define V4L2_SEND_BUFF(_buff, _size) \
-	TMEDIA_PRODUCER(p_self)->enc_cb.callback(TMEDIA_PRODUCER(p_self)->enc_cb.callback_data, (_buff), (_size));
+    TMEDIA_PRODUCER(p_self)->enc_cb.callback(TMEDIA_PRODUCER(p_self)->enc_cb.callback_data, (_buff), (_size));
 
 #if V4L2_FAKE_UYVY
     {
@@ -909,9 +909,9 @@ static int _v4l2_send_frame(tdav_producer_video_v4l2_t* p_self)
                 return 0;
 
             case EIO:
-                /* Could ignore EIO, see spec. */
+            /* Could ignore EIO, see spec. */
 
-                /* fall through */
+            /* fall through */
 
             default:
                 V4L2_DEBUG_ERROR("read() failed: %s error %d", strerror(errno), errno);
@@ -935,9 +935,9 @@ static int _v4l2_send_frame(tdav_producer_video_v4l2_t* p_self)
                 return 0;
 
             case EIO:
-                /* Could ignore EIO, see spec. */
+            /* Could ignore EIO, see spec. */
 
-                /* fall through */
+            /* fall through */
 
             default:
                 V4L2_DEBUG_ERROR("xioctl(VIDIOC_DQBUF) failed: %s error %d", strerror(errno), errno);
@@ -968,9 +968,9 @@ static int _v4l2_send_frame(tdav_producer_video_v4l2_t* p_self)
                 return 0;
 
             case EIO:
-                /* Could ignore EIO, see spec. */
+            /* Could ignore EIO, see spec. */
 
-                /* fall through */
+            /* fall through */
 
             default:
                 V4L2_DEBUG_ERROR("xioctl(VIDIOC_DQBUF) failed: %s error %d", strerror(errno), errno);
@@ -1083,7 +1083,7 @@ bail:
 }
 
 //
-//	V4L2 video producer object definition
+//  V4L2 video producer object definition
 //
 /* constructor */
 static tsk_object_t* _tdav_producer_video_v4l2_ctor(tsk_object_t *self, va_list * app)

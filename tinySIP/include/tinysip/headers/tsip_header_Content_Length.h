@@ -35,14 +35,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_CONTENT_LENGTH_VA_ARGS(length)	tsip_header_Content_Length_def_t, (uint32_t)length
+#define TSIP_HEADER_CONTENT_LENGTH_VA_ARGS(length)  tsip_header_Content_Length_def_t, (uint32_t)length
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Content-Length'.
+/// @brief  SIP header 'Content-Length'.
 ///
 /// @par ABNF: Content-Length / l
-/// Content-Length	= 	( "Content-Length" / "l" ) HCOLON 1*DIGIT
+/// Content-Length  =   ( "Content-Length" / "l" ) HCOLON 1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Content_Length_s {

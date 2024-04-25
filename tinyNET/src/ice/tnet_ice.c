@@ -20,8 +20,8 @@
 
 /**@file tnet_ice.c
  * @brief Interactive Connectivity Establishment (ICE) implementation as per 'draft-ietf-mmusic-ice-19' and 'draft-ietf-mmusic-ice-tcp-08'.
- *			http://tools.ietf.org/html/draft-ietf-mmusic-ice-19
- *			http://tools.ietf.org/html/draft-ietf-mmusic-ice-tcp-08
+ *          http://tools.ietf.org/html/draft-ietf-mmusic-ice-19
+ *          http://tools.ietf.org/html/draft-ietf-mmusic-ice-tcp-08
  *
  */
 #include "tnet_ice.h"

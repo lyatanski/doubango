@@ -107,10 +107,10 @@ typedef struct tmedia_qos_tline_e2e_s {
 
     /* RFC 3312 - 5.1 Generating an offer
 
-    	Direction  Current  Desired Strength
-    	____________________________________
-    	send       no        mandatory
-    	recv       no        mandatory
+        Direction  Current  Desired Strength
+        ____________________________________
+        send       no        mandatory
+        recv       no        mandatory
     */
     struct {
         unsigned current:1;
@@ -137,12 +137,12 @@ typedef struct tmedia_qos_tline_segmented_s {
     TMEDIA_DECLARE_QOS_TLINE;
 
     /* RFC 3312 - 5.1 Generating an offer
-    	Direction   Current  Desired Strength
-    	______________________________________
-    	local send     no           none
-    	local recv     no           none
-    	remote send    no         optional
-    	remote recv    no           none
+        Direction   Current  Desired Strength
+        ______________________________________
+        local send     no           none
+        local recv     no           none
+        remote send    no         optional
+        remote recv    no           none
     */
     /* can be done in two lines but I prefer doing it like this (easier) */
     struct {

@@ -38,9 +38,9 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Allow-Events'.
+/// @brief  SIP header 'Allow-Events'.
 ///
-/// @par ABNF : Allow-Events	=  	 ( "Allow-Events" / "u" ) HCOLON event-type *(COMMA event-type)
+/// @par ABNF : Allow-Events    =    ( "Allow-Events" / "u" ) HCOLON event-type *(COMMA event-type)
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Allow_Events_s {

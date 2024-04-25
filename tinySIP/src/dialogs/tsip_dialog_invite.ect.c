@@ -142,7 +142,7 @@ int tsip_dialog_invite_ect_init(tsip_dialog_invite_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 // Connected -> (oREFER) -> oECTing
@@ -381,7 +381,7 @@ static int x0400_iECTing_2_Connected_X_23456fNOTIFY(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

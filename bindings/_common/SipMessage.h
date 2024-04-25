@@ -37,7 +37,8 @@ public:
     char* getSdpHeaderValue(const char* media, char name, unsigned index = 0);
     char* getSdpHeaderAValue(const char* media, const char* attributeName);
 #if !defined(SWIG)
-    const tsdp_message_t * getWrappedSdpMessage() {
+    const tsdp_message_t * getWrappedSdpMessage()
+    {
         return m_pSdpMessage;
     }
 #endif
@@ -65,7 +66,8 @@ public:
     unsigned getSipContent(void* output, unsigned maxsize);
 #if !defined(SWIG)
     const void* getSipContentPtr();
-    const tsip_message_t* getWrappedSipMessage()const {
+    const tsip_message_t* getWrappedSipMessage()const
+    {
         return m_pSipMessage;
     }
 #endif

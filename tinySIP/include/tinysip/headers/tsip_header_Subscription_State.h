@@ -38,14 +38,14 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Subscription-State'.
+/// @brief  SIP header 'Subscription-State'.
 ///
-/// @par ABNF: Subscription-State	= 	( "Subscription-State" / "o" ) HCOLON substate-value *( SEMI subexp-params )
-/// substate-value	= 	"active" / "pending" / "terminated" / extension-substate
-/// extension-substate	= 	token
-/// subexp-params	= 	("reason" EQUAL event-reason-value) / ("expires" EQUAL delta-seconds) / ("retry-after" EQUAL delta-seconds) / generic-param
-/// event-reason-value	= 	"deactivated" / "probation" / "rejected" / "timeout" / "giveup" / "noresource" / event-reason-extension
-/// event-reason-extension 	= 	token
+/// @par ABNF: Subscription-State   =   ( "Subscription-State" / "o" ) HCOLON substate-value *( SEMI subexp-params )
+/// substate-value  =   "active" / "pending" / "terminated" / extension-substate
+/// extension-substate  =   token
+/// subexp-params   =   ("reason" EQUAL event-reason-value) / ("expires" EQUAL delta-seconds) / ("retry-after" EQUAL delta-seconds) / generic-param
+/// event-reason-value  =   "deactivated" / "probation" / "rejected" / "timeout" / "giveup" / "noresource" / event-reason-extension
+/// event-reason-extension  =   token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Subscription_State_s {

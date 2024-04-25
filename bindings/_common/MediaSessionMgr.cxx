@@ -22,7 +22,7 @@
 #include "MediaSessionMgr.h"
 
 //
-//	QoS
+//  QoS
 //
 QoS::QoS(float qavg, float q1 /*= -1.f*/, float q2 /*= -1.f*/, float q3 /*= -1.f*/, float q4 /*= -1.f*/, float q5 /*= -1.f*/)
     : m_Qqvg(qavg)
@@ -48,7 +48,7 @@ QoS::~QoS()
 }
 
 //
-//	Codec
+//  Codec
 //
 Codec::Codec(const struct tmedia_codec_s* pWrappedCodec)
 {
@@ -126,7 +126,7 @@ int Codec::getAudioPTime()
 }
 
 //
-//	MediaSessionMgr
+//  MediaSessionMgr
 //
 MediaSessionMgr::MediaSessionMgr(tmedia_session_mgr_t* pWrappedMgr)
 {

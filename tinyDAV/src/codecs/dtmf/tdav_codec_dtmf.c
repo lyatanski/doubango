@@ -62,7 +62,7 @@ tsk_bool_t tdav_codec_dtmf_sdp_att_match(const tmedia_codec_t* codec, const char
 
 
 //
-//	DTMF Plugin definition
+//  DTMF Plugin definition
 //
 
 /* constructor */

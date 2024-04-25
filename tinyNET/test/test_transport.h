@@ -19,36 +19,36 @@
 #ifndef TNET_TEST_TRANSPORT_H
 #define TNET_TEST_TRANSPORT_H
 
-//#define REMOTE_IP4	"proxy.sipthor.net"//"192.168.0.15"
-#define REMOTE_IP4	"192.168.0.13"
-#define REMOTE_IP6	"2a01:e35:8632:7050:6122:2706:2124:32cb"
+//#define REMOTE_IP4    "proxy.sipthor.net"//"192.168.0.15"
+#define REMOTE_IP4  "192.168.0.13"
+#define REMOTE_IP6  "2a01:e35:8632:7050:6122:2706:2124:32cb"
 #define REMOTE_IP REMOTE_IP4
 #define REMOTE_PORT 5083
 
 #if defined(ANDROID) /* FIXME */
-#	define LOCAL_IP4	"10.0.2.15"
+#   define LOCAL_IP4    "10.0.2.15"
 #else
-#	define LOCAL_IP4	TNET_SOCKET_HOST_ANY
+#   define LOCAL_IP4    TNET_SOCKET_HOST_ANY
 #endif
-#define LOCAL_IP6	TNET_SOCKET_HOST_ANY
+#define LOCAL_IP6   TNET_SOCKET_HOST_ANY
 
 #if defined(ANDROID)
-#	define LOCAL_PORT 5060
+#   define LOCAL_PORT 5060
 #else
-#	define LOCAL_PORT TNET_SOCKET_PORT_ANY
+#   define LOCAL_PORT TNET_SOCKET_PORT_ANY
 #endif
 
 #define SIP_MESSAGE \
-	"REGISTER sip:micromethod.com SIP/2.0\r\n" \
-	"Via: SIP/2.0/%s %s:%d;rport;branch=z9hG4bK1245420841406%d\r\n" \
-	"From: <sip:mamadou@micromethod.com>;tag=29358\r\n" \
-	"To: <sip:mamadou@micromethod.com>\r\n" \
-	"Call-ID: M-fa53180346f7f55ceb8d8670f9223dbb\r\n" \
-	"CSeq: 201 REGISTER\r\n" \
-	"Max-Forwards: 70\r\n" \
-	"Contact: <sip:mamadou@%s:%d;transport=%s>\r\n" \
-	"Expires: 10\r\n" \
-	"\r\n"
+    "REGISTER sip:micromethod.com SIP/2.0\r\n" \
+    "Via: SIP/2.0/%s %s:%d;rport;branch=z9hG4bK1245420841406%d\r\n" \
+    "From: <sip:mamadou@micromethod.com>;tag=29358\r\n" \
+    "To: <sip:mamadou@micromethod.com>\r\n" \
+    "Call-ID: M-fa53180346f7f55ceb8d8670f9223dbb\r\n" \
+    "CSeq: 201 REGISTER\r\n" \
+    "Max-Forwards: 70\r\n" \
+    "Contact: <sip:mamadou@%s:%d;transport=%s>\r\n" \
+    "Expires: 10\r\n" \
+    "\r\n"
 
 
 static int tnet_tcp_cb(const tnet_transport_event_t* e)

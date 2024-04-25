@@ -29,7 +29,7 @@
 
 /** Max number of plugins (consumer types) we can create */
 #if !defined(TIPSEC_MAX_PLUGINS)
-#	define TIPSEC_MAX_PLUGINS			0x04
+#   define TIPSEC_MAX_PLUGINS           0x04
 #endif /* TIPSEC_MAX_PLUGINS */
 
 /* pointer to all registered consumers */

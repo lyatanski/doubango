@@ -43,7 +43,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 148 "./ragel/tsip_parser_header_Security_Server.rl" */
@@ -90,7 +90,7 @@ int tsip_header_Security_Server_serialize(const tsip_header_t* header, tsk_buffe
         }
 
         if(Security_Server->q >= 0) {
-            /* qvalue	=  	("0" [ "." 0*3DIGIT ] ) / ( "1" [ "." 0*3("0") ] ) */
+            /* qvalue   =   ("0" [ "." 0*3DIGIT ] ) / ( "1" [ "." 0*3("0") ] ) */
             ret = tsk_buffer_append_2(output, ";q=%1.3f", Security_Server->q);
         }
 
@@ -875,7 +875,7 @@ _match:
             {
             }
             break;
-            /* #line 872 "./src/headers/tsip_header_Security_Server.c" */
+                /* #line 872 "./src/headers/tsip_header_Security_Server.c" */
             }
         }
 
@@ -912,7 +912,7 @@ _out: {
 
 
 //========================================================
-//	Security_Server header object definition
+//  Security_Server header object definition
 //
 
 static tsk_object_t* tsip_header_Security_Server_ctor(tsk_object_t *self, va_list * app)

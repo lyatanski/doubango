@@ -93,16 +93,16 @@ void test_deliver()
     TSK_OBJECT_SAFE_FREE(deliver);
 
     //{
-    //	tsms_tpdu_message_t* sms_any = tsms_tpdu_message_deserialize_mt(buffer->data, buffer->size);
-    //	if(sms_any && sms_any->mti == tsms_tpdu_mti_deliver_mt){
-    //		//tsms_tpdu_deliver_t* sms_deliver = TSMS_TPDU_DELIVER(sms_any); ==> Yes we can !
-    //		char* ascii;
-    //		if((ascii = tsms_tpdu_message_get_payload(sms_any))){
-    //			TSK_DEBUG_INFO("Message=%s", ascii);
-    //			TSK_FREE(ascii);
-    //		}
-    //	}
-    //	TSK_OBJECT_SAFE_FREE(sms_any);
+    //  tsms_tpdu_message_t* sms_any = tsms_tpdu_message_deserialize_mt(buffer->data, buffer->size);
+    //  if(sms_any && sms_any->mti == tsms_tpdu_mti_deliver_mt){
+    //      //tsms_tpdu_deliver_t* sms_deliver = TSMS_TPDU_DELIVER(sms_any); ==> Yes we can !
+    //      char* ascii;
+    //      if((ascii = tsms_tpdu_message_get_payload(sms_any))){
+    //          TSK_DEBUG_INFO("Message=%s", ascii);
+    //          TSK_FREE(ascii);
+    //      }
+    //  }
+    //  TSK_OBJECT_SAFE_FREE(sms_any);
     //}
 
     deliver = (tsms_tpdu_deliver_t*)tsms_tpdu_message_deserialize_mt(buffer->data, buffer->size);
@@ -212,15 +212,15 @@ void test_sreport()
 
 //tsms_tpdu_message_t* sms_any = tsms_tpdu_message_deserialize_mt(buffer->data, buffer->size);
 //if(sms_any && sms_any->mti == tsms_tpdu_mti_status_report_mt){
-//	tsms_tpdu_status_report_t* sms_status_report = TSMS_TPDU_STATUS_REPORT(sms_any);
-//	switch(sms_status_report->st){
-//		case tsms_tpdu_status_received:
-//		case tsms_tpdu_status_forwarded:
-//		case tsms_tpdu_status_replaced:
-//		// ...
-//		default:
-//			break;
-//	}
+//  tsms_tpdu_status_report_t* sms_status_report = TSMS_TPDU_STATUS_REPORT(sms_any);
+//  switch(sms_status_report->st){
+//      case tsms_tpdu_status_received:
+//      case tsms_tpdu_status_forwarded:
+//      case tsms_tpdu_status_replaced:
+//      // ...
+//      default:
+//          break;
+//  }
 //}
 //TSK_OBJECT_SAFE_FREE(sms_any);
 

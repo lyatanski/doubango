@@ -35,10 +35,10 @@
 
 #include <string.h>
 
-#define THTTP_CHALLENGE_IS_DIGEST(self)	((self) ? tsk_striequals((self)->scheme, "Digest") : tsk_false)
-#define THTTP_CHALLENGE_IS_BASIC(self)	((self) ? tsk_striequals((self)->scheme, "Basic") : tsk_false)
-#define THTTP_CHALLENGE_IS_AKAv1(self)	((self) ? tsk_striequals((self)->algorithm, "AKAv1-MD5") : tsk_false)
-#define THTTP_CHALLENGE_IS_AKAv2(self)	((self) ? tsk_striequals((self)->algorithm, "AKAv2-MD5") : tsk_false)
+#define THTTP_CHALLENGE_IS_DIGEST(self) ((self) ? tsk_striequals((self)->scheme, "Digest") : tsk_false)
+#define THTTP_CHALLENGE_IS_BASIC(self)  ((self) ? tsk_striequals((self)->scheme, "Basic") : tsk_false)
+#define THTTP_CHALLENGE_IS_AKAv1(self)  ((self) ? tsk_striequals((self)->algorithm, "AKAv1-MD5") : tsk_false)
+#define THTTP_CHALLENGE_IS_AKAv2(self)  ((self) ? tsk_striequals((self)->algorithm, "AKAv2-MD5") : tsk_false)
 
 static int _thttp_challenge_reset_cnonce(thttp_challenge_t *self);
 
@@ -211,19 +211,19 @@ thttp_header_t *thttp_challenge_create_header_authorization_2(thttp_challenge_t 
     }
 
 
-#define THTTP_AUTH_COPY_VALUES(hdr)															\
-hdr->username = tsk_strdup(username);												\
-hdr->scheme = tsk_strdup(self->scheme);												\
-hdr->realm = tsk_strdup(self->realm);												\
-hdr->nonce = tsk_strdup(self->nonce);												\
-hdr->qop = tsk_strdup(self->qop);													\
-hdr->opaque = tsk_strdup(self->opaque);												\
-hdr->algorithm = self->algorithm ? tsk_strdup(self->algorithm) : tsk_strdup("MD5");	\
-hdr->cnonce = self->nc? tsk_strdup(self->cnonce) : 0;								\
-hdr->uri = tsk_strdup(uristring);													\
-hdr->nc = self->nc? tsk_strdup(nc) : 0;												\
-hdr->response = tsk_strndup(response, response_size);								\
- 
+#define THTTP_AUTH_COPY_VALUES(hdr)                                                         \
+hdr->username = tsk_strdup(username);                                               \
+hdr->scheme = tsk_strdup(self->scheme);                                             \
+hdr->realm = tsk_strdup(self->realm);                                               \
+hdr->nonce = tsk_strdup(self->nonce);                                               \
+hdr->qop = tsk_strdup(self->qop);                                                   \
+hdr->opaque = tsk_strdup(self->opaque);                                             \
+hdr->algorithm = self->algorithm ? tsk_strdup(self->algorithm) : tsk_strdup("MD5"); \
+hdr->cnonce = self->nc? tsk_strdup(self->cnonce) : 0;                               \
+hdr->uri = tsk_strdup(uristring);                                                   \
+hdr->nc = self->nc? tsk_strdup(nc) : 0;                                             \
+hdr->response = tsk_strndup(response, response_size);                               \
+
     if (self->isproxy) {
         thttp_header_Proxy_Authorization_t *proxy_auth = thttp_header_authorization_create(); // Very bad way to create Proxy_auth header.
         THTTP_HEADER(proxy_auth)->type = thttp_htype_Proxy_Authorization;
@@ -268,7 +268,7 @@ bail:
 
 
 //========================================================
-//	HTTP challenge object definition
+//  HTTP challenge object definition
 //
 
 /**@ingroup thttp_challenge_group

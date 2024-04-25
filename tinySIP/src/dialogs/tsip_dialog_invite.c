@@ -54,9 +54,9 @@
 #include "tsk_debug.h"
 
 #if METROPOLIS
-#	define TSIP_INFO_FASTUPDATE_OUT_INTERVAL_MIN		0 // millis
+#   define TSIP_INFO_FASTUPDATE_OUT_INTERVAL_MIN        0 // millis
 #else
-#	define TSIP_INFO_FASTUPDATE_OUT_INTERVAL_MIN		1500 // millis
+#   define TSIP_INFO_FASTUPDATE_OUT_INTERVAL_MIN        1500 // millis
 #endif
 
 #if HAVE_LIBXML2
@@ -280,10 +280,10 @@ int tsip_dialog_invite_event_callback(const tsip_dialog_invite_t *self, tsip_dia
 
 /**Timer manager callback.
  *
- * @param self	The owner of the signaled timer.
- * @param	timer_id		The identifier of the signaled timer.
+ * @param self  The owner of the signaled timer.
+ * @param   timer_id        The identifier of the signaled timer.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_invite_timer_callback(const tsip_dialog_invite_t* self, tsk_timer_id_t timer_id)
 {
@@ -538,7 +538,7 @@ bail:
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 int x0000_Connected_2_Connected_X_oDTMF(va_list *app)
@@ -642,18 +642,18 @@ int x0000_Connected_2_Connected_X_iINVITEorUPDATE(va_list *app)
     new_media_type = self->msession_mgr ? self->msession_mgr->type : tmedia_none;
 
     /** response to bodiless iINVITE always contains SDP as explained below
-    	RFC3261 - 14.1 UAC Behavior
-    	   The same offer-answer model that applies to session descriptions in
-    	   INVITEs (Section 13.2.1) applies to re-INVITEs.  As a result, a UAC
-    	   that wants to add a media stream, for example, will create a new
-    	   offer that contains this media stream, and send that in an INVITE
-    	   request to its peer.  It is important to note that the full
-    	   description of the session, not just the change, is sent.  This
-    	   supports stateless session processing in various elements, and
-    	   supports failover and recovery capabilities.  Of course, a UAC MAY
-    	   send a re-INVITE with no session description, in which case the first
-    	   reliable non-failure response to the re-INVITE will contain the offer
-    	   (in this specification, that is a 2xx response).
+        RFC3261 - 14.1 UAC Behavior
+           The same offer-answer model that applies to session descriptions in
+           INVITEs (Section 13.2.1) applies to re-INVITEs.  As a result, a UAC
+           that wants to add a media stream, for example, will create a new
+           offer that contains this media stream, and send that in an INVITE
+           request to its peer.  It is important to note that the full
+           description of the session, not just the change, is sent.  This
+           supports stateless session processing in various elements, and
+           supports failover and recovery capabilities.  Of course, a UAC MAY
+           send a re-INVITE with no session description, in which case the first
+           reliable non-failure response to the re-INVITE will contain the offer
+           (in this specification, that is a 2xx response).
     */
     bodiless_invite = !TSIP_MESSAGE_HAS_CONTENT(rINVITEorUPDATE) && TSIP_REQUEST_IS_INVITE(rINVITEorUPDATE);
 
@@ -751,7 +751,7 @@ int x0000_Any_2_Any_X_iOPTIONS(va_list *app)
 }
 
 
-/*	Any --> (i401/407 INVITE or UPDATE) --> Any */
+/*  Any --> (i401/407 INVITE or UPDATE) --> Any */
 int x0000_Any_2_Any_X_i401_407_Challenge(va_list *app)
 {
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
@@ -778,7 +778,7 @@ int x0000_Any_2_Any_X_i401_407_Challenge(va_list *app)
     }
 }
 
-/*	Any --> (i2xx INVITE or i2xx UPDATE) --> Any */
+/*  Any --> (i2xx INVITE or i2xx UPDATE) --> Any */
 int x0000_Any_2_Any_X_i2xxINVITEorUPDATE(va_list *app)
 {
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
@@ -884,26 +884,26 @@ int x0000_Any_2_Any_X_i1xx(va_list *app)
     }
 
     /* RFC 3262 - 4 UAC Behavior
-    	If a provisional response is received for an initial request, and
-    	that response contains a Require header field containing the option
-    	tag 100rel, the response is to be sent reliably.  If the response is
-    	a 100 (Trying) (as opposed to 101 to 199), this option tag MUST be
-    	ignored, and the procedures below MUST NOT be used.
+        If a provisional response is received for an initial request, and
+        that response contains a Require header field containing the option
+        tag 100rel, the response is to be sent reliably.  If the response is
+        a 100 (Trying) (as opposed to 101 to 199), this option tag MUST be
+        ignored, and the procedures below MUST NOT be used.
 
-    	Assuming the response is to be transmitted reliably, the UAC MUST
-    	create a new request with method PRACK.  This request is sent within
-    	the dialog associated with the provisional response (indeed, the
-    	provisional response may have created the dialog).  PRACK requests
-    	MAY contain bodies, which are interpreted according to their type and
-    	disposition.
+        Assuming the response is to be transmitted reliably, the UAC MUST
+        create a new request with method PRACK.  This request is sent within
+        the dialog associated with the provisional response (indeed, the
+        provisional response may have created the dialog).  PRACK requests
+        MAY contain bodies, which are interpreted according to their type and
+        disposition.
 
-    	Note that the PRACK is like any other non-INVITE request within a
-    	dialog.  In particular, a UAC SHOULD NOT retransmit the PRACK request
-    	when it receives a retransmission of the provisional response being
-    	acknowledged, although doing so does not create a protocol error.
+        Note that the PRACK is like any other non-INVITE request within a
+        dialog.  In particular, a UAC SHOULD NOT retransmit the PRACK request
+        when it receives a retransmission of the provisional response being
+        acknowledged, although doing so does not create a protocol error.
 
-    	Additional information: We should only process the SDP from reliable responses (require:100rel)
-    	but there was many problem with some clients sending SDP with this tag: tiscali, DTAG, samsung, ...
+        Additional information: We should only process the SDP from reliable responses (require:100rel)
+        but there was many problem with some clients sending SDP with this tag: tiscali, DTAG, samsung, ...
     */
     if((TSIP_RESPONSE_CODE(r1xx) >= 101 && TSIP_RESPONSE_CODE(r1xx) <=199)) {
         /* Process Remote offer */
@@ -1061,7 +1061,7 @@ int x9999_Any_2_Any_X_Error(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 int tsip_dialog_invite_msession_configure(tsip_dialog_invite_t *self)
@@ -1234,9 +1234,9 @@ int send_INVITEorUPDATE(tsip_dialog_invite_t *self, tsk_bool_t is_INVITE, tsk_bo
         /* Always added headers */
         // Explicit Communication Transfer (3GPP TS 24.629)
         /*tsip_message_add_headers(request,
-        			TSIP_HEADER_SUPPORTED_VA_ARGS("norefersub,replaces"),
-        			tsk_null
-        		);*/
+                    TSIP_HEADER_SUPPORTED_VA_ARGS("norefersub,replaces"),
+                    tsk_null
+                );*/
 
         /* send the request */
         ret = tsip_dialog_request_send(TSIP_DIALOG(self), request);
@@ -1268,13 +1268,13 @@ int send_PRACK(tsip_dialog_invite_t *self, const tsip_response_t* r1xx)
     }
 
 
-    /*	RFC 3262 - 4 UAC Behavior
+    /*  RFC 3262 - 4 UAC Behavior
     The UAC MUST maintain a sequence number that indicates the most recently
     received in-order reliable provisional response for the initial request.
     */
     if((RSeq = (const tsip_header_RSeq_t*)tsip_message_get_header(r1xx, tsip_htype_RSeq))) {
 
-        /*	RFC 3262 - 4 UAC Behavior
+        /*  RFC 3262 - 4 UAC Behavior
         If the UAC receives another reliable provisional
         response to the same request, and its RSeq value is not one higher
         than the value of the sequence number, that response MUST NOT be
@@ -1299,18 +1299,18 @@ int send_PRACK(tsip_dialog_invite_t *self, const tsip_response_t* r1xx)
     }
 
     /* RFC 3262 - 7.2 RAck
-    	The first number is the value from the RSeq header in the provisional
-    	response that is being acknowledged.  The next number, and the
-    	method, are copied from the CSeq in the response that is being
-    	acknowledged.  The method name in the RAck header is case sensitive.
+        The first number is the value from the RSeq header in the provisional
+        response that is being acknowledged.  The next number, and the
+        method, are copied from the CSeq in the response that is being
+        acknowledged.  The method name in the RAck header is case sensitive.
     */
     TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_RACK_VA_ARGS(self->rseq, r1xx->CSeq->seq, r1xx->CSeq->method));
     //TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_DUMMY_VA_ARGS("Test", "value"));
 
-    /*	Initial INVITE was a bodiless request and 100rel is supported (I'm Alice)
-    	1. Alice sends an initial INVITE without offer
-    	2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
-    	3. Alice's answer is sent in the PRACK response
+    /*  Initial INVITE was a bodiless request and 100rel is supported (I'm Alice)
+        1. Alice sends an initial INVITE without offer
+        2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
+        3. Alice's answer is sent in the PRACK response
     */
     if(self->is_client && (self->last_oInvite && !TSIP_MESSAGE_HAS_CONTENT(self->last_oInvite))) {
         const tsdp_message_t* sdp_lo;
@@ -1338,35 +1338,35 @@ int send_CANCEL(tsip_dialog_invite_t *self)
         goto bail;
     }
     /* RFC 3261 - 9 Canceling a Request
-    	If the request being cancelled contains a Route header field, the
-    	CANCEL request MUST include that Route header field's values.
-    	==> up to tsip_dialog_request_new()
+        If the request being cancelled contains a Route header field, the
+        CANCEL request MUST include that Route header field's values.
+        ==> up to tsip_dialog_request_new()
     */
 
-    /*	RFC 3261 - 9 Canceling a Request
-    	Once the CANCEL is constructed, the client SHOULD check whether it
-    	has received any response (provisional or final) for the request
-    	being cancelled (herein referred to as the "original request").
+    /*  RFC 3261 - 9 Canceling a Request
+        Once the CANCEL is constructed, the client SHOULD check whether it
+        has received any response (provisional or final) for the request
+        being cancelled (herein referred to as the "original request").
 
-    	If no provisional response has been received, the CANCEL request MUST
-    	NOT be sent; rather, the client MUST wait for the arrival of a
-    	provisional response before sending the request.
-    	==> up to the caller to check that we are not in the initial state and the FSM
-    	is in Trying state.
+        If no provisional response has been received, the CANCEL request MUST
+        NOT be sent; rather, the client MUST wait for the arrival of a
+        provisional response before sending the request.
+        ==> up to the caller to check that we are not in the initial state and the FSM
+        is in Trying state.
     */
 
-    /*	RFC 3261 - 9 Canceling a Request
-    	The following procedures are used to construct a CANCEL request.  The
-    	Request-URI, Call-ID, To, the numeric part of CSeq, and From header
-    	fields in the CANCEL request MUST be identical to those in the
-    	request being cancelled, including tags.  A CANCEL constructed by a
-    	client MUST have only a single Via header field value matching the
-    	top Via value in the request being cancelled.  Using the same values
-    	for these header fields allows the CANCEL to be matched with the
-    	request it cancels (Section 9.2 indicates how such matching occurs).
-    	However, the method part of the CSeq header field MUST have a value
-    	of CANCEL.  This allows it to be identified and processed as a
-    	transaction in its own right (See Section 17)
+    /*  RFC 3261 - 9 Canceling a Request
+        The following procedures are used to construct a CANCEL request.  The
+        Request-URI, Call-ID, To, the numeric part of CSeq, and From header
+        fields in the CANCEL request MUST be identical to those in the
+        request being cancelled, including tags.  A CANCEL constructed by a
+        client MUST have only a single Via header field value matching the
+        top Via value in the request being cancelled.  Using the same values
+        for these header fields allows the CANCEL to be matched with the
+        request it cancels (Section 9.2 indicates how such matching occurs).
+        However, the method part of the CSeq header field MUST have a value
+        of CANCEL.  This allows it to be identified and processed as a
+        transaction in its own right (See Section 17)
     */
     if(self->last_oInvite) {
         /* to avoid concurrent access, take a reference to the request */
@@ -1464,19 +1464,19 @@ int send_BYE(tsip_dialog_invite_t *self)
         goto bail;
     }
     /* RFC 3261 - 15.1.1 UAC Behavior
-    	A BYE request is constructed as would any other request within a
-    	dialog, as described in Section 12.
+        A BYE request is constructed as would any other request within a
+        dialog, as described in Section 12.
 
-    	Once the BYE is constructed, the UAC core creates a new non-INVITE
-    	client transaction, and passes it the BYE request.  The UAC MUST
-    	consider the session terminated (and therefore stop sending or
-    	listening for media) as soon as the BYE request is passed to the
-    	client transaction.  If the response for the BYE is a 481
-    	(Call/Transaction Does Not Exist) or a 408 (Request Timeout) or no
+        Once the BYE is constructed, the UAC core creates a new non-INVITE
+        client transaction, and passes it the BYE request.  The UAC MUST
+        consider the session terminated (and therefore stop sending or
+        listening for media) as soon as the BYE request is passed to the
+        client transaction.  If the response for the BYE is a 481
+        (Call/Transaction Does Not Exist) or a 408 (Request Timeout) or no
 
-    	response at all is received for the BYE (that is, a timeout is
-    	returned by the client transaction), the UAC MUST consider the
-    	session and the dialog terminated.
+        response at all is received for the BYE (that is, a timeout is
+        returned by the client transaction), the UAC MUST consider the
+        session and the dialog terminated.
     */
     if((bye = tsip_dialog_request_new(TSIP_DIALOG(self), "BYE"))) {
         if(TSIP_DIALOG(self)->curr_action) {
@@ -1561,7 +1561,7 @@ int send_ACK(tsip_dialog_invite_t *self, const tsip_response_t* r2xxINVITE)
             }
         }
 
-        /*	RFC 3261 - 13.2.2.4 2xx Responses
+        /*  RFC 3261 - 13.2.2.4 2xx Responses
            The UAC core MUST generate an ACK request for each 2xx received from
            the transaction layer.  The header fields of the ACK are constructed
            in the same way as for any request sent within a dialog (see Section
@@ -1582,7 +1582,7 @@ int send_ACK(tsip_dialog_invite_t *self, const tsip_response_t* r2xxINVITE)
         */
         request->CSeq->seq = r2xxINVITE->CSeq->seq; /* As the 2xx has the same CSeq than the INVITE */
 
-        /*	RFC 3261 - 13.2.2.4 2xx Responses
+        /*  RFC 3261 - 13.2.2.4 2xx Responses
            Once the ACK has been constructed, the procedures of [4] are used to
            determine the destination address, port and transport.  However, the
            request is passed to the transport layer directly for transmission,
@@ -1748,7 +1748,7 @@ int tsip_dialog_invite_OnTerminated(tsip_dialog_invite_t *self)
     TSK_DEBUG_INFO("=== INVITE Dialog terminated ===");
 
     /* Cancel all transactions associated to this dialog (will also be done when the dialog is destroyed )
-    	worth nothing to do it here in order to cancel in-dialog request (such as INFO, REFER...)
+        worth nothing to do it here in order to cancel in-dialog request (such as INFO, REFER...)
     */
     tsip_transac_layer_cancel_by_dialog(TSIP_DIALOG_GET_STACK(self)->layer_transac, TSIP_DIALOG(self));
 
@@ -1850,7 +1850,7 @@ static int tsip_dialog_invite_msession_rfc5168_cb(const void* usrdata, const str
 
 
 //========================================================
-//	SIP dialog INVITE object definition
+//  SIP dialog INVITE object definition
 //
 static tsk_object_t* tsip_dialog_invite_ctor(tsk_object_t * self, va_list * app)
 {

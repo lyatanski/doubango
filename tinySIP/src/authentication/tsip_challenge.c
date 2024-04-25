@@ -40,13 +40,13 @@
 
 #include <string.h>
 
-#define TSIP_CHALLENGE_IS_DIGEST(self)	((self) ? tsk_striequals((self)->scheme, "Digest") : 0)
-#define TSIP_CHALLENGE_IS_AKAv1(self)	((self) ? tsk_striequals((self)->algorithm, "AKAv1-MD5") : 0)
-#define TSIP_CHALLENGE_IS_AKAv2(self)	((self) ? tsk_striequals((self)->algorithm, "AKAv2-MD5") : 0)
+#define TSIP_CHALLENGE_IS_DIGEST(self)  ((self) ? tsk_striequals((self)->scheme, "Digest") : 0)
+#define TSIP_CHALLENGE_IS_AKAv1(self)   ((self) ? tsk_striequals((self)->algorithm, "AKAv1-MD5") : 0)
+#define TSIP_CHALLENGE_IS_AKAv2(self)   ((self) ? tsk_striequals((self)->algorithm, "AKAv2-MD5") : 0)
 
-#define TSIP_CHALLENGE_STACK(self)		(TSIP_STACK((self)->stack))
-#define TSIP_CHALLENGE_USERNAME(self)	(self)->username
-#define TSIP_CHALLENGE_PASSWORD(self)	TSIP_CHALLENGE_STACK(self)->identity.password
+#define TSIP_CHALLENGE_STACK(self)      (TSIP_STACK((self)->stack))
+#define TSIP_CHALLENGE_USERNAME(self)   (self)->username
+#define TSIP_CHALLENGE_PASSWORD(self)   TSIP_CHALLENGE_STACK(self)->identity.password
 
 
 /** Creates new challenge object. */
@@ -150,13 +150,17 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
 
 
     char str[33];
-    tsk_str_from_hex(K, AKA_K_SIZE, str); str[32] = 0;
+    tsk_str_from_hex(K, AKA_K_SIZE, str);
+    str[32] = 0;
     TSK_DEBUG_INFO("---    K=%s", str);
-    tsk_str_from_hex(RAND, AKA_RAND_SIZE, str); str[32] = 0;
+    tsk_str_from_hex(RAND, AKA_RAND_SIZE, str);
+    str[32] = 0;
     TSK_DEBUG_INFO("--- RAND=%s", str);
-    tsk_str_from_hex(OPC, AKA_OPC_SIZE, str); str[32] = 0;
+    tsk_str_from_hex(OPC, AKA_OPC_SIZE, str);
+    str[32] = 0;
     TSK_DEBUG_INFO("---  OPC=%s", str);
-    tsk_str_from_hex(AUTN, AKA_AUTN_SIZE, str); str[32] = 0;
+    tsk_str_from_hex(AUTN, AKA_AUTN_SIZE, str);
+    str[32] = 0;
     TSK_DEBUG_INFO("--- AUTN=%s", str);
 
     /* Checks that we hold the same AMF */
@@ -188,10 +192,10 @@ int tsip_challenge_get_akares(tsip_challenge_t *self, char const *password, char
     }
 
     /* RFC 4169 subclause 3
-    	The HTTP Digest password is derived from base64 encoded PRF(RES || IK||CK, "http-digest-akav2-password")
-    	or
-    	PRF(XRES||IK||CK, "http-digest-akav2-password") instead of (RES) or (XRES) respectively.
-    	Where PRF ==> HMAC_MD5 function.
+        The HTTP Digest password is derived from base64 encoded PRF(RES || IK||CK, "http-digest-akav2-password")
+        or
+        PRF(XRES||IK||CK, "http-digest-akav2-password") instead of (RES) or (XRES) respectively.
+        Where PRF ==> HMAC_MD5 function.
     */
     if(TSIP_CHALLENGE_IS_AKAv2(self)) {
         uint8_t res_ik_ck[AKA_RES_SIZE + AKA_IK_SIZE + AKA_CK_SIZE];
@@ -242,9 +246,9 @@ int tsip_challenge_get_response(tsip_challenge_t *self, const char* method, cons
         nonce_count_t nc;
 
         /* ===
-        	Calculate HA1 = MD5(A1) = M5(username:realm:secret)
-        	In case of AKAv1-MD5 and AKAv2-MD5 the secret must be computed as per RFC 3310 + 3GPP TS 206/7/8/9.
-        	The resulting AKA RES parameter is treated as a "password"/"secret" when calculating the response directive of RFC 2617.
+            Calculate HA1 = MD5(A1) = M5(username:realm:secret)
+            In case of AKAv1-MD5 and AKAv2-MD5 the secret must be computed as per RFC 3310 + 3GPP TS 206/7/8/9.
+            The resulting AKA RES parameter is treated as a "password"/"secret" when calculating the response directive of RFC 2617.
         */
         if(TSIP_CHALLENGE_IS_AKAv1(self) || TSIP_CHALLENGE_IS_AKAv2(self)) {
             char* akaresult = tsk_null;
@@ -266,7 +270,7 @@ int tsip_challenge_get_response(tsip_challenge_t *self, const char* method, cons
         }
 
         /* ===
-        	HA2
+            HA2
         */
         thttp_auth_digest_HA2(method,
                               uristring,
@@ -356,19 +360,19 @@ tsip_header_t *tsip_challenge_create_header_authorization(tsip_challenge_t *self
     }
 
 
-#define TSIP_AUTH_COPY_VALUES(hdr)															\
-		hdr->username = tsk_strdup(TSIP_CHALLENGE_USERNAME(self));							\
-		hdr->scheme = tsk_strdup(self->scheme);												\
-		hdr->realm = tsk_strdup(self->realm);												\
-		hdr->nonce = tsk_strdup(self->nonce);												\
-		hdr->qop = tsk_strdup(self->qop);													\
-		hdr->opaque = tsk_strdup(self->opaque);												\
-		hdr->algorithm = self->algorithm ? tsk_strdup(self->algorithm) : tsk_strdup("MD5");	\
-		hdr->cnonce = self->nc? tsk_strdup(self->cnonce) : tsk_null;						\
-		hdr->uri = tsk_strdup(uristring);													\
-		hdr->nc = self->nc? tsk_strdup(nc) : 0;												\
-		hdr->response = tsk_strdup(response);												\
- 
+#define TSIP_AUTH_COPY_VALUES(hdr)                                                          \
+        hdr->username = tsk_strdup(TSIP_CHALLENGE_USERNAME(self));                          \
+        hdr->scheme = tsk_strdup(self->scheme);                                             \
+        hdr->realm = tsk_strdup(self->realm);                                               \
+        hdr->nonce = tsk_strdup(self->nonce);                                               \
+        hdr->qop = tsk_strdup(self->qop);                                                   \
+        hdr->opaque = tsk_strdup(self->opaque);                                             \
+        hdr->algorithm = self->algorithm ? tsk_strdup(self->algorithm) : tsk_strdup("MD5"); \
+        hdr->cnonce = self->nc? tsk_strdup(self->cnonce) : tsk_null;                        \
+        hdr->uri = tsk_strdup(uristring);                                                   \
+        hdr->nc = self->nc? tsk_strdup(nc) : 0;                                             \
+        hdr->response = tsk_strdup(response);                                               \
+
     if(self->isproxy) {
         tsip_header_Proxy_Authorization_t *proxy_auth = tsip_header_Proxy_Authorization_create();
         TSIP_AUTH_COPY_VALUES(proxy_auth);
@@ -429,7 +433,7 @@ tsip_header_t *tsip_challenge_create_empty_header_authorization(const char* user
 
 
 //========================================================
-//	SIP challenge object definition
+//  SIP challenge object definition
 //
 
 /**@ingroup tsip_challenge_group

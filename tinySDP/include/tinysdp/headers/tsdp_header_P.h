@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_P_VA_ARGS(value)		tsdp_header_P_def_t, (const char*)value
+#define TSDP_HEADER_P_VA_ARGS(value)        tsdp_header_P_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "p=" header (Phone Number).
+/// @brief  SDP "p=" header (Phone Number).
 /// The "p=" line specifies contact information for the person
 ///   responsible for the conference.  This is not necessarily the same
 ///   person that created the conference announcement.

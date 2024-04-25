@@ -38,7 +38,7 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_EVENT(self)		((thttp_event_t*)(self))
+#define THTTP_EVENT(self)       ((thttp_event_t*)(self))
 
 typedef enum thttp_event_type_e {
     thttp_event_dialog_started,

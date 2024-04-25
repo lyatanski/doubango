@@ -51,15 +51,15 @@ thttp_action_t* thttp_action_create(thttp_action_type_t type, const char* urlstr
 *
 * @code
 thttp_action_perform(session, "http://www.google.com", "GET"
-		// request-level parameters
-		THTTP_ACTION_SET_PARAM("timeout", "6000"),
+        // request-level parameters
+        THTTP_ACTION_SET_PARAM("timeout", "6000"),
 
-		// request-level headers
-		THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-		THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
+        // request-level headers
+        THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+        THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
 
-		// close parameters
-		THTTP_ACTION_SET_NULL());
+        // close parameters
+        THTTP_ACTION_SET_NULL());
 * @endcode
 * @sa @ref thttp_action_CONNECT<br>@ref thttp_action_DELETE<br>@ref thttp_action_GET<br>@ref thttp_action_HEAD<br>@ref thttp_action_OPTIONS<br>
 * @ref thttp_action_PATCH<br>@ref thttp_action_POST<br>@ref thttp_action_PUT<br>@ref thttp_action_TRACE
@@ -99,7 +99,7 @@ int thttp_action_perform(thttp_session_handle_t *session, const char* urlstring,
 
 
 //=================================================================================================
-//	HTTP action object definition
+//  HTTP action object definition
 //
 static tsk_object_t* thttp_action_ctor(tsk_object_t * self, va_list * app)
 {

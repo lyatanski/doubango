@@ -81,7 +81,7 @@ txcap_stack_param_type_t;
 *
 * @code
 int ret = txcap_stack_set(stack,
-		// stack-level options
+        // stack-level options
         TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_TIMEOUT, "6000"),
         TXCAP_STACK_SET_NULL());
 * @endcode
@@ -196,19 +196,19 @@ int ret = txcap_stack_set(stack,
 * Ends the stack parameters. Mandatory and should be the last one.
 */
 
-#define TXCAP_STACK_SET_OPTION(ID_ENUM, VALUE_STR)											xcapp_option,  (txcap_stack_option_t)ID_ENUM, (const char*)VALUE_STR
-#define TXCAP_STACK_SET_TIMEOUT(TIMEOUT_STR)												TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_TIMEOUT, TIMEOUT_STR)
-#define TXCAP_STACK_SET_ROOT(XCAP_ROOT_STR)													TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_ROOT, XCAP_ROOT_STR)
-#define TXCAP_STACK_SET_PASSWORD(PASSWORD_STR)												TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_PASSWORD, PASSWORD_STR)
-#define TXCAP_STACK_SET_XUI(XUI_STR)														TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_XUI, XUI_STR)
-#define TXCAP_STACK_SET_LOCAL_IP(IP_STR)													TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_LOCAL_IP, IP_STR)
-#define TXCAP_STACK_SET_LOCAL_PORT(PORT_STR)												TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_LOCAL_PORT, PORT_STR)
-#define TXCAP_STACK_SET_HEADER(NAME_STR, VALUE_STR)											xcapp_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define TXCAP_STACK_UNSET_HEADER(NAME_STR)													TXCAP_STACK_SET_HEADER(NAME_STR, (const char*)-1)
-#define TXCAP_STACK_SET_USERDATA(CTX_PTR)													xcapp_userdata, (const void*)CTX_PTR
-#define TXCAP_STACK_SET_AUID(ID_STR, MIME_TYPE_STR, NS_STR, DOC_NAME_STR, IS_GLOBAL_BOOL)	xcapp_auid, (const char*)ID_STR, (const char*)MIME_TYPE_STR, (const char*)NS_STR, (const char*)DOC_NAME_STR, (tsk_bool_t)IS_GLOBAL_BOOL
+#define TXCAP_STACK_SET_OPTION(ID_ENUM, VALUE_STR)                                          xcapp_option,  (txcap_stack_option_t)ID_ENUM, (const char*)VALUE_STR
+#define TXCAP_STACK_SET_TIMEOUT(TIMEOUT_STR)                                                TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_TIMEOUT, TIMEOUT_STR)
+#define TXCAP_STACK_SET_ROOT(XCAP_ROOT_STR)                                                 TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_ROOT, XCAP_ROOT_STR)
+#define TXCAP_STACK_SET_PASSWORD(PASSWORD_STR)                                              TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_PASSWORD, PASSWORD_STR)
+#define TXCAP_STACK_SET_XUI(XUI_STR)                                                        TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_XUI, XUI_STR)
+#define TXCAP_STACK_SET_LOCAL_IP(IP_STR)                                                    TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_LOCAL_IP, IP_STR)
+#define TXCAP_STACK_SET_LOCAL_PORT(PORT_STR)                                                TXCAP_STACK_SET_OPTION(TXCAP_STACK_OPTION_LOCAL_PORT, PORT_STR)
+#define TXCAP_STACK_SET_HEADER(NAME_STR, VALUE_STR)                                         xcapp_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define TXCAP_STACK_UNSET_HEADER(NAME_STR)                                                  TXCAP_STACK_SET_HEADER(NAME_STR, (const char*)-1)
+#define TXCAP_STACK_SET_USERDATA(CTX_PTR)                                                   xcapp_userdata, (const void*)CTX_PTR
+#define TXCAP_STACK_SET_AUID(ID_STR, MIME_TYPE_STR, NS_STR, DOC_NAME_STR, IS_GLOBAL_BOOL)   xcapp_auid, (const char*)ID_STR, (const char*)MIME_TYPE_STR, (const char*)NS_STR, (const char*)DOC_NAME_STR, (tsk_bool_t)IS_GLOBAL_BOOL
 
-#define TXCAP_STACK_SET_NULL()																xcapp_null
+#define TXCAP_STACK_SET_NULL()                                                              xcapp_null
 
 
 typedef struct txcap_stack_s {

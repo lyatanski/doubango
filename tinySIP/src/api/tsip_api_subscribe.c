@@ -38,7 +38,7 @@
 #include "tsk_runnable.h"
 #include "tsk_debug.h"
 
-#define TSIP_SUBSCRIBE_EVENT_CREATE( type)		tsk_object_new(tsip_subscribe_event_def_t, type)
+#define TSIP_SUBSCRIBE_EVENT_CREATE( type)      tsk_object_new(tsip_subscribe_event_def_t, type)
 
 extern tsip_action_t* _tsip_action_create(tsip_action_type_t type, va_list* app);
 
@@ -125,7 +125,7 @@ int tsip_api_subscribe_send_unsubscribe(const tsip_ssession_handle_t *ss, ...)
 
 
 //========================================================
-//	SIP SUBSCRIBE event object definition
+//  SIP SUBSCRIBE event object definition
 //
 static tsk_object_t* tsip_subscribe_event_ctor(tsk_object_t * self, va_list * app)
 {

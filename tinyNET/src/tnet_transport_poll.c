@@ -46,7 +46,7 @@
 #   if defined(FD_SETSIZE)
 #       define TNET_MAX_FDS     FD_SETSIZE
 #   else
-#       define TNET_MAX_FDS		(0xFFFF - 1)
+#       define TNET_MAX_FDS     (0xFFFF - 1)
 #   endif
 #endif
 
@@ -363,14 +363,14 @@ int addSocket(tnet_fd_t fd, tnet_socket_type_t type, tnet_transport_t *transport
 /*
 static void setConnected(tnet_fd_t fd, transport_context_t *context, int connected)
 {
-	tsk_size_t i;
+    tsk_size_t i;
 
-	for(i=0; i<context->count; i++)
-	{
-		if(context->sockets[i]->fd == fd){
-			context->sockets[i]->connected = connected;
-		}
-	}
+    for(i=0; i<context->count; i++)
+    {
+        if(context->sockets[i]->fd == fd){
+            context->sockets[i]->connected = connected;
+        }
+    }
 }
 */
 
@@ -878,7 +878,7 @@ void* tnet_transport_context_create()
 
 
 //=================================================================================================
-//	Transport context object definition
+//  Transport context object definition
 //
 static tsk_object_t* transport_context_ctor(tsk_object_t * self, va_list * app)
 {

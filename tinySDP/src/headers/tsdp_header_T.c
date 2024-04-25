@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 72 "./ragel/tsdp_parser_header_T.rl" */
@@ -282,7 +282,7 @@ _match:
                 TSK_PARSER_SET_INTEGER_EX(hdr_T->stop, uint64_t, atoi64);
             }
             break;
-            /* #line 281 "./src/headers/tsdp_header_T.c" */
+                /* #line 281 "./src/headers/tsdp_header_T.c" */
             }
         }
 
@@ -306,7 +306,7 @@ _test_eof: {
                     TSK_PARSER_SET_INTEGER_EX(hdr_T->stop, uint64_t, atoi64);
                 }
                 break;
-                /* #line 303 "./src/headers/tsdp_header_T.c" */
+                    /* #line 303 "./src/headers/tsdp_header_T.c" */
                 }
             }
         }
@@ -337,7 +337,7 @@ _out: {
 
 
 //========================================================
-//	T header object definition
+//  T header object definition
 //
 
 static tsk_object_t* tsdp_header_T_ctor(tsk_object_t *self, va_list * app)

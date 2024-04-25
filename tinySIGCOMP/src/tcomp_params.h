@@ -48,11 +48,11 @@ typedef struct tcomp_params_s {
     uint8_t dmsCode; /**< 'Decompression Memory' Size binary code. You MUST use @ref tcomp_params_setDmsCode to set this value. */
     uint8_t smsCode; /**< 'State Memory Size' binary code. You MUST use @ref tcomp_params_setSmsCode to set this value.  */
 
-    uint8_t cpbValue;	/**< 'Cycles Per Bit' value. You MUST use @ref tcomp_params_setCpbValue to set this value. */
-    uint32_t dmsValue;	/**< 'Decompression Memory Size' value. You MUST use @ref tcomp_params_setDmsValue to set this value. */
-    uint32_t smsValue;	/**< 'State Memory Size' value You MUST use @ref tcomp_params_setSmsValue to set this value. */
+    uint8_t cpbValue;   /**< 'Cycles Per Bit' value. You MUST use @ref tcomp_params_setCpbValue to set this value. */
+    uint32_t dmsValue;  /**< 'Decompression Memory Size' value. You MUST use @ref tcomp_params_setDmsValue to set this value. */
+    uint32_t smsValue;  /**< 'State Memory Size' value You MUST use @ref tcomp_params_setSmsValue to set this value. */
 
-    uint8_t SigComp_version;	/**< SigComp version. */
+    uint8_t SigComp_version;    /**< SigComp version. */
     tcomp_buffers_L_t* returnedStates; /**< List of the returned states. */
 }
 tcomp_params_t;

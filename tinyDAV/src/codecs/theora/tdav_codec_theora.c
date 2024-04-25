@@ -48,12 +48,12 @@
 
 #include <libavcodec/avcodec.h>
 
-#define THEORA_RTP_PAYLOAD_SIZE		900
-#define THEORA_GOP_SIZE_IN_SECONDS	25
-#define THEORA_PAYLOAD_HEADER_SIZE	4 /* 2.2. Payload Header */
-#define THEORA_PAYLOAD_LENGTH_SIZE	2 /* 2.2. Payload Header */
-#define THEORA_IDENT_HEADER_SIZE	42 /* 6.2 Identification Header Decode */
-#define THEORA_CONF_SEND_COUNT		10 /* at 250ms, 500ms, 1000ms, ....  */
+#define THEORA_RTP_PAYLOAD_SIZE     900
+#define THEORA_GOP_SIZE_IN_SECONDS  25
+#define THEORA_PAYLOAD_HEADER_SIZE  4 /* 2.2. Payload Header */
+#define THEORA_PAYLOAD_LENGTH_SIZE  2 /* 2.2. Payload Header */
+#define THEORA_IDENT_HEADER_SIZE    42 /* 6.2 Identification Header Decode */
+#define THEORA_CONF_SEND_COUNT      10 /* at 250ms, 500ms, 1000ms, ....  */
 
 typedef struct tdav_codec_theora_s {
     TMEDIA_DECLARE_CODEC_VIDEO;
@@ -156,20 +156,20 @@ static int tdav_codec_theora_set(tmedia_codec_t* self, const tmedia_param_t* par
         }
         // FIXME: not working as expected
         /*else if(tsk_striequals(param->key, "rotation")){
-        	int rotation = *((int32_t*)param->value);
-        	if(theora->encoder.rotation != rotation){
-        		if(self->opened){
-        			int ret;
-        			theora->encoder.rotation = rotation;
-        			if((ret = tdav_codec_theora_close_encoder(theora))){
-        				return ret;
-        			}
-        			if((ret = tdav_codec_theora_open_encoder(theora))){
-        				return ret;
-        			}
-        		}
-        	}
-        	return 0;
+            int rotation = *((int32_t*)param->value);
+            if(theora->encoder.rotation != rotation){
+                if(self->opened){
+                    int ret;
+                    theora->encoder.rotation = rotation;
+                    if((ret = tdav_codec_theora_close_encoder(theora))){
+                        return ret;
+                    }
+                    if((ret = tdav_codec_theora_open_encoder(theora))){
+                        return ret;
+                    }
+                }
+            }
+            return 0;
         }*/
     }
     return -1;
@@ -189,12 +189,12 @@ int tdav_codec_theora_open(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is not opened */
 
 
-    //	Encoder
+    //  Encoder
     if((ret = tdav_codec_theora_open_encoder(theora))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = tdav_codec_theora_open_decoder(theora))) {
         return ret;
     }
@@ -214,10 +214,10 @@ int tdav_codec_theora_close(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is opened */
 
 
-    //	Encoder
+    //  Encoder
     tdav_codec_theora_close_encoder(theora);
 
-    //	Decoder
+    //  Decoder
     tdav_codec_theora_close_decoder(theora);
 
     return 0;
@@ -294,17 +294,17 @@ tsk_size_t tdav_codec_theora_decode(tmedia_codec_t* self, const void* in_data, t
     xsize = avpicture_get_size(theora->decoder.context->pix_fmt, theora->decoder.context->width, theora->decoder.context->height);
 
     /* 2.2. Payload Header
-    	0                   1                   2                   3
-    	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    	|               Configuration Ident             | F |TDT|# pkts.|
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |               Configuration Ident             | F |TDT|# pkts.|
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     */
-    /*	2.3. Payload Data
-    	 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    	|        Payload Length         |          Theora Data         ..
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /*  2.3. Payload Data
+         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |        Payload Length         |          Theora Data         ..
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     */
     pkts = (pdata[3] & 0x0F);
     pay_ptr = (pdata + THEORA_PAYLOAD_HEADER_SIZE);
@@ -381,7 +381,7 @@ tsk_size_t tdav_codec_theora_decode(tmedia_codec_t* self, const void* in_data, t
                                                      'd', 'o', 'u', 'b', 'a', 'n', 'g', 'o', /* UTF-8 encoded string */
                                                     };
 
-            /*	http://www.theora.org/doc/Theora.pdf - Chapter 6
+            /*  http://www.theora.org/doc/Theora.pdf - Chapter 6
             A Theora bitstream begins with three header packets. The header packets
             are, in order, the identifcation header, the comment header, and the setup
             header. All are required for decode compliance. An end-of-packet condition
@@ -602,7 +602,7 @@ int tdav_codec_theora_open_encoder(tdav_codec_theora_t* self)
     self->encoder.context = avcodec_alloc_context();
     avcodec_get_context_defaults(self->encoder.context);
 
-    self->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    self->encoder.context->pix_fmt      = PIX_FMT_YUV420P;
     self->encoder.context->time_base.num  = 1;
     self->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(self)->out.fps;
     self->encoder.context->width = (self->encoder.rotation == 90 || self->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(self)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;
@@ -691,8 +691,8 @@ int tdav_codec_theora_open_decoder(tdav_codec_theora_t* self)
 
     // Open decoder
     //if((ret = avcodec_open(self->decoder.context, self->decoder.codec)) < 0){
-    //	TSK_DEBUG_ERROR("Failed to open Theora decoder");
-    //	return ret;
+    //  TSK_DEBUG_ERROR("Failed to open Theora decoder");
+    //  return ret;
     //}
 
     return 0;
@@ -781,11 +781,11 @@ static void tdav_codec_theora_encap(tdav_codec_theora_t* theora, const uint8_t* 
 int tdav_codec_theora_send(tdav_codec_theora_t* self, const uint8_t* data, tsk_size_t size, theora_datatype_t tdt)
 {
     /* 2.2. Payload Header
-    	0                   1                   2                   3
-    	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    	|               Configuration Ident             | F |TDT|# pkts.|
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |               Configuration Ident             | F |TDT|# pkts.|
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     */
     uint8_t pay_hdr[THEORA_PAYLOAD_HEADER_SIZE/*4*/ + THEORA_PAYLOAD_LENGTH_SIZE/*2*/] = {0x01, 0x19, 0x83, 0x00, 0x00, 0x00};
     //uint8_t* pay_ptr = tsk_null;

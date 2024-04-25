@@ -37,10 +37,10 @@
 TDAV_BEGIN_DECLS
 
 #if !defined(H264_RTP_PAYLOAD_SIZE)
-#	define H264_RTP_PAYLOAD_SIZE	1300
+#   define H264_RTP_PAYLOAD_SIZE    1300
 #endif
 
-#define H264_START_CODE_PREFIX_SIZE	4
+#define H264_START_CODE_PREFIX_SIZE 4
 
 struct tdav_codec_h264_common_s;
 
@@ -65,7 +65,7 @@ typedef struct profile_iop_s {
 profile_iop_t;
 
 typedef enum level_idc_e {
-    level_idc_none	= 0,
+    level_idc_none  = 0,
 
     level_idc_1_0 = 10,
     level_idc_1_b = 14,

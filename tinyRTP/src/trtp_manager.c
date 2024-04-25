@@ -41,32 +41,32 @@
 #include <limits.h> /* INT_MAX */
 
 #if !defined(TRTP_TRANSPORT_NAME)
-#	define TRTP_TRANSPORT_NAME "RTP/RTCP Manager"
+#   define TRTP_TRANSPORT_NAME "RTP/RTCP Manager"
 #endif
 
 #if !defined(TRTP_DISABLE_SOCKETS_BEFORE_START)
-#	define TRTP_DISABLE_SOCKETS_BEFORE_START	0
+#   define TRTP_DISABLE_SOCKETS_BEFORE_START    0
 #endif
 #if !defined(TRTP_TINY_RCVBUF)
-#	define TRTP_TINY_RCVBUF					(256>>1/*Will be doubled and min on linux is 256*/) /* tiny buffer used to disable receiving */
+#   define TRTP_TINY_RCVBUF                 (256>>1/*Will be doubled and min on linux is 256*/) /* tiny buffer used to disable receiving */
 #endif
 
 #if !defined(TRTP_DSCP_RTP_DEFAULT)
-#	define TRTP_DSCP_RTP_DEFAULT           /* 0x2e */ 0x00
+#   define TRTP_DSCP_RTP_DEFAULT           /* 0x2e */ 0x00
 #endif
 
 #if !defined(TRTP_PORT_RANGE_START)
-#	define TRTP_PORT_RANGE_START 1024
+#   define TRTP_PORT_RANGE_START 1024
 #endif
 #if !defined(TRTP_PORT_RANGE_STOP)
-#	define TRTP_PORT_RANGE_STOP 65535
+#   define TRTP_PORT_RANGE_STOP 65535
 #endif
 
 #if !defined(TRTP_DTLS_HANDSHAKING_TIMEOUT)
-#	define TRTP_DTLS_HANDSHAKING_TIMEOUT 1000
+#   define TRTP_DTLS_HANDSHAKING_TIMEOUT 1000
 #endif
 #if !defined(TRTP_DTLS_HANDSHAKING_TIMEOUT_MAX)
-#	define TRTP_DTLS_HANDSHAKING_TIMEOUT_MAX (TRTP_DTLS_HANDSHAKING_TIMEOUT << 20)
+#   define TRTP_DTLS_HANDSHAKING_TIMEOUT_MAX (TRTP_DTLS_HANDSHAKING_TIMEOUT << 20)
 #endif
 
 static const tmedia_srtp_type_t __srtp_types[] = { tmedia_srtp_type_sdes, tmedia_srtp_type_dtls };
@@ -284,7 +284,7 @@ static int _trtp_transport_dtls_handshaking_timer_cb(const void* arg, tsk_timer_
     tsk_safeobj_lock(manager);
     if (manager->is_started && manager->dtls.timer_hanshaking.id == timer_id && manager->srtp_state == trtp_srtp_state_activated && manager->srtp_type == tmedia_srtp_type_dtls) {
         // retry DTLS-SRTP handshaking if srtp-type is DTLS-SRTP and the engine is activated
-        struct tnet_socket_s* sockets[] = { manager->dtls.srtp_connected ? tsk_null : manager->transport->master , manager->dtls.srtcp_connected ? tsk_null : manager->rtcp.local_socket };
+        struct tnet_socket_s* sockets[] = { manager->dtls.srtp_connected ? tsk_null : manager->transport->master, manager->dtls.srtcp_connected ? tsk_null : manager->rtcp.local_socket };
         const struct sockaddr_storage* remote_addrs[] = { &manager->rtp.remote_addr, &manager->rtcp.remote_addr };
         TSK_DEBUG_INFO("_trtp_transport_dtls_handshaking_timer_cb(timeout=%llu)", manager->dtls.timer_hanshaking.timeout);
         tnet_transport_dtls_do_handshake(manager->transport, sockets, 2, remote_addrs, 2);
@@ -590,9 +590,9 @@ static int _trtp_manager_srtp_set_enabled(trtp_manager_t* self, tmedia_srtp_type
 
             if(srtp_type & tmedia_srtp_type_dtls) {
                 /*
-                	Enables DTLS on the transport without activating it on the sockets
-                	Enabling DTLS will allow us to get the certificate fingerprints for negotiation
-                	At this stage the sockets are not ready to send DTLS datagrams -> Good for ICE negotiation
+                    Enables DTLS on the transport without activating it on the sockets
+                    Enabling DTLS will allow us to get the certificate fingerprints for negotiation
+                    At this stage the sockets are not ready to send DTLS datagrams -> Good for ICE negotiation
                 */
                 if(self->transport) {
                     if((ret = tnet_transport_dtls_set_enabled(self->transport, enabled, tsk_null, 0))) {
@@ -652,10 +652,10 @@ static int _trtp_manager_srtp_activate(trtp_manager_t* self, tmedia_srtp_type_t 
         }
         if((srtp_type & tmedia_srtp_type_dtls) && (self->dtls.state >= trtp_srtp_state_enabled || self->dtls.enable_postponed)) {
             /*
-            	Activates DTLS on the transport and on both RTP and RTCP sockets
-            	At this stage the sockets are ready to send/recv DTLS datagrams
+                Activates DTLS on the transport and on both RTP and RTCP sockets
+                At this stage the sockets are ready to send/recv DTLS datagrams
             */
-            struct tnet_socket_s* sockets[] = { self->transport->master , self->rtcp.local_socket };
+            struct tnet_socket_s* sockets[] = { self->transport->master, self->rtcp.local_socket };
             const struct sockaddr_storage* remote_addrs[] = { &self->rtp.remote_addr, &self->rtcp.remote_addr };
             tsk_bool_t store_handshakingdata[] = { self->is_ice_turn_active, self->is_ice_turn_active };
 
@@ -775,7 +775,7 @@ static int _trtp_manager_srtp_start(trtp_manager_t* self, tmedia_srtp_type_t srt
     trtp_rtcp_session_set_srtp_sess(
         self->rtcp.session,
         self->srtp_ctx_neg_local ? (use_different_keys ? &self->srtp_ctx_neg_local->rtcp.session : &self->srtp_ctx_neg_local->rtp.session) : tsk_null
-        );
+    );
 
     /* At this step we are able to encrypt()/decrypt() SRTP data */
 
@@ -918,7 +918,7 @@ int trtp_manager_prepare(trtp_manager_t* self)
 {
     const char *rtp_local_ip = tsk_null, *rtcp_local_ip = tsk_null;
     tnet_port_t rtp_local_port = 0, rtcp_local_port = 0;
-	tnet_socket_type_t socket_type = self->use_ipv6 ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4;
+    tnet_socket_type_t socket_type = self->use_ipv6 ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4;
 
     if(!self) {
         TSK_DEBUG_ERROR("Invalid parameter");
@@ -941,10 +941,10 @@ int trtp_manager_prepare(trtp_manager_t* self)
 #define __retry_count_max_minus1 (__retry_count_max - 1)
         uint8_t retry_count = __retry_count_max;
 
-		// If local IP is defined then check its address family
-		if (!tsk_strnullORempty(self->local_ip)) {
-			socket_type = tnet_get_type(self->local_ip, rtp_local_port); // IP address always returns IPv4Only or IPv6Only
-		}
+        // If local IP is defined then check its address family
+        if (!tsk_strnullORempty(self->local_ip)) {
+            socket_type = tnet_get_type(self->local_ip, rtp_local_port); // IP address always returns IPv4Only or IPv6Only
+        }
 
         /* Creates local rtp and rtcp sockets */
         while(retry_count--) {
@@ -994,11 +994,11 @@ int trtp_manager_prepare(trtp_manager_t* self)
 
     tsk_strupdate(&self->rtp.public_addr.ip, rtp_local_ip);
     self->rtp.public_addr.port = rtp_local_port;
-	self->rtp.public_addr.type = socket_type;
+    self->rtp.public_addr.type = socket_type;
 
     tsk_strupdate(&self->rtcp.public_addr.ip, rtcp_local_ip);
     self->rtcp.public_addr.port = rtcp_local_port;
-	self->rtcp.public_addr.type = socket_type;
+    self->rtcp.public_addr.type = socket_type;
 
     if(self->transport) {
         /* set callback function */
@@ -1793,7 +1793,7 @@ int trtp_manager_stop(trtp_manager_t* self)
 
     // We haven't started the ICE context which means we must not stop it
     //if(self->ice_ctx){
-    //	ret = tnet_ice_ctx_stop(self->ice_ctx);
+    //  ret = tnet_ice_ctx_stop(self->ice_ctx);
     //}
 
     // callbacks
@@ -1854,7 +1854,7 @@ int trtp_manager_stop(trtp_manager_t* self)
 
 
 //=================================================================================================
-//	RTP manager object definition
+//  RTP manager object definition
 //
 static tsk_object_t* trtp_manager_ctor(tsk_object_t * self, va_list * app)
 {

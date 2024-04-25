@@ -38,7 +38,7 @@
 #include "tsk_runnable.h"
 #include "tsk_debug.h"
 
-#define TSIP_REGISTER_EVENT_CREATE( type)		tsk_object_new(tsip_register_event_def_t, type)
+#define TSIP_REGISTER_EVENT_CREATE( type)       tsk_object_new(tsip_register_event_def_t, type)
 
 /* Internal functions */
 extern tsip_action_t* _tsip_action_create(tsip_action_type_t type, va_list* app);
@@ -131,7 +131,7 @@ int tsip_api_register_send_unregister(const tsip_ssession_handle_t *ss, ...)
 
 
 //========================================================
-//	SIP REGISTER event object definition
+//  SIP REGISTER event object definition
 //
 static tsk_object_t* tsip_register_event_ctor(tsk_object_t * self, va_list * app)
 {

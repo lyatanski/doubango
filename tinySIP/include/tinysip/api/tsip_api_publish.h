@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_PUBLISH_EVENT(self)		((tsip_publish_event_t*)(self))
+#define TSIP_PUBLISH_EVENT(self)        ((tsip_publish_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_publish_event_type_e {
@@ -63,8 +63,8 @@ TINYSIP_API int tsip_api_publish_send_unpublish(const tsip_ssession_handle_t *ss
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_publish_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_PUBLISH	tsip_api_publish_send_publish
-#	define tsip_action_UNPUBLISH	tsip_api_publish_send_unpublish
+#   define tsip_action_PUBLISH  tsip_api_publish_send_publish
+#   define tsip_action_UNPUBLISH    tsip_api_publish_send_unpublish
 #endif
 
 TSIP_END_DECLS

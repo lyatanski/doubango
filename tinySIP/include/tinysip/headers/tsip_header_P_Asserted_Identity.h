@@ -40,11 +40,11 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'P-Asserted-Identity' as per RFC 3325.
+/// @brief  SIP header 'P-Asserted-Identity' as per RFC 3325.
 ///
 /// @par ABNF: P-Asserted-Identity = PAssertedID
-/// PAssertedID	=  	"P-Asserted-Identity" HCOLON PAssertedID-value *(COMMA PAssertedID-value)
-/// PAssertedID-value	= 	name-addr / addr-spec
+/// PAssertedID =   "P-Asserted-Identity" HCOLON PAssertedID-value *(COMMA PAssertedID-value)
+/// PAssertedID-value   =   name-addr / addr-spec
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_P_Asserted_Identity_s {

@@ -33,7 +33,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 56 "./ragel/tmsrp_parser_header_Message-ID.rl" */
@@ -353,7 +353,7 @@ _match:
                 TSK_PARSER_SET_STRING(hdr_Message_Id->value);
             }
             break;
-            /* #line 351 "./src/headers/tmsrp_header_Message-ID.c" */
+                /* #line 351 "./src/headers/tmsrp_header_Message-ID.c" */
             }
         }
 
@@ -377,7 +377,7 @@ _test_eof: {
                     TSK_PARSER_SET_STRING(hdr_Message_Id->value);
                 }
                 break;
-                /* #line 373 "./src/headers/tmsrp_header_Message-ID.c" */
+                    /* #line 373 "./src/headers/tmsrp_header_Message-ID.c" */
                 }
             }
         }
@@ -408,7 +408,7 @@ _out: {
 
 
 //========================================================
-//	Message_Id header object definition
+//  Message_Id header object definition
 //
 
 static tsk_object_t* tmsrp_header_Message_ID_ctor(tsk_object_t *self, va_list * app)

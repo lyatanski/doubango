@@ -40,7 +40,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 73 "./ragel/tsip_parser_header_Refer_Sub.rl" */
@@ -404,7 +404,7 @@ _match:
             {
             }
             break;
-            /* #line 401 "./src/headers/tsip_header_Refer_Sub.c" */
+                /* #line 401 "./src/headers/tsip_header_Refer_Sub.c" */
             }
         }
 
@@ -442,7 +442,7 @@ _out: {
 
 
 //========================================================
-//	Refer_Sub header object definition
+//  Refer_Sub header object definition
 //
 
 static tsk_object_t* tsip_header_Refer_Sub_ctor(tsk_object_t *self, va_list * app)

@@ -37,12 +37,12 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_USE_PATH_VA_ARGS(uri)		tmsrp_header_Use_Path_def_t, (const tmsrp_uri_t*)uri
+#define TMSRP_HEADER_USE_PATH_VA_ARGS(uri)      tmsrp_header_Use_Path_def_t, (const tmsrp_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Use-Path' header.
+/// @brief  MSRP 'Use-Path' header.
 ///
 /// @par ABNF :  "Use-Path:" SP MSRP-URI  *( SP MSRP-URI )
 ///

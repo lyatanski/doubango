@@ -31,7 +31,7 @@
 #include <stdlib.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 135 "./ragel/tmedia_imageattr.rl" */
@@ -939,7 +939,7 @@ _match:
                 }
             }
             break;
-            /* #line 912 "./src/tmedia_imageattr.c" */
+                /* #line 912 "./src/tmedia_imageattr.c" */
             }
         }
 
@@ -965,7 +965,7 @@ _test_eof: {
                     }
                 }
                 break;
-                /* #line 934 "./src/tmedia_imageattr.c" */
+                    /* #line 934 "./src/tmedia_imageattr.c" */
                 }
             }
         }

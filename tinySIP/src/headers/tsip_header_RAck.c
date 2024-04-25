@@ -40,7 +40,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 73 "./ragel/tsip_parser_header_RAck.rl" */
@@ -283,7 +283,7 @@ _match:
             {
             }
             break;
-            /* #line 280 "./src/headers/tsip_header_RAck.c" */
+                /* #line 280 "./src/headers/tsip_header_RAck.c" */
             }
         }
 
@@ -321,7 +321,7 @@ _out: {
 
 
 //========================================================
-//	RAck header object definition
+//  RAck header object definition
 //
 
 static tsk_object_t* tsip_header_RAck_ctor(tsk_object_t *self, va_list * app)

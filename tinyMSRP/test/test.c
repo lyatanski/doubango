@@ -32,12 +32,12 @@
 //#include "test_session.h"
 
 
-#define RUN_TEST_LOOP		0
+#define RUN_TEST_LOOP       0
 
-#define RUN_TEST_ALL		0
-#define RUN_TEST_URI		1
-#define RUN_TEST_PARSER		1
-#define RUN_TEST_SESSION	0
+#define RUN_TEST_ALL        0
+#define RUN_TEST_URI        1
+#define RUN_TEST_PARSER     1
+#define RUN_TEST_SESSION    0
 
 #ifdef _WIN32_WCE
 int _tmain(int argc, _TCHAR* argv[])

@@ -35,21 +35,21 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_EVENT_VA_ARGS(package)		tsip_header_Event_def_t, (const char*)package
+#define TSIP_HEADER_EVENT_VA_ARGS(package)      tsip_header_Event_def_t, (const char*)package
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Event/o' .
+/// @brief  SIP header 'Event/o' .
 ///
 /// @par ABNF: Event / o
-///	Event	= 	( "Event" / "o" ) HCOLON event-type *( SEMI event-param )
-///	event-type	= 	event-package *( "." event-template )
-///	event-package	= 	token-nodot
-///	event-template	= 	token-nodot
-///	token-nodot	= 	1*( alphanum / "-" / "!" / "%" / "*" / "_" / "+" / "`" / "'" / "~" )
-///	event-param	= 	generic-param / ( "id" EQUAL token ) / call-ident / from-tag / to-tag / with-sessd
-///	call-ident	= 	"call-id" EQUAL ( token / DQUOTE callid DQUOTE )
-///	with-sessd	= 	"include-session-description"
+/// Event   =   ( "Event" / "o" ) HCOLON event-type *( SEMI event-param )
+/// event-type  =   event-package *( "." event-template )
+/// event-package   =   token-nodot
+/// event-template  =   token-nodot
+/// token-nodot =   1*( alphanum / "-" / "!" / "%" / "*" / "_" / "+" / "`" / "'" / "~" )
+/// event-param =   generic-param / ( "id" EQUAL token ) / call-ident / from-tag / to-tag / with-sessd
+/// call-ident  =   "call-id" EQUAL ( token / DQUOTE callid DQUOTE )
+/// with-sessd  =   "include-session-description"
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Event_s {

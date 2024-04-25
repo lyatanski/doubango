@@ -117,7 +117,7 @@ static int twrap_producer_proxy_audio_stop(tmedia_producer_t* self)
 
 
 //
-//	Audio producer object definition
+//  Audio producer object definition
 //
 /* constructor */
 static tsk_object_t* twrap_producer_proxy_audio_ctor(tsk_object_t * self, va_list * app)
@@ -434,7 +434,7 @@ int twrap_producer_proxy_video_stop(tmedia_producer_t* self)
 
 
 //
-//	Video producer object definition
+//  Video producer object definition
 //
 /* constructor */
 static tsk_object_t* twrap_producer_proxy_video_ctor(tsk_object_t * self, va_list * app)

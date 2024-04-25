@@ -49,10 +49,10 @@
 
 #include <libavcodec/avcodec.h>
 
-#define DEFAULT_PROFILE_LEVEL_ID	Simple_Profile_Level_1
+#define DEFAULT_PROFILE_LEVEL_ID    Simple_Profile_Level_1
 
-#define MP4V_GOP_SIZE_IN_SECONDS		25
-#define MP4V_RTP_PAYLOAD_SIZE		900
+#define MP4V_GOP_SIZE_IN_SECONDS        25
+#define MP4V_RTP_PAYLOAD_SIZE       900
 
 typedef struct tdav_codec_mp4ves_s {
     TMEDIA_DECLARE_CODEC_VIDEO;
@@ -222,12 +222,12 @@ int tdav_codec_mp4ves_open(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is not opened */
 
 
-    //	Encoder
+    //  Encoder
     if((ret = tdav_codec_mp4ves_open_encoder(mp4v))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = tdav_codec_mp4ves_open_decoder(mp4v))) {
         return ret;
     }
@@ -246,10 +246,10 @@ int tdav_codec_mp4ves_close(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     tdav_codec_mp4ves_close_encoder(mp4v);
 
-    //	Decoder
+    //  Decoder
     tdav_codec_mp4ves_close_decoder(mp4v);
 
     return 0;
@@ -471,7 +471,7 @@ int tdav_codec_mp4ves_open_encoder(tdav_codec_mp4ves_t* self)
     self->encoder.context = avcodec_alloc_context();
     avcodec_get_context_defaults(self->encoder.context);
 
-    self->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    self->encoder.context->pix_fmt      = PIX_FMT_YUV420P;
     self->encoder.context->time_base.num  = 1;
     self->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(self)->in.fps;
     self->encoder.context->width = (self->encoder.rotation == 90 || self->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(self)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;
@@ -621,14 +621,14 @@ static void tdav_codec_mp4ves_encap(tdav_codec_mp4ves_t* mp4v, const uint8_t* pd
 
     /* RFC 3016 - 3.3 Examples of packetized MPEG-4 Visual bitstream
 
-    	VS= Visual Object Sequence
-    	VO= Visual Object
-    	VOL= Visual Object Layer
-    	VOP= Visual Object Plane
-    	GOV= Group of Visual Object Plane
-    	VP= Video Plane
+        VS= Visual Object Sequence
+        VO= Visual Object
+        VOL= Visual Object Layer
+        VOP= Visual Object Plane
+        GOV= Group of Visual Object Plane
+        VP= Video Plane
 
-    	 +------+------+------+------+
+         +------+------+------+------+
     (a) | RTP  |  VS  |  VO  | VOL  |
         |header|header|header|header|
         +------+------+------+------+

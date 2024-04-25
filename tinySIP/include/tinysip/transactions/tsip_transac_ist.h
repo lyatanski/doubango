@@ -35,7 +35,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_TRANSAC_IST(self)												((tsip_transac_ist_t*)(self))
+#define TSIP_TRANSAC_IST(self)                                              ((tsip_transac_ist_t*)(self))
 
 
 typedef struct tsip_transac_ist {

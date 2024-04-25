@@ -31,11 +31,11 @@
 
 #include "tsk_debug.h"
 
-#define TSDP_LINE_S_VALUE_DEFAULT "-"	/* as per RFC 3264 subclause 5 */
+#define TSDP_LINE_S_VALUE_DEFAULT "-"   /* as per RFC 3264 subclause 5 */
 
-#define TSDP_LINE_O_USERNAME_DEFAULT	"doubango"
-#define TSDP_LINE_O_SESSION_VER_DEFAULT	2301
-#define TSDP_LINE_O_SESSION_ID_DEFAULT	1983
+#define TSDP_LINE_O_USERNAME_DEFAULT    "doubango"
+#define TSDP_LINE_O_SESSION_VER_DEFAULT 2301
+#define TSDP_LINE_O_SESSION_ID_DEFAULT  1983
 
 /*== Predicate function to find tsdp_header_t object by type. */
 static int __pred_find_header_by_type(const tsk_list_item_t *item, const void *tsdp_htype)
@@ -254,9 +254,9 @@ tsdp_message_t* tsdp_message_create_empty(const char* addr, tsk_bool_t ipv6, uin
         return tsk_null;
     }
 
-    /*	RFC 3264 - 5 Generating the Initial Offer
-    	The numeric value of the session id and version in the o line MUST be
-    	representable with a 64 bit signed integer.  The initial value of the version MUST be less than
+    /*  RFC 3264 - 5 Generating the Initial Offer
+        The numeric value of the session id and version in the o line MUST be
+        representable with a 64 bit signed integer.  The initial value of the version MUST be less than
        (2**62)-1, to avoid rollovers.
     */
     TSDP_MESSAGE_ADD_HEADER(ret, TSDP_HEADER_V_VA_ARGS(0));
@@ -268,21 +268,21 @@ tsdp_message_t* tsdp_message_create_empty(const char* addr, tsk_bool_t ipv6, uin
                                 ipv6 ? "IP6" : "IP4",
                                 addr));
 
-    /*	RFC 3264 - 5 Generating the Initial Offer
-    	The SDP "s=" line conveys the subject of the session, which is
-    	reasonably defined for multicast, but ill defined for unicast.  For
-    	unicast sessions, it is RECOMMENDED that it consist of a single space
-    	character (0x20) or a dash (-).
+    /*  RFC 3264 - 5 Generating the Initial Offer
+        The SDP "s=" line conveys the subject of the session, which is
+        reasonably defined for multicast, but ill defined for unicast.  For
+        unicast sessions, it is RECOMMENDED that it consist of a single space
+        character (0x20) or a dash (-).
 
-    	Unfortunately, SDP does not allow the "s=" line to be empty.
+        Unfortunately, SDP does not allow the "s=" line to be empty.
     */
     TSDP_MESSAGE_ADD_HEADER(ret, TSDP_HEADER_S_VA_ARGS(TSDP_LINE_S_VALUE_DEFAULT));
 
-    /*	RFC 3264 - 5 Generating the Initial Offer
-    	The SDP "t=" line conveys the time of the session.  Generally,
-    	streams for unicast sessions are created and destroyed through
-    	external signaling means, such as SIP.  In that case, the "t=" line
-    	SHOULD have a value of "0 0".
+    /*  RFC 3264 - 5 Generating the Initial Offer
+        The SDP "t=" line conveys the time of the session.  Generally,
+        streams for unicast sessions are created and destroyed through
+        external signaling means, such as SIP.  In that case, the "t=" line
+        SHOULD have a value of "0 0".
     */
     TSDP_MESSAGE_ADD_HEADER(ret, TSDP_HEADER_T_VA_ARGS(0, 0));
 
@@ -376,7 +376,7 @@ int tsdp_message_hold(tsdp_message_t* self, const char* media)
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    // 3GPP TS 34.610-900 - 4.5.2.1	Actions at the invoking UE
+    // 3GPP TS 34.610-900 - 4.5.2.1 Actions at the invoking UE
     if((item = tsk_list_find_item_by_pred(self->headers, __pred_find_media_by_name, media))) {
         M = TSDP_HEADER_M(item->data);
         tsdp_header_M_hold(M, tsk_true);
@@ -394,7 +394,7 @@ int tsdp_message_resume(tsdp_message_t* self, const char* media)
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    // 3GPP TS 34.610-900 - 4.5.2.1	Actions at the invoking UE
+    // 3GPP TS 34.610-900 - 4.5.2.1 Actions at the invoking UE
     if((item = tsk_list_find_item_by_pred(self->headers, __pred_find_media_by_name, media))) {
         M = TSDP_HEADER_M(item->data);
         tsdp_header_M_resume(M, tsk_true);
@@ -473,7 +473,7 @@ tsk_bool_t tsdp_message_is_ice_restart(const tsdp_message_t *self, tsk_size_t me
 
 
 //=================================================================================================
-//	SDP object definition
+//  SDP object definition
 //
 static void* tsdp_message_ctor(void * self, va_list * app)
 {

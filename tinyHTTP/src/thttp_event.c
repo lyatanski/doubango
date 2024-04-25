@@ -47,7 +47,7 @@ thttp_event_t* thttp_event_create(thttp_event_type_t type, const thttp_session_h
 
 
 //========================================================
-//	HTTP event object definition
+//  HTTP event object definition
 //
 static void* thttp_event_ctor(void * self, va_list * app)
 {

@@ -58,9 +58,9 @@
 */
 /*void tsk_xml_namespace_free(tsk_xml_namespace_t** namespace)
 {
-	TSK_FREE((*namespace)->prefix);
-	TSK_FREE((*namespace)->value);
-	TSK_FREE(namespace);
+    TSK_FREE((*namespace)->prefix);
+    TSK_FREE((*namespace)->value);
+    TSK_FREE(namespace);
 }*/
 
 /**@ingroup tsk_xml_group
@@ -95,15 +95,15 @@ void tsk_xml_element_init_set(tsk_xml_element_t** element, const char* name, con
 */
 /*void tsk_xml_element_free(void** _element)
 {
-	tsk_xml_element_t** element = (tsk_xml_element_t**)_element;
+    tsk_xml_element_t** element = (tsk_xml_element_t**)_element;
 
-	TSK_FREE((*element)->name);
-	TSK_FREE((*element)->value);
-	TSK_OBJECT_SAFE_FREE((*element)->elements);
-	TSK_OBJECT_SAFE_FREE((*element)->attributes);
-	TSK_OBJECT_SAFE_FREE((*element)->namespaces);
+    TSK_FREE((*element)->name);
+    TSK_FREE((*element)->value);
+    TSK_OBJECT_SAFE_FREE((*element)->elements);
+    TSK_OBJECT_SAFE_FREE((*element)->attributes);
+    TSK_OBJECT_SAFE_FREE((*element)->namespaces);
 
-	TSK_FREE(element);
+    TSK_FREE(element);
 }*/
 
 /**@ingroup tsk_xml_group
@@ -120,10 +120,10 @@ void tsk_xml_element_init_set(tsk_xml_element_t** element, const char* name, con
 */
 /*void tsk_xml_attribute_free(tsk_xml_attribute_t** attribute)
 {
-	TSK_FREE((*attribute)->name);
-	TSK_FREE((*attribute)->value);
+    TSK_FREE((*attribute)->name);
+    TSK_FREE((*attribute)->value);
 
-	TSK_FREE(attribute);
+    TSK_FREE(attribute);
 }*/
 
 /**@ingroup tsk_xml_group

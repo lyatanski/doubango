@@ -29,68 +29,68 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TCOMP_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TCOMP_UNDER_WINDOWS_RT		1
-#	endif
+#   define TCOMP_UNDER_WINDOWS  1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TCOMP_UNDER_WINDOWS_RT       1
+#   endif
 #endif
 
 #if !defined(__GNUC__)
-# 	define TINYSIGCOMP_API		__declspec(dllexport)
-# 	define TINYSIGCOMP_GEXTERN	__declspec(dllexport)
+#   define TINYSIGCOMP_API      __declspec(dllexport)
+#   define TINYSIGCOMP_GEXTERN  __declspec(dllexport)
 #else
-#	define TINYSIGCOMP_API
-#	define TINYSIGCOMP_GEXTERN	extern
+#   define TINYSIGCOMP_API
+#   define TINYSIGCOMP_GEXTERN  extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TCOMP_BEGIN_DECLS extern "C" {
-#	define TCOMP_END_DECLS }
+#   define TCOMP_BEGIN_DECLS extern "C" {
+#   define TCOMP_END_DECLS }
 #else
-#	define TCOMP_BEGIN_DECLS
-#	define TCOMP_END_DECLS
+#   define TCOMP_BEGIN_DECLS
+#   define TCOMP_END_DECLS
 #endif
 
-/*	DEFLATE block type 01 (data compressed with fixed Huffman codes)
+/*  DEFLATE block type 01 (data compressed with fixed Huffman codes)
 */
 #ifndef FORCE_STATIC
-#	define FORCE_STATIC /*zlib*/
+#   define FORCE_STATIC /*zlib*/
 #endif
 
 // avoid linking in the crc code
 #define NO_GZIP
 
 //
-//	Nack - RFC 4077
+//  Nack - RFC 4077
 //
 #if !defined(NACK_VERSION)
-#	define NACK_VERSION				0x01
+#   define NACK_VERSION             0x01
 #endif
 #if !defined(NACK_MAX_HISTORY_SIZE)
-#	define NACK_MAX_HISTORY_SIZE	0x14
+#   define NACK_MAX_HISTORY_SIZE    0x14
 #endif
 
 //
-//	Feedbacks
+//  Feedbacks
 //
 #if !defined(TCOMP_USE_ONLY_ACKED_STATES)
-#	define TCOMP_USE_ONLY_ACKED_STATES	0
+#   define TCOMP_USE_ONLY_ACKED_STATES  0
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 #if defined(_MSC_VER)
-#	define TCOMP_INLINE	__forceinline
+#   define TCOMP_INLINE __forceinline
 #elif defined(__GNUC__) && !defined(__APPLE__)
-#	define TCOMP_INLINE	__inline
+#   define TCOMP_INLINE __inline
 #else
-#	define TCOMP_INLINE
+#   define TCOMP_INLINE
 #endif
 
 #include <stdint.h>

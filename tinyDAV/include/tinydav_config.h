@@ -29,77 +29,77 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TDAV_UNDER_WINDOWS	1
-#	if defined(_WIN32_WCE) || defined(UNDER_CE)
-#		define TDAV_UNDER_WINDOWS_CE	1
-#	endif
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TDAV_UNDER_WINDOWS_RT			1
-#		if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-#			define TDAV_UNDER_WINDOWS_PHONE		1
-#		endif
-#	endif
+#   define TDAV_UNDER_WINDOWS   1
+#   if defined(_WIN32_WCE) || defined(UNDER_CE)
+#       define TDAV_UNDER_WINDOWS_CE    1
+#   endif
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TDAV_UNDER_WINDOWS_RT            1
+#       if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+#           define TDAV_UNDER_WINDOWS_PHONE     1
+#       endif
+#   endif
 #endif
 
 // OS X or iOS
 #if defined(__APPLE__)
-#	define TDAV_UNDER_APPLE				1
+#   define TDAV_UNDER_APPLE             1
 #   include <TargetConditionals.h>
 #   include <Availability.h>
 #endif
 #if TARGET_OS_MAC
-#	define TDAV_UNDER_MAC				1
+#   define TDAV_UNDER_MAC               1
 #endif
 #if TARGET_OS_IPHONE
-#	define TDAV_UNDER_IPHONE			1
+#   define TDAV_UNDER_IPHONE            1
 #endif
 #if TARGET_IPHONE_SIMULATOR
-#	define TDAV_UNDER_IPHONE_SIMULATOR	1
+#   define TDAV_UNDER_IPHONE_SIMULATOR  1
 #endif
 
 // x86
 #if TDAV_UNDER_WINDOWS || defined(__x86_64__) || defined(__x86__) || defined(__i386__)
-#	define TDAV_UNDER_X86				1
+#   define TDAV_UNDER_X86               1
 #endif
 
 // Mobile
 #if defined(_WIN32_WCE) || defined(__ANDROID__) || defined(ANDROID) || TDAV_UNDER_IPHONE || TDAV_UNDER_IPHONE_SIMULATOR || TDAV_UNDER_WINDOWS_PHONE
-#	define TDAV_UNDER_MOBILE	1
+#   define TDAV_UNDER_MOBILE    1
 #endif
 
 #if (TDAV_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define TINYDAV_API		__declspec(dllexport)
-# 	define TINYDAV_GEXTERN extern __declspec(dllexport)
+#   define TINYDAV_API      __declspec(dllexport)
+#   define TINYDAV_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYDAV_API
-#	define TINYDAV_GEXTERN	extern
+#   define TINYDAV_API
+#   define TINYDAV_GEXTERN  extern
 #endif
 
 /* Guards against C++ name mangling  */
 #ifdef __cplusplus
-#	define TDAV_BEGIN_DECLS extern "C" {
-#	define TDAV_END_DECLS }
+#   define TDAV_BEGIN_DECLS extern "C" {
+#   define TDAV_END_DECLS }
 #else
-#	define TDAV_BEGIN_DECLS
-#	define TDAV_END_DECLS
+#   define TDAV_BEGIN_DECLS
+#   define TDAV_END_DECLS
 #endif
 
 #ifdef _MSC_VER
 #if HAVE_FFMPEG // FFMPeg warnings (treated as errors)
-#	pragma warning (disable:4244)
+#   pragma warning (disable:4244)
 #endif
-#	if !defined(__cplusplus)
-#	define inline __inline
-#	endif
-#	if !defined(_CRT_SECURE_NO_WARNINGS)
-#		define _CRT_SECURE_NO_WARNINGS
-#	endif /* _CRT_SECURE_NO_WARNINGS */
+#   if !defined(__cplusplus)
+#   define inline __inline
+#   endif
+#   if !defined(_CRT_SECURE_NO_WARNINGS)
+#       define _CRT_SECURE_NO_WARNINGS
+#   endif /* _CRT_SECURE_NO_WARNINGS */
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

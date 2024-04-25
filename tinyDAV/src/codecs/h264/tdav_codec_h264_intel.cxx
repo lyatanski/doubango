@@ -42,21 +42,21 @@
 #include <mfxvideo++.h>
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "libmfx.lib")
+#   pragma comment(lib, "libmfx.lib")
 #endif /* _MSC_VER */
 
 #if !defined(INTEL_DX11_D3D)
-#	define INTEL_DX11_D3D 1
+#   define INTEL_DX11_D3D 1
 #endif /* INTEL_DX11_D3D */
 
 #if INTEL_DX11_D3D
 #include <d3d11.h>
 #include <dxgi1_2.h>
 #include <atlbase.h>
-#	if defined(_MSC_VER)
-#		pragma comment(lib, "d3d11.lib")
-#		pragma comment(lib, "dxgi.lib")
-#	endif /* _MSC_VER */
+#   if defined(_MSC_VER)
+#       pragma comment(lib, "d3d11.lib")
+#       pragma comment(lib, "dxgi.lib")
+#   endif /* _MSC_VER */
 
 #endif /* INTEL_DX11_D3D */
 
@@ -124,7 +124,7 @@ typedef struct tdav_codec_h264_intel_s {
 tdav_codec_h264_intel_t;
 
 #if !defined(INTEL_H264_GOP_SIZE_IN_SECONDS)
-#	define INTEL_H264_GOP_SIZE_IN_SECONDS		25
+#   define INTEL_H264_GOP_SIZE_IN_SECONDS       25
 #endif
 
 static int tdav_codec_h264_intel_init(tdav_codec_h264_intel_t* self, profile_idc_t profile);
@@ -139,14 +139,14 @@ static int tdav_codec_h264_intel_close_decoder(tdav_codec_h264_intel_t* self);
 #define D3D11_WILL_WRITE 0x2000
 
 typedef struct {
-    mfxMemId	memId;
-    mfxMemId	memIdStage;
-    mfxU16		rw;
+    mfxMemId    memId;
+    mfxMemId    memIdStage;
+    mfxU16      rw;
 } CustomMemId;
 
 const struct {
-    mfxIMPL	impl;		// actual implementation
-    mfxU32	adapterID;	// device adapter number
+    mfxIMPL impl;       // actual implementation
+    mfxU32  adapterID;  // device adapter number
 } implTypes[] = {
     { MFX_IMPL_HARDWARE, 0 },
     { MFX_IMPL_HARDWARE2, 1 },
@@ -168,7 +168,7 @@ static mfxStatus D3D11_SimpleFree(mfxHDL pthis, mfxFrameAllocResponse *response)
 #endif /* INTEL_DX11_D3D */
 
 //
-//	IntelCodec
+//  IntelCodec
 //
 class IntelCodec
 {
@@ -182,19 +182,22 @@ protected:
         , m_nSurfaceBitsPerPixel(0)
         , m_nSurfaceSize(0)
         , m_pSurfaceBuffers(NULL)
-        , m_ppSurfacePtrs(NULL) {
+        , m_ppSurfacePtrs(NULL)
+    {
         memset(&m_sBitstream, 0, sizeof(m_sBitstream));
         memset(&m_sParamReq, 0, sizeof(m_sParamReq));
         memset(&m_sParamSel, 0, sizeof(m_sParamSel));
         memset(&m_sAllocRequest, 0, sizeof(m_sAllocRequest));
     }
 public:
-    virtual ~IntelCodec() {
+    virtual ~IntelCodec()
+    {
         Close();
     }
     virtual mfxStatus Open(struct tdav_codec_h264_intel_s* pWrappedCodec) = 0;
 
-    virtual mfxStatus Close() {
+    virtual mfxStatus Close()
+    {
         DeAllocSurfaces();
         DeAllocateBitstream();
 
@@ -206,7 +209,8 @@ public:
     }
 
 protected:
-    int GetFreeSurfaceIndex() {
+    int GetFreeSurfaceIndex()
+    {
         if (m_ppSurfacePtrs) {
             for (mfxU16 i = 0; i < n_nNumSurfaces; i++) {
                 if (0 == m_ppSurfacePtrs[i]->Data.Locked) {
@@ -217,7 +221,8 @@ protected:
         return MFX_ERR_NOT_FOUND;
     }
 
-    mfxStatus ReadPlaneData(mfxU16 w, mfxU16 h, mfxU8 *buf, mfxU8 *ptr, mfxU16 pitch, mfxU16 offset, const mfxU8* &src) {
+    mfxStatus ReadPlaneData(mfxU16 w, mfxU16 h, mfxU8 *buf, mfxU8 *ptr, mfxU16 pitch, mfxU16 offset, const mfxU8* &src)
+    {
         for (mfxU16 i = 0; i < h; i++) {
             memcpy(buf, src, w);
             src += w;
@@ -229,7 +234,8 @@ protected:
         return MFX_ERR_NONE;
     }
 
-    mfxStatus LoadRawFrame(int nSurfaceIndex, const mfxU8* src) {
+    mfxStatus LoadRawFrame(int nSurfaceIndex, const mfxU8* src)
+    {
         mfxFrameSurface1* pSurface = (m_ppSurfacePtrs && nSurfaceIndex >= 0 && nSurfaceIndex < n_nNumSurfaces) ? m_ppSurfacePtrs[nSurfaceIndex] : NULL;
         if (!pSurface) {
             INTEL_DEBUG_ERROR("Failed to find surface at index=%d", nSurfaceIndex);
@@ -282,7 +288,8 @@ protected:
         return MFX_ERR_NONE;
     }
 
-    virtual mfxStatus AllocSurfaces(mfxU16 nNumSurfaces, mfxU16 nSurfaceWidth, mfxU16 nSurfaceHeight, const mfxFrameInfo* pcFrameInfo) {
+    virtual mfxStatus AllocSurfaces(mfxU16 nNumSurfaces, mfxU16 nSurfaceWidth, mfxU16 nSurfaceHeight, const mfxFrameInfo* pcFrameInfo)
+    {
         mfxStatus status = MFX_ERR_UNKNOWN;
 
         INTEL_DEBUG_INFO("Alloc surfaces: num=%u, width=%u, height=%u", nNumSurfaces, nSurfaceWidth, nSurfaceHeight);
@@ -327,7 +334,8 @@ bail:
         return status;
     }
 
-    mfxStatus AllocateBitstream(mfxU32 nMaxLength) {
+    mfxStatus AllocateBitstream(mfxU32 nMaxLength)
+    {
         DeAllocateBitstream();
 
         m_sBitstream.MaxLength = nMaxLength;
@@ -341,7 +349,8 @@ bail:
         return MFX_ERR_MEMORY_ALLOC;
     }
 private:
-    mfxStatus DeAllocSurfaces() {
+    mfxStatus DeAllocSurfaces()
+    {
         if (m_ppSurfacePtrs) {
             for (mfxU16 i = 0; i < n_nNumSurfaces; i++) {
                 if (m_ppSurfacePtrs[i]) {
@@ -366,7 +375,8 @@ private:
         return MFX_ERR_NONE;
     }
 
-    mfxStatus DeAllocateBitstream() {
+    mfxStatus DeAllocateBitstream()
+    {
         if (m_sBitstream.Data) {
             delete[]m_sBitstream.Data;
         }
@@ -397,34 +407,39 @@ protected:
 
 
 //
-//	IntelCodecEncoder
+//  IntelCodecEncoder
 //
 class IntelCodecEncoder : public IntelCodec
 {
 public:
     IntelCodecEncoder(MFXVideoSession* pSession)
         : IntelCodec(pSession)
-        , m_Inst(*pSession) {
+        , m_Inst(*pSession)
+    {
         memset(&m_sFrameCtrl, 0, sizeof(m_sFrameCtrl));
     }
-    virtual ~IntelCodecEncoder() {
+    virtual ~IntelCodecEncoder()
+    {
         Close();
     }
 
-    virtual mfxStatus Close() {
+    virtual mfxStatus Close()
+    {
         m_Inst.Close();
         memset(&m_sFrameCtrl, 0, sizeof(m_sFrameCtrl));
         return IntelCodec::Close();
     }
 
-    mfxStatus Reset() {
+    mfxStatus Reset()
+    {
         if (m_bOpened) {
             return m_Inst.Reset(&m_sParamSel);
         }
         return MFX_ERR_NONE;
     }
 
-    mfxStatus Open(struct tdav_codec_h264_intel_s* pWrappedCodec) {
+    mfxStatus Open(struct tdav_codec_h264_intel_s* pWrappedCodec)
+    {
         int32_t max_bw_kpbs;
         tdav_codec_h264_common_t* pWrappedCodecCommon = (tdav_codec_h264_common_t*)pWrappedCodec;
         mfxStatus status = MFX_ERR_UNKNOWN;
@@ -566,7 +581,8 @@ bail:
         return status;
     }
 
-    mfxStatus UpdateBandwidth(bool bUp, mfxU16 max) {
+    mfxStatus UpdateBandwidth(bool bUp, mfxU16 max)
+    {
         if (bUp) {
             m_sParamSel.mfx.TargetKbps = TSK_CLAMP(0, (mfxU16)((m_sParamSel.mfx.TargetKbps * 3) >> 1), max);
         }
@@ -578,14 +594,16 @@ bail:
         return m_Inst.Reset(&m_sParamSel);
     }
 
-    mfxStatus SetMaxBandwidth(mfxU16 max) {
+    mfxStatus SetMaxBandwidth(mfxU16 max)
+    {
         m_sParamSel.mfx.TargetKbps = TSK_CLAMP(0, m_sParamSel.mfx.TargetKbps, max);
         m_sParamReq.mfx.TargetKbps = m_sParamSel.mfx.TargetKbps;
         INTEL_DEBUG_INFO("Setting new target bandwidth to %ukbps", m_sParamSel.mfx.TargetKbps);
         return m_Inst.Reset(&m_sParamSel);
     }
 
-    mfxStatus Encode(struct tmedia_codec_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize) {
+    mfxStatus Encode(struct tmedia_codec_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize)
+    {
         tdav_codec_h264_intel_t* pWrappedCodecH264 = (tdav_codec_h264_intel_t*)pWrappedCodec;
         tdav_codec_h264_common_t* pWrappedCodecCommon = (tdav_codec_h264_common_t*)pWrappedCodec;
         mfxU32 nInDataXSize;
@@ -715,7 +733,7 @@ private:
 
 
 //
-//	IntelCodecDecoder
+//  IntelCodecDecoder
 //
 class IntelCodecDecoder : public IntelCodec
 {
@@ -726,14 +744,17 @@ public:
         , m_pAccumulatorPtr(NULL)
         , m_nAccumulatorSize(0)
         , m_nAccumulatorPos(0)
-        , m_bInit(false) {
+        , m_bInit(false)
+    {
 
     }
-    virtual ~IntelCodecDecoder() {
+    virtual ~IntelCodecDecoder()
+    {
         Close();
     }
 
-    virtual mfxStatus Close() {
+    virtual mfxStatus Close()
+    {
         m_Inst.Close();
         TSK_FREE(m_pAccumulatorPtr);
         m_nAccumulatorSize = 0;
@@ -742,7 +763,8 @@ public:
         return IntelCodec::Close();
     }
 
-    mfxStatus Open(struct tdav_codec_h264_intel_s* pWrappedCodec) {
+    mfxStatus Open(struct tdav_codec_h264_intel_s* pWrappedCodec)
+    {
         tdav_codec_h264_common_t* pWrappedCodecCommon = (tdav_codec_h264_common_t*)pWrappedCodec;
 
         INTEL_DEBUG_INFO("Decoder.Open width=%d, height=%d, fps=%d",
@@ -757,7 +779,8 @@ public:
         return MFX_ERR_NONE;
     }
 
-    mfxU32 Decode(struct tmedia_codec_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize, void **ppOutDataPtr, tsk_size_t *pOutDataMaxSize, const trtp_rtp_header_t* pcRtpHdr) {
+    mfxU32 Decode(struct tmedia_codec_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize, void **ppOutDataPtr, tsk_size_t *pOutDataMaxSize, const trtp_rtp_header_t* pcRtpHdr)
+    {
         mfxU32 nRetSize = 0, nOutXSize;
         mfxStatus status = MFX_ERR_NONE;
         tsk_bool_t append_scp, end_of_unit;
@@ -932,18 +955,20 @@ bail:
 
 private:
 #if 0
-    static mfxStatus WriteSection(mfxU8* plane, mfxU16 factor, mfxU16 chunksize, mfxFrameInfo *pInfo, mfxFrameData *pData, mfxU32 i, mfxU32 j, mfxU8 *pDstPtr) {
+    static mfxStatus WriteSection(mfxU8* plane, mfxU16 factor, mfxU16 chunksize, mfxFrameInfo *pInfo, mfxFrameData *pData, mfxU32 i, mfxU32 j, mfxU8 *pDstPtr)
+    {
         memcpy(pDstPtr, plane + (pInfo->CropY * pData->Pitch / factor + pInfo->CropX) + i * pData->Pitch + j, chunksize);
         return MFX_ERR_NONE;
     }
 #else
 #define WriteSection(_plane, _factor, _chunksize, _pInfo, _pData, _i, _j, _pDstPtr) \
-		memcpy((_pDstPtr), (_plane) + ((_pInfo)->CropY * (_pData)->Pitch / (_factor) + (_pInfo)->CropX) + (_i) * (_pData)->Pitch + (_j), (_chunksize))
+        memcpy((_pDstPtr), (_plane) + ((_pInfo)->CropY * (_pData)->Pitch / (_factor) + (_pInfo)->CropX) + (_i) * (_pData)->Pitch + (_j), (_chunksize))
 #define WriteSection1(_plane, _factor, _pInfo, _pData, _i, _j, _pDstPtr) \
-		*(_pDstPtr) = *((_plane) + ((_pInfo)->CropY * (_pData)->Pitch / (_factor) + (_pInfo)->CropX) + (_i) * (_pData)->Pitch + (_j));
+        *(_pDstPtr) = *((_plane) + ((_pInfo)->CropY * (_pData)->Pitch / (_factor) + (_pInfo)->CropX) + (_i) * (_pData)->Pitch + (_j));
 #endif
 
-    static mfxStatus LayoutPicture(mfxFrameSurface1 *pSurface, mfxU8 *pDstPtr) {
+    static mfxStatus LayoutPicture(mfxFrameSurface1 *pSurface, mfxU8 *pDstPtr)
+    {
 #if 1 // ->YUV420
         mfxFrameInfo *pInfo = &pSurface->Info;
         mfxFrameData *pData = &pSurface->Data;
@@ -1009,7 +1034,8 @@ private:
         return MFX_ERR_NONE;
     }
 
-    mfxStatus DecodeFrame(struct tdav_codec_h264_intel_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize, bool bSpsOrPps, mfxFrameSurface1** ppmfxOutSurface, bool &bGotFrame) {
+    mfxStatus DecodeFrame(struct tdav_codec_h264_intel_s* pWrappedCodec, const mfxU8* pcInDataPtr, mfxU32 nInDataSize, bool bSpsOrPps, mfxFrameSurface1** ppmfxOutSurface, bool &bGotFrame)
+    {
         mfxStatus status = MFX_ERR_NONE;
         int nSurfaceIndex;
         mfxSyncPoint syncp;
@@ -1257,12 +1283,12 @@ static int tdav_codec_h264_intel_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if ((ret = tdav_codec_h264_intel_open_encoder(h264))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if ((ret = tdav_codec_h264_intel_open_decoder(h264))) {
         return ret;
     }
@@ -1281,10 +1307,10 @@ static int tdav_codec_h264_intel_close(tmedia_codec_t* self)
 
     /* the caller (base class) alreasy checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     tdav_codec_h264_intel_close_encoder(h264);
 
-    //	Decoder
+    //  Decoder
     tdav_codec_h264_intel_close_decoder(h264);
 
     return 0;
@@ -1620,7 +1646,7 @@ static int tdav_codec_h264_intel_deinit(tdav_codec_h264_intel_t* self)
 
 static IDXGIAdapter* D3D11_GetIntelDeviceAdapterHandle(mfxHDL _pthis, mfxSession session)
 {
-    mfxU32	adapterNum = 0;
+    mfxU32  adapterNum = 0;
     mfxIMPL impl;
     tdav_codec_h264_intel_t* pthis = (tdav_codec_h264_intel_t*)_pthis;
 
@@ -1883,15 +1909,15 @@ static mfxStatus D3D11_SimpleLock(mfxHDL _pthis, mfxMemId mid, mfxFrameData *ptr
     HRESULT hRes = S_OK;
     tdav_codec_h264_intel_t* pthis = (tdav_codec_h264_intel_t*)_pthis;
 
-    D3D11_TEXTURE2D_DESC		desc = { 0 };
-    D3D11_MAPPED_SUBRESOURCE	lockedRect = { 0 };
+    D3D11_TEXTURE2D_DESC        desc = { 0 };
+    D3D11_MAPPED_SUBRESOURCE    lockedRect = { 0 };
 
-    CustomMemId*		memId = (CustomMemId*)mid;
-    ID3D11Texture2D*	pSurface = (ID3D11Texture2D *)memId->memId;
-    ID3D11Texture2D*	pStage = (ID3D11Texture2D *)memId->memIdStage;
+    CustomMemId*        memId = (CustomMemId*)mid;
+    ID3D11Texture2D*    pSurface = (ID3D11Texture2D *)memId->memId;
+    ID3D11Texture2D*    pStage = (ID3D11Texture2D *)memId->memIdStage;
 
-    D3D11_MAP	mapType = D3D11_MAP_READ;
-    UINT		mapFlags = D3D11_MAP_FLAG_DO_NOT_WAIT;
+    D3D11_MAP   mapType = D3D11_MAP_READ;
+    UINT        mapFlags = D3D11_MAP_FLAG_DO_NOT_WAIT;
 
     if (NULL == pStage) {
         hRes = pthis->pD3D11Ctx->Map(pSurface, 0, mapType, mapFlags, &lockedRect);
@@ -1949,9 +1975,9 @@ static mfxStatus D3D11_SimpleUnlock(mfxHDL _pthis, mfxMemId mid, mfxFrameData *p
 {
     tdav_codec_h264_intel_t* pthis = (tdav_codec_h264_intel_t*)_pthis;
 
-    CustomMemId*		memId = (CustomMemId*)mid;
-    ID3D11Texture2D*	pSurface = (ID3D11Texture2D *)memId->memId;
-    ID3D11Texture2D*	pStage = (ID3D11Texture2D *)memId->memIdStage;
+    CustomMemId*        memId = (CustomMemId*)mid;
+    ID3D11Texture2D*    pSurface = (ID3D11Texture2D *)memId->memId;
+    ID3D11Texture2D*    pStage = (ID3D11Texture2D *)memId->memIdStage;
 
     if (NULL == pStage) {
         pthis->pD3D11Ctx->Unmap(pSurface, 0);
@@ -1980,8 +2006,8 @@ static mfxStatus D3D11_SimpleGethdl(mfxHDL _pthis, mfxMemId mid, mfxHDL *handle)
         return MFX_ERR_INVALID_HANDLE;
     }
 
-    mfxHDLPair*		pPair = (mfxHDLPair*)handle;
-    CustomMemId*	memId = (CustomMemId*)mid;
+    mfxHDLPair*     pPair = (mfxHDLPair*)handle;
+    CustomMemId*    memId = (CustomMemId*)mid;
 
     pPair->first = memId->memId; // surface texture
     pPair->second = 0;
@@ -1999,9 +2025,9 @@ static mfxStatus D3D11_SimpleFree(mfxHDL _pthis, mfxFrameAllocResponse *response
     if (response->mids) {
         for (mfxU32 i = 0; i < response->NumFrameActual; i++) {
             if (response->mids[i]) {
-                CustomMemId*		mid = (CustomMemId*)response->mids[i];
-                ID3D11Texture2D*	pSurface = (ID3D11Texture2D *)mid->memId;
-                ID3D11Texture2D*	pStage = (ID3D11Texture2D *)mid->memIdStage;
+                CustomMemId*        mid = (CustomMemId*)response->mids[i];
+                ID3D11Texture2D*    pSurface = (ID3D11Texture2D *)mid->memId;
+                ID3D11Texture2D*    pStage = (ID3D11Texture2D *)mid->memIdStage;
                 if (pSurface) {
                     pSurface->Release();
                 }

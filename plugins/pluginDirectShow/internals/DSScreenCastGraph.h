@@ -34,11 +34,13 @@ public:
     DSScreenCastGraph(ISampleGrabberCB* callback, HRESULT *hr);
     virtual ~DSScreenCastGraph();
 
-    std::vector<DSCaptureFormat> *getFormats() {
+    std::vector<DSCaptureFormat> *getFormats()
+    {
         return &this->supportedFormats;
     };
 
-    virtual HRESULT setSource(const std::string &devicePath) {
+    virtual HRESULT setSource(const std::string &devicePath)
+    {
         return S_OK;
     }
     HRESULT setParameters(DSCaptureFormat *format, int framerate);
@@ -54,7 +56,8 @@ public:
 
     HRESULT getConnectedMediaType(AM_MEDIA_TYPE *mediaType);
 
-    virtual std::string getDeviceId() const {
+    virtual std::string getDeviceId() const
+    {
         return std::string("screencast");
     }
 
@@ -62,25 +65,25 @@ private:
     HRESULT createCaptureGraph();
 
 private:
-    ISampleGrabberCB				*grabberCallback;
+    ISampleGrabberCB                *grabberCallback;
 
-    ICaptureGraphBuilder2			*captureGraphBuilder;
-    IGraphBuilder					*graphBuilder;
+    ICaptureGraphBuilder2           *captureGraphBuilder;
+    IGraphBuilder                   *graphBuilder;
 
-    CPushSourceDesktop				*sourceFilter;
-    IBaseFilter						*nullRendererFilter;
-    IBaseFilter						*sampleGrabberFilter;
+    CPushSourceDesktop              *sourceFilter;
+    IBaseFilter                     *nullRendererFilter;
+    IBaseFilter                     *sampleGrabberFilter;
 
-    ISampleGrabber					*grabberController;
+    ISampleGrabber                  *grabberController;
 
-    IMediaControl					*mediaController;
-    IMediaEventEx					*mediaEventController;
+    IMediaControl                   *mediaController;
+    IMediaEventEx                   *mediaEventController;
 
-    std::vector<DSCaptureFormat>	supportedFormats;
-    DSCaptureFormat					*captureFormat;
+    std::vector<DSCaptureFormat>    supportedFormats;
+    DSCaptureFormat                 *captureFormat;
 
-    bool							running;
-    bool							paused;
+    bool                            running;
+    bool                            paused;
 };
 
 #endif /* PLUGIN_DSHOW_DSSCREENCAST_H */
@@ -120,11 +123,13 @@ public:
     DSScreenCastGraph(ISampleGrabberCB* callback, HRESULT *hr);
     virtual ~DSScreenCastGraph();
 
-    std::vector<DSCaptureFormat> *getFormats() {
+    std::vector<DSCaptureFormat> *getFormats()
+    {
         return &this->supportedFormats;
     };
 
-    virtual HRESULT setSource(const std::string &devicePath) {
+    virtual HRESULT setSource(const std::string &devicePath)
+    {
         return S_OK;
     }
     HRESULT setParameters(DSCaptureFormat *format, int framerate);
@@ -140,7 +145,8 @@ public:
 
     HRESULT getConnectedMediaType(AM_MEDIA_TYPE *mediaType);
 
-    virtual std::string getDeviceId() const {
+    virtual std::string getDeviceId() const
+    {
         return std::string("screencast");
     }
 
@@ -148,25 +154,25 @@ private:
     HRESULT createCaptureGraph();
 
 private:
-    ISampleGrabberCB				*grabberCallback;
+    ISampleGrabberCB                *grabberCallback;
 
-    ICaptureGraphBuilder2			*captureGraphBuilder;
-    IGraphBuilder					*graphBuilder;
+    ICaptureGraphBuilder2           *captureGraphBuilder;
+    IGraphBuilder                   *graphBuilder;
 
-    CPushSourceDesktop				*sourceFilter;
-    IBaseFilter						*nullRendererFilter;
-    IBaseFilter						*sampleGrabberFilter;
+    CPushSourceDesktop              *sourceFilter;
+    IBaseFilter                     *nullRendererFilter;
+    IBaseFilter                     *sampleGrabberFilter;
 
-    ISampleGrabber					*grabberController;
+    ISampleGrabber                  *grabberController;
 
-    IMediaControl					*mediaController;
-    IMediaEventEx					*mediaEventController;
+    IMediaControl                   *mediaController;
+    IMediaEventEx                   *mediaEventController;
 
-    std::vector<DSCaptureFormat>	supportedFormats;
-    DSCaptureFormat					*captureFormat;
+    std::vector<DSCaptureFormat>    supportedFormats;
+    DSCaptureFormat                 *captureFormat;
 
-    bool							running;
-    bool							paused;
+    bool                            running;
+    bool                            paused;
 };
 
 #endif /* PLUGIN_DSHOW_DSSCREENCAST_H */

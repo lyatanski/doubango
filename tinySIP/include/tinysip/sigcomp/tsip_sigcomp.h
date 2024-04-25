@@ -36,14 +36,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_IS_SIGCOMP_DATA(data)	((data) && (*((uint8_t*)data) & 0xF8) == 0xF8)
+#define TSIP_IS_SIGCOMP_DATA(data)  ((data) && (*((uint8_t*)data) & 0xF8) == 0xF8)
 
-#define TSIP_SIGCOMP_DMS			8192
-#define TSIP_SIGCOMP_SMS			8192
-#define TSIP_SIGCOMP_CPB			64
-#define TSIP_SIGCOMP_PRES_DICT		tsk_false
-#define TSIP_SIGCOMP_SIP_DICT		tsk_true
-#define TSIP_SIGCOMP_MAX_BUFF_SIZE	0x2710
+#define TSIP_SIGCOMP_DMS            8192
+#define TSIP_SIGCOMP_SMS            8192
+#define TSIP_SIGCOMP_CPB            64
+#define TSIP_SIGCOMP_PRES_DICT      tsk_false
+#define TSIP_SIGCOMP_SIP_DICT       tsk_true
+#define TSIP_SIGCOMP_MAX_BUFF_SIZE  0x2710
 
 typedef void tsip_sigcomp_handle_t;
 
@@ -58,8 +58,8 @@ tsk_size_t tsip_sigcomp_handler_uncompress(tsip_sigcomp_handle_t* self, const ch
 tsk_size_t tsip_sigcomp_handler_uncompress_next(tsip_sigcomp_handle_t* self, const char* comp_id, void** nack_data, tsk_bool_t* is_nack);
 
 
-#define tsip_sigcomp_handler_compressUDP(self, comp_id, in_data, in_size, out_data, out_maxsize)	tsip_sigcomp_handler_compress(self, comp_id, tsk_false, in_data, in_size, out_data, out_maxsize)
-#define tsip_sigcomp_handler_compressTCP(self, comp_id, in_data, in_size, out_data, out_maxsize)	tsip_sigcomp_handler_compress(self, comp_id, tsk_true, in_data, in_size, out_data, out_maxsize)
+#define tsip_sigcomp_handler_compressUDP(self, comp_id, in_data, in_size, out_data, out_maxsize)    tsip_sigcomp_handler_compress(self, comp_id, tsk_false, in_data, in_size, out_data, out_maxsize)
+#define tsip_sigcomp_handler_compressTCP(self, comp_id, in_data, in_size, out_data, out_maxsize)    tsip_sigcomp_handler_compress(self, comp_id, tsk_true, in_data, in_size, out_data, out_maxsize)
 #define tsip_sigcomp_handler_uncompressUDP(self, comp_id, in_data, in_size, out_data, out_maxsize, is_nack) tsip_sigcomp_handler_uncompress(self, comp_id, tsk_false, in_data, in_size, out_data, out_maxsize, is_nack)
 #define tsip_sigcomp_handler_uncompressTCP(self, comp_id, in_data, in_size, out_data, out_maxsize, is_nack) tsip_sigcomp_handler_uncompress(self, comp_id, tsk_true, in_data, in_size, out_data, out_maxsize, is_nack)
 

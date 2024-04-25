@@ -98,10 +98,10 @@ int tnet_dns_rr_deinit(tnet_dns_rr_t *rr)
 int tnet_dns_rr_charstring_deserialize(const void* data, char** charstring, tsk_size_t *offset)
 {
     /* RFC 1035 - 3.3. Standard RRs
-    	<character-string> is a single length octet followed by that number of characters.
-    	<character-string> is treated as binary information, and can be up to 256 characters in
-    	length (including the length octet).
-    	*/
+        <character-string> is a single length octet followed by that number of characters.
+        <character-string> is treated as binary information, and can be up to 256 characters in
+        length (including the length octet).
+        */
     uint8_t* dataPtr = (((uint8_t*)data) + *offset);
     uint8_t length = *dataPtr;
 
@@ -117,11 +117,11 @@ int tnet_dns_rr_qname_deserialize(const void* data, char** name, tsk_size_t *off
 {
     /* RFC 1035 - 4.1.4. Message compression
 
-    	The pointer takes the form of a two octet sequence:
-    	+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    	| 1  1|                OFFSET                   |
-    	+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    	*/
+        The pointer takes the form of a two octet sequence:
+        +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+        | 1  1|                OFFSET                   |
+        +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+        */
     uint8_t* dataPtr = (((uint8_t*)data) + *offset);
     unsigned usingPtr = 0; /* Do not change. */
 
@@ -157,42 +157,42 @@ int tnet_dns_rr_qname_deserialize(const void* data, char** name, tsk_size_t *off
 
 //int tnet_dns_rr_qname_deserialize(const void* data, tsk_size_t size, char** name, tsk_size_t *offset)
 //{
-//	/* RFC 1035 - 4.1.4. Message compression
+//  /* RFC 1035 - 4.1.4. Message compression
 //
-//		The pointer takes the form of a two octet sequence:
-//		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-//		| 1  1|                OFFSET                   |
-//		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-//	*/
-//	uint8_t* dataPtr = (((uint8_t*)data) + *offset);
-//	uint8_t* dataEnd = (dataPtr + size);
-//	unsigned usingPtr = 0; /* Do not change. */
-//	unsigned islast = 0;
+//      The pointer takes the form of a two octet sequence:
+//      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+//      | 1  1|                OFFSET                   |
+//      +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+//  */
+//  uint8_t* dataPtr = (((uint8_t*)data) + *offset);
+//  uint8_t* dataEnd = (dataPtr + size);
+//  unsigned usingPtr = 0; /* Do not change. */
+//  unsigned islast = 0;
 //
-//	while(!islast)
-//	{
-//		usingPtr = ((*dataPtr & 0xC0) == 0xC0);
+//  while(!islast)
+//  {
+//      usingPtr = ((*dataPtr & 0xC0) == 0xC0);
 //
-//		if(usingPtr)
-//		{
-//			uint8_t *Ptr;
-//			uint16_t ptr_offset = (*dataPtr & 0x3F);
-//			ptr_offset = ptr_offset << 8 | *(dataPtr+1);
-//			Ptr = ((uint8_t*)data) + ptr_offset;
+//      if(usingPtr)
+//      {
+//          uint8_t *Ptr;
+//          uint16_t ptr_offset = (*dataPtr & 0x3F);
+//          ptr_offset = ptr_offset << 8 | *(dataPtr+1);
+//          Ptr = ((uint8_t*)data) + ptr_offset;
 //
-//			tnet_qname_label_parse(Ptr, (dataEnd - Ptr), name, &islast);
-//			*offset += 2, dataPtr += 2;
-//		}
-//		else
-//		{
-//			tsk_size_t length = tnet_qname_label_parse(dataPtr, size, name, &islast);
-//			*offset += length, dataPtr += length;
-//		}
-//	}
+//          tnet_qname_label_parse(Ptr, (dataEnd - Ptr), name, &islast);
+//          *offset += 2, dataPtr += 2;
+//      }
+//      else
+//      {
+//          tsk_size_t length = tnet_qname_label_parse(dataPtr, size, name, &islast);
+//          *offset += length, dataPtr += length;
+//      }
+//  }
 //
-//	*offset += usingPtr ? 0 : 1;
+//  *offset += usingPtr ? 0 : 1;
 //
-//	return 0;
+//  return 0;
 //}
 
 /** Serializes a QName.
@@ -200,15 +200,15 @@ int tnet_dns_rr_qname_deserialize(const void* data, char** name, tsk_size_t *off
 int tnet_dns_rr_qname_serialize(const char* qname, tsk_buffer_t* output)
 {
     /*
-    	QNAME       a domain name represented as a sequence of labels, where
-    	each label consists of a length octet followed by that
-    	number of octets.  The domain name terminates with the
-    	zero length octet for the null label of the root.  Note
-    	that this field may be an odd number of octets; no
-    	padding is used.
+        QNAME       a domain name represented as a sequence of labels, where
+        each label consists of a length octet followed by that
+        number of octets.  The domain name terminates with the
+        zero length octet for the null label of the root.  Note
+        that this field may be an odd number of octets; no
+        padding is used.
 
-    	Example: "doubango.com" ==> 8doubango3comNULL
-    	*/
+        Example: "doubango.com" ==> 8doubango3comNULL
+        */
     static uint8_t null = 0;
 
     if (qname) {
@@ -405,7 +405,7 @@ done:
 
 
 //=================================================================================================
-//	[[DNS RR]] object definition
+//  [[DNS RR]] object definition
 //
 static tsk_object_t* tnet_dns_rr_ctor(tsk_object_t * self, va_list * app)
 {

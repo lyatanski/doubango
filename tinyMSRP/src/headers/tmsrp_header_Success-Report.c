@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 55 "./ragel/tmsrp_parser_header_Success-Report.rl" */
@@ -257,7 +257,7 @@ _match:
                 hdr_Success_Report->yes = 0;
             }
             break;
-            /* #line 254 "./src/headers/tmsrp_header_Success-Report.c" */
+                /* #line 254 "./src/headers/tmsrp_header_Success-Report.c" */
             }
         }
 
@@ -287,7 +287,7 @@ _test_eof: {
                     hdr_Success_Report->yes = 0;
                 }
                 break;
-                /* #line 282 "./src/headers/tmsrp_header_Success-Report.c" */
+                    /* #line 282 "./src/headers/tmsrp_header_Success-Report.c" */
                 }
             }
         }
@@ -318,7 +318,7 @@ _out: {
 
 
 //========================================================
-//	Success_Report header object definition
+//  Success_Report header object definition
 //
 
 static tsk_object_t* tmsrp_header_Success_Report_ctor(tsk_object_t *self, va_list * app)

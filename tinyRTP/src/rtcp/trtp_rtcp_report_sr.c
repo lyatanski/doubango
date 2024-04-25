@@ -252,11 +252,11 @@ tsk_size_t trtp_rtcp_report_sr_get_size(const trtp_rtcp_report_sr_t* self)
 
     size = TRTP_RTCP_PACKET(self)->header->length_in_bytes;
     //if(TRTP_RTCP_PACKET(self)->header->rc > 0){
-    //	tsk_list_foreach(item, self->blocks){
-    //		if(item->data){
-    //			size += TRTP_RTCP_RBLOCK_SIZE;
-    //		}
-    //	}
+    //  tsk_list_foreach(item, self->blocks){
+    //      if(item->data){
+    //          size += TRTP_RTCP_RBLOCK_SIZE;
+    //      }
+    //  }
     //}
     tsk_list_foreach(item, self->packets) {
         if(item->data && TRTP_RTCP_PACKET(item->data)->header) {

@@ -132,7 +132,7 @@ bail:
 }
 
 /*=======================================================================================
-*	RFC 3315 - 9.2. DUID Based on Link-layer Address Plus Time [DUID-LLT]
+*   RFC 3315 - 9.2. DUID Based on Link-layer Address Plus Time [DUID-LLT]
 *=======================================================================================*/
 
 int tnet_dhcp6_duid_llt_serialize(const tnet_dhcp6_duid_llt_t* self, tsk_buffer_t *output)
@@ -141,7 +141,7 @@ int tnet_dhcp6_duid_llt_serialize(const tnet_dhcp6_duid_llt_t* self, tsk_buffer_
 }
 
 //
-//	[[DHCPv6 DUID-LLT]] object definition
+//  [[DHCPv6 DUID-LLT]] object definition
 //
 static tsk_object_t* tnet_dhcp6_duid_llt_ctor(tsk_object_t * self, va_list * app)
 {
@@ -182,7 +182,7 @@ const tsk_object_def_t *tnet_dhcp6_duid_llt_def_t = &tnet_dhcp6_duid_llt_def_s;
 
 
 /*=======================================================================================
-*	RFC 3315 - 9.3. DUID Assigned by Vendor Based on Enterprise Number [DUID-EN]
+*   RFC 3315 - 9.3. DUID Assigned by Vendor Based on Enterprise Number [DUID-EN]
 *=======================================================================================*/
 
 int tnet_dhcp6_duid_en_serialize(const tnet_dhcp6_duid_en_t* self, tsk_buffer_t *output)
@@ -191,7 +191,7 @@ int tnet_dhcp6_duid_en_serialize(const tnet_dhcp6_duid_en_t* self, tsk_buffer_t 
 }
 
 //
-//	[[DHCPv6 DUID-EN]] object definition
+//  [[DHCPv6 DUID-EN]] object definition
 //
 static tsk_object_t* tnet_dhcp6_duid_en_ctor(tsk_object_t * self, va_list * app)
 {
@@ -232,7 +232,7 @@ const tsk_object_def_t *tnet_dhcp6_duid_en_def_t = &tnet_dhcp6_duid_en_def_s;
 
 
 /*=======================================================================================
-*	RFC 3315 - 9.4. DUID Based on Link-layer Address [DUID-LL]
+*   RFC 3315 - 9.4. DUID Based on Link-layer Address [DUID-LL]
 *=======================================================================================*/
 
 int tnet_dhcp6_duid_ll_serialize(const tnet_dhcp6_duid_ll_t* self, tsk_buffer_t *output)
@@ -241,7 +241,7 @@ int tnet_dhcp6_duid_ll_serialize(const tnet_dhcp6_duid_ll_t* self, tsk_buffer_t 
 }
 
 //
-//	[[DHCPv6 DUID-LL]] object definition
+//  [[DHCPv6 DUID-LL]] object definition
 //
 static tsk_object_t* tnet_dhcp6_duid_ll_ctor(tsk_object_t * self, va_list * app)
 {

@@ -35,12 +35,12 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_SUCCESS_REPORT_VA_ARGS(isSuccess)		tmsrp_header_Success_Report_def_t, (tsk_bool_t)isSuccess
+#define TMSRP_HEADER_SUCCESS_REPORT_VA_ARGS(isSuccess)      tmsrp_header_Success_Report_def_t, (tsk_bool_t)isSuccess
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Success-Report' header.
+/// @brief  MSRP 'Success-Report' header.
 ///
 /// @par ABNF :  "Success-Report:" ( "yes" / "no" )
 ///

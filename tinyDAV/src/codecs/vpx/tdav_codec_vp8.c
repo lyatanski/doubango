@@ -31,7 +31,7 @@
 #if HAVE_LIBVPX
 
 #if TDAV_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif
 
 #include "tinyrtp/rtp/trtp_rtp_packet.h"
@@ -55,18 +55,18 @@
 #endif
 
 #if TDAV_VP8_DISABLE_EXTENSION
-#   define TDAV_VP8_PAY_DESC_SIZE			1
+#   define TDAV_VP8_PAY_DESC_SIZE           1
 #else
-#   define TDAV_VP8_PAY_DESC_SIZE			4
+#   define TDAV_VP8_PAY_DESC_SIZE           4
 #endif
-#define TDAV_SYSTEM_CORES_COUNT				0
-#define TDAV_VP8_GOP_SIZE_IN_SECONDS		60
-#define TDAV_VP8_RTP_PAYLOAD_MAX_SIZE		1050
+#define TDAV_SYSTEM_CORES_COUNT             0
+#define TDAV_VP8_GOP_SIZE_IN_SECONDS        60
+#define TDAV_VP8_RTP_PAYLOAD_MAX_SIZE       1050
 #if !defined(TDAV_VP8_MAX_BANDWIDTH_KB)
-#	define TDAV_VP8_MAX_BANDWIDTH_KB		6000
+#   define TDAV_VP8_MAX_BANDWIDTH_KB        6000
 #endif
 #if !defined(TDAV_VP8_MIN_BANDWIDTH_KB)
-#	define TDAV_VP8_MIN_BANDWIDTH_KB		100
+#   define TDAV_VP8_MIN_BANDWIDTH_KB        100
 #endif
 
 /* VP8 codec */
@@ -180,15 +180,15 @@ static int tdav_codec_vp8_set(tmedia_codec_t* self, const tmedia_param_t* param)
                 reconf = tsk_true;
             }
         }
-		else if (tsk_striequals(param->key, "out-size")) {
-			// It's up to the caller to lock the codec or make sure no other code will code encode() function.
-			uint32_t new_size = *((uint32_t*)param->value);
-			TMEDIA_CODEC_VIDEO(vp8)->out.width = (new_size & 0xFFFF);
-			TMEDIA_CODEC_VIDEO(vp8)->out.height = (new_size >> 16) & 0xFFFF;
-			vp8->encoder.cfg.g_w = (vp8->encoder.rotation == 90 || vp8->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(vp8)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;
-			vp8->encoder.cfg.g_h = (vp8->encoder.rotation == 90 || vp8->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(vp8)->out.width : TMEDIA_CODEC_VIDEO(self)->out.height;
-			reconf = tsk_true;
-		}
+        else if (tsk_striequals(param->key, "out-size")) {
+            // It's up to the caller to lock the codec or make sure no other code will code encode() function.
+            uint32_t new_size = *((uint32_t*)param->value);
+            TMEDIA_CODEC_VIDEO(vp8)->out.width = (new_size & 0xFFFF);
+            TMEDIA_CODEC_VIDEO(vp8)->out.height = (new_size >> 16) & 0xFFFF;
+            vp8->encoder.cfg.g_w = (vp8->encoder.rotation == 90 || vp8->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(vp8)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;
+            vp8->encoder.cfg.g_h = (vp8->encoder.rotation == 90 || vp8->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(vp8)->out.width : TMEDIA_CODEC_VIDEO(self)->out.height;
+            reconf = tsk_true;
+        }
     }
 
     if (reconf) {
@@ -220,12 +220,12 @@ static int tdav_codec_vp8_open(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is not opened */
 
 
-    //	Encoder
+    //  Encoder
     if ((ret = tdav_codec_vp8_open_encoder(vp8))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if ((ret = tdav_codec_vp8_open_decoder(vp8))) {
         return ret;
     }
@@ -328,7 +328,7 @@ static tsk_size_t tdav_codec_vp8_decode(tmedia_codec_t* self, const void* in_dat
         return 0;
     }
 
-    {	/* 4.2. VP8 Payload Descriptor */
+    { /* 4.2. VP8 Payload Descriptor */
         uint8_t X, R, N, I, L, T, K;//TODO: store
 
         X = ((*pdata & 0x80) >> 7);
@@ -580,9 +580,9 @@ bail:
         TMEDIA_CODEC_VIDEO(self)->in.callback(&TMEDIA_CODEC_VIDEO(self)->in.result);
     }
 
-    //	vp8->decoder.last_PartID = PartID;
-    //	vp8->decoder.last_S = S;
-    //	vp8->decoder.last_N = N;
+    //  vp8->decoder.last_PartID = PartID;
+    //  vp8->decoder.last_S = S;
+    //  vp8->decoder.last_N = N;
     return ret;
 }
 

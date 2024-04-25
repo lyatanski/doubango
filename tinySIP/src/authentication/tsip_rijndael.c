@@ -71,13 +71,13 @@
 #define byte3(x)    ((uint8_t)(x >> 24))
 
 
-/* Put or get a 32 bit uint32_t (v) in machine order from a byte	*
+/* Put or get a 32 bit uint32_t (v) in machine order from a byte    *
  * address in (x)                                                   */
 
 #if defined(_MSC_VER)
-#	define __INLINE	__forceinline
+#   define __INLINE __forceinline
 #else
-#	define __INLINE
+#   define __INLINE
 #endif
 
 __INLINE uint32_t byte_swap(uint32_t x)
@@ -391,7 +391,7 @@ static uint32_t fl_tab[4][256] = {
 
 /*----------------- The workspace ------------------------------*/
 
-static uint32_t Ekey[44];	/* The expanded key */
+static uint32_t Ekey[44];   /* The expanded key */
 
 /*------ The round Function.  4 table lookups and 4 Exors ------*/
 #define f_rnd(x, n)                     \
@@ -429,7 +429,7 @@ static uint32_t Ekey[44];	/* The expanded key */
 void RijndaelKeySchedule(uint8_t key[16])
 {
     uint32_t  t;
-    uint32_t  *ek=Ekey,	    /* pointer to the expanded key   */
+    uint32_t  *ek=Ekey,     /* pointer to the expanded key   */
                *rc=rnd_con;   /* pointer to the round constant */
 
     Ekey[0] = u32_in(key     );

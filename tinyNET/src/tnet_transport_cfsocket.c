@@ -124,20 +124,20 @@ static BOOL isTrusted(tnet_transport_t *transport, id cfStream, BOOL bReadStream
     NSString *caName = NULL, *pbName = NULL;
 
     if (!tsk_strnullORempty(transport->tls.ca)) {
-caName = [[[NSString stringWithCString:transport->tls.ca encoding: NSUTF8StringEncoding] lastPathComponent] stringByDeletingPathExtension];
+        caName = [[[NSString stringWithCString:transport->tls.ca encoding: NSUTF8StringEncoding] lastPathComponent] stringByDeletingPathExtension];
     }
     if (!tsk_strnullORempty(transport->tls.pbk)) {
-pbName = [[[NSString stringWithCString:transport->tls.pbk encoding: NSUTF8StringEncoding] lastPathComponent] stringByDeletingPathExtension];
+        pbName = [[[NSString stringWithCString:transport->tls.pbk encoding: NSUTF8StringEncoding] lastPathComponent] stringByDeletingPathExtension];
     }
     TSK_DEBUG_INFO("SSL::isTrusted(ca=%s, pb=%s)", [caName UTF8String], [pbName UTF8String]);
 
     if (caName) {
-NSString *caPath = [[NSBundle mainBundle] pathForResource:caName ofType:@"der"];
-if (![[NSFileManager defaultManager] fileExistsAtPath:caPath]) {
+        NSString *caPath = [[NSBundle mainBundle] pathForResource:caName ofType:@"der"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:caPath]) {
             TSK_DEBUG_WARN("Cannot find SSL CA file '%s.der'", [caPath UTF8String]);
         }
         else {
-NSData *certData = [[NSData alloc] initWithContentsOfFile:caPath];
+            NSData *certData = [[NSData alloc] initWithContentsOfFile:caPath];
             CFDataRef certDataRef = (CFDataRef)certData;
             SecCertificateRef cert = certDataRef ? SecCertificateCreateWithData(NULL, certDataRef) : NULL;
             [certData release];
@@ -151,12 +151,12 @@ NSData *certData = [[NSData alloc] initWithContentsOfFile:caPath];
         }
     }
     if (pbName) {
-NSString *pbPath = [[NSBundle mainBundle] pathForResource:pbName ofType:@"der"];
-if (![[NSFileManager defaultManager] fileExistsAtPath:pbPath]) {
+        NSString *pbPath = [[NSBundle mainBundle] pathForResource:pbName ofType:@"der"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:pbPath]) {
             TSK_DEBUG_WARN("Cannot find SSL PUB file '%s.der'", [pbPath UTF8String]);
         }
         else {
-NSData *certData = [[NSData alloc] initWithContentsOfFile:pbPath];
+            NSData *certData = [[NSData alloc] initWithContentsOfFile:pbPath];
             CFDataRef certDataRef = (CFDataRef)certData;
             SecCertificateRef cert = certDataRef ? SecCertificateCreateWithData(NULL, certDataRef) : NULL;
             [certData release];
@@ -587,7 +587,7 @@ static const transport_socket_xt* getSocketByStream(transport_context_t *context
 
 /*== Add new socket ==*/
 
-int addSocket2(tnet_fd_t fd, tnet_socket_type_t type, tnet_transport_t *transport, tsk_bool_t take_ownership, tsk_bool_t is_client , const char* dst_host, tnet_port_t dst_port, struct tnet_proxyinfo_s* proxy_info)
+int addSocket2(tnet_fd_t fd, tnet_socket_type_t type, tnet_transport_t *transport, tsk_bool_t take_ownership, tsk_bool_t is_client, const char* dst_host, tnet_port_t dst_port, struct tnet_proxyinfo_s* proxy_info)
 {
     transport_context_t *context = transport?transport->context:0;
     if (context) {
@@ -1303,14 +1303,14 @@ void *tnet_transport_mainthread(void *param)
 
 bail:
     TSK_DEBUG_INFO("Stopped [%s] server with IP {%s} on port {%d}...", transport->description, transport->master->ip, transport->master->port);
-    
+
     if(context->cf_run_loop) {
         // Remove all the sockets, streams and sources from the run loop
         tsk_safeobj_lock(context);
         for(i = 0; i < context->count; i++) {
             transport_context_t *context = transport->context;
             transport_socket_xt *sock = context->sockets[i];
-            
+
             if (!sock) {
                 continue;
             }
@@ -1347,7 +1347,7 @@ void* tnet_transport_context_create()
 
 
 //=================================================================================================
-//	Transport context object definition
+//  Transport context object definition
 //
 static tsk_object_t* transport_context_ctor(tsk_object_t * self, va_list * app)
 {

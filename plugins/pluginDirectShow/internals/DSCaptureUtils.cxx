@@ -33,7 +33,7 @@
 #include "tsk_debug.h"
 
 #if defined (_WIN32_WCE)
-#	include "internals/wince/cpropertybag.h"
+#   include "internals/wince/cpropertybag.h"
 #endif
 
 HRESULT enumerateCaptureDevices(const std::string &prefix, std::vector<VideoGrabberName> *names)
@@ -43,7 +43,7 @@ HRESULT enumerateCaptureDevices(const std::string &prefix, std::vector<VideoGrab
 #ifdef _WIN32_WCE
 
     // FIXME: use FindNextDevice to query all devices
-    HANDLE	handle = NULL;
+    HANDLE  handle = NULL;
     DEVMGR_DEVICE_INFORMATION di;
 
     TCHAR pwzName[MAX_PATH];
@@ -189,7 +189,7 @@ HRESULT createSourceFilter(std::string *devicePath, IBaseFilter **sourceFilter)
 
 #if defined( _WIN32_WCE)
     CPropertyBag  pBag;
-    HANDLE	handle = NULL;
+    HANDLE  handle = NULL;
     DEVMGR_DEVICE_INFORMATION di;
     TCHAR pwzName[MAX_PATH];
     CComVariant varCamName;

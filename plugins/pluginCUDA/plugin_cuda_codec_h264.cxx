@@ -92,10 +92,10 @@ typedef struct cuda_codec_h264_s {
 cuda_codec_h264_t;
 
 #if !defined(PLUGIN_CUDA_H264_GOP_SIZE_IN_SECONDS)
-#	define PLUGIN_CUDA_H264_GOP_SIZE_IN_SECONDS		25
+#   define PLUGIN_CUDA_H264_GOP_SIZE_IN_SECONDS     25
 #endif
 #if !defined(PLUGIN_CUDA_H264_MAX_FRM_CNT)
-#	define PLUGIN_CUDA_H264_MAX_FRM_CNT  2
+#   define PLUGIN_CUDA_H264_MAX_FRM_CNT  2
 #endif
 
 static int cuda_codec_h264_init(cuda_codec_h264_t* self, profile_idc_t profile);
@@ -186,12 +186,12 @@ static int cuda_codec_h264_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if((ret = cuda_codec_h264_open_encoder(h264))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = cuda_codec_h264_open_decoder(h264))) {
         return ret;
     }
@@ -210,10 +210,10 @@ static int cuda_codec_h264_close(tmedia_codec_t* self)
 
     /* the caller (base class) alreasy checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     cuda_codec_h264_close_encoder(h264);
 
-    //	Decoder
+    //  Decoder
     cuda_codec_h264_close_decoder(h264);
 
     return 0;
@@ -269,9 +269,9 @@ static tsk_size_t cuda_codec_h264_encode(tmedia_codec_t* self, const void* in_da
     efparams.bLast = 0;
 
     // send IDR for:
-    //	- the first frame
+    //  - the first frame
     //  - remote peer requested an IDR
-    //	- every second within the first 4seconds
+    //  - every second within the first 4seconds
     send_idr = (
                    h264->encoder.frame_count++ == 0
                    || h264 ->encoder.force_idr
@@ -751,51 +751,51 @@ int cuda_codec_h264_open_encoder(cuda_codec_h264_t* self)
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FORCE_GPU_SELECTION) failed with error code = %08x", hr);
     }
     CHECK_HR(hr = NVSetParamValue(self->encoder.pInst, NVVE_DEVICE_MEMORY_INPUT, &(self->encoder.ctxParams.iUseDeviceMem)));
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_OUT_SIZE,		&(self->encoder.ctxParams.iOutputSize));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_OUT_SIZE,     &(self->encoder.ctxParams.iOutputSize));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_OUT_SIZE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_IN_SIZE,		&(self->encoder.ctxParams.iInputSize));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_IN_SIZE,      &(self->encoder.ctxParams.iInputSize));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_IN_SIZE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_MULTI_GPU,	&(self->encoder.ctxParams.iMultiGPU));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_MULTI_GPU,    &(self->encoder.ctxParams.iMultiGPU));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_MULTI_GPU) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_ASPECT_RATIO,	&(self->encoder.ctxParams.iAspectRatio));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_ASPECT_RATIO, &(self->encoder.ctxParams.iAspectRatio));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_ASPECT_RATIO) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_FIELD_ENC_MODE,	&(self->encoder.ctxParams.Fieldmode));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_FIELD_ENC_MODE,   &(self->encoder.ctxParams.Fieldmode));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FIELD_ENC_MODE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_P_INTERVAL,		&(self->encoder.ctxParams.iP_Interval));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_P_INTERVAL,       &(self->encoder.ctxParams.iP_Interval));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_P_INTERVAL) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_IDR_PERIOD,		&(self->encoder.ctxParams.iIDR_Period));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_IDR_PERIOD,       &(self->encoder.ctxParams.iIDR_Period));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_IDR_PERIOD) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_DYNAMIC_GOP,	&(self->encoder.ctxParams.iDynamicGOP));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_DYNAMIC_GOP,  &(self->encoder.ctxParams.iDynamicGOP));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DYNAMIC_GOP) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_RC_TYPE,		&(self->encoder.ctxParams.RCType));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_RC_TYPE,      &(self->encoder.ctxParams.RCType));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_RC_TYPE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_AVG_BITRATE,	&(self->encoder.ctxParams.iAvgBitrate));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_AVG_BITRATE,  &(self->encoder.ctxParams.iAvgBitrate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_AVG_BITRATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_PEAK_BITRATE,	&(self->encoder.ctxParams.iPeakBitrate));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_PEAK_BITRATE, &(self->encoder.ctxParams.iPeakBitrate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_PEAK_BITRATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_QP_LEVEL_INTRA,	&(self->encoder.ctxParams.iQP_Level_Intra));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_QP_LEVEL_INTRA,   &(self->encoder.ctxParams.iQP_Level_Intra));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_OUT_SIZE) failed with error code = %08x", hr);
     }
@@ -807,27 +807,27 @@ int cuda_codec_h264_open_encoder(cuda_codec_h264_t* self)
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_QP_LEVEL_INTER_B) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_FRAME_RATE,		&(self->encoder.ctxParams.iFrameRate));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_FRAME_RATE,       &(self->encoder.ctxParams.iFrameRate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FRAME_RATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_DEBLOCK_MODE,	&(self->encoder.ctxParams.iDeblockMode));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_DEBLOCK_MODE, &(self->encoder.ctxParams.iDeblockMode));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DEBLOCK_MODE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_PROFILE_LEVEL,	&(self->encoder.ctxParams.iProfileLevel));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_PROFILE_LEVEL,    &(self->encoder.ctxParams.iProfileLevel));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_PROFILE_LEVEL) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_FORCE_INTRA,	&(self->encoder.ctxParams.iForceIntra));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_FORCE_INTRA,  &(self->encoder.ctxParams.iForceIntra));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FORCE_INTRA) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_FORCE_IDR,		&(self->encoder.ctxParams.iForceIDR));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_FORCE_IDR,        &(self->encoder.ctxParams.iForceIDR));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FORCE_IDR) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_CLEAR_STAT,		&(self->encoder.ctxParams.iClearStat));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_CLEAR_STAT,       &(self->encoder.ctxParams.iClearStat));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_CLEAR_STAT) failed with error code = %08x", hr);
     }
@@ -836,12 +836,12 @@ int cuda_codec_h264_open_encoder(cuda_codec_h264_t* self)
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_SET_DEINTERLACE) failed with error code = %08x", hr);
     }
     if (self->encoder.ctxParams.Presets != -1) {
-        hr = NVSetParamValue(self->encoder.pInst,NVVE_PRESETS,	&(self->encoder.ctxParams.Presets));
+        hr = NVSetParamValue(self->encoder.pInst,NVVE_PRESETS,  &(self->encoder.ctxParams.Presets));
         if (hr!=S_OK) {
             TSK_DEBUG_WARN("NVSetParamValue(NVVE_PRESETS) failed with error code = %08x", hr);
         }
     }
-    hr = NVSetParamValue(self->encoder.pInst,NVVE_DISABLE_CABAC,	&(self->encoder.ctxParams.iDisableCabac));
+    hr = NVSetParamValue(self->encoder.pInst,NVVE_DISABLE_CABAC,    &(self->encoder.ctxParams.iDisableCabac));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DISABLE_CABAC) failed with error code = %08x", hr);
     }

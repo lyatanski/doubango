@@ -35,16 +35,16 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_MESSAGE_ID_VA_ARGS(value)		tmsrp_header_Message_ID_def_t, (const char*)value
+#define TMSRP_HEADER_MESSAGE_ID_VA_ARGS(value)      tmsrp_header_Message_ID_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Message-Id' header.
+/// @brief  MSRP 'Message-Id' header.
 ///
-/// @par ABNF :  Message-ID	=  	 "Message-ID:" SP ident
-/// ident	=  	ALPHANUM 3*31ident-char
-/// ident-char	= 	ALPHANUM / "." / "-" / "+" / "%" / "="
+/// @par ABNF :  Message-ID =    "Message-ID:" SP ident
+/// ident   =   ALPHANUM 3*31ident-char
+/// ident-char  =   ALPHANUM / "." / "-" / "+" / "%" / "="
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Message_ID_s {

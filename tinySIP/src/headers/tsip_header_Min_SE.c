@@ -40,7 +40,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 69 "./ragel/tsip_parser_header_Min_SE.rl" */
@@ -381,7 +381,7 @@ _match:
             {
             }
             break;
-            /* #line 378 "./src/headers/tsip_header_Min_SE.c" */
+                /* #line 378 "./src/headers/tsip_header_Min_SE.c" */
             }
         }
 
@@ -419,7 +419,7 @@ _out: {
 
 
 //========================================================
-//	MinSE header object definition
+//  MinSE header object definition
 //
 
 static tsk_object_t* tsip_header_Min_SE_ctor(tsk_object_t *self, va_list * app)

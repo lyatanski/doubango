@@ -23,7 +23,7 @@
 #include "internals/DSUtils.h"
 #include "internals/DSCaptureGraph.h"
 #if !defined(_WIN32_WCE)
-#	include "internals/DSScreenCastGraph.h"
+#   include "internals/DSScreenCastGraph.h"
 #endif
 
 #include "tsk_debug.h"

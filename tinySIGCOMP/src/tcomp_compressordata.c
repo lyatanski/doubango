@@ -38,32 +38,32 @@
 //*/
 //void tcomp_compressordata_ackGhost(tcomp_compressordata_t *compdata, const tcomp_buffer_handle_t *stateid)
 //{
-//	if(compdata)
-//	{
-//		tsk_safeobj_lock(compdata);
-//		assert(0);
-//		tsk_safeobj_unlock(compdata);
-//	}
-//	else
-//	{
-//		TSK_DEBUG_ERROR("NULL compressor data.");
-//	}
+//  if(compdata)
+//  {
+//      tsk_safeobj_lock(compdata);
+//      assert(0);
+//      tsk_safeobj_unlock(compdata);
+//  }
+//  else
+//  {
+//      TSK_DEBUG_ERROR("NULL compressor data.");
+//  }
 //}
 //
 ///**@ingroup tcomp_compressordata_group
 //*/
 //void tcomp_compressordata_freeGhostState(tcomp_compressordata_t *compdata)
 //{
-//	if(compdata)
-//	{
-//		tsk_safeobj_lock(compdata);
-//		assert(0);
-//		tsk_safeobj_unlock(compdata);
-//	}
-//	else
-//	{
-//		TSK_DEBUG_ERROR("NULL compressor data.");
-//	}
+//  if(compdata)
+//  {
+//      tsk_safeobj_lock(compdata);
+//      assert(0);
+//      tsk_safeobj_unlock(compdata);
+//  }
+//  else
+//  {
+//      TSK_DEBUG_ERROR("NULL compressor data.");
+//  }
 //}
 //
 //
@@ -75,41 +75,41 @@
 //
 //
 ////========================================================
-////	SigComp compressor data object definition
+////    SigComp compressor data object definition
 ////
 //static void* tcomp_compressordata_create(void * self, va_list * app)
 //{
-//	tcomp_compressordata_t *compdata = self;
-//	if(compdata)
-//	{
-//		/* Initialize safeobject */
-//		tsk_safeobj_init(compdata);
+//  tcomp_compressordata_t *compdata = self;
+//  if(compdata)
+//  {
+//      /* Initialize safeobject */
+//      tsk_safeobj_init(compdata);
 //
-//		compdata->isStream = va_arg(*app, int);
-//	}
+//      compdata->isStream = va_arg(*app, int);
+//  }
 //
-//	return self;
+//  return self;
 //}
 //
 //static void* tcomp_compressordata_destroy(void *self)
 //{
-//	tcomp_compressordata_t *compdata = self;
-//	if(compdata)
-//	{
-//		/* Deinitialize safeobject */
-//		tsk_safeobj_deinit(compdata);
+//  tcomp_compressordata_t *compdata = self;
+//  if(compdata)
+//  {
+//      /* Deinitialize safeobject */
+//      tsk_safeobj_deinit(compdata);
 //
-//		TSK_OBJECT_SAFE_FREE(compdata->ghostState);
-//	}
+//      TSK_OBJECT_SAFE_FREE(compdata->ghostState);
+//  }
 //
-//	return self;
+//  return self;
 //}
 //
 //static const tsk_object_def_t tsk_compressordata_def_s =
 //{
-//	sizeof(tcomp_compressordata_t),
-//	tcomp_compressordata_create,
-//	tcomp_compressordata_destroy,
-//	0
+//  sizeof(tcomp_compressordata_t),
+//  tcomp_compressordata_create,
+//  tcomp_compressordata_destroy,
+//  0
 //};
 //const void *tcomp_compressordata_def_t = &tsk_compressordata_def_s;

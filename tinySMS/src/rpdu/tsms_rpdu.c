@@ -33,9 +33,9 @@
 #include "tsk_debug.h"
 
 #define TSMS_ERROR_TOO_SHORT(type)\
-	TSK_DEBUG_ERROR("%s == Data too short.", type);\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("%s == Data too short.", type);\
+    failed = tsk_true;\
+    goto bail;
 
 /*=== RP-DATA as per 3GPP TS 24.011 section 7.3.1. ===*/
 
@@ -57,17 +57,17 @@ tsms_rpdu_message_t* _tsms_rpdu_rpdata_deserialize(const void* data, tsk_size_t 
 
     /* 3GPP TS 24.011 ==> 8.2.5.1 Originator address element */
     if(TSMS_RPDU_MESSAGE(self)->mti == tsms_rpdu_type_data_mt) {
-        /* 7.3.1.1	RP DATA (Network to Mobile Station) */
+        /* 7.3.1.1  RP DATA (Network to Mobile Station) */
         if((self->oa = tsms_address_deserialize(pdata, (pend-pdata), tsms_addr_smsc, &smsc_len))) {
             pdata += smsc_len;
         }
-        /* 7.3.1.2	RP DATA (Mobile Station to Network) */
+        /* 7.3.1.2  RP DATA (Mobile Station to Network) */
         pdata++; /* 1o */
     }
     else if(TSMS_RPDU_MESSAGE(self)->mti == tsms_rpdu_type_data_mo) {
-        /* 7.3.1.1	RP DATA (Network to Mobile Station) */
+        /* 7.3.1.1  RP DATA (Network to Mobile Station) */
         pdata++; /* 1o */
-        /* 7.3.1.2	RP DATA (Mobile Station to Network) */
+        /* 7.3.1.2  RP DATA (Mobile Station to Network) */
         if((self->da = tsms_address_deserialize(pdata, (pend-pdata), tsms_addr_smsc, &smsc_len))) {
             pdata += smsc_len;
         }
@@ -159,21 +159,21 @@ tsms_rpdu_data_t* tsms_rpdu_data_create(uint8_t mr, const tsms_address_string_t 
     TSMS_RPDU_MESSAGE(ret)->mr = mr;
 
     /* 3GPP TS 24.341 section B5 (Moblie Originated RP-DATA message)
-    	The payload includes an RP-DATA message (see 3GPP TS 24.011 [8]). It includes:
-    	-	Address of the originating UE: this field includes the length indicator only;
-    	-	Address of the destination SC, which is configured in the UE; and
-    	-	RP-User-Data (see 3GPP TS 23.040 [3]), which includes SMS-SUBMIT as type indicator.
+        The payload includes an RP-DATA message (see 3GPP TS 24.011 [8]). It includes:
+        -   Address of the originating UE: this field includes the length indicator only;
+        -   Address of the destination SC, which is configured in the UE; and
+        -   RP-User-Data (see 3GPP TS 23.040 [3]), which includes SMS-SUBMIT as type indicator.
     */
 
 
     /* 3GPP TS 24.011 ==> 8.2.5.1 Originator address element */
     if(smsc) {
         if(TSMS_RPDU_MESSAGE(ret)->mti == tsms_rpdu_type_data_mt) {
-            /* 7.3.1.1	RP DATA (Network to Mobile Station) */
+            /* 7.3.1.1  RP DATA (Network to Mobile Station) */
             ret->oa = tsms_address_smsc_create(smsc);
         }
         else {
-            /* 7.3.1.2	RP DATA (Mobile Station to Network) */
+            /* 7.3.1.2  RP DATA (Mobile Station to Network) */
             ret->da = tsms_address_smsc_create(smsc);
         }
     }
@@ -188,7 +188,7 @@ bail:
 }
 
 //
-//	RP-DATA object definition
+//  RP-DATA object definition
 //
 static tsk_object_t* tsms_rpdu_data_ctor(tsk_object_t * self, va_list * app)
 {
@@ -278,7 +278,7 @@ tsms_rpdu_smma_t* tsms_rpdu_smma_create(uint8_t mr)
 }
 
 //
-//	RP-SMMA object definition
+//  RP-SMMA object definition
 //
 static tsk_object_t* tsms_rpdu_smma_ctor(tsk_object_t * self, va_list * app)
 {
@@ -411,7 +411,7 @@ bail:
 }
 
 //
-//	RP-ACK object definition
+//  RP-ACK object definition
 //
 static tsk_object_t* tsms_rpdu_ack_ctor(tsk_object_t * self, va_list * app)
 {
@@ -543,7 +543,7 @@ tsms_rpdu_error_t* tsms_rpdu_error_create(uint8_t mr, const tsms_tpdu_message_t*
     tsms_rpdu_error_t* ret = tsk_null;
 
     /*if(!tpdu){
-    	TSK_DEBUG_WARN("TPDU for RP-ERROR message is Null.");
+        TSK_DEBUG_WARN("TPDU for RP-ERROR message is Null.");
     }*/
 
     if(!(ret = tsk_object_new(tsms_rpdu_error_def_t))) {
@@ -570,7 +570,7 @@ bail:
 }
 
 //
-//	RP-ERROR object definition
+//  RP-ERROR object definition
 //
 static tsk_object_t* tsms_rpdu_error_ctor(tsk_object_t * self, va_list * app)
 {

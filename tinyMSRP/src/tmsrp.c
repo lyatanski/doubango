@@ -32,23 +32,23 @@
 #include "tsk_time.h"
 #include "tsk_string.h"
 
-#define TMSR_DEFAULT_NAMESPACE	0 // "000"
+#define TMSR_DEFAULT_NAMESPACE  0 // "000"
 
 tmsrp_request_t* tmsrp_create_bodiless(const tmsrp_uri_t* To, const tmsrp_uri_t* From)
 {
     /* RFC 4975 - 7.1. Constructing Requests
-    	Requests with no bodies are useful when a client wishes to send
-    	"traffic", but does not wish to send content to be rendered to the
-    	peer user.  For example, the active endpoint sends a SEND request
-    	immediately upon establishing a connection.  If it has nothing to
-    	say at the moment, it can send a request with no body.  Bodiless
-    	requests may also be used in certain applications to keep Network
-    	Address Translation (NAT) bindings alive, etc.
+        Requests with no bodies are useful when a client wishes to send
+        "traffic", but does not wish to send content to be rendered to the
+        peer user.  For example, the active endpoint sends a SEND request
+        immediately upon establishing a connection.  If it has nothing to
+        say at the moment, it can send a request with no body.  Bodiless
+        requests may also be used in certain applications to keep Network
+        Address Translation (NAT) bindings alive, etc.
 
-    	Bodiless requests are distinct from requests with empty bodies.  A
-    	request with an empty body will have a Content-Type header field
-    	value and will generally be rendered to the recipient according to
-    	the rules for that type.
+        Bodiless requests are distinct from requests with empty bodies.  A
+        request with an empty body will have a Content-Type header field
+        value and will generally be rendered to the recipient according to
+        the rules for that type.
     */
     tmsrp_request_t* BODILESS = tsk_null;
     tsk_istr_t tid;
@@ -99,7 +99,7 @@ bail:
 
 tmsrp_request_t* tmsrp_create_report(const tmsrp_request_t* SEND, short status, const char* reason)
 {
-    /*	RFC 4975 - 7.1.2. Sending REPORT Requests
+    /*  RFC 4975 - 7.1.2. Sending REPORT Requests
 
     * REPORT requests are similar to SEND requests, except that report
     * requests MUST NOT include Success-Report or Failure-Report header
@@ -109,8 +109,8 @@ tmsrp_request_t* tmsrp_create_report(const tmsrp_request_t* SEND, short status, 
     tmsrp_request_t* REPORT = tsk_null;
     tsk_istr_t tid;
 
-    /*	If an MSRP element receives a REPORT for a Message-ID it does not
-    	recognize, it SHOULD silently ignore the REPORT.
+    /*  If an MSRP element receives a REPORT for a Message-ID it does not
+        recognize, it SHOULD silently ignore the REPORT.
     */
     if(!SEND || !SEND->MessageID) {
         goto bail;

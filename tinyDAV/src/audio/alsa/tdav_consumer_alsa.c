@@ -224,7 +224,7 @@ static int tdav_consumer_alsa_stop(tmedia_consumer_t* self)
 
 
 //
-//	ALSA consumer object definition
+//  ALSA consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_alsa_ctor(tsk_object_t * self, va_list * app)

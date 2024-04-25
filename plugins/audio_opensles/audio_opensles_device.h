@@ -21,18 +21,18 @@
 #define _DOUBANGO_AUDIO_OPENSLES_SLDEVICE_H
 
 #if AUDIO_OPENSLES_UNDER_ANDROID
-#	include <SLES/OpenSLES.h>
-#	include <SLES/OpenSLES_Android.h>
-#	include <SLES/OpenSLES_AndroidConfiguration.h>
+#   include <SLES/OpenSLES.h>
+#   include <SLES/OpenSLES_Android.h>
+#   include <SLES/OpenSLES_AndroidConfiguration.h>
 #endif
 
 #define BYTES_PER_SAMPLE 2
 #define BYTES_PER_SAMPLE_LOG2 1
 
-#define PLAYOUT_BUFFER_SIZE	10 // millis
-#define PLAYOUT_SAMPLE_RATE	16000
-#define RECORDING_BUFFER_SIZE	10
-#define RECORDING_SAMPLE_RATE	16000
+#define PLAYOUT_BUFFER_SIZE 10 // millis
+#define PLAYOUT_SAMPLE_RATE 16000
+#define RECORDING_BUFFER_SIZE   10
+#define RECORDING_SAMPLE_RATE   16000
 
 // max buffer size = 10 ms @ 48 kHz
 #define REC_BUF_SIZE_IN_SAMPLES 480

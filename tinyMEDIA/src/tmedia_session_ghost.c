@@ -94,7 +94,7 @@ static int tmedia_session_ghost_set_ro(tmedia_session_t* self, const tsdp_header
 
 
 //=================================================================================================
-//	Ghost session object definition
+//  Ghost session object definition
 //
 /* constructor */
 static tsk_object_t* tmedia_session_ghost_ctor(tsk_object_t * self, va_list * app)

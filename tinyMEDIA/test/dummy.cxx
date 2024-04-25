@@ -25,7 +25,7 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-int	dummy_start(tmedia_t* self)
+int dummy_start(tmedia_t* self)
 {
     dummy_t *dummy = DUMMY(self);
     TSK_DEBUG_INFO("dummy_start");
@@ -33,7 +33,7 @@ int	dummy_start(tmedia_t* self)
     return 0;
 }
 
-int	dummy_pause(tmedia_t* self)
+int dummy_pause(tmedia_t* self)
 {
     dummy_t *dummy = DUMMY(self);
     TSK_DEBUG_INFO("dummy_pause");
@@ -41,7 +41,7 @@ int	dummy_pause(tmedia_t* self)
     return 0;
 }
 
-int	dummy_stop(tmedia_t* self)
+int dummy_stop(tmedia_t* self)
 {
     dummy_t *dummy = DUMMY(self);
     TSK_DEBUG_INFO("dummy_stop");
@@ -97,7 +97,7 @@ int dummy_perform(tmedia_t* self, tmedia_action_t action, const tsk_params_L_t* 
 
 
 //========================================================
-//	Dummy media object definition
+//  Dummy media object definition
 //
 static void* dummy_create(tsk_object_t *self, va_list * app)
 {
@@ -148,7 +148,7 @@ static const tsk_object_def_t dummy_def_s = {
 const tsk_object_def_t *dummy_def_t = &dummy_def_s;
 
 //========================================================
-//	Dummy media plugin definition
+//  Dummy media plugin definition
 //
 static const tmedia_plugin_def_t dummy_plugin_def_s = {
     &dummy_def_s,

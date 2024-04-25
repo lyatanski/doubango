@@ -38,11 +38,11 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Privacy' as per RFC 3323.
+/// @brief  SIP header 'Privacy' as per RFC 3323.
 ///
 /// @par ABNF: Privacy = Privacy-hdr
-/// Privacy-hdr	= 	"Privacy" HCOLON priv-value *(";" priv-value)
-/// priv-value	= 	"header" / "session" / "user" / "none" / "critical" / "id" / "history" / token
+/// Privacy-hdr =   "Privacy" HCOLON priv-value *(";" priv-value)
+/// priv-value  =   "header" / "session" / "user" / "none" / "critical" / "id" / "history" / token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Privacy_s {

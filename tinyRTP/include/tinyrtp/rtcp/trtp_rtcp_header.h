@@ -28,8 +28,8 @@
 #include "tsk_buffer.h"
 #include "tsk_list.h"
 
-#define TRTP_RTCP_HEADER_SIZE				4
-#define TRTP_RTCP_HEADER_VERSION_DEFAULT	2
+#define TRTP_RTCP_HEADER_SIZE               4
+#define TRTP_RTCP_HEADER_VERSION_DEFAULT    2
 
 TRTP_BEGIN_DECLS
 

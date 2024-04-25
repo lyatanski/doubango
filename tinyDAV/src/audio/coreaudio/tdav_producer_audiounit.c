@@ -112,11 +112,11 @@ static int tdav_producer_audiounit_prepare(tmedia_producer_t* self, const tmedia
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    
+
     TMEDIA_PRODUCER(producer)->audio.channels = TMEDIA_CODEC_CHANNELS_AUDIO_ENCODING(codec);
     TMEDIA_PRODUCER(producer)->audio.rate = TMEDIA_CODEC_RATE_ENCODING(codec);
     TMEDIA_PRODUCER(producer)->audio.ptime = TMEDIA_CODEC_PTIME_AUDIO_ENCODING(codec);
-    
+
     TSK_DEBUG_INFO("AudioUnit producer prepared(channels=%d, rate=%d, ptime=%d)",
                    (int)TMEDIA_PRODUCER(producer)->audio.channels,
                    (int)TMEDIA_PRODUCER(producer)->audio.rate,
@@ -179,7 +179,7 @@ static int tdav_producer_audiounit_pause(tmedia_producer_t* self)
         tdav_producer_audiounit_deinit(self);
         producer->paused = tsk_true;
     }
-    
+
     TSK_DEBUG_INFO("AudioUnit producer paused");
     return 0;
 }
@@ -201,7 +201,7 @@ static int tdav_producer_audiounit_resume(tmedia_producer_t* self)
             }
         }
     }
-    
+
     TSK_DEBUG_INFO("AudioUnit producer resumed");
     return 0;
 }
@@ -223,29 +223,29 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
     UInt32 param;
     // static UInt32 flagZero = 0;
 #define kInputBus  1
-    
+
     tdav_producer_audiounit_t* producer = (tdav_producer_audiounit_t*)self;
     OSStatus status = noErr;
     AudioStreamBasicDescription audioFormat;
-    AudioStreamBasicDescription	deviceFormat;
-    
+    AudioStreamBasicDescription deviceFormat;
+
     if (!producer) {
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    
+
     if (producer->ready) {
         TSK_DEBUG_INFO("AudioUnit consumer already initialized");
         return 0;
     }
-    
+
     if (!producer->audioUnitHandle) {
         if(!(producer->audioUnitHandle = tdav_audiounit_handle_create(TMEDIA_PRODUCER(producer)->session_id))) {
             TSK_DEBUG_ERROR("Failed to get audio unit instance for session with id=%lld", TMEDIA_PRODUCER(producer)->session_id);
             return -3;
         }
     }
-    
+
     // enable
     status = AudioUnitSetProperty(tdav_audiounit_handle_get_instance(producer->audioUnitHandle),
                                   kAudioOutputUnitProperty_EnableIO,
@@ -271,7 +271,7 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             TSK_DEBUG_ERROR("AudioUnitSetProperty(kAudioOutputUnitProperty_EnableIO) failed with status=%ld", (signed long)status);
             return -4;
         }
-        
+
         // set default audio device
         param = sizeof(AudioDeviceID);
         AudioDeviceID inputDeviceID;
@@ -280,7 +280,7 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             TSK_DEBUG_ERROR("AudioHardwareGetProperty(kAudioHardwarePropertyDefaultInputDevice) failed with status=%ld", (signed long)status);
             return -4;
         }
-        
+
         // set the current device to the default input unit
         status = AudioUnitSetProperty(tdav_audiounit_handle_get_instance(producer->audioUnitHandle),
                                       kAudioOutputUnitProperty_CurrentDevice,
@@ -293,12 +293,12 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             return -4;
         }
 #endif /* TARGET_OS_MAC */
-        
+
         TSK_DEBUG_INFO("AudioUnit producer: channels=%d, rate=%d, ptime=%d",
                        TMEDIA_PRODUCER(producer)->audio.channels,
                        TMEDIA_PRODUCER(producer)->audio.rate,
                        TMEDIA_PRODUCER(producer)->audio.ptime);
-        
+
         // get device format
         param = sizeof(AudioStreamBasicDescription);
         status = AudioUnitGetProperty(tdav_audiounit_handle_get_instance(producer->audioUnitHandle),
@@ -314,7 +314,7 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             TMEDIA_PRODUCER(producer)->audio.rate = deviceFormat.mSampleRate;
 #endif
         }
-        
+
         // set format
         audioFormat.mSampleRate = TMEDIA_PRODUCER(producer)->audio.rate;
         audioFormat.mFormatID = kAudioFormatLinearPCM;
@@ -339,13 +339,13 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             return -5;
         }
         else {
-            
+
             // configure
             if (tdav_audiounit_handle_configure(producer->audioUnitHandle, tsk_false, TMEDIA_PRODUCER(producer)->audio.ptime, &audioFormat)) {
                 TSK_DEBUG_ERROR("tdav_audiounit_handle_set_rate(%d) failed", TMEDIA_PRODUCER(producer)->audio.rate);
                 return -4;
             }
-            
+
             // set callback function
             AURenderCallbackStruct callback;
             callback.inputProc = __handle_input_buffer;
@@ -363,12 +363,12 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
             else {
                 // disbale buffer allocation as we will provide ours
                 //status = AudioUnitSetProperty(tdav_audiounit_handle_get_instance(producer->audioUnitHandle),
-                //							  kAudioUnitProperty_ShouldAllocateBuffer,
-                //							  kAudioUnitScope_Output,
-                //							  kInputBus,
-                //							  &flagZero,
-                //							  sizeof(flagZero));
-                
+                //                            kAudioUnitProperty_ShouldAllocateBuffer,
+                //                            kAudioUnitScope_Output,
+                //                            kInputBus,
+                //                            &flagZero,
+                //                            sizeof(flagZero));
+
                 producer->ring.chunck.size = (TMEDIA_PRODUCER(producer)->audio.ptime * audioFormat.mSampleRate * audioFormat.mBytesPerFrame) / 1000;
                 // allocate our chunck buffer
                 if(!(producer->ring.chunck.buffer = tsk_realloc(producer->ring.chunck.buffer, producer->ring.chunck.size))) {
@@ -392,17 +392,17 @@ static int tdav_producer_audiounit_init(tmedia_producer_t* self)
                     return -9;
                 }
             }
-            
+
         }
     }
-    
+
     if (tdav_audiounit_handle_signal_producer_ready(producer->audioUnitHandle)) {
         TSK_DEBUG_ERROR("tdav_audiounit_handle_signal_producer_ready failed");
         return -10;
     }
-    
+
     producer->ready = tsk_true;
-    
+
     TSK_DEBUG_INFO("AudioUnit producer initialized");
     return 0;
 }
@@ -431,15 +431,15 @@ static int tdav_producer_audiounit_deinit(tmedia_producer_t* self)
 #endif
     producer->ready = tsk_false;
     producer->paused = tsk_false;
-    
+
     TSK_DEBUG_INFO("AudioUnit producer deinitialized");
-    
+
     return 0;
 }
 
 
 //
-//	CoreAudio producer object definition
+//  CoreAudio producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_audiounit_ctor(tsk_object_t * self, va_list * app)

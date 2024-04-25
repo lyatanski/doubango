@@ -29,58 +29,58 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TMEDIA_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TMEDIA_UNDER_WINDOWS_RT		1
-#	endif
+#   define TMEDIA_UNDER_WINDOWS 1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TMEDIA_UNDER_WINDOWS_RT      1
+#   endif
 #endif
 
 // OS X or iOS
 #if defined(__APPLE__)
-#	define TMEDIA_UNDER_APPLE				1
+#   define TMEDIA_UNDER_APPLE               1
 #   include <TargetConditionals.h>
 #   include <Availability.h>
 #endif
 #if TARGET_OS_MAC
-#	define TMEDIA_UNDER_MAC				1
+#   define TMEDIA_UNDER_MAC             1
 #endif
 #if TARGET_OS_IPHONE
-#	define TMEDIA_UNDER_IPHONE			1
+#   define TMEDIA_UNDER_IPHONE          1
 #endif
 #if TARGET_IPHONE_SIMULATOR
-#	define TMEDIA_UNDER_IPHONE_SIMULATOR	1
+#   define TMEDIA_UNDER_IPHONE_SIMULATOR    1
 #endif
 
 #if (TMEDIA_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define TINYMEDIA_API		__declspec(dllexport)
-# 	define TINYMEDIA_GEXTERN extern __declspec(dllexport)
+#   define TINYMEDIA_API        __declspec(dllexport)
+#   define TINYMEDIA_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYMEDIA_API
-#	define TINYMEDIA_GEXTERN	extern
+#   define TINYMEDIA_API
+#   define TINYMEDIA_GEXTERN    extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TMEDIA_BEGIN_DECLS extern "C" {
-#	define TMEDIA_END_DECLS }
+#   define TMEDIA_BEGIN_DECLS extern "C" {
+#   define TMEDIA_END_DECLS }
 #else
-#	define TMEDIA_BEGIN_DECLS
-#	define TMEDIA_END_DECLS
+#   define TMEDIA_BEGIN_DECLS
+#   define TMEDIA_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	if !defined(_CRT_SECURE_NO_WARNINGS)
-#		define _CRT_SECURE_NO_WARNINGS
-#	endif /* _CRT_SECURE_NO_WARNINGS */
+#   if !defined(_CRT_SECURE_NO_WARNINGS)
+#       define _CRT_SECURE_NO_WARNINGS
+#   endif /* _CRT_SECURE_NO_WARNINGS */
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

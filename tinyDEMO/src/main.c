@@ -42,7 +42,7 @@ ctx_t* ctx = tsk_null;
 
 const char* trim(const char*);
 int insert(char* dest, tsk_size_t index, tsk_size_t dest_size, char* src, tsk_size_t src_size);
-int update_param(const char* , const char* );
+int update_param(const char*, const char* );
 int execute(const cmd_t* );
 
 /* === entry point === */

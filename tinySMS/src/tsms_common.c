@@ -79,15 +79,15 @@ int tsms_tpdu_message_serialize(const tsms_tpdu_message_t* self, tsk_buffer_t* o
         return -1;
     }
 
-    /* 3GPP TS 23.040 - 9.2.3.1	TP Message Type Indicator (TP MTI)
-    bit1	bit0	Message type
-    	0	0	SMS-DELIVER (in the direction SC to MS)
-    	0	0	SMS-DELIVER-REPORT (in the direction MS to SC)
-    	1	0	SMS-STATUS-REPORT (in the direction SC to MS)
-    	1	0	SMS-COMMAND (in the direction MS to SC)
-    	0	1	SMS-SUBMIT (in the direction MS to SC)
-    	0	1	SMS-SUBMIT-REPORT (in the direction SC to MS)
-    	1	1	Reserved
+    /* 3GPP TS 23.040 - 9.2.3.1 TP Message Type Indicator (TP MTI)
+    bit1    bit0    Message type
+        0   0   SMS-DELIVER (in the direction SC to MS)
+        0   0   SMS-DELIVER-REPORT (in the direction MS to SC)
+        1   0   SMS-STATUS-REPORT (in the direction SC to MS)
+        1   0   SMS-COMMAND (in the direction MS to SC)
+        0   1   SMS-SUBMIT (in the direction MS to SC)
+        0   1   SMS-SUBMIT-REPORT (in the direction SC to MS)
+        1   1   Reserved
     */
     if(MobOrig) { /* MO */
         switch(self->mti) {
@@ -143,15 +143,15 @@ tsms_tpdu_message_t* tsms_tpdu_message_deserialize(const void* data, tsk_size_t 
 
     mti = (*(((uint8_t*)data)+smsc_len) & 0x03);
 
-    /* 3GPP TS 23.040 - 9.2.3.1	TP Message Type Indicator (TP MTI)
-    bit1	bit0	Message type
-    	0	0	SMS-DELIVER (in the direction SC to MS)
-    	0	0	SMS-DELIVER-REPORT (in the direction MS to SC)
-    	1	0	SMS-STATUS-REPORT (in the direction SC to MS)
-    	1	0	SMS-COMMAND (in the direction MS to SC)
-    	0	1	SMS-SUBMIT (in the direction MS to SC)
-    	0	1	SMS-SUBMIT-REPORT (in the direction SC to MS)
-    	1	1	Reserved
+    /* 3GPP TS 23.040 - 9.2.3.1 TP Message Type Indicator (TP MTI)
+    bit1    bit0    Message type
+        0   0   SMS-DELIVER (in the direction SC to MS)
+        0   0   SMS-DELIVER-REPORT (in the direction MS to SC)
+        1   0   SMS-STATUS-REPORT (in the direction SC to MS)
+        1   0   SMS-COMMAND (in the direction MS to SC)
+        0   1   SMS-SUBMIT (in the direction MS to SC)
+        0   1   SMS-SUBMIT-REPORT (in the direction SC to MS)
+        1   1   Reserved
     */
     if(MobOrig) { /* MO */
         switch(mti) {

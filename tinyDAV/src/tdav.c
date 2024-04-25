@@ -25,16 +25,16 @@ static const struct tmedia_codec_plugin_def_s* __codec_plugins_all[0xFF] = { tsk
 static const tsk_size_t __codec_plugins_all_count = sizeof(__codec_plugins_all)/sizeof(__codec_plugins_all[0]);
 
 #if TDAV_UNDER_WINDOWS
-#	include "tinydav/tdav_win32.h"
+#   include "tinydav/tdav_win32.h"
 #elif TDAV_UNDER_APPLE
-#	include "tinydav/tdav_apple.h"
+#   include "tinydav/tdav_apple.h"
 #endif
 
 // Shared libraries not allowed on WP8 and iOS
 #if !TDAV_UNDER_WINDOWS_PHONE && !TDAV_UNDER_IPHONE
 #include "tsk_plugin.h"
-#	if TDAV_UNDER_WINDOWS
-#		define TDAV_HAVE_PLUGIN_EXT_WIN32	1
+#   if TDAV_UNDER_WINDOWS
+#       define TDAV_HAVE_PLUGIN_EXT_WIN32   1
 static struct tsk_plugin_s* __dll_plugin_wasapi = tsk_null; /* Windows Audio Session API (WASAPI): Windows [Vista - 8] */
 static struct tsk_plugin_s* __dll_plugin_dshow = tsk_null; /* DirectShow: Windows [XP - 8] */
 static struct tsk_plugin_s* __dll_plugin_mf = tsk_null; /* Media Foundation and WASAPI : Windows [7 - 8] */
@@ -42,7 +42,7 @@ static struct tsk_plugin_s* __dll_plugin_dd = tsk_null; /* Microsoft Desktop Dup
 static struct tsk_plugin_s* __dll_plugin_cuda = tsk_null; /* Media Foundation and WASAPI : Windows [XP - 8] */
 static struct tsk_plugin_s* __dll_plugin_audio_dsp = tsk_null; /* Audio DSP, Resampler, AEC, NS, AGC...: Windows [Vista - 8] */
 static struct tsk_plugin_s* __dll_plugin_ipsec_wfp = tsk_null; /* IPSec implementation using WFP (Windows Filtering platform): Windows [Vista - 8] */
-#	endif /* TDAV_UNDER_WINDOWS */
+#   endif /* TDAV_UNDER_WINDOWS */
 #endif
 
 // Media Contents, plugins defintion...
@@ -127,26 +127,26 @@ static struct tsk_plugin_s* __dll_plugin_ipsec_wfp = tsk_null; /* IPSec implemen
 
 // Audio Denoise (AGC, Noise Suppression, VAD and AEC)
 #if HAVE_SPEEX_DSP && (!defined(HAVE_SPEEX_DENOISE) || HAVE_SPEEX_DENOISE)
-#	include "tinydav/audio/tdav_speex_denoise.h"
+#   include "tinydav/audio/tdav_speex_denoise.h"
 #endif
 #if HAVE_WEBRTC && (!defined(HAVE_WEBRTC_DENOISE) || HAVE_WEBRTC_DENOISE)
-#	include "tinydav/audio/tdav_webrtc_denoise.h"
+#   include "tinydav/audio/tdav_webrtc_denoise.h"
 #endif
 
 // Audio resampler
 #if HAVE_SPEEX_DSP && (!defined(HAVE_SPEEX_RESAMPLER) || HAVE_SPEEX_RESAMPLER)
-#	include "tinydav/audio/tdav_speex_resampler.h"
+#   include "tinydav/audio/tdav_speex_resampler.h"
 #endif
 
 // Audio/Video JitterBuffer
 #if HAVE_SPEEX_DSP && HAVE_SPEEX_JB
-#	include "tinydav/audio/tdav_speex_jitterbuffer.h"
+#   include "tinydav/audio/tdav_speex_jitterbuffer.h"
 #else
-#	include "tinydav/audio/tdav_speakup_jitterbuffer.h"
+#   include "tinydav/audio/tdav_speakup_jitterbuffer.h"
 #endif
 
 #if HAVE_FFMPEG
-#	include <libavcodec/avcodec.h>
+#   include <libavcodec/avcodec.h>
 #endif
 
 static inline int _tdav_codec_plugins_collect();
@@ -480,8 +480,8 @@ int tdav_codec_set_priority(tdav_codec_id_t codec_id, int priority)
     for (i = 0; i < __codec_plugins_all_count && __codec_plugins_all[i]; ++i) {
         if(__codec_plugins_all[i]->codec_id == codec_id) {
             const struct tmedia_codec_plugin_def_s *codec_decl_1, *codec_decl_2;
-			tsk_size_t max = tmedia_codec_plugin_registered_count(__codec_plugins_all, __codec_plugins_all_count);
-			priority = TSK_CLAMP(0, priority, (int)(max > 0 ? (max - 1) : 0));
+            tsk_size_t max = tmedia_codec_plugin_registered_count(__codec_plugins_all, __codec_plugins_all_count);
+            priority = TSK_CLAMP(0, priority, (int)(max > 0 ? (max - 1) : 0));
             codec_decl_1 = __codec_plugins_all[priority];
             codec_decl_2 = __codec_plugins_all[i];
 

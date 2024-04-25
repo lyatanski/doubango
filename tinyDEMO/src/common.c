@@ -33,17 +33,17 @@
 #include <string.h>
 
 /* === default values === */
-#define DEFAULT_REALM	"open-ims.test"
+#define DEFAULT_REALM   "open-ims.test"
 #define DEFAULT_IMPI "bob@"DEFAULT_REALM
 #define DEFAULT_IMPU "sip:bob@"DEFAULT_REALM
 
 #ifndef DEFAULT_LOCAL_IP
-//#	ifdef ANDROID /* On the emulator */
-//#		define DEFAULT_LOCAL_IP	"10.0.2.15"
-//#		define DEFAULT_LOCAL_IP	"192.168.0.14"
-//#	else
-#		define DEFAULT_LOCAL_IP	TNET_SOCKET_HOST_ANY
-//#	endif
+//# ifdef ANDROID /* On the emulator */
+//#     define DEFAULT_LOCAL_IP "10.0.2.15"
+//#     define DEFAULT_LOCAL_IP "192.168.0.14"
+//# else
+#       define DEFAULT_LOCAL_IP TNET_SOCKET_HOST_ANY
+//# endif
 #endif
 
 
@@ -137,8 +137,8 @@ int stack_callback(const tsip_event_t *_event)
     return ret;
 }
 
-/*	==================================================================
-	========================== Context =================================
+/*  ==================================================================
+    ========================== Context =================================
 */
 
 ctx_t* ctx_create()
@@ -216,8 +216,8 @@ static const tsk_object_def_t ctx_def_s = {
 const tsk_object_def_t *ctx_def_t = &ctx_def_s;
 
 
-/*	==================================================================
-	========================== Stack =================================
+/*  ==================================================================
+    ========================== Stack =================================
 */
 
 int stack_dump()
@@ -414,8 +414,8 @@ int stack_run(const opts_L_t* opts)
     }
 }
 
-/*	==================================================================
-	========================== Session =================================
+/*  ==================================================================
+    ========================== Session =================================
 */
 
 /* Find SIP session by id */
@@ -529,20 +529,20 @@ int session_handle_event(const tsip_event_t *_event)
         return 0;
     }
     switch(_event->code) {
-        /* === 7xx ==> errors ===  */
+    /* === 7xx ==> errors ===  */
     case tsip_event_code_dialog_transport_error:
     case tsip_event_code_dialog_global_error:
     case tsip_event_code_dialog_message_error:
         /* do not guess that the dialog is terminated, wait for "tsip_event_code_dialog_terminated" event */
         break;
 
-        /* === 8xx ==> success ===  */
+    /* === 8xx ==> success ===  */
     case tsip_event_code_dialog_request_incoming:
     case tsip_event_code_dialog_request_cancelled:
     case tsip_event_code_dialog_request_sent:
         break;
 
-        /* === 9xx ==> Informational ===  */
+    /* === 9xx ==> Informational ===  */
     case tsip_event_code_dialog_terminated: {
         /* we no longer need the session
         * -> remove and destroy the session */
@@ -576,12 +576,12 @@ const session_t*  session_handle_cmd(cmd_type_t cmd, const opts_L_t* opts)
     }
 
 #define TYPE_FROM_CMD(_CMD) \
-	((_CMD==cmd_audio || _CMD==cmd_video || _CMD==cmd_audiovideo || _CMD==cmd_file || _CMD==cmd_large_message) ? st_invite :  \
-	((_CMD==cmd_message || _CMD==cmd_sms) ? st_message : \
-	(_CMD==cmd_options ? st_options : \
-	(_CMD==cmd_publish ? st_publish : \
-	(_CMD==cmd_register ? st_register : \
-	(_CMD==cmd_subscribe ? st_subscribe : st_none))))))
+    ((_CMD==cmd_audio || _CMD==cmd_video || _CMD==cmd_audiovideo || _CMD==cmd_file || _CMD==cmd_large_message) ? st_invite :  \
+    ((_CMD==cmd_message || _CMD==cmd_sms) ? st_message : \
+    (_CMD==cmd_options ? st_options : \
+    (_CMD==cmd_publish ? st_publish : \
+    (_CMD==cmd_register ? st_register : \
+    (_CMD==cmd_subscribe ? st_subscribe : st_none))))))
 
     /* === Command === */
     switch(cmd) {
@@ -653,7 +653,7 @@ const session_t*  session_handle_cmd(cmd_type_t cmd, const opts_L_t* opts)
         }
         case opt_from: {
             /* You should use  TSIP_SSESSION_SET_OPTION(TSIP_SSESSION_OPTION_FROM, value)
-            	instead of TSIP_SSESSION_SET_HEADER() to set the destination URI. */
+                instead of TSIP_SSESSION_SET_HEADER() to set the destination URI. */
             break;
         }
         case opt_header: {
@@ -685,7 +685,7 @@ const session_t*  session_handle_cmd(cmd_type_t cmd, const opts_L_t* opts)
         }
         case opt_to: {
             /* You should use  TSIP_SSESSION_SET_OPTION(TSIP_SSESSION_OPTION_TO, value)
-            	instead of TSIP_SSESSION_SET_HEADER() to set the destination URI. */
+                instead of TSIP_SSESSION_SET_HEADER() to set the destination URI. */
             if((cmd != cmd_sms) && (cmd != cmd_ect) && !tsk_strnullORempty(opt->value)) { /* SMS will use SMSC Address as Request URI */
                 ret = tsip_ssession_set(session->handle,
                                         TSIP_SSESSION_SET_TO(opt->value),

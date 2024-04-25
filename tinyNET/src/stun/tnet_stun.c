@@ -56,9 +56,9 @@
 // *
 // * Create generic STUN2 request with all mandatory headers and attributes.
 // *
-// * @param [in,out]	binding	The binding object from which to create the request.
+// * @param [in,out]    binding The binding object from which to create the request.
 // *
-// * @retval	STUN2 request if succeed and NULL otherwise.
+// * @retval    STUN2 request if succeed and NULL otherwise.
 //**/
 //tnet_stun_pkt_t *tnet_stun_create_request(const tnet_stun_binding_t* binding)
 //{
@@ -71,7 +71,7 @@
 //        /* Set the request type (RFC 5389 defines only one type) */
 //        message->type = stun_binding_request;
 //
-//        {	/* Create random transaction id */
+//        { /* Create random transaction id */
 //            tsk_istr_t random;
 //            tsk_md5digest_t digest;
 //
@@ -102,19 +102,19 @@
 // * Internal function to send a STUN message using unrealiable protocol such as UDP.
 // *
 // *
-// * @param	localFD			The local file descriptor.
-// * @param	RTO				The Retransmission TimeOut.
-// * @param	Rc				The Number of retransmissions.
-// * @param [in,out]	message	The message to send.
-// * @param [in,out]	server	The destination STUN server.
+// * @param localFD         The local file descriptor.
+// * @param RTO             The Retransmission TimeOut.
+// * @param Rc              The Number of retransmissions.
+// * @param [in,out]    message The message to send.
+// * @param [in,out]    server  The destination STUN server.
 // *
-// * @return	The response from the server or NULL if transport error.
+// * @return    The response from the server or NULL if transport error.
 //**/
 //tnet_stun_pkt_resp_t* tnet_stun_send_unreliably(tnet_fd_t localFD, uint16_t RTO, uint16_t Rc, const tnet_stun_pkt_t* message, struct sockaddr* server)
 //{
-//    /*	RFC 5389 - 7.2.1.  Sending over UDP
-//    	STUN indications are not retransmitted; thus, indication transactions over UDP
-//    	are not reliable.
+//    /*    RFC 5389 - 7.2.1.  Sending over UDP
+//      STUN indications are not retransmitted; thus, indication transactions over UDP
+//      are not reliable.
 //    */
 //    //int retransmit = (message->type == stun_binding_request);
 //
@@ -140,25 +140,25 @@
 ////#  endif
 ////#  define SIO_UDP_CONNRESET _WSAIOW(IOC_VENDOR,12)
 ////#endif
-////		DWORD dwBytesReturned = 0;
-////		BOOL bNewBehavior = TRUE;
-////		DWORD status;
+////        DWORD dwBytesReturned = 0;
+////        BOOL bNewBehavior = TRUE;
+////        DWORD status;
 ////
-////		// disable  new behavior using
-////		// IOCTL: SIO_UDP_CONNRESET
-////		status = WSAIoctl(localFD, SIO_UDP_CONNRESET, &bNewBehavior, sizeof(bNewBehavior),
-////			NULL, 0, &dwBytesReturned, NULL, NULL);
+////        // disable  new behavior using
+////        // IOCTL: SIO_UDP_CONNRESET
+////        status = WSAIoctl(localFD, SIO_UDP_CONNRESET, &bNewBehavior, sizeof(bNewBehavior),
+////            NULL, 0, &dwBytesReturned, NULL, NULL);
 //    }
 //
 //    tv.tv_sec = 0;
 //    tv.tv_usec = 0;
 //
-//    /*	RFC 5389 - 7.2.1.  Sending over UDP
-//    	A client SHOULD retransmit a STUN request message starting with an
-//    	interval of RTO ("Retransmission TimeOut"), doubling after each
-//    	retransmission.
+//    /*    RFC 5389 - 7.2.1.  Sending over UDP
+//      A client SHOULD retransmit a STUN request message starting with an
+//      interval of RTO ("Retransmission TimeOut"), doubling after each
+//      retransmission.
 //
-//    	e.g. 0 ms, 500 ms, 1500 ms, 3500 ms, 7500ms, 15500 ms, and 31500 ms
+//      e.g. 0 ms, 500 ms, 1500 ms, 3500 ms, 7500ms, 15500 ms, and 31500 ms
 //    */
 //    for(i=0; i<Rc; i++) {
 //        tv.tv_sec += rto/1000;
@@ -231,12 +231,12 @@
 //}
 //
 ///**@ingroup tnet_stun_group
-// * 	Internal function to send a STUN2 binding request over the network.
+// *    Internal function to send a STUN2 binding request over the network.
 // *
-// * @param [in,out]	context	The NAT context holding the user preferences.
-// * @param [in,out]	binding	The STUN binding object used to create the message to send.
+// * @param [in,out]    context The NAT context holding the user preferences.
+// * @param [in,out]    binding The STUN binding object used to create the message to send.
 // *
-// * @return	Zero if succeed and non-zero error code otherwise.
+// * @return    Zero if succeed and non-zero error code otherwise.
 //**/
 //int tnet_stun_send_bind(const tnet_nat_context_t* context, tnet_stun_binding_t *binding)
 //{
@@ -247,13 +247,13 @@
 //
 //    goto stun_phase0;
 //
-//    /*	RFC 5389 - 10.2.1.1.  First Request
-//    	If the client has not completed a successful request/response
-//    	transaction with the server (as identified by hostname, if the DNS
-//    	procedures of Section 9 are used, else IP address if not), it SHOULD
-//    	omit the USERNAME, MESSAGE-INTEGRITY, REALM, and NONCE attributes.
-//    	In other words, the very first request is sent as if there were no
-//    	authentication or message integrity applied.
+//    /*    RFC 5389 - 10.2.1.1.  First Request
+//      If the client has not completed a successful request/response
+//      transaction with the server (as identified by hostname, if the DNS
+//      procedures of Section 9 are used, else IP address if not), it SHOULD
+//      omit the USERNAME, MESSAGE-INTEGRITY, REALM, and NONCE attributes.
+//      In other words, the very first request is sent as if there were no
+//      authentication or message integrity applied.
 //    */
 //stun_phase0: {
 //        if(!(request = tnet_stun_create_request(binding))) {
@@ -317,11 +317,11 @@
 // *
 // * Public function to create a binding context.
 // *
-// * @param [in,out]	nat_context	The NAT context.
-// * @param	localFD				The local file descriptor for which to create the binding context.
+// * @param [in,out]    nat_context The NAT context.
+// * @param localFD             The local file descriptor for which to create the binding context.
 // *
-// * @return	A valid binding id if succeed and @ref kStunBindingInvalidId otherwise. If the returned id is valid then
-// *			the newly created binding will contain the server reflexive address associated to the local file descriptor.
+// * @return    A valid binding id if succeed and @ref kStunBindingInvalidId otherwise. If the returned id is valid then
+// *            the newly created binding will contain the server reflexive address associated to the local file descriptor.
 //**/
 //tnet_stun_binding_id_t tnet_stun_bind(const tnet_nat_context_t* nat_context, tnet_fd_t localFD)
 //{
@@ -350,10 +350,10 @@
 ///**@ingroup tnet_stun_group
 // * Compares two transaction ids.
 // *
-// * @param	id1	The first transaction identifier.
-// * @param	id2	The second transaction  identifier.
+// * @param id1 The first transaction identifier.
+// * @param id2 The second transaction  identifier.
 // *
-// * @return	Zero if the two identifiers are equal and non-zero value otherwise.
+// * @return    Zero if the two identifiers are equal and non-zero value otherwise.
 //**/
 //int tnet_stun_transacid_cmp(const tnet_stun_transac_id_t id1, const tnet_stun_transac_id_t id2)
 //{
@@ -376,7 +376,7 @@
 //
 //
 ////=================================================================================================
-////	STUN2 BINDING object definition
+////    STUN2 BINDING object definition
 ////
 //static tsk_object_t* tnet_stun_binding_ctor(tsk_object_t * self, va_list * app)
 //{

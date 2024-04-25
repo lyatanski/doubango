@@ -32,74 +32,74 @@
 #include "tsk_debug.h"
 
 #if defined(_MSC_VER)
-#	define DDRAW_HAVE_RGB32_TO_I420					1
-#	if !TDAV_UNDER_WINDOWS_CE
-#		define DDRAW_HAVE_RGB32_TO_I420_INTRIN		1
-#		include <intrin.h>
-#	endif /* TDAV_UNDER_WINDOWS_CE */
-#	if !defined(_M_X64) /*|| _MSC_VER <= 1500*/  // https://msdn.microsoft.com/en-us/library/4ks26t93.aspx: Inline assembly is not supported on the ARM and x64 processors (1500 = VS2008)
-#		define DDRAW_HAVE_RGB32_TO_I420_ASM			1
-#	endif
+#   define DDRAW_HAVE_RGB32_TO_I420                 1
+#   if !TDAV_UNDER_WINDOWS_CE
+#       define DDRAW_HAVE_RGB32_TO_I420_INTRIN      1
+#       include <intrin.h>
+#   endif /* TDAV_UNDER_WINDOWS_CE */
+#   if !defined(_M_X64) /*|| _MSC_VER <= 1500*/  // https://msdn.microsoft.com/en-us/library/4ks26t93.aspx: Inline assembly is not supported on the ARM and x64 processors (1500 = VS2008)
+#       define DDRAW_HAVE_RGB32_TO_I420_ASM         1
+#   endif
 #endif /* _MSC_VER */
 
 #if !defined(DDRAW_MEM_ALIGNMENT)
-#	define DDRAW_MEM_ALIGNMENT	16 // SSE = 16, AVX = 32. Should be 16.
+#   define DDRAW_MEM_ALIGNMENT  16 // SSE = 16, AVX = 32. Should be 16.
 #endif /* DDRAW_MEM_ALIGNMENT */
 
 #if !defined(DDRAW_IS_ALIGNED)
-#	define DDRAW_IS_ALIGNED(p, a) (!((uintptr_t)(p) & ((a) - 1)))
+#   define DDRAW_IS_ALIGNED(p, a) (!((uintptr_t)(p) & ((a) - 1)))
 #endif /* DDRAW_IS_ALIGNED */
 
 #if !defined(DDRAW_HIGH_PRIO_MEMCPY)
-#	define DDRAW_HIGH_PRIO_MEMCPY	0 // BOOL
+#   define DDRAW_HIGH_PRIO_MEMCPY   0 // BOOL
 #endif /* DDRAW_HIGH_PRIO_MEMCPY */
 
 #if !defined(DDRAW_CPU_MONITOR)
-#	define DDRAW_CPU_MONITOR	0 // BOOL
+#   define DDRAW_CPU_MONITOR    0 // BOOL
 #endif /* DDRAW_CPU_MONITOR */
 
 #if !defined(DDRAW_CPU_THROTTLING)
-#	define DDRAW_CPU_THROTTLING		0 // BOOL
+#   define DDRAW_CPU_THROTTLING     0 // BOOL
 #endif /* DDRAW_CPU_THROTTLING */
 
 #if (DDRAW_CPU_MONITOR || DDRAW_CPU_THROTTLING) && !defined(DDRAW_CPU_SCHEDULE_TIMEOUT)
-#	define DDRAW_CPU_SCHEDULE_TIMEOUT	800 // millis
+#   define DDRAW_CPU_SCHEDULE_TIMEOUT   800 // millis
 #endif /* DDRAW_CPU_MONITOR */
 
 #if defined(DDRAW_CPU_THROTTLING) && !defined(DDRAW_CPU_THROTTLING_FPS_MIN)
-#	define DDRAW_CPU_THROTTLING_FPS_MIN	1 // frames per second
+#   define DDRAW_CPU_THROTTLING_FPS_MIN 1 // frames per second
 #endif /* DDRAW_CPU_THROTTLING_FPS_MIN */
 
 #if defined(DDRAW_CPU_THROTTLING) && !defined(DDRAW_CPU_THROTTLING_THRESHOLD)
-#	define DDRAW_CPU_THROTTLING_THRESHOLD	70 // percent
+#   define DDRAW_CPU_THROTTLING_THRESHOLD   70 // percent
 #endif /* DDRAW_CPU_THROTTLING_THRESHOLD */
 
 #if defined(DDRAW_CPU_THROTTLING) && !defined(DDRAW_CPU_THROTTLING_THRESHOLD_MARGIN)
-#	define DDRAW_CPU_THROTTLING_THRESHOLD_MARGIN	5 // percent
+#   define DDRAW_CPU_THROTTLING_THRESHOLD_MARGIN    5 // percent
 #endif /* DDRAW_CPU_THROTTLING_THRESHOLD_MARGIN */
 
 #if !defined(DDRAW_MT)
-#	define DDRAW_MT	1 // BOOL: Multi-threading
+#   define DDRAW_MT 1 // BOOL: Multi-threading
 #endif /* DDRAW_MT */
 
 #if defined (DDRAW_MT) && !defined(DDRAW_MT_COUNT)
-#	define DDRAW_MT_COUNT 3 // Number of buffers to use
+#   define DDRAW_MT_COUNT 3 // Number of buffers to use
 #endif /* DDRAW_MT_COUNT */
 
 #if defined(DDRAW_MT_COUNT)
-#	define DDRAW_MT_EVENT_SHUTDOWN_INDEX	DDRAW_MT_COUNT
+#   define DDRAW_MT_EVENT_SHUTDOWN_INDEX    DDRAW_MT_COUNT
 #endif
 
 #if !defined(DDRAW_MEM_SURFACE_DIRECT_ACCESS)
-#	define DDRAW_MEM_SURFACE_DIRECT_ACCESS	0 // direct access to "ddsd.lpSurface" is very slow even if the memory is correctly aligned: to be investigated
+#   define DDRAW_MEM_SURFACE_DIRECT_ACCESS  0 // direct access to "ddsd.lpSurface" is very slow even if the memory is correctly aligned: to be investigated
 #endif /* DDRAW_MEM_SURFACE_DIRECT_ACCESS */
 
 #if !defined(DDRAW_PREVIEW)
-#	if TDAV_UNDER_WINDOWS_CE && (BUILD_TYPE_GE || SIN_CITY)
-#		define DDRAW_PREVIEW 0 // Do not waste time displaying the preview on "WEC7 + (GE | SINCITY)"
-#	else
-#		define DDRAW_PREVIEW 1
-#	endif
+#   if TDAV_UNDER_WINDOWS_CE && (BUILD_TYPE_GE || SIN_CITY)
+#       define DDRAW_PREVIEW 0 // Do not waste time displaying the preview on "WEC7 + (GE | SINCITY)"
+#   else
+#       define DDRAW_PREVIEW 1
+#   endif
 #endif
 
 #define DDRAW_DEBUG_INFO(FMT, ...) TSK_DEBUG_INFO("[DDRAW Producer] " FMT, ##__VA_ARGS__)
@@ -192,10 +192,10 @@ static __declspec(align(DDRAW_MEM_ALIGNMENT)) const int8_t kUCoeffs[16] = {
 };
 static __declspec(align(DDRAW_MEM_ALIGNMENT)) const int8_t kVCoeffs[16] = {
     -18, -94, 112, 0,
-    -18, -94, 112, 0,
-    -18, -94, 112, 0,
-    -18, -94, 112, 0,
-};
+        -18, -94, 112, 0,
+        -18, -94, 112, 0,
+        -18, -94, 112, 0,
+    };
 static __declspec(align(DDRAW_MEM_ALIGNMENT)) const  int32_t kRGBAShuffleDuplicate[4] = { 0x03020100, 0x0b0a0908, 0x03020100, 0x0b0a0908 }; // RGBA(X) || RGBA(X + 2) || RGBA(X) || RGBA(X + 2) = 2U || 2V
 static __declspec(align(DDRAW_MEM_ALIGNMENT)) const uint16_t kY16[8] = {
     16, 16, 16, 16,
@@ -263,17 +263,17 @@ static BOOL _tdav_producer_screencast_have_ssse3()
     __checked = TRUE;
 
 #ifndef BIT
-#	define BIT(n) (1<<n)
+#   define BIT(n) (1<<n)
 #endif /*BIT*/
 #if DDRAW_HAVE_RGB32_TO_I420_ASM
 #define cpuid(func, func2, a, b, c, d)\
-	__asm mov eax, func\
-	__asm mov ecx, func2\
-	__asm cpuid\
-	__asm mov a, eax\
-	__asm mov b, ebx\
-	__asm mov c, ecx\
-	__asm mov d, edx
+    __asm mov eax, func\
+    __asm mov ecx, func2\
+    __asm cpuid\
+    __asm mov a, eax\
+    __asm mov b, ebx\
+    __asm mov c, ecx\
+    __asm mov d, edx
 
 #define HAS_MMX     0x01
 #define HAS_SSE     0x02
@@ -311,18 +311,18 @@ static BOOL _tdav_producer_screencast_have_ssse3()
 #if DDRAW_HAVE_RGB32_TO_I420_INTRIN
 
 #define DDRAW_COPY16_INTRIN(dst, src) \
-	_mm_store_si128((__m128i*)dst, _mm_load_si128((__m128i*)src))
+    _mm_store_si128((__m128i*)dst, _mm_load_si128((__m128i*)src))
 #define DDRAW_COPY64_INTRIN(dst, src) \
-	_mm_store_si128((__m128i*)dst, _mm_load_si128((__m128i*)src)); \
-	_mm_store_si128((__m128i*)&dst[16], _mm_load_si128((__m128i*)&src[16])); \
-	_mm_store_si128((__m128i*)&dst[32], _mm_load_si128((__m128i*)&src[32])); \
-	_mm_store_si128((__m128i*)&dst[48], _mm_load_si128((__m128i*)&src[48]))
+    _mm_store_si128((__m128i*)dst, _mm_load_si128((__m128i*)src)); \
+    _mm_store_si128((__m128i*)&dst[16], _mm_load_si128((__m128i*)&src[16])); \
+    _mm_store_si128((__m128i*)&dst[32], _mm_load_si128((__m128i*)&src[32])); \
+    _mm_store_si128((__m128i*)&dst[48], _mm_load_si128((__m128i*)&src[48]))
 #define DDRAW_COPY128_INTRIN(dst, src) \
-	DDRAW_COPY64_INTRIN(dst, src); \
-	_mm_store_si128((__m128i*)&dst[64], _mm_load_si128((__m128i*)&src[64])); \
-	_mm_store_si128((__m128i*)&dst[80], _mm_load_si128((__m128i*)&src[80])); \
-	_mm_store_si128((__m128i*)&dst[96], _mm_load_si128((__m128i*)&src[96])); \
-	_mm_store_si128((__m128i*)&dst[112], _mm_load_si128((__m128i*)&src[112]))
+    DDRAW_COPY64_INTRIN(dst, src); \
+    _mm_store_si128((__m128i*)&dst[64], _mm_load_si128((__m128i*)&src[64])); \
+    _mm_store_si128((__m128i*)&dst[80], _mm_load_si128((__m128i*)&src[80])); \
+    _mm_store_si128((__m128i*)&dst[96], _mm_load_si128((__m128i*)&src[96])); \
+    _mm_store_si128((__m128i*)&dst[112], _mm_load_si128((__m128i*)&src[112]))
 
 static void _tdav_producer_screencast_rgb32_to_yuv420_intrin_ssse3(uint8_t *yuvPtr, const uint8_t *rgbPtr, int width, int height)
 {
@@ -429,71 +429,71 @@ static void _tdav_producer_screencast_rgb32_to_yuv420_intrin_ssse3(uint8_t *yuvP
 
 // __asm keyword must be duplicated in macro: https://msdn.microsoft.com/en-us/library/aa293825(v=vs.60).aspx
 #define DDRAW_COPY16_ASM(dst, src) \
-	__asm { \
-	__asm mov eax, dword ptr [src] \
-	__asm mov ecx, dword ptr [dst] \
-	\
-	__asm movdqa xmm0, xmmword ptr [eax] \
-	__asm movdqa xmmword ptr [ecx], xmm0 \
-	}
+    __asm { \
+    __asm mov eax, dword ptr [src] \
+    __asm mov ecx, dword ptr [dst] \
+    \
+    __asm movdqa xmm0, xmmword ptr [eax] \
+    __asm movdqa xmmword ptr [ecx], xmm0 \
+    }
 #define DDRAW_COPY64_ASM(dst, src) \
-	__asm { \
-	__asm mov eax, dword ptr [src] \
-	__asm mov ecx, dword ptr [dst] \
-	\
-	__asm movdqa xmm0, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm1, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm2, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm3, xmmword ptr [eax] \
-	 \
-	__asm movdqa xmmword ptr [ecx], xmm0 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm1 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm2 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm3 \
-	}
+    __asm { \
+    __asm mov eax, dword ptr [src] \
+    __asm mov ecx, dword ptr [dst] \
+    \
+    __asm movdqa xmm0, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm1, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm2, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm3, xmmword ptr [eax] \
+     \
+    __asm movdqa xmmword ptr [ecx], xmm0 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm1 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm2 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm3 \
+    }
 #define DDRAW_COPY128_ASM(dst, src) \
-	__asm { \
-	__asm mov eax, dword ptr [src] \
-	__asm mov ecx, dword ptr [dst] \
-	\
-	__asm movdqa xmm0, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm1, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm2, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm3, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm4, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm5, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm6, xmmword ptr [eax] \
-	__asm add eax, dword ptr 16 \
-	__asm movdqa xmm7, xmmword ptr [eax] \
-	 \
-	__asm movdqa xmmword ptr [ecx], xmm0 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm1 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm2 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm3 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm4 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm5 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm6 \
-	__asm add ecx, dword ptr 16 \
-	__asm movdqa xmmword ptr [ecx], xmm7 \
-	}
+    __asm { \
+    __asm mov eax, dword ptr [src] \
+    __asm mov ecx, dword ptr [dst] \
+    \
+    __asm movdqa xmm0, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm1, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm2, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm3, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm4, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm5, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm6, xmmword ptr [eax] \
+    __asm add eax, dword ptr 16 \
+    __asm movdqa xmm7, xmmword ptr [eax] \
+     \
+    __asm movdqa xmmword ptr [ecx], xmm0 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm1 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm2 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm3 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm4 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm5 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm6 \
+    __asm add ecx, dword ptr 16 \
+    __asm movdqa xmmword ptr [ecx], xmm7 \
+    }
 
 __declspec(naked) __declspec(align(DDRAW_MEM_ALIGNMENT))
 static void _tdav_producer_screencast_rgb32_to_yuv420_asm_ssse3(uint8_t *yuvPtr, const uint8_t *rgbPtr, int width, int height)
@@ -765,7 +765,7 @@ static int _tdav_producer_screencast_ddraw_prepare(tmedia_producer_t* p_self, co
     p_ddraw->cpu.fps_target = (TMEDIA_PRODUCER(p_ddraw)->video.fps + DDRAW_CPU_THROTTLING_FPS_MIN) >> 1; // start with minimum fps and increase the value based on the fps
 #endif /* DDRAW_CPU_THROTTLING */
 
-    bail:
+bail:
     tsk_safeobj_unlock(p_ddraw);
     return SUCCEEDED(hr) ? 0 : -1;
 }
@@ -837,7 +837,7 @@ static int _tdav_producer_screencast_ddraw_start(tmedia_producer_t* p_self)
     }
 #endif /* DDRAW_CPU_MONITOR || DDRAW_CPU_THROTTLING */
 
-    bail:
+bail:
     if (ret) {
         p_ddraw->b_started = tsk_false;
         if (p_ddraw->tid[0]) {
@@ -868,7 +868,7 @@ static int _tdav_producer_screencast_ddraw_pause(tmedia_producer_t* p_self)
     p_ddraw->b_paused = tsk_true;
     goto bail;
 
-    bail:
+bail:
     tsk_safeobj_unlock(p_ddraw);
 
     return 0;
@@ -919,7 +919,7 @@ static int _tdav_producer_screencast_ddraw_stop(tmedia_producer_t* p_self)
     }
 #endif
 
-    bail:
+bail:
     tsk_safeobj_unlock(p_ddraw);
 
     return 0;
@@ -1178,7 +1178,7 @@ static int _tdav_producer_screencast_grab(tdav_producer_screencast_ddraw_t* p_se
         DDRAW_CHECK_HR(hr = p_self->p_surf_primary->Unlock(NULL));
     }
 
-    bail:
+bail:
     if (hr == DDERR_SURFACELOST) {
         /*hr = */p_self->p_surf_primary->Restore();
         hr = S_OK;
@@ -1199,25 +1199,25 @@ static tmedia_chroma_t _tdav_producer_screencast_get_chroma(const DDPIXELFORMAT*
     }
     switch (pixelFormat->dwRGBBitCount) {
     case 32: // RGB32
-        case 24: // RGB24
-                // pixels must be aligned for fast copy
-                if (pixelFormat->dwRBitMask != 0xff0000 || pixelFormat->dwGBitMask != 0xff00 || pixelFormat->dwBBitMask != 0xff || pixelFormat->dwRGBAlphaBitMask != 0) {
-                    DDRAW_DEBUG_ERROR("Pixels not aligned");
-                }
+    case 24: // RGB24
+        // pixels must be aligned for fast copy
+        if (pixelFormat->dwRBitMask != 0xff0000 || pixelFormat->dwGBitMask != 0xff00 || pixelFormat->dwBBitMask != 0xff || pixelFormat->dwRGBAlphaBitMask != 0) {
+            DDRAW_DEBUG_ERROR("Pixels not aligned");
+        }
         return pixelFormat->dwRGBBitCount == 24 ? tmedia_chroma_bgr24 : tmedia_chroma_rgb32;
     case 16: // RGB565
-            // pixels must be aligned for fast copy
-            if (pixelFormat->dwRBitMask != 0xF800 || pixelFormat->dwGBitMask != 0x7E0 || pixelFormat->dwBBitMask != 0x1F) {
-                DDRAW_DEBUG_ERROR("Pixels not aligned");
-            }
+        // pixels must be aligned for fast copy
+        if (pixelFormat->dwRBitMask != 0xF800 || pixelFormat->dwGBitMask != 0x7E0 || pixelFormat->dwBBitMask != 0x1F) {
+            DDRAW_DEBUG_ERROR("Pixels not aligned");
+        }
         return tmedia_chroma_rgb565le;
     default:
-            DDRAW_DEBUG_ERROR("dwRGBBitCount(%d) != 24 and 32", pixelFormat->dwRGBBitCount);
+        DDRAW_DEBUG_ERROR("dwRGBBitCount(%d) != 24 and 32", pixelFormat->dwRGBBitCount);
         DDRAW_CHECK_HR(hr = DDERR_INVALIDCAPS);
         break;
     }
 
-    bail:
+bail:
     return tmedia_chroma_none;
 }
 
@@ -1240,9 +1240,9 @@ static HRESULT _tdav_producer_screencast_create_module(LPDDrawModule lpModule)
     if (!lpModule->lpDD) {
         // Hum, "GetProcAddressA" is missing but ""GetProcAddressW" exists on CE
 #if TDAV_UNDER_WINDOWS_CE
-#	define DirectDrawCreateName TEXT("DirectDrawCreate")
+#   define DirectDrawCreateName TEXT("DirectDrawCreate")
 #else
-#	define DirectDrawCreateName "DirectDrawCreate"
+#   define DirectDrawCreateName "DirectDrawCreate"
 #endif
         if (!(DirectDrawCreate_ = (pDirectDrawCreateFunc)GetProcAddress(lpModule->hDLL, DirectDrawCreateName))) {
             DDRAW_DEBUG_ERROR("Failed to find DirectDrawCreate in ddraw.dll: %d", GetLastError());
@@ -1251,7 +1251,7 @@ static HRESULT _tdav_producer_screencast_create_module(LPDDrawModule lpModule)
         DDRAW_CHECK_HR(hr = DirectDrawCreate_(NULL, &lpModule->lpDD, NULL));
     }
 
-    bail:
+bail:
     return hr;
 }
 
@@ -1269,7 +1269,7 @@ static HRESULT _tdav_producer_screencast_alloc_rgb_buff(tdav_producer_screencast
         p_ddraw->n_buff_rgb = n_buff_rgb_new;
     }
 
-    bail:
+bail:
     return hr;
 }
 
@@ -1296,7 +1296,7 @@ static HRESULT _tdav_producer_screencast_alloc_yuv_buff(tdav_producer_screencast
         }
     }
 
-    bail:
+bail:
     return hr;
 }
 
@@ -1331,7 +1331,7 @@ static void* TSK_STDCALL _tdav_producer_screencast_grap_thread(void *arg)
             DDRAW_DEBUG_INFO("Skip frame");
 #endif
         }
-        next:
+next:
         ;
     }
     DDRAW_DEBUG_INFO("Grab thread -- STOP");
@@ -1453,7 +1453,7 @@ static int _tdav_producer_screencast_timer_cb(const void* arg, tsk_timer_id_t ti
 #endif /* DDRAW_CPU_MONITOR || DDRAW_CPU_THROTTLING */
 
 //
-//	ddraw screencast producer object definition
+//  ddraw screencast producer object definition
 //
 /* constructor */
 static tsk_object_t* _tdav_producer_screencast_ddraw_ctor(tsk_object_t *self, va_list * app)

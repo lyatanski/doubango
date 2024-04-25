@@ -43,7 +43,7 @@ unsigned short tnet_htons(unsigned short x)
         return x;
     }
     else {
-        return ((((uint16_t)(x) & 0xff00) >> 8)		|
+        return ((((uint16_t)(x) & 0xff00) >> 8)     |
                 (((uint16_t)(x) & 0x00ff) << 8));
     }
 }
@@ -65,9 +65,9 @@ unsigned long tnet_htonl(unsigned long x)
         return x;
     }
     else {
-        return ((((uint32_t)(x) & 0xff000000) >> 24)	| \
-                (((uint32_t)(x) & 0x00ff0000) >> 8)		| \
-                (((uint32_t)(x) & 0x0000ff00) << 8)		| \
+        return ((((uint32_t)(x) & 0xff000000) >> 24)    | \
+                (((uint32_t)(x) & 0x00ff0000) >> 8)     | \
+                (((uint32_t)(x) & 0x0000ff00) << 8)     | \
                 (((uint32_t)(x) & 0x000000ff) << 24));
     }
 }

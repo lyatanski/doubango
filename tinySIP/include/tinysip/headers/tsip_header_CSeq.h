@@ -37,16 +37,16 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_CSEQ_VA_ARGS(seq, method)		tsip_header_CSeq_def_t, (int32_t) seq, (const char*)method
+#define TSIP_HEADER_CSEQ_VA_ARGS(seq, method)       tsip_header_CSeq_def_t, (int32_t) seq, (const char*)method
 
-#define TSIP_HEADER_CSEQ_NONE						0
-#define TSIP_HEADER_CSEQ_DEFAULT					1
+#define TSIP_HEADER_CSEQ_NONE                       0
+#define TSIP_HEADER_CSEQ_DEFAULT                    1
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'CSeq'.
+/// @brief  SIP header 'CSeq'.
 ///
-/// @par ABNF: CSeq	= 	"CSeq" HCOLON 1*DIGIT LWS Method
+/// @par ABNF: CSeq =   "CSeq" HCOLON 1*DIGIT LWS Method
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_CSeq_s {

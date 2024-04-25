@@ -42,7 +42,7 @@ tnet_dns_txt_t* tnet_dns_txt_create(const char* name, tnet_dns_qclass_t qclass, 
 }
 
 //=================================================================================================
-//	[[DNS TXT]] object definition
+//  [[DNS TXT]] object definition
 //
 static tsk_object_t* tnet_dns_txt_ctor(tsk_object_t * self, va_list * app)
 {

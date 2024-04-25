@@ -110,7 +110,7 @@ session_t* session_create(session_type_t, tsip_ssession_handle_t* );
 #define session_client_create(type) session_create(type, tsk_null)
 #define session_server_create(type, handle) session_create(type, handle)
 
-const session_t* session_get_by_sid(const sessions_L_t* , tsip_ssession_id_t );
+const session_t* session_get_by_sid(const sessions_L_t*, tsip_ssession_id_t );
 int session_tostring(const session_t* );
 int session_hangup(tsip_ssession_id_t sid);
 

@@ -36,9 +36,9 @@
 #include <string.h> /* memcpy */
 
 #define TSMS_ERROR_TOO_SHORT()\
-	TSK_DEBUG_ERROR("SMS-STATUS-REPORT == Data too short.");\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("SMS-STATUS-REPORT == Data too short.");\
+    failed = tsk_true;\
+    goto bail;
 
 /** internal function used to deserialize a SMS-STATUS-REPORT message from a binary buffer. */
 tsms_tpdu_message_t* _tsms_tpdu_status_report_deserialize(const void* data, tsk_size_t size)
@@ -65,14 +65,14 @@ tsms_tpdu_message_t* _tsms_tpdu_status_report_deserialize(const void* data, tsk_
 #endif
 
     /* SMS-STATUS-REPORT first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-More-Messages-to-Send(1b)
-    	- TP-Loop-Prevention(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Qualifier(1b)
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI| SRQ|	|LP	 |MMS | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        - TP-Message-Type-Indicator(2b)
+        - TP-More-Messages-to-Send(1b)
+        - TP-Loop-Prevention(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Qualifier(1b)
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI| SRQ|    |LP  |MMS | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     TSMS_TPDU_MESSAGE(self)->mti = *pdata & 0x03;
     self->mms = (*pdata & 0x04)>>2,
@@ -178,14 +178,14 @@ int _tsms_tpdu_status_report_serialize(const tsms_tpdu_status_report_t* self, ts
 #endif
 
     /* SMS-STATUS-REPORT first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-More-Messages-to-Send(1b)
-    	- TP-Loop-Prevention(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Qualifier(1b)
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI| SRQ|	|LP	 |MMS | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        - TP-Message-Type-Indicator(2b)
+        - TP-More-Messages-to-Send(1b)
+        - TP-Loop-Prevention(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Qualifier(1b)
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI| SRQ|    |LP  |MMS | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     _1byte = (TSMS_TPDU_MESSAGE(self)->mti & 0xF3); /*2b*/
     _1byte |= ((uint8_t)self->mms) << 2 /*1b*/
@@ -211,9 +211,9 @@ int _tsms_tpdu_status_report_serialize(const tsms_tpdu_status_report_t* self, ts
     tsk_buffer_append(output, &self->st, 1); /*0-255 ==> 1o*/
 
     /* 3GPP TS 23.040 ==> 9.2.3.27 TP-Parameter-Indicator (TP-PI)
-    	bit 7			bit 6		bit 5		bit 4		bit 3		bit 2	bit 1	bit 0
-    	Extension bit	Reserved	Reserved	Reserved	Reserved	TP UDL	TP DCS	TP PID
-    	As we are the serializer, we know which field should be added or not ==> append our own TP-PI field
+        bit 7           bit 6       bit 5       bit 4       bit 3       bit 2   bit 1   bit 0
+        Extension bit   Reserved    Reserved    Reserved    Reserved    TP UDL  TP DCS  TP PID
+        As we are the serializer, we know which field should be added or not ==> append our own TP-PI field
     */
     _1byte = self->pi | 0x07 /* Bits 2,1 and 0 to '1' */;
     tsk_buffer_append(output, &_1byte, 1); /* 1o*/
@@ -260,7 +260,7 @@ bail:
 }
 
 //=================================================================================================
-//	SMS TPDU SMS-SUMBIT object definition
+//  SMS TPDU SMS-SUMBIT object definition
 //
 static tsk_object_t* tsms_tpdu_status_report_ctor(tsk_object_t * self, va_list * app)
 {

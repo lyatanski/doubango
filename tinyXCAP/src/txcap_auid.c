@@ -271,7 +271,7 @@ txcap_auid_t* txcap_auid_get_by_id(txcap_auids_L_t* auids, const char* id)
 }
 
 //=================================================================================================
-//	AUID object definition
+//  AUID object definition
 //
 static tsk_object_t* txcap_auid_ctor(tsk_object_t * self, va_list * app)
 {

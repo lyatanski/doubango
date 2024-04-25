@@ -31,53 +31,53 @@
 /* Apple claims that they fully support POSIX semaphore but ...
  */
 #if defined(__APPLE__) /* Mac OSX/Darwin/Iphone/Ipod Touch */
-#	define TSK_USE_NAMED_SEM	1
+#   define TSK_USE_NAMED_SEM    1
 #else
-#	define TSK_USE_NAMED_SEM	0
+#   define TSK_USE_NAMED_SEM    0
 #endif
 
 #if !defined(NAME_MAX)
-#   define	NAME_MAX		  255
+#   define  NAME_MAX          255
 #endif
 
 #if TSK_UNDER_WINDOWS /* Windows XP/Vista/7/CE */
 
-#	include <windows.h>
-#	include "tsk_errno.h"
-#	define SEMAPHORE_S void
-typedef HANDLE	SEMAPHORE_T;
-#	if TSK_UNDER_WINDOWS_RT
-#		if !defined(CreateSemaphoreEx)
-#			define CreateSemaphoreEx CreateSemaphoreExW
-#		endif
-#	endif
+#   include <windows.h>
+#   include "tsk_errno.h"
+#   define SEMAPHORE_S void
+typedef HANDLE  SEMAPHORE_T;
+#   if TSK_UNDER_WINDOWS_RT
+#       if !defined(CreateSemaphoreEx)
+#           define CreateSemaphoreEx CreateSemaphoreExW
+#       endif
+#   endif
 //#else if define(__APPLE__) /* Mac OSX/Darwin/Iphone/Ipod Touch */
-//#	include <march/semaphore.h>
-//#	include <march/task.h>
+//# include <march/semaphore.h>
+//# include <march/task.h>
 #else /* All *nix */
 
-#	include <pthread.h>
-#	include <semaphore.h>
-#	if TSK_USE_NAMED_SEM
-#	include <fcntl.h> /* O_CREAT */
-#	include <sys/stat.h> /* S_IRUSR, S_IWUSR*/
+#   include <pthread.h>
+#   include <semaphore.h>
+#   if TSK_USE_NAMED_SEM
+#   include <fcntl.h> /* O_CREAT */
+#   include <sys/stat.h> /* S_IRUSR, S_IWUSR*/
 
 typedef struct named_sem_s {
     sem_t* sem;
     char name [NAME_MAX + 1];
 } named_sem_t;
-#		define SEMAPHORE_S named_sem_t
-#		define GET_SEM(PSEM) (((named_sem_t*)(PSEM))->sem)
-#	else
-#		define SEMAPHORE_S sem_t
-#		define GET_SEM(PSEM) ((PSEM))
-#	endif /* TSK_USE_NAMED_SEM */
+#       define SEMAPHORE_S named_sem_t
+#       define GET_SEM(PSEM) (((named_sem_t*)(PSEM))->sem)
+#   else
+#       define SEMAPHORE_S sem_t
+#       define GET_SEM(PSEM) ((PSEM))
+#   endif /* TSK_USE_NAMED_SEM */
 typedef sem_t* SEMAPHORE_T;
 
 #endif
 
 #if defined(__GNUC__) || defined(__SYMBIAN32__)
-#	include <errno.h>
+#   include <errno.h>
 #endif
 
 
@@ -101,11 +101,11 @@ tsk_semaphore_handle_t* tsk_semaphore_create_2(int initial_val)
     SEMAPHORE_T handle = tsk_null;
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
     handle = CreateSemaphoreEx(NULL, initial_val, 0x7FFFFFFF, NULL, 0x00000000, SEMAPHORE_ALL_ACCESS);
-#	else
+#   else
     handle = CreateSemaphore(NULL, initial_val, 0x7FFFFFFF, NULL);
-#	endif
+#   endif
 #else
     handle = tsk_calloc(1, sizeof(SEMAPHORE_S));
 
@@ -159,12 +159,12 @@ int tsk_semaphore_decrement(tsk_semaphore_handle_t* handle)
     int ret = EINVAL;
     if (handle) {
 #if TSK_UNDER_WINDOWS
-#	   if TSK_UNDER_WINDOWS_RT
+#      if TSK_UNDER_WINDOWS_RT
         ret = (WaitForSingleObjectEx((SEMAPHORE_T)handle, INFINITE, TRUE) == WAIT_OBJECT_0) ? 0 : -1;
-#	   else
+#      else
         ret = (WaitForSingleObject((SEMAPHORE_T)handle, INFINITE) == WAIT_OBJECT_0) ? 0 : -1;
 #endif
-        if (ret)	{
+        if (ret)    {
             TSK_DEBUG_ERROR("sem_wait function failed: %d", ret);
         }
 #else
@@ -172,7 +172,7 @@ int tsk_semaphore_decrement(tsk_semaphore_handle_t* handle)
             ret = sem_wait((SEMAPHORE_T)GET_SEM(handle));
         }
         while ( errno == EINTR );
-        if(ret)	{
+        if(ret) {
             TSK_DEBUG_ERROR("sem_wait function failed: %d", errno);
         }
 #endif
@@ -193,7 +193,7 @@ void tsk_semaphore_destroy(tsk_semaphore_handle_t** handle)
         CloseHandle((SEMAPHORE_T)*handle);
         *handle = tsk_null;
 #else
-#	if TSK_USE_NAMED_SEM
+#   if TSK_USE_NAMED_SEM
         named_sem_t * nsem = ((named_sem_t*)*handle);
         sem_close(nsem->sem);
 #else

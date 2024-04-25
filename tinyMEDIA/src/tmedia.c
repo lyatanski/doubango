@@ -34,7 +34,7 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TMED_MAX_PLUGINS			10
+#define TMED_MAX_PLUGINS            10
 const tmedia_plugin_def_t* __tmedia_plugins[TMED_MAX_PLUGINS] = {0};
 
 
@@ -238,7 +238,7 @@ int tmedia_perform(tmedia_t* self, tmedia_action_t action, ... )
 }
 
 //========================================================
-//	Media object definition
+//  Media object definition
 //
 
 static void* tmedia_ctor(tsk_object_t *self, va_list * app)

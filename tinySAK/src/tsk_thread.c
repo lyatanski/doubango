@@ -32,10 +32,10 @@
 #include "tsk_memory.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif
 #if TSK_UNDER_WINDOWS_RT
-#	include "../winrt/ThreadEmulation.h"
+#   include "../winrt/ThreadEmulation.h"
 using namespace ThreadEmulation;
 #endif
 
@@ -164,9 +164,9 @@ int tsk_thread_join(tsk_thread_handle_t** handle)
     }
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
     ret = (WaitForSingleObjectEx(*((HANDLE*)handle), INFINITE, TRUE) == WAIT_FAILED) ? -1 : 0;
-#	else
+#   else
     ret = (WaitForSingleObject(*((HANDLE*)handle), INFINITE) == WAIT_FAILED) ? -1 : 0;
 #endif
     if(ret == 0) {

@@ -38,49 +38,64 @@ public:
     QoS(float qavg, float q1 = -1.f, float q2 = -1.f, float q3 = -1.f, float q4 = -1.f, float q5 = -1.f);
 #endif
     virtual ~QoS();
-    float getQavg() {
+    float getQavg()
+    {
         return m_Qqvg;
     }
-    float getQ1() {
+    float getQ1()
+    {
         return m_Qn[0];
     }
-    float getQ2() {
+    float getQ2()
+    {
         return m_Qn[1];
     }
-    float getQ3() {
+    float getQ3()
+    {
         return m_Qn[2];
     }
-    float getQ4() {
+    float getQ4()
+    {
         return m_Qn[3];
     }
-    float getQ5() {
+    float getQ5()
+    {
         return m_Qn[4];
     }
-    unsigned getVideoInWidth() {
+    unsigned getVideoInWidth()
+    {
         return m_VideoInWidth;
     }
-    unsigned getVideoOutWidth() {
+    unsigned getVideoOutWidth()
+    {
         return m_VideoOutWidth;
     }
-    unsigned getVideoInHeight() {
+    unsigned getVideoInHeight()
+    {
         return m_VideoInHeight;
     }
-    unsigned getVideoOutHeight() {
+    unsigned getVideoOutHeight()
+    {
         return m_VideoOutHeight;
     }
-    unsigned getBandwidthDownKbps() {
+    unsigned getBandwidthDownKbps()
+    {
         return m_BandwidthDownKbps;
     }
-    unsigned getBandwidthUpKbps() {
+    unsigned getBandwidthUpKbps()
+    {
         return m_BandwidthUpKbps;
     }
-    unsigned getVideoInAvgFps() {
+    unsigned getVideoInAvgFps()
+    {
         return m_VideoInAvgFps;
     }
-    unsigned getVideoDecAvgTime() { // In millis
+    unsigned getVideoDecAvgTime()   // In millis
+    {
         return m_VideoDecAvgTime;
     }
-    unsigned getVideoEncAvgTime() { // In millis
+    unsigned getVideoEncAvgTime()   // In millis
+    {
         return m_VideoEncAvgTime;
     }
 private:
@@ -107,10 +122,12 @@ public:
 
 public:
 #if !defined(SWIG)
-    const struct tmedia_codec_s* getWrappedCodec() {
+    const struct tmedia_codec_s* getWrappedCodec()
+    {
         return m_pWrappedCodec;
     }
-    inline bool isOpened() {
+    inline bool isOpened()
+    {
         return (m_pWrappedCodec && (m_pWrappedCodec->opened == tsk_true));
     }
 #endif
@@ -150,10 +167,12 @@ public:
     const ProxyPlugin* findProxyPlugin(twrap_media_type_t media, bool consumer)const;
 #endif
 
-    const ProxyPlugin* findProxyPluginConsumer(twrap_media_type_t media)const {
+    const ProxyPlugin* findProxyPluginConsumer(twrap_media_type_t media)const
+    {
         return this->findProxyPlugin(media, true);
     }
-    const ProxyPlugin* findProxyPluginProducer(twrap_media_type_t media)const {
+    const ProxyPlugin* findProxyPluginProducer(twrap_media_type_t media)const
+    {
         return this->findProxyPlugin(media, false);
     }
 
@@ -162,7 +181,8 @@ public:
     uint64_t getSessionId(twrap_media_type_t media)const;
 
 #if !defined(SWIG)
-    inline const tmedia_session_mgr_t* getWrappedMgr()const {
+    inline const tmedia_session_mgr_t* getWrappedMgr()const
+    {
         return m_pWrappedMgr;
     }
 #endif

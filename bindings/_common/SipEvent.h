@@ -58,7 +58,8 @@ public:
     const SipSession* getBaseSession() const;
     const SipMessage* getSipMessage() const;
 #if !defined(SWIG)
-    const tsip_event_t * getWrappedEvent() {
+    const tsip_event_t * getWrappedEvent()
+    {
         return sipevent;
     }
 #endif

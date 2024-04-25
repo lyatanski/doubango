@@ -35,11 +35,11 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_DUMMY_VA_ARGS(name, value)		tsip_header_Dummy_def_t, (const char*)name, (const char*)value
+#define TSIP_HEADER_DUMMY_VA_ARGS(name, value)      tsip_header_Dummy_def_t, (const char*)name, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP Dummy header.
+/// @brief  SIP Dummy header.
 ///
 /// @par ABNF : token SP* HCOLON SP*<: any*
 ///

@@ -39,7 +39,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 64 "./ragel/tsip_parser_header_User_Agent.rl" */
@@ -251,7 +251,7 @@ _match:
             {
             }
             break;
-            /* #line 248 "./src/headers/tsip_header_User_Agent.c" */
+                /* #line 248 "./src/headers/tsip_header_User_Agent.c" */
             }
         }
 
@@ -289,7 +289,7 @@ _out: {
 
 
 //========================================================
-//	User_Agent header object definition
+//  User_Agent header object definition
 //
 
 static tsk_object_t* tsip_header_User_Agent_ctor(tsk_object_t *self, va_list * app)

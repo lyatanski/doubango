@@ -35,18 +35,18 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_TRANSFER_ENCODING_VA_ARGS(encoding)			thttp_header_Transfer_Encoding_def_t, (const char*)encoding
+#define THTTP_HEADER_TRANSFER_ENCODING_VA_ARGS(encoding)            thttp_header_Transfer_Encoding_def_t, (const char*)encoding
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// HTTP header 'Transfer-Encoding'.
 ///
 /// @par ABNF= Transfer-Encoding       = "Transfer-Encoding" ":" transfer-coding *(COMMA transfer-coding)
 ///
-/// 				transfer-coding     = "chunked" / transfer-extension
-/// 				transfer-extension  = token *( ";" parameter )
-/// 				parameter           = attribute "=" value
-/// 				attribute           = token
-/// 				value               = token / quoted-string
+///                 transfer-coding     = "chunked" / transfer-extension
+///                 transfer-extension  = token *( ";" parameter )
+///                 parameter           = attribute "=" value
+///                 attribute           = token
+///                 value               = token / quoted-string
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct thttp_header_Transfer_Encoding_s {

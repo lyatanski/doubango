@@ -33,9 +33,9 @@
 #include <windows.h>
 #include <audioclient.h>
 #if PLUGIN_WASAPI_UNDER_WINDOWS_PHONE
-#	include <phoneaudioclient.h>
+#   include <phoneaudioclient.h>
 #else
-#	include <Mmdeviceapi.h>
+#   include <Mmdeviceapi.h>
 #endif
 #include <initguid.h>
 
@@ -331,7 +331,7 @@ int AudioRender::Prepare(plugin_wasapi_consumer_audio_t* wasapi, const tmedia_co
     CHECK_HR(hr = m_pDevice->Initialize(
                       AUDCLNT_SHAREMODE_SHARED,
                       0x00000000,
-                      (PLUGIN_WASAPI_CONSUMER_NOTIF_POS_COUNT * WASAPI_MILLIS_TO_100NS(TMEDIA_CONSUMER(wasapi)->audio.ptime)) ,
+                      (PLUGIN_WASAPI_CONSUMER_NOTIF_POS_COUNT * WASAPI_MILLIS_TO_100NS(TMEDIA_CONSUMER(wasapi)->audio.ptime)),
                       0,
                       &wfx,
                       NULL));

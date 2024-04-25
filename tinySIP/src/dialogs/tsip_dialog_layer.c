@@ -162,7 +162,7 @@ tsip_dialog_t* tsip_dialog_layer_find(const tsip_dialog_layer_t *self, const cha
             tsk_bool_t is_notify = (type == tsip_NOTIFY); // Incoming NOTIFY
             *cid_matched = tsk_true;
             /* CANCEL Request will have the same local tag than the INVITE request
-            	the remote tag could be null if the CANCEL request is received immediately after a 100 Trying
+                the remote tag could be null if the CANCEL request is received immediately after a 100 Trying
             */
             if((is_cancel || tsk_strequals(dialog->tag_local, from_tag)) && (!dialog->tag_remote || tsk_strequals(dialog->tag_remote, to_tag))) {
                 ret = tsk_object_ref(dialog);
@@ -173,12 +173,12 @@ tsip_dialog_t* tsip_dialog_layer_find(const tsip_dialog_layer_t *self, const cha
                 ret = tsk_object_ref(dialog);
                 break;
             }
-            /*	NOTIFY could arrive before the 200 SUBSCRIBE => This is why we don't try to match both tags
+            /*  NOTIFY could arrive before the 200 SUBSCRIBE => This is why we don't try to match both tags
 
-            	RFC 3265 - 3.1.4.4. Confirmation of Subscription Creation
-            	Due to the potential for both out-of-order messages and forking, the
-            	subscriber MUST be prepared to receive NOTIFY messages before the
-            	SUBSCRIBE transaction has completed.
+                RFC 3265 - 3.1.4.4. Confirmation of Subscription Creation
+                Due to the potential for both out-of-order messages and forking, the
+                subscriber MUST be prepared to receive NOTIFY messages before the
+                SUBSCRIBE transaction has completed.
              */
             if(is_notify /* Do not check tags */) {
                 ret = tsk_object_ref(dialog);
@@ -720,7 +720,7 @@ bail:
 
 
 //========================================================
-//	Dialog layer object definition
+//  Dialog layer object definition
 //
 static tsk_object_t* tsip_dialog_layer_ctor(tsk_object_t * self, va_list * app)
 {

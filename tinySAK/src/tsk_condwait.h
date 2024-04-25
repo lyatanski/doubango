@@ -36,7 +36,7 @@
 TSK_BEGIN_DECLS
 
 /**@ingroup tsk_condwait_group
-*	An opaque handle to a condwait object.
+*   An opaque handle to a condwait object.
 */
 typedef void tsk_condwait_handle_t;
 

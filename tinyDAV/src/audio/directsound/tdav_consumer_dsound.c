@@ -30,8 +30,8 @@
 #if HAVE_DSOUND_H
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "dsound.lib")
-// #	pragma comment(lib, "dxguid.lib")
+#   pragma comment(lib, "dsound.lib")
+// #    pragma comment(lib, "dxguid.lib")
 #endif
 
 #include "tsk_string.h"
@@ -45,7 +45,7 @@
 extern void tdav_win32_print_error(const char* func, HRESULT hr);
 
 #if !defined(TDAV_DSOUND_CONSUMER_NOTIF_POS_COUNT)
-#	define TDAV_DSOUND_CONSUMER_NOTIF_POS_COUNT		20
+#   define TDAV_DSOUND_CONSUMER_NOTIF_POS_COUNT     20
 #endif /* TDAV_DSOUND_CONSUMER_NOTIF_POS_COUNT */
 
 typedef struct tdav_consumer_dsound_s {
@@ -395,7 +395,7 @@ static int tdav_consumer_dsound_stop(tmedia_consumer_t* self)
 
 
 //
-//	WaveAPI consumer object definition
+//  WaveAPI consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_dsound_ctor(tsk_object_t * self, va_list * app)

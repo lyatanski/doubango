@@ -157,7 +157,7 @@ int twrap_consumer_proxy_audio_stop(tmedia_consumer_t* self)
 
 
 //
-//	Audio consumer object definition
+//  Audio consumer object definition
 //
 /* constructor */
 static tsk_object_t* twrap_consumer_proxy_audio_ctor(tsk_object_t * self, va_list * app)
@@ -537,7 +537,7 @@ int twrap_consumer_proxy_video_stop(tmedia_consumer_t* self)
 
 
 //
-//	Video consumer object definition
+//  Video consumer object definition
 //
 /* constructor */
 static tsk_object_t* twrap_consumer_proxy_video_ctor(tsk_object_t * self, va_list * app)

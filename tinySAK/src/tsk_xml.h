@@ -36,44 +36,44 @@
 #if HAVE_LIBXML2_H
 #include <libxml/tree.h>
 
-#define TSK_XML_NODE_IS_TEXTVALUE(node)							(node && node->type==XML_TEXT_NODE)
-#define TSK_XML_NODE_SAFE_GET_TEXTVALUE(node)					(const char*)(TSK_XML_NODE_IS_TEXTVALUE(node)?(node->content):0)
-#define TSK_XML_NODE_SKIP_COMMENTS(node)						while(node && (node->type==XML_COMMENT_NODE)) node = tsk_xml_find_node(node, 0, nft_next);
+#define TSK_XML_NODE_IS_TEXTVALUE(node)                         (node && node->type==XML_TEXT_NODE)
+#define TSK_XML_NODE_SAFE_GET_TEXTVALUE(node)                   (const char*)(TSK_XML_NODE_IS_TEXTVALUE(node)?(node->content):0)
+#define TSK_XML_NODE_SKIP_COMMENTS(node)                        while(node && (node->type==XML_COMMENT_NODE)) node = tsk_xml_find_node(node, 0, nft_next);
 
 
-#define TSK_XML_NODE_SELECT_BY_NAME(qname)						nst_by_name, qname
-#define TSK_XML_NODE_SELECT_BY_ATT(qname, att_name, att_value)	nst_by_att, qname, att_name, att_value
-#define TSK_XML_NODE_SELECT_ATT_VALUE(qname, att_name)			nst_att_value, qname, att_name
-#define TSK_XML_NODE_SELECT_CONTENT()							nst_content
-#define TSK_XML_NODE_SELECT_END()								nst_end
+#define TSK_XML_NODE_SELECT_BY_NAME(qname)                      nst_by_name, qname
+#define TSK_XML_NODE_SELECT_BY_ATT(qname, att_name, att_value)  nst_by_att, qname, att_name, att_value
+#define TSK_XML_NODE_SELECT_ATT_VALUE(qname, att_name)          nst_att_value, qname, att_name
+#define TSK_XML_NODE_SELECT_CONTENT()                           nst_content
+#define TSK_XML_NODE_SELECT_END()                               nst_end
 
-#define TSK_XML_NAMESPACE_CREATE()								tsk_object_new(tsk_xml_namespace_def_t)
-#define TSK_XML_NAMESPACE_FREE(self)							tsk_object_unref(self), self = 0
+#define TSK_XML_NAMESPACE_CREATE()                              tsk_object_new(tsk_xml_namespace_def_t)
+#define TSK_XML_NAMESPACE_FREE(self)                            tsk_object_unref(self), self = 0
 
-#define TSK_XML_ELEMENT_CREATE(element)							tsk_object_new(tsk_xml_element_def_t)
-#define TSK_XML_ELEMENT_FREE(self)								tsk_object_unref(self), self = 0
+#define TSK_XML_ELEMENT_CREATE(element)                         tsk_object_new(tsk_xml_element_def_t)
+#define TSK_XML_ELEMENT_FREE(self)                              tsk_object_unref(self), self = 0
 
-#define TSK_XML_ATTRIBUTE_CREATE(attribute)						tsk_object_new(tsk_xml_attribute_def_t)
-#define TSK_XML_ATTRIBUTE_FREE(self)							tsk_object_unref(self), self = 0
+#define TSK_XML_ATTRIBUTE_CREATE(attribute)                     tsk_object_new(tsk_xml_attribute_def_t)
+#define TSK_XML_ATTRIBUTE_FREE(self)                            tsk_object_unref(self), self = 0
 
 #define TSK_XML_SERIALIZE(result, element, strValue)\
-	if(strValue) tsk_sprintf(&result, "<"##element##">%s</"##element##">", strValue); \
-	else tsk_strupdate(&result, "");
+    if(strValue) tsk_sprintf(&result, "<"##element##">%s</"##element##">", strValue); \
+    else tsk_strupdate(&result, "");
 
 /** C and XML Schema mapping */
 typedef enum tsk_xml_type_e {
     xt_none,
-    xt_string,			/* xsd:string */
-    xt_byte,			/* xsd:byte */
-    xt_unsignedByte,	/* xsd:unsignedByte */
-    xt_short,			/* xsd:short */
-    xt_unsignedShort,	/* xsd:unsignedShort */
-    xt_int,				/* xsd:int */
-    xt_unsignedInt,		/* xsd:unsignedInt */
-    xt_long,			/* xsd:long */
-    xt_boolean,			/* xsd:boolean */
-    xt_float,			/* xsd:float */
-    xt_double			/* xsd:double */
+    xt_string,          /* xsd:string */
+    xt_byte,            /* xsd:byte */
+    xt_unsignedByte,    /* xsd:unsignedByte */
+    xt_short,           /* xsd:short */
+    xt_unsignedShort,   /* xsd:unsignedShort */
+    xt_int,             /* xsd:int */
+    xt_unsignedInt,     /* xsd:unsignedInt */
+    xt_long,            /* xsd:long */
+    xt_boolean,         /* xsd:boolean */
+    xt_float,           /* xsd:float */
+    xt_double           /* xsd:double */
 }
 tsk_xml_type_t;
 
@@ -133,17 +133,17 @@ typedef tsk_list_t tsk_xml_elements_t;
 typedef tsk_list_t tsk_xml_attributes_t;
 typedef tsk_list_t tsk_xml_namespaces_t;
 
-#define tsk_xml_elements_init		tsk_list_init
-#define tsk_xml_attributes_init		tsk_list_init
-#define tsk_xml_namespaces_init		tsk_list_init
+#define tsk_xml_elements_init       tsk_list_init
+#define tsk_xml_attributes_init     tsk_list_init
+#define tsk_xml_namespaces_init     tsk_list_init
 
-#define tsk_xml_elements_add		tsk_list_add_data
-#define tsk_xml_attributes_add		tsk_list_add_data
-#define tsk_xml_namespaces_add		tsk_list_add_data
+#define tsk_xml_elements_add        tsk_list_add_data
+#define tsk_xml_attributes_add      tsk_list_add_data
+#define tsk_xml_namespaces_add      tsk_list_add_data
 
-#define tsk_xml_elements_free		tsk_list_free
-#define tsk_xml_attributes_free		tsk_list_free
-#define tsk_xml_namespaces_free		tsk_list_free
+#define tsk_xml_elements_free       tsk_list_free
+#define tsk_xml_attributes_free     tsk_list_free
+#define tsk_xml_namespaces_free     tsk_list_free
 
 //TINYSAK_API void tsk_xml_namespace_init(tsk_xml_namespace_t* _namespace);
 //TINYSAK_API void tsk_xml_namespace_free(tsk_xml_namespace_t** _namespace);

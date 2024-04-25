@@ -39,15 +39,15 @@ TMSRP_BEGIN_DECLS
 
 struct tmsrp_header_s;
 
-#define TMSRP_HEADER(self)					((tmsrp_header_t*)(self))
-#define TMSRP_HEADER_VALUE_TOSTRING_F(self)	((tmsrp_header_value_tostring_f)(self))
+#define TMSRP_HEADER(self)                  ((tmsrp_header_t*)(self))
+#define TMSRP_HEADER_VALUE_TOSTRING_F(self) ((tmsrp_header_value_tostring_f)(self))
 
 typedef int (*tmsrp_header_value_tostring_f)(const struct tmsrp_header_s* header, tsk_buffer_t* output);
 
 /**
- * @enum	tmsrp_header_type_e
+ * @enum    tmsrp_header_type_e
  *
- * @brief	List of all supported headers.
+ * @brief   List of all supported headers.
 **/
 typedef enum tmsrp_header_type_e {
     tmsrp_htype_Authentication_Info,

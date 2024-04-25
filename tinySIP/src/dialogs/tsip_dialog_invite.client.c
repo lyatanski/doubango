@@ -110,7 +110,7 @@ int tsip_dialog_invite_client_init(tsip_dialog_invite_t *self)
 }
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 /* Started -> (oINVITE) -> Outgoing
@@ -152,17 +152,17 @@ int c0000_Started_2_Outgoing_X_oINVITE(va_list *app)
 
     /*  RFC 4028 - 7.1. Generating an Initial Session Refresh Request
 
-    	A UAC MAY include a Session-Expires header field in an initial
-    	session refresh request if it wants a session timer applied to the
-    	session.  The value of this header field indicates the session
-    	interval desired by the UAC.  If a Min-SE header is included in the
-    	initial session refresh request, the value of the Session-Expires
-    	MUST be greater than or equal to the value in Min-SE.
+        A UAC MAY include a Session-Expires header field in an initial
+        session refresh request if it wants a session timer applied to the
+        session.  The value of this header field indicates the session
+        interval desired by the UAC.  If a Min-SE header is included in the
+        initial session refresh request, the value of the Session-Expires
+        MUST be greater than or equal to the value in Min-SE.
 
-    	The UAC MAY include the refresher parameter with value 'uac' if it
-    	wants to perform the refreshes.  However, it is RECOMMENDED that the
-    	parameter be omitted so that it can be selected by the negotiation
-    	mechanisms described below.
+        The UAC MAY include the refresher parameter with value 'uac' if it
+        wants to perform the refreshes.  However, it is RECOMMENDED that the
+        parameter be omitted so that it can be selected by the negotiation
+        mechanisms described below.
     */
     if(TSIP_DIALOG_GET_SS(self)->media.timers.timeout) {
         self->stimers.timer.timeout = TSIP_DIALOG_GET_SS(self)->media.timers.timeout;
@@ -242,9 +242,9 @@ int c0000_Outgoing_2_Connected_X_i2xxINVITE(va_list *app)
 
     /* MSRP File Transfer */
     /*if(TSIP_DIALOG(self)->curr_action && ((TSIP_DIALOG(self)->curr_action->media.type & tmedia_msrp) == tmedia_msrp)){
-    	// FIXME
-    	tmedia_session_mgr_send_file(self->msession_mgr, "C:\\avatar.png",
-    		TMEDIA_SESSION_SET_NULL());
+        // FIXME
+        tmedia_session_mgr_send_file(self->msession_mgr, "C:\\avatar.png",
+            TMEDIA_SESSION_SET_NULL());
     }*/
 
     return ret;
@@ -329,5 +329,5 @@ int c0000_Cancelling_2_Terminated_X_i300_to_699(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++

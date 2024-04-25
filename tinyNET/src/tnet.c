@@ -32,7 +32,7 @@
 #include <stdlib.h> /* srand */
 
 #if HAVE_OPENSSL
-#	include <openssl/ssl.h>
+#   include <openssl/ssl.h>
 #endif
 
 /** @page tnet_overview tinyNET API Overview

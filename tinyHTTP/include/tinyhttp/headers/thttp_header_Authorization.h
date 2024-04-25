@@ -40,9 +40,9 @@ THTTP_BEGIN_DECLS
 /// HTTP header 'Authorization' .
 ///
 /// @par ABNF = Authorization  = "Authorization" ":" credentials
-///				credentials      = "Digest" digest-response
-///				digest-response  = digest-response-value *(COMMA digest-response-value)
-///				digest-response-value = ( username / realm / nonce / digest-url / auth-response / [ algorithm ] / [cnonce] / [opaque] / [message-qop] / [nonce-count]  / [auth-param] )
+///             credentials      = "Digest" digest-response
+///             digest-response  = digest-response-value *(COMMA digest-response-value)
+///             digest-response-value = ( username / realm / nonce / digest-url / auth-response / [ algorithm ] / [cnonce] / [opaque] / [message-qop] / [nonce-count]  / [auth-param] )
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct thttp_header_Authorization_s {

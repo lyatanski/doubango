@@ -36,21 +36,21 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_SECURITY_SERVER_VA_ARGS()		tsip_header_Security_Server_def_t
+#define TSIP_HEADER_SECURITY_SERVER_VA_ARGS()       tsip_header_Security_Server_def_t
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Security-Server' as per RFC 3329.
+/// @brief  SIP header 'Security-Server' as per RFC 3329.
 ///
-/// @par ABNF : Security-Server	= 	"Security-Server" HCOLON sec-mechanism *(COMMA sec-mechanism)
-/// sec-mechanism	= 	mechanism-name *( SEMI mech-parameters )
-/// mechanism-name	= 	( "digest" / "tls" / "ipsec-ike" / "ipsec-man" / token )
-/// mech-parameters	= 	( preference / digest-algorithm / digest-qop / digest-verify / mech-extension )
-/// preference	= 	"q" EQUAL qvalue
-/// digest-algorithm	= 	"d-alg" EQUAL token
-/// digest-qop	= 	"d-qop" EQUAL token
-/// digest-verify	= 	"d-ver" EQUAL LDQUOT 32LHEX RDQUOT
-/// mech-extension	= 	generic-param
+/// @par ABNF : Security-Server =   "Security-Server" HCOLON sec-mechanism *(COMMA sec-mechanism)
+/// sec-mechanism   =   mechanism-name *( SEMI mech-parameters )
+/// mechanism-name  =   ( "digest" / "tls" / "ipsec-ike" / "ipsec-man" / token )
+/// mech-parameters =   ( preference / digest-algorithm / digest-qop / digest-verify / mech-extension )
+/// preference  =   "q" EQUAL qvalue
+/// digest-algorithm    =   "d-alg" EQUAL token
+/// digest-qop  =   "d-qop" EQUAL token
+/// digest-verify   =   "d-ver" EQUAL LDQUOT 32LHEX RDQUOT
+/// mech-extension  =   generic-param
 ///
 /// mechanism-name   = ( "ipsec-3gpp" )
 /// mech-parameters    = ( algorithm / protocol /mode /

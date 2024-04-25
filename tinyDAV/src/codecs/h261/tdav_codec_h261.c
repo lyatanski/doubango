@@ -43,8 +43,8 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define RTP_PAYLOAD_SIZE	700
-#define H261_HEADER_SIZE	4
+#define RTP_PAYLOAD_SIZE    700
+#define H261_HEADER_SIZE    4
 
 static void *run(void* self);
 static void tdav_codec_h261_rtp_callback(tdav_codec_h261_t *self, const void *data, tsk_size_t size, tsk_bool_t marker);
@@ -53,7 +53,7 @@ static void tdav_codec_h261_encap(const tdav_codec_h261_t* h261, const uint8_t* 
 /* ============ H.261 Plugin interface ================= */
 
 //
-//	H.261 object definition
+//  H.261 object definition
 //
 int tdav_codec_h261_open(tmedia_codec_t* self)
 {
@@ -70,7 +70,7 @@ int tdav_codec_h261_open(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is not opened */
 
     //
-    //	Encoder
+    //  Encoder
     //
     if(!(h261->encoder.codec = avcodec_find_encoder(CODEC_ID_H261))) {
         TSK_DEBUG_ERROR("Failed to find H.261 encoder");
@@ -79,7 +79,7 @@ int tdav_codec_h261_open(tmedia_codec_t* self)
     h261->encoder.context = avcodec_alloc_context();
     avcodec_get_context_defaults(h261->encoder.context);
 
-    h261->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    h261->encoder.context->pix_fmt      = PIX_FMT_YUV420P;
     h261->encoder.context->time_base.num  = 1;
     h261->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(h261)->out.fps;
     h261->encoder.context->width = TMEDIA_CODEC_VIDEO(h261)->out.width;
@@ -103,8 +103,8 @@ int tdav_codec_h261_open(tmedia_codec_t* self)
     }
     avcodec_get_frame_defaults(h261->encoder.picture);
     //if((ret = avpicture_alloc((AVPicture*)h261->encoder.picture, PIX_FMT_YUV420P, h261->encoder.context->width, h261->encoder.context->height))){
-    //	TSK_DEBUG_ERROR("Failed to allocate encoder picture");
-    //	return ret;
+    //  TSK_DEBUG_ERROR("Failed to allocate encoder picture");
+    //  return ret;
     //}
 
     size = avpicture_get_size(PIX_FMT_YUV420P, h261->encoder.context->width, h261->encoder.context->height);
@@ -120,7 +120,7 @@ int tdav_codec_h261_open(tmedia_codec_t* self)
     }
 
     //
-    //	Decoder
+    //  Decoder
     //
     if(!(h261->decoder.codec = avcodec_find_decoder(CODEC_ID_H261))) {
         TSK_DEBUG_ERROR("Failed to find H.261 decoder");
@@ -166,7 +166,7 @@ int tdav_codec_h261_close(tmedia_codec_t* self)
     /* the caller (base class) already checked that the codec is opened */
 
     //
-    //	Encoder
+    //  Encoder
     //
     if(h261->encoder.context) {
         avcodec_close(h261->encoder.context);
@@ -181,7 +181,7 @@ int tdav_codec_h261_close(tmedia_codec_t* self)
     }
 
     //
-    //	Decoder
+    //  Decoder
     //
     if(h261->decoder.context) {
         avcodec_close(h261->decoder.context);
@@ -255,11 +255,11 @@ tsk_size_t tdav_codec_h261_decode(tmedia_codec_t* self, const void* in_data, tsk
     }
 
     /* RFC 4587
-    	0                   1                   2                   3
-    	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    	|SBIT |EBIT |I|V| GOBN  |   MBAP  |  QUANT  |  HMVD   |  VMVD   |
-    	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |SBIT |EBIT |I|V| GOBN  |   MBAP  |  QUANT  |  HMVD   |  VMVD   |
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     */
     sbit = *pdata >> 5;
     ebit = (*pdata >> 2) & 0x07;
@@ -473,51 +473,51 @@ last:
 
 //static void *run(void* self)
 //{
-//	uint32_t i, last_index;
-//	tsk_list_item_t *curr;
+//  uint32_t i, last_index;
+//  tsk_list_item_t *curr;
 //
-//	const uint8_t* pdata;
-//	tsk_size_t size;
+//  const uint8_t* pdata;
+//  tsk_size_t size;
 //
-//	const tdav_codec_h261_t* h261 = ((tdav_runnable_video_t*)self)->userdata;
+//  const tdav_codec_h261_t* h261 = ((tdav_runnable_video_t*)self)->userdata;
 //
-//	TSK_DEBUG_INFO("H261 thread === START");
+//  TSK_DEBUG_INFO("H261 thread === START");
 //
-//	TSK_RUNNABLE_RUN_BEGIN(self);
+//  TSK_RUNNABLE_RUN_BEGIN(self);
 //
-//	if((curr = TSK_RUNNABLE_POP_FIRST(self))){
-//		/* 4 is sizeof(uint32_t) */
-//		pdata = ((const tsk_buffer_t*)curr->data)->data;
-//		size = ((const tsk_buffer_t*)curr->data)->size;
-//		last_index = 0;
+//  if((curr = TSK_RUNNABLE_POP_FIRST(self))){
+//      /* 4 is sizeof(uint32_t) */
+//      pdata = ((const tsk_buffer_t*)curr->data)->data;
+//      size = ((const tsk_buffer_t*)curr->data)->size;
+//      last_index = 0;
 //
-//		if(size < RTP_PAYLOAD_SIZE){
-//			goto last;
-//		}
+//      if(size < RTP_PAYLOAD_SIZE){
+//          goto last;
+//      }
 //
-//		for(i = 4; i<(size - 4); i++){
-//			if(pdata[i] == 0x00 && pdata[i+1] == 0x00 && pdata[i+2]>=0x80){  /* PSC or (GBSC) found */
-//				if((i - last_index) >= RTP_PAYLOAD_SIZE){
-//					tdav_codec_h261_rtp_callback((tdav_codec_h261_t*)h261, pdata+last_index,
-//						(i - last_index), (last_index == size));
-//				}
-//				last_index = i;
-//			}
-//		}
+//      for(i = 4; i<(size - 4); i++){
+//          if(pdata[i] == 0x00 && pdata[i+1] == 0x00 && pdata[i+2]>=0x80){  /* PSC or (GBSC) found */
+//              if((i - last_index) >= RTP_PAYLOAD_SIZE){
+//                  tdav_codec_h261_rtp_callback((tdav_codec_h261_t*)h261, pdata+last_index,
+//                      (i - last_index), (last_index == size));
+//              }
+//              last_index = i;
+//          }
+//      }
 //last:
-//		if(last_index < size - 3/*PSC/GBSC size*/){
-//			tdav_codec_h261_rtp_callback((tdav_codec_h261_t*)h261, pdata + last_index,
-//				(size - last_index), tsk_true);
-//		}
+//      if(last_index < size - 3/*PSC/GBSC size*/){
+//          tdav_codec_h261_rtp_callback((tdav_codec_h261_t*)h261, pdata + last_index,
+//              (size - last_index), tsk_true);
+//      }
 //
-//		tsk_object_unref(curr);
-//	}
+//      tsk_object_unref(curr);
+//  }
 //
-//	TSK_RUNNABLE_RUN_END(self);
+//  TSK_RUNNABLE_RUN_END(self);
 //
-//	TSK_DEBUG_INFO("H261 thread === STOP");
+//  TSK_DEBUG_INFO("H261 thread === STOP");
 //
-//	return tsk_null;
+//  return tsk_null;
 //}
 
 static void tdav_codec_h261_rtp_callback(tdav_codec_h261_t *self, const void *data, tsk_size_t size, tsk_bool_t marker)

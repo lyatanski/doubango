@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 106 "./ragel/tsip_parser_header_P_Associated_URI.rl" */
@@ -485,7 +485,7 @@ _match:
             {
             }
             break;
-            /* #line 482 "./src/headers/tsip_header_P_Associated_URI.c" */
+                /* #line 482 "./src/headers/tsip_header_P_Associated_URI.c" */
             }
         }
 
@@ -522,7 +522,7 @@ _out: {
 
 
 //========================================================
-//	P_Associated_URI header object definition
+//  P_Associated_URI header object definition
 //
 
 static tsk_object_t* tsip_header_P_Associated_URI_ctor(tsk_object_t *self, va_list * app)

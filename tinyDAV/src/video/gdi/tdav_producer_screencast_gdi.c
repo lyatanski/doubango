@@ -39,12 +39,12 @@ static const BOOL bitmapBuffSrcOwnMemory = TRUE;
 #endif /* TDAV_UNDER_WINDOWS_CE */
 
 #if !defined(kMaxFrameRate)
-#	define kMaxFrameRate 4 // FIXME
+#   define kMaxFrameRate 4 // FIXME
 #endif /* kMaxFrameRate */
 
 // https://social.msdn.microsoft.com/forums/windowsdesktop/en-us/2cbe4674-e744-41d6-bc61-3c8e381aa942/how-to-make-bitblt-faster-for-copying-screen
 #if !defined(HIGH_PRIO_BITBLIT)
-#	define HIGH_PRIO_BITBLIT	0
+#   define HIGH_PRIO_BITBLIT    0
 #endif /* HIGH_PRIO_BITBLIT */
 
 typedef struct tdav_producer_screencast_gdi_s {
@@ -263,7 +263,7 @@ static int _tdav_producer_screencast_grab(tdav_producer_screencast_gdi_t* p_self
     HDC hSrcDC = NULL, hMemDC = NULL;
     HBITMAP     hBitmap, hOldBitmap;
     int         nWidth, nHeight;
-    RECT		rcSrc;
+    RECT        rcSrc;
 
     if (!p_self) {
         TSK_DEBUG_ERROR("Invalid parameter");
@@ -462,7 +462,7 @@ next:
 }
 
 //
-//	GDI screencast producer object definition
+//  GDI screencast producer object definition
 //
 /* constructor */
 static tsk_object_t* _tdav_producer_screencast_gdi_ctor(tsk_object_t *self, va_list * app)

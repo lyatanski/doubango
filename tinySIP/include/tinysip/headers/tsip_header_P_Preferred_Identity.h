@@ -37,11 +37,11 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_P_PREFERRED_IDENTITY_VA_ARGS(uri)	tsip_header_P_Preferred_Identity_def_t, (const tsip_uri_t*)uri
+#define TSIP_HEADER_P_PREFERRED_IDENTITY_VA_ARGS(uri)   tsip_header_P_Preferred_Identity_def_t, (const tsip_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'P-Preferred-Identity' as per RFC 3325.
+/// @brief  SIP header 'P-Preferred-Identity' as per RFC 3325.
 ///
 /// @par ABNF:  PPreferredID = "P-Preferred-Identity" HCOLON PPreferredID-value *(COMMA PPreferredID-value)
 ///       PPreferredID-value = name-addr / addr-spec

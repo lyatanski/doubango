@@ -44,11 +44,11 @@
 *
 * @code
 char* node = txcap_selector_get_node("resource-lists",
-		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", "sip:bob@example.com"),
-		TXCAP_SELECTOR_NODE_SET_NULL());
+        TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+        TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", "sip:bob@example.com"),
+        TXCAP_SELECTOR_NODE_SET_NULL());
 
-		TSK_FREE(node);
+        TSK_FREE(node);
 * @endcode
 *
 * @sa @ref txcap_selector_get_node_2<br>@ref txcap_selector_get_document<br> @ref txcap_selector_get_document_2<br>@ref txcap_selector_get_url

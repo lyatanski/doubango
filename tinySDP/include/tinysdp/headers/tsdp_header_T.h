@@ -37,12 +37,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_T_VA_ARGS(start, stop)		tsdp_header_T_def_t, (uint64_t)start, (uint64_t)stop
+#define TSDP_HEADER_T_VA_ARGS(start, stop)      tsdp_header_T_def_t, (uint64_t)start, (uint64_t)stop
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "t=" header (Timing).
+/// @brief  SDP "t=" header (Timing).
 /// The "t=" lines specify the start and stop times for a session.
 ///   Multiple "t=" lines MAY be used if a session is active at multiple
 ///   irregularly spaced times; each additional "t=" line specifies an
@@ -53,7 +53,7 @@ TSDP_BEGIN_DECLS
 ///   sequence.
 ///
 ///
-/// @par ABNF : t= 	 start-time SP stop-time *( CRLF repeat-fields )
+/// @par ABNF : t=   start-time SP stop-time *( CRLF repeat-fields )
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_T_s {

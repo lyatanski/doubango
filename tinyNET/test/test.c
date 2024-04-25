@@ -35,20 +35,20 @@
 #include "test_dhcp6.h"
 #include "test_tls.h"
 
-#define RUN_TEST_LOOP		0
+#define RUN_TEST_LOOP       0
 
-#define RUN_TEST_ALL		0
-#define RUN_TEST_SOCKETS	0 /* FIXME: Android */
-#define RUN_TEST_TRANSPORT	0
-#define RUN_TEST_AUTH		0
-#define RUN_TEST_STUN		0
-#define RUN_TEST_ICE		0
-#define RUN_TEST_NAT		0
-#define RUN_TEST_IFACES		0
-#define RUN_TEST_DNS		0
-#define RUN_TEST_DHCP		0
-#define RUN_TEST_DHCP6		0
-#define RUN_TEST_TLS		0
+#define RUN_TEST_ALL        0
+#define RUN_TEST_SOCKETS    0 /* FIXME: Android */
+#define RUN_TEST_TRANSPORT  0
+#define RUN_TEST_AUTH       0
+#define RUN_TEST_STUN       0
+#define RUN_TEST_ICE        0
+#define RUN_TEST_NAT        0
+#define RUN_TEST_IFACES     0
+#define RUN_TEST_DNS        0
+#define RUN_TEST_DHCP       0
+#define RUN_TEST_DHCP6      0
+#define RUN_TEST_TLS        0
 
 #ifdef _WIN32_WCE
 int _tmain(int argc, _TCHAR* argv[])

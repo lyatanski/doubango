@@ -45,8 +45,8 @@ TCOMP_BEGIN_DECLS
 typedef struct tcomp_stream_buffer_s {
     TSK_DECLARE_OBJECT;
 
-    uint64_t	id;						/**< Buffer identifier */
-    tcomp_buffer_handle_t *buffer;		/**< Buffer handle */
+    uint64_t    id;                     /**< Buffer identifier */
+    tcomp_buffer_handle_t *buffer;      /**< Buffer handle */
 
     TSK_DECLARE_SAFEOBJ;
 }

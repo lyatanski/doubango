@@ -38,21 +38,21 @@
 //
 //typedef tnet_stun_attr_t tnet_turn_attribute_t;
 //
-///*	draft-ietf-behave-turn-16 - 14.1.  CHANNEL-NUMBER
-//	0                   1                   2                   3
-//	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-//	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-//	|        Channel Number         |         RFFU = 0              |
-//	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+///*    draft-ietf-behave-turn-16 - 14.1.  CHANNEL-NUMBER
+//  0                   1                   2                   3
+//  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+//  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//  |        Channel Number         |         RFFU = 0              |
+//  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 //*/
 ///**@ingroup tnet_turn_group
 //*/
 //typedef struct tnet_turn_attribute_channelnum_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	uint16_t number;
-//	uint16_t rffu;
+//  uint16_t number;
+//  uint16_t rffu;
 //}
 //tnet_turn_attribute_channelnum_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_channelnum_def_t;
@@ -63,9 +63,9 @@
 //*/
 //typedef struct tnet_turn_attribute_lifetime_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	uint32_t value;
+//  uint32_t value;
 //}
 //tnet_turn_attribute_lifetime_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_lifetime_def_t;
@@ -76,11 +76,11 @@
 //*/
 //typedef struct tnet_turn_attribute_xpeer_addr_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	tnet_stun_addr_family_t family;
-//	uint16_t xport;
-//	uint8_t xaddress[16];
+//  tnet_stun_addr_family_t family;
+//  uint16_t xport;
+//  uint8_t xaddress[16];
 //}
 //tnet_turn_attribute_xpeer_addr_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_xpeer_addr_def_t;
@@ -90,9 +90,9 @@
 //*/
 //typedef struct tnet_turn_attribute_data_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	tsk_buffer_t* value;
+//  tsk_buffer_t* value;
 //}
 //tnet_turn_attribute_data_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_data_def_t;
@@ -102,11 +102,11 @@
 //*/
 //typedef struct tnet_turn_attribute_xrelayed_addr_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	tnet_stun_addr_family_t family;
-//	uint16_t xport;
-//	uint8_t xaddress[16];
+//  tnet_stun_addr_family_t family;
+//  uint16_t xport;
+//  uint8_t xaddress[16];
 //}
 //tnet_turn_attribute_xrelayed_addr_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_xrelayed_addr_def_t;
@@ -116,16 +116,16 @@
 //*/
 //typedef struct tnet_turn_attribute_even_port_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
 ///*
-//	0 1 2 3 4 5 6 7
-//	+-+-+-+-+-+-+-+-+
-//	|R|    RFFU     |
-//	+-+-+-+-+-+-+-+-+
+//  0 1 2 3 4 5 6 7
+//  +-+-+-+-+-+-+-+-+
+//  |R|    RFFU     |
+//  +-+-+-+-+-+-+-+-+
 //*/
-//	unsigned R:1;
-//	unsigned rffu:7;
+//  unsigned R:1;
+//  unsigned rffu:7;
 //}
 //tnet_turn_attribute_even_port_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_even_port_def_t;
@@ -135,17 +135,17 @@
 //*/
 //typedef struct tnet_turn_attribute_reqtrans_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 ///*
-//	draft-ietf-behave-turn-16 - 14.7.  REQUESTED-TRANSPORT
-//	0                   1                   2                   3
-//	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-//	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-//	|    Protocol   |                    RFFU                       |
-//	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//  draft-ietf-behave-turn-16 - 14.7.  REQUESTED-TRANSPORT
+//  0                   1                   2                   3
+//  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+//  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//  |    Protocol   |                    RFFU                       |
+//  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 //*/
-//	tnet_proto_t protocol;
-//	uint8_t rffu[3];
+//  tnet_proto_t protocol;
+//  uint8_t rffu[3];
 //}
 //tnet_turn_attribute_reqtrans_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_reqtrans_def_t;
@@ -157,7 +157,7 @@
 //*/
 //typedef struct tnet_turn_attribute_dontfrag_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //}
 //tnet_turn_attribute_dontfrag_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_dontfrag_def_t;
@@ -168,9 +168,9 @@
 //*/
 //typedef struct tnet_turn_attribute_restoken_s
 //{
-//	TNET_STUN_DECLARE_ATTRIBUTE;
+//  TNET_STUN_DECLARE_ATTRIBUTE;
 //
-//	uint8_t value[8];
+//  uint8_t value[8];
 //}
 //tnet_turn_attribute_restoken_t;
 //TINYNET_GEXTERN const tsk_object_def_t *tnet_turn_attribute_restoken_def_t;

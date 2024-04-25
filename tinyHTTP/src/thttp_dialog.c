@@ -44,9 +44,9 @@
 
 #define DEBUG_STATE_MACHINE 1
 #define THTTP_MESSAGE_DESCRIPTION(message) \
-		THTTP_MESSAGE_IS_RESPONSE(message) ? THTTP_RESPONSE_PHRASE(message) : THTTP_REQUEST_METHOD(message)
+        THTTP_MESSAGE_IS_RESPONSE(message) ? THTTP_RESPONSE_PHRASE(message) : THTTP_REQUEST_METHOD(message)
 
-#define THTTP_DIALOG_TRANSPORT_ERROR_CODE	-0xFF
+#define THTTP_DIALOG_TRANSPORT_ERROR_CODE   -0xFF
 
 /* ======================== internal functions ======================== */
 int thttp_dialog_send_request(thttp_dialog_t *self);
@@ -107,7 +107,7 @@ thttp_dialog_t* thttp_dialog_create(struct thttp_session_s* session)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 /* Started -> (request) -> Transfering */
@@ -232,7 +232,7 @@ int thttp_dialog_Any_2_Terminated_X_Error(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /** Execute action (moves the FSM).
@@ -445,7 +445,7 @@ int thttp_dialog_OnTerminated(thttp_dialog_t *self)
 
 
 //=================================================================================================
-//	HTTP Dialog object definition
+//  HTTP Dialog object definition
 //
 static tsk_object_t* thttp_dialog_ctor(tsk_object_t * self, va_list * app)
 {

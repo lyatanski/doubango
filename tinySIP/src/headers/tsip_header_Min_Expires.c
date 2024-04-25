@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 64 "./ragel/tsip_parser_header_Min_Expires.rl" */
@@ -258,7 +258,7 @@ _match:
             {
             }
             break;
-            /* #line 255 "./src/headers/tsip_header_Min_Expires.c" */
+                /* #line 255 "./src/headers/tsip_header_Min_Expires.c" */
             }
         }
 
@@ -296,7 +296,7 @@ _out: {
 
 
 //========================================================
-//	Min-Expires header object definition
+//  Min-Expires header object definition
 //
 
 static tsk_object_t* tsip_header_Min_Expires_ctor(tsk_object_t *self, va_list * app)

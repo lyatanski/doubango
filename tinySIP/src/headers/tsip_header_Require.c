@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 66 "./ragel/tsip_parser_header_Require.rl" */
@@ -279,7 +279,7 @@ _match:
             {
             }
             break;
-            /* #line 276 "./src/headers/tsip_header_Require.c" */
+                /* #line 276 "./src/headers/tsip_header_Require.c" */
             }
         }
 
@@ -317,7 +317,7 @@ _out: {
 
 
 //========================================================
-//	Require header object definition
+//  Require header object definition
 //
 
 static tsk_object_t* tsip_header_Require_ctor(tsk_object_t *self, va_list * app)

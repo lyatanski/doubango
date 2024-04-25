@@ -106,15 +106,15 @@ bail:
  *
  * @code
  thttp_session_handle_t * session = thttp_session_create(stack,
-	// session-level parameters
-	THTTP_SESSION_SET_PARAM("timeout", "6000"),
+    // session-level parameters
+    THTTP_SESSION_SET_PARAM("timeout", "6000"),
 
-	// session-level headers
-	THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
+    // session-level headers
+    THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
 
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_NULL());
  * @endcode
  *
  * @sa @ref thttp_session_set
@@ -145,15 +145,15 @@ thttp_session_handle_t* thttp_session_create(const thttp_stack_handle_t* stack, 
  *
  * @code
  int ret = thttp_session_set(session,
-	// session-level parameters
-	THTTP_SESSION_SET_OPTION(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
+    // session-level parameters
+    THTTP_SESSION_SET_OPTION(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
 
-	// session-level headers
-	THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
+    // session-level headers
+    THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_SESSION_SET_HEADER("User-Agent", "doubango 1.0"),
 
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_NULL());
  * @endcode
  *
  * @sa @ref thttp_session_create
@@ -240,7 +240,7 @@ int thttp_session_update_challenges(thttp_session_t *self, const thttp_response_
 
     /* RFC 2617 - Digest Operation
 
-     *	(A) The client response to a WWW-Authenticate challenge for a protection
+     *  (A) The client response to a WWW-Authenticate challenge for a protection
      space starts an authentication session with that protection space.
      The authentication session lasts until the client receives another
      WWW-Authenticate challenge from any server in the protection space.
@@ -432,7 +432,7 @@ bail:
 
 
 //========================================================
-//	HTTP SESSION object definition
+//  HTTP SESSION object definition
 //
 static tsk_object_t* _thttp_session_create(tsk_object_t * self, va_list * app)
 {

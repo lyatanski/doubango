@@ -39,7 +39,7 @@
 #include <speex/speex_buffer.h>
 
 #if !defined(TDAV_WASAPI_CONSUMER_NOTIF_POS_COUNT)
-#	define TDAV_WASAPI_CONSUMER_NOTIF_POS_COUNT		4
+#   define TDAV_WASAPI_CONSUMER_NOTIF_POS_COUNT     4
 #endif
 #define WASAPI_MILLIS_TO_100NS(MILLIS) (((LONGLONG)(MILLIS)) * 10000ui64)
 #define WASAPI_100NS_TO_MILLIS(NANOS) (((LONGLONG)(NANOS)) / 10000ui64)
@@ -611,7 +611,7 @@ void Doubango::VoIP::AudioRender::AsyncThread(Windows::Foundation::IAsyncAction^
 
 
 //
-//	WaveAPI consumer object definition
+//  WaveAPI consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_wasapi_ctor(tsk_object_t * self, va_list * app)

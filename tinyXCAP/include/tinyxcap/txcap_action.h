@@ -37,10 +37,10 @@
 
 TXCAP_BEGIN_DECLS
 
-#define	TXCAP_MIME_TYPE_ELEMENT			"application/xcap-el+xml" /**< as per rfc 4825 subclause 15.2.1 */
-#define	TXCAP_MIME_TYPE_ATTRIBUTE		"application/xcap-att+xml" /**< as per rfc 4825 subclause 15.2.2 */
-#define	TXCAP_MIME_TYPE_NS				"application/xcap-ns+xml" /**< as per rfc 4825 subclause 15.2.3 */
-#define	TXCAP_MIME_TYPE_ERROR			"application/xcap-error+xml" /**< as per rfc 4825 subclause 15.2.4 */
+#define TXCAP_MIME_TYPE_ELEMENT         "application/xcap-el+xml" /**< as per rfc 4825 subclause 15.2.1 */
+#define TXCAP_MIME_TYPE_ATTRIBUTE       "application/xcap-att+xml" /**< as per rfc 4825 subclause 15.2.2 */
+#define TXCAP_MIME_TYPE_NS              "application/xcap-ns+xml" /**< as per rfc 4825 subclause 15.2.3 */
+#define TXCAP_MIME_TYPE_ERROR           "application/xcap-error+xml" /**< as per rfc 4825 subclause 15.2.4 */
 
 /** List of all supported types.
 */
@@ -92,14 +92,14 @@ txcap_action_param_type_t;
 *
 * @code
 int ret = txcap_action_fetch_document(stack,
-	// action-level options
-	TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-	// selector
-	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-		TXCAP_SELECTOR_NODE_SET_NULL()),
-	// ends parameters
-	TXCAP_ACTION_SET_NULL()
-	);
+    // action-level options
+    TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+    // selector
+    TXCAP_ACTION_SET_SELECTOR("resource-lists",
+        TXCAP_SELECTOR_NODE_SET_NULL()),
+    // ends parameters
+    TXCAP_ACTION_SET_NULL()
+    );
 * @endcode
 */
 /**@ingroup txcap_action_group
@@ -111,15 +111,15 @@ int ret = txcap_action_fetch_document(stack,
 *
 * @code
 int ret = txcap_action_fetch_element(stack,
-	// action-level headers
-	TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-	// selector
-	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-		TXCAP_SELECTOR_NODE_SET_NULL()),
-	// ends parameters
-	TXCAP_ACTION_SET_NULL()
-	);
+    // action-level headers
+    TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+    // selector
+    TXCAP_ACTION_SET_SELECTOR("resource-lists",
+        TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+        TXCAP_SELECTOR_NODE_SET_NULL()),
+    // ends parameters
+    TXCAP_ACTION_SET_NULL()
+    );
 * @endcode
 *
 * @sa @ref TXCAP_STACK_SET_HEADER
@@ -135,15 +135,15 @@ int ret = txcap_action_fetch_element(stack,
 * @code
 const char* PAYLOAD = "....";
 int ret = txcap_action_create_element(stack,
-	// selector
-	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
-		TXCAP_SELECTOR_NODE_SET_NULL()),
-	// payload
-	TXCAP_ACTION_SET_PAYLOAD(PAYLOAD, strlen(PAYLOAD)),
-	// ends parameters
-	TXCAP_ACTION_SET_NULL()
-	);
+    // selector
+    TXCAP_ACTION_SET_SELECTOR("resource-lists",
+        TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
+        TXCAP_SELECTOR_NODE_SET_NULL()),
+    // payload
+    TXCAP_ACTION_SET_PAYLOAD(PAYLOAD, strlen(PAYLOAD)),
+    // ends parameters
+    TXCAP_ACTION_SET_NULL()
+    );
 * @endcode
 */
 /**@ingroup txcap_action_group
@@ -157,19 +157,19 @@ int ret = txcap_action_create_element(stack,
 *
 * @code
 int ret = txcap_action_fetch_attribute(stack,
-	// action-level options
-	TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-	// headers
-	TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-	// action-level selector
-	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-		TXCAP_SELECTOR_NODE_SET_POS("entry", 1),
-		TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
-		TXCAP_SELECTOR_NODE_SET_NULL()),
-	// ends parameters
-	TXCAP_ACTION_SET_NULL()
-	);
+    // action-level options
+    TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+    // headers
+    TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+    // action-level selector
+    TXCAP_ACTION_SET_SELECTOR("resource-lists",
+        TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+        TXCAP_SELECTOR_NODE_SET_POS("entry", 1),
+        TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
+        TXCAP_SELECTOR_NODE_SET_NULL()),
+    // ends parameters
+    TXCAP_ACTION_SET_NULL()
+    );
 * @endcode
 *
 * @sa @ref TXCAP_ACTION_SET_REQUEST_URI
@@ -182,14 +182,14 @@ int ret = txcap_action_fetch_attribute(stack,
 * @code
 const char* PAYLOAD = "....";
 int ret = txcap_action_create_element(stack,
-	// custom Request URI
-	TXCAP_ACTION_SET_REQUEST_URI("http://doubango.org:8080/services/mycustom/uri"),
-	// payload
-	TXCAP_ACTION_SET_PAYLOAD(PAYLOAD, strlen(PAYLOAD)),
-	// ends parameters
-	TXCAP_ACTION_SET_NULL()
-	);
-	getchar();
+    // custom Request URI
+    TXCAP_ACTION_SET_REQUEST_URI("http://doubango.org:8080/services/mycustom/uri"),
+    // payload
+    TXCAP_ACTION_SET_PAYLOAD(PAYLOAD, strlen(PAYLOAD)),
+    // ends parameters
+    TXCAP_ACTION_SET_NULL()
+    );
+    getchar();
 * @endcode
 *
 * @sa @ref TXCAP_ACTION_SET_SELECTOR
@@ -198,13 +198,13 @@ int ret = txcap_action_create_element(stack,
 * @def TXCAP_ACTION_SET_NULL
 * Ends action parameters. Must always be the last one.
 */
-#define TXCAP_ACTION_SET_OPTION(ID_INT, VALUE_STR)			txcap_apt_option, (thttp_action_option_t)ID_INT, (const char*)VALUE_STR
-#define TXCAP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)		txcap_apt_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define TXCAP_ACTION_UNSET_HEADER(NAME_STR)					TXCAP_ACTION_SET_HEADER(NAME_STR, (const char*)-1)
-#define TXCAP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)			txcap_apt_payload, (const void*)PAY_PTR, (size_t)PAY_SIZE
-#define TXCAP_ACTION_SET_SELECTOR(AUID_STR, ...)			txcap_apt_selector, (const char*)AUID_STR, ##__VA_ARGS__
-#define TXCAP_ACTION_SET_REQUEST_URI(URI_STR)				txcap_apt_urlstring, (const char*)URI_STR
-#define TXCAP_ACTION_SET_NULL()								txcap_apt_null
+#define TXCAP_ACTION_SET_OPTION(ID_INT, VALUE_STR)          txcap_apt_option, (thttp_action_option_t)ID_INT, (const char*)VALUE_STR
+#define TXCAP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)        txcap_apt_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define TXCAP_ACTION_UNSET_HEADER(NAME_STR)                 TXCAP_ACTION_SET_HEADER(NAME_STR, (const char*)-1)
+#define TXCAP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)         txcap_apt_payload, (const void*)PAY_PTR, (size_t)PAY_SIZE
+#define TXCAP_ACTION_SET_SELECTOR(AUID_STR, ...)            txcap_apt_selector, (const char*)AUID_STR, ##__VA_ARGS__
+#define TXCAP_ACTION_SET_REQUEST_URI(URI_STR)               txcap_apt_urlstring, (const char*)URI_STR
+#define TXCAP_ACTION_SET_NULL()                             txcap_apt_null
 
 
 /**@ingroup txcap_action_group
@@ -289,7 +289,7 @@ int ret = txcap_action_create_element(stack,
 * @param ... Any @a TXCAP_ACTION_SET_*() macros. MUST ends with @ref TXCAP_ACTION_SET_NULL().
 */
 TINYXCAP_API int txcap_action_perform(txcap_stack_handle_t* stack, txcap_action_type_t type, txcap_action_target_t target, ...);
-#define txcap_action_create_element(stack, ...)	txcap_action_perform(stack, txcap_atp_create, txcap_atg_element, __VA_ARGS__)
+#define txcap_action_create_element(stack, ...) txcap_action_perform(stack, txcap_atp_create, txcap_atg_element, __VA_ARGS__)
 #define txcap_action_create_document(stack, ...) txcap_action_perform(stack, txcap_atp_create, txcap_atg_document, __VA_ARGS__)
 #define txcap_action_create_attribute(stack, ...) txcap_action_perform(stack, txcap_atp_create, txcap_atg_attribute, __VA_ARGS__)
 #define txcap_action_replace_element(stack, ...) txcap_action_perform(stack, txcap_atp_replace, txcap_atg_element, __VA_ARGS__)

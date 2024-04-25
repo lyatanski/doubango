@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 70 "./ragel/tsip_parser_header_Dummy.rl" */
@@ -259,7 +259,7 @@ _match:
             {
             }
             break;
-            /* #line 256 "./src/headers/tsip_header_Dummy.c" */
+                /* #line 256 "./src/headers/tsip_header_Dummy.c" */
             }
         }
 
@@ -297,7 +297,7 @@ _out: {
 
 
 //========================================================
-//	Dummy header object definition
+//  Dummy header object definition
 //
 
 static tsk_object_t* tsip_header_Dummy_ctor(tsk_object_t *self, va_list * app)

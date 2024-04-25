@@ -35,7 +35,7 @@
 /**@defgroup tnet_socket_group Protocol agnostic socket
 *
 *
-* <h2>10.1	Sockets</h2>
+* <h2>10.1  Sockets</h2>
 * For performance reason, all sockets created using tinyNET are non-blocking by default.
 * The newly created socket will be automatically bound to associate it with an IP address and port number. @ref tnet_socket_create() function is used to create and bind a
 * non-blocking socket. You should use @ref tnet_socket_create_2() function to control whether the socket should be bound or not. The same function is used to force the stack to create a blocking socket.<br>
@@ -68,10 +68,10 @@ tnet_socket_type_udp_ipv46 // the socket type (IPv4 or IPv6)
 * @endcode
 
 * <b>TNET_SOCKET_TYPE_IS_*()</b> macros are used to determine:
-* -	The socket type (stream, dgram),
-* -	The socket protocol (udp, tcp, tls, sctp, ipsec),
-* -	The IP version (ipv6, ipv4),
-* -	…
+* - The socket type (stream, dgram),
+* - The socket protocol (udp, tcp, tls, sctp, ipsec),
+* - The IP version (ipv6, ipv4),
+* - …
 * <br>
 * A socket is a well-defined object and should be destroyed using @a TSK_DECLARE_SAFE_FREE() macro.
 * A socket will be automatically closed when destroyed.
@@ -252,7 +252,7 @@ int tnet_socket_send_stream(tnet_socket_t* self, const void* data, tsk_size_t si
 }
 
 /**@ingroup tnet_socket_group
- * @retval	Zero if succeed and nonzero error code otherwise.
+ * @retval  Zero if succeed and nonzero error code otherwise.
  */
 int tnet_socket_handle_brokenpipe(tnet_socket_t* self)
 {
@@ -288,9 +288,9 @@ int tnet_socket_handle_brokenpipe(tnet_socket_t* self)
 }
 
 /**@ingroup tnet_socket_group
- * 	Closes a socket.
+ *  Closes a socket.
  * @param sock The socket to close.
- * @retval	Zero if succeed and nonzero error code otherwise.
+ * @retval  Zero if succeed and nonzero error code otherwise.
  **/
 static int tnet_socket_close(tnet_socket_t *sock)
 {
@@ -298,7 +298,7 @@ static int tnet_socket_close(tnet_socket_t *sock)
 }
 
 //=================================================================================================
-//	SOCKET object definition
+//  SOCKET object definition
 //
 static tsk_object_t* tnet_socket_ctor(tsk_object_t * self, va_list * app)
 {

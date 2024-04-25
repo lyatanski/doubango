@@ -108,7 +108,7 @@ static void* TSK_STDCALL _tdav_consumer_oss_playback_thread(void *param)
                 _n_buffer_in_bytes >>= 1;
             }
             if ((err = write(p_oss->fd, _p_buffer, _n_buffer_in_bytes)) != _n_buffer_in_bytes) {
-                OSS_DEBUG_ERROR ("Failed to read data from audio interface failed (%d -> %s)", err , strerror(errno));
+                OSS_DEBUG_ERROR ("Failed to read data from audio interface failed (%d -> %s)", err, strerror(errno));
                 tsk_safeobj_unlock(p_oss);
                 goto bail;
             }
@@ -323,7 +323,7 @@ static int tdav_consumer_oss_stop(tmedia_consumer_t* self)
 
 
 //
-//	Linux OSS consumer object definition
+//  Linux OSS consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_oss_ctor(tsk_object_t * self, va_list * app)

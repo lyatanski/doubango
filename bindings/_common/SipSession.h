@@ -38,7 +38,8 @@ class TINYWRAP_API T140CallbackData
 {
 public:
 #if !defined(SWIG)
-    T140CallbackData(enum tmedia_t140_data_type_e data_type, const void* data_ptr, unsigned data_size) {
+    T140CallbackData(enum tmedia_t140_data_type_e data_type, const void* data_ptr, unsigned data_size)
+    {
         m_eType = data_type;
         m_pPtr = data_ptr;
         m_nSize = data_size;
@@ -46,13 +47,16 @@ public:
 #endif
     virtual ~T140CallbackData() {}
 
-    inline enum tmedia_t140_data_type_e getType()const {
+    inline enum tmedia_t140_data_type_e getType()const
+    {
         return m_eType;
     }
-    inline unsigned getSize()const {
+    inline unsigned getSize()const
+    {
         return m_nSize;
     }
-    inline unsigned getData(void* pOutput, unsigned nMaxsize)const {
+    inline unsigned getData(void* pOutput, unsigned nMaxsize)const
+    {
         unsigned nRetsize = 0;
         if(pOutput && nMaxsize && m_pPtr) {
             nRetsize = (m_nSize > nMaxsize) ? nMaxsize : m_nSize;
@@ -72,7 +76,8 @@ class TINYWRAP_API T140Callback
 public:
     T140Callback() {}
     virtual ~T140Callback() {}
-    virtual int ondata(const T140CallbackData* pData) {
+    virtual int ondata(const T140CallbackData* pData)
+    {
         return 0;
     }
 };
@@ -81,15 +86,18 @@ public:
 class RtcpCallbackData
 {
 public:
-    RtcpCallbackData(enum tmedia_rtcp_event_type_e event_type, uint32_t ssrc_media) {
+    RtcpCallbackData(enum tmedia_rtcp_event_type_e event_type, uint32_t ssrc_media)
+    {
         m_eType = event_type;
         m_nSSRC = ssrc_media;
     }
     virtual ~RtcpCallbackData() {}
-    inline enum tmedia_rtcp_event_type_e getType()const {
+    inline enum tmedia_rtcp_event_type_e getType()const
+    {
         return m_eType;
     }
-    inline uint32_t getSSRC()const {
+    inline uint32_t getSSRC()const
+    {
         return m_nSSRC;
     }
 private:
@@ -102,7 +110,8 @@ class TINYWRAP_API RtcpCallback
 public:
     RtcpCallback() {}
     virtual ~RtcpCallback() {}
-    virtual int onevent(const RtcpCallbackData* e) {
+    virtual int onevent(const RtcpCallbackData* e)
+    {
         return 0;
     }
 };
@@ -143,7 +152,8 @@ public:
 #if !defined(SWIG)
     bool setWebSocketSrc(const char* host, int32_t port, const char* proto);
     const SipStack* getStack() const;
-    const tsip_ssession_handle_t* getWrappedSession() {
+    const tsip_ssession_handle_t* getWrappedSession()
+    {
         return m_pHandle;
     }
 #endif
@@ -255,7 +265,8 @@ public: /* Public functions */
 
 public: /* Public helper function */
 #if !defined(SWIG)
-    inline MsrpCallback* getCallback()const {
+    inline MsrpCallback* getCallback()const
+    {
         return m_pCallback;
     }
 #endif

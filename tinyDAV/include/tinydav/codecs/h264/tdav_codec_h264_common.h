@@ -39,25 +39,25 @@
 TDAV_BEGIN_DECLS
 
 #if !defined(H264_MAX_BR)
-#	define H264_MAX_BR				452
+#   define H264_MAX_BR              452
 #endif
 #if !defined(H264_MAX_MBPS)
-#	define H264_MAX_MBPS			11880
+#   define H264_MAX_MBPS            11880
 #endif
 
 #if !defined(H264_PACKETIZATION_MODE)
-#	if METROPOLIS || 1
-#		define H264_PACKETIZATION_MODE	Single_NAL_Unit_Mode
-#	else
-#		define H264_PACKETIZATION_MODE	Non_Interleaved_Mode
+#   if METROPOLIS || 1
+#       define H264_PACKETIZATION_MODE  Single_NAL_Unit_Mode
+#   else
+#       define H264_PACKETIZATION_MODE  Non_Interleaved_Mode
 #endif
 #endif
 
 #if !defined(H264_FS_MAX_COUNT)
-#	define H264_FS_MAX_COUNT						16 // max number of DPBFS in the list
+#   define H264_FS_MAX_COUNT                        16 // max number of DPBFS in the list
 #endif
 #if !defined(H264_LEVEL_MAX_COUNT)
-#	define H264_LEVEL_MAX_COUNT					16 // Table A-1 – Level limits: "1", "1b"... "5.1"
+#   define H264_LEVEL_MAX_COUNT                 16 // Table A-1 – Level limits: "1", "1b"... "5.1"
 #endif
 
 // Table A-1 – Level limits
@@ -92,9 +92,9 @@ static const int32_t H264_LEVEL_TO_ZERO_BASED_INDEX[255] = {
 // Because of FD, declare it here
 typedef enum packetization_mode_e {
     Unknown_Mode = -1,
-    Single_NAL_Unit_Mode = 0,		/* Single NAL mode (Only nals from 1-23 are allowed) */
-    Non_Interleaved_Mode = 1,		/* Non-interleaved Mode: 1-23, 24 (STAP-A), 28 (FU-A) are allowed */
-    Interleaved_Mode = 2			/* 25 (STAP-B), 26 (MTAP16), 27 (MTAP24), 28 (FU-A), and 29 (FU-B) are allowed.*/
+    Single_NAL_Unit_Mode = 0,       /* Single NAL mode (Only nals from 1-23 are allowed) */
+    Non_Interleaved_Mode = 1,       /* Non-interleaved Mode: 1-23, 24 (STAP-A), 28 (FU-A) are allowed */
+    Interleaved_Mode = 2            /* 25 (STAP-B), 26 (MTAP16), 27 (MTAP24), 28 (FU-A), and 29 (FU-B) are allowed.*/
 }
 packetization_mode_t;
 
@@ -115,7 +115,7 @@ typedef struct tdav_codec_h264_common_s {
     } rtp;
 }
 tdav_codec_h264_common_t;
-#define TDAV_CODEC_H264_COMMON(self)		((tdav_codec_h264_common_t*)(self))
+#define TDAV_CODEC_H264_COMMON(self)        ((tdav_codec_h264_common_t*)(self))
 #define TDAV_DECLARE_CODEC_H264_COMMON tdav_codec_h264_common_t __video__
 
 typedef struct tdav_codec_h264_common_level_size_xs {

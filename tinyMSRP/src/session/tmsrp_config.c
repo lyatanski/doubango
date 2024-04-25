@@ -49,7 +49,7 @@ TINYMSRP_API tmsrp_config_t* tmsrp_config_create()
 
 
 //=================================================================================================
-//	MSRP Session config object definition
+//  MSRP Session config object definition
 //
 static void* tmsrp_config_ctor(tsk_object_t * self, va_list * app)
 {

@@ -29,64 +29,64 @@
 #include "tinysdp/headers/tsdp_header_P.h"
 
 #define SDP_MSG1 \
-	"v=0\r\n" \
-	"o=alice 2890844526 2890844526 IN IP4 host.atlanta.example.com\r\n" \
-	"s=\r\n" \
-	"i=A Seminar on the session description protocol\r\n" \
-	"u=http://www.example.com/seminars/sdp.pdf\r\n" \
-	"e=j.doe@example.com (Jane Doe)\r\n" \
-	"p=+1 617 555-6011\r\n" \
-	"c=IN IP4 host.atlanta.example.com\r\n" \
-	"b=X-YZ:128\r\n" \
-	"z=2882844526 -1h 2898848070 0\r\n" \
-	"k=base64:ZWFzdXJlLg==\r\n" \
-	"t=3034423619 3042462419\r\n" \
+    "v=0\r\n" \
+    "o=alice 2890844526 2890844526 IN IP4 host.atlanta.example.com\r\n" \
+    "s=\r\n" \
+    "i=A Seminar on the session description protocol\r\n" \
+    "u=http://www.example.com/seminars/sdp.pdf\r\n" \
+    "e=j.doe@example.com (Jane Doe)\r\n" \
+    "p=+1 617 555-6011\r\n" \
+    "c=IN IP4 host.atlanta.example.com\r\n" \
+    "b=X-YZ:128\r\n" \
+    "z=2882844526 -1h 2898848070 0\r\n" \
+    "k=base64:ZWFzdXJlLg==\r\n" \
+    "t=3034423619 3042462419\r\n" \
     "r=7d 1h 0 25h\r\n" \
-	"r=604800 3600 0 90000\r\n" \
-	"w=my dummy header\r\n" \
-	"m=audio 49170 RTP/AVP 0 8 97 98\r\n" \
-	"i=Audio line\r\n" \
-	"c=IN IP4 otherhost.biloxi.example.com\r\n" \
-	"k=base64:ZWFzdXJlLgdddddddddddddddddddddd==\r\n" \
-	"a=rtpmap:0 PCMU/8000\r\n" \
-	"a=rtpmap:8 PCMA/8000\r\n" \
-	"a=rtpmap:97 iLBC/8000\r\n" \
-	"a=rtpmap:98 AMR-WB/16000\r\n" \
+    "r=604800 3600 0 90000\r\n" \
+    "w=my dummy header\r\n" \
+    "m=audio 49170 RTP/AVP 0 8 97 98\r\n" \
+    "i=Audio line\r\n" \
+    "c=IN IP4 otherhost.biloxi.example.com\r\n" \
+    "k=base64:ZWFzdXJlLgdddddddddddddddddddddd==\r\n" \
+    "a=rtpmap:0 PCMU/8000\r\n" \
+    "a=rtpmap:8 PCMA/8000\r\n" \
+    "a=rtpmap:97 iLBC/8000\r\n" \
+    "a=rtpmap:98 AMR-WB/16000\r\n" \
     "a=fmtp:98 octet-align=1\r\n" \
-	"m=video 51372 RTP/AVP 31 32\r\n" \
-	"i=Video line\r\n" \
-	"b=A-YZ:92\r\n" \
-	"b=B-YZ:256\r\n" \
-	"a=rtpmap:31 H261/90000\r\n" \
-	"a=rtpmap:32 MPV/90000\r\n" \
-	"a=recvonly\r\n"
+    "m=video 51372 RTP/AVP 31 32\r\n" \
+    "i=Video line\r\n" \
+    "b=A-YZ:92\r\n" \
+    "b=B-YZ:256\r\n" \
+    "a=rtpmap:31 H261/90000\r\n" \
+    "a=rtpmap:32 MPV/90000\r\n" \
+    "a=recvonly\r\n"
 
 #define SDP_MSG2 \
-	"v=0\r\n"
+    "v=0\r\n"
 
 #define SDP_MSG3 \
-	"v=0\r\n" \
-	"o=lgevcs 1 1 IN IP4 192.168.1.115\r\n" \
-	"s=-\r\n" \
-	"c=IN IP4 192.168.1.115\r\n" \
-	"b=AS:512\r\n" \
-	"t=0 0\r\n" \
-	"m=audio 2000 RTP/AVP 9 8 0 101\r\n" \
-	"a=rtpmap:9 G722/8000\r\n" \
-	"a=rtpmap:8 PCMA/8000\r\n" \
-	"a=rtpmap:0 PCMU/8000\r\n" \
-	"a=rtpmap:101 telephone-event/8000\r\n" \
-	"a=fmtp:101 0-11,16\r\n" \
-	"a=sendrecv\r\n" \
-	"m=video 2002 RTP/AVP 34\r\n" \
-	"b=TIAS:512000\r\n" \
-	"a=content:main\r\n" \
-	"a=rtpmap:34 H263/90000\r\n" \
-	"a=fmtp:34 CIF=2\r\n" \
-	"a=sendrecv\r\n"
+    "v=0\r\n" \
+    "o=lgevcs 1 1 IN IP4 192.168.1.115\r\n" \
+    "s=-\r\n" \
+    "c=IN IP4 192.168.1.115\r\n" \
+    "b=AS:512\r\n" \
+    "t=0 0\r\n" \
+    "m=audio 2000 RTP/AVP 9 8 0 101\r\n" \
+    "a=rtpmap:9 G722/8000\r\n" \
+    "a=rtpmap:8 PCMA/8000\r\n" \
+    "a=rtpmap:0 PCMU/8000\r\n" \
+    "a=rtpmap:101 telephone-event/8000\r\n" \
+    "a=fmtp:101 0-11,16\r\n" \
+    "a=sendrecv\r\n" \
+    "m=video 2002 RTP/AVP 34\r\n" \
+    "b=TIAS:512000\r\n" \
+    "a=content:main\r\n" \
+    "a=rtpmap:34 H263/90000\r\n" \
+    "a=fmtp:34 CIF=2\r\n" \
+    "a=sendrecv\r\n"
 
 #define SDP_FF \
-	"v=0\r\no=Mozilla-SIPUA-33.1.1 21626 0 IN IP4 0.0.0.0\r\ns=SIP Call\r\nt=0 0\r\na=ice-ufrag:d0a7e7c7\r\na=ice-pwd:f079952b194bac309ea77ff813540eb0\r\na=fingerprint:sha-256 10:B9:12:6F:F3:21:6B:F4:53:E2:70:BA:13:A3:3A:3C:DF:3F:28:FD:6D:E4:09:A4:6F:EC:57:95:7D:83:3E:46\r\nm=video 59587 UDP/TLS/RTP/SAVPF 120 126 97\r\nc=IN IP4 188.165.231.30\r\na=rtpmap:120 VP8/90000\r\na=rtpmap:126 H264/90000\r\na=fmtp:126 profile-level-id=42e01f;packetization-mode=1\r\na=rtpmap:97 H264/90000\r\na=fmtp:97 profile-level-id=42e01f\r\na=sendrecv\r\na=rtcp-fb:120 nack\r\na=rtcp-fb:120 nack pli\r\na=rtcp-fb:120 ccm fir\r\na=rtcp-fb:126 nack\r\na=rtcp-fb:126 nack pli\r\na=rtcp-fb:126 ccm fir\r\na=rtcp-fb:97 nack\r\na=rtcp-fb:97 nack pli\r\na=rtcp-fb:97 ccm fir\r\na=setup:actpass\r\na=candidate:0 1 UDP 2130379007 192.168.0.28 60862 typ host\r\na=candidate:1 1 UDP 1694236671 88.179.39.5 60862 typ srflx raddr 192.168.0.28 rport 60862\r\na=candidate:2 1 UDP 16515071 188.165.231.30 59587 typ relay raddr 188.165.231.30 rport 59587\r\na=candidate:0 2 UDP 2130379006 192.168.0.28 61634 typ host\r\na=candidate:1 2 UDP 1694236670 88.179.39.5 61634 typ srflx raddr 192.168.0.28 rport 61634\r\na=candidate:2 2 UDP 16515070 188.165.231.30 62984 typ relay raddr 188.165.231.30 rport 62984\r\na=rtcp-mux\r\n"
+    "v=0\r\no=Mozilla-SIPUA-33.1.1 21626 0 IN IP4 0.0.0.0\r\ns=SIP Call\r\nt=0 0\r\na=ice-ufrag:d0a7e7c7\r\na=ice-pwd:f079952b194bac309ea77ff813540eb0\r\na=fingerprint:sha-256 10:B9:12:6F:F3:21:6B:F4:53:E2:70:BA:13:A3:3A:3C:DF:3F:28:FD:6D:E4:09:A4:6F:EC:57:95:7D:83:3E:46\r\nm=video 59587 UDP/TLS/RTP/SAVPF 120 126 97\r\nc=IN IP4 188.165.231.30\r\na=rtpmap:120 VP8/90000\r\na=rtpmap:126 H264/90000\r\na=fmtp:126 profile-level-id=42e01f;packetization-mode=1\r\na=rtpmap:97 H264/90000\r\na=fmtp:97 profile-level-id=42e01f\r\na=sendrecv\r\na=rtcp-fb:120 nack\r\na=rtcp-fb:120 nack pli\r\na=rtcp-fb:120 ccm fir\r\na=rtcp-fb:126 nack\r\na=rtcp-fb:126 nack pli\r\na=rtcp-fb:126 ccm fir\r\na=rtcp-fb:97 nack\r\na=rtcp-fb:97 nack pli\r\na=rtcp-fb:97 ccm fir\r\na=setup:actpass\r\na=candidate:0 1 UDP 2130379007 192.168.0.28 60862 typ host\r\na=candidate:1 1 UDP 1694236671 88.179.39.5 60862 typ srflx raddr 192.168.0.28 rport 60862\r\na=candidate:2 1 UDP 16515071 188.165.231.30 59587 typ relay raddr 188.165.231.30 rport 59587\r\na=candidate:0 2 UDP 2130379006 192.168.0.28 61634 typ host\r\na=candidate:1 2 UDP 1694236670 88.179.39.5 61634 typ srflx raddr 192.168.0.28 rport 61634\r\na=candidate:2 2 UDP 16515070 188.165.231.30 62984 typ relay raddr 188.165.231.30 rport 62984\r\na=rtcp-mux\r\n"
 
 #define SDP_MSG_TO_TEST SDP_FF
 

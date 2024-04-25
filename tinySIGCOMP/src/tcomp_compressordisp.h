@@ -45,7 +45,7 @@
 TCOMP_BEGIN_DECLS
 
 
-#define TCOMP_MAX_COMPRESSORS		5
+#define TCOMP_MAX_COMPRESSORS       5
 
 /**Compressor dispatcher.
 */

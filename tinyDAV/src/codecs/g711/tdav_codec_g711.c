@@ -109,7 +109,7 @@ static tsk_bool_t tdav_codec_g711u_sdp_att_match(const tmedia_codec_t* codec, co
 
 
 //
-//	G.711u Plugin definition
+//  G.711u Plugin definition
 //
 
 /* constructor */
@@ -261,7 +261,7 @@ static tsk_bool_t tdav_codec_g711a_sdp_att_match(const tmedia_codec_t* codec, co
 
 
 //
-//	G.711a Plugin definition
+//  G.711a Plugin definition
 //
 
 /* constructor */

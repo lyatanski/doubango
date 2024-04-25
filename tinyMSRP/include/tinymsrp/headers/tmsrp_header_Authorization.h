@@ -38,33 +38,33 @@ TMSRP_BEGIN_DECLS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP header 'Authorization' as per RFC 3261 subclause .
+/// @brief  MSRP header 'Authorization' as per RFC 3261 subclause .
 ///
-/// @par ABNF = Authorization	= 	"Authorization" HCOLON credentials
-/// 								credentials	= 	("Digest" LWS digest-response) / other-response
-/// 								digest-response	= 	dig-resp *(COMMA dig-resp)
-/// 								dig-resp	= 	username / realm / nonce / digest-uri / dresponse / algorithm / cnonce / opaque / message-qop / nonce-count / auth-param / auts
-/// 								username	= 	"username" EQUAL username-value
-/// 								username-value	= 	quoted-string
-/// 								digest-uri	= 	"uri" EQUAL LDQUOT digest-uri-value RDQUOT
-/// 								digest-uri-value	= 	auth-request-uri ; equal to request-uri as specified by HTTP/1.1
-/// 								message-qop	= 	"qop" EQUAL qop-value
-/// 								cnonce	= 	"cnonce" EQUAL cnonce-value
-/// 								cnonce-value	= 	nonce-value
-/// 								nonce-count	= 	"nc" EQUAL nc-value
-/// 								nc-value	= 	8LHEX
-/// 								dresponse	= 	"response" EQUAL request-digest
-/// 								request-digest	= 	LDQUOT 32LHEX RDQUOT
-/// 								auth-request-uri = not-defined
+/// @par ABNF = Authorization   =   "Authorization" HCOLON credentials
+///                                 credentials =   ("Digest" LWS digest-response) / other-response
+///                                 digest-response =   dig-resp *(COMMA dig-resp)
+///                                 dig-resp    =   username / realm / nonce / digest-uri / dresponse / algorithm / cnonce / opaque / message-qop / nonce-count / auth-param / auts
+///                                 username    =   "username" EQUAL username-value
+///                                 username-value  =   quoted-string
+///                                 digest-uri  =   "uri" EQUAL LDQUOT digest-uri-value RDQUOT
+///                                 digest-uri-value    =   auth-request-uri ; equal to request-uri as specified by HTTP/1.1
+///                                 message-qop =   "qop" EQUAL qop-value
+///                                 cnonce  =   "cnonce" EQUAL cnonce-value
+///                                 cnonce-value    =   nonce-value
+///                                 nonce-count =   "nc" EQUAL nc-value
+///                                 nc-value    =   8LHEX
+///                                 dresponse   =   "response" EQUAL request-digest
+///                                 request-digest  =   LDQUOT 32LHEX RDQUOT
+///                                 auth-request-uri = not-defined
 ///
-/// 								auth-param	= 	auth-param-name EQUAL ( token / quoted-string )
-/// 								auth-param-name	= 	token
+///                                 auth-param  =   auth-param-name EQUAL ( token / quoted-string )
+///                                 auth-param-name =   token
 ///
-/// 								other-response	= 	auth-scheme LWS auth-param *(COMMA auth-param)
-/// 								auth-scheme	= 	token
-/// 								auts	= 	"auts" EQUAL auts-param
-/// 								auts-param	= 	LDQUOT auts-value RDQUOT
-/// 								auts-value	= 	<base64 encoding of AUTS>
+///                                 other-response  =   auth-scheme LWS auth-param *(COMMA auth-param)
+///                                 auth-scheme =   token
+///                                 auts    =   "auts" EQUAL auts-param
+///                                 auts-param  =   LDQUOT auts-value RDQUOT
+///                                 auts-value  =   <base64 encoding of AUTS>
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Authorization_s {

@@ -472,7 +472,7 @@ static HWND CreateFullScreenWindow(struct tdav_consumer_video_gdi_s *p_gdi)
 }
 
 //
-//	GDI video consumer object definition
+//  GDI video consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_video_gdi_ctor(tsk_object_t * self, va_list * app)

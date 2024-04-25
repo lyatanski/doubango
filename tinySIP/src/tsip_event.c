@@ -108,33 +108,33 @@ int tsip_event_deinit(tsip_event_t* self)
 
 
 //========================================================
-//	SIP event object definition
+//  SIP event object definition
 //
 static tsk_object_t* tsip_event_ctor(tsk_object_t * self, va_list * app)
 {
     tsip_event_t *sipevent = self;
     if(sipevent) {
-//		const tsip_message_t* sipmessage;
-//		tsip_stack_t *stack;
-//		tsip_ssession_handle_t *SSESSION;
-//		short code;
-//		const char *phrase;
-//		tsip_event_type_t type;
+//      const tsip_message_t* sipmessage;
+//      tsip_stack_t *stack;
+//      tsip_ssession_handle_t *SSESSION;
+//      short code;
+//      const char *phrase;
+//      tsip_event_type_t type;
 //
-//		stack = va_arg(*app, tsip_stack_handle_t *);
-//		SSESSION = va_arg(*app, tsip_ssession_handle_t*);
+//      stack = va_arg(*app, tsip_stack_handle_t *);
+//      SSESSION = va_arg(*app, tsip_ssession_handle_t*);
 //
 //#if defined(__GNUC__)
-//		code = (short)va_arg(*app, int);
+//      code = (short)va_arg(*app, int);
 //#else
-//		code = va_arg(*app, short);
+//      code = va_arg(*app, short);
 //#endif
-//		phrase = va_arg(*app, const char *);
+//      phrase = va_arg(*app, const char *);
 //
-//		sipmessage = va_arg(*app, const tsip_message_t*);
-//		type = va_arg(*app, tsip_event_type_t);
+//      sipmessage = va_arg(*app, const tsip_message_t*);
+//      type = va_arg(*app, tsip_event_type_t);
 //
-//		tsip_event_init(self, stack, SSESSION, code, phrase, sipmessage, type);
+//      tsip_event_init(self, stack, SSESSION, code, phrase, sipmessage, type);
     }
     return self;
 }

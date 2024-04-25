@@ -154,7 +154,7 @@ int tnet_dhcp6_option_serializeex(tnet_dhcp6_option_code_t code, uint8_t length,
 }
 
 //
-//	[[DHCPv6 OPTION]] object definition
+//  [[DHCPv6 OPTION]] object definition
 //
 static tsk_object_t* tnet_dhcp6_option_ctor(tsk_object_t * self, va_list * app)
 {
@@ -193,12 +193,12 @@ static const tsk_object_def_t tnet_dhcp6_option_def_s = {
 const tsk_object_def_t *tnet_dhcp6_option_def_t = &tnet_dhcp6_option_def_s;
 
 /*======================================================================================
-*	RFC 3315 -
-			22.2. Client Identifier Option
-			22.3. Server Identifier Option
+*   RFC 3315 -
+            22.2. Client Identifier Option
+            22.3. Server Identifier Option
 *=======================================================================================*/
 //
-//	[[DHCPv6 Option Request Option]] object definition
+//  [[DHCPv6 Option Request Option]] object definition
 //
 static tsk_object_t* tnet_dhcp6_option_identifier_ctor(tsk_object_t * self, va_list * app)
 {
@@ -233,7 +233,7 @@ static const tsk_object_def_t tnet_dhcp6_option_identifier_def_s = {
 const tsk_object_def_t *tnet_dhcp6_option_identifier_def_t = &tnet_dhcp6_option_identifier_def_s;
 
 /*======================================================================================
-*	RFC 3315 - 22.7. Option Request Option
+*   RFC 3315 - 22.7. Option Request Option
 *=======================================================================================*/
 
 int tnet_dhcp6_option_orequest_add_code(tnet_dhcp6_option_orequest_t* self, uint16_t code)
@@ -255,7 +255,7 @@ int tnet_dhcp6_option_orequest_add_code(tnet_dhcp6_option_orequest_t* self, uint
 }
 
 //
-//	[[DHCPv6 Option Request Option]] object definition
+//  [[DHCPv6 Option Request Option]] object definition
 //
 static tsk_object_t* tnet_dhcp6_option_orequest_ctor(tsk_object_t * self, va_list * app)
 {
@@ -289,11 +289,11 @@ static const tsk_object_def_t tnet_dhcp6_option_orequest_def_s = {
 const tsk_object_def_t *tnet_dhcp6_option_orequest_def_t = &tnet_dhcp6_option_orequest_def_s;
 
 /*======================================================================================
-*	RFC 3315 - 22.16. Vendor Class Option
+*   RFC 3315 - 22.16. Vendor Class Option
 *=======================================================================================*/
 
 //
-//	[[DHCPv6 Option Request Option]] object definition
+//  [[DHCPv6 Option Request Option]] object definition
 //
 static tsk_object_t* tnet_dhcp6_option_vendorclass_ctor(tsk_object_t * self, va_list * app)
 {

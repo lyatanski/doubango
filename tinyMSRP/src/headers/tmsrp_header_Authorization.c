@@ -127,7 +127,7 @@ tmsrp_header_Authorization_t *tmsrp_header_Authorization_parse(const char *data,
 
 
 //========================================================
-//	Authorization header object definition
+//  Authorization header object definition
 //
 
 static tsk_object_t* tmsrp_header_Authorization_ctor(tsk_object_t *self, va_list * app)

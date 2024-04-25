@@ -38,7 +38,7 @@ TSIP_BEGIN_DECLS
 /* Forward declaration */
 struct tsip_message_s;
 
-#define TSIP_DIALOG_INFO(self)							((tsip_dialog_info_t*)(self))
+#define TSIP_DIALOG_INFO(self)                          ((tsip_dialog_info_t*)(self))
 
 typedef struct tsip_dialog_info {
     TSIP_DECLARE_DIALOG;

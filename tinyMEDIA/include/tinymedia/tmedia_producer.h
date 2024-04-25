@@ -38,15 +38,15 @@
 
 TMEDIA_BEGIN_DECLS
 
-#define TMEDIA_PRODUCER_BITS_PER_SAMPLE_DEFAULT		16
-#define TMEDIA_PRODUCER_CHANNELS_DEFAULT			2
-#define TMEDIA_PRODUCER_RATE_DEFAULT				8000
+#define TMEDIA_PRODUCER_BITS_PER_SAMPLE_DEFAULT     16
+#define TMEDIA_PRODUCER_CHANNELS_DEFAULT            2
+#define TMEDIA_PRODUCER_RATE_DEFAULT                8000
 
 /**Max number of plugins (producer types) we can create */
-#define TMED_PRODUCER_MAX_PLUGINS			0x0F
+#define TMED_PRODUCER_MAX_PLUGINS           0x0F
 
 /** cast any pointer to @ref tmedia_producer_t* object */
-#define TMEDIA_PRODUCER(self)		((tmedia_producer_t*)(self))
+#define TMEDIA_PRODUCER(self)       ((tmedia_producer_t*)(self))
 
 typedef int (*tmedia_producer_enc_cb_f)(const void* callback_data, const void* buffer, tsk_size_t size);
 typedef int (*tmedia_producer_raw_cb_f)(const tmedia_video_encode_result_xt* chunck);
@@ -112,8 +112,8 @@ typedef struct tmedia_producer_plugin_def_s {
     //! full description (usefull for debugging)
     const char* desc;
 
-    int (*set) (tmedia_producer_t* , const tmedia_param_t*);
-    int (* prepare) (tmedia_producer_t* , const tmedia_codec_t*);
+    int (*set) (tmedia_producer_t*, const tmedia_param_t*);
+    int (* prepare) (tmedia_producer_t*, const tmedia_codec_t*);
     int (* start) (tmedia_producer_t* );
     int (* pause) (tmedia_producer_t* );
     int (* stop) (tmedia_producer_t* );

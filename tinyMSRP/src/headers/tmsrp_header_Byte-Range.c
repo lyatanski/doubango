@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 76 "./ragel/tmsrp_parser_header_Byte-Range.rl" */
@@ -291,7 +291,7 @@ _match:
                 }
             }
             break;
-            /* #line 288 "./src/headers/tmsrp_header_Byte-Range.c" */
+                /* #line 288 "./src/headers/tmsrp_header_Byte-Range.c" */
             }
         }
 
@@ -320,7 +320,7 @@ _test_eof: {
                     }
                 }
                 break;
-                /* #line 315 "./src/headers/tmsrp_header_Byte-Range.c" */
+                    /* #line 315 "./src/headers/tmsrp_header_Byte-Range.c" */
                 }
             }
         }
@@ -351,7 +351,7 @@ _out: {
 
 
 //========================================================
-//	Byte_Range header object definition
+//  Byte_Range header object definition
 //
 
 static tsk_object_t* tmsrp_header_Byte_Range_ctor(tsk_object_t *self, va_list * app)

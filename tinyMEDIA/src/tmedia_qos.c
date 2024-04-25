@@ -213,9 +213,9 @@ tmedia_qos_tline_e2e_t* tmedia_qos_tline_e2e_from_sdp(const tsdp_header_M_t* m)
     }
 
     /*  Example
-    	a=curr:qos e2e none
-    	a=des:qos mandatory e2e sendrecv
-    	a=conf:qos e2e recv
+        a=curr:qos e2e none
+        a=des:qos mandatory e2e sendrecv
+        a=conf:qos e2e recv
     */
 
     e2e = tmedia_qos_tline_e2e_create(tmedia_qos_strength_unknown);
@@ -319,8 +319,8 @@ int tmedia_qos_tline_e2e_to_sdp(const tmedia_qos_tline_e2e_t* self, tsdp_header_
         return -1;
     }
     /*  Example
-    	a=curr:qos e2e none
-    	a=des:qos mandatory e2e sendrecv
+        a=curr:qos e2e none
+        a=des:qos mandatory e2e sendrecv
     */
 
 
@@ -412,14 +412,14 @@ tsk_bool_t tmedia_qos_tline_e2e_canresume(const tmedia_qos_tline_e2e_t* self)
     }
 
     /*  Example
-    	a=curr:qos e2e none
-    	a=des:qos mandatory e2e sendrecv
+        a=curr:qos e2e none
+        a=des:qos mandatory e2e sendrecv
 
-    	Or
+        Or
 
-    	a=curr:qos e2e send
-    	a=des:qos mandatory e2e recv
-    	a=des:qos optional e2e send
+        a=curr:qos e2e send
+        a=des:qos mandatory e2e recv
+        a=des:qos optional e2e send
     */
 
     /* only "mandatory" strength should force the application to continue nego. */
@@ -435,7 +435,7 @@ tsk_bool_t tmedia_qos_tline_e2e_canresume(const tmedia_qos_tline_e2e_t* self)
 }
 
 //
-//	E2E QoS line object definition
+//  E2E QoS line object definition
 //
 static tsk_object_t* tmedia_qos_tline_e2e_ctor(tsk_object_t * self, va_list * app)
 {
@@ -494,12 +494,12 @@ tmedia_qos_tline_segmented_t* tmedia_qos_tline_segmented_from_sdp(const tsdp_hea
     }
 
     /*  Example
-    	a=curr:qos local none
-    	a=curr:qos remote none
-    	a=des:qos optional remote send
-    	a=des:qos none remote recv
-    	a=des:qos none local sendrecv
-    	a=conf:qos local recv
+        a=curr:qos local none
+        a=curr:qos remote none
+        a=des:qos optional remote send
+        a=des:qos none remote recv
+        a=des:qos none local sendrecv
+        a=conf:qos local recv
     */
     segmented = tmedia_qos_tline_segmented_create(tmedia_qos_strength_unknown);
 
@@ -652,17 +652,17 @@ tmedia_qos_tline_segmented_t* tmedia_qos_tline_segmented_from_sdp(const tsdp_hea
 
 int tmedia_qos_tline_segmented_to_sdp(const tmedia_qos_tline_segmented_t* self, tsdp_header_M_t* m)
 {
-    /*	RFC 3312 - 5.1.1 SDP encoding
+    /*  RFC 3312 - 5.1.1 SDP encoding
 
-    	For the segmented status type, the user agent MUST generate two
-    	current status lines: one with the tag "local" and the other with the
-    	tag "remote".  The user agent MUST add one or two desired status
-    	lines per segment (i.e., local and remote).  If, for a particular
-    	segment (local or remote), the tags for both directions in the
-    	transaction status table are equal (e.g., both "mandatory"), the user
-    	agent MUST add one desired status line with the tag "sendrecv".  If
-    	both tags are different, the user agent MUST include two desired
-    	status lines, one with the tag "send" and the other with the tag "recv".
+        For the segmented status type, the user agent MUST generate two
+        current status lines: one with the tag "local" and the other with the
+        tag "remote".  The user agent MUST add one or two desired status
+        lines per segment (i.e., local and remote).  If, for a particular
+        segment (local or remote), the tags for both directions in the
+        transaction status table are equal (e.g., both "mandatory"), the user
+        agent MUST add one desired status line with the tag "sendrecv".  If
+        both tags are different, the user agent MUST include two desired
+        status lines, one with the tag "send" and the other with the tag "recv".
     */
     char* temp = tsk_null;
 
@@ -672,11 +672,11 @@ int tmedia_qos_tline_segmented_to_sdp(const tmedia_qos_tline_segmented_t* self, 
     }
 
     /*  Example
-    	a=curr:qos local none
-    	a=curr:qos remote none
-    	a=des:qos optional remote send
-    	a=des:qos none remote recv
-    	a=des:qos none local sendrecv
+        a=curr:qos local none
+        a=curr:qos remote none
+        a=des:qos optional remote send
+        a=des:qos none remote recv
+        a=des:qos none local sendrecv
     */
 
     /* curr:local */
@@ -830,7 +830,7 @@ tsk_bool_t tmedia_qos_tline_segmented_canresume(const tmedia_qos_tline_segmented
 }
 
 //
-//	Segmented QoS line object definition
+//  Segmented QoS line object definition
 //
 static tsk_object_t* tmedia_qos_tline_segmented_ctor(tsk_object_t * self, va_list * app)
 {

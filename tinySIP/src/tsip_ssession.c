@@ -128,9 +128,9 @@ int __tsip_ssession_set(tsip_ssession_t *self, va_list *app)
 
     while((sscurr = va_arg(*app, tsip_ssession_param_type_t)) != sstype_null) {
         switch(sscurr) {
-            //=======
-            //	Sip
-            //=======
+        //=======
+        //  Sip
+        //=======
         case sstype_header:
         case sstype_caps: {
             /* (const char*)NAME_STR, (const char*)VALUE_STR */
@@ -267,7 +267,7 @@ int __tsip_ssession_set(tsip_ssession_t *self, va_list *app)
         }
         case sstype_media: {
             //=========
-            //	Media
+            //  Media
             //=========
             if (!mgr) {
                 mgr = tsip_session_get_mediamgr(self);
@@ -414,7 +414,7 @@ int __tsip_ssession_set(tsip_ssession_t *self, va_list *app)
             } /* while */
 
             break;
-        } /* case */
+            } /* case */
 
         default: {
             /* va_list will be unsafe => exit */
@@ -681,7 +681,7 @@ int tsip_ssession_handle(const tsip_ssession_t *self, const struct tsip_action_s
 
 
 //========================================================
-//	SIP Session object definition
+//  SIP Session object definition
 //
 static tsk_object_t* tsip_ssession_ctor(tsk_object_t * self, va_list * app)
 {

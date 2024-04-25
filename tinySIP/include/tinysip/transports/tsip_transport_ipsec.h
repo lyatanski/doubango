@@ -40,7 +40,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_TRANSPORT_IPSEC(self)										((tsip_transport_ipsec_t*)(self))
+#define TSIP_TRANSPORT_IPSEC(self)                                      ((tsip_transport_ipsec_t*)(self))
 
 typedef struct tsip_ipsec_association_s {
     TSK_DECLARE_OBJECT;

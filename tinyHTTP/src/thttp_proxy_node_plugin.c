@@ -267,7 +267,7 @@ parse_buffer:
     }
 
     /* If we are here this mean that we have all HTTP headers.
-     *	==> Parse the HTTP message without the content.
+     *  ==> Parse the HTTP message without the content.
      */
     tsk_ragel_state_init(&state, TSK_BUFFER_DATA(node->handshacking.buff), endOfheaders + TWO_CRLF_LEN);
     if ((ret = thttp_message_parse(&state, &message, tsk_false/* do not extract the content */)) == 0) {
@@ -470,7 +470,7 @@ static int _thttp_proxy_node_plugin_update_challenge(thttp_proxy_node_plugin_t *
 
     /* RFC 2617 - Digest Operation
 
-     *	(A) The client response to a WWW-Authenticate challenge for a protection
+     *  (A) The client response to a WWW-Authenticate challenge for a protection
      space starts an authentication session with that protection space.
      The authentication session lasts until the client receives another
      WWW-Authenticate challenge from any server in the protection space.

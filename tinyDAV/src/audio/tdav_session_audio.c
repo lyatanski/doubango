@@ -175,7 +175,7 @@ static int tdav_session_audio_producer_enc_cb(const void* callback_data, const v
 
     tdav_session_audio_t* audio = (tdav_session_audio_t*)callback_data;
     tdav_session_av_t* base = (tdav_session_av_t*)callback_data;
-	struct tmedia_codec_s* codec_copy = tsk_null; // to ensure thread-safeness (crash reported by Chunghwa Telecom), SIP reINVITE or UPDATE could update the encoder's codec
+    struct tmedia_codec_s* codec_copy = tsk_null; // to ensure thread-safeness (crash reported by Chunghwa Telecom), SIP reINVITE or UPDATE could update the encoder's codec
 
     if (!audio) {
         TSK_DEBUG_ERROR("Null session");
@@ -217,11 +217,11 @@ static int tdav_session_audio_producer_enc_cb(const void* callback_data, const v
             tsk_safeobj_unlock(base);
         }
 
-		// get a copy
-		if (!(codec_copy = tsk_object_ref(audio->encoder.codec))) {
-			TSK_DEBUG_ERROR("Null encoder");
-			goto done;
-		}
+        // get a copy
+        if (!(codec_copy = tsk_object_ref(audio->encoder.codec))) {
+            TSK_DEBUG_ERROR("Null encoder");
+            goto done;
+        }
 
         // check if we're sending DTMF or not
         if (audio->is_sending_dtmf_events) {
@@ -290,7 +290,7 @@ static int tdav_session_audio_producer_enc_cb(const void* callback_data, const v
     }
 
 done:
-	tsk_object_unref(codec_copy);
+    tsk_object_unref(codec_copy);
     return ret;
 }
 
@@ -539,7 +539,7 @@ static int tdav_session_audio_send_dtmf(tmedia_session_t* self, uint8_t event)
     }
 
 
-    /*	RFC 4733 - 5.  Examples
+    /*  RFC 4733 - 5.  Examples
 
     +-------+-----------+------+--------+------+--------+--------+------+
     |  Time | Event     |   M  |  Time- |  Seq |  Event |  Dura- |   E  |
@@ -810,7 +810,7 @@ done:
 }
 
 //=================================================================================================
-//	Session Audio Plugin object definition
+//  Session Audio Plugin object definition
 //
 /* constructor */
 static tsk_object_t* tdav_session_audio_ctor(tsk_object_t * self, va_list * app)
@@ -954,7 +954,7 @@ const tmedia_session_plugin_def_t *tdav_session_bfcpaudio_plugin_def_t = &tdav_s
 
 
 //=================================================================================================
-//	DTMF event object definition
+//  DTMF event object definition
 //
 static tsk_object_t* tdav_session_audio_dtmfe_ctor(tsk_object_t * self, va_list * app)
 {

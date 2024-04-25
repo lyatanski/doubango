@@ -91,7 +91,7 @@ void tcomp_state_makeValid(tcomp_state_t* state)
     tcomp_buffer_allocBuff(state->identifier, TSK_SHA1_DIGEST_SIZE);
 
     /*=============
-    	* Calculates a 20-byte SHA-1 hash [RFC-3174] over the byte string formed by concatenating the state_length, state_address,
+        * Calculates a 20-byte SHA-1 hash [RFC-3174] over the byte string formed by concatenating the state_length, state_address,
         * state_instruction, minimum_access_length and state_value (in the order given).  This is the state_identifier.
     */
     {
@@ -150,7 +150,7 @@ int32_t tcomp_state_dec_usage_count(tcomp_state_t* self)
 
 
 //========================================================
-//	State object definition
+//  State object definition
 //
 static tsk_object_t* tcomp_state_ctor(tsk_object_t * self, va_list * app)
 {

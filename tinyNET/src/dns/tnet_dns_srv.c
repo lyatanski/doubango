@@ -42,7 +42,7 @@ tnet_dns_srv_t* tnet_dns_srv_create(const char* name, tnet_dns_qclass_t qclass, 
 }
 
 //=================================================================================================
-//	[[DNS SRV]] object definition
+//  [[DNS SRV]] object definition
 //
 static tsk_object_t* tnet_dns_srv_ctor(tsk_object_t * self, va_list * app)
 {

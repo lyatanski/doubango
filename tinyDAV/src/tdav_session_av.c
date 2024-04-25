@@ -35,7 +35,7 @@
 #include "tinyrtp/trtp_manager.h"
 #include "tinyrtp/rtp/trtp_rtp_packet.h"
 #if HAVE_SRTP
-#	include "tinyrtp/trtp_srtp.h"
+#   include "tinyrtp/trtp_srtp.h"
 #endif
 
 #include "ice/tnet_ice_ctx.h"
@@ -65,15 +65,15 @@ static const tsk_bool_t __have_libsrtp = tsk_false;
 #define TDAV_IS_VIDEO_CODEC(codec) (codec && TMEDIA_CODEC((codec))->plugin->type & tmedia_video)
 
 #if !defined(TDAV_DFAULT_FP_HASH)
-#define TDAV_DFAULT_FP_HASH		tnet_dtls_hash_type_sha256
+#define TDAV_DFAULT_FP_HASH     tnet_dtls_hash_type_sha256
 #endif /* TDAV_DFAULT_FP_HASH */
 #if !defined(TDAV_FIXME_MEDIA_LEVEL_DTLS_ATT)
-#define TDAV_FIXME_MEDIA_LEVEL_DTLS_ATT		0
+#define TDAV_FIXME_MEDIA_LEVEL_DTLS_ATT     0
 #endif /* TDAV_FIXME_MEDIA_LEVEL_DTLS_ATT */
 
 // rfc5763 - The endpoint MUST NOT use the connection attribute defined in [RFC4145].
 #if !defined(TDAV_DTLS_CONNECTION_ATT)
-#	define TDAV_DTLS_CONNECTION_ATT		0
+#   define TDAV_DTLS_CONNECTION_ATT     0
 #endif
 
 static void* TSK_STDCALL _tdav_session_av_error_async_thread(void* usrdata);
@@ -84,7 +84,7 @@ static int _tdav_session_av_srtp_dtls_cb(const void* usrdata, enum trtp_srtp_dtl
 static int _tdav_session_av_red_cb(const void* usrdata, const struct trtp_rtp_packet_s* packet);
 static int _tdav_session_av_dtls_set_remote_setup(struct tdav_session_av_s* self, tnet_dtls_setup_t setup, tsk_bool_t connection_new, tsk_bool_t is_ro_null);
 
-#define SDP_CAPS_COUNT_MAX		0x1F
+#define SDP_CAPS_COUNT_MAX      0x1F
 #define SDP_DECLARE_TAG int32_t tag // [1 - *]
 #define SDP_TAG(self) ((self) ? *((int32_t*)(self)) : 0)
 
@@ -670,8 +670,8 @@ int tdav_session_av_start(tdav_session_av_t* self, const tmedia_codec_t* best_co
         // because of AudioUnit under iOS => prepare both consumer and producer then start() at the same time
         /* prepare consumer and producer */
         // Producer could output encoded frames:
-        //	- On WP8 with built-in H.264 encoder
-        //	- When Intel Quick Sync is used for encoding and added on the same Topology as the producer (camera MFMediaSource)
+        //  - On WP8 with built-in H.264 encoder
+        //  - When Intel Quick Sync is used for encoding and added on the same Topology as the producer (camera MFMediaSource)
         if (self->producer) {
             if((ret = tmedia_producer_prepare(self->producer, best_codec)) == 0) {
                 media_param = tmedia_param_create(tmedia_pat_set,
@@ -687,8 +687,8 @@ int tdav_session_av_start(tdav_session_av_t* self, const tmedia_codec_t* best_co
             }
         }
         // Consumer could accept encoded frames as input:
-        //	- On WP8 with built-in H.264 decoder
-        //	- When IMFTransform decoder is used for decoding and added on the same Topology as the consumer (EVR)
+        //  - On WP8 with built-in H.264 decoder
+        //  - When IMFTransform decoder is used for decoding and added on the same Topology as the consumer (EVR)
         if (self->consumer) {
             if ((ret = tmedia_consumer_prepare(self->consumer, best_codec)) == 0) {
                 media_param = tmedia_param_create(tmedia_pat_set,
@@ -880,7 +880,7 @@ const tsdp_header_M_t* tdav_session_av_get_lo(tdav_session_av_t* self, tsk_bool_
             /* If NATT is active, do not rely on the global IP address Connection line */
             if(self->natt_ctx) {
                 tsdp_header_M_add_headers(base->M.lo,
-					TSDP_HEADER_C_VA_ARGS("IN", TNET_SOCKET_TYPE_IS_IPV6(self->rtp_manager->rtp.public_addr.type) ? "IP6" : "IP4", self->rtp_manager->rtp.public_addr.ip),
+                                          TSDP_HEADER_C_VA_ARGS("IN", TNET_SOCKET_TYPE_IS_IPV6(self->rtp_manager->rtp.public_addr.type) ? "IP6" : "IP4", self->rtp_manager->rtp.public_addr.ip),
                                           tsk_null);
             }
             /* 3GPP TS 24.229 - 6.1.1 General
@@ -1274,8 +1274,8 @@ const tsdp_header_M_t* tdav_session_av_get_lo(tdav_session_av_t* self, tsk_bool_
         tsk_strupdate(&base->M.lo->proto,
                       self->use_srtp
                       ? ((self->avpf_mode_neg == tmedia_mode_mandatory) ? (is_srtp_dtls_enabled ? "UDP/TLS/RTP/SAVPF" : "RTP/SAVPF") : (is_srtp_dtls_enabled ? "UDP/TLS/RTP/SAVP" : "RTP/SAVP"))
-                          : ((self->avpf_mode_neg == tmedia_mode_mandatory) ? "RTP/AVPF" : "RTP/AVP")
-                         );
+                      : ((self->avpf_mode_neg == tmedia_mode_mandatory) ? "RTP/AVPF" : "RTP/AVP")
+                     );
 
         // RFC 5761: RTCP/RTP muxing
         if(self->use_rtcpmux) {
@@ -1317,8 +1317,8 @@ const tsdp_header_M_t* tdav_session_av_get_lo(tdav_session_av_t* self, tsk_bool_
                 // RTCWeb
                 // "mid:" must not added without BUNDLE
                 // tsdp_header_M_add_headers(base->M.lo,
-                //	TSDP_HEADER_A_VA_ARGS("mid", self->media_type & tmedia_audio ? "audio" : "video"),
-                //		tsk_null);
+                //  TSDP_HEADER_A_VA_ARGS("mid", self->media_type & tmedia_audio ? "audio" : "video"),
+                //      tsk_null);
 
                 while ((candidate = tnet_ice_ctx_get_local_candidate_at(self->ice_ctx, index++))) {
                     if (self->use_rtcpmux && remote_use_rtcpmux && candidate->comp_id == TNET_ICE_CANDIDATE_COMPID_RTCP) {
@@ -1345,16 +1345,16 @@ const tsdp_header_M_t* tdav_session_av_get_lo(tdav_session_av_t* self, tsk_bool_
 
         if(self->media_type & tmedia_audio) {
             ///* 3GPP TS 24.229 - 6.1.1 General
-            //	The UE shall include the MIME subtype "telephone-event" in the "m=" media descriptor in the SDP for audio media
-            //	flows that support both audio codec and DTMF payloads in RTP packets as described in RFC 4733 [23].
+            //  The UE shall include the MIME subtype "telephone-event" in the "m=" media descriptor in the SDP for audio media
+            //  flows that support both audio codec and DTMF payloads in RTP packets as described in RFC 4733 [23].
             //*/
             //tsdp_header_M_add_fmt(base->M.lo, TMEDIA_CODEC_FORMAT_DTMF);
             //tsdp_header_M_add_headers(base->M.lo,
-            //			TSDP_HEADER_A_VA_ARGS("fmtp", TMEDIA_CODEC_FORMAT_DTMF" 0-15"),
-            //		tsk_null);
+            //          TSDP_HEADER_A_VA_ARGS("fmtp", TMEDIA_CODEC_FORMAT_DTMF" 0-15"),
+            //      tsk_null);
             //tsdp_header_M_add_headers(base->M.lo,
-            //			TSDP_HEADER_A_VA_ARGS("rtpmap", TMEDIA_CODEC_FORMAT_DTMF" telephone-event/8000"),
-            //		tsk_null);
+            //          TSDP_HEADER_A_VA_ARGS("rtpmap", TMEDIA_CODEC_FORMAT_DTMF" telephone-event/8000"),
+            //      tsk_null);
         }
 
         /* QoS */

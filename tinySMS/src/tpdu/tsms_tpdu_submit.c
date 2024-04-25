@@ -36,9 +36,9 @@
 #include <string.h> /* memcpy */
 
 #define TSMS_ERROR_TOO_SHORT()\
-	TSK_DEBUG_ERROR("SMS-SUBMIT == Data too short.");\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("SMS-SUBMIT == Data too short.");\
+    failed = tsk_true;\
+    goto bail;
 
 /** internal function used to deserialize SMS-SUBMIT function.
 */
@@ -66,16 +66,16 @@ tsms_tpdu_message_t* _tsms_tpdu_submit_deserialize(const void* data, tsk_size_t 
 #endif
 
     /* SMS-SUBMIT first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-Reject-Duplicates(1b)
-    	- TP-Validity-Period-Format(1b)
-    	- TP-Reply-Path(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Request(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-Reject-Duplicates(1b)
+        - TP-Validity-Period-Format(1b)
+        - TP-Reply-Path(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Request(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|RP  |UDHI|SRR |VPF		 | RD | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |RP  |UDHI|SRR |VPF      | RD | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     TSMS_TPDU_MESSAGE(self)->mti = *pdata & 0x03;
     self->rd = (*pdata & 0x04)>>2,
@@ -177,16 +177,16 @@ int _tsms_tpdu_submit_serialize(const tsms_tpdu_submit_t* self, tsk_buffer_t* ou
 #endif
 
     /* SMS-SUBMIT first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-Reject-Duplicates(1b)
-    	- TP-Validity-Period-Format(1b)
-    	- TP-Reply-Path(1b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Request(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-Reject-Duplicates(1b)
+        - TP-Validity-Period-Format(1b)
+        - TP-Reply-Path(1b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Request(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|RP  |UDHI|SRR |VPF		 | RD | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |RP  |UDHI|SRR |VPF      | RD | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     _1byte = (TSMS_TPDU_MESSAGE(self)->mti & 0xF3); /*2b*/
     _1byte |= ((uint8_t)self->rd) << 2 /*1b*/
@@ -257,7 +257,7 @@ bail:
 }
 
 //=================================================================================================
-//	SMS TPDU SMS-SUMBIT object definition
+//  SMS TPDU SMS-SUMBIT object definition
 //
 static tsk_object_t* tsms_tpdu_submit_ctor(tsk_object_t * self, va_list * app)
 {

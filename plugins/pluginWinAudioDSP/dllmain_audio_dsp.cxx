@@ -27,19 +27,19 @@
 #include <windows.h>
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "wmcodecdspuuid")
-#	pragma comment(lib, "Msdmo")
-#	pragma comment(lib, "Dmoguids")
-#	pragma comment(lib, "amstrmid")
-#	pragma comment(lib, "Mfplat")
-#	pragma comment(lib, "mfuuid")
+#   pragma comment(lib, "wmcodecdspuuid")
+#   pragma comment(lib, "Msdmo")
+#   pragma comment(lib, "Dmoguids")
+#   pragma comment(lib, "amstrmid")
+#   pragma comment(lib, "Mfplat")
+#   pragma comment(lib, "mfuuid")
 #endif
 
 #if !defined(PLUGIN_AUDIO_DSP_RESAMPLER_ENABLE)
-#	define PLUGIN_AUDIO_DSP_RESAMPLER_ENABLE 1
+#   define PLUGIN_AUDIO_DSP_RESAMPLER_ENABLE 1
 #endif
 #if !defined(PLUGIN_AUDIO_DSP_DENOISER_ENABLE)
-#	define PLUGIN_AUDIO_DSP_DENOISER_ENABLE 0 /* Filter mode doesn't support AEC */
+#   define PLUGIN_AUDIO_DSP_DENOISER_ENABLE 0 /* Filter mode doesn't support AEC */
 #endif
 
 extern const tmedia_resampler_plugin_def_t *plugin_audio_dsp_resampler_plugin_def_t;
@@ -107,7 +107,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     return tsk_plugin_def_type_none;
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
     switch(index) {
 #if PLUGIN_AUDIO_DSP_RESAMPLER_ENABLE

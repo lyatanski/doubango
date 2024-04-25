@@ -34,7 +34,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 142 "./ragel/thttp_parser_header_Authorization.rl" */
@@ -6896,7 +6896,7 @@ _match:
             {
             }
             break;
-            /* #line 6895 "./src/headers/thttp_header_Authorization.c" */
+                /* #line 6895 "./src/headers/thttp_header_Authorization.c" */
             }
         }
 
@@ -6938,7 +6938,7 @@ thttp_header_Proxy_Authorization_t *thttp_header_Proxy_Authorization_parse(const
 
 
 //========================================================
-//	Authorization header object definition
+//  Authorization header object definition
 //
 
 static tsk_object_t* thttp_header_Authorization_ctor(tsk_object_t *self, va_list * app)

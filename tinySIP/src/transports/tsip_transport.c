@@ -39,19 +39,19 @@
 
 // Number of active peers before we start cleanup up (check for timeouts)
 #if !defined(TSIP_TRANSPORT_STREAM_PEERS_COUNT_BEFORE_CHECKING_TIMEOUT)
-#	define TSIP_TRANSPORT_STREAM_PEERS_COUNT_BEFORE_CHECKING_TIMEOUT	100
+#   define TSIP_TRANSPORT_STREAM_PEERS_COUNT_BEFORE_CHECKING_TIMEOUT    100
 #endif
 // Number of milliseconds of inactivity before we declare the peer as "timedout".
 #if !defined(TSIP_TRANSPORT_STREAM_PEER_TIMEOUT)
-#	define TSIP_TRANSPORT_STREAM_PEER_TIMEOUT							600000 /* 10 minutes */
+#   define TSIP_TRANSPORT_STREAM_PEER_TIMEOUT                           600000 /* 10 minutes */
 #endif /* TSIP_TRANSPORT_STREAM_PEER_TIMEOUT */
 // Maximum number of milliseconds allowed to complete the WebSocket handshaking process.
 #if !defined(TSIP_TRANSPORT_STREAM_PEER_WS_HANDSHAKING_TIMEOUT)
-#	define TSIP_TRANSPORT_STREAM_PEER_WS_HANDSHAKING_TIMEOUT			5000 /* 5 seconds */
+#   define TSIP_TRANSPORT_STREAM_PEER_WS_HANDSHAKING_TIMEOUT            5000 /* 5 seconds */
 #endif /* TSIP_TRANSPORT_STREAM_PEER_TIMEOUT */
 // Maximum number of milliseconds allowed between the connection and the first valid SIP message.
 #if !defined(TSIP_TRANSPORT_STREAM_PEER_FIRST_MSG_TIMEOUT)
-#	define TSIP_TRANSPORT_STREAM_PEER_FIRST_MSG_TIMEOUT					30000 /* 30 seconds */ // High because of WebRTC clients (Time between camera access request and end-of-ice process)
+#   define TSIP_TRANSPORT_STREAM_PEER_FIRST_MSG_TIMEOUT                 30000 /* 30 seconds */ // High because of WebRTC clients (Time between camera access request and end-of-ice process)
 #endif /* TSIP_TRANSPORT_STREAM_PEER_FIRST_MSG_TIMEOUT */
 
 static const char* __null_callid = tsk_null;
@@ -148,14 +148,14 @@ int tsip_transport_addvia(const tsip_transport_t* self, const char *branch, tsip
 
     /* is there a Via header? */
     if(!msg->firstVia) {
-        /*	RFC 3261 - 18.1.1 Sending Requests
-        	Before a request is sent, the client transport MUST insert a value of
-        	the "sent-by" field into the Via header field.  This field contains
-        	an IP address or host name, and port.  The usage of an FQDN is
-        	RECOMMENDED.  This field is used for sending responses under certain
-        	conditions, described below.  If the port is absent, the default
-        	value depends on the transport.  It is 5060 for UDP, TCP and SCTP,
-        	5061 for TLS.
+        /*  RFC 3261 - 18.1.1 Sending Requests
+            Before a request is sent, the client transport MUST insert a value of
+            the "sent-by" field into the Via header field.  This field contains
+            an IP address or host name, and port.  The usage of an FQDN is
+            RECOMMENDED.  This field is used for sending responses under certain
+            conditions, described below.  If the port is absent, the default
+            value depends on the transport.  It is 5060 for UDP, TCP and SCTP,
+            5061 for TLS.
         */
         msg->firstVia = tsip_header_Via_create(TSIP_HEADER_VIA_PROTO_NAME_DEFAULT, TSIP_HEADER_VIA_PROTO_VERSION_DEFAULT, self->via_protocol, ip, port);
         TSIP_HEADER_ADD_PARAM(TSIP_HEADER(msg->firstVia), "rport", tsk_null);
@@ -200,13 +200,13 @@ int tsip_transport_addvia(const tsip_transport_t* self, const char *branch, tsip
 
     /* multicast case */
     if(tsk_false) {
-        /*	RFC 3261 - 18.1.1 Sending Requests (FIXME)
-        	A client that sends a request to a multicast address MUST add the
-        	"maddr" parameter to its Via header field value containing the
-        	destination multicast address, and for IPv4, SHOULD add the "ttl"
-        	parameter with a value of 1.  Usage of IPv6 multicast is not defined
-        	in this specification, and will be a subject of future
-        	standardization when the need arises.
+        /*  RFC 3261 - 18.1.1 Sending Requests (FIXME)
+            A client that sends a request to a multicast address MUST add the
+            "maddr" parameter to its Via header field value containing the
+            destination multicast address, and for IPv4, SHOULD add the "ttl"
+            parameter with a value of 1.  Usage of IPv6 multicast is not defined
+            in this specification, and will be a subject of future
+            standardization when the need arises.
         */
     }
 
@@ -248,7 +248,7 @@ int tsip_transport_msg_update_aor(tsip_transport_t* self, tsip_message_t *msg)
 
     /* === Host and port === */
     if(msg->Contact && msg->Contact->uri) {
-		tsk_strupdate(&(msg->Contact->uri->scheme), self->scheme);
+        tsk_strupdate(&(msg->Contact->uri->scheme), self->scheme);
         msg->Contact->uri->host_type = TNET_SOCKET_TYPE_IS_IPV6(self->type) ? host_ipv6 : host_ipv4; /* for serializer ...who know? */
         tsk_params_add_param(&msg->Contact->uri->params, "transport", self->protocol);
 
@@ -501,7 +501,7 @@ tsk_size_t tsip_transport_send(const tsip_transport_t* self, const char *branch,
                 /* AoR: Contact header */
                 tsip_transport_msg_update_aor((tsip_transport_t*)self, msg);
                 /* should be done before tsip_transport_msg_update() which could use the Via header
-                	must be done after update_aor()
+                    must be done after update_aor()
                 */
                 tsip_transport_addvia(self, branch, msg);
                 tsip_transport_msg_update(self, msg); /* IPSec, SigComp, ... */
@@ -512,16 +512,16 @@ tsk_size_t tsip_transport_send(const tsip_transport_t* self, const char *branch,
             if(msg->Contact) {
                 tsip_transport_msg_update_aor((tsip_transport_t*)self, msg);
             }
-            /*	RFC 3581 - 4.  Server Behavior
-            	When a server compliant to this specification (which can be a proxy
-            	or UAS) receives a request, it examines the topmost Via header field
-            	value.  If this Via header field value contains an "rport" parameter
-            	with no value, it MUST set the value of the parameter to the source
-            	port of the request.
+            /*  RFC 3581 - 4.  Server Behavior
+                When a server compliant to this specification (which can be a proxy
+                or UAS) receives a request, it examines the topmost Via header field
+                value.  If this Via header field value contains an "rport" parameter
+                with no value, it MUST set the value of the parameter to the source
+                port of the request.
             */
             if(msg->firstVia->rport == 0) {
                 /* As the response message has been built from the request ...then it's first via is the same as
-                	the request's first via.
+                    the request's first via.
                 */
                 msg->firstVia->rport = msg->firstVia->port;
             }
@@ -533,17 +533,17 @@ tsk_size_t tsip_transport_send(const tsip_transport_t* self, const char *branch,
             TSK_DEBUG_INFO("\nSEND: %.*s\n", buffer->size, (const char*)buffer->data);
 
             if(buffer->size >1300) {
-                /*	RFC 3261 - 18.1.1 Sending Requests (FIXME)
-                	If a request is within 200 bytes of the path MTU, or if it is larger
-                	than 1300 bytes and the path MTU is unknown, the request MUST be sent
-                	using an RFC 2914 [43] congestion controlled transport protocol, such
-                	as TCP. If this causes a change in the transport protocol from the
-                	one indicated in the top Via, the value in the top Via MUST be
-                	changed.  This prevents fragmentation of messages over UDP and
-                	provides congestion control for larger messages.  However,
-                	implementations MUST be able to handle messages up to the maximum
-                	datagram packet size.  For UDP, this size is 65,535 bytes, including
-                	IP and UDP headers.
+                /*  RFC 3261 - 18.1.1 Sending Requests (FIXME)
+                    If a request is within 200 bytes of the path MTU, or if it is larger
+                    than 1300 bytes and the path MTU is unknown, the request MUST be sent
+                    using an RFC 2914 [43] congestion controlled transport protocol, such
+                    as TCP. If this causes a change in the transport protocol from the
+                    one indicated in the top Via, the value in the top Via MUST be
+                    changed.  This prevents fragmentation of messages over UDP and
+                    provides congestion control for larger messages.  However,
+                    implementations MUST be able to handle messages up to the maximum
+                    datagram packet size.  For UDP, this size is 65,535 bytes, including
+                    IP and UDP headers.
                 */
             }
 
@@ -922,7 +922,7 @@ int tsip_transport_init(tsip_transport_t* self, tnet_socket_type_t type, const s
 
     self->stack = stack;
     self->net_transport = tnet_transport_create(host, port, type, description);
-	self->type = tnet_transport_get_type(self->net_transport); // Type could be "ipv46" or any fancy protocol. Update it using the transport master
+    self->type = tnet_transport_get_type(self->net_transport); // Type could be "ipv46" or any fancy protocol. Update it using the transport master
 
     self->scheme = "sip";
 
@@ -992,7 +992,7 @@ int tsip_transport_deinit(tsip_transport_t* self)
 
 
 //========================================================
-//	SIP transport object definition
+//  SIP transport object definition
 //
 static tsk_object_t* tsip_transport_ctor(tsk_object_t * self, va_list * app)
 {
@@ -1049,7 +1049,7 @@ const tsk_object_def_t *tsip_transport_def_t = &tsip_transport_def_s;
 
 
 //========================================================
-//	SIP transport stream peer object definition
+//  SIP transport stream peer object definition
 //
 static tsk_object_t* tsip_transport_stream_peer_ctor(tsk_object_t * self, va_list * app)
 {

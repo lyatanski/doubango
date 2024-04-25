@@ -61,7 +61,7 @@ void tcomp_reqfeed_reset(tcomp_reqfeed_t* feedback)
 
 
 //========================================================
-//	Requested feedback object definition
+//  Requested feedback object definition
 //
 static void* tcomp_reqfeed_ctor(void * self, va_list * app)
 {

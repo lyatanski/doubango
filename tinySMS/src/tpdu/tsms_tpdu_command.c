@@ -32,9 +32,9 @@
 #include "tsk_debug.h"
 
 #define TSMS_ERROR_TOO_SHORT()\
-	TSK_DEBUG_ERROR("SMS-COMMAND == Data too short.");\
-	failed = tsk_true;\
-	goto bail;
+    TSK_DEBUG_ERROR("SMS-COMMAND == Data too short.");\
+    failed = tsk_true;\
+    goto bail;
 
 /** internal function used to deserialse a SMS-COMMAND message from binary content. */
 tsms_tpdu_message_t* _tsms_tpdu_command_deserialize(const void* data, tsk_size_t size)
@@ -61,13 +61,13 @@ tsms_tpdu_message_t* _tsms_tpdu_command_deserialize(const void* data, tsk_size_t
 #endif
 
     /* SMS-COMMAND first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Request(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Request(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI|SRR |	|	 |    | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI|SRR |    |    |    | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     TSMS_TPDU_MESSAGE(self)->mti = (*pdata & 0x03);
     self->srr = (*pdata & 0x20)>>5,
@@ -116,12 +116,12 @@ tsms_tpdu_message_t* _tsms_tpdu_command_deserialize(const void* data, tsk_size_t
         }
     }
 
-    /* 3GPP TS 23.040 ==> 9.2.3.20	TP Command Data Length (TP CDL)
+    /* 3GPP TS 23.040 ==> 9.2.3.20  TP Command Data Length (TP CDL)
     * 1o */
     TSMS_TPDU_MESSAGE(self)->udl = *pdata;
     pdata++;
 
-    /* 3GPP TS 23.040 ==> 9.2.3.21	TP Command Data (TP CD) */
+    /* 3GPP TS 23.040 ==> 9.2.3.21  TP Command Data (TP CD) */
     if((pend-pdata) > 0) {
         TSMS_TPDU_MESSAGE(self)->ud = tsk_buffer_create(pdata, (pend-pdata));
     }
@@ -148,13 +148,13 @@ int _tsms_tpdu_command_serialize(const tsms_tpdu_command_t* self, tsk_buffer_t* 
 #endif
 
     /* SMS-COMMAND first Octect:
-    	- TP-Message-Type-Indicator(2b)
-    	- TP-User-Data-Header-Indicator(1b)
-    	- TP-Status-Report-Request(1b)
+        - TP-Message-Type-Indicator(2b)
+        - TP-User-Data-Header-Indicator(1b)
+        - TP-Status-Report-Request(1b)
 
-    	+----+----+----+----+----+----+----+----+
-    	|    |UDHI|SRR |	|	 |    | MTI	    |
-    	+----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+
+        |    |UDHI|SRR |    |    |    | MTI     |
+        +----+----+----+----+----+----+----+----+
     */
     _1byte = (TSMS_TPDU_MESSAGE(self)->mti & 0xF3); /*2b*/
     _1byte |=
@@ -179,10 +179,10 @@ int _tsms_tpdu_command_serialize(const tsms_tpdu_command_t* self, tsk_buffer_t* 
     /* 3GPP TS 23.040 ==> 9.2.3.8 TP-Destination-Address (TP-DA) */
     tsms_address_serialize(self->da, output);
 
-    /* 3GPP TS 23.040 ==> 9.2.3.20	TP Command Data Length (TP CDL) */
+    /* 3GPP TS 23.040 ==> 9.2.3.20  TP Command Data Length (TP CDL) */
     tsk_buffer_append(output, &TSMS_TPDU_MESSAGE(self)->udl, 1); /*1o*/
 
-    /* 3GPP TS 23.040 ==> 9.2.3.21	TP Command Data (TP CD) */
+    /* 3GPP TS 23.040 ==> 9.2.3.21  TP Command Data (TP CD) */
     tsk_buffer_append(output, TSK_BUFFER_DATA(TSMS_TPDU_MESSAGE(self)->ud), TSK_BUFFER_SIZE(TSMS_TPDU_MESSAGE(self)->ud));
 
     return 0;
@@ -209,7 +209,7 @@ tsms_tpdu_command_t* tsms_tpdu_command_create(uint8_t mr, const tsms_address_str
 
 
 //=================================================================================================
-//	SMS TPDU SMS-COMMAND object definition
+//  SMS TPDU SMS-COMMAND object definition
 //
 static tsk_object_t* tsms_tpdu_command_ctor(tsk_object_t * self, va_list * app)
 {

@@ -30,41 +30,41 @@
 /* Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 */
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TROHC_UNDER_WINDOWS	1
+#   define TROHC_UNDER_WINDOWS  1
 #endif
 
 #if !defined(__GNUC__) && defined(TINYROHC_EXPORTS)
-# 	define TINYROHC_API		__declspec(dllexport)
-# 	define TINYROHC_GEXTERN	__declspec(dllexport)
+#   define TINYROHC_API     __declspec(dllexport)
+#   define TINYROHC_GEXTERN __declspec(dllexport)
 #elif !defined(__GNUC__) /*&& defined(TINYROHC_IMPORTS)*/
-# 	define TINYROHC_API		__declspec(dllimport)
-# 	define TINYROHC_GEXTERN	__declspec(dllimport)
+#   define TINYROHC_API     __declspec(dllimport)
+#   define TINYROHC_GEXTERN __declspec(dllimport)
 #else
-#	define TINYROHC_API
-#	define TINYROHC_GEXTERN	extern
+#   define TINYROHC_API
+#   define TINYROHC_GEXTERN extern
 #endif
 
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TROHC_BEGIN_DECLS extern "C" {
-#	define TROHC_END_DECLS }
+#   define TROHC_BEGIN_DECLS extern "C" {
+#   define TROHC_END_DECLS }
 #else
-#	define TROHC_BEGIN_DECLS
-#	define TROHC_END_DECLS
+#   define TROHC_BEGIN_DECLS
+#   define TROHC_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

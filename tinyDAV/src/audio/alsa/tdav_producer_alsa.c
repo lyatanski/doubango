@@ -198,7 +198,7 @@ static int tdav_producer_alsa_stop(tmedia_producer_t* self)
 
 
 //
-//	ALSA producer object definition
+//  ALSA producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_alsa_ctor(tsk_object_t * self, va_list * app)

@@ -65,7 +65,7 @@ typedef struct tdav_converter_video_libyuv_s {
 tdav_converter_video_libyuv_t;
 
 #define TDAV_CONVERTER_VIDEO_LIBYUV(self) ((tdav_converter_video_libyuv_t*)(self))
-#define LIBYUV_INPUT_BUFFER_PADDING_SIZE	32
+#define LIBYUV_INPUT_BUFFER_PADDING_SIZE    32
 
 static inline tsk_bool_t _tdav_converter_video_libyuv_is_chroma_varsize(tmedia_chroma_t chroma)
 {
@@ -105,8 +105,8 @@ static inline enum FourCC _tdav_converter_video_libyuv_get_pixfmt(tmedia_chroma_
 {
     switch (chroma) {
     case tmedia_chroma_rgb24:
-        case tmedia_chroma_bgr24:
-                return FOURCC_24BG;
+            case tmedia_chroma_bgr24:
+                    return FOURCC_24BG;
     case tmedia_chroma_rgb565le:
         return FOURCC_RGBP;
     case tmedia_chroma_rgb32:
@@ -156,14 +156,14 @@ static int tdav_converter_video_libyuv_init(tmedia_converter_video_t* self, tsk_
 static tsk_size_t tdav_converter_video_libyuv_process(tmedia_converter_video_t* _self, const void* buffer, tsk_size_t buffer_size, void** output, tsk_size_t* output_max_size)
 {
 #define RESIZE_BUFFER(buff, curr_size, new_size) \
-		if((int)(curr_size) < (new_size)){ \
-			if(!((buff) = (uint8*)tsk_realloc((buff), (new_size)))){ \
-				(curr_size) = 0; \
-				TSK_DEBUG_ERROR("Failed to allocate buffer"); \
-				return 0; \
-						} \
-			(curr_size) = (new_size); \
-				}
+        if((int)(curr_size) < (new_size)){ \
+            if(!((buff) = (uint8*)tsk_realloc((buff), (new_size)))){ \
+                (curr_size) = 0; \
+                TSK_DEBUG_ERROR("Failed to allocate buffer"); \
+                return 0; \
+                        } \
+            (curr_size) = (new_size); \
+                }
     static const int crop_x = 0;
     static const int crop_y = 0;
 
@@ -505,8 +505,8 @@ const tmedia_converter_video_plugin_def_t *tdav_converter_video_libyuv_plugin_de
 #if HAVE_FFMPEG || HAVE_SWSSCALE
 
 #ifndef INT64_C
-#	define INT64_C(c) (c ## LL)
-#	define UINT64_C(c) (c ## ULL)
+#   define INT64_C(c) (c ## LL)
+#   define UINT64_C(c) (c ## ULL)
 #endif
 
 #ifdef __cplusplus
@@ -538,18 +538,18 @@ typedef struct tdav_converter_video_ffmpeg_s {
 }
 tdav_converter_video_ffmpeg_t;
 
-#define TDAV_CONVERTER_VIDEO_FFMPEG(self)	((tdav_converter_video_ffmpeg_t*)(self))
+#define TDAV_CONVERTER_VIDEO_FFMPEG(self)   ((tdav_converter_video_ffmpeg_t*)(self))
 
 // use macro for performance reasons keep (called (15x3) times per seconds)
 #define _tdav_converter_video_ffmpeg_rotate90(srcw, srch, srcdata, dstdata) \
 { \
-	register int i,j; \
-	register int newx = 0; \
-	for (i = 0; i < (int)(srcw); i ++ ){ \
-		for( j = (int)srch-1; j >=0; j -- ){ \
-			(dstdata)[newx++] = (srcdata)[j * (srcw) + i]; \
-				} \
-		} \
+    register int i,j; \
+    register int newx = 0; \
+    for (i = 0; i < (int)(srcw); i ++ ){ \
+        for( j = (int)srch-1; j >=0; j -- ){ \
+            (dstdata)[newx++] = (srcdata)[j * (srcw) + i]; \
+                } \
+        } \
 }
 
 #define _tdav_converter_video_ffmpeg_flip(frame, height) \
@@ -566,7 +566,7 @@ static inline enum PixelFormat _tdav_converter_video_ffmpeg_get_pixfmt(tmedia_ch
 {
     switch(chroma) {
     case tmedia_chroma_rgb24:
-            return PIX_FMT_RGB24;
+                return PIX_FMT_RGB24;
     case tmedia_chroma_bgr24:
         return PIX_FMT_BGR24;
     case tmedia_chroma_rgb32:
@@ -770,7 +770,7 @@ static tsk_size_t tdav_converter_video_ffmpeg_process(tmedia_converter_video_t* 
 
 
 //=================================================================================================
-//	Video Converter object definition
+//  Video Converter object definition
 //
 static tsk_object_t* tdav_converter_video_ffmpeg_ctor(tsk_object_t * self, va_list * app)
 {

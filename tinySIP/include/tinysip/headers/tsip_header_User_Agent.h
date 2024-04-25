@@ -35,14 +35,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_USER_AGENT_VA_ARGS(ua)		tsip_header_User_Agent_def_t, (const char*)ua
+#define TSIP_HEADER_USER_AGENT_VA_ARGS(ua)      tsip_header_User_Agent_def_t, (const char*)ua
 
-#define TSIP_HEADER_USER_AGENT_DEFAULT			"IM-client/OMA1.0 doubango/v1.0.0"
+#define TSIP_HEADER_USER_AGENT_DEFAULT          "IM-client/OMA1.0 doubango/v1.0.0"
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'User-Agent'.
+/// @brief  SIP header 'User-Agent'.
 ///
-/// @par ABNF : User-Agent	= 	"User-Agent" HCOLON server-val *(LWS server-val)
+/// @par ABNF : User-Agent  =   "User-Agent" HCOLON server-val *(LWS server-val)
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_User_Agent_s {

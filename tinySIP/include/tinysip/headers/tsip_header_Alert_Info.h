@@ -37,7 +37,7 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Alert-Info' as per RFC 3261 subclause .
+/// @brief  SIP header 'Alert-Info' as per RFC 3261 subclause .
 ///
 /// @par ABNF
 ///

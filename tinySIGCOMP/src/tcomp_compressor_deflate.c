@@ -38,16 +38,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	Compress SIgComp message using deflate algorithm.
+/// @brief  Compress SIgComp message using deflate algorithm.
 ///
-/// @param [in,out]	lpCompartment	If non-null, the pointer to a compartment.
-/// @param [in,out]	input_ptr		If non-null, the input pointer.
-/// @param	input_size				Size of the input.
-/// @param [in,out]	output_ptr		If non-null, the output pointer.
-/// @param [in,out]	output_size		If non-null, size of the output.
-/// @param	stream					The stream.
+/// @param [in,out] lpCompartment   If non-null, the pointer to a compartment.
+/// @param [in,out] input_ptr       If non-null, the input pointer.
+/// @param  input_size              Size of the input.
+/// @param [in,out] output_ptr      If non-null, the output pointer.
+/// @param [in,out] output_size     If non-null, size of the output.
+/// @param  stream                  The stream.
 ///
-/// @return	.
+/// @return .
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment, const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size, tsk_bool_t stream)
@@ -89,7 +89,7 @@ tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment,
     }
 
     /*
-    *	Init zLIB
+    *   Init zLIB
     */
     windowBits = ( smsCode - (stream ? 2 : 1) ) + 10;
     windowBits = TSK_CLAMP(8, windowBits, 15); /* Because of zlib limitation (windowsize MUST be between 8 and 15) */
@@ -113,7 +113,7 @@ tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment,
     stateful &= !!deflatedata->ghostState;
 
     /*
-    *	SigComp headers
+    *   SigComp headers
     */
     header = GET_OUTPUT_BUFFER_AT(pointer++);
 
@@ -150,7 +150,7 @@ tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment,
         *GET_OUTPUT_BUFFER_AT(pointer++) |= DEFLATE_BYTECODE_DESTINATION_CODE;
 
         /*
-        *	Upload UDVM bytecode
+        *   Upload UDVM bytecode
         */
         memcpy(GET_OUTPUT_BUFFER_AT(pointer), (const uint8_t*)DEFLATEDATA_DEFLATE_BYTECODE, codeLen);
         pointer += codeLen;
@@ -167,13 +167,13 @@ tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment,
         *GET_OUTPUT_BUFFER_AT(pointer++) = (tcomp_params_getParameters(lpCompartment->local_parameters)>>8); // [cpb||dms||sms]
         *GET_OUTPUT_BUFFER_AT(pointer++) = (tcomp_params_getParameters(lpCompartment->local_parameters)&0x00ff); // [Sigcomp_version]
 #if USE_DICTS_FOR_COMPRESSION
-        *output_buffer.getBuffer(pointer++) = 0x00; // First dict byte	// FIXME
+        *output_buffer.getBuffer(pointer++) = 0x00; // First dict byte  // FIXME
         *output_buffer.getBuffer(pointer++) = DEFLATE_FIXME_DICT; // FIXME: also change ghost
 #endif
     }
 
     /*
-    *	Compress data using ZLIB
+    *   Compress data using ZLIB
     */
     compressedDataLen = (*output_size - pointer);
     zret = tcomp_deflatedata_zCompress(deflatedata, input_ptr, input_size, GET_OUTPUT_BUFFER_AT(pointer), &compressedDataLen, &stateChanged);
@@ -197,7 +197,7 @@ tsk_bool_t tcomp_compressor_deflate_compress(tcomp_compartment_t *lpCompartment,
         *GET_OUTPUT_BUFFER_AT(state_len_index+2) = (state_len >> 8);
         *GET_OUTPUT_BUFFER_AT(state_len_index+3) = (state_len & 0x00ff);
 
-        /*	First time or synchronize failure (NACK reason=STATE_NOT_FOUND) */
+        /*  First time or synchronize failure (NACK reason=STATE_NOT_FOUND) */
         if(!deflatedata->ghostState) {
             tcomp_deflatedata_createGhost(deflatedata, state_len, lpCompartment->local_parameters);
         }

@@ -29,9 +29,9 @@
 
 using namespace std;
 
-#define USE_OVERLAY				0
-#define OVERLAY_TIMEOUT			3
-#define WM_GRAPHNOTIFY			WM_APP + 1
+#define USE_OVERLAY             0
+#define OVERLAY_TIMEOUT         3
+#define WM_GRAPHNOTIFY          WM_APP + 1
 
 #define FSCREEN_MIN_IDEAL_WIDTH 352
 #define FSCREEN_MIN_IDEAL_HEIGHT 288
@@ -226,7 +226,7 @@ void DSDisplay::setSize(int w, int h)
             SetRect(&rc, 0, 0, w, h);
             this->graph->getWindowlessControl()->SetVideoPosition(&rc, &rc);
 #else
-            this->graph->getVideoWindow()->SetWindowPosition(0, 0, this->width , this->height);
+            this->graph->getVideoWindow()->SetWindowPosition(0, 0, this->width, this->height);
 #endif
 #endif
         }
@@ -335,7 +335,7 @@ void DSDisplay::handleVideoFrame(const void* data, int w, int h)
             this->imgWidth = w;
             this->imgHeight = h;
             if(this->window) {
-                SendMessage(this->window, WM_SIZE, SIZE_RESTORED, MAKELPARAM(this->width , this->height));
+                SendMessage(this->window, WM_SIZE, SIZE_RESTORED, MAKELPARAM(this->width, this->height));
             }
         }
 #if USE_OVERLAY
@@ -357,7 +357,7 @@ LRESULT DSDisplay::handleEvents(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 #if defined(VMR9_WINDOWLESS)
         this->graph->getWindowlessControl()->SetVideoPosition(&rect, &rect);
 #else
-        this->graph->getVideoWindow()->SetWindowPosition(this->left, this->top, this->width , this->height);
+        this->graph->getVideoWindow()->SetWindowPosition(this->left, this->top, this->width, this->height);
 #endif
     }
     break;
@@ -560,7 +560,7 @@ void DSDisplay::unhook()
 
 
 //=================================================================================================
-//	String object definition
+//  String object definition
 //
 static tsk_object_t* tdshow_display_ctor(tsk_object_t * self, va_list * app)
 {
@@ -586,7 +586,7 @@ static tsk_object_t* tdshow_display_dtor(tsk_object_t * self)
         if(__directshow__Displays) {
             tsk_list_remove_item_by_data(__directshow__Displays, display);
             //if(TSK_LIST_IS_EMPTY(__directshow__Displays)){
-            //	TSK_OBJECT_SAFE_FREE(__directshow__Displays);
+            //  TSK_OBJECT_SAFE_FREE(__directshow__Displays);
             //}
         }
     }

@@ -39,10 +39,10 @@ static tsk_bool_t parse_payload(tmsrp_message_t* msrp_msg, const char* tag_start
 static void set_payload(tmsrp_message_t* msrp_msg, const void* ptr, tsk_size_t len);
 
 #define TMSRP_MSG_PARSER_ADD_HEADER(name) \
-	if((header = (tmsrp_header_t*)tmsrp_header_##name##_parse(tag_start, (p - tag_start)))){ \
-		tmsrp_message_add_header(msrp_msg, header); \
-		header = tsk_object_unref(header); \
-	}
+    if((header = (tmsrp_header_t*)tmsrp_header_##name##_parse(tag_start, (p - tag_start)))){ \
+        tmsrp_message_add_header(msrp_msg, header); \
+        header = tsk_object_unref(header); \
+    }
 
 /* #line 262 "./ragel/tmsrp_parser_message.rl" */
 
@@ -3757,7 +3757,7 @@ _match:
                 into_endline = tsk_true;
             }
             break;
-            /* #line 3747 "./src/parsers/tmsrp_parser_message.c" */
+                /* #line 3747 "./src/parsers/tmsrp_parser_message.c" */
             }
         }
 

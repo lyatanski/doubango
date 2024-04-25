@@ -39,32 +39,32 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Contact'.
+/// @brief  SIP header 'Contact'.
 ///
-/// @par ABNF: Contact	= 	( "Contact" / "m" ) HCOLON ( STAR / (contact-param *(COMMA contact-param)))
-/// contact-param	= 	(name-addr / addr-spec) *( SEMI contact-params)
-/// contact-params	= 	c-p-q / c-p-expires / feature-param / temp-gruu / pub-gruu / c-p-instance / contact-extension
-/// c-p-q	= 	"q" EQUAL qvalue
-/// c-p-expires	= 	"expires" EQUAL delta-seconds
-/// feature-param	= 	enc-feature-tag [ EQUAL   LDQUOT   (tag-value-list   /   string-value)   RDQUOT ]
-/// enc-feature-tag	= 	base-tags / other-tags
-/// base-tags	= 	"audio" / "automata" / "class" / "duplex" / "data" / "control" / "mobility" / "description" / "events" / "priority" / "methods" / "schemes" / "application" / "video" / "language" / "type" / "isfocus" / "actor" / "text" / "extensions"
-/// other-tags	= 	"+"   ftag-name
-/// ftag-name	= 	ALPHA *( ALPHA / DIGIT / "!" / "'" / "." / "-" / "%" )
-/// tag-value-list	= 	tag-value *("," tag-value)
-/// tag-value	= 	["!"] (token-nobang / boolean / numeric)
-/// token-nobang	= 	1*( alphanum / "-" / "." / "%" / "*" / "_" / "+" / "`" / "'" / "~" )
-/// boolean	= 	"TRUE" / "FALSE"
-/// numeric	= 	"#" numeric-relation number
-/// numeric-relation	= 	">=" / "<=" / "=" / (number ":")
-/// number	= 	[ "+" / "-" ] 1*DIGIT ["." 0*DIGIT]
-/// string-value	= 	"<" *(qdtext-no-abkt / quoted-pair ) ">"
-/// qdtext-no-abkt	= 	LWS / %x21 / %x23-3B / %x3D / %x3F-5B / %x5D-7E / UTF8-NONASCII
-/// temp-gruu	= 	"temp-gruu" EQUAL LDQUOT *( qdtext / quoted-pair ) RDQUOT
-/// pub-gruu	= 	"pub-gruu" EQUAL LDQUOT *( qdtext / quoted-pair ) RDQUOT
-/// c-p-instance	= 	"+sip.instance" EQUAL LDQUOT "<" instance-val ">" RDQUOT
-/// instance-val	= 	*uric
-/// contact-extension	= 	generic-param
+/// @par ABNF: Contact  =   ( "Contact" / "m" ) HCOLON ( STAR / (contact-param *(COMMA contact-param)))
+/// contact-param   =   (name-addr / addr-spec) *( SEMI contact-params)
+/// contact-params  =   c-p-q / c-p-expires / feature-param / temp-gruu / pub-gruu / c-p-instance / contact-extension
+/// c-p-q   =   "q" EQUAL qvalue
+/// c-p-expires =   "expires" EQUAL delta-seconds
+/// feature-param   =   enc-feature-tag [ EQUAL   LDQUOT   (tag-value-list   /   string-value)   RDQUOT ]
+/// enc-feature-tag =   base-tags / other-tags
+/// base-tags   =   "audio" / "automata" / "class" / "duplex" / "data" / "control" / "mobility" / "description" / "events" / "priority" / "methods" / "schemes" / "application" / "video" / "language" / "type" / "isfocus" / "actor" / "text" / "extensions"
+/// other-tags  =   "+"   ftag-name
+/// ftag-name   =   ALPHA *( ALPHA / DIGIT / "!" / "'" / "." / "-" / "%" )
+/// tag-value-list  =   tag-value *("," tag-value)
+/// tag-value   =   ["!"] (token-nobang / boolean / numeric)
+/// token-nobang    =   1*( alphanum / "-" / "." / "%" / "*" / "_" / "+" / "`" / "'" / "~" )
+/// boolean =   "TRUE" / "FALSE"
+/// numeric =   "#" numeric-relation number
+/// numeric-relation    =   ">=" / "<=" / "=" / (number ":")
+/// number  =   [ "+" / "-" ] 1*DIGIT ["." 0*DIGIT]
+/// string-value    =   "<" *(qdtext-no-abkt / quoted-pair ) ">"
+/// qdtext-no-abkt  =   LWS / %x21 / %x23-3B / %x3D / %x3F-5B / %x5D-7E / UTF8-NONASCII
+/// temp-gruu   =   "temp-gruu" EQUAL LDQUOT *( qdtext / quoted-pair ) RDQUOT
+/// pub-gruu    =   "pub-gruu" EQUAL LDQUOT *( qdtext / quoted-pair ) RDQUOT
+/// c-p-instance    =   "+sip.instance" EQUAL LDQUOT "<" instance-val ">" RDQUOT
+/// instance-val    =   *uric
+/// contact-extension   =   generic-param
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Contact_s {

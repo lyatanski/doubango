@@ -38,16 +38,16 @@
 #include "tsk_debug.h"
 
 #if !defined(TDAV_OPUS_MAX_FRAME_SIZE_IN_SAMPLES)
-#	define TDAV_OPUS_MAX_FRAME_SIZE_IN_SAMPLES (5760) /* 120ms@48kHz */
+#   define TDAV_OPUS_MAX_FRAME_SIZE_IN_SAMPLES (5760) /* 120ms@48kHz */
 #endif
 #if !defined(TDAV_OPUS_MAX_FRAME_SIZE_IN_BYTES)
-#	define TDAV_OPUS_MAX_FRAME_SIZE_IN_BYTES (TDAV_OPUS_MAX_FRAME_SIZE_IN_SAMPLES << 1) /* 120ms@48kHz */
+#   define TDAV_OPUS_MAX_FRAME_SIZE_IN_BYTES (TDAV_OPUS_MAX_FRAME_SIZE_IN_SAMPLES << 1) /* 120ms@48kHz */
 #endif
 #if !defined(TDAV_OPUS_FEC_ENABLED)
-#	define TDAV_OPUS_FEC_ENABLED	0
+#   define TDAV_OPUS_FEC_ENABLED    0
 #endif
 #if !defined(TDAV_OPUS_DTX_ENABLED)
-#	define TDAV_OPUS_DTX_ENABLED	0
+#   define TDAV_OPUS_DTX_ENABLED    0
 #endif
 
 typedef struct tdav_codec_opus_s {
@@ -284,7 +284,7 @@ static char* tdav_codec_opus_sdp_att_get(const tmedia_codec_t* codec, const char
 }
 
 //
-//	OPUS Plugin definition
+//  OPUS Plugin definition
 //
 
 /* constructor */

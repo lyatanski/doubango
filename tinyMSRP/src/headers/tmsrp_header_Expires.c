@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 55 "./ragel/tmsrp_parser_header_Expires.rl" */
@@ -241,7 +241,7 @@ _match:
                 TSK_PARSER_SET_INTEGER_EX(hdr_Expires->value, int64_t, atoi64)
             }
             break;
-            /* #line 238 "./src/headers/tmsrp_header_Expires.c" */
+                /* #line 238 "./src/headers/tmsrp_header_Expires.c" */
             }
         }
 
@@ -265,7 +265,7 @@ _test_eof: {
                     TSK_PARSER_SET_INTEGER_EX(hdr_Expires->value, int64_t, atoi64)
                 }
                 break;
-                /* #line 260 "./src/headers/tmsrp_header_Expires.c" */
+                    /* #line 260 "./src/headers/tmsrp_header_Expires.c" */
                 }
             }
         }
@@ -296,7 +296,7 @@ _out: {
 
 
 //========================================================
-//	Expires header object definition
+//  Expires header object definition
 //
 
 static tsk_object_t* tmsrp_header_Expires_ctor(tsk_object_t *self, va_list * app)

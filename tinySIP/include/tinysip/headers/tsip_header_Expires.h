@@ -35,16 +35,16 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_EXPIRES_VA_ARGS(delta_seconds)		tsip_header_Expires_def_t, (int64_t)delta_seconds
+#define TSIP_HEADER_EXPIRES_VA_ARGS(delta_seconds)      tsip_header_Expires_def_t, (int64_t)delta_seconds
 
-#define TSIP_HEADER_EXPIRES_NONE						-1
-#define TSIP_HEADER_EXPIRES_DEFAULT						600000
+#define TSIP_HEADER_EXPIRES_NONE                        -1
+#define TSIP_HEADER_EXPIRES_DEFAULT                     600000
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Expires'.
+/// @brief  SIP header 'Expires'.
 ///
-/// @par ABNF: Expires	= 	"Expires" HCOLON delta-seconds
+/// @par ABNF: Expires  =   "Expires" HCOLON delta-seconds
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Expires_s {

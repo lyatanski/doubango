@@ -36,8 +36,8 @@
 #include <assert.h>
 #include <string.h>
 
-#define TCOMP_MAX_STREAM_BUFFER_SIZE		65535
-#define TCOMP_NACK_SUPPORTED(dispatcher)	(dispatcher->stateHandler->sigcomp_parameters->SigComp_version >= 0x02)
+#define TCOMP_MAX_STREAM_BUFFER_SIZE        65535
+#define TCOMP_NACK_SUPPORTED(dispatcher)    (dispatcher->stateHandler->sigcomp_parameters->SigComp_version >= 0x02)
 
 
 /**Prefdicate function
@@ -336,7 +336,7 @@ tsk_bool_t tcomp_decompressordisp_getNextStreamMsg(tcomp_decompressordisp_t *dis
 
 
 //========================================================
-//	SigComp decompressor dispatcher object definition
+//  SigComp decompressor dispatcher object definition
 //
 static tsk_object_t* tcomp_decompressordisp_ctor(tsk_object_t* self, va_list * app)
 {
@@ -382,7 +382,7 @@ const tsk_object_def_t *tcomp_decompressordisp_def_t = &tcomp_decompressordisp_d
 
 
 //========================================================
-//	SigComp stream buffer object definition
+//  SigComp stream buffer object definition
 //
 
 static tsk_object_t* tcomp_stream_buffer_ctor(tsk_object_t* self, va_list * app)

@@ -127,7 +127,7 @@ tsip_header_Authorization_t *tsip_header_Authorization_parse(const char *data, t
 
 
 //========================================================
-//	Authorization header object definition
+//  Authorization header object definition
 //
 
 /**@ingroup tsip_header_Authorization_group

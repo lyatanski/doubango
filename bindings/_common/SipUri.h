@@ -45,7 +45,8 @@ public:
     const char* getParamValue(const char* pname);
     void setDisplayName(const char* displayName);
 #if !defined(SWIG)
-    inline const tsip_uri_t* getWrappedUri()const {
+    inline const tsip_uri_t* getWrappedUri()const
+    {
         return m_pUri;
     }
 #endif

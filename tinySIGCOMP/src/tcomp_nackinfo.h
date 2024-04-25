@@ -68,7 +68,7 @@ struct tcomp_message_s;
 typedef struct tcomp_nackinfo_s {
     TSK_DECLARE_OBJECT;
 
-    uint8_t version; 	/**< Gives the version of the NACK mechanism being employed. */
+    uint8_t version;    /**< Gives the version of the NACK mechanism being employed. */
     uint8_t reasonCode; /**< The Reason Code is a one-byte value that indicates the nature of the decompression failure. */
     uint8_t opcode; /**< The "OPCODE of failed instruction" is a one-byte field that includes the opcode to which the PC was pointing when the failure occurred */
     uint32_t pc; /**< "PC of failed instruction" is a two-byte field containing the value of the program counter when failure occurred (i.e., the memory address of the failed UDVM instruction) */

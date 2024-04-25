@@ -38,7 +38,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 66 "./ragel/tsip_parser_header_Allow.rl" */
@@ -276,7 +276,7 @@ _match:
             {
             }
             break;
-            /* #line 271 "./src/headers/tsip_header_Allow.c" */
+                /* #line 271 "./src/headers/tsip_header_Allow.c" */
             }
         }
 
@@ -333,7 +333,7 @@ tsk_bool_t tsip_header_Allow_allows(const tsip_header_Allow_t* self, const char*
 
 
 //========================================================
-//	Allow header object definition
+//  Allow header object definition
 //
 
 static tsk_object_t* tsip_header_Allow_ctor(tsk_object_t *self, va_list * app)
@@ -343,7 +343,7 @@ static tsk_object_t* tsip_header_Allow_ctor(tsk_object_t *self, va_list * app)
         /*const char* methods = va_arg(*app, const char *);
         if(methods && !tsk_strempty(methods))
         {
-        	Allow->methods = tsip_header_Allow_parse(methods, tsk_strlen(methods));
+            Allow->methods = tsip_header_Allow_parse(methods, tsk_strlen(methods));
         }*/
         TSIP_HEADER(Allow)->type = tsip_htype_Allow;
         TSIP_HEADER(Allow)->serialize = tsip_header_Allow_serialize;

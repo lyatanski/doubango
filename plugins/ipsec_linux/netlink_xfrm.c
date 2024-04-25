@@ -28,7 +28,7 @@
 #include "netlink_xfrm.h"
 #include "tsk_debug.h"
 
-#define XFRM_USER_ID	0x240299 /* some random number; let's use TS 24.299 */
+#define XFRM_USER_ID    0x240299 /* some random number; let's use TS 24.299 */
 
 struct mnl_socket *xfrm_init_mnl_socket(void)
 {

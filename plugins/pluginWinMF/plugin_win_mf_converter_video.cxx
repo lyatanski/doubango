@@ -20,14 +20,14 @@
 Video Processor MFT (http://msdn.microsoft.com/en-us/library/windows/desktop/hh162913(v=vs.85).aspx)
 * The video processor supports GPU-accelerated video processing.
 * The video processor MFT is a Microsoft Media Foundation transform (MFT) that performs :
-	- colorspace conversion
-	- video resizing
-	- deinterlacing
-	- frame rate conversion
-	- rotation
-	- cropping
-	- spatial left and right view unpacking
-	- and mirroring
+    - colorspace conversion
+    - video resizing
+    - deinterlacing
+    - frame rate conversion
+    - rotation
+    - cropping
+    - spatial left and right view unpacking
+    - and mirroring
 */
 #include "plugin_win_mf_config.h"
 #include "internals/mf_utils.h"
@@ -59,17 +59,17 @@ DEFINE_GUID(MF_SA_D3D11_AWARE,
 #endif /* MF_SA_D3D11_AWARE */
 
 #if !defined(HAVE_IMFVideoProcessorControl)
-#	if defined(__IMFVideoProcessorControl_INTERFACE_DEFINED__)
-#		define HAVE_IMFVideoProcessorControl 1
-#	else
-#		define HAVE_IMFVideoProcessorControl 0
-#	endif
+#   if defined(__IMFVideoProcessorControl_INTERFACE_DEFINED__)
+#       define HAVE_IMFVideoProcessorControl 1
+#   else
+#       define HAVE_IMFVideoProcessorControl 0
+#   endif
 #endif /* HAVE_IMFVideoProcessorControl */
 #if !defined(E_BOUNDS)
-#	define E_BOUNDS _HRESULT_TYPEDEF_(0x8000000BL)
+#   define E_BOUNDS _HRESULT_TYPEDEF_(0x8000000BL)
 #endif /* E_BOUNDS */
 #if !defined(PLUGIN_MF_VC_FPS)
-#define PLUGIN_MF_VC_FPS		120 // Samples requires timestamp
+#define PLUGIN_MF_VC_FPS        120 // Samples requires timestamp
 #endif /* PLUGIN_MF_VC_FPS */
 
 typedef struct plugin_win_mf_converter_video_ms_s {
@@ -266,7 +266,7 @@ static tsk_size_t plugin_win_mf_converter_video_ms_process(tmedia_converter_vide
 
             // MFCopyImage() is optimized: MMX, SSE, or SSE2
             switch(_self->dstChroma) {
-                // Don't waste your time guessing which parameter to use: The consumer will always request RGB32. If not used for consumer then, just memcpy()
+            // Don't waste your time guessing which parameter to use: The consumer will always request RGB32. If not used for consumer then, just memcpy()
             case tmedia_chroma_rgb32: {
                 if(pSelf->isVideoProcessor) {
                     hr = _plugin_win_mf_converter_video_ms_copy_rgb32_down_top(

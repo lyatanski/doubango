@@ -46,18 +46,18 @@
 
 TCOMP_BEGIN_DECLS
 
-#define TCOMP_UDVM_SET_2BYTES_VAL(position, value)	TSK_BINARY_SET_2BYTES(tcomp_buffer_getBufferAtPos(udvm->memory, position), value)
-#define TCOMP_UDVM_GET_2BYTES_VAL(position)			TSK_BINARY_GET_2BYTES(tcomp_buffer_getBufferAtPos(udvm->memory, position))
+#define TCOMP_UDVM_SET_2BYTES_VAL(position, value)  TSK_BINARY_SET_2BYTES(tcomp_buffer_getBufferAtPos(udvm->memory, position), value)
+#define TCOMP_UDVM_GET_2BYTES_VAL(position)         TSK_BINARY_GET_2BYTES(tcomp_buffer_getBufferAtPos(udvm->memory, position))
 
 #if defined(DEBUG) || defined(_DEBUG)
-#	define TCOMP_UDVM_DEBUG_PRINT(size)		tcomp_buffer_nprint(udvm->memory, size)
+#   define TCOMP_UDVM_DEBUG_PRINT(size)     tcomp_buffer_nprint(udvm->memory, size)
 #else
-#	define TCOMP_UDVM_DEBUG_PRINT(size)		((void)size)
+#   define TCOMP_UDVM_DEBUG_PRINT(size)     ((void)size)
 #endif
 
-#define TCOMP_UDVM_GET_SIZE()				tcomp_buffer_getSize(udvm->memory)
-#define TCOMP_UDVM_GET_BUFFER()				tcomp_buffer_getBuffer(udvm->memory)
-#define TCOMP_UDVM_GET_BUFFER_AT(position)	tcomp_buffer_getBufferAtPos(udvm->memory, position)
+#define TCOMP_UDVM_GET_SIZE()               tcomp_buffer_getSize(udvm->memory)
+#define TCOMP_UDVM_GET_BUFFER()             tcomp_buffer_getBuffer(udvm->memory)
+#define TCOMP_UDVM_GET_BUFFER_AT(position)  tcomp_buffer_getBufferAtPos(udvm->memory, position)
 
 typedef struct tcomp_udvm_s {
     TSK_DECLARE_OBJECT;
@@ -88,7 +88,7 @@ tcomp_udvm_t* tcomp_udvm_create(tcomp_message_t* _sigCompMessage,tcomp_statehand
 tsk_bool_t tcomp_udvm_decompress(tcomp_udvm_t *udvm);
 
 /*
-*	Operands
+*   Operands
 */
 uint32_t tcomp_udvm_opget_literal_param(tcomp_udvm_t *udvm);
 uint32_t tcomp_udvm_opget_reference_param(tcomp_udvm_t *udvm);

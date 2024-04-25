@@ -31,12 +31,12 @@
 
 // NV12 is the only format supported by all HW encoders and decoders
 #if !defined(kMFCodecUncompressedFormat)
-#	define kMFCodecUncompressedFormat MFVideoFormat_NV12
+#   define kMFCodecUncompressedFormat MFVideoFormat_NV12
 #endif
 
 // Max frames allowed in the queue
 #if !defined(kMFCodecQueuedFramesMax)
-#	define kMFCodecQueuedFramesMax (30 << 1)
+#   define kMFCodecQueuedFramesMax (30 << 1)
 #endif
 
 // Make sure usable on Win7 SDK targeting Win8 OS
@@ -50,7 +50,7 @@ DEFINE_GUID(CODECAPI_AVDecVideoH264ErrorConcealment,
 #endif
 
 //
-//	MFCodec
+//  MFCodec
 //
 
 MFCodec::MFCodec(MFCodecId_t eId, MFCodecType_t eType, IMFTransform *pMFT /*= NULL*/)
@@ -525,7 +525,7 @@ enum tmedia_chroma_e MFCodec::GetUncompressedChroma()
 }
 
 //
-//	MFCodecVideo
+//  MFCodecVideo
 //
 
 MFCodecVideo::MFCodecVideo(MFCodecId_t eId, MFCodecType_t eType, IMFTransform *pMFT /*= NULL*/)
@@ -762,7 +762,7 @@ bail:
 }
 
 //
-//	MFCodecVideo
+//  MFCodecVideo
 //
 MFCodecVideoH264::MFCodecVideoH264(MFCodecId_t eId, MFCodecType_t eType, IMFTransform *pMFT /*= NULL*/)
     : MFCodecVideo(eId, eType, pMFT)

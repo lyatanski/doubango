@@ -40,17 +40,17 @@ typedef void tsk_object_t;
 /**@ingroup tsk_object_group
 * @def TSK_OBJECT_SAFE_FREE
 * Safely free any well-defined object. If the reference count of the object was equal to 1 then this
- * 	object will be freed otherwise the refrence counter will be decremented.
- *	In all case this operation will set the pointer (the object itself) to NULL.<br>
+ *  object will be freed otherwise the refrence counter will be decremented.
+ *  In all case this operation will set the pointer (the object itself) to NULL.<br>
  * <b>Very Important</b>: Mutexes, Semaphores and CondVars are not well-defined objects. You should never use this macro to destroy them.
- * @param	self	The object to free or unref.
+ * @param   self    The object to free or unref.
 **/
-#define TSK_OBJECT_SAFE_FREE(self)		if((self)) tsk_object_unref((self)), (self) = tsk_null
+#define TSK_OBJECT_SAFE_FREE(self)      if((self)) tsk_object_unref((self)), (self) = tsk_null
 
 #define TSK_OBJECT_SAFE_FREE_ARRAY(self, count) { \
-	int __i; \
-	for(__i = 0; __i < (count); ++__i) \
-		TSK_OBJECT_SAFE_FREE((self)[__i]); \
+    int __i; \
+    for(__i = 0; __i < (count); ++__i) \
+        TSK_OBJECT_SAFE_FREE((self)[__i]); \
 }
 #define TSK_OBJECT_SAFE_FREE_TABLE(self) TSK_OBJECT_SAFE_FREE_ARRAY((self), (sizeof((self))/sizeof((self)[0])))
 
@@ -60,10 +60,10 @@ typedef void tsk_object_t;
 * @ref tsk_object_new or @ref tsk_object_new_2 are used to create the object and  @ref tsk_object_unref or @ref tsk_object_delete to destroy it.
 * @code
 * typedef struct person_s{
-*	TSK_DECLARE_OBJECT;
-*	int id;
-*	char* firstName;
-*	char* lastName;
+*   TSK_DECLARE_OBJECT;
+*   int id;
+*   char* firstName;
+*   char* lastName;
 * } person_t;
 * @endcode
 * To create the object:
@@ -77,20 +77,20 @@ typedef void tsk_object_t;
 * @endcode
 */
 #define TSK_DECLARE_OBJECT \
-	const void* __def__;  /**< Opaque data holding a pointer to the actual meta-data(size, constructor, destructor and comparator) */ \
-	volatile long	refCount /**< Reference counter. */
+    const void* __def__;  /**< Opaque data holding a pointer to the actual meta-data(size, constructor, destructor and comparator) */ \
+    volatile long   refCount /**< Reference counter. */
 
 /**@ingroup tsk_object_group
 * Internal macro to get the definition of the object.
 */
-#define TSK_OBJECT_DEF(self)			((const tsk_object_def_t*)self)
+#define TSK_OBJECT_DEF(self)            ((const tsk_object_def_t*)self)
 
 /** Object meta-data (definition) */
 typedef struct tsk_object_header_s {
     TSK_DECLARE_OBJECT;
 }
 tsk_object_header_t;
-#define TSK_OBJECT_HEADER(object)	((tsk_object_header_t*)object)
+#define TSK_OBJECT_HEADER(object)   ((tsk_object_header_t*)object)
 
 /**@ingroup tsk_object_group
 * Meta-data used of define an object.
@@ -101,43 +101,43 @@ tsk_object_header_t;
 * // constructor
 * static void* person_create(tsk_object_t * self, va_list * app)
 * {
-* 	static int unique_id = 0;
-* 	person_t *person = self;
-* 	if(person){
-* 		person->id = ++unique_id;
-* 		person->firstName = tsk_strdup(va_arg(*app, const char *));
-* 		person->lastName = tsk_strdup(va_arg(*app, const char *));
-* 	}
-* 	return self;
+*   static int unique_id = 0;
+*   person_t *person = self;
+*   if(person){
+*       person->id = ++unique_id;
+*       person->firstName = tsk_strdup(va_arg(*app, const char *));
+*       person->lastName = tsk_strdup(va_arg(*app, const char *));
+*   }
+*   return self;
 * }
 *
 * // destructor
 * static void* person_destroy(tsk_object_t * self)
 * {
-* 	person_t *person = self;
-* 	if(person){
-* 		TSK_FREE(person->firstName);
-* 		TSK_FREE(person->lastName);
-* 	}
-* 	return self;
+*   person_t *person = self;
+*   if(person){
+*       TSK_FREE(person->firstName);
+*       TSK_FREE(person->lastName);
+*   }
+*   return self;
 * }
 *
 * // comparator
 * static int person_cmp(const tsk_object_t *object1, const tsk_object_t *object1)
 * {
-* 	const person_t *person1 = object1;
-* 	const person_t *person2 = object2;
+*   const person_t *person1 = object1;
+*   const person_t *person2 = object2;
 *
-* 	return (person1 && person2) ? (person1->id - person2->id) : -1;
+*   return (person1 && person2) ? (person1->id - person2->id) : -1;
 * }
 *
 * // Meta-data (Object defnition)
 * static const tsk_object_def_t person_def_s =
 * {
-* 	sizeof(person_t),
-* 	person_create,
-* 	person_destroy,
-* 	person_cmp,
+*   sizeof(person_t),
+*   person_create,
+*   person_destroy,
+*   person_cmp,
 * }person_def_t;
 *
 * @endcode
@@ -159,11 +159,11 @@ typedef struct tsk_object_def_s {
     //! The size of the object.
     tsk_size_t size;
     //! Pointer to the constructor.
-    tsk_object_t*	(* constructor) (tsk_object_t *, va_list *);
+    tsk_object_t*   (* constructor) (tsk_object_t *, va_list *);
     //! Pointer to the destructor.
-    tsk_object_t*	(* destructor) (tsk_object_t *);
+    tsk_object_t*   (* destructor) (tsk_object_t *);
     //! Pointer to the comparator.
-    int		(* comparator) (const tsk_object_t *, const tsk_object_t *);
+    int     (* comparator) (const tsk_object_t *, const tsk_object_t *);
 }
 tsk_object_def_t;
 

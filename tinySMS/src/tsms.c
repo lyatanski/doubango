@@ -114,12 +114,12 @@ submit = tsms_tpdu_submit_create(mr, smsc, destination);
 
 // encode the user data to GSM 7-bit alphabet
 if((buffer = tsms_pack_to_7bit(short_message))){
-	ret = tsms_tpdu_submit_set_userdata(submit, buffer, tsms_alpha_7bit);
-	if((hex = tsms_tpdu_submit_tohexastring(submit))){
-		TSK_DEBUG_INFO("SMS-SUBMIT=%s", hex);
-		TSK_FREE(hex);
-	}
-	TSK_OBJECT_SAFE_FREE(buffer);
+    ret = tsms_tpdu_submit_set_userdata(submit, buffer, tsms_alpha_7bit);
+    if((hex = tsms_tpdu_submit_tohexastring(submit))){
+        TSK_DEBUG_INFO("SMS-SUBMIT=%s", hex);
+        TSK_FREE(hex);
+    }
+    TSK_OBJECT_SAFE_FREE(buffer);
 }
 TSK_OBJECT_SAFE_FREE(submit);
 * @endcode
@@ -140,12 +140,12 @@ TSK_OBJECT_SAFE_FREE(submit);
 
 tsms_tpdu_message_t* sms_any = tsms_tpdu_message_deserialize_mt(data, size);
 if(sms_any && sms_any->mti == tsms_tpdu_mti_deliver_mt){
-	//tsms_tpdu_deliver_t* sms_deliver = TSMS_TPDU_DELIVER(sms_any); ==> Yes we can !
-	char* ascii;
-	if((ascii = tsms_tpdu_message_get_payload(sms_any))){
-		TSK_DEBUG_INFO("Message=%s", ascii);
-		TSK_FREE(ascii);
-	}
+    //tsms_tpdu_deliver_t* sms_deliver = TSMS_TPDU_DELIVER(sms_any); ==> Yes we can !
+    char* ascii;
+    if((ascii = tsms_tpdu_message_get_payload(sms_any))){
+        TSK_DEBUG_INFO("Message=%s", ascii);
+        TSK_FREE(ascii);
+    }
 }
 TSK_OBJECT_SAFE_FREE(sms_any);
 * @endcode
@@ -184,15 +184,15 @@ TSK_OBJECT_SAFE_FREE(buffer);
 
 tsms_tpdu_message_t* sms_any = tsms_tpdu_message_deserialize_mt(buffer->data, buffer->size);
 if(sms_any && sms_any->mti == tsms_tpdu_mti_status_report_mt){
-	tsms_tpdu_status_report_t* sms_status_report = TSMS_TPDU_STATUS_REPORT(sms_any);
-	switch(sms_status_report->st){
-		case tsms_tpdu_status_received:
-		case tsms_tpdu_status_forwarded:
-		case tsms_tpdu_status_replaced:
-		// ...
-		default:
-			break;
-	}
+    tsms_tpdu_status_report_t* sms_status_report = TSMS_TPDU_STATUS_REPORT(sms_any);
+    switch(sms_status_report->st){
+        case tsms_tpdu_status_received:
+        case tsms_tpdu_status_forwarded:
+        case tsms_tpdu_status_replaced:
+        // ...
+        default:
+            break;
+    }
 }
 * @endcode
 *
@@ -218,8 +218,8 @@ uint8_t message_number = 0xF8;
 command = tsms_tpdu_command_create(mr, smsc, destination, message_number, tsms_tpdu_cmd_delete);
 
 if((hex = tsms_tpdu_command_tohexastring(command))){
-	TSK_DEBUG_INFO("SMS-COMMAND=%s", hex);
-	TSK_FREE(hex);
+    TSK_DEBUG_INFO("SMS-COMMAND=%s", hex);
+    TSK_FREE(hex);
 }
 TSK_OBJECT_SAFE_FREE(command);
 * @endcode
@@ -289,14 +289,14 @@ char* hex;
 sms_submit = tsms_tpdu_submit_create(mr, smsc, destination);
 // Set content for SMS-SUBMIT
 if((buffer = tsms_pack_to_7bit(short_message))){
-	ret = tsms_tpdu_submit_set_userdata(sms_submit, buffer, tsms_alpha_7bit);
-	TSK_OBJECT_SAFE_FREE(buffer);
+    ret = tsms_tpdu_submit_set_userdata(sms_submit, buffer, tsms_alpha_7bit);
+    TSK_OBJECT_SAFE_FREE(buffer);
 }
 // create RP-DATA(SMS-SUBMIT) message and print its content (for test only)
 rp_data = tsms_rpdu_data_create_mo(mr, smsc, TSMS_TPDU_MESSAGE(sms_submit));
 if((hex = tsms_rpdu_message_tohexastring(TSMS_RPDU_MESSAGE(rp_data)))){
-	TSK_DEBUG_INFO("RP-DATA=%s", hex);
-	TSK_FREE(hex);
+    TSK_DEBUG_INFO("RP-DATA=%s", hex);
+    TSK_FREE(hex);
 }
 
 TSK_OBJECT_SAFE_FREE(buffer);
@@ -328,21 +328,21 @@ TSK_OBJECT_SAFE_FREE(buffer);
 * tsms_tpdu_message_t* tpdu = tsk_null;
 
 if(!(rp_message = tsms_rpdu_message_deserialize(data, size))){ // Deserialize RP-* Message
-	TSK_DEBUG_ERROR("Failed to deserialize the RP-MESSAGE");
-	goto bail;
+    TSK_DEBUG_ERROR("Failed to deserialize the RP-MESSAGE");
+    goto bail;
 }
 
 if(rp_message->mti == tsms_rpdu_type_data_mt){ // RP-DATA from SC to MS
-	char* ascii = tsk_null;
-	tsms_rpdu_data_t* rp_data = TSMS_RPDU_DATA(rp_message);
-	if((tpdu = tsms_tpdu_message_deserialize_mt(rp_data->udata->data, rp_data->udata->size))){ //Deserialize SMS-* Message (From SC to MS)
-		if(tpdu->mti == tsms_tpdu_mti_deliver_mt){ // SMS-DELIVER from SC to MS
-			if((ascii = tsms_tpdu_message_get_payload(tpdu))){
-				TSK_DEBUG_INFO("ASCII message=%s", ascii);
-				TSK_FREE(ascii);
-			}
-		}
-	}
+    char* ascii = tsk_null;
+    tsms_rpdu_data_t* rp_data = TSMS_RPDU_DATA(rp_message);
+    if((tpdu = tsms_tpdu_message_deserialize_mt(rp_data->udata->data, rp_data->udata->size))){ //Deserialize SMS-* Message (From SC to MS)
+        if(tpdu->mti == tsms_tpdu_mti_deliver_mt){ // SMS-DELIVER from SC to MS
+            if((ascii = tsms_tpdu_message_get_payload(tpdu))){
+                TSK_DEBUG_INFO("ASCII message=%s", ascii);
+                TSK_FREE(ascii);
+            }
+        }
+    }
 }
 
 bail:
@@ -442,7 +442,7 @@ rp_error = tsms_rpdu_error_create_mo(mr, TSMS_TPDU_MESSAGE(sms_report),
 // serialize
 buffer = tsk_buffer_create_null();
 if(!(ret = tsms_rpdu_data_serialize(rp_error, buffer))){
-	// send(socket, buffer->data, buffer->size);
+    // send(socket, buffer->data, buffer->size);
 }
 
 TSK_OBJECT_SAFE_FREE(buffer);

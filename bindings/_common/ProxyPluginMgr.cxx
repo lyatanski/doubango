@@ -25,7 +25,7 @@
 #include "ProxyProducer.h"
 
 //
-//	"twrap_proxy_plugin_t" Declarations
+//  "twrap_proxy_plugin_t" Declarations
 //
 typedef struct twrap_proxy_plugin_s {
     TSK_DECLARE_OBJECT;
@@ -38,7 +38,7 @@ static twrap_proxy_plugin_t* twrap_proxy_plugin_create(ProxyPlugin** plugin);
 
 
 //
-//	"ProxyPluginMgr" Class Implementation
+//  "ProxyPluginMgr" Class Implementation
 //
 ProxyPluginMgr* ProxyPluginMgr::instance = tsk_null;
 static uint64_t __uniqueId = 0;
@@ -233,7 +233,7 @@ const ProxyVideoProducer* ProxyPluginMgr::findVideoProducer(uint64_t id)
 
 
 //
-//	"twrap_proxy_plugin_t" Implementations
+//  "twrap_proxy_plugin_t" Implementations
 //
 static tsk_object_t* twrap_proxy_plugin_ctor(tsk_object_t * self, va_list * app)
 {

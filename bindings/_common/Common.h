@@ -50,7 +50,7 @@ struct media_type_bind_s {
 };
 static const struct media_type_bind_s __media_type_binds[] = {
     { twrap_media_msrp, tmedia_msrp },
-    { twrap_media_audio , tmedia_audio },
+    { twrap_media_audio, tmedia_audio },
     { twrap_media_video, tmedia_video },
     { twrap_media_audio_video, (tmedia_type_t)(tmedia_audio | tmedia_video) },
     { twrap_media_t140, tmedia_t140 },

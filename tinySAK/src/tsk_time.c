@@ -32,21 +32,21 @@
 #include "tsk_debug.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <Winsock2.h> // timeval
-#	include <windows.h>
-#	if TSK_UNDER_WINDOWS_CE && HAVE_WCECOMPAT
-#		include <sys/time.h>
-#	endif
+#   include <Winsock2.h> // timeval
+#   include <windows.h>
+#   if TSK_UNDER_WINDOWS_CE && HAVE_WCECOMPAT
+#       include <sys/time.h>
+#   endif
 #elif defined(__SYMBIAN32__)
-#	include <_timeval.h>
+#   include <_timeval.h>
 #else
-#	include <sys/time.h>
+#   include <sys/time.h>
 #endif
 
 #include <time.h>
 #if defined (__APPLE__)
-#	include <mach/mach.h>
-#	include <mach/mach_time.h>
+#   include <mach/mach.h>
+#   include <mach/mach_time.h>
 #endif
 
 /**@defgroup tsk_time_group Utility Datetime functions
@@ -171,11 +171,11 @@ uint64_t tsk_time_now()
     static int __cpu_count = 0;
     if(__cpu_count == 0) {
         SYSTEM_INFO SystemInfo;
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
         GetNativeSystemInfo(&SystemInfo);
-#	else
+#   else
         GetSystemInfo(&SystemInfo);
-#	endif
+#   endif
         __cpu_count = SystemInfo.dwNumberOfProcessors;
     }
     if(__cpu_count == 1) {
@@ -188,11 +188,11 @@ uint64_t tsk_time_now()
         return (uint64_t)(((double)liPerformanceCount.QuadPart/(double)__liFrequency.QuadPart)*1000.0);
     }
     else {
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
         return tsk_time_epoch();
-#	else
+#   else
         return timeGetTime();
-#	endif
+#   endif
     }
 #elif HAVE_CLOCK_GETTIME || _POSIX_TIMERS > 0
     struct timespec ts;

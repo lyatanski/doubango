@@ -22,7 +22,7 @@
 
 /**@file tsk_uuid.h
  * @brief Universally Unique Identifier (UUID version 5) implementation (RFC 4122).
- *		  This implementation is not fully conform to RFC 4122 but could be safely used to generate random UUIDs.
+ *        This implementation is not fully conform to RFC 4122 but could be safely used to generate random UUIDs.
  *
  * @author Mamadou Diop <diopmamadou(at)doubango[dot]org>
  *
@@ -35,8 +35,8 @@
 
 TSK_BEGIN_DECLS
 
-#define TSK_UUID_DIGEST_SIZE			16
-#define TSK_UUID_STRING_SIZE			((TSK_UUID_DIGEST_SIZE*2)+4/*-*/)
+#define TSK_UUID_DIGEST_SIZE            16
+#define TSK_UUID_STRING_SIZE            ((TSK_UUID_DIGEST_SIZE*2)+4/*-*/)
 
 typedef char tsk_uuidstring_t[TSK_UUID_STRING_SIZE+1]; /**< Hexadecimal UUID digest string. */
 typedef char tsk_uuiddigest_t[TSK_UUID_DIGEST_SIZE]; /**< UUID digest bytes. */

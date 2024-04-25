@@ -106,7 +106,7 @@ int tsip_dialog_register_server_init(tsip_dialog_register_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 /* Started -> (Failure) -> Terminated

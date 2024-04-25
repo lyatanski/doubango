@@ -45,11 +45,11 @@ TNET_BEGIN_DECLS
 * @def TNET_STUN_RESP_IS_ERROR
 * Checks whether the STUN message is an error response or not.
 */
-#define TNET_STUN_PKT_IS_REQ(p_self)					((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_request))
-#define TNET_STUN_PKT_IS_RESP(p_self)					(TNET_STUN_PKT_RESP_IS_SUCCESS((p_self)) || TNET_STUN_PKT_RESP_IS_ERROR((p_self)))
-#define TNET_STUN_PKT_IS_INDICATION(p_self)				((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_indication))
-#define TNET_STUN_PKT_RESP_IS_SUCCESS(p_self)			((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_success))
-#define TNET_STUN_PKT_RESP_IS_ERROR(p_self)				((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_error))
+#define TNET_STUN_PKT_IS_REQ(p_self)                    ((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_request))
+#define TNET_STUN_PKT_IS_RESP(p_self)                   (TNET_STUN_PKT_RESP_IS_SUCCESS((p_self)) || TNET_STUN_PKT_RESP_IS_ERROR((p_self)))
+#define TNET_STUN_PKT_IS_INDICATION(p_self)             ((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_indication))
+#define TNET_STUN_PKT_RESP_IS_SUCCESS(p_self)           ((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_success))
+#define TNET_STUN_PKT_RESP_IS_ERROR(p_self)             ((p_self) && (((p_self)->e_type & 0x0110) == tnet_stun_mask_error))
 
 typedef enum tnet_stun_pkt_attr_add_e {
     tnet_stun_pkt_attr_add_null = 0,
@@ -62,84 +62,84 @@ typedef enum tnet_stun_pkt_attr_add_e {
 }
 tnet_stun_pkt_attr_add_t;
 
-#define TNET_STUN_PKT_ATTR_ADD_NULL()												tnet_stun_pkt_attr_add_null
-#define TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, P_DATA_PTR, U_DATA_SIZE)				tnet_stun_pkt_attr_add_vdata, (enum tnet_stun_attr_type_e)(E_TYPE), (const uint8_t*)(P_DATA_PTR), (uint16_t)(U_DATA_SIZE)
-#define TNET_STUN_PKT_ATTR_ADD_UINT0(E_TYPE)										TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, tsk_null, 0)
-#define TNET_STUN_PKT_ATTR_ADD_UINT8(E_TYPE, U8)									TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U8, 1)
-#define TNET_STUN_PKT_ATTR_ADD_UINT16(E_TYPE, U16)									TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U16, 2)
-#define TNET_STUN_PKT_ATTR_ADD_UINT32(E_TYPE, U32)									TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U32, 4)
-#define TNET_STUN_PKT_ATTR_ADD_UINT64(E_TYPE, U64)									TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U64, 8)
-#define TNET_STUN_PKT_ATTR_ADD_STR(E_TYPE, PC_STR)									TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, PC_STR, tsk_strlen(PC_STR))
-#define TNET_STUN_PKT_ATTR_ADD_ADDRESS(E_TYPE, E_FAMILY, U_PORT, PC_ADDR_PTR)		tnet_stun_pkt_attr_add_address, (enum tnet_stun_attr_type_e)(E_TYPE), (enum tnet_stun_address_family_e)(E_FAMILY), (uint16_t)(U_PORT), (const tnet_stun_addr_t*)PC_ADDR_PTR
-#define TNET_STUN_PKT_ATTR_ADD_ADDRESS_V4(E_TYPE, U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_ADDRESS((E_TYPE), tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_ADDRESS_V6(E_TYPE, U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_ADDRESS((E_TYPE), tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_NULL()                                               tnet_stun_pkt_attr_add_null
+#define TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, P_DATA_PTR, U_DATA_SIZE)               tnet_stun_pkt_attr_add_vdata, (enum tnet_stun_attr_type_e)(E_TYPE), (const uint8_t*)(P_DATA_PTR), (uint16_t)(U_DATA_SIZE)
+#define TNET_STUN_PKT_ATTR_ADD_UINT0(E_TYPE)                                        TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, tsk_null, 0)
+#define TNET_STUN_PKT_ATTR_ADD_UINT8(E_TYPE, U8)                                    TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U8, 1)
+#define TNET_STUN_PKT_ATTR_ADD_UINT16(E_TYPE, U16)                                  TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U16, 2)
+#define TNET_STUN_PKT_ATTR_ADD_UINT32(E_TYPE, U32)                                  TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U32, 4)
+#define TNET_STUN_PKT_ATTR_ADD_UINT64(E_TYPE, U64)                                  TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, &U64, 8)
+#define TNET_STUN_PKT_ATTR_ADD_STR(E_TYPE, PC_STR)                                  TNET_STUN_PKT_ATTR_ADD_VDATA(E_TYPE, PC_STR, tsk_strlen(PC_STR))
+#define TNET_STUN_PKT_ATTR_ADD_ADDRESS(E_TYPE, E_FAMILY, U_PORT, PC_ADDR_PTR)       tnet_stun_pkt_attr_add_address, (enum tnet_stun_attr_type_e)(E_TYPE), (enum tnet_stun_address_family_e)(E_FAMILY), (uint16_t)(U_PORT), (const tnet_stun_addr_t*)PC_ADDR_PTR
+#define TNET_STUN_PKT_ATTR_ADD_ADDRESS_V4(E_TYPE, U_PORT, PC_ADDR_PTR)              TNET_STUN_PKT_ATTR_ADD_ADDRESS((E_TYPE), tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_ADDRESS_V6(E_TYPE, U_PORT, PC_ADDR_PTR)              TNET_STUN_PKT_ATTR_ADD_ADDRESS((E_TYPE), tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
 // rfc5389 - 15.1.  MAPPED-ADDRESS
-#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)		TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_mapped_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS_V4(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS_V6(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)        TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_mapped_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS_V4(U_PORT, PC_ADDR_PTR)               TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS_V6(U_PORT, PC_ADDR_PTR)               TNET_STUN_PKT_ATTR_ADD_MAPPED_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
 // rfc5389 - 15.2.  XOR-MAPPED-ADDRESS
-#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)	TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_xor_mapped_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS_V4(U_PORT, PC_ADDR_PTR)			TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS_V6(U_PORT, PC_ADDR_PTR)			TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)    TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_xor_mapped_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS_V4(U_PORT, PC_ADDR_PTR)           TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS_V6(U_PORT, PC_ADDR_PTR)           TNET_STUN_PKT_ATTR_ADD_XOR_MAPPED_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
 // rfc5389 - 15.3.  USERNAME
-#define TNET_STUN_PKT_ATTR_ADD_USERNAME(PC_USERNAME_STR, U_USERNAME_STR)			TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_username, (PC_USERNAME_STR), (U_USERNAME_STR))
-#define TNET_STUN_PKT_ATTR_ADD_USERNAME_ZT(PC_USERNAME_STR)							TNET_STUN_PKT_ATTR_ADD_USERNAME(PC_USERNAME_STR, tsk_strlen(PC_USERNAME_STR))
+#define TNET_STUN_PKT_ATTR_ADD_USERNAME(PC_USERNAME_STR, U_USERNAME_STR)            TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_username, (PC_USERNAME_STR), (U_USERNAME_STR))
+#define TNET_STUN_PKT_ATTR_ADD_USERNAME_ZT(PC_USERNAME_STR)                         TNET_STUN_PKT_ATTR_ADD_USERNAME(PC_USERNAME_STR, tsk_strlen(PC_USERNAME_STR))
 // rfc5389 - 15.4.  MESSAGE-INTEGRITY
-#define TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY(PC_SHA1_STR, U_SHA1_STR)			TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_message_integrity, (PC_SHA1_STR), (U_SHA1_STR))
-#define TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY_ZT(PC_SHA1_STR)					TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY(PC_SHA1_STR, tsk_strlen(PC_SHA1_STR))
+#define TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY(PC_SHA1_STR, U_SHA1_STR)           TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_message_integrity, (PC_SHA1_STR), (U_SHA1_STR))
+#define TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY_ZT(PC_SHA1_STR)                    TNET_STUN_PKT_ATTR_ADD_MESSAGE_INTEGRITY(PC_SHA1_STR, tsk_strlen(PC_SHA1_STR))
 // rfc5389 - 15.5.  FINGERPRINT
-#define TNET_STUN_PKT_ATTR_ADD_FINGERPRINT(U32_CRC32)								TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_fingerprint, U32_CRC32)
+#define TNET_STUN_PKT_ATTR_ADD_FINGERPRINT(U32_CRC32)                               TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_fingerprint, U32_CRC32)
 // rfc5389 - 15.6.  ERROR-CODE
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(U8_CLASS, U8_NUMBER, PC_REASON_STR)		tnet_stun_pkt_attr_add_error_code, (uint8_t)(U8_CLASS), (uint8_t)(U8_NUMBER), (const char*)(PC_REASON_STR)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_TRY_ALTERNATE()							TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassTryAlternate, kStunErrorNumberTryAlternate, kStunErrorPhraseTryAlternate)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_BAD_REQUEST()								TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassBadRequest, kStunErrorNumberBadRequest, kStunErrorPhraseBadRequest)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_UNAUTHORIZED()							TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassUnauthorized, kStunErrorNumberUnauthorized, kStunErrorPhraseUnauthorized)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_UNKNOWN_ATTRIBUTE()						TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassUnknownAttribute, kStunErrorNumberUnknownAttribute, kStunErrorPhraseUnknownAttribute)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_STALE_NONCE()								TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassStaleNonce, kStunErrorNumberStaleNonce, kStunErrorPhraseStaleNonce)
-#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_SERVER_ERROR()							TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassServerError, kStunErrorNumberServerError, kStunErrorPhraseServerError)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(U8_CLASS, U8_NUMBER, PC_REASON_STR)       tnet_stun_pkt_attr_add_error_code, (uint8_t)(U8_CLASS), (uint8_t)(U8_NUMBER), (const char*)(PC_REASON_STR)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_TRY_ALTERNATE()                           TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassTryAlternate, kStunErrorNumberTryAlternate, kStunErrorPhraseTryAlternate)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_BAD_REQUEST()                             TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassBadRequest, kStunErrorNumberBadRequest, kStunErrorPhraseBadRequest)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_UNAUTHORIZED()                            TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassUnauthorized, kStunErrorNumberUnauthorized, kStunErrorPhraseUnauthorized)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_UNKNOWN_ATTRIBUTE()                       TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassUnknownAttribute, kStunErrorNumberUnknownAttribute, kStunErrorPhraseUnknownAttribute)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_STALE_NONCE()                             TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassStaleNonce, kStunErrorNumberStaleNonce, kStunErrorPhraseStaleNonce)
+#define TNET_STUN_PKT_ATTR_ADD_ERROR_CODE_SERVER_ERROR()                            TNET_STUN_PKT_ATTR_ADD_ERROR_CODE(kStunErrorClassServerError, kStunErrorNumberServerError, kStunErrorPhraseServerError)
 // rfc5389 - 15.7.  REALM
-#define TNET_STUN_PKT_ATTR_ADD_REALM(PC_REALM_STR, U_REALM_STR)						TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_realm, (PC_REALM_STR), (U_REALM_STR))
-#define TNET_STUN_PKT_ATTR_ADD_REALM_ZT(PC_REALM_STR)								TNET_STUN_PKT_ATTR_ADD_REALM(PC_REALM_STR, tsk_strlen(PC_REALM_STR))
+#define TNET_STUN_PKT_ATTR_ADD_REALM(PC_REALM_STR, U_REALM_STR)                     TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_realm, (PC_REALM_STR), (U_REALM_STR))
+#define TNET_STUN_PKT_ATTR_ADD_REALM_ZT(PC_REALM_STR)                               TNET_STUN_PKT_ATTR_ADD_REALM(PC_REALM_STR, tsk_strlen(PC_REALM_STR))
 // rfc5389 - 15.8.  NONCE
-#define TNET_STUN_PKT_ATTR_ADD_NONCE(PC_NONCE_STR, U_NONCE_STR)						TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_nonce, (PC_NONCE_STR), (U_NONCE_STR))
-#define TNET_STUN_PKT_ATTR_ADD_NONCE_ZT(PC_NONCE_STR)								TNET_STUN_PKT_ATTR_ADD_NONCE(PC_NONCE_STR, tsk_strlen(PC_NONCE_STR))
+#define TNET_STUN_PKT_ATTR_ADD_NONCE(PC_NONCE_STR, U_NONCE_STR)                     TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_nonce, (PC_NONCE_STR), (U_NONCE_STR))
+#define TNET_STUN_PKT_ATTR_ADD_NONCE_ZT(PC_NONCE_STR)                               TNET_STUN_PKT_ATTR_ADD_NONCE(PC_NONCE_STR, tsk_strlen(PC_NONCE_STR))
 // rfc5389 - 15.9.  UNKNOWN-ATTRIBUTES
-#define TNET_STUN_PKT_ATTR_ADD_UNKNOWN_ATTRS(...)									tnet_stun_pkt_attr_add_unknown_attrs, ##__VA_ARGS__
-#define TNET_STUN_PKT_ATTR_ADD_UNKNOWN_ATTRS_VAL(U16_VAL)							tnet_stun_pkt_attr_add_unknown_attrs_val, (uint16_t)U16_VAL
+#define TNET_STUN_PKT_ATTR_ADD_UNKNOWN_ATTRS(...)                                   tnet_stun_pkt_attr_add_unknown_attrs, ##__VA_ARGS__
+#define TNET_STUN_PKT_ATTR_ADD_UNKNOWN_ATTRS_VAL(U16_VAL)                           tnet_stun_pkt_attr_add_unknown_attrs_val, (uint16_t)U16_VAL
 // rfc5389 - 15.10.  SOFTWARE
-#define TNET_STUN_PKT_ATTR_ADD_SOFTWARE(PC_SOFTWARE_STR, U_SOFTWARE_STR)			TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_software, (PC_SOFTWARE_STR), (U_SOFTWARE_STR))
-#define TNET_STUN_PKT_ATTR_ADD_SOFTWARE_ZT(PC_SOFTWARE_STR)							TNET_STUN_PKT_ATTR_ADD_SOFTWARE(PC_SOFTWARE_STR, tsk_strlen(PC_SOFTWARE_STR))
+#define TNET_STUN_PKT_ATTR_ADD_SOFTWARE(PC_SOFTWARE_STR, U_SOFTWARE_STR)            TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_software, (PC_SOFTWARE_STR), (U_SOFTWARE_STR))
+#define TNET_STUN_PKT_ATTR_ADD_SOFTWARE_ZT(PC_SOFTWARE_STR)                         TNET_STUN_PKT_ATTR_ADD_SOFTWARE(PC_SOFTWARE_STR, tsk_strlen(PC_SOFTWARE_STR))
 // rfc5389 - 15.11.  ALTERNATE-SERVER
-#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(E_FAMILY, U_PORT, PC_ADDR_PTR)		TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_alternate_server, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER_V4(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER_V6(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(E_FAMILY, U_PORT, PC_ADDR_PTR)      TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_alternate_server, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER_V4(U_PORT, PC_ADDR_PTR)             TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER_V6(U_PORT, PC_ADDR_PTR)             TNET_STUN_PKT_ATTR_ADD_ALTERNATE_SERVER(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
 
 // rfc5766(TURN) - 14.1.  CHANNEL-NUMBER
-#define TNET_STUN_PKT_ATTR_ADD_CHANNEL_NUMBER(U16_CHANNEL_NUMBER)					TNET_STUN_PKT_ATTR_ADD_UINT16(tnet_stun_attr_type_channel_number, U16_CHANNEL_NUMBER)
+#define TNET_STUN_PKT_ATTR_ADD_CHANNEL_NUMBER(U16_CHANNEL_NUMBER)                   TNET_STUN_PKT_ATTR_ADD_UINT16(tnet_stun_attr_type_channel_number, U16_CHANNEL_NUMBER)
 // rfc5766(TURN) - 14.2.  LIFETIME
-#define TNET_STUN_PKT_ATTR_ADD_LIFETIME(U32_LIFETIME)								TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_lifetime, U32_LIFETIME)
+#define TNET_STUN_PKT_ATTR_ADD_LIFETIME(U32_LIFETIME)                               TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_lifetime, U32_LIFETIME)
 // rfc5766(TURN) - 14.3.  XOR-PEER-ADDRESS
-#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)		TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_xor_peer_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS_V4(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
-#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS_V6(U_PORT, PC_ADDR_PTR)				TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(E_FAMILY, U_PORT, PC_ADDR_PTR)      TNET_STUN_PKT_ATTR_ADD_ADDRESS(tnet_stun_attr_type_xor_peer_address, (E_FAMILY), (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS_V4(U_PORT, PC_ADDR_PTR)             TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(tnet_stun_address_family_ipv4, (U_PORT), (PC_ADDR_PTR))
+#define TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS_V6(U_PORT, PC_ADDR_PTR)             TNET_STUN_PKT_ATTR_ADD_XOR_PEER_ADDRESS(tnet_stun_address_family_ipv6, (U_PORT), (PC_ADDR_PTR))
 // rfc5766(TURN) - 14.4.  DATA
-#define TNET_STUN_PKT_ATTR_ADD_DATA(PC_DATA_PTR, U_DATA_SIZE)						TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_data, (PC_DATA_PTR), (U_DATA_SIZE))
+#define TNET_STUN_PKT_ATTR_ADD_DATA(PC_DATA_PTR, U_DATA_SIZE)                       TNET_STUN_PKT_ATTR_ADD_VDATA(tnet_stun_attr_type_data, (PC_DATA_PTR), (U_DATA_SIZE))
 // rfc5766(TURN) - 14.7.  REQUESTED-TRANSPORT
-#define TNET_STUN_PKT_ATTR_ADD_REQUESTED_TRANSPORT(U8_PROTOCOL)						TNET_STUN_PKT_ATTR_ADD_UINT8(tnet_stun_attr_type_requested_transport, U8_PROTOCOL)
+#define TNET_STUN_PKT_ATTR_ADD_REQUESTED_TRANSPORT(U8_PROTOCOL)                     TNET_STUN_PKT_ATTR_ADD_UINT8(tnet_stun_attr_type_requested_transport, U8_PROTOCOL)
 // rfc5766(TURN) - 14.8.  DONT-FRAGMENT
-#define TNET_STUN_PKT_ATTR_ADD_DONT_FRAGMENT()										TNET_STUN_PKT_ATTR_ADD_UINT0(tnet_stun_attr_type_dont_fragment)
+#define TNET_STUN_PKT_ATTR_ADD_DONT_FRAGMENT()                                      TNET_STUN_PKT_ATTR_ADD_UINT0(tnet_stun_attr_type_dont_fragment)
 
 // rfc5245(ICE) - 19.1.  New Attributes (PRIORITY)
-#define TNET_STUN_PKT_ATTR_ADD_ICE_PRIORITY(U32_PRIORITY)							TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_ice_priority, U32_PRIORITY)
+#define TNET_STUN_PKT_ATTR_ADD_ICE_PRIORITY(U32_PRIORITY)                           TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_ice_priority, U32_PRIORITY)
 // rfc5245(ICE) - 19.1.  New Attributes (USE-CANDIDATE)
-#define TNET_STUN_PKT_ATTR_ADD_ICE_USE_CANDIDATE()									TNET_STUN_PKT_ATTR_ADD_UINT0(tnet_stun_attr_type_ice_use_candidate)
+#define TNET_STUN_PKT_ATTR_ADD_ICE_USE_CANDIDATE()                                  TNET_STUN_PKT_ATTR_ADD_UINT0(tnet_stun_attr_type_ice_use_candidate)
 // rfc5245(ICE) - 19.1.  New Attributes (ICE-CONTROLLED)
-#define TNET_STUN_PKT_ATTR_ADD_ICE_CONTROLLED(U64_CONTROLLED)						TNET_STUN_PKT_ATTR_ADD_UINT64(tnet_stun_attr_type_ice_controlled, U64_CONTROLLED)
+#define TNET_STUN_PKT_ATTR_ADD_ICE_CONTROLLED(U64_CONTROLLED)                       TNET_STUN_PKT_ATTR_ADD_UINT64(tnet_stun_attr_type_ice_controlled, U64_CONTROLLED)
 // rfc5245(ICE) - 19.1.  New Attributes (ICE-CONTROLLED)
-#define TNET_STUN_PKT_ATTR_ADD_ICE_CONTROLLING(U64_CONTROLLING)						TNET_STUN_PKT_ATTR_ADD_UINT64(tnet_stun_attr_type_ice_controlling, U64_CONTROLLING)
+#define TNET_STUN_PKT_ATTR_ADD_ICE_CONTROLLING(U64_CONTROLLING)                     TNET_STUN_PKT_ATTR_ADD_UINT64(tnet_stun_attr_type_ice_controlling, U64_CONTROLLING)
 
 // rfc6062 - 6.2.  New STUN Attributes (CONNECTION-ID)
-#define TNET_STUN_PKT_ATTR_ADD_CONNECTION_ID(U32_CONNECTION_ID)						TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_connection_id, U32_CONNECTION_ID)
+#define TNET_STUN_PKT_ATTR_ADD_CONNECTION_ID(U32_CONNECTION_ID)                     TNET_STUN_PKT_ATTR_ADD_UINT32(tnet_stun_attr_type_connection_id, U32_CONNECTION_ID)
 
 typedef struct tnet_stun_pkt_s {
     TSK_DECLARE_OBJECT;

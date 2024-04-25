@@ -76,7 +76,7 @@ typedef struct tdav_codec_h264_cisco_s {
 tdav_codec_h264_cisco_t;
 
 #if !defined(CISCO_H264_GOP_SIZE_IN_SECONDS)
-#	define CISCO_H264_GOP_SIZE_IN_SECONDS		25
+#   define CISCO_H264_GOP_SIZE_IN_SECONDS       25
 #endif
 
 #define kResetRotationTrue tsk_true
@@ -170,33 +170,33 @@ static int tdav_codec_h264_cisco_set(tmedia_codec_t* self, const tmedia_param_t*
             }
             return 0;
         }
-		else if (tsk_striequals(param->key, "out-size")) {
-			int ret;
-			uint32_t new_size = *((uint32_t*)param->value);
-			uint16_t new_width = (new_size & 0xFFFF);
-			uint16_t new_height = (new_size >> 16) & 0xFFFF;
-			if (self->opened) {
-				// It's up to the caller to lock the codec or make sure no other code will code encode() function.
-				// We must not call lock/unlock(encoder.mutex) here because close() will free the mutex
-				// close encoder
+        else if (tsk_striequals(param->key, "out-size")) {
+            int ret;
+            uint32_t new_size = *((uint32_t*)param->value);
+            uint16_t new_width = (new_size & 0xFFFF);
+            uint16_t new_height = (new_size >> 16) & 0xFFFF;
+            if (self->opened) {
+                // It's up to the caller to lock the codec or make sure no other code will code encode() function.
+                // We must not call lock/unlock(encoder.mutex) here because close() will free the mutex
+                // close encoder
                 if ((ret = tdav_codec_h264_cisco_close_encoder(h264, kResetRotationFalse))) {
                     return ret;
                 }
-				// update size
-				h264->encoder.neg_width = TMEDIA_CODEC_VIDEO(h264)->out.width = new_width;
-				h264->encoder.neg_height = TMEDIA_CODEC_VIDEO(h264)->out.height = new_height;
-				// re-open encoder
+                // update size
+                h264->encoder.neg_width = TMEDIA_CODEC_VIDEO(h264)->out.width = new_width;
+                h264->encoder.neg_height = TMEDIA_CODEC_VIDEO(h264)->out.height = new_height;
+                // re-open encoder
                 if ((ret = tdav_codec_h264_cisco_open_encoder(h264))) {
                     return ret;
                 }
             }
-			else {
-				// update size
-				h264->encoder.neg_width = TMEDIA_CODEC_VIDEO(h264)->out.width = new_width;
-				h264->encoder.neg_height = TMEDIA_CODEC_VIDEO(h264)->out.height = new_height;
-			}
-			return 0;
-		}
+            else {
+                // update size
+                h264->encoder.neg_width = TMEDIA_CODEC_VIDEO(h264)->out.width = new_width;
+                h264->encoder.neg_height = TMEDIA_CODEC_VIDEO(h264)->out.height = new_height;
+            }
+            return 0;
+        }
     }
 
     if (reconf) {
@@ -230,12 +230,12 @@ static int tdav_codec_h264_cisco_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if ((ret = tdav_codec_h264_cisco_open_encoder(h264))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if ((ret = tdav_codec_h264_cisco_open_decoder(h264))) {
         return ret;
     }
@@ -254,10 +254,10 @@ static int tdav_codec_h264_cisco_close(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     tdav_codec_h264_cisco_close_encoder(h264, kResetRotationTrue);
 
-    //	Decoder
+    //  Decoder
     tdav_codec_h264_cisco_close_decoder(h264);
 
     return 0;
@@ -291,9 +291,9 @@ static tsk_size_t tdav_codec_h264_cisco_encode(tmedia_codec_t* self, const void*
     }
 
     // send IDR for:
-    //	- the first frame
+    //  - the first frame
     //  - remote peer requested an IDR
-    //	- every second within the first 4seconds
+    //  - every second within the first 4seconds
     send_idr = (
                    h264->encoder.frame_count++ == 0
                    || h264 ->encoder.force_idr
@@ -696,7 +696,7 @@ static int tdav_codec_h264_cisco_open_encoder(tdav_codec_h264_cisco_t* self)
     self->encoder.sEncParam.bEnableFrameCroppingFlag = true;
 
     layer = &self->encoder.sEncParam.sSpatialLayers[0];
-    layer->uiProfileIdc	= PRO_BASELINE;
+    layer->uiProfileIdc = PRO_BASELINE;
 #if BUILD_TYPE_TCH
     layer->uiLevelIdc = tdav_codec_h264_cisco_convert_level(common->level);
 #else
@@ -783,7 +783,7 @@ int tdav_codec_h264_cisco_open_decoder(tdav_codec_h264_cisco_t* self)
     // initialize decoder
     sDecParam.eOutputColorFormat = videoFormatI420;
     sDecParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_AVC;
-   
+
     if ((err = self->decoder.pInst->Initialize(&sDecParam)) != cmResultSuccess) {
         TSK_DEBUG_ERROR("Failed to initialize decoder: %ld", err);
         goto bail;
@@ -819,7 +819,7 @@ static ELevelIdc tdav_codec_h264_cisco_convert_level(enum level_idc_e level)
 {
     switch(level) {
     case level_idc_1_0:
-            return LEVEL_1_0;
+        return LEVEL_1_0;
     case level_idc_1_b:
         return LEVEL_1_B;
     case level_idc_1_1:

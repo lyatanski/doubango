@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 69 "./ragel/tmsrp_parser_header_From-Path.rl" */
@@ -262,7 +262,7 @@ _match:
                 }
             }
             break;
-            /* #line 259 "./src/headers/tmsrp_header_From-Path.c" */
+                /* #line 259 "./src/headers/tmsrp_header_From-Path.c" */
             }
         }
 
@@ -304,7 +304,7 @@ _test_eof: {
                     }
                 }
                 break;
-                /* #line 299 "./src/headers/tmsrp_header_From-Path.c" */
+                    /* #line 299 "./src/headers/tmsrp_header_From-Path.c" */
                 }
             }
         }
@@ -357,7 +357,7 @@ bail:
 
 
 //========================================================
-//	From_Path header object definition
+//  From_Path header object definition
 //
 
 static tsk_object_t* tmsrp_header_From_Path_ctor(tsk_object_t *self, va_list * app)

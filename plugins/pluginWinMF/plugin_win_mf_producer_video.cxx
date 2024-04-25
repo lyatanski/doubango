@@ -42,11 +42,11 @@
 // (VideoProcessor) is optional
 // "{{" and "}}" defines where the graph starts and ends respectively. For "0", [Decoder] is a stand-alone IMFTransform.
 #if !defined(PLUGIN_MF_PV_BUNDLE_CODEC)
-#	define PLUGIN_MF_PV_BUNDLE_CODEC 1 /* MUST be "1" when the encoder is an Async Transform (e.g. Intel Quick Sync). Use "1" to be sure is will always work. */
+#   define PLUGIN_MF_PV_BUNDLE_CODEC 1 /* MUST be "1" when the encoder is an Async Transform (e.g. Intel Quick Sync). Use "1" to be sure is will always work. */
 #endif /* PLUGIN_MF_PV_BUNDLE_CODEC */
 
 #if !defined(PLUGIN_MF_GOP_SIZE_IN_SECONDS)
-#define PLUGIN_MF_GOP_SIZE_IN_SECONDS		60
+#define PLUGIN_MF_GOP_SIZE_IN_SECONDS       60
 #endif /* PLUGIN_MF_GOP_SIZE_IN_SECONDS */
 
 DEFINE_GUID(PLUGIN_MF_LOW_LATENCY,
@@ -59,7 +59,7 @@ static void* TSK_STDCALL RunSessionThread(void *pArg);
 static int _plugin_win_mf_producer_video_unprepare(struct plugin_win_mf_producer_video_s* pSelf);
 
 //
-//	plugin_win_mf_producer_video_t
+//  plugin_win_mf_producer_video_t
 //
 typedef struct plugin_win_mf_producer_video_s {
     TMEDIA_DECLARE_PRODUCER;
@@ -158,7 +158,7 @@ static int plugin_win_mf_producer_video_set(tmedia_producer_t *self, const tmedi
         else if (tsk_striequals(param->key, "plugin-firefox")) {
             //producer->plugin_firefox = (*((int32_t*)param->value) != 0);
             //if(producer->grabber){
-            //	producer->grabber->setPluginFirefox((producer->plugin_firefox == tsk_true));
+            //  producer->grabber->setPluginFirefox((producer->plugin_firefox == tsk_true));
             //}
         }
     }
@@ -376,7 +376,7 @@ static int plugin_win_mf_producer_video_prepare(tmedia_producer_t* self, const t
             //CHECK_HR(hr = MFUtils::IsAsyncMFT(pSelf->pEncoder->GetMFT(), &bIsAsyncMFT));
             //if(bIsAsyncMFT)
             //{
-            //	CHECK_HR(hr = MFUtils::UnlockAsyncMFT(pSelf->pEncoderpSelf->pEncoder->GetMFT()));
+            //  CHECK_HR(hr = MFUtils::UnlockAsyncMFT(pSelf->pEncoderpSelf->pEncoder->GetMFT()));
             //}
             // Apply Encoder output type (must be called before SetInputType)
             //CHECK_HR(hr = pSelf->pEncoder->GetMFT()->SetOutputType(0, pSelf->pGrabberInputType, 0/*MFT_SET_TYPE_TEST_ONLY*/));

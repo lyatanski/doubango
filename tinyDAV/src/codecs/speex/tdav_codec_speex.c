@@ -34,8 +34,8 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define SPEEX_BUFFER_MAX_SIZE		1024
-#define SPEEX_DEFAULT_QUALITY		6
+#define SPEEX_BUFFER_MAX_SIZE       1024
+#define SPEEX_DEFAULT_QUALITY       6
 
 /* ============ Common ================= */
 int tdav_codec_speex_init(tdav_codec_speex_t* self, tdav_codec_speex_type_t type);
@@ -175,65 +175,65 @@ tsk_bool_t tdav_codec_speex_sdp_att_match(const tmedia_codec_t* codec, const cha
 
 
 //
-//	Speex Codec Object definition
+//  Speex Codec Object definition
 //
 #define SPEEX_OBJECT_DEFINITION(mode,name,description,format,rate) \
-	static tsk_object_t* tdav_codec_speex_##mode##_ctor(tsk_object_t * self, va_list * app) \
-	{ \
-		tdav_codec_speex_t *speex = self; \
-		if(speex){ \
-			tdav_codec_speex_init(speex, tdav_codec_speex_type_##mode); \
-		} \
-		return self; \
-	} \
-	static tsk_object_t* tdav_codec_speex_##mode##_dtor(tsk_object_t * self) \
-	{  \
-		tdav_codec_speex_t *speex = self; \
-		if(speex){ \
-			/* deinit base */ \
-			tmedia_codec_audio_deinit(speex); \
-			/* deinit self */ \
-			tdav_codec_speex_deinit(speex); \
-		} \
-	 \
-		return self; \
-	} \
-	static const tsk_object_def_t tdav_codec_speex_##mode##_def_s = \
-	{ \
-		sizeof(tdav_codec_speex_t), \
-		tdav_codec_speex_##mode##_ctor,  \
-		tdav_codec_speex_##mode##_dtor, \
-		tmedia_codec_cmp,  \
-	}; \
-	static const tmedia_codec_plugin_def_t tdav_codec_speex_##mode##_plugin_def_s =  \
-	{ \
-	&tdav_codec_speex_##mode##_def_s, \
-	 \
-		tmedia_audio, \
-		tmedia_codec_id_speex_##mode, \
-		name, \
-		description, \
-		format, \
-		tsk_true, \
-		rate, /* rate*/ \
-		 \
-		{ /* audio */ \
-			1, /* channels*/ \
-			0 /* ptime @deprecated*/ \
-		}, \
-	 \
-		/* video */ \
-		{0}, \
-	 \
-		tsk_null, /* set()*/ \
-		tdav_codec_speex_open, \
-		tdav_codec_speex_close, \
-		tdav_codec_speex_encode, \
-		tdav_codec_speex_decode, \
-		tdav_codec_speex_sdp_att_match, \
-		tdav_codec_speex_sdp_att_get \
-	}; \
-	const tmedia_codec_plugin_def_t *tdav_codec_speex_##mode##_plugin_def_t = &tdav_codec_speex_##mode##_plugin_def_s;
+    static tsk_object_t* tdav_codec_speex_##mode##_ctor(tsk_object_t * self, va_list * app) \
+    { \
+        tdav_codec_speex_t *speex = self; \
+        if(speex){ \
+            tdav_codec_speex_init(speex, tdav_codec_speex_type_##mode); \
+        } \
+        return self; \
+    } \
+    static tsk_object_t* tdav_codec_speex_##mode##_dtor(tsk_object_t * self) \
+    {  \
+        tdav_codec_speex_t *speex = self; \
+        if(speex){ \
+            /* deinit base */ \
+            tmedia_codec_audio_deinit(speex); \
+            /* deinit self */ \
+            tdav_codec_speex_deinit(speex); \
+        } \
+     \
+        return self; \
+    } \
+    static const tsk_object_def_t tdav_codec_speex_##mode##_def_s = \
+    { \
+        sizeof(tdav_codec_speex_t), \
+        tdav_codec_speex_##mode##_ctor,  \
+        tdav_codec_speex_##mode##_dtor, \
+        tmedia_codec_cmp,  \
+    }; \
+    static const tmedia_codec_plugin_def_t tdav_codec_speex_##mode##_plugin_def_s =  \
+    { \
+    &tdav_codec_speex_##mode##_def_s, \
+     \
+        tmedia_audio, \
+        tmedia_codec_id_speex_##mode, \
+        name, \
+        description, \
+        format, \
+        tsk_true, \
+        rate, /* rate*/ \
+         \
+        { /* audio */ \
+            1, /* channels*/ \
+            0 /* ptime @deprecated*/ \
+        }, \
+     \
+        /* video */ \
+        {0}, \
+     \
+        tsk_null, /* set()*/ \
+        tdav_codec_speex_open, \
+        tdav_codec_speex_close, \
+        tdav_codec_speex_encode, \
+        tdav_codec_speex_decode, \
+        tdav_codec_speex_sdp_att_match, \
+        tdav_codec_speex_sdp_att_get \
+    }; \
+    const tmedia_codec_plugin_def_t *tdav_codec_speex_##mode##_plugin_def_t = &tdav_codec_speex_##mode##_plugin_def_s;
 
 
 SPEEX_OBJECT_DEFINITION(nb,"SPEEX","Speex-NB Codec",TMEDIA_CODEC_FORMAT_SPEEX_NB,8000);

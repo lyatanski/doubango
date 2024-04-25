@@ -21,7 +21,7 @@
 */
 /**@file tnet_dhcp_option_sip.h
  * @brief  Dynamic Host Configuration Protocol (DHCP-for-IPv4) Option for
- *			Session Initiation Protocol (SIP) Servers as per RFC 3361.
+ *          Session Initiation Protocol (SIP) Servers as per RFC 3361.
  *
  * @author Mamadou Diop <diopmamadou(at)doubango[dot]org>
  *

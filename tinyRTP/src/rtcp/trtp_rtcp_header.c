@@ -105,7 +105,7 @@ int trtp_rtcp_header_deserialize_to(trtp_rtcp_header_t** self, const void *data,
 }
 
 //=================================================================================================
-//	RTCP header object definition
+//  RTCP header object definition
 //
 static tsk_object_t* trtp_rtcp_header_ctor(tsk_object_t * self, va_list * app)
 {

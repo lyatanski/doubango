@@ -28,16 +28,20 @@ public:
     DSCaptureFormat(int w, int h, int f, GUID c) : width(w), height(h), fps(f), chroma(c) {};
     virtual ~DSCaptureFormat() {};
 
-    int getWidth() {
+    int getWidth()
+    {
         return this->width;
     };
-    int getHeight() {
+    int getHeight()
+    {
         return this->height;
     };
-    int getFramerate() {
+    int getFramerate()
+    {
         return this->fps;
     };
-    GUID getChroma() {
+    GUID getChroma()
+    {
         return this->chroma;
     };
 

@@ -39,12 +39,12 @@
 typedef struct tcomp_buffer_s {
     TSK_DECLARE_OBJECT;
 
-    tsk_size_t		size;			/**< The size of the buffer */
-    uint8_t*	lpbuffer;		/**< Pointer to the buffer */
-    tsk_size_t		index_bytes;	/**< Bytes (8bit size) cursor */
-    tsk_size_t		index_bits;		/**< Bits (1-bit size) cursor */
-    unsigned	owner:1;		/**< Indicates whether we are the owner of the buffer or not (external buffer) */
-    uint8_t		P_BIT;			/**< P-BIT controller. */
+    tsk_size_t      size;           /**< The size of the buffer */
+    uint8_t*    lpbuffer;       /**< Pointer to the buffer */
+    tsk_size_t      index_bytes;    /**< Bytes (8bit size) cursor */
+    tsk_size_t      index_bits;     /**< Bits (1-bit size) cursor */
+    unsigned    owner:1;        /**< Indicates whether we are the owner of the buffer or not (external buffer) */
+    uint8_t     P_BIT;          /**< P-BIT controller. */
 }
 tcomp_buffer_t;
 
@@ -530,8 +530,8 @@ uint64_t tcomp_buffer_createHash(const void *data, tsk_size_t len)
         return 0;
     }
     {
-#define PRIME_1		500237
-#define PRIME_2		700241
+#define PRIME_1     500237
+#define PRIME_2     700241
         uint64_t hash = 0;
         uint8_t* strid = (uint8_t*)data;
 
@@ -630,7 +630,7 @@ void tcomp_buffer_reset(tcomp_buffer_handle_t* handle)
 
 
 //========================================================
-//	SigComp buffer object definition
+//  SigComp buffer object definition
 //
 static tsk_object_t* tcomp_buffer_ctor(tsk_object_t *self, va_list * app)
 {

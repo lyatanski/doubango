@@ -53,10 +53,10 @@ tnet_dhcp_option_dns_t* tnet_dhcp_option_dns_create(const void* payload, tsk_siz
 
 /** Initializes DHCPv4 option.
  *
- * @param [in,out]	self	The option to initialize.
- * @param	code			The code of the option to initialize.
+ * @param [in,out]  self    The option to initialize.
+ * @param   code            The code of the option to initialize.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tnet_dhcp_option_init(tnet_dhcp_option_t *self, tnet_dhcp_option_code_t code)
 {
@@ -167,7 +167,7 @@ int tnet_dhcp_option_serializeex(tnet_dhcp_option_code_t code, uint8_t length, c
 }
 
 //
-//	[[DHCP OPTION]] object definition
+//  [[DHCP OPTION]] object definition
 //
 static tsk_object_t* tnet_dhcp_option_ctor(tsk_object_t * self, va_list * app)
 {
@@ -198,7 +198,7 @@ const tsk_object_def_t *tnet_dhcp_option_def_t = &tnet_dhcp_option_def_s;
 
 
 /*=======================================================================================
-*	RFC 2132 - 9.8. Parameter Request List
+*   RFC 2132 - 9.8. Parameter Request List
 *=======================================================================================*/
 int tnet_dhcp_option_paramslist_add_code(tnet_dhcp_option_paramslist_t* self, tnet_dhcp_option_code_t code)
 {
@@ -212,7 +212,7 @@ int tnet_dhcp_option_paramslist_add_code(tnet_dhcp_option_paramslist_t* self, tn
 }
 
 //
-//	[[DHCP OPTION - RFC 2132 9.8. Parameter Request List]] object definition
+//  [[DHCP OPTION - RFC 2132 9.8. Parameter Request List]] object definition
 //
 static tsk_object_t* tnet_dhcp_option_paramslist_ctor(tsk_object_t * self, va_list * app)
 {
@@ -244,10 +244,10 @@ const tsk_object_def_t *tnet_dhcp_option_paramslist_def_t = &tnet_dhcp_option_pa
 
 
 /*=======================================================================================
-*	RFC 2132 - 3.8. Domain Name Server Option
+*   RFC 2132 - 3.8. Domain Name Server Option
 *=======================================================================================*/
 //
-//	[[DHCP OPTION - RFC 2132 3.8. Domain Name Server Option]] object definition
+//  [[DHCP OPTION - RFC 2132 3.8. Domain Name Server Option]] object definition
 //
 static tsk_object_t* tnet_dhcp_option_dns_ctor(tsk_object_t * self, va_list * app)
 {

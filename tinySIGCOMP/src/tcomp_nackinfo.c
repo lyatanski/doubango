@@ -36,7 +36,7 @@ the opcode to which the PC was pointing when the failure occurred.
 If failure occurred before the UDVM began executing any code, this
 field is set to 0.
 */
-#define OPCODE_UNKNOWN	0
+#define OPCODE_UNKNOWN  0
 /* "PC of failed instruction" is a two-byte field containing the
       value of the program counter when failure occurred (i.e., the
       memory address of the failed UDVM instruction).  The field is
@@ -44,7 +44,7 @@ field is set to 0.
       network or big endian order).  If failure occurred before the UDVM
       began executing any code, this field is set to 0.
 */
-#define PC_UNKNOWN		0
+#define PC_UNKNOWN      0
 
 /** Creates new NACK object */
 tcomp_nackinfo_t* tcomp_nackinfo_create()
@@ -185,7 +185,7 @@ const char* tcomp_nackinfo_get_description(const tcomp_buffer_handle_t* buffer)
 }
 
 //========================================================
-//	NackInfo object definition
+//  NackInfo object definition
 //
 
 /*

@@ -51,7 +51,7 @@ typedef struct tcomp_message_s {
     unsigned stream_based:1; /**< If it's stream message (e.g. TCP) */
     const uint8_t* startPtr; /**< Message pointer. */
     tsk_size_t totalSize; /**< The total message size. */
-    tsk_size_t header_size;	/**< The size of the message header */
+    tsk_size_t header_size; /**< The size of the message header */
 
     tcomp_buffer_handle_t* stateId; /**< */
 

@@ -34,32 +34,32 @@
 #include "tsk_debug.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif
 
 #define TDAV_VIDEO_JB_DISABLE           0
 
 // default frame rate
 // the corret fps will be computed using the RTP timestamps
-#define TDAV_VIDEO_JB_FPS		TDAV_VIDEO_JB_FPS_MAX
-#define TDAV_VIDEO_JB_FPS_MIN	10
-#define TDAV_VIDEO_JB_FPS_MAX	120
+#define TDAV_VIDEO_JB_FPS       TDAV_VIDEO_JB_FPS_MAX
+#define TDAV_VIDEO_JB_FPS_MIN   10
+#define TDAV_VIDEO_JB_FPS_MAX   120
 // Number of correct consecutive video frames to receive before computing the FPS
-#define TDAV_VIDEO_JB_FPS_PROB	(TDAV_VIDEO_JB_FPS << 1)
+#define TDAV_VIDEO_JB_FPS_PROB  (TDAV_VIDEO_JB_FPS << 1)
 // Maximum gap allowed (used to detect seqnum wrpping)
-#define TDAV_VIDEO_JB_MAX_DROPOUT		0xFD9B
+#define TDAV_VIDEO_JB_MAX_DROPOUT       0xFD9B
 
-#define TDAV_VIDEO_JB_TAIL_MAX_LOG2		1
+#define TDAV_VIDEO_JB_TAIL_MAX_LOG2     1
 #if TDAV_UNDER_MOBILE /* to avoid too high memory usage */
-#	define TDAV_VIDEO_JB_TAIL_MAX		(TDAV_VIDEO_JB_FPS_MIN << TDAV_VIDEO_JB_TAIL_MAX_LOG2)
+#   define TDAV_VIDEO_JB_TAIL_MAX       (TDAV_VIDEO_JB_FPS_MIN << TDAV_VIDEO_JB_TAIL_MAX_LOG2)
 #else
-#	define TDAV_VIDEO_JB_TAIL_MAX		(TDAV_VIDEO_JB_FPS_MAX << TDAV_VIDEO_JB_TAIL_MAX_LOG2)
+#   define TDAV_VIDEO_JB_TAIL_MAX       (TDAV_VIDEO_JB_FPS_MAX << TDAV_VIDEO_JB_TAIL_MAX_LOG2)
 #endif
 
-#define TDAV_VIDEO_JB_RATE				90 /* KHz */
+#define TDAV_VIDEO_JB_RATE              90 /* KHz */
 
-#define TDAV_VIDEO_JB_LATENCY_MIN		2 /* Must be > 0 */
-#define TDAV_VIDEO_JB_LATENCY_MAX		15 /* Default, will be updated using fps */
+#define TDAV_VIDEO_JB_LATENCY_MIN       2 /* Must be > 0 */
+#define TDAV_VIDEO_JB_LATENCY_MAX       15 /* Default, will be updated using fps */
 
 static int _tdav_video_jb_set_defaults(struct tdav_video_jb_s* self);
 static const tdav_video_frame_t* _tdav_video_jb_get_frame(struct tdav_video_jb_s* self, uint32_t timestamp, uint8_t pt, tsk_bool_t *pt_matched);

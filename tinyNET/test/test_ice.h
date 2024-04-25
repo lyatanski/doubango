@@ -23,19 +23,19 @@
 #undef kStunUsrName
 #undef kStunPwd
 
-#define kStunUsrName			"bossiel@yahoo.fr"
-#define kStunPwd				"tinynet"
-#define kStunServerIP			"ns313841.ovh.net" /*"numb.viagenie.ca"*/ /*stun.ekiga.net*/
+#define kStunUsrName            "bossiel@yahoo.fr"
+#define kStunPwd                "tinynet"
+#define kStunServerIP           "ns313841.ovh.net" /*"numb.viagenie.ca"*/ /*stun.ekiga.net*/
 
-#define kSkipHosts				1
-#define kSkipReflexives			1 // server reflexive: STUN
-#define kSkipPeers				1 // peer reflexive
-#define kSkipRelays				0 // relays: TURN
+#define kSkipHosts              1
+#define kSkipReflexives         1 // server reflexive: STUN
+#define kSkipPeers              1 // peer reflexive
+#define kSkipRelays             0 // relays: TURN
 
-#define kTurnTrue				1
-#define kStunTrue				1
-#define kTurnFalse				0
-#define kStunFalse				0
+#define kTurnTrue               1
+#define kStunTrue               1
+#define kTurnFalse              0
+#define kStunFalse              0
 
 static const tsk_bool_t use_rtcp = tsk_false;
 
@@ -217,7 +217,7 @@ void test_ice()
     }
     // start ctx2 when we finish gathering ctx1's candidates
     //if ((ret = tnet_ice_ctx_start(p_ice_ctx2))) {
-    //	goto bail;
+    //  goto bail;
     //}
 
     // ret = tnet_ice_ctx_stop(p_ice_ctx1);

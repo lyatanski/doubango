@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 81 "./ragel/tsip_parser_header_Subscription_State.rl" */
@@ -628,7 +628,7 @@ _match:
             {
             }
             break;
-            /* #line 625 "./src/headers/tsip_header_Subscription_State.c" */
+                /* #line 625 "./src/headers/tsip_header_Subscription_State.c" */
             }
         }
 
@@ -666,7 +666,7 @@ _out: {
 
 
 //========================================================
-//	Subscription_State header object definition
+//  Subscription_State header object definition
 //
 
 static tsk_object_t* tsip_header_Subscription_State_ctor(tsk_object_t *self, va_list * app)

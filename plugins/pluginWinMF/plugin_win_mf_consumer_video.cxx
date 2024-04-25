@@ -33,7 +33,7 @@
 // Using Media Foundation (MF) introduce delay when the input fps is different than the one in the custom src.
 // It's very hard to have someting accurate when using MF because the input FPS change depending on the congestion control. D3D is the best choice as frames are displayed as they arrive
 #if !defined(PLUGIN_MF_CV_USE_D3D9)
-#	define PLUGIN_MF_CV_USE_D3D9	 1
+#   define PLUGIN_MF_CV_USE_D3D9     1
 #endif
 
 /******* ********/
@@ -441,7 +441,7 @@ static int _plugin_win_mf_consumer_video_unprepare(plugin_win_mf_consumer_video_
 
 
 //
-//	D3D9 video consumer object definition
+//  D3D9 video consumer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_win_mf_consumer_video_ctor(tsk_object_t * self, va_list * app)
@@ -962,7 +962,7 @@ static HRESULT UnhookWindow(struct plugin_win_mf_consumer_video_s *pSelf)
 // (VideoProcessor) is optional
 // "{{" and "}}" defines where the graph starts and ends respectively. For "0", [Decoder] is a stand-alone IMFTransform.
 #if !defined(PLUGIN_MF_CV_BUNDLE_CODEC)
-#	define PLUGIN_MF_CV_BUNDLE_CODEC 0
+#   define PLUGIN_MF_CV_BUNDLE_CODEC 0
 #endif
 
 // Uncompressed video frame will come from Doubango core and it's up to the converter to match the requested chroma.
@@ -1042,7 +1042,7 @@ static int plugin_win_mf_consumer_video_set(tmedia_consumer_t *self, const tmedi
         else if(tsk_striequals(param->key, "plugin-firefox")) {
             /*DSCONSUMER(self)->plugin_firefox = (*((int32_t*)param->value) != 0);
             if(DSCONSUMER(self)->display){
-            	DSCONSUMER(self)->display->setPluginFirefox((DSCONSUMER(self)->plugin_firefox == tsk_true));
+                DSCONSUMER(self)->display->setPluginFirefox((DSCONSUMER(self)->plugin_firefox == tsk_true));
             }*/
         }
     }
@@ -1160,7 +1160,7 @@ static int plugin_win_mf_consumer_video_prepare(tmedia_consumer_t* self, const t
 
     // Apply Encoder output type (must be called before SetInputType)
     //if(pSelf->pDecoder) {
-    //	CHECK_HR(hr = pSelf->pDecoder->SetOutputType(0, pSelf->pOutType, 0/*MFT_SET_TYPE_TEST_ONLY*/));
+    //  CHECK_HR(hr = pSelf->pDecoder->SetOutputType(0, pSelf->pOutType, 0/*MFT_SET_TYPE_TEST_ONLY*/));
     //}
 
     // Create the Media Session.
@@ -1445,7 +1445,7 @@ static int _plugin_win_mf_consumer_video_unprepare(plugin_win_mf_consumer_video_
 
 
 //
-//	Media Foundation video consumer object definition
+//  Media Foundation video consumer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_win_mf_consumer_video_ctor(tsk_object_t * self, va_list * app)

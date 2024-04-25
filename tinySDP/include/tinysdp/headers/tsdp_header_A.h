@@ -35,19 +35,19 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_A_VA_ARGS(field, value)		tsdp_header_A_def_t, (const char*)(field), (const char*)(value)
+#define TSDP_HEADER_A_VA_ARGS(field, value)     tsdp_header_A_def_t, (const char*)(field), (const char*)(value)
 
-#define TSDP_HEADER_A(self)		((tsdp_header_A_t*)(self))
+#define TSDP_HEADER_A(self)     ((tsdp_header_A_t*)(self))
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "a=" header (Attributes).
+/// @brief  SDP "a=" header (Attributes).
 ///
 /// @par ABNF :  a=attribute
-/// attribute	=  	(att-field  ":" att-value) / att-field
-/// att-field	= 	token
-/// att-value	= 	byte-string
+/// attribute   =   (att-field  ":" att-value) / att-field
+/// att-field   =   token
+/// att-value   =   byte-string
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_A_s {

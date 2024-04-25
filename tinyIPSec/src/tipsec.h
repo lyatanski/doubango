@@ -38,7 +38,7 @@ struct tsk_plugin_s;
 * @param self The context to convert. MUST be declared using @ref TIPSEC_DECLARE_CTX.
 * @retval A pointer to @ref tipsec_ctx_t.
 */
-#define TIPSEC_CTX(self)		((tipsec_ctx_t*)(self))
+#define TIPSEC_CTX(self)        ((tipsec_ctx_t*)(self))
 
 /**@def TIPSEC_IPPROTO_FROM_STR
 * Converts IPSec IP protocol string to enum value.
@@ -51,7 +51,7 @@ struct tsk_plugin_s;
 * @retval "tcp", "udp" or "icmp" string value.
 */
 #define TIPSEC_IPPROTO_FROM_STR(str_ipproto) (tsk_strequals(str_ipproto, "tcp") ? tipsec_ipproto_tcp : (tsk_strequals(str_ipproto, "icmp") ? tipsec_ipproto_icmp : tipsec_ipproto_udp))
-#define TIPSEC_IPPROTO_TO_STR(enum_ipproto)	(enum_ipproto == tipsec_ipproto_tcp ? "tcp" : (enum_ipproto == tipsec_ipproto_icmp ? "icmp" : "udp"))
+#define TIPSEC_IPPROTO_TO_STR(enum_ipproto) (enum_ipproto == tipsec_ipproto_tcp ? "tcp" : (enum_ipproto == tipsec_ipproto_icmp ? "icmp" : "udp"))
 
 
 /**@def TIPSEC_MODE_FROM_STR
@@ -65,7 +65,7 @@ struct tsk_plugin_s;
 * @retval "tun" (tunnel) or "trans" (transport) string value.
 */
 #define TIPSEC_MODE_FROM_STR(str_mode) (tsk_strequals(str_mode, "tun") ? tipsec_mode_tun : tipsec_mode_trans)
-#define TIPSEC_MODE_TO_STR(enum_mode)	(enum_mode == tipsec_mode_tun ? "tun" : "trans")
+#define TIPSEC_MODE_TO_STR(enum_mode)   (enum_mode == tipsec_mode_tun ? "tun" : "trans")
 
 /** @def TIPSEC_EALG_FROM_STR
 * Converts IPSec encryption algorithm string to enum value.
@@ -78,7 +78,7 @@ struct tsk_plugin_s;
 * @retval "des-ede3-cbc", "aes" or "null" string value.
 */
 #define TIPSEC_EALG_FROM_STR(str_ealg) (tsk_strequals(str_ealg, "des-ede3-cbc") ? tipsec_ealg_des_ede3_cbc : (tsk_strequals(str_ealg, "aes-cbc") ? tipsec_ealg_aes : tipsec_ealg_null))
-#define TIPSEC_EALG_TO_STR(enum_ealg)	(enum_ealg == tipsec_ealg_des_ede3_cbc ? "des-ede3-cbc" : (enum_ealg == tipsec_ealg_aes ? "aes-cbc" : "null"))
+#define TIPSEC_EALG_TO_STR(enum_ealg)   (enum_ealg == tipsec_ealg_des_ede3_cbc ? "des-ede3-cbc" : (enum_ealg == tipsec_ealg_aes ? "aes-cbc" : "null"))
 
 
 /** @def TIPSEC_ALG_FROM_STR
@@ -92,7 +92,7 @@ struct tsk_plugin_s;
 * @retval "hmac-sha-1-96" or "hmac-md5-96" string value.
 */
 #define TIPSEC_ALG_FROM_STR(str_alg) (tsk_strequals(str_alg, "hmac-sha-1-96") ? tipsec_alg_hmac_sha_1_96 : tipsec_alg_hmac_md5_96)
-#define TIPSEC_ALG_TO_STR(enum_alg)	(enum_alg == tipsec_alg_hmac_sha_1_96 ? "hmac-sha-1-96" : "hmac-md5-96")
+#define TIPSEC_ALG_TO_STR(enum_alg) (enum_alg == tipsec_alg_hmac_sha_1_96 ? "hmac-sha-1-96" : "hmac-md5-96")
 
 /**@def TIPSEC_PROTOCOL_FROM_STR
 * Converts IPSec protocol string to enum value.
@@ -105,7 +105,7 @@ struct tsk_plugin_s;
 * @retval "ah", "esp" or "ah/esp" string value.
 */
 #define TIPSEC_PROTOCOL_FROM_STR(str_protocol) (tsk_strequals(str_protocol, "ah") ? tipsec_proto_ah : ((tsk_strequals(str_protocol, "ah/esp")) ? tipsec_proto_both : tipsec_proto_esp))
-#define TIPSEC_PROTOCOL_TO_STR(enum_protocol)	(enum_protocol == tipsec_proto_ah ? "ah" : (enum_protocol == tipsec_proto_both ? "ah/esp" : "esp"))
+#define TIPSEC_PROTOCOL_TO_STR(enum_protocol)   (enum_protocol == tipsec_proto_ah ? "ah" : (enum_protocol == tipsec_proto_both ? "ah/esp" : "esp"))
 
 /**@def TIPSEC_KEY_LEN
 * Default size for IK (Integrity Key) and CK (Confidentiality Key).
@@ -116,9 +116,9 @@ struct tsk_plugin_s;
 /**@def TIPSEC_IK_LEN
 * Size of IK (Integrity Key).
 */
-#define TIPSEC_KEY_LEN			16
-#define TIPSEC_IK_LEN			20
-#define TIPSEC_CK_LEN			24
+#define TIPSEC_KEY_LEN          16
+#define TIPSEC_IK_LEN           20
+#define TIPSEC_CK_LEN           24
 
 /**@def tipsec_lifetime_t
 */
@@ -312,9 +312,9 @@ typedef struct tipsec_plugin_def_s {
     const char* desc;
 
     tipsec_error_t (* init) (tipsec_ctx_t* );
-    tipsec_error_t (* set_local) (tipsec_ctx_t* , const char* addr_local, const char* addr_remote, tipsec_port_t port_uc, tipsec_port_t port_us);
-    tipsec_error_t (* set_remote) (tipsec_ctx_t* , tipsec_spi_t spi_pc, tipsec_spi_t spi_ps, tipsec_port_t port_pc, tipsec_port_t port_ps, tipsec_lifetime_t lifetime);
-    tipsec_error_t (* set_keys) (tipsec_ctx_t* , const tipsec_key_t* ik, const tipsec_key_t* ck);
+    tipsec_error_t (* set_local) (tipsec_ctx_t*, const char* addr_local, const char* addr_remote, tipsec_port_t port_uc, tipsec_port_t port_us);
+    tipsec_error_t (* set_remote) (tipsec_ctx_t*, tipsec_spi_t spi_pc, tipsec_spi_t spi_ps, tipsec_port_t port_pc, tipsec_port_t port_ps, tipsec_lifetime_t lifetime);
+    tipsec_error_t (* set_keys) (tipsec_ctx_t*, const tipsec_key_t* ik, const tipsec_key_t* ck);
     tipsec_error_t (* start) (tipsec_ctx_t* );
     tipsec_error_t (* stop) (tipsec_ctx_t* );
 }

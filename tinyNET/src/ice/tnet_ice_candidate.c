@@ -410,8 +410,8 @@ int tnet_ice_candidate_process_stun_response(tnet_ice_candidate_t* self, const t
     }
 
     //if(!(_tnet_ice_candidate_stun_transac_id_equals(response->transac_id, self->stun.transac_id))){
-    //	TSK_DEBUG_ERROR("Transaction id mismatch");
-    //	return -2;
+    //  TSK_DEBUG_ERROR("Transaction id mismatch");
+    //  return -2;
     //}
 
     if (TNET_STUN_PKT_RESP_IS_ERROR(response)) {

@@ -40,7 +40,7 @@
 #if HAVE_OPENCORE_AMR
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "..\\thirdparties\\win32\\lib\\opencore\\libopencore-amrnb.a")
+#   pragma comment(lib, "..\\thirdparties\\win32\\lib\\opencore\\libopencore-amrnb.a")
 #endif
 
 #define NO_DATA 15
@@ -63,22 +63,22 @@ static tsk_size_t tdav_codec_amr_oa_encode(tdav_codec_amr_t* amr, const void* in
 static uint8_t tdav_codec_amr_bitbuffer_read(const void* bits, tsk_size_t size, tsk_size_t start, tsk_size_t count);
 
 /* ============ AMR-NB Plugin interface =================
-	The AMR codec was originally developed and standardized by the
-	European Telecommunications Standards Institute (ETSI) for GSM
-	cellular systems.  It is now chosen by the Third Generation
-	Partnership Project (3GPP) as the mandatory codec for third
-	generation (3G) cellular systems [1].
+    The AMR codec was originally developed and standardized by the
+    European Telecommunications Standards Institute (ETSI) for GSM
+    cellular systems.  It is now chosen by the Third Generation
+    Partnership Project (3GPP) as the mandatory codec for third
+    generation (3G) cellular systems [1].
 
-	The AMR codec is a multi-mode codec that supports eight narrow band
-	speech encoding modes with bit rates between 4.75 and 12.2 kbps.  The
-	sampling frequency used in AMR is 8000 Hz and the speech encoding is
-	performed on 20 ms speech frames.  Therefore, each encoded AMR speech
-	frame represents 160 samples of the original speech.
+    The AMR codec is a multi-mode codec that supports eight narrow band
+    speech encoding modes with bit rates between 4.75 and 12.2 kbps.  The
+    sampling frequency used in AMR is 8000 Hz and the speech encoding is
+    performed on 20 ms speech frames.  Therefore, each encoded AMR speech
+    frame represents 160 samples of the original speech.
 
-	Among the eight AMR encoding modes, three are already separately
-	adopted as standards of their own.  Particularly, the 6.7 kbps mode
-	is adopted as PDC-EFR [18], the 7.4 kbps mode as IS-641 codec in TDMA
-	[17], and the 12.2 kbps mode as GSM-EFR [16].
+    Among the eight AMR encoding modes, three are already separately
+    adopted as standards of their own.  Particularly, the 6.7 kbps mode
+    is adopted as PDC-EFR [18], the 7.4 kbps mode as IS-641 codec in TDMA
+    [17], and the 12.2 kbps mode as GSM-EFR [16].
 */
 
 int tdav_codec_amrnb_open(tmedia_codec_t* self)
@@ -188,7 +188,7 @@ tsk_bool_t tdav_codec_amrnb_sdp_att_match(const tmedia_codec_t* codec, const cha
 
 
 //
-//	AMR-NB OA Plugin definition
+//  AMR-NB OA Plugin definition
 //
 
 /* constructor */
@@ -253,7 +253,7 @@ static const tmedia_codec_plugin_def_t tdav_codec_amrnb_oa_plugin_def_s = {
 const tmedia_codec_plugin_def_t *tdav_codec_amrnb_oa_plugin_def_t = &tdav_codec_amrnb_oa_plugin_def_s;
 
 //
-//	AMR-NB BE Plugin definition
+//  AMR-NB BE Plugin definition
 //
 
 /* constructor */
@@ -377,8 +377,8 @@ static int tdav_codec_amr_deinit(tdav_codec_amr_t* self)
 static tdav_codec_amr_mode_t tdav_codec_amr_get_mode(const char* fmtp)
 {
     /* RFC 4867 - 8.1.  AMR Media Type Registration
-    	octet-align: Permissible values are 0 and 1.  If 1, octet-aligned
-    	operation SHALL be used.  If 0 or if not present, bandwidth-efficient operation is employed.
+        octet-align: Permissible values are 0 and 1.  If 1, octet-aligned
+        operation SHALL be used.  If 0 or if not present, bandwidth-efficient operation is employed.
     */
     tdav_codec_amr_mode_t mode = tdav_codec_amr_mode_be;
     tsk_size_t size = tsk_strlen(fmtp);
@@ -470,19 +470,19 @@ bail:
 
 
 /* RFC 4867 - 4.2.  Payload Structure
-	+----------------+-------------------+----------------
-	| payload header | table of contents | speech data ...
-	+----------------+-------------------+----------------
+    +----------------+-------------------+----------------
+    | payload header | table of contents | speech data ...
+    +----------------+-------------------+----------------
 */
-/*	RFC 4867 - 4.4.2.  The Payload Table of Contents and Frame CRCs
-		The table of contents (ToC) consists of a list of ToC entries, each representing a speech frame.
-		+---------------------+
-		| list of ToC entries |
-		+---------------------+
-		| list of frame CRCs  | (optional)
-		- - - - - - - - - - -
-		Note, for ToC entries with FT=14 or 15, there will be no
-		corresponding speech frame or frame CRC present in the payload.
+/*  RFC 4867 - 4.4.2.  The Payload Table of Contents and Frame CRCs
+        The table of contents (ToC) consists of a list of ToC entries, each representing a speech frame.
+        +---------------------+
+        | list of ToC entries |
+        +---------------------+
+        | list of frame CRCs  | (optional)
+        - - - - - - - - - - -
+        Note, for ToC entries with FT=14 or 15, there will be no
+        corresponding speech frame or frame CRC present in the payload.
 */
 
 
@@ -571,7 +571,7 @@ tsk_size_t tdav_codec_amr_be_decode(tdav_codec_amr_t* amr, const void* in_data, 
 
     /* F(1bit), FT(4bits), Q(1bit) */
     /* count ToC entries */
-    do {	/* At least ONE ToC */
+    do {    /* At least ONE ToC */
         ++toc_entries;
         ++pdata;
         index += 6;
@@ -693,12 +693,12 @@ static tsk_size_t tdav_codec_amr_oa_decode(tdav_codec_amr_t* amr, const void* in
     }
 
     /* RFC 4867 - 4.4.  Octet-Aligned Mode
-    	In octet-aligned mode, the payload header consists of a 4-bit CMR, 4
+        In octet-aligned mode, the payload header consists of a 4-bit CMR, 4
        reserved bits, and optionally, an 8-bit interleaving header, as shown
        below:
 
-    	0                   1
-    	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+        0                   1
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
        +-+-+-+-+-+-+-+-+- - - - - - - -
        |  CMR  |R|R|R|R|  ILL  |  ILP  |
        +-+-+-+-+-+-+-+-+- - - - - - - -
@@ -718,20 +718,20 @@ static tsk_size_t tdav_codec_amr_oa_decode(tdav_codec_amr_t* amr, const void* in
     }
 
     /*
-    	A ToC entry takes the following format in octet-aligned mode:
-    	0 1 2 3 4 5 6 7
-    	+-+-+-+-+-+-+-+-+
-    	|F|  FT   |Q|P|P|
-    	+-+-+-+-+-+-+-+-+
+        A ToC entry takes the following format in octet-aligned mode:
+        0 1 2 3 4 5 6 7
+        +-+-+-+-+-+-+-+-+
+        |F|  FT   |Q|P|P|
+        +-+-+-+-+-+-+-+-+
 
-    	F (1 bit): see definition in Section 4.3.2.
-    	FT (4 bits, unsigned integer): see definition in Section 4.3.2.
-    	Q (1 bit): see definition in Section 4.3.2.
-    	P bits: padding bits, MUST be set to zero, and MUST be ignored on reception.
+        F (1 bit): see definition in Section 4.3.2.
+        FT (4 bits, unsigned integer): see definition in Section 4.3.2.
+        Q (1 bit): see definition in Section 4.3.2.
+        P bits: padding bits, MUST be set to zero, and MUST be ignored on reception.
     */
 
     /* count ToC entries */
-    do {	/* At least ONE ToC */
+    do {    /* At least ONE ToC */
         ++toc_entries;
         ++pdata;
     }

@@ -264,7 +264,7 @@ _match:
                 TSK_PARSER_SET_STRING(hdr_Sec_WebSocket_Key->value);
             }
             break;
-            /* #line 259 "./src/headers/thttp_header_Sec_WebSocket_Key.c" */
+                /* #line 259 "./src/headers/thttp_header_Sec_WebSocket_Key.c" */
             }
         }
 
@@ -303,7 +303,7 @@ _out: {
 
 
 //========================================================
-//	Sec_WebSocket_Key header object definition
+//  Sec_WebSocket_Key header object definition
 //
 
 static tsk_object_t* thttp_header_Sec_WebSocket_Key_ctor(tsk_object_t *self, va_list * app)

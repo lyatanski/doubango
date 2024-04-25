@@ -86,7 +86,7 @@ int tsip_dialog_invite_hold_init(tsip_dialog_invite_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 // Connected -> (send HOLD) -> Holding
@@ -248,5 +248,5 @@ int tsip_dialog_invite_hold_handle(tsip_dialog_invite_t* self, const tsip_reques
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -292,13 +292,13 @@ compartment_free_states:
 
 //compartment_remote_params:
     /*
-    *	Set remote -compressor- parameters.
+    *   Set remote -compressor- parameters.
     */
     tcomp_compartment_setRemoteParams(lpCompartment, (*lpResult)->remote_parameters);
 
 //feedbacks:
     /*
-    *	Set both Returned and Requested feedbacks.
+    *   Set both Returned and Requested feedbacks.
     */
 
     if(tcomp_buffer_getSize((*lpResult)->req_feedback->item)) {
@@ -343,7 +343,7 @@ tsk_bool_t tcomp_statehandler_handleNack(tcomp_statehandler_t *statehandler, con
                 //lpCompartement->findState(&nack_info->details, &lpState);
                 //if(lpState)
                 //{
-                //	lpCompartement->freeState(lpState);
+                //  lpCompartement->freeState(lpState);
                 //}
                 tcomp_compartment_freeGhostState(lpCompartement);
             }
@@ -416,7 +416,7 @@ int tcomp_statehandler_addPresenceDictionary(tcomp_statehandler_t *statehandler)
 
 
 //========================================================
-//	State hanlder object definition
+//  State hanlder object definition
 //
 
 static tsk_object_t* tcomp_statehandler_ctor(tsk_object_t * self, va_list * app)

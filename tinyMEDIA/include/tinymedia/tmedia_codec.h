@@ -39,78 +39,78 @@ TMEDIA_BEGIN_DECLS
 * http://www.networksorcery.com/enp/protocol/rtp.htm
 =====*/
 /******* Fixed Payload Type *************/
-#define TMEDIA_CODEC_FORMAT_G711u						"0"
-#define TMEDIA_CODEC_FORMAT_1016						"1"
-#define TMEDIA_CODEC_FORMAT_G721						"2"
-#define TMEDIA_CODEC_FORMAT_GSM							"3"
-#define TMEDIA_CODEC_FORMAT_G723						"4"
-#define TMEDIA_CODEC_FORMAT_DVI4_8000					"5"
-#define TMEDIA_CODEC_FORMAT_DVI4_16000					"6"
-#define TMEDIA_CODEC_FORMAT_LPC							"7"
-#define TMEDIA_CODEC_FORMAT_G711a						"8"
-#define TMEDIA_CODEC_FORMAT_G722						"9"
-#define TMEDIA_CODEC_FORMAT_L16_STEREO					"10"
-#define TMEDIA_CODEC_FORMAT_L16							"11"
-#define TMEDIA_CODEC_FORMAT_QCELP						"12"
-#define TMEDIA_CODEC_FORMAT_CN							"13"
-#define TMEDIA_CODEC_FORMAT_MPA							"14"
-#define TMEDIA_CODEC_FORMAT_G728						"15"
-#define TMEDIA_CODEC_FORMAT_DVI4_11025					"16"
-#define TMEDIA_CODEC_FORMAT_DVI4_22050					"17"
-#define TMEDIA_CODEC_FORMAT_G729						"18"
+#define TMEDIA_CODEC_FORMAT_G711u                       "0"
+#define TMEDIA_CODEC_FORMAT_1016                        "1"
+#define TMEDIA_CODEC_FORMAT_G721                        "2"
+#define TMEDIA_CODEC_FORMAT_GSM                         "3"
+#define TMEDIA_CODEC_FORMAT_G723                        "4"
+#define TMEDIA_CODEC_FORMAT_DVI4_8000                   "5"
+#define TMEDIA_CODEC_FORMAT_DVI4_16000                  "6"
+#define TMEDIA_CODEC_FORMAT_LPC                         "7"
+#define TMEDIA_CODEC_FORMAT_G711a                       "8"
+#define TMEDIA_CODEC_FORMAT_G722                        "9"
+#define TMEDIA_CODEC_FORMAT_L16_STEREO                  "10"
+#define TMEDIA_CODEC_FORMAT_L16                         "11"
+#define TMEDIA_CODEC_FORMAT_QCELP                       "12"
+#define TMEDIA_CODEC_FORMAT_CN                          "13"
+#define TMEDIA_CODEC_FORMAT_MPA                         "14"
+#define TMEDIA_CODEC_FORMAT_G728                        "15"
+#define TMEDIA_CODEC_FORMAT_DVI4_11025                  "16"
+#define TMEDIA_CODEC_FORMAT_DVI4_22050                  "17"
+#define TMEDIA_CODEC_FORMAT_G729                        "18"
 
-#define TMEDIA_CODEC_FORMAT_CELLB						"25"
-#define TMEDIA_CODEC_FORMAT_JPEG						"26"
-#define TMEDIA_CODEC_FORMAT_NV							"28"
+#define TMEDIA_CODEC_FORMAT_CELLB                       "25"
+#define TMEDIA_CODEC_FORMAT_JPEG                        "26"
+#define TMEDIA_CODEC_FORMAT_NV                          "28"
 
-#define TMEDIA_CODEC_FORMAT_H261						"31"
-#define TMEDIA_CODEC_FORMAT_MPV							"32"
-#define TMEDIA_CODEC_FORMAT_MP2T						"33"
-#define TMEDIA_CODEC_FORMAT_H263						"34"
+#define TMEDIA_CODEC_FORMAT_H261                        "31"
+#define TMEDIA_CODEC_FORMAT_MPV                         "32"
+#define TMEDIA_CODEC_FORMAT_MP2T                        "33"
+#define TMEDIA_CODEC_FORMAT_H263                        "34"
 
 /******* Dynamic Payload Type
 Must starts at 96 to be conform to RFC 5761 (rtcp-mux)
 **********/
 
-#define TMEDIA_CODEC_FORMAT_ILBC						"96"
+#define TMEDIA_CODEC_FORMAT_ILBC                        "96"
 
-#define TMEDIA_CODEC_FORMAT_SPEEX_NB					"97"
-#define TMEDIA_CODEC_FORMAT_SPEEX_WB					"98"
-#define TMEDIA_CODEC_FORMAT_SPEEX_UWB					"99"
-#define TMEDIA_CODEC_FORMAT_VP8							"100" /* Must to ease neg. with chrome and Asterisk */
-#define TMEDIA_CODEC_FORMAT_DTMF						"101"
+#define TMEDIA_CODEC_FORMAT_SPEEX_NB                    "97"
+#define TMEDIA_CODEC_FORMAT_SPEEX_WB                    "98"
+#define TMEDIA_CODEC_FORMAT_SPEEX_UWB                   "99"
+#define TMEDIA_CODEC_FORMAT_VP8                         "100" /* Must to ease neg. with chrome and Asterisk */
+#define TMEDIA_CODEC_FORMAT_DTMF                        "101"
 
-#define TMEDIA_CODEC_FORMAT_H263_2000					"102"
-#define TMEDIA_CODEC_FORMAT_H263_1998					"103"
-#define TMEDIA_CODEC_FORMAT_H264_BP						"104"
-#define TMEDIA_CODEC_FORMAT_H264_MP						"105"
-#define TMEDIA_CODEC_FORMAT_H264_HP						"106"
+#define TMEDIA_CODEC_FORMAT_H263_2000                   "102"
+#define TMEDIA_CODEC_FORMAT_H263_1998                   "103"
+#define TMEDIA_CODEC_FORMAT_H264_BP                     "104"
+#define TMEDIA_CODEC_FORMAT_H264_MP                     "105"
+#define TMEDIA_CODEC_FORMAT_H264_HP                     "106"
 
-#define TMEDIA_CODEC_FORMAT_AMR_WBP_BE					"107"
-#define TMEDIA_CODEC_FORMAT_AMR_WBP_OA					"108"
-#define TMEDIA_CODEC_FORMAT_AAC							"109"
-#define TMEDIA_CODEC_FORMAT_AACPLUS						"110"
+#define TMEDIA_CODEC_FORMAT_AMR_WBP_BE                  "107"
+#define TMEDIA_CODEC_FORMAT_AMR_WBP_OA                  "108"
+#define TMEDIA_CODEC_FORMAT_AAC                         "109"
+#define TMEDIA_CODEC_FORMAT_AACPLUS                     "110"
 
-#define TMEDIA_CODEC_FORMAT_OPUS						"111"
+#define TMEDIA_CODEC_FORMAT_OPUS                        "111"
 
-#define TMEDIA_CODEC_FORMAT_AMR_NB_BE					"112"
-#define TMEDIA_CODEC_FORMAT_AMR_NB_OA					"113"
-#define TMEDIA_CODEC_FORMAT_AMR_WB_BE					"114"
-#define TMEDIA_CODEC_FORMAT_AMR_WB_OA					"115"
+#define TMEDIA_CODEC_FORMAT_AMR_NB_BE                   "112"
+#define TMEDIA_CODEC_FORMAT_AMR_NB_OA                   "113"
+#define TMEDIA_CODEC_FORMAT_AMR_WB_BE                   "114"
+#define TMEDIA_CODEC_FORMAT_AMR_WB_OA                   "115"
 
-#define TMEDIA_CODEC_FORMAT_BV16						"116"
+#define TMEDIA_CODEC_FORMAT_BV16                        "116"
 
-#define TMEDIA_CODEC_FORMAT_MP4V_ES						"121"
+#define TMEDIA_CODEC_FORMAT_MP4V_ES                     "121"
 
-#define TMEDIA_CODEC_FORMAT_ULPFEC						"122"
-#define TMEDIA_CODEC_FORMAT_RED							"123"
-#define TMEDIA_CODEC_FORMAT_T140						"124"
+#define TMEDIA_CODEC_FORMAT_ULPFEC                      "122"
+#define TMEDIA_CODEC_FORMAT_RED                         "123"
+#define TMEDIA_CODEC_FORMAT_T140                        "124"
 
-#define TMEDIA_CODEC_FORMAT_THEORA						"125"
+#define TMEDIA_CODEC_FORMAT_THEORA                      "125"
 
 
-#define TMEDIA_CODEC_FORMAT_MSRP						"*"
-#define TMEDIA_CODEC_FORMAT_BFCP						"*"
+#define TMEDIA_CODEC_FORMAT_MSRP                        "*"
+#define TMEDIA_CODEC_FORMAT_BFCP                        "*"
 
 
 
@@ -166,21 +166,21 @@ tmedia_codec_id_t;
 
 /**Max number of plugins (codec types) we can create */
 #if !defined(TMED_CODEC_MAX_PLUGINS)
-#   define TMED_CODEC_MAX_PLUGINS			0xFF
+#   define TMED_CODEC_MAX_PLUGINS           0xFF
 #endif
 
 /** cast any pointer to @ref tmedia_codec_t* object */
-#define TMEDIA_CODEC(self)		((tmedia_codec_t*)(self))
+#define TMEDIA_CODEC(self)      ((tmedia_codec_t*)(self))
 
 
-#define TMEDIA_CODEC_RATE_DECODING(self)			(TMEDIA_CODEC((self))->in.rate)
-#define TMEDIA_CODEC_RATE_ENCODING(self)			(TMEDIA_CODEC((self))->out.rate)
+#define TMEDIA_CODEC_RATE_DECODING(self)            (TMEDIA_CODEC((self))->in.rate)
+#define TMEDIA_CODEC_RATE_ENCODING(self)            (TMEDIA_CODEC((self))->out.rate)
 
-#define TMEDIA_CODEC_PTIME_AUDIO_DECODING(self)			(TMEDIA_CODEC_AUDIO((self))->in.ptime)
-#define TMEDIA_CODEC_PTIME_AUDIO_ENCODING(self)			(TMEDIA_CODEC_AUDIO((self))->out.ptime)
+#define TMEDIA_CODEC_PTIME_AUDIO_DECODING(self)         (TMEDIA_CODEC_AUDIO((self))->in.ptime)
+#define TMEDIA_CODEC_PTIME_AUDIO_ENCODING(self)         (TMEDIA_CODEC_AUDIO((self))->out.ptime)
 
-#define TMEDIA_CODEC_CHANNELS_AUDIO_DECODING(self)			(TMEDIA_CODEC_AUDIO((self))->in.channels)
-#define TMEDIA_CODEC_CHANNELS_AUDIO_ENCODING(self)			(TMEDIA_CODEC_AUDIO((self))->out.channels)
+#define TMEDIA_CODEC_CHANNELS_AUDIO_DECODING(self)          (TMEDIA_CODEC_AUDIO((self))->in.channels)
+#define TMEDIA_CODEC_CHANNELS_AUDIO_ENCODING(self)          (TMEDIA_CODEC_AUDIO((self))->out.channels)
 
 #define TMEDIA_CODEC_PCM_FRAME_SIZE_AUDIO_DECODING(self) ((TMEDIA_CODEC_PTIME_AUDIO_DECODING((self)) * TMEDIA_CODEC_RATE_DECODING((self)))/1000)
 #define TMEDIA_CODEC_PCM_FRAME_SIZE_AUDIO_ENCODING(self) ((TMEDIA_CODEC_PTIME_AUDIO_ENCODING((self)) * TMEDIA_CODEC_RATE_ENCODING((self)))/1000)
@@ -244,7 +244,7 @@ typedef struct tmedia_codec_s {
     const struct tmedia_codec_plugin_def_s* plugin;
 }
 tmedia_codec_t;
-#define TMEDIA_CODEC(self)		((tmedia_codec_t*)(self))
+#define TMEDIA_CODEC(self)      ((tmedia_codec_t*)(self))
 
 /** Virtual table used to define a codec plugin */
 typedef struct tmedia_codec_plugin_def_s {
@@ -281,7 +281,7 @@ typedef struct tmedia_codec_plugin_def_s {
     } video;
 
     //! set parameters
-    int (*set) (tmedia_codec_t* , const struct tmedia_param_s*);
+    int (*set) (tmedia_codec_t*, const struct tmedia_param_s*);
     //! open the codec
     int (*open) (tmedia_codec_t*);
     //! close the codec
@@ -363,7 +363,7 @@ tmedia_codec_audio_t;
 * DeInitialize a audio codec.
 */
 #define TMEDIA_DECLARE_CODEC_AUDIO tmedia_codec_audio_t __audio__
-#define TMEDIA_CODEC_AUDIO(self)		((tmedia_codec_audio_t*)(self))
+#define TMEDIA_CODEC_AUDIO(self)        ((tmedia_codec_audio_t*)(self))
 #define tmedia_codec_audio_init(self, name, desc, format) tmedia_codec_init(TMEDIA_CODEC(self), tmedia_audio, name, desc, format)
 #define tmedia_codec_audio_deinit(self) tmedia_codec_deinit(TMEDIA_CODEC(self))
 TINYMEDIA_API float tmedia_codec_audio_get_timestamp_multiplier(tmedia_codec_id_t id, uint32_t sample_rate);
@@ -415,7 +415,7 @@ tmedia_codec_video_t;
 * DeInitialize a video codec.
 */
 #define TMEDIA_DECLARE_CODEC_VIDEO tmedia_codec_video_t __video__
-#define TMEDIA_CODEC_VIDEO(self)		((tmedia_codec_video_t*)(self))
+#define TMEDIA_CODEC_VIDEO(self)        ((tmedia_codec_video_t*)(self))
 #define tmedia_codec_video_init(self, name, desc, format) tmedia_codec_init(TMEDIA_CODEC(self), tmedia_video, name, desc, format)
 TINYMEDIA_API int tmedia_codec_video_set_enc_callback(tmedia_codec_video_t *self, tmedia_codec_video_enc_cb_f callback, const void* callback_data);
 TINYMEDIA_API int tmedia_codec_video_set_dec_callback(tmedia_codec_video_t *self, tmedia_codec_video_dec_cb_f callback, const void* callback_data);
@@ -442,7 +442,7 @@ tmedia_codec_msrp_t;
 * DeInitialize a msrp codec.
 */
 #define TMEDIA_DECLARE_CODEC_MSRP tmedia_codec_msrp_t __msrp__
-#define TMEDIA_CODEC_MSRP(self)		((tmedia_codec_msrp_t*)(self))
+#define TMEDIA_CODEC_MSRP(self)     ((tmedia_codec_msrp_t*)(self))
 #define tmedia_codec_msrp_init(self, name, desc) tmedia_codec_init(TMEDIA_CODEC(self), tmedia_msrp, name, desc, "*")
 #define tmedia_codec_msrp_deinit(self) tmedia_codec_deinit(TMEDIA_CODEC(self))
 
@@ -453,7 +453,7 @@ typedef struct tmedia_codec_bfcp_s {
 }
 tmedia_codec_bfcp_t;
 #define TMEDIA_DECLARE_CODEC_BFCP tmedia_codec_bfcp_t __bfcp__
-#define TMEDIA_CODEC_BFCP(self)		((tmedia_codec_bfcp_t*)(self))
+#define TMEDIA_CODEC_BFCP(self)     ((tmedia_codec_bfcp_t*)(self))
 #define tmedia_codec_bfcp_init(self, name, desc) tmedia_codec_init(TMEDIA_CODEC(self), tmedia_bfcp, name, desc, "*")
 #define tmedia_codec_bfcp_deinit(self) tmedia_codec_deinit(TMEDIA_CODEC(self))
 

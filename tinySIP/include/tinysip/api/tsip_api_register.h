@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_REGISTER_EVENT(self)		((tsip_register_event_t*)(self))
+#define TSIP_REGISTER_EVENT(self)       ((tsip_register_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_register_event_type_e {
@@ -65,8 +65,8 @@ TINYSIP_API int tsip_api_register_send_unregister(const tsip_ssession_handle_t *
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_register_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_REGISTER	tsip_api_register_send_register
-#	define tsip_action_UNREGISTER	tsip_api_register_send_unregister
+#   define tsip_action_REGISTER tsip_api_register_send_register
+#   define tsip_action_UNREGISTER   tsip_api_register_send_unregister
 #endif
 
 TSIP_END_DECLS

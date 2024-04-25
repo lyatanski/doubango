@@ -42,7 +42,8 @@ public:
     DSDisplayGraph(HRESULT *hr);
     virtual ~DSDisplayGraph();
 
-    int getDisplayFps() {
+    int getDisplayFps()
+    {
         return this->fps;
     };
     void setDisplayFps(int fps_);
@@ -59,32 +60,40 @@ public:
     bool isRunning();
     bool isPaused();
 
-    IMediaEventEx			*getMediaEvent()		{
+    IMediaEventEx           *getMediaEvent()
+    {
         return this->mediaEvent;
     };
-    IVideoWindow			*getVideoWindow()		{
+    IVideoWindow            *getVideoWindow()
+    {
         return this->videoWindow;
     };
-    DSOutputFilter			*getSourceFilter()		{
+    DSOutputFilter          *getSourceFilter()
+    {
         return this->sourceFilter;
     };
 
 #if defined(VMR)
-    IVMRMixerBitmap			*getMixerBitmap()		{
+    IVMRMixerBitmap         *getMixerBitmap()
+    {
         return this->mixerBitmap;
     };
 #elif defined(VMR9)
-    IVMRMixerBitmap9		*getMixerBitmap()		{
+    IVMRMixerBitmap9        *getMixerBitmap()
+    {
         return this->mixerBitmap;
     };
 #elif defined(VMR9_WINDOWLESS)
-    IVMRMixerBitmap9		*getMixerBitmap()		{
+    IVMRMixerBitmap9        *getMixerBitmap()
+    {
         return this->mixerBitmap;
     };
-    IVMRMixerControl9		*getMixerControl()		{
+    IVMRMixerControl9       *getMixerControl()
+    {
         return this->mixerControl;
     };
-    IVMRWindowlessControl9	*getWindowlessControl()	{
+    IVMRWindowlessControl9  *getWindowlessControl()
+    {
         return this->windowlessControl;
     };
 #endif
@@ -95,28 +104,28 @@ private:
     HRESULT createDisplayGraph();
 
 private:
-    IGraphBuilder					*graphBuilder;
+    IGraphBuilder                   *graphBuilder;
 
-    DSOutputFilter					*sourceFilter;
-    IBaseFilter						*colorspaceConverterFilter;
-    IBaseFilter						*videoRendererFilter;
+    DSOutputFilter                  *sourceFilter;
+    IBaseFilter                     *colorspaceConverterFilter;
+    IBaseFilter                     *videoRendererFilter;
 
-    IMediaControl					*mediaController;
-    IMediaEventEx					*mediaEvent;
-    IVideoWindow					*videoWindow;
+    IMediaControl                   *mediaController;
+    IMediaEventEx                   *mediaEvent;
+    IVideoWindow                    *videoWindow;
 
 #if defined(VMR)
-    IVMRMixerBitmap					*mixerBitmap;
-    IVMRFilterConfig				*filterConfig;
+    IVMRMixerBitmap                 *mixerBitmap;
+    IVMRFilterConfig                *filterConfig;
 #elif defined(VMR9)
-    IVMRMixerBitmap9				*mixerBitmap;
-    IVMRMixerControl9				*mixerControl;
-    IVMRFilterConfig9				*filterConfig;
+    IVMRMixerBitmap9                *mixerBitmap;
+    IVMRMixerControl9               *mixerControl;
+    IVMRFilterConfig9               *filterConfig;
 #elif defined(VMR9_WINDOWLESS)
-    IVMRMixerBitmap9				*mixerBitmap;
-    IVMRMixerControl9				*mixerControl;
-    IVMRFilterConfig9				*filterConfig;
-    IVMRWindowlessControl9			*windowlessControl;
+    IVMRMixerBitmap9                *mixerBitmap;
+    IVMRMixerControl9               *mixerControl;
+    IVMRFilterConfig9               *filterConfig;
+    IVMRWindowlessControl9          *windowlessControl;
 #endif
 
     bool connected;

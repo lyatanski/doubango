@@ -34,13 +34,13 @@ typedef int tsk_boolean_t;
 /**@def tsk_false
 * False (0).
 */
-#define tsk_true	1
-#define tsk_false	0
+#define tsk_true    1
+#define tsk_false   0
 
-#define TSK_MIN(a,b)					(((a) < (b)) ? (a) : (b))
-#define TSK_MAX(a,b)					(((a) > (b)) ? (a) : (b))
-#define TSK_ABS(a)						(((a)< 0) ? -(a) : (a))
-#define TSK_CLAMP(nMin, nVal, nMax)		((nVal) > (nMax)) ? (nMax) : (((nVal) < (nMin)) ? (nMin) : (nVal))
+#define TSK_MIN(a,b)                    (((a) < (b)) ? (a) : (b))
+#define TSK_MAX(a,b)                    (((a) > (b)) ? (a) : (b))
+#define TSK_ABS(a)                      (((a)< 0) ? -(a) : (a))
+#define TSK_CLAMP(nMin, nVal, nMax)     ((nVal) > (nMax)) ? (nMax) : (((nVal) < (nMin)) ? (nMin) : (nVal))
 
 // used to avoid doing *((uint32_t*)ptr) which don't respect memory alignment on
 // some embedded (ARM,?...) platforms
@@ -57,22 +57,22 @@ typedef unsigned int tsk_size_t;
 
 
 #if defined(va_copy)
-#	define tsk_va_copy(D, S)       va_copy((D), (S))
+#   define tsk_va_copy(D, S)       va_copy((D), (S))
 #elif defined(__va_copy)
-#	define tsk_va_copy(D, S)       __va_copy((D), (S))
+#   define tsk_va_copy(D, S)       __va_copy((D), (S))
 #else
-#	define tsk_va_copy(D, S)       ((D) = (S))
+#   define tsk_va_copy(D, S)       ((D) = (S))
 #endif
 
 // Type promotion
 #if defined(__GNUC__) || TSK_UNDER_APPLE
-#	define tsk_va_arg_u8(ap)	(uint8_t)va_arg((ap), int)
-#	define tsk_va_arg_u16(ap)	(uint16_t)va_arg((ap), int)
-#	define tsk_va_arg_float(ap)	(float)va_arg((ap), double)
+#   define tsk_va_arg_u8(ap)    (uint8_t)va_arg((ap), int)
+#   define tsk_va_arg_u16(ap)   (uint16_t)va_arg((ap), int)
+#   define tsk_va_arg_float(ap) (float)va_arg((ap), double)
 #else
-#	define tsk_va_arg_u8(ap)	va_arg((ap), uint8_t)
-#	define tsk_va_arg_u16(ap)	va_arg((ap), uint16_t)
-#	define tsk_va_arg_float(ap)	va_arg((ap), float)
+#   define tsk_va_arg_u8(ap)    va_arg((ap), uint8_t)
+#   define tsk_va_arg_u16(ap)   va_arg((ap), uint16_t)
+#   define tsk_va_arg_float(ap) va_arg((ap), float)
 #endif
 
 #ifdef NULL
@@ -82,20 +82,20 @@ typedef unsigned int tsk_size_t;
 #endif
 
 #if defined(__GNUC__) || (HAVE___SYNC_FETCH_AND_ADD && HAVE___SYNC_FETCH_AND_SUB)
-#	define tsk_atomic_inc(_ptr_) __sync_fetch_and_add((_ptr_), 1)
-#	define tsk_atomic_dec(_ptr_) __sync_fetch_and_sub((_ptr_), 1)
+#   define tsk_atomic_inc(_ptr_) __sync_fetch_and_add((_ptr_), 1)
+#   define tsk_atomic_dec(_ptr_) __sync_fetch_and_sub((_ptr_), 1)
 #elif defined(_MSC_VER)
-#	define tsk_atomic_inc(_ptr_) InterlockedIncrement((_ptr_))
-#	define tsk_atomic_dec(_ptr_) InterlockedDecrement((_ptr_))
+#   define tsk_atomic_inc(_ptr_) InterlockedIncrement((_ptr_))
+#   define tsk_atomic_dec(_ptr_) InterlockedDecrement((_ptr_))
 #else
-#	define tsk_atomic_inc(_ptr_) ++(*(_ptr_))
-#	define tsk_atomic_dec(_ptr_) --(*(_ptr_))
+#   define tsk_atomic_inc(_ptr_) ++(*(_ptr_))
+#   define tsk_atomic_dec(_ptr_) --(*(_ptr_))
 #endif
 
 // Substract with saturation
 #define tsk_subsat_int32_ptr(pvoid_p0, pvoid_p1, pint_ret) { \
-	int64_t int64_ret = (int64_t)(((const char*)(pvoid_p0)) - ((const char*)(pvoid_p1))); \
-	*(pint_ret) = (int)((int64_ret > 2147483647) ? 2147483647 : ((int64_ret < -2147483647) ? -2147483647 : int64_ret)); \
+    int64_t int64_ret = (int64_t)(((const char*)(pvoid_p0)) - ((const char*)(pvoid_p1))); \
+    *(pint_ret) = (int)((int64_ret > 2147483647) ? 2147483647 : ((int64_ret < -2147483647) ? -2147483647 : int64_ret)); \
 }
 
 #endif /* _TINYSAK_COMMON_H_ */

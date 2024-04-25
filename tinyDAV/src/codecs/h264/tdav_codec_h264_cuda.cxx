@@ -56,25 +56,25 @@
 #define tdav_codec_h264_cuda_fmtp_set tsk_null
 
 #if !defined(CUDA_MAX_FRM_CNT)
-#	define CUDA_MAX_FRM_CNT  10
+#   define CUDA_MAX_FRM_CNT  10
 #endif
 
 #include "tsk_semaphore.h"
 tsk_semaphore_handle_t *sem = tsk_null;
 
 #define InitH264DecoderInfo(_self) \
-	memset(&_self->decoder.info, 0, sizeof(_self->decoder.info)); \
-	_self->decoder.info.ulCreationFlags = cudaVideoCreate_PreferCUDA; \
-	_self->decoder.info.CodecType = cudaVideoCodec_H264; \
-	_self->decoder.info.ulWidth = TMEDIA_CODEC_VIDEO(_self)->in.width; \
-	_self->decoder.info.ulTargetWidth = TMEDIA_CODEC_VIDEO(_self)->in.width; \
-	_self->decoder.info.ulHeight = TMEDIA_CODEC_VIDEO(_self)->in.height; \
-	_self->decoder.info.ulTargetHeight = TMEDIA_CODEC_VIDEO(_self)->in.height; \
-	_self->decoder.info.ulNumDecodeSurfaces = CUDA_MAX_FRM_CNT; \
-	_self->decoder.info.ulNumOutputSurfaces = 1; \
-	_self->decoder.info.ChromaFormat = cudaVideoChromaFormat_420; \
-	_self->decoder.info.OutputFormat = cudaVideoSurfaceFormat_NV12; \
-	_self->decoder.info.DeinterlaceMode = cudaVideoDeinterlaceMode_Adaptive;
+    memset(&_self->decoder.info, 0, sizeof(_self->decoder.info)); \
+    _self->decoder.info.ulCreationFlags = cudaVideoCreate_PreferCUDA; \
+    _self->decoder.info.CodecType = cudaVideoCodec_H264; \
+    _self->decoder.info.ulWidth = TMEDIA_CODEC_VIDEO(_self)->in.width; \
+    _self->decoder.info.ulTargetWidth = TMEDIA_CODEC_VIDEO(_self)->in.width; \
+    _self->decoder.info.ulHeight = TMEDIA_CODEC_VIDEO(_self)->in.height; \
+    _self->decoder.info.ulTargetHeight = TMEDIA_CODEC_VIDEO(_self)->in.height; \
+    _self->decoder.info.ulNumDecodeSurfaces = CUDA_MAX_FRM_CNT; \
+    _self->decoder.info.ulNumOutputSurfaces = 1; \
+    _self->decoder.info.ChromaFormat = cudaVideoChromaFormat_420; \
+    _self->decoder.info.OutputFormat = cudaVideoSurfaceFormat_NV12; \
+    _self->decoder.info.DeinterlaceMode = cudaVideoDeinterlaceMode_Adaptive;
 
 static int CUDAAPI _NVCallback_HandleVideoSequence(void *pvUserData, CUVIDEOFORMAT *pFormat);
 static int CUDAAPI _NVCallback_HandlePictureDecode(void *pvUserData, CUVIDPICPARAMS *pPicParams);
@@ -221,51 +221,51 @@ static int tdav_codec_h264_cuda_open(tmedia_codec_t* self)
         return -2;
     }
 
-    hr = NVSetParamValue(h264->encoder.context,NVVE_OUT_SIZE,		&(h264->encoder.ctx_params.iOutputSize));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_OUT_SIZE,       &(h264->encoder.ctx_params.iOutputSize));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_OUT_SIZE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_IN_SIZE,		&(h264->encoder.ctx_params.iInputSize));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_IN_SIZE,        &(h264->encoder.ctx_params.iInputSize));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_IN_SIZE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_MULTI_GPU,	&(h264->encoder.ctx_params.iMultiGPU));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_MULTI_GPU,  &(h264->encoder.ctx_params.iMultiGPU));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_MULTI_GPU) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_ASPECT_RATIO,	&(h264->encoder.ctx_params.iAspectRatio));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_ASPECT_RATIO,   &(h264->encoder.ctx_params.iAspectRatio));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_ASPECT_RATIO) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_FIELD_ENC_MODE,	&(h264->encoder.ctx_params.Fieldmode));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_FIELD_ENC_MODE, &(h264->encoder.ctx_params.Fieldmode));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FIELD_ENC_MODE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_P_INTERVAL,		&(h264->encoder.ctx_params.iP_Interval));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_P_INTERVAL,     &(h264->encoder.ctx_params.iP_Interval));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_P_INTERVAL) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_IDR_PERIOD,		&(h264->encoder.ctx_params.iIDR_Period));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_IDR_PERIOD,     &(h264->encoder.ctx_params.iIDR_Period));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_IDR_PERIOD) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_DYNAMIC_GOP,	&(h264->encoder.ctx_params.iDynamicGOP));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_DYNAMIC_GOP,    &(h264->encoder.ctx_params.iDynamicGOP));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DYNAMIC_GOP) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_RC_TYPE,		&(h264->encoder.ctx_params.RCType));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_RC_TYPE,        &(h264->encoder.ctx_params.RCType));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_RC_TYPE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_AVG_BITRATE,	&(h264->encoder.ctx_params.iAvgBitrate));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_AVG_BITRATE,    &(h264->encoder.ctx_params.iAvgBitrate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_AVG_BITRATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_PEAK_BITRATE,	&(h264->encoder.ctx_params.iPeakBitrate));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_PEAK_BITRATE,   &(h264->encoder.ctx_params.iPeakBitrate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_PEAK_BITRATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_QP_LEVEL_INTRA,	&(h264->encoder.ctx_params.iQP_Level_Intra));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_QP_LEVEL_INTRA, &(h264->encoder.ctx_params.iQP_Level_Intra));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_OUT_SIZE) failed with error code = %08x", hr);
     }
@@ -277,27 +277,27 @@ static int tdav_codec_h264_cuda_open(tmedia_codec_t* self)
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_QP_LEVEL_INTER_B) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_FRAME_RATE,		&(h264->encoder.ctx_params.iFrameRate));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_FRAME_RATE,     &(h264->encoder.ctx_params.iFrameRate));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FRAME_RATE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_DEBLOCK_MODE,	&(h264->encoder.ctx_params.iDeblockMode));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_DEBLOCK_MODE,   &(h264->encoder.ctx_params.iDeblockMode));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DEBLOCK_MODE) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_PROFILE_LEVEL,	&(h264->encoder.ctx_params.iProfileLevel));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_PROFILE_LEVEL,  &(h264->encoder.ctx_params.iProfileLevel));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_PROFILE_LEVEL) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_FORCE_INTRA,	&(h264->encoder.ctx_params.iForceIntra));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_FORCE_INTRA,    &(h264->encoder.ctx_params.iForceIntra));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FORCE_INTRA) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_FORCE_IDR,		&(h264->encoder.ctx_params.iForceIDR));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_FORCE_IDR,      &(h264->encoder.ctx_params.iForceIDR));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_FORCE_IDR) failed with error code = %08x", hr);
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_CLEAR_STAT,		&(h264->encoder.ctx_params.iClearStat));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_CLEAR_STAT,     &(h264->encoder.ctx_params.iClearStat));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_CLEAR_STAT) failed with error code = %08x", hr);
     }
@@ -306,12 +306,12 @@ static int tdav_codec_h264_cuda_open(tmedia_codec_t* self)
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_SET_DEINTERLACE) failed with error code = %08x", hr);
     }
     if (h264->encoder.ctx_params.Presets != -1) {
-        hr = NVSetParamValue(h264->encoder.context,NVVE_PRESETS,	&(h264->encoder.ctx_params.Presets));
+        hr = NVSetParamValue(h264->encoder.context,NVVE_PRESETS,    &(h264->encoder.ctx_params.Presets));
         if (hr!=S_OK) {
             TSK_DEBUG_WARN("NVSetParamValue(NVVE_PRESETS) failed with error code = %08x", hr);
         }
     }
-    hr = NVSetParamValue(h264->encoder.context,NVVE_DISABLE_CABAC,	&(h264->encoder.ctx_params.iDisableCabac));
+    hr = NVSetParamValue(h264->encoder.context,NVVE_DISABLE_CABAC,  &(h264->encoder.ctx_params.iDisableCabac));
     if (hr!=S_OK) {
         TSK_DEBUG_WARN("NVSetParamValue(NVVE_DISABLE_CABAC) failed with error code = %08x", hr);
     }
@@ -481,8 +481,8 @@ static tsk_size_t tdav_codec_h264_cuda_encode(tmedia_codec_t* self, const void* 
     efparams.bLast = 0;
 
     // send keyframe for:
-    //	- the first frame
-    //	- every second within the first 4seconds
+    //  - the first frame
+    //  - every second within the first 4seconds
     //  - every 7 seconds after the first 4seconds
     if(h264->encoder.frame_count++ == 0
             ||

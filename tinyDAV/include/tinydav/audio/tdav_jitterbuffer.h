@@ -57,7 +57,7 @@ TDAV_BEGIN_DECLS
 // configuration constants
 /* Number of historical timestamps to use in calculating jitter and jitterbuffer size */
 #ifndef JB_HISTORY_SIZE
-#	define JB_HISTORY_SIZE 500
+#   define JB_HISTORY_SIZE 500
 #endif
 
 /* minimum jitterbuffer size, disabled if 0 */
@@ -85,21 +85,21 @@ typedef struct jb_info {
     long frames_dropped_twice;  /* Number of frames that were dropped because this timestamp was already in the jitterbuffer */
 
     long delay;     /* Current delay due the jitterbuffer */
-    long jitter; 		/* jitter measured within current history interval*/
-    long losspct; 	/* recent lost frame percentage (network and jitterbuffer loss) */
+    long jitter;        /* jitter measured within current history interval*/
+    long losspct;   /* recent lost frame percentage (network and jitterbuffer loss) */
 
     long delay_target;   /* The delay where we want to grow to */
     long losspct_jb;     /* recent lost percentage due the jitterbuffer */
-    long last_voice_ms;	 /* the duration of the last voice frame */
+    long last_voice_ms;  /* the duration of the last voice frame */
     short silence;       /* If we are in silence 1-yes 0-no */
     long iqr;            /* Inter Quartile Range of current history, if the squareroot is taken it is a good estimate of jitter */
 } jb_info;
 
 typedef struct jb_frame {
-    void *data;		                /* the frame data */
-    long ts;	                    /* the senders timestamp */
-    long ms;	                    /* length of this frame in ms */
-    int  type;	                  /* the type of frame */
+    void *data;                     /* the frame data */
+    long ts;                        /* the senders timestamp */
+    long ms;                        /* length of this frame in ms */
+    int  type;                    /* the type of frame */
     int codec;                    /* codec of this frame, undefined if nonvoice */
     struct jb_frame *next, *prev; /* pointers to the next and previous frames in the queue */
 } jb_frame;
@@ -113,8 +113,8 @@ typedef struct jb_hist_element {
 
 typedef struct jb_settings {
     /* settings */
-    long min_jb;	              /* defines a hard clamp to use in setting the jitterbuffer delay */
-    long max_jb;	              /* defines a hard clamp to use in setting the jitterbuffer delay */
+    long min_jb;                  /* defines a hard clamp to use in setting the jitterbuffer delay */
+    long max_jb;                  /* defines a hard clamp to use in setting the jitterbuffer delay */
     long max_successive_interp; /* the maximum count of successive interpolations before assuming silence */
     long extra_delay;           /* amount of extra delay allowed before shrinking */
     long wait_grow;             /* ms between growing */
@@ -129,15 +129,15 @@ typedef struct jitterbuffer {
 
     int  hist_pointer;          /* points to index in history for next entry */
     long last_adjustment;       /* the time of the last adjustment (growing or shrinking) */
-    long next_voice_time;	      /* the next ts is to be read from the jb (senders timestamp) */
+    long next_voice_time;         /* the next ts is to be read from the jb (senders timestamp) */
     long cnt_successive_interp; /* the count of consecutive interpolation frames */
     long silence_begin_ts;      /* the time of the last CNG frame, when in silence */
-    long min;		                /* the clock difference within current history interval */
-    long current; 		          /* the present jitterbuffer adjustment */
-    long target; 		            /* the target jitterbuffer adjustment */
+    long min;                       /* the clock difference within current history interval */
+    long current;                 /* the present jitterbuffer adjustment */
+    long target;                    /* the target jitterbuffer adjustment */
     long last_delay;            /* the delay of the last packet, used for calc. jitter */
 
-    jb_frame *voiceframes; 	 /* queued voiceframes */
+    jb_frame *voiceframes;   /* queued voiceframes */
     jb_frame *controlframes; /* queued controlframes */
     jb_settings settings;    /* the settings of the jitterbuffer */
     jb_info info;            /* the statistics of the jitterbuffer */
@@ -145,17 +145,17 @@ typedef struct jitterbuffer {
 
 //parameter definitions
 /* return codes */
-#define JB_OK		0
-#define JB_EMPTY	1
-#define JB_NOFRAME	2
-#define JB_INTERP	3
-#define JB_NOJB		4
+#define JB_OK       0
+#define JB_EMPTY    1
+#define JB_NOFRAME  2
+#define JB_INTERP   3
+#define JB_NOJB     4
 
 
 /* frame types */
-#define JB_TYPE_CONTROL	1
-#define JB_TYPE_VOICE	2
-#define JB_TYPE_SILENCE	3
+#define JB_TYPE_CONTROL 1
+#define JB_TYPE_VOICE   2
+#define JB_TYPE_SILENCE 3
 
 /* the jitterbuffer behaives different for each codec. */
 /* Look in the code if a codec has his function defined */
@@ -260,8 +260,8 @@ void jb_put(jitterbuffer *jb, void *data, int type, long ms, long ts, long now, 
 int jb_get(jitterbuffer *jb, void **data, long now, long interpl);
 
 /* debug functions */
-typedef 		void (*jb_output_function_t)(const char *fmt, ...);
-void 			jb_setoutput(jb_output_function_t warn, jb_output_function_t err, jb_output_function_t dbg);
+typedef         void (*jb_output_function_t)(const char *fmt, ...);
+void            jb_setoutput(jb_output_function_t warn, jb_output_function_t err, jb_output_function_t dbg);
 
 
 /*******************************

@@ -36,14 +36,14 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_MAX_FORWARDS_VA_ARGS(max)		tsip_header_Max_Forwards_def_t, (int32_t) max
+#define TSIP_HEADER_MAX_FORWARDS_VA_ARGS(max)       tsip_header_Max_Forwards_def_t, (int32_t) max
 
-#define TSIP_HEADER_MAX_FORWARDS_NONE				-1
-#define TSIP_HEADER_MAX_FORWARDS_DEFAULT			70
+#define TSIP_HEADER_MAX_FORWARDS_NONE               -1
+#define TSIP_HEADER_MAX_FORWARDS_DEFAULT            70
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Max-Forwards'.
+/// @brief  SIP header 'Max-Forwards'.
 ///
 /// @par ABNF: Max-Forwards = "Max-Forwards" HCOLON 1*DIGIT
 ///

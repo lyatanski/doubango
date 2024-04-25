@@ -150,7 +150,7 @@ int tdav_consumer_winm_stop(tmedia_consumer_t* self)
 
 
 //
-//	Windows Media video consumer object definition
+//  Windows Media video consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_winm_ctor(tsk_object_t * self, va_list * app)

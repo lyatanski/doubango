@@ -28,7 +28,7 @@
 #include <streams.h>
 
 #if !defined(ENABLE_SCREENCAST)
-#	define ENABLE_SCREENCAST 0
+#   define ENABLE_SCREENCAST 0
 #endif /* ENABLE_SCREENCAST */
 
 PLUGIN_DSHOW_BEGIN_DECLS /* BEGIN */
@@ -103,7 +103,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     }
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
     switch(index) {
     case PLUGIN_INDEX_VIDEO_CONSUMER: {

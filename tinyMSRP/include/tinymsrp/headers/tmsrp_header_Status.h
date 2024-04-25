@@ -35,16 +35,16 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_STATUS_VA_ARGS(namespace, code, reason)		tmsrp_header_Status_def_t, (short)namespace, (short)code, (const char*)reason
+#define TMSRP_HEADER_STATUS_VA_ARGS(namespace, code, reason)        tmsrp_header_Status_def_t, (short)namespace, (short)code, (const char*)reason
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Status' header.
+/// @brief  MSRP 'Status' header.
 ///
-/// @par ABNF :  Status	=  	 "Status:" SP namespace  SP status-code  [SP text-reason]
-/// namespace	= 	3(DIGIT) ; "000" for all codes defined in RFC 4975
-/// text-reason	= 	utf8text
+/// @par ABNF :  Status =    "Status:" SP namespace  SP status-code  [SP text-reason]
+/// namespace   =   3(DIGIT) ; "000" for all codes defined in RFC 4975
+/// text-reason =   utf8text
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Status_s {

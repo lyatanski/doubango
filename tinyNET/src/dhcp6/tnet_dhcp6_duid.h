@@ -37,10 +37,10 @@
 
 TNET_BEGIN_DECLS
 
-#define TNET_DHCP6_DUID(self)							((tnet_dhcp6_duid_t*)(self))
-#define TNET_DHCP6_DUID_LLT(self)						((tnet_dhcp6_duid_llt_t*)(self))
-#define TNET_DHCP6_DUID_EN(self)						((tnet_dhcp6_duid_en_t*)(self))
-#define TNET_DHCP6_DUID_LL(self)						((tnet_dhcp6_duid_ll_t*)(self))
+#define TNET_DHCP6_DUID(self)                           ((tnet_dhcp6_duid_t*)(self))
+#define TNET_DHCP6_DUID_LLT(self)                       ((tnet_dhcp6_duid_llt_t*)(self))
+#define TNET_DHCP6_DUID_EN(self)                        ((tnet_dhcp6_duid_en_t*)(self))
+#define TNET_DHCP6_DUID_LL(self)                        ((tnet_dhcp6_duid_ll_t*)(self))
 
 /** List of DHCPv6 DUIDs types as per RFC 3315 subclause 9.1.
 */
@@ -73,7 +73,7 @@ tnet_dhcp6_duid_t* tnet_dhcp6_duid_deserialize(const void* data, tsk_size_t size
 int tnet_dhcp6_duid_serialize(const tnet_dhcp6_duid_t* self, tsk_buffer_t *output);
 
 /*=======================================================================================
-*	RFC 3315 - 9.2. DUID Based on Link-layer Address Plus Time [DUID-LLT]
+*   RFC 3315 - 9.2. DUID Based on Link-layer Address Plus Time [DUID-LLT]
 *=======================================================================================*/
 
 /** DUID Based on Link-layer Address Plus Time [DUID-LLT]
@@ -105,7 +105,7 @@ tnet_dhcp6_duid_llt_t;
 
 
 /*=======================================================================================
-*	RFC 3315 - 9.3. DUID Assigned by Vendor Based on Enterprise Number [DUID-EN]
+*   RFC 3315 - 9.3. DUID Assigned by Vendor Based on Enterprise Number [DUID-EN]
 *=======================================================================================*/
 
 /** DUID Assigned by Vendor Based on Enterprise Number [DUID-EN]
@@ -126,7 +126,7 @@ typedef struct tnet_dhcp6_duid_en_s {
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     */
     /* Tthe vendor's registered Private Enterprise Number as maintained by IANA.
-    	For more information: http://www.iana.org/assignments/enterprise-numbers. */
+        For more information: http://www.iana.org/assignments/enterprise-numbers. */
     uint32_t en;
     /* The link-layer address.  */
     tsk_buffer_t *indentifier;
@@ -134,7 +134,7 @@ typedef struct tnet_dhcp6_duid_en_s {
 tnet_dhcp6_duid_en_t;
 
 /*=======================================================================================
-*	RFC 3315 - 9.4. DUID Based on Link-layer Address [DUID-LL]
+*   RFC 3315 - 9.4. DUID Based on Link-layer Address [DUID-LL]
 *=======================================================================================*/
 
 /** DUID Based on Link-layer Address [DUID-LL]

@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 59 "./ragel/tmsrp_parser_header_Failure-Report.rl" */
@@ -271,7 +271,7 @@ _match:
                 hdr_Failure_Report->type = freport_partial;
             }
             break;
-            /* #line 268 "./src/headers/tmsrp_header_Failure-Report.c" */
+                /* #line 268 "./src/headers/tmsrp_header_Failure-Report.c" */
             }
         }
 
@@ -307,7 +307,7 @@ _test_eof: {
                     hdr_Failure_Report->type = freport_partial;
                 }
                 break;
-                /* #line 302 "./src/headers/tmsrp_header_Failure-Report.c" */
+                    /* #line 302 "./src/headers/tmsrp_header_Failure-Report.c" */
                 }
             }
         }
@@ -338,7 +338,7 @@ _out: {
 
 
 //========================================================
-//	Failure_Report header object definition
+//  Failure_Report header object definition
 //
 
 static tsk_object_t* tmsrp_header_Failure_Report_ctor(tsk_object_t *self, va_list * app)

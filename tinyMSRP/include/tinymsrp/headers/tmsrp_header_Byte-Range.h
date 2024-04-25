@@ -35,19 +35,19 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_BYTE_RANGE_VA_ARGS(start, end, total)		tmsrp_header_Byte_Range_def_t, (int64_t)start, (int64_t)end, (int64_t)total
+#define TMSRP_HEADER_BYTE_RANGE_VA_ARGS(start, end, total)      tmsrp_header_Byte_Range_def_t, (int64_t)start, (int64_t)end, (int64_t)total
 
 #define TMSRP_HEADER_BYTE_RANGE_IS_VALID(self) ((self) && (self)->start > 0 && (self)->end > 0 && (self)->end > (self)->start)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Byte-Range' header.
+/// @brief  MSRP 'Byte-Range' header.
 ///
-/// @par ABNF :  Byte-Range	=  	 "Byte-Range:" SP range-start  "-" range-end  "/" total
-/// range-start	= 	1*DIGIT
-/// range-end	= 	1*DIGIT / "*"
-/// total	= 	1*DIGIT / "*"
+/// @par ABNF :  Byte-Range =    "Byte-Range:" SP range-start  "-" range-end  "/" total
+/// range-start =   1*DIGIT
+/// range-end   =   1*DIGIT / "*"
+/// total   =   1*DIGIT / "*"
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Byte_Range_s {

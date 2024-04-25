@@ -52,15 +52,15 @@ tcomp_compressordisp_t* tcomp_compressordisp_create(const tcomp_statehandler_t* 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Compress a message.
 ///
-/// @param [in,out]	dispatcher	The compressor dispatcher.
-/// @param	compartmentId		The compartment to use to compress the message.
-/// @param [in,out]	input_ptr	The message to compress.
-/// @param	input_size			The size of the input buffer.
-/// @param [in,out]	output_ptr	The output buffer to copy the compressed data.
-/// @param [in,out]	output_size	The size of the output buffer.
-/// @param	stream				Indicates whether it's a stream buffer or not.
+/// @param [in,out] dispatcher  The compressor dispatcher.
+/// @param  compartmentId       The compartment to use to compress the message.
+/// @param [in,out] input_ptr   The message to compress.
+/// @param  input_size          The size of the input buffer.
+/// @param [in,out] output_ptr  The output buffer to copy the compressed data.
+/// @param [in,out] output_size The size of the output buffer.
+/// @param  stream              Indicates whether it's a stream buffer or not.
 ///
-/// @return	@a tsk_true if succeed and @a tsk_false otherwize.
+/// @return @a tsk_true if succeed and @a tsk_false otherwize.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t tcomp_compressordisp_compress(tcomp_compressordisp_t *dispatcher, uint64_t compartmentId, const void *input_ptr, tsk_size_t input_size, void *output_ptr, tsk_size_t *output_size, tsk_bool_t stream)
 {
@@ -77,7 +77,7 @@ tsk_bool_t tcomp_compressordisp_compress(tcomp_compressordisp_t *dispatcher, uin
 
 
     /*
-    *	Performs compression.
+    *   Performs compression.
     */
     tsk_safeobj_lock(dispatcher);
 
@@ -91,7 +91,7 @@ tsk_bool_t tcomp_compressordisp_compress(tcomp_compressordisp_t *dispatcher, uin
 
 
     /*
-    *	STREAM case. FIXME:Because I'm a lazy man I only support 0xFF00 case
+    *   STREAM case. FIXME:Because I'm a lazy man I only support 0xFF00 case
     */
     if(stream) {
         uint8_t* escapedBuffer;
@@ -139,8 +139,8 @@ tsk_bool_t tcomp_compressordisp_compress(tcomp_compressordisp_t *dispatcher, uin
 /// Adds new compressor the list of the compressors.
 ///
 ///
-/// @param [in,out]	dispatcher	The compressor dispatcher.
-/// @param	compressor			A function pointer to the new compressor.
+/// @param [in,out] dispatcher  The compressor dispatcher.
+/// @param  compressor          A function pointer to the new compressor.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 int tcomp_compressordisp_addCompressor(tcomp_compressordisp_t *dispatcher, tcomp_compressor_compress_f compressor)
 {
@@ -188,7 +188,7 @@ int tcomp_compressordisp_removeCompressor(tcomp_compressordisp_t *dispatcher, tc
 
 
 //========================================================
-//	SigComp compressor dispatcher object definition
+//  SigComp compressor dispatcher object definition
 //
 static tsk_object_t* tcomp_compressordisp_ctor(tsk_object_t * self, va_list * app)
 {
@@ -196,8 +196,8 @@ static tsk_object_t* tcomp_compressordisp_ctor(tsk_object_t * self, va_list * ap
     if(compressordisp) {
         compressordisp->stateHandler = va_arg(*app, const tcomp_statehandler_t*);
 
-        compressordisp->compressors[0] = tcomp_compressor_deflate_compress;	/* If you don't want deflate compressor then remove this line. */
-        compressordisp->compressors[1] = tcomp_compressor_dummy_compress;	/* RFC 4896 [11. Uncompressed Bytecode]. */
+        compressordisp->compressors[0] = tcomp_compressor_deflate_compress; /* If you don't want deflate compressor then remove this line. */
+        compressordisp->compressors[1] = tcomp_compressor_dummy_compress;   /* RFC 4896 [11. Uncompressed Bytecode]. */
 
         /* Initialize safeobject */
         tsk_safeobj_init(compressordisp);
@@ -216,7 +216,7 @@ static tsk_object_t* tcomp_compressordisp_dtor(tsk_object_t *self)
         /* Deinitialize safeobject */
         tsk_safeobj_deinit(compressordisp);
 
-        memset(compressordisp->compressors, 0 , sizeof(compressordisp->compressors));
+        memset(compressordisp->compressors, 0, sizeof(compressordisp->compressors));
         compressordisp->stateHandler = tsk_null; // not owner
     }
     else {

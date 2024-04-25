@@ -35,9 +35,9 @@
 #include <string.h>
 
 /**@defgroup tsk_md5_group MD5 (RFC 1321) utility functions.
- *	The code in this file is a modified version of an implementation placed in the public domain by the following persons:
- *	@author Colin Plumb
- *	@author Mamadou Diop <diopmamadou(at)doubango[dot]org>
+ *  The code in this file is a modified version of an implementation placed in the public domain by the following persons:
+ *  @author Colin Plumb
+ *  @author Mamadou Diop <diopmamadou(at)doubango[dot]org>
 */
 
 /**@ingroup tsk_md5_group
@@ -88,7 +88,7 @@ void tsk_md5update(tsk_md5context_t *ctx, uint8_t const *buf, tsk_size_t len)
         ctx->bytes[1]++;    /* Carry from low to high */
     }
 
-    t = 64 - (t & 0x3f); 	/* Space available in ctx->in (at least 1) */
+    t = 64 - (t & 0x3f);    /* Space available in ctx->in (at least 1) */
     if (t > len) {
         memcpy((uint8_t *)ctx->in + 64 - t, buf, len);
         return ;
@@ -119,7 +119,7 @@ void tsk_md5update(tsk_md5context_t *ctx, uint8_t const *buf, tsk_size_t len)
  */
 void tsk_md5final(tsk_md5digest_t digest, tsk_md5context_t *ctx)
 {
-    int count = ctx->bytes[0] & 0x3f; 	/* Number of bytes in ctx->in */
+    int count = ctx->bytes[0] & 0x3f;   /* Number of bytes in ctx->in */
     uint8_t *p = (uint8_t *)ctx->in + count;
 
     /* Set the first char of padding to 0x80.  There is always room. */
@@ -146,7 +146,7 @@ void tsk_md5final(tsk_md5digest_t digest, tsk_md5context_t *ctx)
 
     tsk_byteReverse(ctx->buf, 4);
     memcpy(digest, ctx->buf, 16);
-    memset(ctx, 0, sizeof(*ctx)); 	/* In case it's sensitive */
+    memset(ctx, 0, sizeof(*ctx));   /* In case it's sensitive */
 }
 
 /* The four core functions - F1 is optimized somewhat */
@@ -252,13 +252,13 @@ void tsk_md5transform(uint32_t buf[4], uint32_t const in[TSK_MD5_DIGEST_SIZE])
 
 /**@ingroup tsk_md5_group
  *
- * @brief	Calculate MD5 HASH for @a input data.
+ * @brief   Calculate MD5 HASH for @a input data.
  *
- * @param input	The input data.
- * @param size	The size of the input data.
+ * @param input The input data.
+ * @param size  The size of the input data.
  * @param result MD5 hash result as Hexadecimal string.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsk_md5compute(const char* input, tsk_size_t size, tsk_md5string_t *result)
 {

@@ -219,7 +219,7 @@ static tsk_buffer_t* tmedia_content_dummy_get_data(tmedia_content_t* self)
 
 
 //=================================================================================================
-//	object/plugin definitions
+//  object/plugin definitions
 //
 /* constructor */
 static tsk_object_t* tmedia_content_dummy_ctor(tsk_object_t * self, va_list * app)
@@ -264,7 +264,7 @@ const tmedia_content_plugin_def_t *tmedia_content_dummy_plugin_def_t = &tmedia_c
 
 
 //=================================================================================================
-//	media content header
+//  media content header
 //
 
 tmedia_content_header_t* tmedia_content_header_create(const char* name, const char* value)

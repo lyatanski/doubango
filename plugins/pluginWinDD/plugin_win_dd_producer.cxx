@@ -49,11 +49,11 @@
 #define DD_CHECK_HR(x) { HRESULT __hr__ = (x); if (FAILED(__hr__)) { DD_DEBUG_ERROR("Operation Failed (%08x)", __hr__); goto bail; } }
 
 #if !defined(DD_DDPROC_THREAD_TIMEOUT)
-#	define DD_DDPROC_THREAD_TIMEOUT 1500
+#   define DD_DDPROC_THREAD_TIMEOUT 1500
 #endif
 
 //
-//	plugin_win_dd_producer_t
+//  plugin_win_dd_producer_t
 //
 typedef struct plugin_win_dd_producer_s {
     TMEDIA_DECLARE_PRODUCER;
@@ -665,7 +665,7 @@ DWORD WINAPI DDProc(_In_ void* Param)
     }
 
     // Make duplication manager
-    Ret = DuplMgr.InitDupl(TData->DxRes.Device, TData->DxRes.Context ,TData->Output);
+    Ret = DuplMgr.InitDupl(TData->DxRes.Device, TData->DxRes.Context,TData->Output);
     if (Ret != DUPL_RETURN_SUCCESS) {
         goto Exit;
     }

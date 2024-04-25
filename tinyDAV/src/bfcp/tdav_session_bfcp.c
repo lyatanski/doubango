@@ -33,11 +33,11 @@
 #include "tsk_debug.h"
 
 /*
-	* https://tools.ietf.org/html/rfc4574
-	* https://tools.ietf.org/html/rfc4582
-	* https://tools.ietf.org/html/rfc4583
-	* http://tools.ietf.org/html/rfc4796
-	* https://tools.ietf.org/html/draft-ietf-bfcpbis-rfc4582bis-1
+    * https://tools.ietf.org/html/rfc4574
+    * https://tools.ietf.org/html/rfc4582
+    * https://tools.ietf.org/html/rfc4583
+    * http://tools.ietf.org/html/rfc4796
+    * https://tools.ietf.org/html/draft-ietf-bfcpbis-rfc4582bis-1
 */
 
 typedef struct tdav_session_bfcp_s {
@@ -244,10 +244,10 @@ static int _tdav_session_bfcp_stop(tmedia_session_t* p_self)
         if (p_bfcp->b_started) {
             /*if (p_bfcp->p_bfcp_s)*/ {
                 /*if (!p_bfcp->p_pkt_FloorRelease) {
-                	ret = tbfcp_session_create_pkt_FloorRelease(p_bfcp->p_bfcp_s, &p_bfcp->p_pkt_FloorRelease);
+                    ret = tbfcp_session_create_pkt_FloorRelease(p_bfcp->p_bfcp_s, &p_bfcp->p_pkt_FloorRelease);
                 }
                 if (ret == 0 && p_bfcp->p_pkt_FloorRelease && (ret = tbfcp_session_send_pkt(p_bfcp->p_bfcp_s, p_bfcp->p_pkt_FloorRelease))) {
-                	//!\ do not exit
+                    //!\ do not exit
                 }*/
             }
         }
@@ -478,19 +478,19 @@ static int _tdav_session_bfcp_notif(const struct tbfcp_session_event_xs *e)
     static const char* kInfoTextFloorReqStatus = "FloorRequestStatus";
 
 #define _RAISE_ERR_AND_GOTO_BAIL(_code, _reason) \
-		if (TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun) { \
-			tmedia_session_bfcp_evt_xt e; \
-			e.type = tmedia_session_bfcp_evt_type_err; e.err.code = _code; e.reason = _reason; \
-			TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun(TMEDIA_SESSION(p_bfcp)->bfcp_cb.usrdata, TMEDIA_SESSION(p_bfcp), &e); \
-		} \
-		ret = _code; goto bail;
+        if (TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun) { \
+            tmedia_session_bfcp_evt_xt e; \
+            e.type = tmedia_session_bfcp_evt_type_err; e.err.code = _code; e.reason = _reason; \
+            TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun(TMEDIA_SESSION(p_bfcp)->bfcp_cb.usrdata, TMEDIA_SESSION(p_bfcp), &e); \
+        } \
+        ret = _code; goto bail;
 #define _RAISE_FLREQ(_status, _reason) \
-		if (TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun) { \
-			tmedia_session_bfcp_evt_xt e; \
-			e.type = tmedia_session_bfcp_evt_type_flreq_status; e.flreq.status = _status; e.reason = _reason; \
-			TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun(TMEDIA_SESSION(p_bfcp)->bfcp_cb.usrdata, TMEDIA_SESSION(p_bfcp), &e); \
-		} \
- 
+        if (TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun) { \
+            tmedia_session_bfcp_evt_xt e; \
+            e.type = tmedia_session_bfcp_evt_type_flreq_status; e.flreq.status = _status; e.reason = _reason; \
+            TMEDIA_SESSION(p_bfcp)->bfcp_cb.fun(TMEDIA_SESSION(p_bfcp)->bfcp_cb.usrdata, TMEDIA_SESSION(p_bfcp), &e); \
+        } \
+
     switch (e->e_type) {
     case tbfcp_session_event_type_inf_inc_msg: {
         if (p_bfcp->p_pkt_Hello && p_bfcp->p_pkt_Hello->hdr.transac_id == e->pc_pkt->hdr.transac_id && p_bfcp->p_pkt_Hello->hdr.user_id == e->pc_pkt->hdr.user_id && p_bfcp->p_pkt_Hello->hdr.conf_id == e->pc_pkt->hdr.conf_id) {
@@ -654,7 +654,7 @@ bail:
 
 
 //=================================================================================================
-//	Session MSRp Plugin object definition
+//  Session MSRp Plugin object definition
 //
 /* constructor */
 static tsk_object_t* _tdav_session_bfcp_ctor(tsk_object_t * p_self, va_list * app)

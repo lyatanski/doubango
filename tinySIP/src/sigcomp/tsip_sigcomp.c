@@ -434,7 +434,7 @@ tsk_size_t tsip_sigcomp_handler_uncompress_next(tsip_sigcomp_handle_t* self, con
 }
 
 //===========================================================================
-//	SIP SigComp Handler object definition
+//  SIP SigComp Handler object definition
 //
 static tsk_object_t* tsip_sigcomp_ctor(tsk_object_t * self, va_list * app)
 {
@@ -473,7 +473,7 @@ const tsk_object_def_t *tsip_sigcomp_def_t = &tsip_sigcomp_def_s;
 
 
 //===========================================================================
-//	SIP SigComp Compartment object definition
+//  SIP SigComp Compartment object definition
 //
 static tsk_object_t* tsip_sigcomp_compartment_ctor(tsk_object_t * self, va_list * app)
 {
@@ -500,7 +500,7 @@ static tsk_object_t* tsip_sigcomp_compartment_dtor(tsk_object_t * self)
 
     return self;
 }
-int	tsip_sigcomp_compartment_cmp(const tsk_object_t * _c1, const tsk_object_t * _c2)
+int tsip_sigcomp_compartment_cmp(const tsk_object_t * _c1, const tsk_object_t * _c2)
 {
     const tsip_sigcomp_compartment_t *c1 = _c1;
     const tsip_sigcomp_compartment_t *c2 = _c2;

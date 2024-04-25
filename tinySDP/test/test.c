@@ -23,11 +23,11 @@
 #include "tsdp.h"
 #include "tinysdp/parsers/tsdp_parser_message.h"
 
-#define RUN_TEST_LOOP		0
+#define RUN_TEST_LOOP       0
 
-#define RUN_TEST_ALL		1
-#define RUN_TEST_PARSER		1
-#define RUN_TEST_SOA		1
+#define RUN_TEST_ALL        1
+#define RUN_TEST_PARSER     1
+#define RUN_TEST_SOA        1
 
 #include "test_parser.h"
 #include "test_soa.h"

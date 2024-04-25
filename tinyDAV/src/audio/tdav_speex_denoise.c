@@ -94,24 +94,24 @@ static int tdav_speex_denoise_open(tmedia_denoise_t* self, uint32_t record_frame
 
             // Echo suppression
             if(denoiser->echo_state) {
-                int echo_supp , echo_supp_active = 0;
+                int echo_supp, echo_supp_active = 0;
 
                 speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_SET_ECHO_STATE, denoiser->echo_state);
 
                 TSK_FREE(denoiser->echo_output_frame);
                 denoiser->echo_output_frame = tsk_calloc(denoiser->record_frame_size_samples, sizeof(spx_int16_t));
 
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS , &echo_supp );
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS_ACTIVE , &echo_supp_active );
-                TSK_DEBUG_INFO("AEC echo_supp level [%d] echo_supp_active level[%d] ", echo_supp , echo_supp_active);
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS, &echo_supp );
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS_ACTIVE, &echo_supp_active );
+                TSK_DEBUG_INFO("AEC echo_supp level [%d] echo_supp_active level[%d] ", echo_supp, echo_supp_active);
                 echo_supp = -60 ;
                 echo_supp_active = -60 ;
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS , &echo_supp );
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS_ACTIVE , &echo_supp_active );
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS, &echo_supp );
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_SET_ECHO_SUPPRESS_ACTIVE, &echo_supp_active );
                 // TRACES
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS , &echo_supp );
-                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS_ACTIVE , &echo_supp_active );
-                TSK_DEBUG_INFO("New aec echo_supp level [%d] echo_supp_active level[%d] ", echo_supp , echo_supp_active);
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS, &echo_supp );
+                speex_preprocess_ctl(denoiser->preprocess_state_record, SPEEX_PREPROCESS_GET_ECHO_SUPPRESS_ACTIVE, &echo_supp_active );
+                TSK_DEBUG_INFO("New aec echo_supp level [%d] echo_supp_active level[%d] ", echo_supp, echo_supp_active);
             }
 
             // Noise suppression
@@ -240,7 +240,7 @@ static int tdav_speex_denoise_close(tmedia_denoise_t* self)
 
 
 //
-//	Speex denoiser Plugin definition
+//  Speex denoiser Plugin definition
 //
 
 /* constructor */

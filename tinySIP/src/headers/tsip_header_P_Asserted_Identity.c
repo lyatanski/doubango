@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 100 "./ragel/tsip_parser_header_P_Asserted_Identity.rl" */
@@ -1357,7 +1357,7 @@ _match:
             {
             }
             break;
-            /* #line 1354 "./src/headers/tsip_header_P_Asserted_Identity.c" */
+                /* #line 1354 "./src/headers/tsip_header_P_Asserted_Identity.c" */
             }
         }
 
@@ -1394,7 +1394,7 @@ _out: {
 
 
 //========================================================
-//	P_Asserted_Identity header object definition
+//  P_Asserted_Identity header object definition
 //
 
 /**@ingroup tsip_header_P_Asserted_Identity_group

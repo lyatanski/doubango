@@ -203,7 +203,7 @@ int tsk_options_get_option_value_as_int(const tsk_options_L_t *self, int id)
 
 
 //=================================================================================================
-//	option object definition
+//  option object definition
 //
 static tsk_object_t* tsk_option_ctor(tsk_object_t * self, va_list * app)
 {

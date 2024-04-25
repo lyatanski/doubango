@@ -39,11 +39,11 @@
 
 TNET_BEGIN_DECLS
 
-#define TNET_DHCP6_OPTION(self)							((tnet_dhcp6_option_t*)(self))
+#define TNET_DHCP6_OPTION(self)                         ((tnet_dhcp6_option_t*)(self))
 
 /** List of DHCPv6 option as registered by IANA (RFC 3315 subcaluse 24.3)*/
 typedef enum tnet_dhcp6_option_code_e {
-    dhcp6_code_clientid = 1,	/**< Client Identifier Option. */
+    dhcp6_code_clientid = 1,    /**< Client Identifier Option. */
     dhcp6_code_serverid = 2,  /**< Server Identifier Option. */
     dhcp6_code_ia_na = 3,  /**< Identity Association for Non-temporary Addresses Option. */
     dhcp6_code_ia_ta = 4,  /**< Identity Association for Temporary Addresses Option. */
@@ -85,7 +85,7 @@ typedef enum tnet_dhcp6_statuscode_e {
 tnet_dhcp6_statuscode_t;
 
 /*=======================================================================================
-*	RFC 3315 - 22.1. Format of DHCP Options
+*   RFC 3315 - 22.1. Format of DHCP Options
 *=======================================================================================*/
 
 /**@ingroup tnet_dhcpv_group
@@ -132,11 +132,11 @@ int tnet_dhcp6_option_serializeex(tnet_dhcp6_option_code_t code, uint8_t length,
 
 
 /*======================================================================================
-*	RFC 3315 -
-			22.2. Client Identifier Option
-			22.3. Server Identifier Option
+*   RFC 3315 -
+            22.2. Client Identifier Option
+            22.3. Server Identifier Option
 *=======================================================================================*/
-/**	DHCPv6 Client /server Identifier Option (subclause 22.2 and 22.3).
+/** DHCPv6 Client /server Identifier Option (subclause 22.2 and 22.3).
 */
 typedef struct tnet_dhcp6_option_identifier_s {
     TNET_DECLARE_DHCP6_OPTION_DATA;
@@ -161,14 +161,14 @@ typedef tnet_dhcp6_option_identifier_t tnet_dhcp6_option_serverid_t;
 
 
 /*======================================================================================
-*	RFC 3315 - 22.4. Identity Association for Non-temporary Addresses Option
+*   RFC 3315 - 22.4. Identity Association for Non-temporary Addresses Option
 *=======================================================================================*/
 
 /*======================================================================================
-*	RFC 3315 - 22.7. Option Request Option
+*   RFC 3315 - 22.7. Option Request Option
 *=======================================================================================*/
 
-/**	DHCPv6 Option Request Option (subclause 22.7).
+/** DHCPv6 Option Request Option (subclause 22.7).
 */
 typedef struct tnet_dhcp6_option_orequest_s {
     TNET_DECLARE_DHCP6_OPTION_DATA;
@@ -190,10 +190,10 @@ tnet_dhcp6_option_orequest_t;
 TINYNET_API int tnet_dhcp6_option_orequest_add_code(tnet_dhcp6_option_orequest_t* self, uint16_t code);
 
 /*======================================================================================
-*	RFC 3315 - 22.16. Vendor Class Option
+*   RFC 3315 - 22.16. Vendor Class Option
 *=======================================================================================*/
 
-/**	DHCPv6 Vendor Class Option (subclause 22.16).
+/** DHCPv6 Vendor Class Option (subclause 22.16).
 */
 typedef struct tnet_dhcp6_option_vendorclass_s {
     TNET_DECLARE_DHCP6_OPTION_DATA;

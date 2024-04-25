@@ -36,7 +36,7 @@
 #include "tsk_debug.h"
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 125 "./ragel/tsip_parser_uri.rl" */
@@ -48,10 +48,10 @@
 /// Creates SIP/SIPS/TEL URI from string buffer.
 ///
 ///
-/// @param data	Pointer to a string buffer from which to create the URI object.
-/// @param	size The size of the string buffer.
+/// @param data Pointer to a string buffer from which to create the URI object.
+/// @param  size The size of the string buffer.
 ///
-/// @retval	@ref tsip_uri_t* object if succeed and Null otherwise.
+/// @retval @ref tsip_uri_t* object if succeed and Null otherwise.
 ///
 /// @code
 /// tsip_uri_t* uri;
@@ -457,7 +457,7 @@ _resume:
                 ts = p;
             }
             break;
-            /* #line 457 "./src/parsers/tsip_parser_uri.c" */
+                /* #line 457 "./src/parsers/tsip_parser_uri.c" */
             }
         }
 
@@ -703,7 +703,7 @@ _eof_trans:
                 }{  }
             }
             break;
-            /* #line 641 "./src/parsers/tsip_parser_uri.c" */
+                /* #line 641 "./src/parsers/tsip_parser_uri.c" */
             }
         }
 
@@ -718,7 +718,7 @@ _again:
                 ts = 0;
             }
             break;
-            /* #line 654 "./src/parsers/tsip_parser_uri.c" */
+                /* #line 654 "./src/parsers/tsip_parser_uri.c" */
             }
         }
 

@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 68 "./ragel/tsip_parser_header_Call_ID.rl" */
@@ -272,7 +272,7 @@ _match:
             {
             }
             break;
-            /* #line 269 "./src/headers/tsip_header_Call_ID.c" */
+                /* #line 269 "./src/headers/tsip_header_Call_ID.c" */
             }
         }
 
@@ -310,7 +310,7 @@ _out: {
 
 
 //========================================================
-//	Call_ID header object definition
+//  Call_ID header object definition
 //
 
 static tsk_object_t* tsip_header_Call_ID_ctor(tsk_object_t *self, va_list * app)

@@ -21,27 +21,27 @@
 #ifndef TEST_TINYSIGCOMP_TORTURES_H
 #define TEST_TINYSIGCOMP_TORTURES_H
 
-#define COMPARTMENT_ID				"urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a473"
-#define COMPARTMENT_ID_0			"urn:uuid:0"
-#define COMPARTMENT_ID_1			"urn:uuid:1"
-#define COMPARTMENT_ID_2			"urn:uuid:2"
+#define COMPARTMENT_ID              "urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a473"
+#define COMPARTMENT_ID_0            "urn:uuid:0"
+#define COMPARTMENT_ID_1            "urn:uuid:1"
+#define COMPARTMENT_ID_2            "urn:uuid:2"
 
-#define OUTPUT_BUFFER_SIZE			2000
+#define OUTPUT_BUFFER_SIZE          2000
 // Be careful before changing these values as not all tests accept any
-#define DMS	16384 //2048//4096//8192//65536
+#define DMS 16384 //2048//4096//8192//65536
 #define SMS 2048 //2048//4096//8192//65536
-#define CPB	16 // 16//32//64//128
+#define CPB 16 // 16//32//64//128
 
-#define RUN_TEST_LOOP	0
+#define RUN_TEST_LOOP   0
 
-#define RUN_TEST_ALL	1
-#define RUN_TEST_NO		68
+#define RUN_TEST_ALL    1
+#define RUN_TEST_NO     68
 
-#define IS_STREAM_YES	1
-#define IS_STREAM_NO	0
+#define IS_STREAM_YES   1
+#define IS_STREAM_NO    0
 
-#define XFAIL_YES		1
-#define XFAIL_NO		0
+#define XFAIL_YES       1
+#define XFAIL_NO        0
 
 #include "rfc4465_torture_tests.h"
 

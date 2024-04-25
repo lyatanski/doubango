@@ -129,7 +129,7 @@ tsip_header_Proxy_Authorization_t *tsip_header_Proxy_Authorization_parse(const c
 
 
 //========================================================
-//	Proxy_Authorization header object definition
+//  Proxy_Authorization header object definition
 //
 
 /**@ingroup tsip_header_Proxy_Authorization_group

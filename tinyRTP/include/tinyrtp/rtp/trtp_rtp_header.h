@@ -35,13 +35,13 @@
 TRTP_BEGIN_DECLS
 
 #define TRTP_RTP_HEADER_MIN_SIZE 12
-#define TRTP_RTP_HEADER(self)	((trtp_rtp_header_t*)(self))
+#define TRTP_RTP_HEADER(self)   ((trtp_rtp_header_t*)(self))
 
 typedef struct trtp_rtp_header_s {
     TSK_DECLARE_OBJECT;
     /* RFC 3550 section 5.1 - RTP Fixed Header Fields
-    	0                   1                   2                   3
-    	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        |V=2|P|X|  CC   |M|     PT      |       sequence number         |
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+

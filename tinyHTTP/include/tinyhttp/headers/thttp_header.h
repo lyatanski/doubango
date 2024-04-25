@@ -44,8 +44,8 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER(self)			((thttp_header_t*)(self))
-#define THTTP_HEADER_PARAMS(self)	(THTTP_HEADER(self)->params)
+#define THTTP_HEADER(self)          ((thttp_header_t*)(self))
+#define THTTP_HEADER_PARAMS(self)   (THTTP_HEADER(self)->params)
 
 // FD
 struct thttp_header_s;
@@ -54,9 +54,9 @@ typedef int (*thttp_header_value_tostring_f)(const struct thttp_header_s* header
 #define THTTP_HEADER_VALUE_TOSTRING_F(self) ((thttp_header_value_tostring_f)(self))
 
 /**
- * @enum	thttp_header_type_e
+ * @enum    thttp_header_type_e
  *
- * @brief	List of all supported headers.
+ * @brief   List of all supported headers.
 **/
 typedef enum thttp_header_type_e {
     thttp_htype_Authorization,

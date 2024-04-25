@@ -36,7 +36,7 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_SEC_WEBSOCKET_VERSION_VA_ARGS(version)		thttp_header_Sec_WebSocket_Version_def_t, (const char*)version
+#define THTTP_HEADER_SEC_WEBSOCKET_VERSION_VA_ARGS(version)     thttp_header_Sec_WebSocket_Version_def_t, (const char*)version
 
 typedef struct thttp_header_Sec_WebSocket_Version_s {
     THTTP_DECLARE_HEADER;

@@ -35,7 +35,7 @@
 */
 TSK_BEGIN_DECLS
 
-#define TSK_STRING_STR(self)				((self) ? ((tsk_string_t*)(self))->value : tsk_null)
+#define TSK_STRING_STR(self)                ((self) ? ((tsk_string_t*)(self))->value : tsk_null)
 
 typedef char tsk_istr_t[21]; /**< Integer number as string value. */
 
@@ -98,16 +98,16 @@ TINYSAK_API void tsk_str_to_hex(const char *str, tsk_size_t size, uint8_t* hex);
 #define tsk_strnequals(s1, s2, n) (tsk_strncmp((const char*)(s1), (const char*)(s2), n) ? tsk_false : tsk_true)
 #define tsk_strlen(s) ((s) ? strlen((s)) : 0)
 #if defined(_MSC_VER) || HAVE_STRTOK_S
-#	define tsk_strtok_r(str, delim, saveptr) strtok_s((str), (delim), (saveptr))
+#   define tsk_strtok_r(str, delim, saveptr) strtok_s((str), (delim), (saveptr))
 #elif HAVE_STRTOK_R || TSK_UNDER_APPLE || TSK_UNDER_ANDROID
-#	define tsk_strtok_r strtok_r
+#   define tsk_strtok_r strtok_r
 #else
-#	define tsk_strtok_r(str, delim, saveptr) strtok(str, delim)
+#   define tsk_strtok_r(str, delim, saveptr) strtok(str, delim)
 #endif
 #if defined(_MSC_VER)
-#	define tsk_atoi64	_atoi64
+#   define tsk_atoi64   _atoi64
 #else
-#	define tsk_atoi64	atoll
+#   define tsk_atoi64   atoll
 #endif
 
 

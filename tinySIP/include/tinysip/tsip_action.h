@@ -42,8 +42,8 @@
 TSIP_BEGIN_DECLS
 
 typedef uint64_t tsip_action_id_t;
-#define TSIP_ACTION_INVALID_ID				0
-#define TSIP_ACTION_INVALID_HANDLE			tsk_null
+#define TSIP_ACTION_INVALID_ID              0
+#define TSIP_ACTION_INVALID_HANDLE          tsk_null
 
 /** List of all supported actions */
 typedef enum tsip_action_type_e {
@@ -116,13 +116,13 @@ typedef enum tsip_action_param_type_e {
 }
 tsip_action_param_type_t;
 
-#define TSIP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)			aptype_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define TSIP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)			aptype_payload, (const void*)PAY_PTR, (tsk_size_t)PAY_SIZE
-#define TSIP_ACTION_SET_RESP_LINE(CODE_INT, PHRASE_STR)		aptype_resp_line, (int32_t)CODE_INT, (const char*)PHRASE_STR
-#define TSIP_ACTION_SET_CONFIG(ACTION_CONFIG_HANDLE)		aptype_config, (const tsip_action_handle_t*)ACTION_CONFIG_HANDLE
-#define TSIP_ACTION_SET_MEDIA_TYPE(TYPE_ENUM)				aptype_media_type, (enum tmedia_type_e)TYPE_ENUM
-#define TSIP_ACTION_SET_MEDIA(...)							aptype_media, ##__VA_ARGS__
-#define TSIP_ACTION_SET_NULL()								aptype_null
+#define TSIP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)         aptype_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define TSIP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)          aptype_payload, (const void*)PAY_PTR, (tsk_size_t)PAY_SIZE
+#define TSIP_ACTION_SET_RESP_LINE(CODE_INT, PHRASE_STR)     aptype_resp_line, (int32_t)CODE_INT, (const char*)PHRASE_STR
+#define TSIP_ACTION_SET_CONFIG(ACTION_CONFIG_HANDLE)        aptype_config, (const tsip_action_handle_t*)ACTION_CONFIG_HANDLE
+#define TSIP_ACTION_SET_MEDIA_TYPE(TYPE_ENUM)               aptype_media_type, (enum tmedia_type_e)TYPE_ENUM
+#define TSIP_ACTION_SET_MEDIA(...)                          aptype_media, ##__VA_ARGS__
+#define TSIP_ACTION_SET_NULL()                              aptype_null
 
 /* private action object. public api should use tsip_action_handle_t. */
 typedef struct tsip_action_s {

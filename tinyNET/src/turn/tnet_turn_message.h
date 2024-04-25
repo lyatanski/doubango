@@ -41,25 +41,25 @@
 //*/
 //typedef struct tnet_turn_channel_data_s
 //{
-//	TSK_DECLARE_OBJECT;
+//  TSK_DECLARE_OBJECT;
 //
-//	/*	draft-ietf-behave-turn-16 11.4.  The ChannelData Message
-//		0                   1                   2                   3
-//		0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-//		+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-//		|         Channel Number        |            Length             |
-//		+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-//		|                                                               |
-//		/                       Application Data                        /
-//		/                                                               /
-//		|                                                               |
-//		|                               +-------------------------------+
-//		|                               |
-//		+-------------------------------+
-//	*/
-//	uint16_t chanel_number;
-//	uint16_t length;
-//	void* data;
+//  /*  draft-ietf-behave-turn-16 11.4.  The ChannelData Message
+//      0                   1                   2                   3
+//      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+//      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//      |         Channel Number        |            Length             |
+//      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//      |                                                               |
+//      /                       Application Data                        /
+//      /                                                               /
+//      |                                                               |
+//      |                               +-------------------------------+
+//      |                               |
+//      +-------------------------------+
+//  */
+//  uint16_t chanel_number;
+//  uint16_t length;
+//  void* data;
 //}
 //tnet_turn_channel_data_t;
 //

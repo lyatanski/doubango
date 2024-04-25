@@ -25,44 +25,44 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define PLUGIN_DSHOW_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define PLUGIN_DSHOW_UNDER_WINDOWS_RT		1
-#	endif
+#   define PLUGIN_DSHOW_UNDER_WINDOWS   1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define PLUGIN_DSHOW_UNDER_WINDOWS_RT        1
+#   endif
 #endif
 
 #if (PLUGIN_DSHOW_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(PLUGIN_DSHOW_EXPORTS)
-# 	define PLUGIN_DSHOW_API		__declspec(dllexport)
-# 	define PLUGIN_DSHOW_GEXTERN extern __declspec(dllexport)
+#   define PLUGIN_DSHOW_API     __declspec(dllexport)
+#   define PLUGIN_DSHOW_GEXTERN extern __declspec(dllexport)
 #elif (PLUGIN_DSHOW_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(PLUGIN_DSHOW_IMPORTS_IGNORE)
-# 	define PLUGIN_DSHOW_API __declspec(dllimport)
-# 	define PLUGIN_DSHOW_GEXTERN __declspec(dllimport)
+#   define PLUGIN_DSHOW_API __declspec(dllimport)
+#   define PLUGIN_DSHOW_GEXTERN __declspec(dllimport)
 #else
-#	define PLUGIN_DSHOW_API
-#	define PLUGIN_DSHOW_GEXTERN	extern
+#   define PLUGIN_DSHOW_API
+#   define PLUGIN_DSHOW_GEXTERN extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define PLUGIN_DSHOW_BEGIN_DECLS extern "C" {
-#	define PLUGIN_DSHOW_END_DECLS }
+#   define PLUGIN_DSHOW_BEGIN_DECLS extern "C" {
+#   define PLUGIN_DSHOW_END_DECLS }
 #else
-#	define PLUGIN_DSHOW_BEGIN_DECLS
-#	define PLUGIN_DSHOW_END_DECLS
+#   define PLUGIN_DSHOW_BEGIN_DECLS
+#   define PLUGIN_DSHOW_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	pragma warning (disable:4995 4996)
-#	define _CRT_SECURE_NO_WARNINGS
+#   pragma warning (disable:4995 4996)
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #if PLUGIN_DSHOW_UNDER_WINDOWS

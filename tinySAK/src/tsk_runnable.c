@@ -32,7 +32,7 @@
 #include "tsk_debug.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif
 
 static void* TSK_STDCALL __async_join(void* self);
@@ -278,7 +278,7 @@ static void* TSK_STDCALL __async_join(void* arg)
 }
 
 //=================================================================================================
-//	Runnable object definition
+//  Runnable object definition
 //
 static tsk_object_t* tsk_runnable_ctor(tsk_object_t * self, va_list * app)
 {

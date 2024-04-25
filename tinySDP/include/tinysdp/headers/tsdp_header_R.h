@@ -37,20 +37,20 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_R_VA_ARGS()		tsdp_header_R_def_t
+#define TSDP_HEADER_R_VA_ARGS()     tsdp_header_R_def_t
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "r=" header (Repeat Times).
+/// @brief  SDP "r=" header (Repeat Times).
 ///
 /// The "e=" line "r=" fields specify repeat times for a session.
 ///
 /// @par ABNF : r= repeat-interval SP  typed-time  1*(SP typed-time)
 /// repeat-interval = POS-DIGIT *DIGIT [fixed-len-time-unit]
-/// typed-time	=  	1*DIGIT [fixed-len-time-unit]
+/// typed-time  =   1*DIGIT [fixed-len-time-unit]
 /// 1*DIGIT [fixed-len-time-unit]
-/// fixed-len-time-unit	=  	"d" / "h" / "m" / "s"
+/// fixed-len-time-unit =   "d" / "h" / "m" / "s"
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_R_s {

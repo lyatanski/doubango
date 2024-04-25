@@ -52,9 +52,9 @@
 TSK_BEGIN_DECLS
 
 
-#define TSK_BUFFER(self)					((tsk_buffer_t*)self)
-#define TSK_BUFFER_DATA(self)				(self ? TSK_BUFFER(self)->data : tsk_null)
-#define TSK_BUFFER_SIZE(self)				(self ? TSK_BUFFER(self)->size : 0)
+#define TSK_BUFFER(self)                    ((tsk_buffer_t*)self)
+#define TSK_BUFFER_DATA(self)               (self ? TSK_BUFFER(self)->data : tsk_null)
+#define TSK_BUFFER_SIZE(self)               (self ? TSK_BUFFER(self)->size : 0)
 
 /**@ingroup tsk_buffer_group
 * @def TSK_BUFFER_TO_STRING
@@ -66,8 +66,8 @@ TSK_BEGIN_DECLS
 * Gets a the internal buffer as a pointer to an unsigned string (uint8_t*).
 * @param self @ref tsk_buffer_t object.
 */
-#define TSK_BUFFER_TO_STRING(self)			(self ? (const char*)TSK_BUFFER_DATA(self) : tsk_null)
-#define TSK_BUFFER_TO_U8(self)				(self ? (uint8_t*)TSK_BUFFER_DATA(self) : tsk_null)
+#define TSK_BUFFER_TO_STRING(self)          (self ? (const char*)TSK_BUFFER_DATA(self) : tsk_null)
+#define TSK_BUFFER_TO_U8(self)              (self ? (uint8_t*)TSK_BUFFER_DATA(self) : tsk_null)
 
 /**@ingroup tsk_buffer_group
 * Buffer object.

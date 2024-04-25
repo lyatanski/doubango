@@ -23,16 +23,16 @@
 #include "stun/tnet_stun_utils.h"
 #include "turn/tnet_turn_session.h"
 
-#define kStunUsrName			"bossiel@yahoo.fr"
-#define kStunPwd				"tinynet"
-#define kStunServerIP			"ns313841.ovh.net" /*"numb.viagenie.ca"*/
-#define kStunServerPort			kStunPortDefaultTcpUdp
-#define kStunServerProto		tnet_socket_type_udp_ipv4
-#define kTurnPeerIP				"192.168.0.37"
-#define kTurnPeerPort			2020
+#define kStunUsrName            "bossiel@yahoo.fr"
+#define kStunPwd                "tinynet"
+#define kStunServerIP           "ns313841.ovh.net" /*"numb.viagenie.ca"*/
+#define kStunServerPort         kStunPortDefaultTcpUdp
+#define kStunServerProto        tnet_socket_type_udp_ipv4
+#define kTurnPeerIP             "192.168.0.37"
+#define kTurnPeerPort           2020
 
 #define TNET_TEST_STUN_SEND_BUFF_TO(buff_ptr, buff_size, IP, PORT) \
-	{ \
+    { \
         struct sockaddr_storage addr_to; \
         tnet_socket_t* socket = tnet_socket_create(0, 0, kStunServerProto); \
         tnet_sockaddr_init((IP), (PORT), kStunServerProto, &addr_to); \

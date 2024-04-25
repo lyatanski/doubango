@@ -707,7 +707,7 @@ HRESULT CMFSource::ValidatePresentationDescriptor(IMFPresentationDescriptor *pPD
     IMFStreamDescriptor *pStreamDescriptor = NULL;
     IMFMediaTypeHandler *pHandler = NULL;
     IMFMediaType        *pMediaType = NULL;
-    GUID				majorType;
+    GUID                majorType;
 
     DWORD   cStreamDescriptors = 0;
     BOOL    fSelected = FALSE;
@@ -766,14 +766,14 @@ HRESULT CMFSource::ValidatePresentationDescriptor(IMFPresentationDescriptor *pPD
 
                 if (cbWaveFormat < this->WaveFormatSize())
                 {
-                	hr = MF_E_INVALIDMEDIATYPE;
+                    hr = MF_E_INVALIDMEDIATYPE;
                 }*/
             }
 
             if (SUCCEEDED(hr)) {
                 /*if (memcmp(pFormat, WaveFormat(), WaveFormatSize()) != 0)
                 {
-                	hr = MF_E_INVALIDMEDIATYPE;
+                    hr = MF_E_INVALIDMEDIATYPE;
                 }*/
             }
 
@@ -1524,7 +1524,7 @@ HRESULT CMFStreamSource::CheckEndOfStream()
             // Send the end-of-stream event,
             hr = QueueEvent(MEEndOfStream, GUID_NULL, S_OK, NULL);
         }
-    	*/
+        */
     return hr;
 }
 

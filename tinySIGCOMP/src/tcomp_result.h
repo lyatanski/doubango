@@ -41,7 +41,7 @@
 
 TCOMP_BEGIN_DECLS
 
-#define MAX_TEMP_SATES	4
+#define MAX_TEMP_SATES  4
 
 typedef struct tcomp_tempstate_to_free_s {
     TSK_DECLARE_OBJECT;
@@ -61,25 +61,25 @@ TINYSIGCOMP_GEXTERN const tsk_object_def_t *tcomp_tempstate_to_free_def_t;
 typedef struct tcomp_result_s {
     TSK_DECLARE_OBJECT;
 
-    uint64_t					compartmentId;
-    tcomp_state_t*				statesToCreate[MAX_TEMP_SATES];
-    uint8_t						statesToCreateIndex;
+    uint64_t                    compartmentId;
+    tcomp_state_t*              statesToCreate[MAX_TEMP_SATES];
+    uint8_t                     statesToCreateIndex;
 
-    tcomp_tempstate_to_free_t*	statesToFree[MAX_TEMP_SATES];
-    uint8_t						statesToFreeIndex;
+    tcomp_tempstate_to_free_t*  statesToFree[MAX_TEMP_SATES];
+    uint8_t                     statesToFreeIndex;
 
-    uint64_t					streamId;
-    unsigned					isStreamBased:1;
-    tcomp_buffer_handle_t		*output_buffer;
+    uint64_t                    streamId;
+    unsigned                    isStreamBased:1;
+    tcomp_buffer_handle_t       *output_buffer;
 
-    tcomp_reqfeed_t				*req_feedback;
-    tcomp_params_t				*remote_parameters;
-    tcomp_buffer_handle_t		*ret_feedback;
+    tcomp_reqfeed_t             *req_feedback;
+    tcomp_params_t              *remote_parameters;
+    tcomp_buffer_handle_t       *ret_feedback;
 
-    unsigned					isNack:1;
-    tcomp_buffer_handle_t		*nack_info;
+    unsigned                    isNack:1;
+    tcomp_buffer_handle_t       *nack_info;
 
-    uint64_t					consumed_cycles;
+    uint64_t                    consumed_cycles;
 }
 tcomp_result_t;
 

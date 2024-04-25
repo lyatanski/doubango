@@ -40,7 +40,7 @@
 #if !defined(PLUGIN_MF_DISABLE_CODECS)
 // Must be "0" to use "Microsoft"/"Intel Quick Sync" MFT codecs. Testing: When set to "1", libx264 and FFmpeg will be used.
 // Metropolis code (G2J.COM TelePresence client) has "PLUGIN_MF_DISABLE_CODECS=1" because of interop issues against Tandberg and Intel QuickSync H.264 implementations.
-#	define PLUGIN_MF_DISABLE_CODECS 1
+#   define PLUGIN_MF_DISABLE_CODECS 1
 #endif
 #if !defined(PLUGIN_MF_DISABLE_MS_H264_ENCODER)
 // MS H.264 encoder produces artifacts when bundled with the producer. Disable until we found why this happens.
@@ -48,12 +48,12 @@
 // To encode with MS and decode with CUDA:
 // - Force "bMFEncoderIsRegistered" value to "FALSE" in plugin_win_mf_producer_video.cxx
 // Metropolis code (G2J.COM TelePresence) has "PLUGIN_MF_DISABLE_MS_H264_ENCODER=1" beacause Microsoft H.264 not fully tested against Tandberg, Polycom, Hartallo...
-#	define PLUGIN_MF_DISABLE_MS_H264_ENCODER 1
+#   define PLUGIN_MF_DISABLE_MS_H264_ENCODER 1
 #endif
 
 #if !defined(PLUGIN_MF_DISABLE_ASYNC_DECODERS)
 // Not fully tested
-#	define PLUGIN_MF_DISABLE_ASYNC_DECODERS 1
+#   define PLUGIN_MF_DISABLE_ASYNC_DECODERS 1
 #endif
 
 BOOL MFUtils::g_bStarted = FALSE;
@@ -646,12 +646,12 @@ HRESULT MFUtils::GetBestCodec(
 
     hr = MFTEnumEx(
              (mediaType == MFMediaType_Video) ? (bEncoder ? MFT_CATEGORY_VIDEO_ENCODER : MFT_CATEGORY_VIDEO_DECODER) : (bEncoder ? MFT_CATEGORY_AUDIO_ENCODER : MFT_CATEGORY_AUDIO_DECODER),
-                 unFlags,
-                 (inputFormat == GUID_NULL) ? NULL : &infoInput,      // Input type
-                 (outputFormat == GUID_NULL) ? NULL : &infoOutput,       // Output type
-                 &ppActivate,
-                 &count
-             );
+             unFlags,
+             (inputFormat == GUID_NULL) ? NULL : &infoInput,      // Input type
+             (outputFormat == GUID_NULL) ? NULL : &infoOutput,       // Output type
+             &ppActivate,
+             &count
+         );
 
     for(UINT32 i = 0; i < count; ++i) {
         SafeRelease(ppMFT);
@@ -1048,8 +1048,8 @@ HRESULT MFUtils::CreateTopology(
                         // Frame Rate Converter DSP(http://msdn.microsoft.com/en-us/library/windows/desktop/ff819100(v=vs.85).aspx) supports neither NV12 nor I420
                         /*if(!bSupportedFps && !pConvFrameRate)
                         {
-                        	hr = CoCreateInstance(CLSID_CFrameRateConvertDmo, NULL,
-                        		CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pConvFrameRate));
+                            hr = CoCreateInstance(CLSID_CFrameRateConvertDmo, NULL,
+                                CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pConvFrameRate));
                         }*/
                         // Color Converter DSP (http://msdn.microsoft.com/en-us/library/windows/desktop/ff819079(v=vs.85).aspx) supports both NV12 and I420
                         if(!bSupportedFormat && !pConvColor) {
@@ -1791,12 +1791,12 @@ HRESULT MFUtils::GetBestFormat(
 {
 
 #define _FindPairByGuid(_guid, _index) { \
-	int _i; _index = -1; \
-	for (_i = 0; _i < PreferredVideoSubTypeGuidPairsCount; ++_i) { \
-		if (PreferredVideoSubTypeGuidPairs[_i].fourcc == _guid) { \
-			_index = _i; break; \
-		} \
-	} \
+    int _i; _index = -1; \
+    for (_i = 0; _i < PreferredVideoSubTypeGuidPairsCount; ++_i) { \
+        if (PreferredVideoSubTypeGuidPairs[_i].fourcc == _guid) { \
+            _index = _i; break; \
+        } \
+    } \
 }
 #if 0
     *pnWidth = 640;

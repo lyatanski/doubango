@@ -44,7 +44,7 @@ static tsk_bool_t tdav_codec_msrp_sdp_att_match(const tmedia_codec_t* codec, con
 }
 
 //
-//	MSRP Plugin definition
+//  MSRP Plugin definition
 //
 
 /* constructor */

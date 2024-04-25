@@ -34,7 +34,7 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_SEC_WEBSOCKET_ACCEPT_VA_ARGS(key)		thttp_header_Sec_WebSocket_Accept_def_t, (const char*)key
+#define THTTP_HEADER_SEC_WEBSOCKET_ACCEPT_VA_ARGS(key)      thttp_header_Sec_WebSocket_Accept_def_t, (const char*)key
 
 typedef struct thttp_header_Sec_WebSocket_Accept_s {
     THTTP_DECLARE_HEADER;

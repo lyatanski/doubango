@@ -41,9 +41,9 @@
 #include <string.h>
 
 #define MIN_LEN 2
-#define HEADER_GET_LEN(message)		(message->headerSigComp & 0x03)
-#define HEADER_GET_T(message)		(message->headerSigComp & 0x04)
-#define HEADER_IS_VALID(message)	(message->headerSigComp >= 0xf8)
+#define HEADER_GET_LEN(message)     (message->headerSigComp & 0x03)
+#define HEADER_GET_T(message)       (message->headerSigComp & 0x04)
+#define HEADER_IS_VALID(message)    (message->headerSigComp >= 0xf8)
 
 #define HEADER_GET_DEST_VALUE(destination) ( sigcomp_encoding_destination[destination] )
 #define HEADER_GET_STATE_LENGTH(length) ( sigcomp_encoding_partial_id_length[length] )
@@ -353,7 +353,7 @@ static void initNack(tcomp_message_t *message, uint8_t** start_ptr, uint8_t* end
 
 
 //========================================================
-//	SigComp message object definition
+//  SigComp message object definition
 //
 
 static tsk_object_t* tcomp_message_ctor(tsk_object_t *self, va_list * app)

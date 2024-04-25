@@ -22,7 +22,7 @@
 
 /**@file tsk_uuid.c
  * @brief Universally Unique Identifier (UUID version 5) implementation (RFC 4122).
- *		  This implementation is not fully conform to RFC 4122 but could be safely used to generate random UUIDs.
+ *        This implementation is not fully conform to RFC 4122 but could be safely used to generate random UUIDs.
  *
  * @author Mamadou Diop <diopmamadou(at)doubango[dot]org>
  *
@@ -45,9 +45,9 @@
 int tsk_uuidgenerate(tsk_uuidstring_t *result)
 {
     /* From wikipedia
-    *	Version 5 UUIDs use a scheme with SHA-1 hashing, otherwise it is the same idea as in version 3.
-    *	RFC 4122 states that version 5 is preferred over version 3 name based UUIDs.
-    *	Note that the 160 bit SHA-1 hash is truncated to 128 bits to make the length work out.
+    *   Version 5 UUIDs use a scheme with SHA-1 hashing, otherwise it is the same idea as in version 3.
+    *   RFC 4122 states that version 5 is preferred over version 3 name based UUIDs.
+    *   Note that the 160 bit SHA-1 hash is truncated to 128 bits to make the length work out.
     */
     tsk_sha1string_t sha1result;
     tsk_istr_t now;

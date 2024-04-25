@@ -50,9 +50,9 @@ class CPushPinBitmap : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     BITMAPINFO *m_pBmi;                 // Pointer to the bitmap header
     DWORD       m_cbBitmapInfo;         // Size of the bitmap header
@@ -82,7 +82,8 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
@@ -93,9 +94,9 @@ class CPushPinBitmapSet : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     BITMAPINFO *m_pBmi[NUM_FILES];      // Pointer to the bitmap headers
     DWORD m_cbBitmapInfo[NUM_FILES];    // Size of the bitmap headers
@@ -127,7 +128,8 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
@@ -138,9 +140,9 @@ class CPushPinDesktop : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     int m_iFrameNumber;
     const REFERENCE_TIME m_rtFrameLength;
@@ -156,7 +158,7 @@ protected:
     CCritSec m_cSharedState;            // Protects our internal state
     CImageDisplay m_Display;            // Figures out our media type for us
 
-    HWND m_hSrcHwnd;					// Handle to the window to grab
+    HWND m_hSrcHwnd;                    // Handle to the window to grab
 
 public:
 
@@ -178,11 +180,13 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
-    HRESULT SetSrcHwnd(HWND hWnd) {
+    HRESULT SetSrcHwnd(HWND hWnd)
+    {
         m_hSrcHwnd = hWnd;
         return S_OK;
     }
@@ -294,9 +298,9 @@ class CPushPinBitmap : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     BITMAPINFO *m_pBmi;                 // Pointer to the bitmap header
     DWORD       m_cbBitmapInfo;         // Size of the bitmap header
@@ -326,7 +330,8 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
@@ -337,9 +342,9 @@ class CPushPinBitmapSet : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     BITMAPINFO *m_pBmi[NUM_FILES];      // Pointer to the bitmap headers
     DWORD m_cbBitmapInfo[NUM_FILES];    // Size of the bitmap headers
@@ -371,7 +376,8 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
@@ -382,9 +388,9 @@ class CPushPinDesktop : public CSourceStream
 {
 protected:
 
-    int m_FramesWritten;				// To track where we are in the file
+    int m_FramesWritten;                // To track where we are in the file
     BOOL m_bZeroMemory;                 // Do we need to clear the buffer?
-    CRefTime m_rtSampleTime;	        // The time stamp for each sample
+    CRefTime m_rtSampleTime;            // The time stamp for each sample
 
     int m_iFrameNumber;
     const REFERENCE_TIME m_rtFrameLength;
@@ -400,7 +406,7 @@ protected:
     CCritSec m_cSharedState;            // Protects our internal state
     CImageDisplay m_Display;            // Figures out our media type for us
 
-    HWND m_hSrcHwnd;					// Handle to the window to grab
+    HWND m_hSrcHwnd;                    // Handle to the window to grab
 
 public:
 
@@ -422,11 +428,13 @@ public:
     // Not implemented because we aren't going in real time.
     // If the file-writing filter slows the graph down, we just do nothing, which means
     // wait until we're unblocked. No frames are ever dropped.
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_FAIL;
     }
 
-    HRESULT SetSrcHwnd(HWND hWnd) {
+    HRESULT SetSrcHwnd(HWND hWnd)
+    {
         m_hSrcHwnd = hWnd;
         return S_OK;
     }

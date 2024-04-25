@@ -37,13 +37,13 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_REFERRED_BY_VA_ARGS(uri, cid)	tsip_header_Referred_By_def_t, (const tsip_uri_t*)uri, (const char*)cid
+#define TSIP_HEADER_REFERRED_BY_VA_ARGS(uri, cid)   tsip_header_Referred_By_def_t, (const tsip_uri_t*)uri, (const char*)cid
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Referred-By'.
+/// @brief  SIP header 'Referred-By'.
 ///
-/// @par ABNF: Referred-By	= 	( "Referred-By" / "b" ) HCOLON referrer-uri *( SEMI (referredby-id-param / generic-param) )
+/// @par ABNF: Referred-By  =   ( "Referred-By" / "b" ) HCOLON referrer-uri *( SEMI (referredby-id-param / generic-param) )
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Referred_By_s {

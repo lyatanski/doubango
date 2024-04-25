@@ -27,7 +27,7 @@
 #include "tsk_common.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif /* TSK_UNDER_WINDOWS */
 
 /**@defgroup tsk_object_group Base object implementation.
@@ -35,10 +35,10 @@
 */
 
 #if defined (_DEBUG) || defined (DEBUG)
-#	define TSK_DEBUG_OBJECTS	0
+#   define TSK_DEBUG_OBJECTS    0
 static int tsk_objects_count = 0;
 #else
-#	define TSK_DEBUG_OBJECTS	0
+#   define TSK_DEBUG_OBJECTS    0
 #endif
 
 /**@ingroup tsk_object_group
@@ -258,10 +258,10 @@ void tsk_object_delete(tsk_object_t *self)
 * @code
 * typedef struct person_s
 {
-	TSK_DECLARE_OBJECT; // Mandatory and used to tag a struct as a <b>"well-defined object"<b/>
+    TSK_DECLARE_OBJECT; // Mandatory and used to tag a struct as a <b>"well-defined object"<b/>
 
-	char* name;
-	struct person_s* girlfriend;
+    char* name;
+    struct person_s* girlfriend;
 }
 person_t;
 * @endcode
@@ -275,14 +275,14 @@ Notice on the above code how @ref TSK_DECLARE_OBJECT macro is used to tag the st
 * @code
 typedef struct tsk_object_def_s
 {
-	//! The size of the object.
-	tsk_size_t size;
-	//! Pointer to the constructor.
-	tsk_object_t*	(* constructor) (tsk_object_t *, va_list *);
-	//! Pointer to the destructor.
-	tsk_object_t*	(* destructor) (tsk_object_t *);
-	//! Pointer to the comparator.
-	int		(*comparator) (const tsk_object_t *, const tsk_object_t *);
+    //! The size of the object.
+    tsk_size_t size;
+    //! Pointer to the constructor.
+    tsk_object_t*   (* constructor) (tsk_object_t *, va_list *);
+    //! Pointer to the destructor.
+    tsk_object_t*   (* destructor) (tsk_object_t *);
+    //! Pointer to the comparator.
+    int     (*comparator) (const tsk_object_t *, const tsk_object_t *);
 }
 tsk_object_def_t;
 * @endcode
@@ -299,10 +299,10 @@ tsk_object_def_t;
 * //(Object defnition)
  static const tsk_object_def_t person_def_t =
  {
- 	sizeof(person_t),
- 	person_ctor,
- 	person_dtor,
- 	person_cmp
+    sizeof(person_t),
+    person_ctor,
+    person_dtor,
+    person_cmp
  };
 * @endcode
 * <h2>@anchor _Anchor_TinySAK_Object_Constructor Constructor</h2>
@@ -312,11 +312,11 @@ tsk_object_def_t;
 // (constructor)
 static tsk_object_t* person_ctor(tsk_object_t * self, va_list * app)
 {
- 	person_t *person = (person_t *)self;
- 	if(person){
- 		person->name = tsk_strdup(va_arg(*app, const char *));
- 	}
- 	return self;
+    person_t *person = (person_t *)self;
+    if(person){
+        person->name = tsk_strdup(va_arg(*app, const char *));
+    }
+    return self;
  }
 * @endcode
 * <h2>@anchor _Anchor_TinySAK_Object_Destructor Destructor</h2>
@@ -326,12 +326,12 @@ static tsk_object_t* person_ctor(tsk_object_t * self, va_list * app)
 // (destructor)
  static tsk_object_t * person_dtor(tsk_object_t * self)
  {
- 	person_t *person = (person_t *)self;
- 	if(person){
- 		TSK_FREE(person->name);
-		tsk_object_unref(person->girlfriend);// do not use free() as it's a well-defined object
- 	}
- 	return self;
+    person_t *person = (person_t *)self;
+    if(person){
+        TSK_FREE(person->name);
+        tsk_object_unref(person->girlfriend);// do not use free() as it's a well-defined object
+    }
+    return self;
  }
 * @endcode
 * <h2>@anchor _Anchor_TinySAK_Object_Comparator Comparator</h2>
@@ -341,21 +341,21 @@ static tsk_object_t* person_ctor(tsk_object_t * self, va_list * app)
 // (comparator)
 static int person_cmp(const tsk_object_t *_p1, const tsk_object_t *_p2)
  {
- 	const person_t *p1 = (const person_t *)_p1;
- 	const person_t *p1 = (const person_t *)_p2;
-	int ret;
+    const person_t *p1 = (const person_t *)_p1;
+    const person_t *p1 = (const person_t *)_p2;
+    int ret;
 
-	// do they have the same name?
-	if((ret = tsk_stricmp(p1->name, p2->name))){
-		return ret;
-	}
-	// do they have the same girlfriend?
-	if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
-		return ret;
-	}
+    // do they have the same name?
+    if((ret = tsk_stricmp(p1->name, p2->name))){
+        return ret;
+    }
+    // do they have the same girlfriend?
+    if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
+        return ret;
+    }
 
-	// they are the same
-	return 0;
+    // they are the same
+    return 0;
  }
 * @endcode
 The comparator function is also used by the linked-list to sort <i>"well-defined"</i> objects.
@@ -374,8 +374,8 @@ The comparator function is also used by the linked-list to sort <i>"well-defined
 // (a student is a person)
 typedef struct student_s
 {
-	person_t* person; // Must be the first element and a "well-defined" object
-	char* school;
+    person_t* person; // Must be the first element and a "well-defined" object
+    char* school;
 }
 student_t;
 
@@ -403,7 +403,7 @@ tsk_object_unref(bob);
 // create a person
 static person_t* person_create(const char* name)
 {
-	return (person_t*)tsk_object_new(&person_def_t, (const char*)name);
+    return (person_t*)tsk_object_new(&person_def_t, (const char*)name);
 }
 *
 * @endcode
@@ -429,67 +429,67 @@ Complete source code with minor changes.
 * @code
 * typedef struct person_s
 {
-	TSK_DECLARE_OBJECT; // Mandatory and used to tag a struct as a "well-defined" object
+    TSK_DECLARE_OBJECT; // Mandatory and used to tag a struct as a "well-defined" object
 
-	char* name;
-	uint32_t age;
-	struct person_s* girlfriend;
+    char* name;
+    uint32_t age;
+    struct person_s* girlfriend;
 }
 person_t;
 
 // (constructor)
 static tsk_object_t* person_ctor(tsk_object_t * self, va_list * app)
 {
- 	person_t *person = self;
- 	if(person){
-	// va_list ignored in this example
- 	}
- 	return self;
+    person_t *person = self;
+    if(person){
+    // va_list ignored in this example
+    }
+    return self;
  }
 
  // (destructor)
  static tsk_object_t * person_dtor(tsk_object_t * self)
  {
- 	person_t *person = self;
- 	if(person){
- 		TSK_FREE(person->name);
-		tsk_object_unref(person->girlfriend); // do not use free() as it's a well-defined object
- 	}
- 	return self;
+    person_t *person = self;
+    if(person){
+        TSK_FREE(person->name);
+        tsk_object_unref(person->girlfriend); // do not use free() as it's a well-defined object
+    }
+    return self;
  }
 
  // (comparator)
  static int person_cmp(const tsk_object_t *_p1, const tsk_object_t *_p2)
  {
- 	const person_t *p1 = (const person_t *)_p1;
- 	const person_t *p1 = (const person_t *)_p2;
-	int ret;
+    const person_t *p1 = (const person_t *)_p1;
+    const person_t *p1 = (const person_t *)_p2;
+    int ret;
 
-	// do they have the same name?
-	if((ret = tsk_stricmp(p1->name, p2->name))){
-		return ret;
-	}
-	// do they have the same girlfriend?
-	if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
-		return ret;
-	}
+    // do they have the same name?
+    if((ret = tsk_stricmp(p1->name, p2->name))){
+        return ret;
+    }
+    // do they have the same girlfriend?
+    if((ret = tsk_object_cmp(p1->girlfriend, p2->girlfriend))){
+        return ret;
+    }
 
-	// they are the same
-	return 0;
+    // they are the same
+    return 0;
  }
 
  // helper function to create a person
 static person_t* person_create(const char* name, uint32_t age, const char* girlfriend_name, uint32_t girlfriend_age)
 {
-	person_t* bob;
-	if((bob = (person_t*)tsk_object_new(&person_def_t))){ // no name as parameter because the constructor(person_ctor()) is modified to ignore the va_list argument
-		bob->name = tsk_strdup(name);
-		bob->age = age;
-		if((bob->girlfriend = (person_t*)tsk_object_new(&person_def_t))){
-			bob->girlfriend->name = tsk_strdup(girlfriend_name);
-			bob->girlfriend->age = girlfriend_age;
-		}
-	}
+    person_t* bob;
+    if((bob = (person_t*)tsk_object_new(&person_def_t))){ // no name as parameter because the constructor(person_ctor()) is modified to ignore the va_list argument
+        bob->name = tsk_strdup(name);
+        bob->age = age;
+        if((bob->girlfriend = (person_t*)tsk_object_new(&person_def_t))){
+            bob->girlfriend->name = tsk_strdup(girlfriend_name);
+            bob->girlfriend->age = girlfriend_age;
+        }
+    }
 }
 
 person_t* bob = person_create("bob", 19, "alice", 18); // refcount = 1

@@ -50,8 +50,8 @@
 TNET_BEGIN_DECLS
 
 
-#define TNET_DNS_MESSAGE_IS_RESPONSE(message)		((message) && (message)->Header.QR == 1)
-#define TNET_DNS_MESSAGE_IS_QUERY(message)			((message) && (message)->Header.QR == 0)
+#define TNET_DNS_MESSAGE_IS_RESPONSE(message)       ((message) && (message)->Header.QR == 1)
+#define TNET_DNS_MESSAGE_IS_QUERY(message)          ((message) && (message)->Header.QR == 0)
 
 /**@ingroup tnet_dns_group
 * @def TNET_DNS_RESPONSE_IS_SUCCESS
@@ -63,8 +63,8 @@ TNET_BEGIN_DECLS
 * Checks whether the STUN message is an error response or not(success).
 * @sa TNET_DNS_RESPONSE_IS_SUCCESS.
 */
-#define TNET_DNS_RESPONSE_IS_SUCCESS(response)		((response) && (response)->Header.RCODE == rcode_noerror)
-#define TNET_DNS_RESPONSE_IS_ERROR(response)		!TNET_DNS_RESPONSE_IS_SUCCESS(response)
+#define TNET_DNS_RESPONSE_IS_SUCCESS(response)      ((response) && (response)->Header.RCODE == rcode_noerror)
+#define TNET_DNS_RESPONSE_IS_ERROR(response)        !TNET_DNS_RESPONSE_IS_SUCCESS(response)
 
 /**Response codes as per RFC 1035 subclause 4.1.1.
 */
@@ -81,9 +81,9 @@ tnet_dns_rcode_t;
 /**OPCODE defining the kind of query as per RFC 1035 subclause 4.1.1.
 */
 typedef enum tnet_dns_opcode_e {
-    opcode_query = 0,	/**< 0               a standard query (QUERY) */
+    opcode_query = 0,   /**< 0               a standard query (QUERY) */
     opcode_iquery = 1,  /**< 1               an inverse query (IQUERY) */
-    opcode_status = 2,	/**< 2               a server status request (STATUS) */
+    opcode_status = 2,  /**< 2               a server status request (STATUS) */
 }
 tnet_dns_opcode_t;
 
@@ -107,7 +107,7 @@ typedef struct tnet_dns_message_s {
     */
 
     /* RFC 1035 - 4.1.1. Header section format
-    								1  1  1  1  1  1
+                                    1  1  1  1  1  1
       0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
     |                      ID                       |
@@ -154,23 +154,23 @@ typedef struct tnet_dns_message_s {
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
     */
     struct {
-        /**	RFC 1035 - 4.1.2. Question section format
-        	a domain name represented as a sequence of labels, where
-        	each label consists of a length octet followed by that
-        	number of octets.  The domain name terminates with the
-        	zero length octet for the null label of the root.  Note
-        	that this field may be an odd number of octets; no
-        	padding is used.*/
+        /** RFC 1035 - 4.1.2. Question section format
+            a domain name represented as a sequence of labels, where
+            each label consists of a length octet followed by that
+            number of octets.  The domain name terminates with the
+            zero length octet for the null label of the root.  Note
+            that this field may be an odd number of octets; no
+            padding is used.*/
         void* QNAME;
-        /**	RFC 1035 - 4.1.2. Question section format
-        	a two octet code which specifies the type of the query.
-        	The values for this field include all codes valid for a
-        	TYPE field, together with some more general codes which
-        	can match more than one type of RR.*/
+        /** RFC 1035 - 4.1.2. Question section format
+            a two octet code which specifies the type of the query.
+            The values for this field include all codes valid for a
+            TYPE field, together with some more general codes which
+            can match more than one type of RR.*/
         tnet_dns_qtype_t QTYPE;
-        /*	RFC 1035 - 4.1.2. Question section format
-        	a two octet code that specifies the class of the query.
-        	For example, the QCLASS field is IN for the Internet.
+        /*  RFC 1035 - 4.1.2. Question section format
+            a two octet code that specifies the class of the query.
+            For example, the QCLASS field is IN for the Internet.
         */
         tnet_dns_qclass_t QCLASS;
     }

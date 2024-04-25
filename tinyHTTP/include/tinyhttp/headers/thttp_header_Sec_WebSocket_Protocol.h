@@ -36,7 +36,7 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_SEC_WEBSOCKET_PROTOCOL_VA_ARGS(protocol)		thttp_header_Sec_WebSocket_Protocol_def_t, (const char*)protocol
+#define THTTP_HEADER_SEC_WEBSOCKET_PROTOCOL_VA_ARGS(protocol)       thttp_header_Sec_WebSocket_Protocol_def_t, (const char*)protocol
 
 typedef struct thttp_header_Sec_WebSocket_Protocol_s {
     THTTP_DECLARE_HEADER;

@@ -33,11 +33,11 @@
 TMEDIA_BEGIN_DECLS
 
 /** cast any pointer to @ref tmedia_converter_video_t* object */
-#define TMEDIA_CONVERTER_VIDEO(self)		((tmedia_converter_video_t*)(self))
+#define TMEDIA_CONVERTER_VIDEO(self)        ((tmedia_converter_video_t*)(self))
 
 /**Max number of plugins (consumer types) we can create */
 #if !defined(TMED_CONVERTER_VIDEO_MAX_PLUGINS)
-#	define TMED_CONVERTER_VIDEO_MAX_PLUGINS			0x0F
+#   define TMED_CONVERTER_VIDEO_MAX_PLUGINS         0x0F
 #endif
 
 typedef struct tmedia_converter_video_s {
@@ -65,31 +65,31 @@ tmedia_converter_video_t;
 #define TMEDIA_DECLARE_CONVERTER_VIDEO tmedia_converter_video_t __converter__
 
 #define tmedia_converter_video_set(self, _rotation, _flip, _mirror, _scale_rotated_frames) \
-	if((self)){ \
-		(self)->rotation  = (_rotation); \
-		(self)->flip  = (_flip); \
-		(self)->mirror  = (_mirror); \
-		(self)->scale_rotated_frames  = (_scale_rotated_frames); \
-	}
+    if((self)){ \
+        (self)->rotation  = (_rotation); \
+        (self)->flip  = (_flip); \
+        (self)->mirror  = (_mirror); \
+        (self)->scale_rotated_frames  = (_scale_rotated_frames); \
+    }
 #define tmedia_converter_video_set_rotation(self, _rotation) \
-	if((self)){ \
-		(self)->rotation  = (_rotation); \
-	}
+    if((self)){ \
+        (self)->rotation  = (_rotation); \
+    }
 #define tmedia_converter_video_set_flip(self, _flip) \
-	if((self)){ \
-		(self)->flip  = (_flip); \
-	}
+    if((self)){ \
+        (self)->flip  = (_flip); \
+    }
 #define tmedia_converter_video_set_mirror(self, _mirror) \
-	if((self)){ \
-		(self)->mirror  = (_mirror); \
-	}
+    if((self)){ \
+        (self)->mirror  = (_mirror); \
+    }
 #define tmedia_converter_video_set_scale_rotated_frames(self, _scale_rotated_frames) \
-	if((self)){ \
-		(self)->scale_rotated_frames  = (_scale_rotated_frames); \
-	}
+    if((self)){ \
+        (self)->scale_rotated_frames  = (_scale_rotated_frames); \
+    }
 
 #define tmedia_converter_video_process(_self, _buffer, _size, _output, _output_max_size) \
-	(_self)->plugin->process((_self), (_buffer), (_size), (_output), (_output_max_size))
+    (_self)->plugin->process((_self), (_buffer), (_size), (_output), (_output_max_size))
 
 /** Virtual table used to define a consumer plugin */
 typedef struct tmedia_converter_video_plugin_def_s {

@@ -44,29 +44,29 @@ void cmd_print_help()
     printf("Please refer to the Programmer's Guide at\n http://www.doubango.org/\n\n");
 
 //
-//	printf("Usage:\n");
-//	printf(PAD"++[command] --[opts]\n\n");
+//  printf("Usage:\n");
+//  printf(PAD"++[command] --[opts]\n\n");
 //
-//	/* Commands */
-//	printf("Commands:\n--\n");
-//	printf(PAD"[++audio] or [++a"PAD"%s", "Make audio call\n--\n");
-//	printf(PAD"[++audiovideo] or [++av]"PAD"%s", "Make audio/video call\n--\n");
-//	printf(PAD"[++config-file] or [++cf]"PAD"%s", "Load opts from config file\n--\n");
-//	printf(PAD"[++config-session] | [++css]"PAD"%s", "Configure an 3GPP IMS/LTE session\n--\n");
-//	printf(PAD"[++config-stack] | [++cst]"PAD"%s", "Configure an 3GPP IMS/LTE stack\n--\n");
-//	printf(PAD"[++exit] | [++e]"PAD"%s", "Exit the application\n--\n");
-//	printf(PAD"[++file] | [++f]"PAD"%s", "Send a file. The stack must be running (see ++run command). To abort the File transfer, use ++hangup.\n--\n");
-//	printf(PAD"[++hangup] | [++hp]"PAD"%s", "Hangup any SIP session (unREGISTER, unSUBSCRIBE, unPUBLISH, HangUp Call, Abort ...).\n--\n");
-//	printf(PAD"[++help] | [++h]"PAD"%s", "Print this help screen\n--\n");
-//	printf(PAD"[++message] | [++m]"PAD"%s", "Send Pager Mode IM. The stack must be running (see ++run command).\n\n");
-//	printf(PAD"[++publish] | [++pub]"PAD"%s", "Send PUBLISH message. The stack must be running (see ++run command). To unPUBLISH, use ++hanggup.\n--\n");
-//	printf(PAD"[++quit] | [++q]"PAD"%s", "Quit the application\n--\n");
-//	printf(PAD"[++run]"PAD"%s", "Start/Run the 3GPP IMS/LTE stack. Mandatory before starting to do anything.\n--\n");
-//	printf(PAD"[++sms]"PAD"%s", "Send Binary SMS (RP-DATA). The stack must be running (see ++run command).\n--\n");
-//	printf(PAD"[++subscribe] | [++sub]"PAD"%s", "Send SUBSCRIBE message. The stack must be running (see ++run command). To unSUBSCRIBE, use ++hangup.\n--\n");
-//	printf(PAD"[++video] or [++v]"PAD"%s", "Make video call\n--\n");
+//  /* Commands */
+//  printf("Commands:\n--\n");
+//  printf(PAD"[++audio] or [++a"PAD"%s", "Make audio call\n--\n");
+//  printf(PAD"[++audiovideo] or [++av]"PAD"%s", "Make audio/video call\n--\n");
+//  printf(PAD"[++config-file] or [++cf]"PAD"%s", "Load opts from config file\n--\n");
+//  printf(PAD"[++config-session] | [++css]"PAD"%s", "Configure an 3GPP IMS/LTE session\n--\n");
+//  printf(PAD"[++config-stack] | [++cst]"PAD"%s", "Configure an 3GPP IMS/LTE stack\n--\n");
+//  printf(PAD"[++exit] | [++e]"PAD"%s", "Exit the application\n--\n");
+//  printf(PAD"[++file] | [++f]"PAD"%s", "Send a file. The stack must be running (see ++run command). To abort the File transfer, use ++hangup.\n--\n");
+//  printf(PAD"[++hangup] | [++hp]"PAD"%s", "Hangup any SIP session (unREGISTER, unSUBSCRIBE, unPUBLISH, HangUp Call, Abort ...).\n--\n");
+//  printf(PAD"[++help] | [++h]"PAD"%s", "Print this help screen\n--\n");
+//  printf(PAD"[++message] | [++m]"PAD"%s", "Send Pager Mode IM. The stack must be running (see ++run command).\n\n");
+//  printf(PAD"[++publish] | [++pub]"PAD"%s", "Send PUBLISH message. The stack must be running (see ++run command). To unPUBLISH, use ++hanggup.\n--\n");
+//  printf(PAD"[++quit] | [++q]"PAD"%s", "Quit the application\n--\n");
+//  printf(PAD"[++run]"PAD"%s", "Start/Run the 3GPP IMS/LTE stack. Mandatory before starting to do anything.\n--\n");
+//  printf(PAD"[++sms]"PAD"%s", "Send Binary SMS (RP-DATA). The stack must be running (see ++run command).\n--\n");
+//  printf(PAD"[++subscribe] | [++sub]"PAD"%s", "Send SUBSCRIBE message. The stack must be running (see ++run command). To unSUBSCRIBE, use ++hangup.\n--\n");
+//  printf(PAD"[++video] or [++v]"PAD"%s", "Make video call\n--\n");
 //
-//	printf("\n\n========================= =========================\n\n");
+//  printf("\n\n========================= =========================\n\n");
 }
 
 cmd_t* cmd_create(cmd_type_t type)

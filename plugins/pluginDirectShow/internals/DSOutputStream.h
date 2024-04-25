@@ -37,16 +37,19 @@ public:
 
     HRESULT setImageFormat(UINT width, UINT height);
     bool getImageFormat(UINT &width, UINT &height);
-    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q) {
+    STDMETHODIMP Notify(IBaseFilter *pSelf, Quality q)
+    {
         return E_NOTIMPL;
     };
-    inline bool lockBuffer() {
+    inline bool lockBuffer()
+    {
         if (this->mutex) {
             return tsk_mutex_lock(this->mutex) == 0;
         }
         return false;
     }
-    inline bool unlockBuffer() {
+    inline bool unlockBuffer()
+    {
         if (this->mutex) {
             return tsk_mutex_unlock(this->mutex) == 0;
         }
@@ -54,9 +57,9 @@ public:
     }
 
 public:
-    void			*buffer;
-    int				buffer_size;
-    LONGLONG		frameNumber;
+    void            *buffer;
+    int             buffer_size;
+    LONGLONG        frameNumber;
 
 protected: // Overrides
     HRESULT GetMediaType(CMediaType *pMediaType);
@@ -70,20 +73,20 @@ private:
 
 private:
     // TIMING
-    REFERENCE_TIME	frameLength;
-    int				fps;
+    REFERENCE_TIME  frameLength;
+    int             fps;
 
     // sizing
     UINT width;
     UINT height;
 
     // overlaying
-    bool			overlay;
-    BITMAPINFO		bitmapInfo;
-    void			*paintBuffer;
-    HDC				paintDC;
-    HBITMAP			hDibSection;
-    HGDIOBJ			hObject;
+    bool            overlay;
+    BITMAPINFO      bitmapInfo;
+    void            *paintBuffer;
+    HDC             paintDC;
+    HBITMAP         hDibSection;
+    HGDIOBJ         hObject;
 
     tsk_mutex_handle_t* mutex;
 };

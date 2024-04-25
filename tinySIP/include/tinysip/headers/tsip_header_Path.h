@@ -38,14 +38,14 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_PATH_VA_ARGS(uri)		tsip_header_Path_def_t, (const tsip_uri_t*)uri
+#define TSIP_HEADER_PATH_VA_ARGS(uri)       tsip_header_Path_def_t, (const tsip_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Path' as per RFC 3327.
+/// @brief  SIP header 'Path' as per RFC 3327.
 ///
-/// @par ABNF : Path	= 	"Path" HCOLON path-value *(COMMA path-value)
-///							path-value	= 	name-addr *( SEMI rr-param )
+/// @par ABNF : Path    =   "Path" HCOLON path-value *(COMMA path-value)
+///                         path-value  =   name-addr *( SEMI rr-param )
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Path_s {

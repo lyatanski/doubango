@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 98 "./ragel/tsip_parser_header_Warning.rl" */
@@ -484,7 +484,7 @@ _match:
             {
             }
             break;
-            /* #line 481 "./src/headers/tsip_header_Warning.c" */
+                /* #line 481 "./src/headers/tsip_header_Warning.c" */
             }
         }
 
@@ -521,7 +521,7 @@ _out: {
 
 
 //========================================================
-//	Warning header object definition
+//  Warning header object definition
 //
 
 static tsk_object_t* tsip_header_Warning_ctor(tsk_object_t *self, va_list * app)

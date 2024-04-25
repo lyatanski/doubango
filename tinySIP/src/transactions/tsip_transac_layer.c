@@ -51,7 +51,7 @@ tsip_transac_t* tsip_transac_layer_new(const tsip_transac_layer_t *self, tsk_boo
 
     if(self && msg) {
         if(TSIP_MESSAGE_IS_REQUEST(msg)) {
-            if(isCT) {	/* Client transaction */
+            if(isCT) {  /* Client transaction */
                 if(TSIP_REQUEST_IS_INVITE(msg)) {
                     // INVITE Client transaction (ICT)
                     transac = (tsip_transac_t *)tsip_transac_ict_create(msg->CSeq->seq, msg->Call_ID->value, dst);
@@ -61,7 +61,7 @@ tsip_transac_t* tsip_transac_layer_new(const tsip_transac_layer_t *self, tsk_boo
                     transac = (tsip_transac_t *)tsip_transac_nict_create(msg->CSeq->seq, msg->CSeq->method, msg->Call_ID->value, dst);
                 }
             }
-            else {	/* Server transaction */
+            else {  /* Server transaction */
                 if(TSIP_REQUEST_IS_INVITE(msg)) {
                     // INVITE Server transaction (IST)
                     transac = (tsip_transac_t *)tsip_transac_ist_create(msg->CSeq->seq, msg->Call_ID->value, dst);
@@ -158,7 +158,7 @@ tsip_transac_t* tsip_transac_layer_find_client(const tsip_transac_layer_t *self,
     tsip_transac_t *transac;
     tsk_list_item_t *item;
 
-    /*	Check first Via/CSeq validity.
+    /*  Check first Via/CSeq validity.
     */
     if(!response->firstVia || !response->CSeq) {
         return tsk_null;
@@ -197,23 +197,23 @@ tsip_transac_t* tsip_transac_layer_find_server(const tsip_transac_layer_t *self,
        will be unique across all transactions sent by that client.  The
        request matches a transaction if:
 
-    	  1. the branch parameter in the request is equal to the one in the
-    		 top Via header field of the request that created the
-    		 transaction, and
+          1. the branch parameter in the request is equal to the one in the
+             top Via header field of the request that created the
+             transaction, and
 
-    	  2. the sent-by value in the top Via of the request is equal to the
-    		 one in the request that created the transaction, and
+          2. the sent-by value in the top Via of the request is equal to the
+             one in the request that created the transaction, and
 
-    	  3. the method of the request matches the one that created the
-    		 transaction, except for ACK, where the method of the request
-    		 that created the transaction is INVITE.
+          3. the method of the request matches the one that created the
+             transaction, except for ACK, where the method of the request
+             that created the transaction is INVITE.
     */
     tsip_transac_t *ret = tsk_null;
     tsip_transac_t *transac;
     tsk_list_item_t *item;
     //const char* sent_by;
 
-    /*	Check first Via/CSeq validity */
+    /*  Check first Via/CSeq validity */
     if(!message->firstVia || !message->CSeq) {
         return tsk_null;
     }
@@ -253,17 +253,17 @@ tsip_transac_t* tsip_transac_layer_find_server(const tsip_transac_layer_t *self,
 
 
 /**
- * @fn	int tsip_transac_layer_handle_incoming_msg(const tsip_transac_layer_t *self, const tsip_message_t* message)
+ * @fn  int tsip_transac_layer_handle_incoming_msg(const tsip_transac_layer_t *self, const tsip_message_t* message)
  *
- * @brief	Handles SIP/IMS message incoming from the transport layer.
+ * @brief   Handles SIP/IMS message incoming from the transport layer.
  *
- * @author	Mamadou
- * @date	1/8/2010
+ * @author  Mamadou
+ * @date    1/8/2010
  *
- * @param [in,out]	self	The transaction layer.
- * @param [in,out]	message	The SIP/IMS message to handle.
+ * @param [in,out]  self    The transaction layer.
+ * @param [in,out]  message The SIP/IMS message to handle.
  *
- * @return	Zero if a matching transaction have been found and non-zero result code otherwise.
+ * @return  Zero if a matching transaction have been found and non-zero result code otherwise.
 **/
 int tsip_transac_layer_handle_incoming_msg(const tsip_transac_layer_t *self, const tsip_message_t* message)
 {
@@ -305,7 +305,7 @@ int tsip_transac_layer_handle_incoming_msg(const tsip_transac_layer_t *self, con
 
 
 //========================================================
-//	Transaction layer object definition
+//  Transaction layer object definition
 //
 static tsk_object_t* tsip_transac_layer_ctor(tsk_object_t * self, va_list * app)
 {

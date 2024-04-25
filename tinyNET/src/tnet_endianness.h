@@ -36,7 +36,7 @@
 
 TNET_BEGIN_DECLS
 
-#if	defined(TINYNET_IMPORTS_IGNORE)
+#if defined(TINYNET_IMPORTS_IGNORE)
 #undef TNET_INLINE
 #define TNET_INLINE
 #endif

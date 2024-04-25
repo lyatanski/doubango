@@ -48,33 +48,33 @@ TMSRP_BEGIN_DECLS
 #define TMSRP_MESSAGE_IS_REQUEST(self) ((self) ? (self)->type == tmsrp_request : tsk_false)
 #define TMSRP_MESSAGE_IS_RESPONSE(self) ((self) ? (self)->type == tmsrp_response : tsk_false)
 
-#define TMSRP_MESSAGE(self)				((tmsrp_message_t*)(self))
-#define TMSRP_MESSAGE_AS_RESPONSE(self)	((tmsrp_response_t*)(self))
-#define TMSRP_MESSAGE_AS_REQUEST(self)	((tmsrp_request_t*)(self))
+#define TMSRP_MESSAGE(self)             ((tmsrp_message_t*)(self))
+#define TMSRP_MESSAGE_AS_RESPONSE(self) ((tmsrp_response_t*)(self))
+#define TMSRP_MESSAGE_AS_REQUEST(self)  ((tmsrp_request_t*)(self))
 
 
-#define TMSRP_RESPONSE_CODE(self)			 (TMSRP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.status : 0)
-#define TMSRP_RESPONSE_PHRASE(self)			 (TMSRP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.comment : tsk_null)
+#define TMSRP_RESPONSE_CODE(self)            (TMSRP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.status : 0)
+#define TMSRP_RESPONSE_PHRASE(self)          (TMSRP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.comment : tsk_null)
 
-#define TMSRP_REQUEST_METHOD(self)			 (TMSRP_MESSAGE_IS_REQUEST((self)) ? (self)->line.request.method : tsk_null)
-#define TMSRP_REQUEST_IS_SEND(self)			 (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_SEND)
-#define TMSRP_REQUEST_IS_REPORT(self)		 (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_REPORT)
-#define TMSRP_REQUEST_IS_AUTH(self)			 (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_AUTH)
+#define TMSRP_REQUEST_METHOD(self)           (TMSRP_MESSAGE_IS_REQUEST((self)) ? (self)->line.request.method : tsk_null)
+#define TMSRP_REQUEST_IS_SEND(self)          (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_SEND)
+#define TMSRP_REQUEST_IS_REPORT(self)        (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_REPORT)
+#define TMSRP_REQUEST_IS_AUTH(self)          (TMSRP_MESSAGE_IS_REQUEST(self) && (self)->line.request.type == tmsrp_AUTH)
 
-#define TMSRP_MESSAGE_HAS_CONTENT(message)	 ((message) && (message)->Content && (message)->Content->data)
-#define TMSRP_MESSAGE_CONTENT(message)		 (TMSRP_MESSAGE_HAS_CONTENT(message) ? (message)->Content->data : 0)
+#define TMSRP_MESSAGE_HAS_CONTENT(message)   ((message) && (message)->Content && (message)->Content->data)
+#define TMSRP_MESSAGE_CONTENT(message)       (TMSRP_MESSAGE_HAS_CONTENT(message) ? (message)->Content->data : 0)
 
-#define TMSRP_RESPONSE_IS(self, code)		(TMSRP_RESPONSE_CODE((self)) == code)
-#define TMSRP_RESPONSE_IS_NXX(self, N)		(TMSRP_MESSAGE_IS_RESPONSE((self)) && N##00<= TMSRP_RESPONSE_CODE((self)) && TMSRP_RESPONSE_CODE((self)) <= N##99)
-#define TMSRP_RESPONSE_IS_1XX(self)			TMSRP_RESPONSE_IS_NXX(self, 1)
-#define TMSRP_RESPONSE_IS_2XX(self)			TMSRP_RESPONSE_IS_NXX(self, 2)
-#define TMSRP_RESPONSE_IS_3XX(self)			TMSRP_RESPONSE_IS_NXX(self, 3)
-#define TMSRP_RESPONSE_IS_4XX(self)			TMSRP_RESPONSE_IS_NXX(self, 4)
-#define TMSRP_RESPONSE_IS_5XX(self)			TMSRP_RESPONSE_IS_NXX(self, 5)
-#define TMSRP_RESPONSE_IS_6XX(self)			TMSRP_RESPONSE_IS_NXX(self, 6)
-#define TMSRP_RESPONSE_IS_23456(self)		(TMSRP_MESSAGE_IS_RESPONSE((self)) && 200<= TMSRP_RESPONSE_CODE((self)) && TMSRP_RESPONSE_CODE((self)) <= 699)
+#define TMSRP_RESPONSE_IS(self, code)       (TMSRP_RESPONSE_CODE((self)) == code)
+#define TMSRP_RESPONSE_IS_NXX(self, N)      (TMSRP_MESSAGE_IS_RESPONSE((self)) && N##00<= TMSRP_RESPONSE_CODE((self)) && TMSRP_RESPONSE_CODE((self)) <= N##99)
+#define TMSRP_RESPONSE_IS_1XX(self)         TMSRP_RESPONSE_IS_NXX(self, 1)
+#define TMSRP_RESPONSE_IS_2XX(self)         TMSRP_RESPONSE_IS_NXX(self, 2)
+#define TMSRP_RESPONSE_IS_3XX(self)         TMSRP_RESPONSE_IS_NXX(self, 3)
+#define TMSRP_RESPONSE_IS_4XX(self)         TMSRP_RESPONSE_IS_NXX(self, 4)
+#define TMSRP_RESPONSE_IS_5XX(self)         TMSRP_RESPONSE_IS_NXX(self, 5)
+#define TMSRP_RESPONSE_IS_6XX(self)         TMSRP_RESPONSE_IS_NXX(self, 6)
+#define TMSRP_RESPONSE_IS_23456(self)       (TMSRP_MESSAGE_IS_RESPONSE((self)) && 200<= TMSRP_RESPONSE_CODE((self)) && TMSRP_RESPONSE_CODE((self)) <= 699)
 
-/**	Defines the message type (Request or Response).
+/** Defines the message type (Request or Response).
 **/
 typedef enum tmsrp_message_type_e {
     tmsrp_unknown,
@@ -164,12 +164,12 @@ static void TMSRP_MESSAGE_ADD_HEADER(tmsrp_message_t *self, ...)
     tsk_object_unref(header);
 }
 #else
-#define TMSRP_MESSAGE_ADD_HEADER(self, objdef, ...)						\
-	{																	\
-		tmsrp_header_t *header = (tmsrp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);	\
-		tmsrp_message_add_header(self, header);							\
-		tsk_object_unref(header);										\
-	}
+#define TMSRP_MESSAGE_ADD_HEADER(self, objdef, ...)                     \
+    {                                                                   \
+        tmsrp_header_t *header = (tmsrp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);   \
+        tmsrp_message_add_header(self, header);                         \
+        tsk_object_unref(header);                                       \
+    }
 #endif
 
 TINYMSRP_API tmsrp_request_type_t tmsrp_request_get_type(const char* method);

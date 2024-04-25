@@ -36,13 +36,13 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_REQUIRE_VA_ARGS(option)	tsip_header_Require_def_t, (const char*)option
+#define TSIP_HEADER_REQUIRE_VA_ARGS(option) tsip_header_Require_def_t, (const char*)option
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Require'.
+/// @brief  SIP header 'Require'.
 ///
-/// @par ABNF: Require	= 	"Require" HCOLON option-tag *(COMMA option-tag)
+/// @par ABNF: Require  =   "Require" HCOLON option-tag *(COMMA option-tag)
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Require_s {

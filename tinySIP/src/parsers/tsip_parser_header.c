@@ -39,21 +39,21 @@
 #undef ADD_HEADER
 
 #define ADD_HEADERS(headers)\
-	if(headers)\
-	{\
-		const tsk_list_item_t *item;\
-		tsk_list_foreach(item, headers){\
-			tsip_header_t *hdr = tsk_object_ref((void*)item->data);\
-			tsk_list_push_back_data(message->headers, ((void**) &hdr));\
-		}\
-		\
-		TSK_OBJECT_SAFE_FREE(headers);\
-	}
+    if(headers)\
+    {\
+        const tsk_list_item_t *item;\
+        tsk_list_foreach(item, headers){\
+            tsip_header_t *hdr = tsk_object_ref((void*)item->data);\
+            tsk_list_push_back_data(message->headers, ((void**) &hdr));\
+        }\
+        \
+        TSK_OBJECT_SAFE_FREE(headers);\
+    }
 #define ADD_HEADER(header)\
-	if(header)\
-	{\
-		tsk_list_push_back_data(message->headers, ((void**) &header));\
-	}
+    if(header)\
+    {\
+        tsk_list_push_back_data(message->headers, ((void**) &header));\
+    }
 
 
 // Check if we have ",CRLF" ==> See WWW-Authenticate header
@@ -62,7 +62,7 @@
 #define prev_not_comma(p) !(p && p[-1] == ',')
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 844 "./ragel/tsip_parser_header.rl" */
@@ -6343,7 +6343,7 @@ _match:
                 ADD_HEADER(header);
             }
             break;
-            /* #line 6337 "./src/parsers/tsip_parser_header.c" */
+                /* #line 6337 "./src/parsers/tsip_parser_header.c" */
             }
         }
 

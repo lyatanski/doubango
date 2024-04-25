@@ -36,14 +36,14 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_SUPPORTED_VA_ARGS(option)	tsip_header_Supported_def_t, (const char*)option
+#define TSIP_HEADER_SUPPORTED_VA_ARGS(option)   tsip_header_Supported_def_t, (const char*)option
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Supported'.
+/// @brief  SIP header 'Supported'.
 ///
 /// @par ABNF: Supported / k
-/// Supported	= 	( "Supported" / "k" ) HCOLON [option-tag *(COMMA option-tag)]
+/// Supported   =   ( "Supported" / "k" ) HCOLON [option-tag *(COMMA option-tag)]
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Supported_s {

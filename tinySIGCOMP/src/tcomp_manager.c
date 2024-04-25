@@ -37,9 +37,9 @@
 #include "tsk_object.h"
 #include "tsk_safeobj.h"
 
-#define MAX_DMS	131072
-#define MAX_SMS	131072
-#define MAX_CPB	128
+#define MAX_DMS 131072
+#define MAX_SMS 131072
+#define MAX_CPB 128
 
 /**@defgroup tcomp_manager_group SigComp manager.
 */
@@ -340,7 +340,7 @@ int tcomp_manager_addPresenceDictionary(tcomp_manager_handle_t *handle)
 
 
 //========================================================
-//	SigComp manager object definition
+//  SigComp manager object definition
 //
 
 static void* tcomp_manager_ctor(void * self, va_list * app)

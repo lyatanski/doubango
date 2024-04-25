@@ -38,14 +38,14 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Warning'.
+/// @brief  SIP header 'Warning'.
 ///
-/// @par ABNF: Warning	= 	"Warning" HCOLON warning-value *(COMMA warning-value)
-/// warning-value	= 	warn-code SP warn-agent SP warn-text
-/// warn-code	= 	3DIGIT
-/// warn-agent	= 	hostport / pseudonym
-/// warn-text	= 	quoted-string
-/// pseudonym	= 	token
+/// @par ABNF: Warning  =   "Warning" HCOLON warning-value *(COMMA warning-value)
+/// warning-value   =   warn-code SP warn-agent SP warn-text
+/// warn-code   =   3DIGIT
+/// warn-agent  =   hostport / pseudonym
+/// warn-text   =   quoted-string
+/// pseudonym   =   token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Warning_s {

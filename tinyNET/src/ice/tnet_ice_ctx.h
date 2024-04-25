@@ -32,7 +32,7 @@
 #include "tsk_common.h"
 
 #if defined(_MSC_VER)
-// #	pragma deprecated(tnet_ice_ctx_set_stun, tnet_ice_ctx_set_stun_enabled, tnet_ice_ctx_set_turn_enabled)
+// #    pragma deprecated(tnet_ice_ctx_set_stun, tnet_ice_ctx_set_stun_enabled, tnet_ice_ctx_set_turn_enabled)
 #endif
 
 TNET_BEGIN_DECLS
@@ -62,9 +62,9 @@ TINYNET_API int tnet_ice_ctx_add_server(
     const char* username,
     const char* password);
 #define tnet_ice_ctx_add_server_turn(self, transport_proto, server_addr, server_port, username, password) \
-	tnet_ice_ctx_add_server((self), (transport_proto), (server_addr), (server_port), tsk_true/*use_turn*/, tsk_false/*use_stun*/, (username), (password))
+    tnet_ice_ctx_add_server((self), (transport_proto), (server_addr), (server_port), tsk_true/*use_turn*/, tsk_false/*use_stun*/, (username), (password))
 #define tnet_ice_ctx_add_server_stun(self, transport_proto, server_addr, server_port, username, password) \
-	tnet_ice_ctx_add_server((self), (transport_proto), (server_addr), (server_port), tsk_false/*use_turn*/, tsk_true/*use_stun*/, (username), (password))
+    tnet_ice_ctx_add_server((self), (transport_proto), (server_addr), (server_port), tsk_false/*use_turn*/, tsk_true/*use_stun*/, (username), (password))
 TINYNET_API int tnet_ice_ctx_set_sync_mode(struct tnet_ice_ctx_s* self, tsk_bool_t sync_mode);
 TINYNET_API int tnet_ice_ctx_set_silent_mode(struct tnet_ice_ctx_s* self, tsk_bool_t silent_mode);
 TINYNET_API int tnet_ice_ctx_set_stun_enabled(struct tnet_ice_ctx_s* self, tsk_bool_t stun_enabled);

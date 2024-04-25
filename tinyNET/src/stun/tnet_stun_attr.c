@@ -25,31 +25,31 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define kWithoutPadding		tsk_false
-#define kWithPadding		tsk_true
+#define kWithoutPadding     tsk_false
+#define kWithPadding        tsk_true
 
 #if !defined(PRINT_DESTROYED_MSG)
-#	define PRINT_DESTROYED_MSG	0
+#   define PRINT_DESTROYED_MSG  0
 #endif
 
 #define ALIGN_ON_32BITS(size_in_octes) if (((size_in_octes) & 3)) (size_in_octes) += (4 - ((size_in_octes) & 3));
 #define ALIGN_ON_32BITS_AND_SET_PADDING_ZEROS(p_buffer, size_in_octes) \
-	if (((size_in_octes) & 3)) { \
-		int c = (4 - ((size_in_octes) & 3)); \
-		memset(p_buffer, 0, c); \
-		(size_in_octes) += c; \
-		}
+    if (((size_in_octes) & 3)) { \
+        int c = (4 - ((size_in_octes) & 3)); \
+        memset(p_buffer, 0, c); \
+        (size_in_octes) += c; \
+        }
 
 #define IS_ADDRESS_XOR(e_type) \
-	(e_type == tnet_stun_attr_type_xor_mapped_address || e_type == tnet_stun_attr_type_xor_peer_address || e_type == tnet_stun_attr_type_xor_relayed_address)
+    (e_type == tnet_stun_attr_type_xor_mapped_address || e_type == tnet_stun_attr_type_xor_peer_address || e_type == tnet_stun_attr_type_xor_relayed_address)
 #define IS_VDATA_UINT8(e_type) \
-	(e_type == tnet_stun_attr_type_requested_transport)
+    (e_type == tnet_stun_attr_type_requested_transport)
 #define IS_VDATA_UINT16(e_type) \
-	(e_type == tnet_stun_attr_type_channel_number)
+    (e_type == tnet_stun_attr_type_channel_number)
 #define IS_VDATA_UINT32(e_type) \
-	(e_type == tnet_stun_attr_type_fingerprint || e_type == tnet_stun_attr_type_lifetime || e_type == tnet_stun_attr_type_ice_priority || e_type == tnet_stun_attr_type_connection_id)
+    (e_type == tnet_stun_attr_type_fingerprint || e_type == tnet_stun_attr_type_lifetime || e_type == tnet_stun_attr_type_ice_priority || e_type == tnet_stun_attr_type_connection_id)
 #define IS_VDATA_UINT64(e_type) \
-	(e_type == tnet_stun_attr_type_ice_controlled || e_type == tnet_stun_attr_type_ice_controlling)
+    (e_type == tnet_stun_attr_type_ice_controlled || e_type == tnet_stun_attr_type_ice_controlling)
 
 static int _tnet_stun_attr_cmp(const tsk_object_t *_att1, const tsk_object_t *_att2)
 {

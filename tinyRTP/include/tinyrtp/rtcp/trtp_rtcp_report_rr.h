@@ -29,7 +29,7 @@
 
 TRTP_BEGIN_DECLS
 
-#define TRTP_RTCP_REPORT_RR(self)	((trtp_rtcp_report_rr_t*)(self))
+#define TRTP_RTCP_REPORT_RR(self)   ((trtp_rtcp_report_rr_t*)(self))
 
 // RFC 3550 6.4.2 RR: Receiver Report RTCP Packet
 typedef struct trtp_rtcp_report_rr_s {

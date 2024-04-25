@@ -196,7 +196,7 @@ static int audio_consumer_opensles_stop(tmedia_consumer_t* _self)
 
 
 //
-//	SLES audio consumer object definition
+//  SLES audio consumer object definition
 //
 /* constructor */
 static tsk_object_t* audio_consumer_opensles_ctor(tsk_object_t *_self, va_list * app)

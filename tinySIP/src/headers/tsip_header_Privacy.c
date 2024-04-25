@@ -25,7 +25,7 @@
 /**@file tsip_header_Privacy.c
  * @brief SIP Privacy header.
  *
- *	  Header field          where   proxy ACK BYE CAN INV OPT REG
+ *    Header field          where   proxy ACK BYE CAN INV OPT REG
  *    ___________________________________________________________
  *    Privacy                        amrd  o   o   o   o   o   o
  *
@@ -49,7 +49,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 75 "./ragel/tsip_parser_header_Privacy.rl" */
@@ -423,7 +423,7 @@ _match:
             {
             }
             break;
-            /* #line 420 "./src/headers/tsip_header_Privacy.c" */
+                /* #line 420 "./src/headers/tsip_header_Privacy.c" */
             }
         }
 
@@ -461,7 +461,7 @@ _out: {
 
 
 //========================================================
-//	Privacy header object definition
+//  Privacy header object definition
 //
 
 static tsk_object_t* tsip_header_Privacy_ctor(tsk_object_t *self, va_list * app)

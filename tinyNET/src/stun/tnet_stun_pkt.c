@@ -31,7 +31,7 @@
 #include "tsk_debug.h"
 
 #if !defined(PRINT_DESTROYED_MSG)
-#	define PRINT_DESTROYED_MSG	0
+#   define PRINT_DESTROYED_MSG  0
 #endif
 
 int tnet_stun_pkt_create(tnet_stun_pkt_type_t e_type, uint16_t u_length, const tnet_stun_transac_id_t* pc_transac_id, tnet_stun_pkt_t** pp_attr)
@@ -389,12 +389,12 @@ int tnet_stun_pkt_write_with_padding(const tnet_stun_pkt_t* pc_self, uint8_t* p_
     *((uint16_t*)&_p_buff_ptr[2]) = tnet_htons((unsigned short)((p_buff_ptr - _p_buff_ptr) - kStunPktHdrSizeInOctets + ((pc_self->opt.fingerprint && (p_buff_ptr - _p_buff_ptr) >= 8) ? 8 : 0)));
 
     if (pc_self->opt.fingerprint && (p_buff_ptr - _p_buff_ptr) >= 8) {
-        /*	RFC 5389 - 15.5.  FINGERPRINT
-        	The FINGERPRINT attribute MAY be present in all STUN messages.  The
-        	value of the attribute is computed as the CRC-32 of the STUN message
-        	up to (but excluding) the FINGERPRINT attribute itself, XOR'ed with
-        	the 32-bit value 0x5354554e
-        	*/
+        /*  RFC 5389 - 15.5.  FINGERPRINT
+            The FINGERPRINT attribute MAY be present in all STUN messages.  The
+            value of the attribute is computed as the CRC-32 of the STUN message
+            up to (but excluding) the FINGERPRINT attribute itself, XOR'ed with
+            the 32-bit value 0x5354554e
+            */
         uint32_t u_fingerprint = tsk_pppfcs32(TSK_PPPINITFCS32, _p_buff_ptr, (int32_t)(p_buff_ptr - _p_buff_ptr)) ^ kStunFingerprintXorConst;
         *((uint16_t*)&p_buff_ptr[0]) = tnet_htons(tnet_stun_attr_type_fingerprint); // Type
         *((uint16_t*)&p_buff_ptr[2]) = tnet_htons(4); // Length

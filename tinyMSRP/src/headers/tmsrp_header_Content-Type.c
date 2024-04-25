@@ -35,7 +35,7 @@
 */
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 68 "./ragel/tmsrp_parser_header_Content-Type.rl" */
@@ -357,7 +357,7 @@ _match:
                 TSK_PARSER_ADD_PARAM(hdr_ctype->params);
             }
             break;
-            /* #line 354 "./src/headers/tmsrp_header_Content-Type.c" */
+                /* #line 354 "./src/headers/tmsrp_header_Content-Type.c" */
             }
         }
 
@@ -387,7 +387,7 @@ _test_eof: {
                     TSK_PARSER_ADD_PARAM(hdr_ctype->params);
                 }
                 break;
-                /* #line 382 "./src/headers/tmsrp_header_Content-Type.c" */
+                    /* #line 382 "./src/headers/tmsrp_header_Content-Type.c" */
                 }
             }
         }
@@ -418,7 +418,7 @@ _out: {
 
 
 //========================================================
-//	Content_Type header object definition
+//  Content_Type header object definition
 //
 
 /**@ingroup tmsrp_header_Content_Type_group

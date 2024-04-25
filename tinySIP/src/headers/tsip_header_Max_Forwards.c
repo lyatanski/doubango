@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 64 "./ragel/tsip_parser_header_Max_Forwards.rl" */
@@ -254,7 +254,7 @@ _match:
             {
             }
             break;
-            /* #line 251 "./src/headers/tsip_header_Max_Forwards.c" */
+                /* #line 251 "./src/headers/tsip_header_Max_Forwards.c" */
             }
         }
 
@@ -292,7 +292,7 @@ _out: {
 
 
 //========================================================
-//	Max_Forwards header object definition
+//  Max_Forwards header object definition
 //
 
 static tsk_object_t* tsip_header_Max_Forwards_ctor(tsk_object_t *self, va_list * app)

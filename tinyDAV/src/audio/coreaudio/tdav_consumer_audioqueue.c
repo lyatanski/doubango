@@ -24,8 +24,8 @@
  * @brief Audio Consumer for MacOSX and iOS platforms.
  *
  * @authors
- *	- Laurent Etiemble <laurent.etiemble(at)gmail.com>
- *	- Mamadou Diop <diopmamadou(at)doubango(dot)org>
+ *  - Laurent Etiemble <laurent.etiemble(at)gmail.com>
+ *  - Mamadou Diop <diopmamadou(at)doubango(dot)org>
  *
  * @date Created: Sat Nov 8 16:54:58 2009 letiemble
  */
@@ -199,7 +199,7 @@ int tdav_consumer_audioqueue_stop(tmedia_consumer_t* self)
 }
 
 //
-//	coreaudio consumer object definition
+//  coreaudio consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_audioqueue_ctor(tsk_object_t * self, va_list * app)

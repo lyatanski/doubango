@@ -321,7 +321,7 @@ bail:
 
 
 /*== CAllback function to check if we should accept the new socket or not == */
-int CALLBACK AcceptCondFunc(LPWSABUF lpCallerId, LPWSABUF lpCallerData, LPQOS lpSQos, LPQOS lpGQos, LPWSABUF lpCalleeId, LPWSABUF lpCalleeData, GROUP FAR	*Group, DWORD_PTR CallbackData)
+int CALLBACK AcceptCondFunc(LPWSABUF lpCallerId, LPWSABUF lpCallerData, LPQOS lpSQos, LPQOS lpGQos, LPWSABUF lpCalleeId, LPWSABUF lpCalleeData, GROUP FAR   *Group, DWORD_PTR CallbackData)
 {
     transport_context_t *context = (transport_context_t*)CallbackData;
     return context->count < WSA_MAXIMUM_WAIT_EVENTS ? CF_ACCEPT : CF_REJECT;
@@ -771,12 +771,12 @@ FD_READ_DONE:
             removeSocket(index, context);
         }
 
-        /*	http://msdn.microsoft.com/en-us/library/ms741690(VS.85).aspx
+        /*  http://msdn.microsoft.com/en-us/library/ms741690(VS.85).aspx
 
-        	The proper way to reset the state of an event object used with the WSAEventSelect function
-        	is to pass the handle of the event object to the WSAEnumNetworkEvents function in the hEventObject parameter.
-        	This will reset the event object and adjust the status of active FD events on the socket in an atomic fashion.
-        	*/
+            The proper way to reset the state of an event object used with the WSAEventSelect function
+            is to pass the handle of the event object to the WSAEnumNetworkEvents function in the hEventObject parameter.
+            This will reset the event object and adjust the status of active FD events on the socket in an atomic fashion.
+            */
         /* WSAResetEvent(active_event); <== DO NOT USE (see above) */
 
 done:
@@ -801,7 +801,7 @@ tsk_object_t* tnet_transport_context_create()
 
 
 //=================================================================================================
-//	Transport context object definition
+//  Transport context object definition
 //
 static tsk_object_t* transport_context_ctor(tsk_object_t * self, va_list * app)
 {

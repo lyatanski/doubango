@@ -39,7 +39,7 @@ static tipsec_spi_t __spi_remote_in = 4444; // SPI_PS
 static tipsec_lifetime_t __lifetime = 1800; /* always set it to the maximum value. (Not possible to update the value after REGISTER 200OK. ) */
 
 static const char* __key_ik = "1234567890123456";
-static const char* __key_ck =	"1234567890121234";
+static const char* __key_ck =   "1234567890121234";
 
 #if TIPSEC_UNDER_WINDOWS
 #include <Windows.h>

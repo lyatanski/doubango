@@ -37,9 +37,9 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'History-Info' .
-/// @author	Mamadou
-/// @date	12/3/2009
+/// @brief  SIP header 'History-Info' .
+/// @author Mamadou
+/// @date   12/3/2009
 ///
 /// @par ABNF
 ///

@@ -29,7 +29,7 @@ class XcapStack;
 typedef tsk_list_t twrap_xcap_steps_L_t;
 
 //
-//	XcapSelector
+//  XcapSelector
 //
 class XcapSelector
 {
@@ -55,7 +55,7 @@ private:
 };
 
 //
-//	XcapMessage
+//  XcapMessage
 //
 class XcapMessage
 {
@@ -79,7 +79,7 @@ private:
 };
 
 //
-//	XcapEvent
+//  XcapEvent
 //
 class XcapEvent
 {
@@ -98,7 +98,7 @@ private:
 
 
 //
-//	XcapCallback
+//  XcapCallback
 //
 class XcapCallback
 {
@@ -106,14 +106,15 @@ public:
     XcapCallback();
     virtual ~XcapCallback();
 
-    virtual int onEvent(const XcapEvent* e)const {
+    virtual int onEvent(const XcapEvent* e)const
+    {
         return -1;
     }
 };
 
 
 //
-//	XcapStack
+//  XcapStack
 //
 class XcapStack
 {
@@ -148,10 +149,12 @@ public: /* API functions */
 
 public: /* Public helper function */
 #if !defined(SWIG)
-    txcap_stack_handle_t* getHandle() {
+    txcap_stack_handle_t* getHandle()
+    {
         return this->handle;
     }
-    XcapCallback* getCallback()const {
+    XcapCallback* getCallback()const
+    {
         return this->callback;
     }
 #endif

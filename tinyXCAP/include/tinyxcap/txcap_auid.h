@@ -113,18 +113,18 @@ TXCAP_BEGIN_DECLS
 typedef enum txcap_auid_type_e {
     tauid_dummy, /**<  any auid */
 
-    tauid_ietf_xcap_caps,			/**< xcap-caps */
-    tauid_ietf_resource_lists,	/**< resource-lists */
-    tauid_ietf_rls_services,		/**< rls-services */
-    tauid_ietf_pres_rules,		/**< pres-rules */
-    tauid_ietf_directory,			/**< directory */
+    tauid_ietf_xcap_caps,           /**< xcap-caps */
+    tauid_ietf_resource_lists,  /**< resource-lists */
+    tauid_ietf_rls_services,        /**< rls-services */
+    tauid_ietf_pres_rules,      /**< pres-rules */
+    tauid_ietf_directory,           /**< directory */
 
-    tauid_oma_conv_history,		/**< org.openmobilealliance.conv-history */
-    tauid_oma_pres_rules,			/**< org.openmobilealliance.pres-rules */
-    tauid_oma_directory,			/**< org.openmobilealliance.xcap-directory */
-    tauid_oma_deferred_list,		/**< org.openmobilealliance.deferred-list */
-    tauid_oma_pres_content,		/**< org.openmobilealliance.pres-content*/
-    tauid_oma_shared_groups		/**< org.openmobilealliance.group-usage-list */
+    tauid_oma_conv_history,     /**< org.openmobilealliance.conv-history */
+    tauid_oma_pres_rules,           /**< org.openmobilealliance.pres-rules */
+    tauid_oma_directory,            /**< org.openmobilealliance.xcap-directory */
+    tauid_oma_deferred_list,        /**< org.openmobilealliance.deferred-list */
+    tauid_oma_pres_content,     /**< org.openmobilealliance.pres-content*/
+    tauid_oma_shared_groups     /**< org.openmobilealliance.group-usage-list */
 }
 txcap_auid_type_t;
 

@@ -283,7 +283,7 @@ _match:
                 TSK_PARSER_ADD_STRING(hdr_Sec_WebSocket_Protocol->values);
             }
             break;
-            /* #line 278 "./src/headers/thttp_header_Sec_WebSocket_Protocol.c" */
+                /* #line 278 "./src/headers/thttp_header_Sec_WebSocket_Protocol.c" */
             }
         }
 
@@ -322,7 +322,7 @@ _out: {
 
 
 //========================================================
-//	Sec_WebSocket_Protocol header object definition
+//  Sec_WebSocket_Protocol header object definition
 //
 
 static tsk_object_t* thttp_header_Sec_WebSocket_Protocol_ctor(tsk_object_t *self, va_list * app)

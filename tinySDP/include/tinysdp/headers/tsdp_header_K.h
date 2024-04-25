@@ -35,20 +35,20 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_K_VA_ARGS(value)		tsdp_header_K_def_t, (const char*)value
+#define TSDP_HEADER_K_VA_ARGS(value)        tsdp_header_K_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "k=" header (Encryption Key).
+/// @brief  SDP "k=" header (Encryption Key).
 ///
 ///
 /// @par ABNF : k= key-type
-/// key-type	=  	"prompt" / "clear:" text / "base64:" base64  / "uri:" uri
-/// base64	= 	*base64-unit [base64-pad]
-/// base64-unit	= 	4base64-char
-/// base64-pad	= 	2base64-char "==" / 3base64-pad "="
-/// base64-char	= 	ALPHA / DIGIT / "+" / "/"
+/// key-type    =   "prompt" / "clear:" text / "base64:" base64  / "uri:" uri
+/// base64  =   *base64-unit [base64-pad]
+/// base64-unit =   4base64-char
+/// base64-pad  =   2base64-char "==" / 3base64-pad "="
+/// base64-char =   ALPHA / DIGIT / "+" / "/"
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_K_s {

@@ -36,16 +36,16 @@
 TSDP_BEGIN_DECLS
 
 
-#define TSDP_HEADER_B_VA_ARGS(bwtype, bandwidth)		tsdp_header_B_def_t, (const char*)bwtype, (uint32_t)bandwidth
+#define TSDP_HEADER_B_VA_ARGS(bwtype, bandwidth)        tsdp_header_B_def_t, (const char*)bwtype, (uint32_t)bandwidth
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "b=" header (Bandwidth).
+/// @brief  SDP "b=" header (Bandwidth).
 ///
 /// @par ABNF :  b=<bwtype> HCOLON <bandwidth>
-/// bwtype	=  	token
-/// bandwidth	=  	1*DIGIT
+/// bwtype  =   token
+/// bandwidth   =   1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_B_s {

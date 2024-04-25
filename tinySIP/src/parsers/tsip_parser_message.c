@@ -47,7 +47,7 @@ static void tsip_message_parser_eoh(tsk_ragel_state_t *state, tsip_message_t *me
 #define prev_not_comma(p) !(p && p[-1] == ',')
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 187 "./ragel/tsip_parser_message.rl" */
@@ -212,7 +212,7 @@ tsk_bool_t tsip_message_parse(tsk_ragel_state_t *state, tsip_message_t **result,
     tsip_message_parser_init(state);
 
     /*
-    *	State mechine execution.
+    *   State mechine execution.
     */
     tsip_message_parser_execute(state, *result, extract_content);
 
@@ -486,7 +486,7 @@ _match:
                 eof = state->eof;
             }
             break;
-            /* #line 487 "./src/parsers/tsip_parser_message.c" */
+                /* #line 487 "./src/parsers/tsip_parser_message.c" */
             }
         }
 

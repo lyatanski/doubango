@@ -26,10 +26,10 @@
 
 #include "test_sessions.h"
 
-#define LOOP						0
+#define LOOP                        0
 
-#define RUN_TEST_ALL				0
-#define RUN_TEST_SESSIONS			1
+#define RUN_TEST_ALL                0
+#define RUN_TEST_SESSIONS           1
 
 // Codecs : http://www.itu.int/rec/T-REC-G.191-200509-S/en
 

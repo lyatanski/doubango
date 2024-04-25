@@ -227,7 +227,7 @@ int g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
     };
     static const int wl[8] = {
         -60, -30, 58, 172, 334, 538, 1198, 3042
-    };
+        };
     static const int rl42[16] = {
         0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 1, 0
     };
@@ -246,7 +246,7 @@ int g722_encode(g722_encode_state_t *s, uint8_t g722_data[],
     };
     static const int qm2[4] = {
         -7408,  -1616,   7408,   1616
-    };
+        };
     static const int qmf_coeffs[12] = {
         3,  -11,   12,   32, -210,  951, 3876, -805,  362, -156,   53,  -11,
     };

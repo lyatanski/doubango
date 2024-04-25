@@ -35,15 +35,15 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_REFER_SUB_VA_ARGS(sub)		tsip_header_Refer_Sub_def_t, (tsk_bool_t)sub
+#define TSIP_HEADER_REFER_SUB_VA_ARGS(sub)      tsip_header_Refer_Sub_def_t, (tsk_bool_t)sub
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Refer-Sub'.
+/// @brief  SIP header 'Refer-Sub'.
 ///
-/// @par ABNF : Refer-Sub	= 	"Refer-Sub" HCOLON refer-sub-value *(SEMI exten)
-/// refer-sub-value	= 	"true" / "false"
-/// exten	= 	generic-param
+/// @par ABNF : Refer-Sub   =   "Refer-Sub" HCOLON refer-sub-value *(SEMI exten)
+/// refer-sub-value =   "true" / "false"
+/// exten   =   generic-param
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Refer_Sub_s {

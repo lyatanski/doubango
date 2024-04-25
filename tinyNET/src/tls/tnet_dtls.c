@@ -323,7 +323,7 @@ tnet_dtls_socket_handle_t* tnet_dtls_socket_create(struct tnet_socket_s* wrapped
             SSL_set_options(socket->ssl, SSL_OP_NO_QUERY_MTU);
             SSL_set_mtu(socket->ssl, TNET_DTLS_MTU - 28);
 #if OPENSSL_VERSION_NUMBER <= 0x1000208fL
-			socket->ssl->d1->mtu = TNET_DTLS_MTU - 28;
+            socket->ssl->d1->mtu = TNET_DTLS_MTU - 28;
 #endif
         }
         if (!(socket->rbio = BIO_new(BIO_s_mem())) || !(socket->wbio = BIO_new(BIO_s_mem()))) {
@@ -498,9 +498,9 @@ int tnet_dtls_socket_get_record_first(const void* records, tsk_size_t records_si
     length.Thus, a recipient in possession of all bytes of a handshake
     message can reassemble the original unfragmented message. */
     // 4.1.  Record Layer - https://tools.ietf.org/html/rfc6347#section-4.1
-#define kDTLSv1RecordHdrStartIndex		11
-#define kDTLSv1RecordHdrLengthFieldLen	2 // uint16
-#define kDTLSv1RecordHdrLen				(kDTLSv1RecordHdrStartIndex + kDTLSv1RecordHdrLengthFieldLen)
+#define kDTLSv1RecordHdrStartIndex      11
+#define kDTLSv1RecordHdrLengthFieldLen  2 // uint16
+#define kDTLSv1RecordHdrLen             (kDTLSv1RecordHdrStartIndex + kDTLSv1RecordHdrLengthFieldLen)
 
     const uint8_t* pc_records;
     tsk_size_t record_length;
@@ -625,11 +625,11 @@ int tnet_dtls_socket_do_handshake(tnet_dtls_socket_handle_t* handle, const struc
 #if HAVE_OPENSSL_DTLS_SRTP
         if (socket->use_srtp) {
 #if !defined(SRTP_MAX_KEY_LEN)
-#	define cipher_key_length (128 >> 3) // rfc5764 4.1.2.  SRTP Protection Profiles
-#	define cipher_salt_length (112 >> 3) // rfc5764 4.1.2.  SRTP Protection Profiles
+#   define cipher_key_length (128 >> 3) // rfc5764 4.1.2.  SRTP Protection Profiles
+#   define cipher_salt_length (112 >> 3) // rfc5764 4.1.2.  SRTP Protection Profiles
             // "cipher_key_length" is also equal to srtp_profile_get_master_key_length(srtp_profile_aes128_cm_sha1_80)
             // "cipher_salt_length" is also srtp_profile_get_master_salt_length(srtp_profile_aes128_cm_sha1_80)
-#	define SRTP_MAX_KEY_LEN (cipher_key_length + cipher_salt_length)
+#   define SRTP_MAX_KEY_LEN (cipher_key_length + cipher_salt_length)
 #endif /* SRTP_MAX_KEY_LEN */
 #define EXTRACTOR_dtls_srtp_text "EXTRACTOR-dtls_srtp"
 #define EXTRACTOR_dtls_srtp_text_len 19
@@ -721,37 +721,37 @@ int tnet_dtls_socket_handle_incoming_data(tnet_dtls_socket_handle_t* handle, con
     }
 
     /*if((ret = SSL_read(socket->ssl, (void*)data, size)) <= 0){
-    	switch((ret = SSL_get_error(socket->ssl, ret))){
-    	case SSL_ERROR_WANT_READ:
-    	case SSL_ERROR_WANT_WRITE:
-    	case SSL_ERROR_NONE:
-    	break;
-    	default:
-    	{
-    	unsigned long sslErr = ERR_get_error();
-    	const uint8_t* pData = (const uint8_t*)data;
-    	TSK_DEBUG_ERROR("%lu = SSL_read(rbio, %u) failed [%s]", sslErr, size, ERR_error_string(ret, tsk_null));
-    	// try to understand what's going on
-    	// rfc6347 - 4.1.  Record Layer
-    	// rfc6347 - 4.2.2.  Handshake Message Format
-    	// rfc6347 - 4.3.2.  Handshake Protocol
-    	if(size > 14 && pData[0] == 0x16){ // content-type=='Handshake'
-    	if(pData[13] == 0x01 && (socket->setup == tnet_dtls_setup_active || socket->setup == tnet_dtls_setup_actpass)){ // Handshake Type=='client Hello'
-    	TSK_DEBUG_INFO("DTLS engine was in client mode but we are receiving 'Client Hello' messages. This is a bug in the remote peer: Re-negotiating!");
-    	tnet_dtls_socket_set_setup(socket, tnet_dtls_setup_passive);
-    	break;
-    	}
-    	else if(pData[13] == 0x02 && (socket->setup == tnet_dtls_setup_passive || socket->setup == tnet_dtls_setup_actpass)){ // Handshake Type=='server Hello'
-    	TSK_DEBUG_INFO("DTLS engine was in server mode but we are receiving 'Server Hello' messages. This is a bug in the remote peer: Re-negotiating!");
-    	tnet_dtls_socket_set_setup(socket, tnet_dtls_setup_active);
-    	break;
-    	}
-    	}
-    	//return -1;
-    	break;
-    	}
-    	}
-    	}*/
+        switch((ret = SSL_get_error(socket->ssl, ret))){
+        case SSL_ERROR_WANT_READ:
+        case SSL_ERROR_WANT_WRITE:
+        case SSL_ERROR_NONE:
+        break;
+        default:
+        {
+        unsigned long sslErr = ERR_get_error();
+        const uint8_t* pData = (const uint8_t*)data;
+        TSK_DEBUG_ERROR("%lu = SSL_read(rbio, %u) failed [%s]", sslErr, size, ERR_error_string(ret, tsk_null));
+        // try to understand what's going on
+        // rfc6347 - 4.1.  Record Layer
+        // rfc6347 - 4.2.2.  Handshake Message Format
+        // rfc6347 - 4.3.2.  Handshake Protocol
+        if(size > 14 && pData[0] == 0x16){ // content-type=='Handshake'
+        if(pData[13] == 0x01 && (socket->setup == tnet_dtls_setup_active || socket->setup == tnet_dtls_setup_actpass)){ // Handshake Type=='client Hello'
+        TSK_DEBUG_INFO("DTLS engine was in client mode but we are receiving 'Client Hello' messages. This is a bug in the remote peer: Re-negotiating!");
+        tnet_dtls_socket_set_setup(socket, tnet_dtls_setup_passive);
+        break;
+        }
+        else if(pData[13] == 0x02 && (socket->setup == tnet_dtls_setup_passive || socket->setup == tnet_dtls_setup_actpass)){ // Handshake Type=='server Hello'
+        TSK_DEBUG_INFO("DTLS engine was in server mode but we are receiving 'Server Hello' messages. This is a bug in the remote peer: Re-negotiating!");
+        tnet_dtls_socket_set_setup(socket, tnet_dtls_setup_active);
+        break;
+        }
+        }
+        //return -1;
+        break;
+        }
+        }
+        }*/
 
     ret = _tnet_dtls_socket_do_handshake(socket);
 
@@ -763,7 +763,7 @@ bail:
 
 
 //=================================================================================================
-//	DTLS socket object definition
+//  DTLS socket object definition
 //
 static tsk_object_t* tnet_dtls_socket_ctor(tsk_object_t * self, va_list * app)
 {

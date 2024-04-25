@@ -42,7 +42,8 @@ class SampleGrabberCB : public IMFSampleGrabberSinkCallback
 public:
     static HRESULT CreateInstance(const struct tmedia_producer_s* pcWrappedProducer, SampleGrabberCB **ppCB);
 
-    void SetMute(bool bMuted) {
+    void SetMute(bool bMuted)
+    {
         m_bMuted = bMuted;
     }
 

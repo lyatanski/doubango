@@ -43,15 +43,15 @@
 //*/
 ////typedef uint64_t tnet_stun_binding_id_t;
 ///**@ingroup tnet_stun_group
-// * @def	kStunBindingInvalidId
+// * @def   kStunBindingInvalidId
 // * STUN2 invalid binding id.
 //**/
 ///**@ingroup tnet_stun_group
-// * @def	TNET_STUN_IS_VALID_BINDING_ID
+// * @def   TNET_STUN_IS_VALID_BINDING_ID
 // * Checks the validity of the STUN @a id.
 //**/
-//#define kStunBindingInvalidId				0
-//#define TNET_STUN_IS_VALID_BINDING_ID(id)			(id != kStunBindingInvalidId)
+//#define kStunBindingInvalidId             0
+//#define TNET_STUN_IS_VALID_BINDING_ID(id)         (id != kStunBindingInvalidId)
 //
 ///**@ingroup tnet_stun_group
 // * Default port for both TCP and UDP protos as per RFC 5389 subclause 9.
@@ -67,12 +67,12 @@
 ///**@ingroup tnet_stun_group
 // * STUN2 magic cookie value in network byte order as per RFC 5389 subclause 6.
 //**/
-//#define kStunMagicCookieLong		0x2112A442
+//#define kStunMagicCookieLong      0x2112A442
 //
 ///**@ingroup tnet_stun_group
 // * STUN2 header size as per RFC 5389 subclause 6.
 //**/
-//#define kStunAttrHdrSizeInOctets		20
+//#define kStunAttrHdrSizeInOctets      20
 //
 ///**@ingroup tnet_stun_group
 // * STUN2 binding context.

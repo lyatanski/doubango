@@ -31,10 +31,10 @@
 
 #include "tsk_debug.h"
 
-#define TDAV_VIDEO_DEFAULT_WIDTH			176
-#define TDAV_VIDEO_DEFAULT_HEIGHT			144
-#define TDAV_VIDEO_DEFAULT_FPS				15
-#define TDAV_VIDEO_DEFAULT_AUTORESIZE		tsk_true
+#define TDAV_VIDEO_DEFAULT_WIDTH            176
+#define TDAV_VIDEO_DEFAULT_HEIGHT           144
+#define TDAV_VIDEO_DEFAULT_FPS              15
+#define TDAV_VIDEO_DEFAULT_AUTORESIZE       tsk_true
 
 /** Initialize video consumer */
 int tdav_consumer_video_init(tdav_consumer_video_t* self)

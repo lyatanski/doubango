@@ -102,7 +102,7 @@ tmedia_params_L_t* tmedia_params_create_2(va_list *app)
         case tmedia_sptype_set:
         case tmedia_sptype_get: {
             /* (tmedia_type_t)MEDIA_TYPE_ENUM, (tmedia_param_plugin_type_t)PLUGIN_TYPE_ENUM, (tmedia_param_value_type_t)VALUE_TYPE_ENUM \
-            	(const char*)KEY_STR, (void*)&VALUE */
+                (const char*)KEY_STR, (void*)&VALUE */
             /* IMPORTANT: do not pass va_arg() directly into the function */
             tmedia_type_t media_type = va_arg(*app, tmedia_type_t);
             tmedia_param_plugin_type_t plugin_type = va_arg(*app, tmedia_param_plugin_type_t);
@@ -153,7 +153,7 @@ int tmedia_params_add_param(tmedia_params_L_t **self,
 
 
 //=================================================================================================
-//	param object definition
+//  param object definition
 //
 static tsk_object_t* tmedia_param_ctor(tsk_object_t* self, va_list * app)
 {

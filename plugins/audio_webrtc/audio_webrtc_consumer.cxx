@@ -174,7 +174,7 @@ static int audio_consumer_webrtc_stop(tmedia_consumer_t* _self)
 
 
 //
-//	WebRTC audio consumer object definition
+//  WebRTC audio consumer object definition
 //
 /* constructor */
 static tsk_object_t* audio_consumer_webrtc_ctor(tsk_object_t *_self, va_list * app)

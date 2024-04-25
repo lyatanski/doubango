@@ -25,14 +25,14 @@
 
 /**
  *
- * @brief	poll() method implementation for multiplexing network sockets.
+ * @brief   poll() method implementation for multiplexing network sockets.
  *
- * @param	fds		An array of pollfd structures.
- * @param	nfds	The number of file descriptors set in fds[ ].
- * @param	timeout	How long poll() should wait for an event to occur (in milliseconds).
+ * @param   fds     An array of pollfd structures.
+ * @param   nfds    The number of file descriptors set in fds[ ].
+ * @param   timeout How long poll() should wait for an event to occur (in milliseconds).
  *
- * @return	The number of elements in fdarray for which an revents member of the POLLFD structure is nonzero.
- *			If the the returned value if <0 this mean that error occurred.
+ * @return  The number of elements in fdarray for which an revents member of the POLLFD structure is nonzero.
+ *          If the the returned value if <0 this mean that error occurred.
 **/
 
 int tnet_poll(tnet_pollfd_t fds[ ], tnet_nfds_t nfds, int timeout)
@@ -54,7 +54,7 @@ int tnet_poll(tnet_pollfd_t fds[ ], tnet_nfds_t nfds, int timeout)
     FD_ZERO(&exceptfds);
 
     /*
-    *	set timeout
+    *   set timeout
     */
     if(timeout >=0) {
         timetowait.tv_sec = (timeout/1000);

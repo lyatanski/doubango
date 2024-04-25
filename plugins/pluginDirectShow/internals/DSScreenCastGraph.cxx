@@ -72,7 +72,7 @@ HRESULT DSScreenCastGraph::setParameters(DSCaptureFormat *format, int framerate)
 }
 
 #ifdef _WIN32_WCE
-#	include <tinydshow/wce/DSInxbNullFilter.h>
+#   include <tinydshow/wce/DSInxbNullFilter.h>
 #endif
 
 HRESULT DSScreenCastGraph::connect()

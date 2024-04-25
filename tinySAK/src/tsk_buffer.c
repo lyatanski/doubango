@@ -33,7 +33,7 @@
 #include "tsk_debug.h"
 
 #if defined(_WIN32_WCE)
-#	include "tsk_string.h" /* tsk_strlen() */
+#   include "tsk_string.h" /* tsk_strlen() */
 #endif
 
 
@@ -44,7 +44,7 @@
 */
 
 #if defined(_MSC_VER) || TSK_UNDER_WINDOWS
-#	define vsnprintf	_vsnprintf
+#   define vsnprintf    _vsnprintf
 #endif
 
 /**@ingroup tsk_buffer_group
@@ -343,7 +343,7 @@ int tsk_buffer_takeownership(tsk_buffer_t* self, void** data, tsk_size_t size)
 
 
 //=================================================================================================
-//	Buffer object definition
+//  Buffer object definition
 //
 static tsk_object_t* tsk_buffer_ctor(tsk_object_t * self, va_list * app)
 {

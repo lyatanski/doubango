@@ -48,54 +48,54 @@
 */
 tsk_buffer_t* tsms_pack_to_7bit(const char* ascii)
 {
-    /* 3GPP TS 23.038 - 6.1.2.1.1	Packing of 7-bit characters
-    	If a character number $ is noted in the following way:
-    		b7	b6	b5	b4	b3	b2	b1
-    		$a	$b	$c	$d	$e	$f	$g
-    	The packing of the 7-bitscharacters in octets is done by completing the octets with zeros on the left.
-    	For examples, packing: $
-    	-	one character in one octet:
-    	-	bits number:
-    		7	6	5	4	3	2	1	0
-    		0	1a	1b	1c	1d	1e	1f	1g
+    /* 3GPP TS 23.038 - 6.1.2.1.1   Packing of 7-bit characters
+        If a character number $ is noted in the following way:
+            b7  b6  b5  b4  b3  b2  b1
+            $a  $b  $c  $d  $e  $f  $g
+        The packing of the 7-bitscharacters in octets is done by completing the octets with zeros on the left.
+        For examples, packing: $
+        -   one character in one octet:
+        -   bits number:
+            7   6   5   4   3   2   1   0
+            0   1a  1b  1c  1d  1e  1f  1g
 
-    	-	two characters in two octets:
-    	-	bits number:
-    		7	6	5	4	3	2	1	0
-    		2g	1a	1b	1c	1d	1e	1f	1g
-    		0	0	2a	2b	2c	2d	2e	2f
+        -   two characters in two octets:
+        -   bits number:
+            7   6   5   4   3   2   1   0
+            2g  1a  1b  1c  1d  1e  1f  1g
+            0   0   2a  2b  2c  2d  2e  2f
 
-    	-	three characters in three octets:
-    	-	bits number:
-    		7	6	5	4	3	2	1	0
-    		2g	1a	1b	1c	1d	1e	1f	1g
-    		3f	3g	2a	2b	2c	2d	2e	2f
-    		0	0	0	3a	3b	3c	3d	3e
+        -   three characters in three octets:
+        -   bits number:
+            7   6   5   4   3   2   1   0
+            2g  1a  1b  1c  1d  1e  1f  1g
+            3f  3g  2a  2b  2c  2d  2e  2f
+            0   0   0   3a  3b  3c  3d  3e
 
-    	-	seven characters in seven octets:
-    	-	bits number:
-    		7	6	5	4	3	2	1	0
-    		2g	1a	1b	1c	1d	1e	1f	1g
-    		3f	3g	2a	2b	2c	2d	2e	2f
-    		4e	4f	4g	3a	3b	3c	3d	3e
-    		5d	5e	5f	5g	4a	4b	4c	4d
-    		6c	6d	6e	6f	6g	5a	5b	5c
-    		7b	7c	7d	7e	7f	7g	6a	6b
-    		0	0	0	0	0	0	0	7a
+        -   seven characters in seven octets:
+        -   bits number:
+            7   6   5   4   3   2   1   0
+            2g  1a  1b  1c  1d  1e  1f  1g
+            3f  3g  2a  2b  2c  2d  2e  2f
+            4e  4f  4g  3a  3b  3c  3d  3e
+            5d  5e  5f  5g  4a  4b  4c  4d
+            6c  6d  6e  6f  6g  5a  5b  5c
+            7b  7c  7d  7e  7f  7g  6a  6b
+            0   0   0   0   0   0   0   7a
 
-    	-	eight characters in seven octets:
-    	-	bits number:
-    		7	6	5	4	3	2	1	0
-    		2g	1a	1b	1c	1d	1e	1f	1g
-    		3f	3g	2a	2b	2c	2d	2e	2f
-    		4e	4f	4g	3a	3b	3c	3d	3e
-    		5d	5e	5f	5g	4a	4b	4c	4d
-    		6c	6d	6e	6f	6g	5a	5b	5c
-    		7b	7c	7d	7e	7f	7g	6a	6b
-    		8a	8b	8c	8d	8e	8f	8g	7a
+        -   eight characters in seven octets:
+        -   bits number:
+            7   6   5   4   3   2   1   0
+            2g  1a  1b  1c  1d  1e  1f  1g
+            3f  3g  2a  2b  2c  2d  2e  2f
+            4e  4f  4g  3a  3b  3c  3d  3e
+            5d  5e  5f  5g  4a  4b  4c  4d
+            6c  6d  6e  6f  6g  5a  5b  5c
+            7b  7c  7d  7e  7f  7g  6a  6b
+            8a  8b  8c  8d  8e  8f  8g  7a
 
-    	The bit number zero is always transmitted first.
-    	Therefore, in 140 octets, it is possible to pack (140x8)/7=160 characters.
+        The bit number zero is always transmitted first.
+        Therefore, in 140 octets, it is possible to pack (140x8)/7=160 characters.
     */
     tsk_buffer_t* ret = tsk_null;
     uint8_t* _ret = tsk_null;

@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 66 "./ragel/tsip_parser_header_Supported.rl" */
@@ -286,7 +286,7 @@ _match:
             {
             }
             break;
-            /* #line 283 "./src/headers/tsip_header_Supported.c" */
+                /* #line 283 "./src/headers/tsip_header_Supported.c" */
             }
         }
 
@@ -324,7 +324,7 @@ _out: {
 
 
 //========================================================
-//	Supported header object definition
+//  Supported header object definition
 //
 
 static tsk_object_t* tsip_header_Supported_ctor(tsk_object_t *self, va_list * app)

@@ -37,12 +37,12 @@ static UInt32 kZero = 0;
 
 #if TARGET_OS_IPHONE
 #if TARGET_IPHONE_SIMULATOR // VoiceProcessingIO will give unexpected result on the simulator when using iOS 5
-#define kDoubangoAudioUnitSubType	kAudioUnitSubType_RemoteIO
+#define kDoubangoAudioUnitSubType   kAudioUnitSubType_RemoteIO
 #else // Echo cancellation, AGC, ...
-#define kDoubangoAudioUnitSubType	kAudioUnitSubType_VoiceProcessingIO
+#define kDoubangoAudioUnitSubType   kAudioUnitSubType_VoiceProcessingIO
 #endif
 #elif TARGET_OS_MAC
-#define kDoubangoAudioUnitSubType	kAudioUnitSubType_HALOutput
+#define kDoubangoAudioUnitSubType   kAudioUnitSubType_HALOutput
 #else
 #error "Unknown target"
 #endif
@@ -389,7 +389,7 @@ int tdav_audiounit_handle_destroy(tdav_audiounit_handle_t** self)
 }
 
 //
-//	Object definition for and AudioUnit instance
+//  Object definition for and AudioUnit instance
 //
 static tsk_object_t* tdav_audiounit_instance_ctor(tsk_object_t * self, va_list * app)
 {

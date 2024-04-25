@@ -25,69 +25,69 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS			1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS          1
 #endif
 
 // OS X or iOS
 #if defined(__APPLE__)
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_APPLE				1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_APPLE                1
 #endif
 #if TARGET_OS_MAC
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_MAC				1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_MAC              1
 #endif
 #if TARGET_OS_IPHONE
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_IPHONE			1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_IPHONE           1
 #endif
 #if TARGET_IPHONE_SIMULATOR
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_IPHONE_SIMULATOR	1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_IPHONE_SIMULATOR 1
 #endif
 
 #if defined(ANDROID)
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_ANDROID				1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_ANDROID              1
 #endif
 
 // x86
 #if DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS || defined(__x86_64__) || defined(__x86__) || defined(__i386__)
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_X86				1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_X86              1
 #endif
 
 // Mobile
 #if defined(_WIN32_WCE) || defined(ANDROID) // iOS (not true)=> || defined(IOS)
-#	define DOUBANGO_AUDIO_WEBRTC_UNDER_MOBILE	1
+#   define DOUBANGO_AUDIO_WEBRTC_UNDER_MOBILE   1
 #endif
 
 #if (DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(DOUBANGO_AUDIO_WEBRTC_EXPORTS)
-# 	define DOUBANGO_AUDIO_WEBRTC_API		__declspec(dllexport)
-# 	define DOUBANGO_AUDIO_WEBRTC_GEXTERN __declspec(dllexport)
+#   define DOUBANGO_AUDIO_WEBRTC_API        __declspec(dllexport)
+#   define DOUBANGO_AUDIO_WEBRTC_GEXTERN __declspec(dllexport)
 #elif (DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define DOUBANGO_AUDIO_WEBRTC_API __declspec(dllimport)
-# 	define DOUBANGO_AUDIO_WEBRTC_GEXTERN __declspec(dllimport)
+#   define DOUBANGO_AUDIO_WEBRTC_API __declspec(dllimport)
+#   define DOUBANGO_AUDIO_WEBRTC_GEXTERN __declspec(dllimport)
 #else
-#	define DOUBANGO_AUDIO_WEBRTC_API
-#	define DOUBANGO_AUDIO_WEBRTC_GEXTERN	extern
+#   define DOUBANGO_AUDIO_WEBRTC_API
+#   define DOUBANGO_AUDIO_WEBRTC_GEXTERN    extern
 #endif
 
 /* Guards against C++ name mangling  */
 #ifdef __cplusplus
-#	define DOUBANGO_AUDIO_WEBRTC_BEGIN_DECLS extern "C" {
-#	define DOUBANGO_AUDIO_WEBRTC_END_DECLS }
+#   define DOUBANGO_AUDIO_WEBRTC_BEGIN_DECLS extern "C" {
+#   define DOUBANGO_AUDIO_WEBRTC_END_DECLS }
 #else
-#	define DOUBANGO_AUDIO_WEBRTC_BEGIN_DECLS
-#	define DOUBANGO_AUDIO_WEBRTC_END_DECLS
+#   define DOUBANGO_AUDIO_WEBRTC_BEGIN_DECLS
+#   define DOUBANGO_AUDIO_WEBRTC_END_DECLS
 #endif
 
 #ifdef _MSC_VER
 #if HAVE_FFMPEG // FFMPeg warnings (treated as errors)
-#	pragma warning (disable:4244)
+#   pragma warning (disable:4244)
 #endif
-#	define inline __inline
-#	define _CRT_SECURE_NO_WARNINGS
+#   define inline __inline
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>
@@ -100,9 +100,9 @@
 #endif
 
 #if DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS
-#	define DOUBANGO_AUDIO_WEBRTC_DEVICE_DEFAULT	AudioDeviceModule::kDefaultCommunicationDevice
+#   define DOUBANGO_AUDIO_WEBRTC_DEVICE_DEFAULT AudioDeviceModule::kDefaultCommunicationDevice
 #else
-#	define DOUBANGO_AUDIO_WEBRTC_DEVICE_DEFAULT	0
+#   define DOUBANGO_AUDIO_WEBRTC_DEVICE_DEFAULT 0
 #endif
 
 #if DOUBANGO_AUDIO_WEBRTC_UNDER_ANDROID

@@ -34,14 +34,14 @@ TDAV_BEGIN_DECLS
 
 
 #if TARGET_OS_MAC
-#	if AUDIO_UNIT_VERSION < 1060
-#		define AudioComponent Component
-#		define AudioComponentInstance ComponentInstance
-#		define AudioComponentDescription ComponentDescription
-#		define AudioComponentFindNext FindNextComponent
-#		define AudioComponentInstanceNew OpenAComponent
-#		define AudioComponentInstanceDispose CloseComponent
-#	endif
+#   if AUDIO_UNIT_VERSION < 1060
+#       define AudioComponent Component
+#       define AudioComponentInstance ComponentInstance
+#       define AudioComponentDescription ComponentDescription
+#       define AudioComponentFindNext FindNextComponent
+#       define AudioComponentInstanceNew OpenAComponent
+#       define AudioComponentInstanceDispose CloseComponent
+#   endif
 #endif /* TARGET_OS_MAC */
 
 typedef void* tdav_audiounit_handle_t;

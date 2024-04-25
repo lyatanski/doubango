@@ -75,11 +75,11 @@ tcomp_compartment_t* tcomp_compartment_create(uint64_t id, uint32_t sigCompParam
 int tcomp_compartment_setUseOnlyACKedStates(tcomp_compartment_t* self, tsk_bool_t useOnlyACKedStates);
 
 //
-//	SigComp Parameters
+//  SigComp Parameters
 //
 void tcomp_compartment_setRemoteParams(tcomp_compartment_t *compartment, tcomp_params_t *lpParams);
 //
-//	Feedbacks
+//  Feedbacks
 //
 void tcomp_compartment_setReqFeedback(tcomp_compartment_t *compartment, tcomp_buffer_handle_t *feedback);
 void tcomp_compartment_setRetFeedback(tcomp_compartment_t *compartment, tcomp_buffer_handle_t *feedback);
@@ -93,7 +93,7 @@ void tcomp_compartment_freeGhostState(tcomp_compartment_t *compartment);
 
 
 //
-//	Nacks
+//  Nacks
 //
 void tcomp_compartment_addNack(tcomp_compartment_t *compartment, const uint8_t nackId[TSK_SHA1_DIGEST_SIZE]);
 tsk_bool_t tcomp_compartment_hasNack(tcomp_compartment_t *compartment, const tcomp_buffer_handle_t *nackId);

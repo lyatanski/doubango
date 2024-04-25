@@ -37,14 +37,14 @@
 
 #include <limits.h>
 
-#define T140_BLOCKS_MAX_COUNT			20 /* number of blocks to buffer for packet loss detection and reordering */
-#define T140_BLOCK_MAX_TRANSMIT_COUNT	4 /* maximum number of times to retransmit a bloc when RED is ON */
+#define T140_BLOCKS_MAX_COUNT           20 /* number of blocks to buffer for packet loss detection and reordering */
+#define T140_BLOCK_MAX_TRANSMIT_COUNT   4 /* maximum number of times to retransmit a bloc when RED is ON */
 
 #define T140_ZERO_WIDTH_NO_BREAK_SPACE 0xEFBBBF /* send at the begining of the T.140 session */
-#define T140_BACKSPACE		0x08
+#define T140_BACKSPACE      0x08
 #define T140_ESC            0x1B
-#define T140_CR				0x0D
-#define T140_LF				0x0A
+#define T140_CR             0x0D
+#define T140_LF             0x0A
 #define T140_CR_LF          0x0D0A
 #define T140_BELL           0x07
 #define T140_SOS            0x98
@@ -52,12 +52,12 @@
 #define T140_GRAPHIC_START  0x9B
 #define T140_GRAPHIC_END    0x6D
 #define T140_LOSS_CHAR_CHAR 0xFFFD
-#define T140_LOSS_UTF8		0xEFBFBD
+#define T140_LOSS_UTF8      0xEFBFBD
 
-#define T140_WAIT_FOR_MISSING_PKT_RED_OFF	500  /*Time to wait for missing pkts when RED is OFF (in ms) */
-#define T140_WAIT_FOR_MISSING_PKT_RED_ON	3000  /*Time to wait for missing pkts when RED is ON (in ms) */
-#define T140_WAIT_FOR_BUFFERING				300		/* Time to wait for buffering (T.140 blocks forming) */
-#define T140_WAIT_FOR_IDLE					10000 /* Time to wait before entering in IDLE state */
+#define T140_WAIT_FOR_MISSING_PKT_RED_OFF   500  /*Time to wait for missing pkts when RED is OFF (in ms) */
+#define T140_WAIT_FOR_MISSING_PKT_RED_ON    3000  /*Time to wait for missing pkts when RED is ON (in ms) */
+#define T140_WAIT_FOR_BUFFERING             300     /* Time to wait for buffering (T.140 blocks forming) */
+#define T140_WAIT_FOR_IDLE                  10000 /* Time to wait before entering in IDLE state */
 
 static const char zero_width_no_break_space[3] = {
     (T140_ZERO_WIDTH_NO_BREAK_SPACE >> 16) & 0xFF,
@@ -103,11 +103,11 @@ static t140_block_t* _tdav_session_t140_block_create(uint8_t pt, uint16_t seq_nu
 
 #define T140_RESIZE_BUFFER(_in_buff_ptr, _in_buff_size, _new_size) \
 if((_in_buff_size) < (_new_size)){ \
-	if(!((_in_buff_ptr) = tsk_realloc((_in_buff_ptr), (_new_size)))){ \
-		TSK_DEBUG_ERROR("Failed to allocate new buffer"); \
-		(_in_buff_size) = 0; \
-	} \
-	(_in_buff_size) = _new_size; \
+    if(!((_in_buff_ptr) = tsk_realloc((_in_buff_ptr), (_new_size)))){ \
+        TSK_DEBUG_ERROR("Failed to allocate new buffer"); \
+        (_in_buff_size) = 0; \
+    } \
+    (_in_buff_size) = _new_size; \
 }
 
 static int tdav_session_t140_send_data(tmedia_session_t* self, enum tmedia_t140_data_type_e data_type, const void* data_ptr, unsigned data_size);
@@ -212,7 +212,7 @@ static int tdav_session_t140_start(tmedia_session_t* self)
         t140->encoder.payload_type = t140->encoder.codec->neg_format ? atoi(t140->encoder.codec->neg_format) : atoi(t140->encoder.codec->format);
         pt = base->red.codec ?
              ( base->red.codec->neg_format ? atoi(base->red.codec->neg_format) : atoi(base->red.codec->format) ) :
-                 ( t140->encoder.payload_type );
+             ( t140->encoder.payload_type );
         trtp_manager_set_payload_type(base->rtp_manager, pt);
     }
 
@@ -344,11 +344,11 @@ static int _tdav_session_t140_rtp_cb(const void* callback_data, const struct trt
         }
         // Decode RED data
         /* base->red.codec->plugin->decode(
-        		base->red.codec,
-        		(packet->payload.data ? packet->payload.data : packet->payload.data_const), packet->payload.size,
-        		&__red_buffer_ptr, &__red_buffer_size,
-        		packet->header
-        	);
+                base->red.codec,
+                (packet->payload.data ? packet->payload.data : packet->payload.data_const), packet->payload.size,
+                &__red_buffer_ptr, &__red_buffer_size,
+                packet->header
+            );
         return 0;
         */
         _tdav_session_t140_recv_red(t140, packet);
@@ -657,9 +657,9 @@ static int _tdav_session_t140_recv_red(tdav_session_t140_t* self, const struct t
         }
         else {
             /*
-            	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-            	|1| block PT=7  |  timestamp offset         |   block length    |
-            	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                |1| block PT=7  |  timestamp offset         |   block length    |
+                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
             */
             seq_num = (int32_t)(packet->header->seq_num - (red_hdrs_count - 1 - i)); // inferred by counting backwards
             block_add = (pkt_loss_start != -1 && (seq_num <= pkt_loss_start && pkt_loss_start >= seq_num));
@@ -933,7 +933,7 @@ static int _tdav_session_t140_timer_cb(const void* arg, tsk_timer_id_t timer_id)
 
 
 //=================================================================================================
-//	Session Audio Plugin object definition
+//  Session Audio Plugin object definition
 //
 /* constructor */
 static tsk_object_t* tdav_session_t140_ctor(tsk_object_t * self, va_list * app)
@@ -1030,7 +1030,7 @@ static const tmedia_session_plugin_def_t tdav_session_t140_plugin_def_s = {
 const tmedia_session_plugin_def_t *tdav_session_t140_plugin_def_t = &tdav_session_t140_plugin_def_s;
 
 //=================================================================================================
-//	T140Block object definition
+//  T140Block object definition
 //
 static tsk_object_t* t140_block_ctor(tsk_object_t * self, va_list * app)
 {

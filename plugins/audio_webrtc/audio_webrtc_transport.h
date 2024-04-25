@@ -48,41 +48,50 @@ public:
 
 public:
     void SetFullDuplex(bool enable);
-    void SetSpeakerVolume(bool enable) {
+    void SetSpeakerVolume(bool enable)
+    {
         _speakerVolume = enable;
     }
     ;
-    void SetSpeakerMute(bool enable) {
+    void SetSpeakerMute(bool enable)
+    {
         _speakerMute = enable;
     }
     ;
-    void SetMicrophoneMute(bool enable) {
+    void SetMicrophoneMute(bool enable)
+    {
         _microphoneMute = enable;
     }
     ;
-    void SetMicrophoneVolume(bool enable) {
+    void SetMicrophoneVolume(bool enable)
+    {
         _microphoneVolume = enable;
     }
     ;
-    void SetMicrophoneBoost(bool enable) {
+    void SetMicrophoneBoost(bool enable)
+    {
         _microphoneBoost = enable;
     }
     ;
-    void SetLoopbackMeasurements(bool enable) {
+    void SetLoopbackMeasurements(bool enable)
+    {
         _loopBackMeasurements = enable;
     }
     ;
-    void SetMicrophoneAGC(bool enable) {
+    void SetMicrophoneAGC(bool enable)
+    {
         _microphoneAGC = enable;
     }
     ;
 
-    void SetConsumer(const struct audio_consumer_webrtc_s* consumer) {
+    void SetConsumer(const struct audio_consumer_webrtc_s* consumer)
+    {
         _consumer = consumer;
     }
     ;
 
-    void SetProducer(const struct audio_producer_webrtc_s* producer) {
+    void SetProducer(const struct audio_producer_webrtc_s* producer)
+    {
         _producer = producer;
     }
     ;

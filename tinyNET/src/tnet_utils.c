@@ -44,47 +44,47 @@ extern Platform::String^  rt_tsk_str_to_managed(char const* str);
 #endif /* TSK_UNDER_WINDOWS_RT */
 
 #if HAVE_NET_ROUTE_H
-#	if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR // Header missing in device SDK but exist in simulator
-#		include "net/_route.h" // from Doubango 3rd parties folder beacuse the one from iOS SDK is incomplete
-#	else
-#		include <net/route.h>
-#	endif
+#   if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR // Header missing in device SDK but exist in simulator
+#       include "net/_route.h" // from Doubango 3rd parties folder beacuse the one from iOS SDK is incomplete
+#   else
+#       include <net/route.h>
+#   endif
 #endif /* HAVE_NET_ROUTE_H */
 
 #if HAVE_NET_IF_TYPES_H
-# 	include <net/if_types.h>
+#   include <net/if_types.h>
 #endif /* HAVE_NET_IF_TYPES_H */
 
 #if HAVE_NET_IF_DL_H
-# 	include <net/if_dl.h>
+#   include <net/if_dl.h>
 #endif /* HAVE_NET_IF_DL_H */
 
 #if HAVE_SYS_RESOURCE_H
-#	include <sys/resource.h>
+#   include <sys/resource.h>
 #endif /* HAVE_SYS_RESOURCE_H */
 
 #if HAVE_NETPACKET_PACKET_H
-# 	include <netpacket/packet.h>
+#   include <netpacket/packet.h>
 #endif /* HAVE_NETPACKET_PACKET_H */
 
 #if HAVE_UNISTD_H
-#	include <unistd.h>
+#   include <unistd.h>
 #endif /* HAVE_UNISTD_H */
 
 #if HAVE_DIRENT_H
-#	include <dirent.h>
+#   include <dirent.h>
 #endif /* HAVE_DIRENT_H */
 
 #if HAVE_FCNTL_H
-#	include <fcntl.h>
+#   include <fcntl.h>
 #endif /* HAVE_FCNTL_H */
 
 #if HAVE_ARPA_INET_H
-#	include <arpa/inet.h>
+#   include <arpa/inet.h>
 #endif /* HAVE_ARPA_INET_H */
 
 #ifndef AF_LINK
-#	define AF_LINK AF_PACKET
+#   define AF_LINK AF_PACKET
 #endif /* AF_LINK */
 
 /**@defgroup tnet_utils_group Network utility functions.
@@ -111,7 +111,7 @@ tnet_address_t* tnet_address_create(const char* ip)
  *
  * Gets last network error description.
  *
- * @param [out]	error	The short description of the last network error.
+ * @param [out] error   The short description of the last network error.
  **/
 void tnet_getlasterror(tnet_error_t *error)
 {
@@ -170,7 +170,7 @@ int tnet_geterrno()
 /**@ingroup tnet_utils_group
  * Gets the list of all network interfaces/adapters.
  *
- * @retval	Network interfaces.
+ * @retval  Network interfaces.
  **/
 tnet_interfaces_L_t* tnet_get_interfaces()
 {
@@ -496,7 +496,7 @@ bail :
 
 #endif /* !TSK_UNDER_WINDOWS_RT */
 
-#else	/* !TSK_UNDER_WINDOWS (MAC OS X, UNIX, ANDROID ...) */
+#else   /* !TSK_UNDER_WINDOWS (MAC OS X, UNIX, ANDROID ...) */
 
     tnet_ip_t ip;
 #if HAVE_IFADDRS_H && HAVE_GETIFADDRS /*=== Using getifaddrs ===*/
@@ -638,9 +638,9 @@ int tnet_get_mac_address(tnet_mac_address* address)
         TSK_DEBUG_ERROR("Invalid parameter");
     }
 #if TNET_UNDER_WINDOWS
-#	if TNET_UNDER_WINDOWS_RT
+#   if TNET_UNDER_WINDOWS_RT
     TSK_DEBUG_ERROR("Not implemented on your OS");
-#	else /* !TSK_UNDER_WINDOWS_RT */
+#   else /* !TSK_UNDER_WINDOWS_RT */
     {
         IP_ADAPTER_INFO *info = NULL, *pos;
         DWORD size = 0;
@@ -665,7 +665,7 @@ int tnet_get_mac_address(tnet_mac_address* address)
             TSK_FREE(info);
         }
     }
-#	endif /* TSK_UNDER_WINDOWS_RT */
+#   endif /* TSK_UNDER_WINDOWS_RT */
 #elif HAVE_IFADDRS_H && HAVE_GETIFADDRS && HAVE_STRUCT_SOCKADDR_DL
     struct ifaddrs *ifaddrs, *ifaddr;
     struct sockaddr_dl* sdl;
@@ -837,7 +837,7 @@ int tnet_getbestsource(const char* destination, tnet_port_t port, tnet_socket_ty
         tnet_addresses_L_t* addresses = tsk_null;
         const tsk_list_item_t* item;
 
-		if (!(addresses = tnet_get_addresses(destAddr.ss_family, tsk_true, tsk_false, tsk_false, tsk_false, dwBestIfIndex))) {
+        if (!(addresses = tnet_get_addresses(destAddr.ss_family, tsk_true, tsk_false, tsk_false, tsk_false, dwBestIfIndex))) {
             ret = -2;
             TSK_DEBUG_ERROR("Failed to retrieve addresses.");
             goto bail;
@@ -867,7 +867,7 @@ int tnet_getbestsource(const char* destination, tnet_port_t port, tnet_socket_ty
     u_long rtm_inits;
     struct rt_metrics rt_metrics;
     struct sockaddr_dl *ifp = NULL;
-    struct rt_msghdr *rtm = (struct	rt_msghdr *)buf;
+    struct rt_msghdr *rtm = (struct rt_msghdr *)buf;
     struct sockaddr_dl so_ifp;
 #endif /* HAVE_STRUCT_RT_METRICS && HAVE_STRUCT_SOCKADDR_DL */
 
@@ -962,7 +962,7 @@ int tnet_getbestsource(const char* destination, tnet_port_t port, tnet_socket_ty
         if (!ifa->ifa_addr || ifa->ifa_addr->sa_family != destAddr.ss_family) {
             continue;
         }
-        
+
         if (destAddr.ss_family == AF_INET) {
             if (tnet_is_linklocal(ifa->ifa_addr) ^ tnet_is_linklocal(((struct sockaddr *)&destAddr))) {
                 TSK_DEBUG_INFO("Ignoring IPv4 linklocal address");
@@ -1007,14 +1007,14 @@ bail:
 /**@ingroup tnet_utils_group
  *
  * Converts human-readable text strings representing hostnames or IP addresses into a dynamically allocated linked list of struct addrinfo structures.
- *			You MUST call @ref tnet_freeaddrinfo() function to free the result.
+ *          You MUST call @ref tnet_freeaddrinfo() function to free the result.
  *
- * @param [in]	node	A pointer to a NULL-terminated ANSI string that contains a host (node) name or a numeric host address string. For the Internet protocol, the numeric host address string is a dotted-decimal IPv4 address or an IPv6 hex address..
- * @param [in]	service	A pointer to a NULL-terminated ANSI string that contains either a service name or port number represented as a string.
- * @param [in]	hints	A pointer to an addrinfo structure that provides hints about the type of socket the caller supports.
- * @param [out]	res		A pointer to a linked list of one or more addrinfo structures that contains response information about the host.
+ * @param [in]  node    A pointer to a NULL-terminated ANSI string that contains a host (node) name or a numeric host address string. For the Internet protocol, the numeric host address string is a dotted-decimal IPv4 address or an IPv6 hex address..
+ * @param [in]  service A pointer to a NULL-terminated ANSI string that contains either a service name or port number represented as a string.
+ * @param [in]  hints   A pointer to an addrinfo structure that provides hints about the type of socket the caller supports.
+ * @param [out] res     A pointer to a linked list of one or more addrinfo structures that contains response information about the host.
  *
- * @retval	Success returns zero. Failure returns a nonzero error code.
+ * @retval  Success returns zero. Failure returns a nonzero error code.
  **/
 int tnet_getaddrinfo(const char *node, const char *service, const struct addrinfo *hints, struct addrinfo **res)
 {
@@ -1029,7 +1029,7 @@ int tnet_getaddrinfo(const char *node, const char *service, const struct addrinf
  *
  * This function frees address information previously allocated using @ref tnet_getaddrinfo.
  *
- * @param [in] ai	The address information to free.
+ * @param [in] ai   The address information to free.
  **/
 void tnet_freeaddrinfo(struct addrinfo *ai)
 {
@@ -1064,13 +1064,13 @@ int tnet_getpeername(tnet_fd_t fd, struct sockaddr_storage *result)
 
 tnet_socket_type_t tnet_get_type(const char* host, tnet_port_t port)
 {
-	tnet_socket_type_t ret = TNET_SOCKET_TYPE_UDP;
+    tnet_socket_type_t ret = TNET_SOCKET_TYPE_UDP;
     if (host) {
         int status;
         tsk_istr_t srv;
         struct addrinfo *result = tsk_null;
         struct addrinfo hints;
-		const struct addrinfo *ptr = tsk_null;
+        const struct addrinfo *ptr = tsk_null;
 
         /* set the port: used as the default service */
         tsk_itoa(port ? port : 5060, &srv); // service must not be empty -> Android IPv6 issue
@@ -1084,15 +1084,15 @@ tnet_socket_type_t tnet_get_type(const char* host, tnet_port_t port)
             TNET_PRINT_LAST_ERROR("getaddrinfo(%s:%d) failed", host, port);
             goto done;
         }
-     
-		for (ptr = result; ptr; ptr = ptr->ai_next) {
-			if (ptr->ai_family == AF_INET) {
-				TNET_SOCKET_TYPE_SET_IPV4(ret);
-			}
-			else if (ptr->ai_family == AF_INET6) {
-				TNET_SOCKET_TYPE_SET_IPV6(ret);
-			}
-		}
+
+        for (ptr = result; ptr; ptr = ptr->ai_next) {
+            if (ptr->ai_family == AF_INET) {
+                TNET_SOCKET_TYPE_SET_IPV4(ret);
+            }
+            else if (ptr->ai_family == AF_INET6) {
+                TNET_SOCKET_TYPE_SET_IPV6(ret);
+            }
+        }
 done:
         tnet_freeaddrinfo(result);
     }
@@ -1152,7 +1152,7 @@ tsk_bool_t tnet_is_ipv6(const char* host, tnet_port_t port)
 {
     // getaddrinfo with empty port fails on Android, set default port to 5060
     tnet_socket_type_t type = tnet_get_type(host, port ? port : 5060);
-	return TNET_SOCKET_TYPE_IS_IPV6(type);
+    return TNET_SOCKET_TYPE_IS_IPV6(type);
 }
 
 /**@ingroup tnet_utils_group
@@ -1418,7 +1418,7 @@ int tnet_inet_pton(int af, const char* src, void* dst)
 #if HAVE_INET_PTON || TNET_UNDER_APPLE
     return inet_pton(af, src, dst);
 #elif TNET_UNDER_WINDOWS && !(TNET_UNDER_WINDOWS_RT || TNET_UNDER_WINDOWS_CE)
-#	if (_WIN32_WINNT <= 0x0501)
+#   if (_WIN32_WINNT <= 0x0501)
     {
         struct sockaddr_storage addr = { 0 };
         int addr_len = (af == AF_INET6) ? sizeof(struct sockaddr_in6) : sizeof(struct sockaddr_in);
@@ -1434,9 +1434,9 @@ int tnet_inet_pton(int af, const char* src, void* dst)
         TNET_PRINT_LAST_ERROR("WSAStringToAddressA failed");
         return -2;
     }
-#	else
+#   else
     return InetPtonA(af, src, dst);
-#	endif // TNET_UNDER_WINDOWS
+#   endif // TNET_UNDER_WINDOWS
 #else
     {
         struct sockaddr_storage addr = { 0 };
@@ -1468,7 +1468,7 @@ const char *tnet_inet_ntop(int af, const void *src, char *dst, int size)
 #if HAVE_INET_NTOP || TNET_UNDER_APPLE
     return inet_ntop(af, src, dst, size);
 #elif TNET_UNDER_WINDOWS && !(TNET_UNDER_WINDOWS_RT || TNET_UNDER_WINDOWS_CE)
-#	if (_WIN32_WINNT <= 0x0501)
+#   if (_WIN32_WINNT <= 0x0501)
     {
         struct sockaddr_storage addr = { 0 };
         int addr_len = sizeof(addr);
@@ -1494,9 +1494,9 @@ const char *tnet_inet_ntop(int af, const void *src, char *dst, int size)
         TNET_PRINT_LAST_ERROR("WSAAddressToStringA failed");
         return tsk_null;
     }
-#	else
+#   else
     return InetNtopA(af, (PVOID)src, dst, size);
-#	endif // TNET_UNDER_WINDOWS
+#   endif // TNET_UNDER_WINDOWS
 #else
     {
         struct sockaddr_storage addr = { 0 };
@@ -1584,7 +1584,7 @@ int tnet_sockfd_joingroup6(tnet_fd_t fd, const char* multiaddr, unsigned iface_i
 
     //if((ret = tnet_sockaddr_init(multiaddr, 0, tnet_socket_type_udp_ipv6, &ss)))
     //{
-    //	return ret;
+    //  return ret;
     //}
 
     //memcpy(&mreq6.ipv6mr_multiaddr, &((struct sockaddr_in6 *) &ss)->sin6_addr, sizeof(struct in6_addr));
@@ -1592,8 +1592,8 @@ int tnet_sockfd_joingroup6(tnet_fd_t fd, const char* multiaddr, unsigned iface_i
 
     //if((ret = setsockopt(fd, IPPROTO_IPV6, IPV6_JOIN_GROUP, (const char*)&mreq6, sizeof(mreq6))))
     //{
-    //	TNET_PRINT_LAST_ERROR("Failed to join IPv6 multicast group.");
-    //	return ret;
+    //  TNET_PRINT_LAST_ERROR("Failed to join IPv6 multicast group.");
+    //  return ret;
     //}
 
     return ret;
@@ -2007,9 +2007,9 @@ int tnet_sockfd_connectto(tnet_fd_t fd, const struct sockaddr_storage *to)
 
 #if TNET_HAVE_SS_LEN
     if ((status = connect(fd, (struct sockaddr*)to, to->ss_len)))
-#	else
+#   else
     if((status = connect(fd, (struct sockaddr*)to, sizeof(*to))))
-#	endif
+#   endif
     {
         status = tnet_geterrno();
         if(status == TNET_ERROR_WOULDBLOCK || status == TNET_ERROR_ISCONN || status == TNET_ERROR_INPROGRESS || status == TNET_ERROR_EAGAIN) {
@@ -2167,7 +2167,7 @@ const char* tnet_proxy_type_to_string(tnet_proxy_type_t type)
 
 
 //=================================================================================================
-//	INTERFACE object definition
+//  INTERFACE object definition
 //
 static tsk_object_t* tnet_interface_ctor(tsk_object_t * self, va_list * app)
 {
@@ -2225,7 +2225,7 @@ const tsk_object_def_t *tnet_interface_def_t = &tnet_interface_def_s;
 
 
 //=================================================================================================
-//	ADDRESS object definition
+//  ADDRESS object definition
 //
 static tsk_object_t* tnet_address_ctor(tsk_object_t * self, va_list * app)
 {

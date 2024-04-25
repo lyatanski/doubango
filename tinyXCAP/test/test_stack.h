@@ -23,11 +23,11 @@
 #define _TEST_STACK_H
 
 #define PAYLOAD_LIST "<list name=\"newlist\" xmlns=\"urn:ietf:params:xml:ns:resource-lists\">" \
-					 "<display-name>newlist</display-name>" \
-					 "</list>"
+                     "<display-name>newlist</display-name>" \
+                     "</list>"
 #define PAYLOAD_ENTRY "<entry uri=\""XUI"\" xmlns=\"urn:ietf:params:xml:ns:resource-lists\">" \
-					  "<display-name>"XUI"</display-name>" \
-					  "</entry>"
+                      "<display-name>"XUI"</display-name>" \
+                      "</entry>"
 
 int test_stack_callback(const thttp_event_t *httpevent)
 {
@@ -110,192 +110,192 @@ void test_stack()
                                      );
 
     /*
-    	//== get resource-lists document
-    	ret = txcap_action_fetch_document(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		//action-level headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== get resource-lists document
+        ret = txcap_action_fetch_document(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            //action-level headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== get 'rcs' list
-    	ret = txcap_action_fetch_element(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		// action-level headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== get 'rcs' list
+        ret = txcap_action_fetch_element(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            // action-level headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== Retrieve the 2nd list
-    	ret = txcap_action_fetch_element(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		// headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// action-level selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_POS("list", 2),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Retrieve the 2nd list
+        ret = txcap_action_fetch_element(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            // headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // action-level selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_POS("list", 2),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== Retrieve the 4th list (wildcard)
-    	ret = txcap_action_fetch_element(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		// headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// action-level selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_POS("*", 4),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Retrieve the 4th list (wildcard)
+        ret = txcap_action_fetch_element(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            // headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // action-level selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_POS("*", 4),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== Retrieve the entry with: uri=XUI and list='rcs'
-    	ret = txcap_action_fetch_element(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		// headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// action-level selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Retrieve the entry with: uri=XUI and list='rcs'
+        ret = txcap_action_fetch_element(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            // headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // action-level selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== Retrieve XUI's display-name ==> 404
-    	ret = txcap_action_fetch_attribute(stack,
-    	// action-level options
-    	TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    	// headers
-    	TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    	// action-level selector
-    	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-    		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
-    		TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
-    		TXCAP_SELECTOR_NODE_SET_NULL()),
-    	// ends parameters
-    	TXCAP_ACTION_SET_NULL()
-    	);
+        //== Retrieve XUI's display-name ==> 404
+        ret = txcap_action_fetch_attribute(stack,
+        // action-level options
+        TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+        // headers
+        TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+        // action-level selector
+        TXCAP_ACTION_SET_SELECTOR("resource-lists",
+            TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+            TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
+            TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
+            TXCAP_SELECTOR_NODE_SET_NULL()),
+        // ends parameters
+        TXCAP_ACTION_SET_NULL()
+        );
 
 
-    	//== Retrieve the display-name of the fisrt entry from the 'rcs' list ==> 404
-    	ret = txcap_action_fetch_attribute(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		// headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// action-level selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-    			TXCAP_SELECTOR_NODE_SET_POS("entry", 1),
-    			TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Retrieve the display-name of the fisrt entry from the 'rcs' list ==> 404
+        ret = txcap_action_fetch_attribute(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            // headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // action-level selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+                TXCAP_SELECTOR_NODE_SET_POS("entry", 1),
+                TXCAP_SELECTOR_NODE_SET_NAME("display-name"),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	//== Retrieve the entry with: uri='XUI' from position 1 from 'rcs' list
-    	ret = txcap_action_fetch_element(stack,
-    	// action-level options
-    	TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    	// headers
-    	TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    	// action-level selector
-    	TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    		TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-    		TXCAP_SELECTOR_NODE_SET_POS_ATTRIBUTE("entry", 1, "uri", XUI),
-    		TXCAP_SELECTOR_NODE_SET_NULL()),
-    	// ends parameters
-    	TXCAP_ACTION_SET_NULL()
-    	);
+        //== Retrieve the entry with: uri='XUI' from position 1 from 'rcs' list
+        ret = txcap_action_fetch_element(stack,
+        // action-level options
+        TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+        // headers
+        TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+        // action-level selector
+        TXCAP_ACTION_SET_SELECTOR("resource-lists",
+            TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+            TXCAP_SELECTOR_NODE_SET_POS_ATTRIBUTE("entry", 1, "uri", XUI),
+            TXCAP_SELECTOR_NODE_SET_NULL()),
+        // ends parameters
+        TXCAP_ACTION_SET_NULL()
+        );
 
 
-    	//== Add newlist
-    	ret = txcap_action_create_element(stack,
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// payload
-    		TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_LIST, strlen(PAYLOAD_LIST)),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Add newlist
+        ret = txcap_action_create_element(stack,
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // payload
+            TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_LIST, strlen(PAYLOAD_LIST)),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
-    	//== Add entry
-    	ret = txcap_action_create_element(stack,
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// payload
-    		TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_ENTRY, strlen(PAYLOAD_ENTRY)),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Add entry
+        ret = txcap_action_create_element(stack,
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // payload
+            TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_ENTRY, strlen(PAYLOAD_ENTRY)),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
-    	//== Add entry using dummy URI
-    	ret = txcap_action_create_element(stack,
-    		// dummy uri
-    		TXCAP_ACTION_SET_REQUEST_URI("http://doubango.org/services/dummy/"XUI),
-    		// payload
-    		TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_ENTRY, strlen(PAYLOAD_ENTRY)),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
+        //== Add entry using dummy URI
+        ret = txcap_action_create_element(stack,
+            // dummy uri
+            TXCAP_ACTION_SET_REQUEST_URI("http://doubango.org/services/dummy/"XUI),
+            // payload
+            TXCAP_ACTION_SET_PAYLOAD(PAYLOAD_ENTRY, strlen(PAYLOAD_ENTRY)),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
-    	//== Delete entry
-    	ret = txcap_action_delete_element(stack,
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("resource-lists",
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
-    			TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
-
-
+        //== Delete entry
+        ret = txcap_action_delete_element(stack,
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("resource-lists",
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "newlist"),
+                TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", XUI),
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
 
 
-    	ret = txcap_action_fetch_document(stack,
-    		// action-level options
-    		TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
-    		//action-level headers
-    		TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-    		// selector
-    		TXCAP_ACTION_SET_SELECTOR("org.openmobilealliance.pres-content",
-    			TXCAP_SELECTOR_NODE_SET_NULL()),
-    		// ends parameters
-    		TXCAP_ACTION_SET_NULL()
-    		);
-    	*/
+
+
+        ret = txcap_action_fetch_document(stack,
+            // action-level options
+            TXCAP_ACTION_SET_OPTION(TXCAP_ACTION_OPTION_TIMEOUT, "6000"),
+            //action-level headers
+            TXCAP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+            // selector
+            TXCAP_ACTION_SET_SELECTOR("org.openmobilealliance.pres-content",
+                TXCAP_SELECTOR_NODE_SET_NULL()),
+            // ends parameters
+            TXCAP_ACTION_SET_NULL()
+            );
+        */
 bail:
 
     TSK_OBJECT_SAFE_FREE(stack);

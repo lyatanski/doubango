@@ -113,7 +113,7 @@ tmsrp_header_WWW_Authenticate_t *tmsrp_header_WWW_Authenticate_parse(const char 
 
 
 //========================================================
-//	WWW_Authenticate header object definition
+//  WWW_Authenticate header object definition
 //
 
 static tsk_object_t* tmsrp_header_WWW_Authenticate_ctor(tsk_object_t *self, va_list * app)

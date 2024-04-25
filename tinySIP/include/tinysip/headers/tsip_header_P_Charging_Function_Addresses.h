@@ -37,13 +37,13 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'P-Charging-Function-Addresses' as per RFC 3455.
+/// @brief  SIP header 'P-Charging-Function-Addresses' as per RFC 3455.
 ///
 /// @par ABNF: P-Charging-Function-Addresses = P-Charging-Addr
-/// P-Charging-Addr	= 	"P-Charging-Function-Addresses" HCOLON charge-addr-params *( SEMI charge-addr-params )
-/// charge-addr-params	= 	ccf / ecf / generic-param
-/// ccf	= 	"ccf" EQUAL gen-value
-/// ecf	= 	"ecf" EQUAL gen-value
+/// P-Charging-Addr =   "P-Charging-Function-Addresses" HCOLON charge-addr-params *( SEMI charge-addr-params )
+/// charge-addr-params  =   ccf / ecf / generic-param
+/// ccf =   "ccf" EQUAL gen-value
+/// ecf =   "ecf" EQUAL gen-value
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_P_Charging_Function_Addresses_s {

@@ -35,17 +35,17 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_SESSION_EXPIRES_VA_ARGS(delta_seconds, refresher_uas)		tsip_header_Session_Expires_def_t, (int64_t)delta_seconds, (tsk_bool_t)refresher_uas
+#define TSIP_HEADER_SESSION_EXPIRES_VA_ARGS(delta_seconds, refresher_uas)       tsip_header_Session_Expires_def_t, (int64_t)delta_seconds, (tsk_bool_t)refresher_uas
 
-#define TSIP_SESSION_EXPIRES_DEFAULT_VALUE					1800
+#define TSIP_SESSION_EXPIRES_DEFAULT_VALUE                  1800
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Session-Expires'.
+/// @brief  SIP header 'Session-Expires'.
 ///
-/// @par ABNF: Session-Expires	=  	 ( "Session-Expires" / "x" ) HCOLON delta-seconds *( SEMI (se-params )
-/// se-params	= 	refresher-param / generic-param
-/// refresher-param	= 	"refresher" EQUAL ("uas" / "uac")
+/// @par ABNF: Session-Expires  =    ( "Session-Expires" / "x" ) HCOLON delta-seconds *( SEMI (se-params )
+/// se-params   =   refresher-param / generic-param
+/// refresher-param =   "refresher" EQUAL ("uas" / "uac")
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Session_Expires_s {

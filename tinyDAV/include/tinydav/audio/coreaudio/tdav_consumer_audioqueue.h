@@ -37,7 +37,7 @@
 TDAV_BEGIN_DECLS
 
 #ifndef CoreAudioPlayBuffers
-#	define CoreAudioPlayBuffers 3
+#   define CoreAudioPlayBuffers 3
 #endif
 
 typedef struct tdav_consumer_audioqueue_s {

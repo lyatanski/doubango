@@ -68,17 +68,17 @@ int tcomp_udvm_byteCopy_TempStates(tcomp_udvm_t *udvm)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	Creates temporary state.
+/// @brief  Creates temporary state.
 ///
-/// @param [in,out]	udvm				If non-null, the udvm.
-/// @param	state_length				Length of the state.
-/// @param	state_address				The state address.
-/// @param	state_instruction			The state instruction.
-/// @param	minimum_access_length		Length of the minimum access.
-/// @param	state_retention_priority	The state retention priority.
-/// @param	end_msg						Message describing the end.
+/// @param [in,out] udvm                If non-null, the udvm.
+/// @param  state_length                Length of the state.
+/// @param  state_address               The state address.
+/// @param  state_instruction           The state instruction.
+/// @param  minimum_access_length       Length of the minimum access.
+/// @param  state_retention_priority    The state retention priority.
+/// @param  end_msg                     Message describing the end.
 ///
-/// @return	1 if succeed an zero otherwise.
+/// @return 1 if succeed an zero otherwise.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int tcomp_udvm_createTempState(tcomp_udvm_t *udvm, uint32_t state_length, uint32_t state_address, uint32_t state_instruction,
@@ -118,7 +118,7 @@ int tcomp_udvm_createTempState(tcomp_udvm_t *udvm, uint32_t state_length, uint32
     }
 
     /*
-    *	Is there a state to create?
+    *   Is there a state to create?
     */
     if(is_ok) {
         // no byte copy ()

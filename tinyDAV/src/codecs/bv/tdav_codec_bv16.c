@@ -32,7 +32,7 @@
 #if HAVE_BV16
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "..\\thirdparties\\win32\\lib\\BroadVoice16\\libbv16.a")
+#   pragma comment(lib, "..\\thirdparties\\win32\\lib\\BroadVoice16\\libbv16.a")
 #endif
 
 #include "tsk_memory.h"
@@ -52,8 +52,8 @@
 #include "memutil.h"
 
 /* RFC 4298 - 3.1.  BroadVoice16 Bit Stream Definition */
-#define TDAV_BV16_FRAME_SIZE			10
-#define FRSZ_IN_U8						(FRSZ*2)
+#define TDAV_BV16_FRAME_SIZE            10
+#define FRSZ_IN_U8                      (FRSZ*2)
 
 /* ============ BV16 Plugin interface ================= */
 
@@ -182,7 +182,7 @@ tsk_bool_t tdav_codec_bv16_sdp_att_match(const tmedia_codec_t* codec, const char
 
 
 //
-//	BV16 Plugin definition
+//  BV16 Plugin definition
 //
 
 /* constructor */

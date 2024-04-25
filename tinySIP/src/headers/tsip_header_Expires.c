@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 64 "./ragel/tsip_parser_header_Expires.rl" */
@@ -244,7 +244,7 @@ _match:
             {
             }
             break;
-            /* #line 241 "./src/headers/tsip_header_Expires.c" */
+                /* #line 241 "./src/headers/tsip_header_Expires.c" */
             }
         }
 
@@ -282,7 +282,7 @@ _out: {
 
 
 //========================================================
-//	Expires header object definition
+//  Expires header object definition
 //
 
 static tsk_object_t* tsip_header_Expires_ctor(tsk_object_t *self, va_list * app)

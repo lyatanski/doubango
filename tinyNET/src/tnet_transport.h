@@ -36,10 +36,10 @@
 
 TNET_BEGIN_DECLS
 
-#define DGRAM_MAX_SIZE	8192
-#define STREAM_MAX_SIZE	8192
+#define DGRAM_MAX_SIZE  8192
+#define STREAM_MAX_SIZE 8192
 
-#define TNET_TRANSPORT_CB_F(callback)							((tnet_transport_cb_f)callback)
+#define TNET_TRANSPORT_CB_F(callback)                           ((tnet_transport_cb_f)callback)
 
 typedef enum tnet_transport_event_type_e {
     event_data,

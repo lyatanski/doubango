@@ -25,7 +25,7 @@
 
 
 extern ctx_t* ctx;
-extern const session_t* session_handle_cmd(cmd_type_t , const opts_L_t*);
+extern const session_t* session_handle_cmd(cmd_type_t, const opts_L_t*);
 
 static int invite_msrp_cb(const tmsrp_event_t* _event);
 
@@ -68,16 +68,16 @@ int invite_handle_event(const tsip_event_t *_event)
     }
 
     switch(inv_event->type) {
-        // ============================
-        //	Sip Events
-        //
+    // ============================
+    //  Sip Events
+    //
     case tsip_i_newcall: {
         /* New call */
         tmedia_type_t media_type = tsip_ssession_get_mediatype(session);
         tsip_api_common_accept(session->handle,
                                TSIP_ACTION_SET_NULL());
         /*tsip_api_common_reject(session->handle,
-        	TSIP_ACTION_SET_NULL());*/
+            TSIP_ACTION_SET_NULL());*/
         break;
     }
     case tsip_i_request:
@@ -87,7 +87,7 @@ int invite_handle_event(const tsip_event_t *_event)
         TSK_DEBUG_INFO("invite_handle_event(tsip_ao_request)");
         break;
 
-        /* Explicit Call Transfer (ECT) */
+    /* Explicit Call Transfer (ECT) */
     case tsip_o_ect_trying:
     case tsip_o_ect_accepted:
     case tsip_o_ect_completed:
@@ -101,16 +101,16 @@ int invite_handle_event(const tsip_event_t *_event)
         TSK_DEBUG_INFO("ECT event");
         break;
 
-        // ============================
-        //	Media Events
-        //
+    // ============================
+    //  Media Events
+    //
 
-        /* Early Media started */
+    /* Early Media started */
     case tsip_m_early_media:
         TSK_DEBUG_INFO("invite_handle_event(tsip_m_early_media)");
         break;
 
-        /* 3GPP TS 24.610: Communication Hold  */
+    /* 3GPP TS 24.610: Communication Hold  */
     case tsip_m_local_hold_ok:
         TSK_DEBUG_INFO("invite_handle_event(tsip_m_local_hold_ok)");
         break;

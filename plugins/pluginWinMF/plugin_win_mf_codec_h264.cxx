@@ -63,7 +63,7 @@ typedef struct mf_codec_h264_s {
 mf_codec_h264_t;
 
 #if !defined(PLUGIN_MF_H264_GOP_SIZE_IN_SECONDS)
-#	define PLUGIN_MF_H264_GOP_SIZE_IN_SECONDS		25
+#   define PLUGIN_MF_H264_GOP_SIZE_IN_SECONDS       25
 #endif
 
 static int mf_codec_h264_init(mf_codec_h264_t* self, profile_idc_t profile);
@@ -146,12 +146,12 @@ static int mf_codec_h264_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if((ret = mf_codec_h264_open_encoder(h264))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = mf_codec_h264_open_decoder(h264))) {
         return ret;
     }
@@ -170,10 +170,10 @@ static int mf_codec_h264_close(tmedia_codec_t* self)
 
     /* the caller (base class) alreasy checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     mf_codec_h264_close_encoder(h264);
 
-    //	Decoder
+    //  Decoder
     mf_codec_h264_close_decoder(h264);
 
     return 0;
@@ -203,9 +203,9 @@ static tsk_size_t mf_codec_h264_encode(tmedia_codec_t* self, const void* in_data
     IMFMediaBuffer* pBufferOut = NULL;
 
     // send IDR for:
-    //	- the first frame
+    //  - the first frame
     //  - remote peer requested an IDR
-    //	- every second within the first 4seconds
+    //  - every second within the first 4seconds
     send_idr = (
                    h264->encoder.frame_count++ == 0
                    || h264 ->encoder.force_idr
@@ -352,9 +352,9 @@ static tsk_size_t mf_codec_h264_decode(tmedia_codec_t* self, const void* in_data
     // end-accumulator
 
     /*if(sps_or_pps){
-    	// http://libav-users.943685.n4.nabble.com/Decode-H264-streams-how-to-fill-AVCodecContext-from-SPS-PPS-td2484472.html
-    	// SPS and PPS should be bundled with IDR
-    	TSK_DEBUG_INFO("Receiving SPS or PPS ...to be tied to an IDR");
+        // http://libav-users.943685.n4.nabble.com/Decode-H264-streams-how-to-fill-AVCodecContext-from-SPS-PPS-td2484472.html
+        // SPS and PPS should be bundled with IDR
+        TSK_DEBUG_INFO("Receiving SPS or PPS ...to be tied to an IDR");
     }
     else */if (rtp_hdr->marker) {
         if (h264->decoder.passthrough) {
@@ -596,7 +596,7 @@ int mf_codec_h264_open_encoder(mf_codec_h264_t* self)
         CHECK_HR(hr = E_OUTOFMEMORY);
     }
 
-    //self->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    //self->encoder.context->pix_fmt        = PIX_FMT_YUV420P;
     //self->encoder.context->time_base.num  = 1;
     //self->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(self)->out.fps;
     self->encoder.neg_width = (self->encoder.rotation == 90 || self->encoder.rotation == 270) ? TMEDIA_CODEC_VIDEO(self)->out.height : TMEDIA_CODEC_VIDEO(self)->out.width;

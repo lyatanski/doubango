@@ -36,13 +36,13 @@ TRTP_BEGIN_DECLS
 typedef struct trtp_rtcp_rblock_s {
     TSK_DECLARE_OBJECT;
 
-    uint32_t ssrc;				/* data source being reported */
-    unsigned int fraction:8;	/* fraction lost since last SR/RR */
+    uint32_t ssrc;              /* data source being reported */
+    unsigned int fraction:8;    /* fraction lost since last SR/RR */
     int cumulative_no_lost:24;  /* cumul. no. pkts lost (signed!) */
-    uint32_t last_seq;			/* extended last seq. no. received */
-    uint32_t jitter;			/* interarrival jitter */
-    uint32_t lsr;				/* last SR packet from this source */
-    uint32_t dlsr;				/* delay since last SR packet */
+    uint32_t last_seq;          /* extended last seq. no. received */
+    uint32_t jitter;            /* interarrival jitter */
+    uint32_t lsr;               /* last SR packet from this source */
+    uint32_t dlsr;              /* delay since last SR packet */
 }
 trtp_rtcp_rblock_t;
 

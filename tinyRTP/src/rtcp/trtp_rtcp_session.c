@@ -66,12 +66,12 @@ static void srand48(long sv)
 }
 #endif
 
-#define RTCP_BW			(160 * 50) // FIXME: default bandwidth (octet/second)
-#define CODEC_RATE		8000		// FIXME
-#define RTP_SEQ_MOD		(1 << 16)
-#define MAX_DROPOUT		3000
-#define MAX_MISORDER	100
-#define MIN_SEQUENTIAL	2
+#define RTCP_BW         (160 * 50) // FIXME: default bandwidth (octet/second)
+#define CODEC_RATE      8000        // FIXME
+#define RTP_SEQ_MOD     (1 << 16)
+#define MAX_DROPOUT     3000
+#define MAX_MISORDER    100
+#define MIN_SEQUENTIAL  2
 
 typedef double time_tp;
 typedef void* packet_;
@@ -90,14 +90,14 @@ typedef enum PacketType_ {
 }
 PacketType_;
 
-#define TypeOfEvent(e)	(e)
+#define TypeOfEvent(e)  (e)
 
-#define TRTP_RTCP_SOURCE(self)	((trtp_rtcp_source_t*)self)
+#define TRTP_RTCP_SOURCE(self)  ((trtp_rtcp_source_t*)self)
 
 typedef struct trtp_rtcp_source_s {
     TSK_DECLARE_OBJECT;
 
-    uint32_t ssrc;			 /* source's ssrc */
+    uint32_t ssrc;           /* source's ssrc */
     uint16_t max_seq;        /* highest seq. number seen */
     uint32_t cycles;         /* shifted count of seq. number cycles */
     uint32_t base_seq;       /* base seq number */
@@ -109,9 +109,9 @@ typedef struct trtp_rtcp_source_s {
     uint32_t transit;        /* relative trans time for prev pkt */
     double jitter;         /* estimated jitter */
 
-    uint32_t base_ts;	/* base timestamp */
-    uint32_t max_ts;	/* highest timestamp number seen */
-    uint32_t rate;		/* codec sampling rate */
+    uint32_t base_ts;   /* base timestamp */
+    uint32_t max_ts;    /* highest timestamp number seen */
+    uint32_t rate;      /* codec sampling rate */
 
     uint32_t ntp_msw;  /* last received NTP timestamp from RTCP sender */
     uint32_t ntp_lsw;  /* last received NTP timestamp from RTCP sender */
@@ -1149,8 +1149,8 @@ static tsk_size_t AddMember_(trtp_rtcp_session_t* session, const packet_ p, tsk_
     return count;
 }
 
-#define AddMember(session, p)	AddMember_((session), (p), tsk_false)
-#define AddSender(session, p)	AddMember_((session), (p), tsk_true)
+#define AddMember(session, p)   AddMember_((session), (p), tsk_false)
+#define AddSender(session, p)   AddMember_((session), (p), tsk_true)
 
 
 static tsk_size_t RemoveMemberUsingRTCPPacket(trtp_rtcp_session_t* session, const trtp_rtcp_packet_t* p)
@@ -1308,7 +1308,7 @@ static tsk_size_t SendRTCPReport(trtp_rtcp_session_t* session, event_ e)
             sr->sender_info.ntp_lsw = (ntp_now & 0xFFFFFFFF);
             sr->sender_info.sender_pcount = session->packets_count;
             sr->sender_info.sender_ocount = session->octets_count;
-            {	/* rtp_timestamp */
+            { /* rtp_timestamp */
                 struct timeval tv;
                 uint64_t rtp_timestamp = (time_now - session->time_start) * (session->source_local->rate / 1000);
                 tv.tv_sec = (long)(rtp_timestamp / 1000);

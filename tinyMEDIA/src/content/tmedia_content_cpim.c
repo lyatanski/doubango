@@ -32,7 +32,7 @@
 
 #include <string.h>
 
-/*	RFC 3862 - 2. Overall Message Structure
+/*  RFC 3862 - 2. Overall Message Structure
 A complete message looks something like this:
 
       m: Content-type: Message/CPIM
@@ -58,7 +58,7 @@ A complete message looks something like this:
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 124 "./ragel/tmedia_content_cpim.rl" */
@@ -311,7 +311,7 @@ _match:
                 }
             }
             break;
-            /* #line 307 "./src/content/tmedia_content_cpim.c" */
+                /* #line 307 "./src/content/tmedia_content_cpim.c" */
             }
         }
 
@@ -348,7 +348,7 @@ _test_eof: {
                     }
                 }
                 break;
-                /* #line 341 "./src/content/tmedia_content_cpim.c" */
+                    /* #line 341 "./src/content/tmedia_content_cpim.c" */
                 }
             }
         }
@@ -413,7 +413,7 @@ static tsk_buffer_t* tmedia_content_cpim_get_data(tmedia_content_t* self)
 }
 
 //=================================================================================================
-//	object/plugin definitions
+//  object/plugin definitions
 //
 /* constructor */
 static tsk_object_t* tmedia_content_cpim_ctor(tsk_object_t * self, va_list * app)

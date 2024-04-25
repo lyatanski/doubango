@@ -35,7 +35,7 @@ TNET_BEGIN_DECLS
 /**@ingroup tnet_utils_group
 */
 #if !defined(TNET_CONNECT_TIMEOUT)
-#	define TNET_CONNECT_TIMEOUT		2000
+#   define TNET_CONNECT_TIMEOUT     2000
 #endif /* TNET_CONNECT_TIMEOUT */
 
 /**Interface.
@@ -73,19 +73,19 @@ TINYNET_API int tnet_geterrno();
 
 TINYNET_API tnet_interfaces_L_t* tnet_get_interfaces();
 TINYNET_API tnet_addresses_L_t* tnet_get_addresses(tnet_family_t family, tsk_bool_t unicast, tsk_bool_t anycast, tsk_bool_t multicast, tsk_bool_t dnsserver, long if_index);
-#define tnet_get_addresses_all()			tnet_get_addresses(AF_UNSPEC, 1, 1, 1, 1, -1)
-#define tnet_get_addresses_all_unicast()	tnet_get_addresses(AF_UNSPEC, 1, 0, 0, 0, -1)
-#define tnet_get_addresses_unicast4()		tnet_get_addresses(AF_INET, 1, 0, 0, 0, -1)
-#define tnet_get_addresses_unicast6()		tnet_get_addresses(AF_INET6, 1, 0, 0, 0, -1)
-#define tnet_get_addresses_all_anycast()	tnet_get_addresses(AF_UNSPEC, 0, 1, 0, 0, -1)
-#define tnet_get_addresses_anycast4()		tnet_get_addresses(AF_INET, 0, 1, 0, 0, -1)
-#define tnet_get_addresses_anycast6()		tnet_get_addresses(AF_INET6, 0, 1, 0, 0, -1)
-#define tnet_get_addresses_all_multicast()	tnet_get_addresses(AF_UNSPEC, 0, 0, 1, 0, -1)
-#define tnet_get_addresses_multicast4()		tnet_get_addresses(AF_INET, 0, 0, 1, 0, -1)
-#define tnet_get_addresses_multicast6()		tnet_get_addresses(AF_INET6, 0, 0, 1, 0, -1)
-#define tnet_get_addresses_all_dnsservers()	tnet_get_addresses(AF_UNSPEC, 0, 0, 0, 1, -1)
-#define tnet_get_addresses_dnsservers4()	tnet_get_addresses(AF_INET, 0, 0, 0, 1, -1)
-#define tnet_get_addresses_dnsservers6()	tnet_get_addresses(AF_INET6, 0, 0, 0, 1, -1)
+#define tnet_get_addresses_all()            tnet_get_addresses(AF_UNSPEC, 1, 1, 1, 1, -1)
+#define tnet_get_addresses_all_unicast()    tnet_get_addresses(AF_UNSPEC, 1, 0, 0, 0, -1)
+#define tnet_get_addresses_unicast4()       tnet_get_addresses(AF_INET, 1, 0, 0, 0, -1)
+#define tnet_get_addresses_unicast6()       tnet_get_addresses(AF_INET6, 1, 0, 0, 0, -1)
+#define tnet_get_addresses_all_anycast()    tnet_get_addresses(AF_UNSPEC, 0, 1, 0, 0, -1)
+#define tnet_get_addresses_anycast4()       tnet_get_addresses(AF_INET, 0, 1, 0, 0, -1)
+#define tnet_get_addresses_anycast6()       tnet_get_addresses(AF_INET6, 0, 1, 0, 0, -1)
+#define tnet_get_addresses_all_multicast()  tnet_get_addresses(AF_UNSPEC, 0, 0, 1, 0, -1)
+#define tnet_get_addresses_multicast4()     tnet_get_addresses(AF_INET, 0, 0, 1, 0, -1)
+#define tnet_get_addresses_multicast6()     tnet_get_addresses(AF_INET6, 0, 0, 1, 0, -1)
+#define tnet_get_addresses_all_dnsservers() tnet_get_addresses(AF_UNSPEC, 0, 0, 0, 1, -1)
+#define tnet_get_addresses_dnsservers4()    tnet_get_addresses(AF_INET, 0, 0, 0, 1, -1)
+#define tnet_get_addresses_dnsservers6()    tnet_get_addresses(AF_INET6, 0, 0, 0, 1, -1)
 TINYNET_API int tnet_get_mac_address(tnet_mac_address* address);
 
 TINYNET_API int tnet_getbestsource(const char* destination, tnet_port_t port, tnet_socket_type_t type, tnet_ip_t *source);
@@ -110,17 +110,17 @@ TINYNET_API tsk_bool_t tnet_is_loopback(const struct sockaddr *sa);
 TINYNET_API tsk_bool_t tnet_is_linklocal(const struct sockaddr *sa);
 
 #if TNET_HAVE_SA_LEN
-#	define tnet_get_sockaddr_size(psockaddr)	(psockaddr)->sa_len
+#   define tnet_get_sockaddr_size(psockaddr)    (psockaddr)->sa_len
 #else
-#	define tnet_get_sockaddr_size(psockaddr)	((psockaddr)->sa_family == AF_INET6 ? sizeof(struct sockaddr_in6): ((psockaddr)->sa_family == AF_INET ? sizeof(struct sockaddr_in) : sizeof(*(psockaddr))))
+#   define tnet_get_sockaddr_size(psockaddr)    ((psockaddr)->sa_family == AF_INET6 ? sizeof(struct sockaddr_in6): ((psockaddr)->sa_family == AF_INET ? sizeof(struct sockaddr_in) : sizeof(*(psockaddr))))
 #endif
 
 #if TNET_UNDER_WINDOWS
-#	define tnet_ioctlt ioctlsocket /* FIXME: use WSAIoctl */
-#	define tnet_soccket(family, type, protocol) WSASocket((family), (type), (protocol), NULL, 0, WSA_FLAG_OVERLAPPED)
+#   define tnet_ioctlt ioctlsocket /* FIXME: use WSAIoctl */
+#   define tnet_soccket(family, type, protocol) WSASocket((family), (type), (protocol), NULL, 0, WSA_FLAG_OVERLAPPED)
 #else
-#	define tnet_ioctlt ioctl
-#	define tnet_soccket(family, type, protocol) socket((family), (type), (protocol))
+#   define tnet_ioctlt ioctl
+#   define tnet_soccket(family, type, protocol) socket((family), (type), (protocol))
 #endif
 
 TINYNET_API int tnet_get_fd_max_allowed(tsk_size_t* size);
@@ -147,8 +147,8 @@ TINYNET_API int tnet_sockfd_init(const char *host, tnet_port_t port, tnet_socket
 
 TINYNET_API int tnet_sockfd_set_mode(tnet_fd_t fd, int nonBlocking);
 TINYNET_API int tnet_sockfd_reuseaddr(tnet_fd_t fd, int reuseAddr);
-#define tnet_sockfd_set_nonblocking(fd)	tnet_sockfd_set_mode(fd, 1)
-#define tnet_sockfd_set_blocking(fd)	tnet_sockfd_set_mode(fd, 0)
+#define tnet_sockfd_set_nonblocking(fd) tnet_sockfd_set_mode(fd, 1)
+#define tnet_sockfd_set_blocking(fd)    tnet_sockfd_set_mode(fd, 0)
 
 TINYNET_API int tnet_sockfd_sendto(tnet_fd_t fd, const struct sockaddr *to, const void* buf, tsk_size_t size);
 TINYNET_API int tnet_sockfd_recvfrom(tnet_fd_t fd, void* buf, tsk_size_t size, int flags, struct sockaddr *from);
@@ -167,11 +167,11 @@ TINYNET_API const char* tnet_proxy_type_to_string(tnet_proxy_type_t type);
 /**Prints last network error to @b stderr.
 */
 #define TNET_PRINT_LAST_ERROR(FMT, ...) \
-	{ \
-		tnet_error_t error; \
-		tnet_getlasterror(&error); \
-		TSK_DEBUG_ERROR("(SYSTEM)NETWORK ==> '%s' " FMT, error, ##__VA_ARGS__); \
-	}
+    { \
+        tnet_error_t error; \
+        tnet_getlasterror(&error); \
+        TSK_DEBUG_ERROR("(SYSTEM)NETWORK ==> '%s' " FMT, error, ##__VA_ARGS__); \
+    }
 
 
 tnet_interface_t* tnet_interface_create(const char* description, const void* mac_address, tsk_size_t mac_address_length);

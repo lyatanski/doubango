@@ -38,9 +38,9 @@
 
 TSK_BEGIN_DECLS
 
-#define TSK_PARAM_VA_ARGS(name, value)		tsk_param_def_t, (const char*)name, (const char*)value
+#define TSK_PARAM_VA_ARGS(name, value)      tsk_param_def_t, (const char*)name, (const char*)value
 
-#define TSK_PARAM(self)				((tsk_param_t*)(self))
+#define TSK_PARAM(self)             ((tsk_param_t*)(self))
 
 /**@ingroup tsk_params_group
 * Parameter.

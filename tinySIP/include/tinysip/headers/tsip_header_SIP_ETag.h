@@ -36,15 +36,15 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_SIP_ETAG_VA_ARGS(etag)		tsip_header_SIP_ETag_def_t, (const char*)etag
+#define TSIP_HEADER_SIP_ETAG_VA_ARGS(etag)      tsip_header_SIP_ETag_def_t, (const char*)etag
 
 /**
- * @struct	tsip_header_SIP_ETag_s
+ * @struct  tsip_header_SIP_ETag_s
  *
- * 	SIP header 'SIP-ETag' as per RFC 3903.
- * 	@par ABNF
- *	SIP-ETag	= 	"SIP-ETag" HCOLON entity-tag
- *	entity-tag = token
+ *  SIP header 'SIP-ETag' as per RFC 3903.
+ *  @par ABNF
+ *  SIP-ETag    =   "SIP-ETag" HCOLON entity-tag
+ *  entity-tag = token
 **/
 typedef struct tsip_header_SIP_ETag_s {
     TSIP_DECLARE_HEADER;

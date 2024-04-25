@@ -123,7 +123,7 @@ tsk_bool_t thttp_url_isvalid(const char* urlstring)
 
 
 //========================================================
-//	HTTP/HTTPS URL object definition
+//  HTTP/HTTPS URL object definition
 //
 
 /**@ingroup thttp_url_group

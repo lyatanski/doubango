@@ -53,7 +53,7 @@ static const char* __null_callid = tsk_null;
 #define TSIP_MIN_STREAM_CHUNCK_SIZE 0xA0
 
 #if !defined(TSIP_CONNECT_TIMEOUT)
-#	define	TSIP_CONNECT_TIMEOUT 1000
+#   define  TSIP_CONNECT_TIMEOUT 1000
 #endif
 
 extern tsip_event_t* tsip_event_create(tsip_ssession_t* ss, short code, const char* phrase, const tsip_message_t* sipmessage, tsip_event_type_t type);
@@ -222,9 +222,9 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
        transports MUST ignore any CRLF appearing before the start-line
        [H4.1].
 
-    	  The Content-Length header field value is used to locate the end of
-    	  each SIP message in a stream.  It will always be present when SIP
-    	  messages are sent over stream-oriented transports.
+          The Content-Length header field value is used to locate the end of
+          each SIP message in a stream.  It will always be present when SIP
+          messages are sent over stream-oriented transports.
     */
 
     /* Check if buffer is too big to be valid (have we missed some chuncks?) */
@@ -285,7 +285,7 @@ parse_buffer:
     }
 
     /* If we are there this mean that we have all SIP headers.
-    *	==> Parse the SIP message without the content.
+    *   ==> Parse the SIP message without the content.
     */
     tsk_ragel_state_init(&state, TSK_BUFFER_DATA(peer->rcv_buff_stream), endOfheaders + 4/*2CRLF*/);
     if(tsip_message_parse(&state, &message, tsk_false/* do not extract the content */) == tsk_true) {
@@ -602,7 +602,7 @@ parse_buffer:
     }
 
     // If we are there this mean that we have all SIP headers.
-    //	==> Parse the SIP message without the content.
+    //  ==> Parse the SIP message without the content.
     TSK_DEBUG_INFO("Receiving SIP o/ WebSocket message: %.*s", pay_len, (const char*)peer->ws.rcv_buffer);
     tsk_ragel_state_init(&state, peer->ws.rcv_buffer, (tsk_size_t)pay_len);
     if (tsip_message_parse(&state, &message, tsk_false/* do not extract the content */) == tsk_true) {
@@ -776,7 +776,7 @@ static const tsip_transport_t* tsip_transport_layer_find(const tsip_transport_la
         tsip_transport_t *curr;
         tnet_socket_type_t destNetType = self->stack->network.transport_types[self->stack->network.transport_idx_default];
         /*  RFC 3261 - 18.1.1 Sending Requests
-        	If the port is absent, the default value depends on the transport.  It is 5060 for UDP, TCP and SCTP, 5061 for TLS. */
+            If the port is absent, the default value depends on the transport.  It is 5060 for UDP, TCP and SCTP, 5061 for TLS. */
         // int32_t destDefaultPort = TNET_SOCKET_TYPE_IS_TLS(destNetType) ? 5061 : 5060;
 
         /* If message received over WebSocket transport and stack is running in w2s mode then forward to the first route if available */
@@ -902,7 +902,7 @@ clean_routes:
     *
     */
     else if(msg->firstVia) {
-        {	/* Find the transport. */
+        { /* Find the transport. */
             tsk_list_item_t *item;
             tsip_transport_t *curr;
             tsk_list_foreach(item, self->transports) {
@@ -950,21 +950,21 @@ clean_routes:
         }
 
         if(TSIP_HEADER_VIA_RELIABLE_TRANS(msg->firstVia)) { /*== RELIABLE ===*/
-            /*	RFC 3261 - 18.2.2 Sending Responses
-            	If the "sent-protocol" is a reliable transport protocol such as
-            	TCP or SCTP, or TLS over those, the response MUST be sent using
-            	the existing connection to the source of the original request
-            	that created the transaction, if that connection is still open.
-            	This requires the server transport to maintain an association
-            	between server transactions and transport connections.  If that
-            	connection is no longer open, the server SHOULD open a
-            	connection to the IP address in the "received" parameter, if
-            	present, using the port in the "sent-by" value, or the default
-            	port for that transport, if no port is specified.  If that
-            	connection attempt fails, the server SHOULD use the procedures
-            	in [4] for servers in order to determine the IP address and
-            	port to open the connection and send the response to.
-            	*/
+            /*  RFC 3261 - 18.2.2 Sending Responses
+                If the "sent-protocol" is a reliable transport protocol such as
+                TCP or SCTP, or TLS over those, the response MUST be sent using
+                the existing connection to the source of the original request
+                that created the transaction, if that connection is still open.
+                This requires the server transport to maintain an association
+                between server transactions and transport connections.  If that
+                connection is no longer open, the server SHOULD open a
+                connection to the IP address in the "received" parameter, if
+                present, using the port in the "sent-by" value, or the default
+                port for that transport, if no port is specified.  If that
+                connection attempt fails, the server SHOULD use the procedures
+                in [4] for servers in order to determine the IP address and
+                port to open the connection and send the response to.
+                */
             if(tsk_strnullORempty(*destIP)) {
                 tnet_ip_t peer_ip;
                 tnet_port_t peer_port;
@@ -986,52 +986,52 @@ clean_routes:
         }
         else {
             if(msg->firstVia->maddr) { /*== UNRELIABLE MULTICAST ===*/
-                /*	RFC 3261 - 18.2.2 Sending Responses
-                	Otherwise, if the Via header field value contains a "maddr" parameter, the
-                	response MUST be forwarded to the address listed there, using
-                	the port indicated in "sent-by", or port 5060 if none is present.
-                	If the address is a multicast address, the response SHOULD be
-                	sent using the TTL indicated in the "ttl" parameter, or with a
-                	TTL of 1 if that parameter is not present.
+                /*  RFC 3261 - 18.2.2 Sending Responses
+                    Otherwise, if the Via header field value contains a "maddr" parameter, the
+                    response MUST be forwarded to the address listed there, using
+                    the port indicated in "sent-by", or port 5060 if none is present.
+                    If the address is a multicast address, the response SHOULD be
+                    sent using the TTL indicated in the "ttl" parameter, or with a
+                    TTL of 1 if that parameter is not present.
                 */
             }
-            else {	/*=== UNRELIABLE UNICAST ===*/
+            else {  /*=== UNRELIABLE UNICAST ===*/
                 if(msg->firstVia->received) {
                     if(msg->firstVia->rport > 0) {
-                        /*	RFC 3581 - 4.  Server Behavior
-                        	When a server attempts to send a response, it examines the topmost
-                        	Via header field value of that response.  If the "sent-protocol"
-                        	component indicates an unreliable unicast transport protocol, such as
-                        	UDP, and there is no "maddr" parameter, but there is both a
-                        	"received" parameter and an "rport" parameter, the response MUST be
-                        	sent to the IP address listed in the "received" parameter, and the
-                        	port in the "rport" parameter.  The response MUST be sent from the
-                        	same address and port that the corresponding request was received on.
-                        	This effectively adds a new processing step between bullets two and
-                        	three in Section 18.2.2 of SIP [1].
+                        /*  RFC 3581 - 4.  Server Behavior
+                            When a server attempts to send a response, it examines the topmost
+                            Via header field value of that response.  If the "sent-protocol"
+                            component indicates an unreliable unicast transport protocol, such as
+                            UDP, and there is no "maddr" parameter, but there is both a
+                            "received" parameter and an "rport" parameter, the response MUST be
+                            sent to the IP address listed in the "received" parameter, and the
+                            port in the "rport" parameter.  The response MUST be sent from the
+                            same address and port that the corresponding request was received on.
+                            This effectively adds a new processing step between bullets two and
+                            three in Section 18.2.2 of SIP [1].
                         */
                         tsk_strupdate(destIP, msg->firstVia->received);
                         *destPort = msg->firstVia->rport;
                     }
                     else {
-                        /*	RFC 3261 - 18.2.2 Sending Responses
-                        	Otherwise (for unreliable unicast transports), if the top Via
-                        	has a "received" parameter, the response MUST be sent to the
-                        	address in the "received" parameter, using the port indicated
-                        	in the "sent-by" value, or using port 5060 if none is specified
-                        	explicitly.  If this fails, for example, elicits an ICMP "port
-                        	unreachable" response, the procedures of Section 5 of [4]
-                        	SHOULD be used to determine where to send the response.
+                        /*  RFC 3261 - 18.2.2 Sending Responses
+                            Otherwise (for unreliable unicast transports), if the top Via
+                            has a "received" parameter, the response MUST be sent to the
+                            address in the "received" parameter, using the port indicated
+                            in the "sent-by" value, or using port 5060 if none is specified
+                            explicitly.  If this fails, for example, elicits an ICMP "port
+                            unreachable" response, the procedures of Section 5 of [4]
+                            SHOULD be used to determine where to send the response.
                         */
                         tsk_strupdate(destIP, msg->firstVia->received);
                         *destPort = msg->firstVia->port ? msg->firstVia->port : 5060;
                     }
                 }
                 else {
-                    /*	RFC 3261 - 18.2.2 Sending Responses
-                    	Otherwise, if it is not receiver-tagged, the response MUST be
-                    	sent to the address indicated by the "sent-by" value, using the
-                    	procedures in Section 5 of [4].
+                    /*  RFC 3261 - 18.2.2 Sending Responses
+                        Otherwise, if it is not receiver-tagged, the response MUST be
+                        sent to the address indicated by the "sent-by" value, using the
+                        procedures in Section 5 of [4].
                     */
                     tsk_strupdate(destIP, msg->firstVia->host);
                     if(msg->firstVia->port > 0) {
@@ -1348,7 +1348,7 @@ int tsip_transport_layer_shutdown(tsip_transport_layer_t* self)
 }
 
 //========================================================
-//	SIP transport layer object definition
+//  SIP transport layer object definition
 //
 static tsk_object_t* tsip_transport_layer_ctor(tsk_object_t * self, va_list * app)
 {

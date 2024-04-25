@@ -39,7 +39,7 @@
 #define prev_not_comma(p) !(p && p[-1] == ',')
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 131 "./ragel/thttp_parser_header_WWW_Authenticate.rl" */
@@ -8240,7 +8240,7 @@ _match:
             {
             }
             break;
-            /* #line 8237 "./src/headers/thttp_header_WWW_Authenticate.c" */
+                /* #line 8237 "./src/headers/thttp_header_WWW_Authenticate.c" */
             }
         }
 
@@ -8282,7 +8282,7 @@ thttp_header_Proxy_Authenticate_t *thttp_header_Proxy_Authenticate_parse(const c
 
 
 //========================================================
-//	WWW_Authenticate header object definition
+//  WWW_Authenticate header object definition
 //
 
 static tsk_object_t* thttp_header_WWW_Authenticate_ctor(tsk_object_t *self, va_list * app)

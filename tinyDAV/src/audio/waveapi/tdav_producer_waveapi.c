@@ -29,9 +29,9 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TDAV_WAVEAPI_PRODUCER_ERROR_BUFF_COUNT	0xFF
+#define TDAV_WAVEAPI_PRODUCER_ERROR_BUFF_COUNT  0xFF
 
-#define tdav_producer_waveapi_set	tsk_null
+#define tdav_producer_waveapi_set   tsk_null
 
 static void print_last_error(MMRESULT mmrError, const char* func)
 {
@@ -115,7 +115,8 @@ static int record_wavehdr(tdav_producer_waveapi_t* producer, LPWAVEHDR lpHdr)
 #if 0
         {
             static FILE* f = NULL;
-            if(!f) {
+            if(!f)
+            {
                 f = fopen("./waveapi_producer.raw", "w+");
             }
             fwrite(lpHdr->lpData, 1, lpHdr->dwBytesRecorded, f);
@@ -322,7 +323,7 @@ int tdav_producer_waveapi_stop(tmedia_producer_t* self)
 
 
 //
-//	WaveAPI producer object definition
+//  WaveAPI producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_waveapi_ctor(tsk_object_t * self, va_list * app)

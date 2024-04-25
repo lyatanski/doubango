@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 81 "./ragel/tsip_parser_header_Content_Type.rl" */
@@ -355,7 +355,7 @@ _match:
             {
             }
             break;
-            /* #line 352 "./src/headers/tsip_header_Content_Type.c" */
+                /* #line 352 "./src/headers/tsip_header_Content_Type.c" */
             }
         }
 
@@ -393,7 +393,7 @@ _out: {
 
 
 //========================================================
-//	Content_Type header object definition
+//  Content_Type header object definition
 //
 
 static tsk_object_t* tsip_header_Content_Type_ctor(tsk_object_t *self, va_list * app)

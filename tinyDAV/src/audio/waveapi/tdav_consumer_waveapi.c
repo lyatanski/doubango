@@ -30,9 +30,9 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TDAV_WAVEAPI_CONSUMER_ERROR_BUFF_COUNT	0xFF
+#define TDAV_WAVEAPI_CONSUMER_ERROR_BUFF_COUNT  0xFF
 
-#define tdav_consumer_waveapi_set	tsk_null
+#define tdav_consumer_waveapi_set   tsk_null
 
 static void print_last_error(MMRESULT mmrError, const char* func)
 {
@@ -118,7 +118,7 @@ static int play_wavehdr(tdav_consumer_waveapi_t* consumer, LPWAVEHDR lpHdr)
 
     //
     //
-    //	Fill lpHdr->Data with decoded data
+    //  Fill lpHdr->Data with decoded data
     //
     //
     if((out_size = tdav_consumer_audio_get(TDAV_CONSUMER_AUDIO(consumer), lpHdr->lpData, lpHdr->dwBufferLength))) {
@@ -328,7 +328,7 @@ int tdav_consumer_waveapi_stop(tmedia_consumer_t* self)
 
 
 //
-//	WaveAPI consumer object definition
+//  WaveAPI consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_waveapi_ctor(tsk_object_t * self, va_list * app)

@@ -35,7 +35,7 @@
 TSK_BEGIN_DECLS
 
 #ifndef _WIN32_WCE
-#	include <errno.h>
+#   include <errno.h>
 #else
 #define EPERM           1
 #define ENOENT          2

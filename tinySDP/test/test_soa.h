@@ -22,14 +22,14 @@
 #define _TEST_SOA_H
 
 #define SDP \
-	"v=0\r\n" \
-	"o=carol 28908764872 28908764872 IN IP4 100.3.6.6\r\n" \
-	"s=-\r\n" \
-	"t=0 0\r\n" \
-	"c=IN IP4 192.0.2.4\r\n" \
-	"m=video 0 RTP/AVP 31 34\r\n" \
-	"a=rtpmap:31 H261/90000\r\n" \
-	"a=rtpmap:34 H263/90000\r\n"
+    "v=0\r\n" \
+    "o=carol 28908764872 28908764872 IN IP4 100.3.6.6\r\n" \
+    "s=-\r\n" \
+    "t=0 0\r\n" \
+    "c=IN IP4 192.0.2.4\r\n" \
+    "m=video 0 RTP/AVP 31 34\r\n" \
+    "a=rtpmap:31 H261/90000\r\n" \
+    "a=rtpmap:34 H263/90000\r\n"
 
 
 void test_create_sdp()

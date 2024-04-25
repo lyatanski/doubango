@@ -75,15 +75,15 @@
 //}
 //
 //#define SERIALIZE_N_ADD_ATTRIBUTE(att_name, payload, payload_size) \
-//		attribute = (tnet_stun_attr_t *)tnet_stun_attribute_##att_name##_create(payload, payload_size); \
-//		tnet_stun_attribute_serialize(attribute, output); \
-//		tnet_stun_attribute_pad(attribute, output); \
-//		TSK_OBJECT_SAFE_FREE(attribute);
+//      attribute = (tnet_stun_attr_t *)tnet_stun_attribute_##att_name##_create(payload, payload_size); \
+//      tnet_stun_attribute_serialize(attribute, output); \
+//      tnet_stun_attribute_pad(attribute, output); \
+//      TSK_OBJECT_SAFE_FREE(attribute);
 //
 ///**@ingroup tnet_stun_group
 // * Serializes a STUN message as binary data.
-// * @param [in,out]	self	The STUN message to serialize.
-// * @retval	A buffer holding the binary data (result) if serialization succeed and zero otherwise.
+// * @param [in,out]    self    The STUN message to serialize.
+// * @retval    A buffer holding the binary data (result) if serialization succeed and zero otherwise.
 //**/
 //tsk_buffer_t* tnet_stun_pkt_serialize(const tnet_stun_pkt_t *self)
 //{
@@ -97,7 +97,7 @@
 //
 //    output = tsk_buffer_create_null();
 //
-//    /*	RFC 5389 - 6.  STUN Message Structure
+//    /*    RFC 5389 - 6.  STUN Message Structure
 //       0                   1                   2                   3
 //       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 //      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -170,7 +170,7 @@
 //    }
 //
 //    /* Message Length: The message length MUST contain the size, in bytes, of the message
-//    					not including the 20-byte STUN header.
+//                      not including the 20-byte STUN header.
 //    */
 //    {
 //        // compute length for 'MESSAGE-INTEGRITY'
@@ -221,11 +221,11 @@
 //
 //    /* FINGERPRINT */
 //    if(self->fingerprint) { //JINGLE_ICE
-//        /*	RFC 5389 - 15.5.  FINGERPRINT
-//        	The FINGERPRINT attribute MAY be present in all STUN messages.  The
-//        	value of the attribute is computed as the CRC-32 of the STUN message
-//        	up to (but excluding) the FINGERPRINT attribute itself, XOR'ed with
-//        	the 32-bit value 0x5354554e
+//        /*    RFC 5389 - 15.5.  FINGERPRINT
+//          The FINGERPRINT attribute MAY be present in all STUN messages.  The
+//          value of the attribute is computed as the CRC-32 of the STUN message
+//          up to (but excluding) the FINGERPRINT attribute itself, XOR'ed with
+//          the 32-bit value 0x5354554e
 //        */
 //        uint32_t fingerprint = tsk_pppfcs32(TSK_PPPINITFCS32, output->data, output->size);
 //        fingerprint ^= 0x5354554e;
@@ -245,10 +245,10 @@
 // *
 // * Deserializes a STUN message from binary data.
 // *
-// * @param [in,out]	data	A pointer to the binary data.
-// * @param	size			The size of the binary data.
+// * @param [in,out]    data    A pointer to the binary data.
+// * @param size            The size of the binary data.
 // *
-// * @retval	A STUN message if deserialization succeed or NULL otherwise.
+// * @retval    A STUN message if deserialization succeed or NULL otherwise.
 //**/
 //tnet_stun_pkt_t* tnet_stun_message_deserialize(const uint8_t *data, tsk_size_t size)
 //{
@@ -283,7 +283,7 @@
 //    }
 //
 //    /* Magic Cookie
-//    	==> already set by the constructor and checked by @ref TNET_IS_STUN2
+//      ==> already set by the constructor and checked by @ref TNET_IS_STUN2
 //    */
 //    dataPtr += 4;
 //
@@ -292,7 +292,7 @@
 //    memcpy(message->transac_id, dataPtr, TNET_STUN_TRANSACID_SIZE);
 //    dataPtr += TNET_STUN_TRANSACID_SIZE;
 //
-//    /*	== Parse attributes
+//    /*    == Parse attributes
 //    */
 //    while(dataPtr < dataEnd) {
 //        tnet_stun_attr_t *attribute = tnet_stun_attribute_deserialize(dataPtr, (dataEnd - dataPtr));
@@ -444,7 +444,7 @@
 //
 //
 ////=================================================================================================
-////	STUN2 MESSAGE object definition
+////    STUN2 MESSAGE object definition
 ////
 //static tsk_object_t* tnet_stun_message_ctor(tsk_object_t * self, va_list * app)
 //{

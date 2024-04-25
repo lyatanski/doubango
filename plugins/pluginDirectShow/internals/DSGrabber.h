@@ -30,7 +30,7 @@
 class DSDisplay;
 
 #if defined(_WIN32_WCE)
-#	include "internals/wince/DSISampleGrabberCB.h"
+#   include "internals/wince/DSISampleGrabberCB.h"
 #endif
 
 
@@ -70,20 +70,20 @@ public:
     DSDisplay *preview;
 
 private:
-    int					width;
-    int					height;
-    int					fps;
+    int                 width;
+    int                 height;
+    int                 fps;
 
-    DSBaseCaptureGraph		*graph;
+    DSBaseCaptureGraph      *graph;
 
-    //VideoFrame			*currentFrame;
-    BITMAPINFOHEADER	bitmapInfo;
-    BYTE				*buffer;
+    //VideoFrame            *currentFrame;
+    BITMAPINFOHEADER    bitmapInfo;
+    BYTE                *buffer;
 
-    tsk_mutex_handle_t	*mutex_buffer;
+    tsk_mutex_handle_t  *mutex_buffer;
 
-    BOOL				first_buffer;
-    BOOL				screenCast;
+    BOOL                first_buffer;
+    BOOL                screenCast;
 
     const void* plugin_cb_data;
     tmedia_producer_enc_cb_f plugin_cb;

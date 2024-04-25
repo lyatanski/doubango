@@ -35,14 +35,14 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_EXPIRES_VA_ARGS(value)		tmsrp_header_Expires_def_t, (int64_t)value
+#define TMSRP_HEADER_EXPIRES_VA_ARGS(value)     tmsrp_header_Expires_def_t, (int64_t)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Expires' header.
+/// @brief  MSRP 'Expires' header.
 ///
-/// @par ABNF :  Expires	=  	"Expires:" SP 1*DIGIT
+/// @par ABNF :  Expires    =   "Expires:" SP 1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Expires_s {

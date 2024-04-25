@@ -35,14 +35,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_MIN_EXPIRES_VA_ARGS(value)		tsip_header_Min_Expires_def_t, (int32_t) value
+#define TSIP_HEADER_MIN_EXPIRES_VA_ARGS(value)      tsip_header_Min_Expires_def_t, (int32_t) value
 
-#define TSIP_HEADER_MIN_EXPIRES_NONE				-1
-#define TSIP_HEADER_MIN_EXPIRES_DEFAULT				30
+#define TSIP_HEADER_MIN_EXPIRES_NONE                -1
+#define TSIP_HEADER_MIN_EXPIRES_DEFAULT             30
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Min-Expires' as per RFC 3261.
+/// @brief  SIP header 'Min-Expires' as per RFC 3261.
 ///
 /// @par ABNF: Min-Expires = "Min-Expires" HCOLON delta-seconds
 ///

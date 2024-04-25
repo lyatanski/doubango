@@ -42,7 +42,7 @@
 
 TDAV_BEGIN_DECLS
 
-#define TDAV_CODEC_AMR(self)	((tdav_codec_amr_t*)(self))
+#define TDAV_CODEC_AMR(self)    ((tdav_codec_amr_t*)(self))
 
 typedef enum tdav_codec_amr_type_e {
     tdav_codec_amr_type_nb,

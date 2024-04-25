@@ -30,18 +30,18 @@
 #include "tsk_safeobj.h"
 #include "tsk_debug.h"
 
-#define kTurnTransportFriendlyName		"TURN transport"
-#define kTurnTransportConnectTimeout	1500 // 1.5sec to wait until socket get connected
-#define kTurnStreamChunckMaxSize		0xFFFF // max size of a chunck to form a valid STUN message. Used as a guard.
+#define kTurnTransportFriendlyName      "TURN transport"
+#define kTurnTransportConnectTimeout    1500 // 1.5sec to wait until socket get connected
+#define kTurnStreamChunckMaxSize        0xFFFF // max size of a chunck to form a valid STUN message. Used as a guard.
 #define kTurnStreamOutMaxSize           0xFFFF // max pending data size
 
 #define TNET_TURN_SESSION_TIMOUT_GET_BEST_SEC(u_timeout_in_sec) ((u_timeout_in_sec)*950) // add small delay for code execution
 #define TNET_TURN_SESSION_TIMOUT_GET_BEST_MILLIS(u_timeout_in_millis) (((u_timeout_in_millis)*950)/1000) // add small delay for code execution
 
 #define TNET_TURN_SESSION_TIMER_SCHEDULE_SEC(_p_self, u_id, u_timeout_in_sec) \
-	(u_id) = tsk_timer_manager_schedule((_p_self)->timer.p_mgr, TNET_TURN_SESSION_TIMOUT_GET_BEST_SEC((u_timeout_in_sec)), _tnet_turn_session_timer_callback, (_p_self))
+    (u_id) = tsk_timer_manager_schedule((_p_self)->timer.p_mgr, TNET_TURN_SESSION_TIMOUT_GET_BEST_SEC((u_timeout_in_sec)), _tnet_turn_session_timer_callback, (_p_self))
 #define TNET_TURN_SESSION_TIMER_SCHEDULE_MILLIS(_p_self, u_id, u_timeout_in_millis) \
-	(u_id) = tsk_timer_manager_schedule((_p_self)->timer.p_mgr, TNET_TURN_SESSION_TIMOUT_GET_BEST_MILLIS((u_timeout_in_millis)), _tnet_turn_session_timer_callback, (_p_self))
+    (u_id) = tsk_timer_manager_schedule((_p_self)->timer.p_mgr, TNET_TURN_SESSION_TIMOUT_GET_BEST_MILLIS((u_timeout_in_millis)), _tnet_turn_session_timer_callback, (_p_self))
 
 typedef tnet_stun_pkt_t tnet_turn_pkt_t;
 
@@ -301,19 +301,19 @@ static int __pred_find_peer_by_transacid_sendind(const tsk_list_item_t *item, co
 }
 
 #define _tnet_turn_session_raise_event0(_p_self, _e_type, _u_peer_id) \
-	if ((_p_self)->cb.f_fun) { \
-		(_p_self)->cb.e.e_type = _e_type; \
-		(_p_self)->cb.e.u_peer_id = _u_peer_id; \
-		(_p_self)->cb.f_fun(&(_p_self)->cb.e); \
-	}
+    if ((_p_self)->cb.f_fun) { \
+        (_p_self)->cb.e.e_type = _e_type; \
+        (_p_self)->cb.e.u_peer_id = _u_peer_id; \
+        (_p_self)->cb.f_fun(&(_p_self)->cb.e); \
+    }
 #define _tnet_turn_session_raise_event1(_p_self, _e_type, _u_peer_id, _pc_data_ptr, _u_data_size) \
-	if ((_p_self)->cb.f_fun) { \
-		(_p_self)->cb.e.e_type = _e_type; \
-		(_p_self)->cb.e.u_peer_id = _u_peer_id; \
-		(_p_self)->cb.e.data.pc_data_ptr = _pc_data_ptr; \
-		(_p_self)->cb.e.data.u_data_size = _u_data_size; \
-		(_p_self)->cb.f_fun(&(_p_self)->cb.e); \
-	}
+    if ((_p_self)->cb.f_fun) { \
+        (_p_self)->cb.e.e_type = _e_type; \
+        (_p_self)->cb.e.u_peer_id = _u_peer_id; \
+        (_p_self)->cb.e.data.pc_data_ptr = _pc_data_ptr; \
+        (_p_self)->cb.e.data.u_data_size = _u_data_size; \
+        (_p_self)->cb.f_fun(&(_p_self)->cb.e); \
+    }
 #define _tnet_turn_session_raise_event_alloc_ok(p_self) _tnet_turn_session_raise_event0((p_self), tnet_turn_session_event_type_alloc_ok, kTurnPeerIdInvalid)
 #define _tnet_turn_session_raise_event_alloc_nok(p_self) _tnet_turn_session_raise_event0((p_self), tnet_turn_session_event_type_alloc_nok, kTurnPeerIdInvalid)
 #define _tnet_turn_session_raise_event_refresh_ok(p_self) _tnet_turn_session_raise_event0((p_self), tnet_turn_session_event_type_refresh_ok, kTurnPeerIdInvalid)
@@ -1750,10 +1750,10 @@ static int _tnet_turn_session_process_incoming_pkt(struct tnet_turn_session_s* p
         tnet_turn_peer_t* pc_peer = tsk_null;
 
 #define CANCEL_TIMER(parent, which) \
-	if (TSK_TIMER_ID_IS_VALID(parent->timer.rtt.which.id)) { \
-		tsk_timer_manager_cancel(p_self->timer.p_mgr, parent->timer.rtt.which.id); \
-		parent->timer.rtt.which.id = TSK_INVALID_TIMER_ID; \
-	}
+if (TSK_TIMER_ID_IS_VALID(parent->timer.rtt.which.id)) { \
+    tsk_timer_manager_cancel(p_self->timer.p_mgr, parent->timer.rtt.which.id); \
+    parent->timer.rtt.which.id = TSK_INVALID_TIMER_ID; \
+}
 
         // Find request
         if (p_self->p_pkt_alloc && tnet_stun_utils_transac_id_cmp(p_self->p_pkt_alloc->transac_id, pc_pkt->transac_id) == 0) {
@@ -2281,17 +2281,17 @@ static int _tnet_turn_session_timer_callback(const void* pc_arg, tsk_timer_id_t 
 #undef _tnet_turn_session_raise_event_refresh_nok
 #define _tnet_turn_session_raise_event_refresh_nok(_self, _u_peer_id) _tnet_turn_session_raise_event0((_self), tnet_turn_session_event_type_refresh_nok, kTurnPeerIdInvalid)
 #define RETRANSMIT(parent, which, u_peer_id) \
-	parent->timer.rtt.which.u_timeout <<= 1; \
-	if (parent->timer.rtt.which.u_timeout <= kStunUdpRetransmitTimoutMaxInMs) { \
-		if ((ret = _tnet_turn_session_send_pkt(p_ss, parent->p_pkt_##which))) { \
-			parent->e_##which##_state = tnet_stun_state_nok; \
-			_tnet_turn_session_raise_event_##which##_nok(p_ss, u_peer_id); \
-			goto bail; \
-		} \
-		parent->timer.rtt.which.id = tsk_timer_manager_schedule(p_ss->timer.p_mgr, parent->timer.rtt.which.u_timeout, _tnet_turn_session_timer_callback, p_ss); \
-	} else { \
-		_tnet_turn_session_raise_event_##which##_nok(p_ss, u_peer_id); \
-	}
+    parent->timer.rtt.which.u_timeout <<= 1; \
+    if (parent->timer.rtt.which.u_timeout <= kStunUdpRetransmitTimoutMaxInMs) { \
+        if ((ret = _tnet_turn_session_send_pkt(p_ss, parent->p_pkt_##which))) { \
+            parent->e_##which##_state = tnet_stun_state_nok; \
+            _tnet_turn_session_raise_event_##which##_nok(p_ss, u_peer_id); \
+            goto bail; \
+        } \
+        parent->timer.rtt.which.id = tsk_timer_manager_schedule(p_ss->timer.p_mgr, parent->timer.rtt.which.u_timeout, _tnet_turn_session_timer_callback, p_ss); \
+    } else { \
+        _tnet_turn_session_raise_event_##which##_nok(p_ss, u_peer_id); \
+    }
 
     tnet_turn_session_t* p_ss = (tnet_turn_session_t*)pc_arg;
     tnet_turn_peer_t* pc_peer;

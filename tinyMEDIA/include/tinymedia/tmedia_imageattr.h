@@ -35,7 +35,7 @@
 
 TMEDIA_BEGIN_DECLS
 
-#define TMEDIA_imageattr_ARRAY_MAX_SIZE	16
+#define TMEDIA_imageattr_ARRAY_MAX_SIZE 16
 
 typedef int32_t xyvalue_t;
 typedef double qvalue_t;

@@ -29,7 +29,7 @@
 #define CHECK_HR(x) { HRESULT __hr__ = (x); if (FAILED(__hr__)) { TSK_DEBUG_ERROR("Operation Failed (%08x)", __hr__); goto bail; } }
 
 #if !defined(PLUGIN_AUDIO_DSP_MILLIS_TO_100NS)
-#	define PLUGIN_AUDIO_DSP_MILLIS_TO_100NS(MILLIS) (((LONGLONG)(MILLIS)) * 10000ui64)
+#   define PLUGIN_AUDIO_DSP_MILLIS_TO_100NS(MILLIS) (((LONGLONG)(MILLIS)) * 10000ui64)
 #endif
 
 #undef SafeRelease

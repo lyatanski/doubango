@@ -56,28 +56,28 @@ tsms_alphabet_t;
 /* ======================== TPDU ========================
 =========================================================*/
 
-/** 3GPP TS 23.040 - 9.2.3.1	TP Message Type Indicator (TP MTI) */
+/** 3GPP TS 23.040 - 9.2.3.1    TP Message Type Indicator (TP MTI) */
 typedef enum tsms_tpdu_mti_e {
-    /*0 0*/ tsms_tpdu_mti_deliver_mt		= 0x00,	/**< SMS-DELIVER (in the direction SC to MS)*/
-    /*0 0*/ tsms_tpdu_mti_deliver_report_mo	= 0x00,	/**< SMS-DELIVER-REPORT (in the direction MS to SC)*/
-    /*1 0*/ tsms_tpdu_mti_status_report_mt	= 0x02,	/**< SMS-STATUS-REPORT (in the direction SC to MS)*/
-    /*1 0*/ tsms_tpdu_mti_command_mo		= 0x02,	/**< SMS-COMMAND (in the direction MS to SC)*/
-    /*0 1*/ tsms_tpdu_mti_submit_mo			= 0x01,	/**< SMS-SUBMIT (in the direction MS to SC)*/
-    /*0 1*/ tsms_tpdu_mti_submit_report_mt	= 0x01,	/**< SMS-SUBMIT-REPORT (in the direction SC to MS)*/
-    /*1 1*/ tsms_tpdu_mti_reserved			= 0x03	/**< Reserved*/
+    /*0 0*/ tsms_tpdu_mti_deliver_mt        = 0x00, /**< SMS-DELIVER (in the direction SC to MS)*/
+    /*0 0*/ tsms_tpdu_mti_deliver_report_mo = 0x00, /**< SMS-DELIVER-REPORT (in the direction MS to SC)*/
+    /*1 0*/ tsms_tpdu_mti_status_report_mt  = 0x02, /**< SMS-STATUS-REPORT (in the direction SC to MS)*/
+    /*1 0*/ tsms_tpdu_mti_command_mo        = 0x02, /**< SMS-COMMAND (in the direction MS to SC)*/
+    /*0 1*/ tsms_tpdu_mti_submit_mo         = 0x01, /**< SMS-SUBMIT (in the direction MS to SC)*/
+    /*0 1*/ tsms_tpdu_mti_submit_report_mt  = 0x01, /**< SMS-SUBMIT-REPORT (in the direction SC to MS)*/
+    /*1 1*/ tsms_tpdu_mti_reserved          = 0x03  /**< Reserved*/
 }
 tsms_tpdu_mti_t;
 
-#define TSMS_TPDU_MTI_IS_RESERVED(mti)	((mti) == tsms_tpdu_mti_reserved)
-#define TSMS_TPDU_MTI_IS_MO(mti)		(((mti) == tsms_tpdu_mti_deliver_report_mo) || ((mti) == tsms_tpdu_mti_command_mo) || ((mti) == tsms_tpdu_mti_submit_mo))
+#define TSMS_TPDU_MTI_IS_RESERVED(mti)  ((mti) == tsms_tpdu_mti_reserved)
+#define TSMS_TPDU_MTI_IS_MO(mti)        (((mti) == tsms_tpdu_mti_deliver_report_mo) || ((mti) == tsms_tpdu_mti_command_mo) || ((mti) == tsms_tpdu_mti_submit_mo))
 
-/** 3GPP TS 23.040 - 9.2.3.1	TP Message Type Indicator (TP MTI) */
+/** 3GPP TS 23.040 - 9.2.3.1    TP Message Type Indicator (TP MTI) */
 typedef enum tsms_tpdu_vpf_e {
     // Bit4 and Bit3
-    /*0	0*/	tsms_tpdu_vpf_not_present = 0x00, /**< TP VP field not present	*/
-    /*1	0*/	tsms_tpdu_vpf_relative = 0x02, /**< TP VP field present - relative format*/
-    /*0	1*/	tsms_tpdu_vpf_enhanced = 0x01, /**< TP-VP field present - enhanced format */
-    /*1	1*/	tsms_tpdu_vpf_absolute = 0x03, /**< TP VP field present - absolute format */
+    /*0 0*/ tsms_tpdu_vpf_not_present = 0x00, /**< TP VP field not present  */
+    /*1 0*/ tsms_tpdu_vpf_relative = 0x02, /**< TP VP field present - relative format*/
+    /*0 1*/ tsms_tpdu_vpf_enhanced = 0x01, /**< TP-VP field present - enhanced format */
+    /*1 1*/ tsms_tpdu_vpf_absolute = 0x03, /**< TP VP field present - absolute format */
 }
 tsms_tpdu_vpf_t;
 
@@ -150,18 +150,18 @@ TINYSMS_API char* tsms_tpdu_message_get_payload(const tsms_tpdu_message_t* self)
 TINYSMS_API int tsms_tpdu_message_set_userdata(tsms_tpdu_message_t* self, const tsk_buffer_t* udata, tsms_alphabet_t alpha);
 int tsms_tpdu_message_deinit(tsms_tpdu_message_t* self);
 
-#define TSMS_TPDU_DEFAULT_PID			0x00					/**< 3GPP TS 23.040 section 9.2.3.9 - TP-Protocol-Identifier (TP-PID) */
-#define TSMS_TPDU_DEFAULT_DCS			0x00					/**< 3GPP TS 23.040 section  9.2.3.10 - TP-Data-Coding-Scheme (TP-DCS) (default class, 7 bit message) + GSM 03.38*/
-#define TSMS_TPDU_DEFAULT_VP			0xAA					/**< 3GPP TS 23.040 section 9.2.3.12 - TP-Validity-Period */
-#define TSMS_TPDU_DEFAULT_VPF			tsms_tpdu_vpf_relative	/**< 3GPP TS 23.040 section 9.2.3.3 - TP Validity Period Format (TP VPF) */
-#define TSMS_TPDU_DEFAULT_FCS			0xFF					/**< 3GPP TS 23.040 section  9.2.3.22 - TP-Failure-Cause (TP-FCS) */
-#define TSMS_TPDU_DEFAULT_PI			0x00					/**< 3GPP TS 23.040 section  9.2.3.27 - TP-Parameter-Indicator (TP-PI) */
-#define TSMS_TPDU_DEFAULT_SCTS			"00000000000000"		/**< 3GPP TS 23.040 section  9.2.3.11 - TP-Service-Centre-Time-Stamp (TP-SCTS) */
-#define TSMS_TPDU_DEFAULT_MMS			0x01					/**< 3GPP TS 23.040 section  9.2.3.2 - TP More Messages to Send (TP-MMS) */
+#define TSMS_TPDU_DEFAULT_PID           0x00                    /**< 3GPP TS 23.040 section 9.2.3.9 - TP-Protocol-Identifier (TP-PID) */
+#define TSMS_TPDU_DEFAULT_DCS           0x00                    /**< 3GPP TS 23.040 section  9.2.3.10 - TP-Data-Coding-Scheme (TP-DCS) (default class, 7 bit message) + GSM 03.38*/
+#define TSMS_TPDU_DEFAULT_VP            0xAA                    /**< 3GPP TS 23.040 section 9.2.3.12 - TP-Validity-Period */
+#define TSMS_TPDU_DEFAULT_VPF           tsms_tpdu_vpf_relative  /**< 3GPP TS 23.040 section 9.2.3.3 - TP Validity Period Format (TP VPF) */
+#define TSMS_TPDU_DEFAULT_FCS           0xFF                    /**< 3GPP TS 23.040 section  9.2.3.22 - TP-Failure-Cause (TP-FCS) */
+#define TSMS_TPDU_DEFAULT_PI            0x00                    /**< 3GPP TS 23.040 section  9.2.3.27 - TP-Parameter-Indicator (TP-PI) */
+#define TSMS_TPDU_DEFAULT_SCTS          "00000000000000"        /**< 3GPP TS 23.040 section  9.2.3.11 - TP-Service-Centre-Time-Stamp (TP-SCTS) */
+#define TSMS_TPDU_DEFAULT_MMS           0x01                    /**< 3GPP TS 23.040 section  9.2.3.2 - TP More Messages to Send (TP-MMS) */
 
 /**< Indicates whether to append SMSC address at the begining of the TPDU content.
 */
-#define TSMS_TPDU_APPEND_SMSC	0
+#define TSMS_TPDU_APPEND_SMSC   0
 
 /* ======================== RPDU ========================
 =========================================================*/
@@ -169,20 +169,20 @@ int tsms_tpdu_message_deinit(tsms_tpdu_message_t* self);
 /** RP-MTI types as per 3GPP TS 24.011 section 8.2.2
 * 3bit field located in the first octet of all RP-Messages. */
 typedef enum tsms_rpdu_type_e {
-    /*000*/ tsms_rpdu_type_data_mo		= 0x00, /**< RP-DATA message ms->n */
-    /*001*/ tsms_rpdu_type_data_mt		= 0x01, /**< RP-DATA message n->ms */
-    /*010*/ tsms_rpdu_type_ack_mo		= 0x02, /**< RP-ACK message ms->n */
-    /*011*/ tsms_rpdu_type_ack_mt		= 0x03, /**< RP-ACK message n->ms */
-    /*100*/ tsms_rpdu_type_error_mo		= 0x04, /**< RP-ERROR message ms->n */
-    /*101*/ tsms_rpdu_type_error_mt		= 0x05, /**< RP-ERROR message n->ms */
-    /*110*/ tsms_rpdu_type_smma_mo		= 0x06, /**< RP-SMMA message ms->n */
+    /*000*/ tsms_rpdu_type_data_mo      = 0x00, /**< RP-DATA message ms->n */
+    /*001*/ tsms_rpdu_type_data_mt      = 0x01, /**< RP-DATA message n->ms */
+    /*010*/ tsms_rpdu_type_ack_mo       = 0x02, /**< RP-ACK message ms->n */
+    /*011*/ tsms_rpdu_type_ack_mt       = 0x03, /**< RP-ACK message n->ms */
+    /*100*/ tsms_rpdu_type_error_mo     = 0x04, /**< RP-ERROR message ms->n */
+    /*101*/ tsms_rpdu_type_error_mt     = 0x05, /**< RP-ERROR message n->ms */
+    /*110*/ tsms_rpdu_type_smma_mo      = 0x06, /**< RP-SMMA message ms->n */
 }
 tsms_rpdu_type_t;
 
 #define TSMS_RPDU_TYPE_IS_MO(type) (((type) == tsms_rpdu_type_data_mo) \
-									|| ((type) == tsms_rpdu_type_ack_mo) \
-									|| ((type) == tsms_rpdu_type_error_mo) \
-									|| ((type) == tsms_rpdu_type_smma_mo))
+                                    || ((type) == tsms_rpdu_type_ack_mo) \
+                                    || ((type) == tsms_rpdu_type_error_mo) \
+                                    || ((type) == tsms_rpdu_type_smma_mo))
 
 typedef struct tsms_rpdu_message_s {
     TSK_DECLARE_OBJECT;

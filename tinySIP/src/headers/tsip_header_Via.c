@@ -37,7 +37,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 142 "./ragel/tsip_parser_header_Via.rl" */
@@ -96,17 +96,17 @@ int tsip_header_Via_serialize(const tsip_header_t* header, tsk_buffer_t* output)
                                    Via->comp ? Via->comp : "",
 
                                    Via->rport>=0 ? (Via->rport>0?";rport=":";rport") : "",
-                                       Via->rport>0 ? rport : "",
+                                   Via->rport>0 ? rport : "",
 
-                                       Via->ttl>=0 ? (Via->ttl>0?";ttl=":";ttl") : "",
-                                       Via->ttl>0 ? ttl : "",
+                                   Via->ttl>=0 ? (Via->ttl>0?";ttl=":";ttl") : "",
+                                   Via->ttl>0 ? ttl : "",
 
-                                       Via->received ? ";received=" : "",
-                                       Via->received ? Via->received : "",
+                                   Via->received ? ";received=" : "",
+                                   Via->received ? Via->received : "",
 
-                                       Via->branch ? ";branch=" : "",
-                                       Via->branch ? Via->branch : ""
-                                      );
+                                   Via->branch ? ";branch=" : "",
+                                   Via->branch ? Via->branch : ""
+                                  );
     }
     return -1;
 }
@@ -1317,7 +1317,7 @@ _match:
 
             }
             break;
-            /* #line 1314 "./src/headers/tsip_header_Via.c" */
+                /* #line 1314 "./src/headers/tsip_header_Via.c" */
             }
         }
 
@@ -1360,7 +1360,7 @@ _out: {
 
 
 //========================================================
-//	Via header object definition
+//  Via header object definition
 //
 
 static tsk_object_t* tsip_header_Via_ctor(tsk_object_t *self, va_list * app)

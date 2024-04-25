@@ -110,7 +110,7 @@ tsip_header_Proxy_Authenticate_t *tsip_header_Proxy_Authenticate_parse(const cha
 
 
 //========================================================
-//	Proxy_Authenticate header object definition
+//  Proxy_Authenticate header object definition
 //
 
 /**@ingroup tsip_header_Proxy_Authenticate_group

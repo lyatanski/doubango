@@ -38,13 +38,16 @@ public:
     ~AudioResampler();
 
 public:
-    inline bool isValid() {
+    inline bool isValid()
+    {
         return (m_pWrappedResampler != tsk_null);
     }
-    inline uint32_t getOutputRequiredSizeInShort() {
+    inline uint32_t getOutputRequiredSizeInShort()
+    {
         return (m_nOutFreq * m_nFrameDuration)/1000;
     }
-    inline uint32_t getInputRequiredSizeInShort() {
+    inline uint32_t getInputRequiredSizeInShort()
+    {
         return (m_nInFreq * m_nFrameDuration)/1000;
     }
     uint32_t process(const void* pInData, uint32_t nInSizeInBytes, void* pOutData, uint32_t nOutSizeInBytes);

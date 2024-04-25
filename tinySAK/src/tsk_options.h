@@ -38,9 +38,9 @@
 
 TSK_BEGIN_DECLS
 
-#define TSK_OPTION_VA_ARGS(id, value)		tsk_option_def_t, (int)id, (const char*)value
+#define TSK_OPTION_VA_ARGS(id, value)       tsk_option_def_t, (int)id, (const char*)value
 
-#define TSK_OPTION(self)				((tsk_option_t*)(self))
+#define TSK_OPTION(self)                ((tsk_option_t*)(self))
 
 /**@ingroup tsk_options_group
 * Parameter.

@@ -38,7 +38,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_DIALOG_INVITE(self)							((tsip_dialog_invite_t*)(self))
+#define TSIP_DIALOG_INVITE(self)                            ((tsip_dialog_invite_t*)(self))
 
 typedef struct tsip_dialog_invite {
     TSIP_DECLARE_DIALOG;

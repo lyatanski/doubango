@@ -24,7 +24,7 @@
 
 #include "tinymedia/tmedia.h"
 
-#define DUMMY(self)	((dummy_t*)(self))
+#define DUMMY(self) ((dummy_t*)(self))
 
 typedef struct dummy_s {
     TMED_DECLARE_MEDIA;

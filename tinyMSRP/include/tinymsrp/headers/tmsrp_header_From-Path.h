@@ -37,12 +37,12 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_FROM_PATH_VA_ARGS(uri)		tmsrp_header_From_Path_def_t, (const tmsrp_uri_t*)uri
+#define TMSRP_HEADER_FROM_PATH_VA_ARGS(uri)     tmsrp_header_From_Path_def_t, (const tmsrp_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'From-Path' header.
+/// @brief  MSRP 'From-Path' header.
 ///
 /// @par ABNF :  "To-Path:" SP MSRP-URI  *( SP MSRP-URI )
 ///

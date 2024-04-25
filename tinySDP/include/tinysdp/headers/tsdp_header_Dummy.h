@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_DUMMY_VA_ARGS(name, value)		tsdp_header_Dummy_def_t, (char)name, (const char*)value
+#define TSDP_HEADER_DUMMY_VA_ARGS(name, value)      tsdp_header_Dummy_def_t, (char)name, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP Dummy header.
+/// @brief  SDP Dummy header.
 ///
 /// @par ABNF : alpha SP* "=" SP*<: any*
 ///

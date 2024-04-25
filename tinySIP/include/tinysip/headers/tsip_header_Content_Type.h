@@ -35,26 +35,26 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_CONTENT_TYPE_VA_ARGS(type)	tsip_header_Content_Type_def_t, (const char*)type
+#define TSIP_HEADER_CONTENT_TYPE_VA_ARGS(type)  tsip_header_Content_Type_def_t, (const char*)type
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Content-Type'.
+/// @brief  SIP header 'Content-Type'.
 ///
 /// @par ABNF= Content-Type / c
-///					Content-Type	= 	( "Content-Type" / "c" ) HCOLON media-type
-///					media-type	= 	m-type SLASH m-subtype *( SEMI m-parameter)
-/// 				m-type	= 	discrete-type / composite-type
-///					discrete-type	= 	"text" / "image" / "audio" / "video" / "application" / extension-token
-/// 				composite-type	= 	"message" / "multipart" / extension-token
-/// 				extension-token	= 	ietf-token / x-token
-/// 				ietf-token	= 	token
-/// 				x-token	= 	"x-" token
-/// 				m-subtype	= 	extension-token / iana-token
-/// 				iana-token	= 	token
-/// 				m-parameter	= 	m-attribute EQUAL m-value
-/// 				m-attribute	= 	token
-/// 				m-value	= 	token / quoted-string
+///                 Content-Type    =   ( "Content-Type" / "c" ) HCOLON media-type
+///                 media-type  =   m-type SLASH m-subtype *( SEMI m-parameter)
+///                 m-type  =   discrete-type / composite-type
+///                 discrete-type   =   "text" / "image" / "audio" / "video" / "application" / extension-token
+///                 composite-type  =   "message" / "multipart" / extension-token
+///                 extension-token =   ietf-token / x-token
+///                 ietf-token  =   token
+///                 x-token =   "x-" token
+///                 m-subtype   =   extension-token / iana-token
+///                 iana-token  =   token
+///                 m-parameter =   m-attribute EQUAL m-value
+///                 m-attribute =   token
+///                 m-value =   token / quoted-string
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Content_Type_s {

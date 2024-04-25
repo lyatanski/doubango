@@ -255,7 +255,7 @@ int tsip_dialog_invite_server_init(tsip_dialog_invite_t *self)
                        TSK_FSM_ADD(_fsm_state_Started, _fsm_action_iINVITE, _fsm_cond_use_early_media, _fsm_state_InProgress, s0000_Started_2_InProgress_X_iINVITE, "s0000_Started_2_InProgress_X_iINVITE"),
                        // Started -> (non-100rel and non-QoS, referred to as "basic") -> Ringing
                        TSK_FSM_ADD_ALWAYS(_fsm_state_Started, _fsm_action_iINVITE, _fsm_state_Ringing, s0000_Started_2_Ringing_X_iINVITE, "s0000_Started_2_Ringing_X_iINVITE"),
-                       
+
                        /*=======================
                         * === PreChecking ===
                         */
@@ -314,7 +314,7 @@ int tsip_dialog_invite_server_init(tsip_dialog_invite_t *self)
 }
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 
@@ -346,15 +346,15 @@ int s0000_Started_2_PreChecking_X_iINVITE(va_list *app)
 {
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
     tsip_request_t *request = va_arg(*app, tsip_request_t *);
-    
+
     /* update last INVITE */
     TSK_OBJECT_SAFE_FREE(self->last_iInvite);
     self->last_iInvite = tsk_object_ref(request);
-    
+
     /* alert the user (session) */
     TSIP_DIALOG_INVITE_SIGNAL(self, tsip_i_prechecking,
                               tsip_event_code_dialog_request_prechecking, "Pre-checking incoming Call", request);
-    
+
     return 0;
 }
 
@@ -363,8 +363,8 @@ int s0000_Started_2_Ringing_X_iINVITE(va_list *app)
 {
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
     tsip_request_t *request = self->is_conditional_ringing_enabled // When called from pre-checking state (s0000_PreChecking_2_Ringing_X_Accept) then, there is no 'request embedded'
-    ? tsk_object_ref(self->last_iInvite)
-    : va_arg(*app, tsip_request_t *);
+                              ? tsk_object_ref(self->last_iInvite)
+                              : va_arg(*app, tsip_request_t *);
     const tsip_header_Session_Expires_t* hdr_SessionExpires;
 
     /* we are not the client */
@@ -410,8 +410,8 @@ int s0000_Started_2_InProgress_X_iINVITE(va_list *app)
 {
     tsip_dialog_invite_t *self = va_arg(*app, tsip_dialog_invite_t *);
     tsip_request_t *request = self->is_conditional_ringing_enabled // When called from pre-checking state (s0000_PreChecking_2_InProgress_X_Accept) then, there is no 'request embedded'
-    ? tsk_object_ref(self->last_iInvite)
-    : va_arg(*app, tsip_request_t *);
+                              ? tsk_object_ref(self->last_iInvite)
+                              : va_arg(*app, tsip_request_t *);
 
     /* We are not the client */
     self->is_client = tsk_false;
@@ -424,14 +424,14 @@ int s0000_Started_2_InProgress_X_iINVITE(va_list *app)
     tsip_dialog_update_2(TSIP_DIALOG(self), request);
 
     /* Send In Progress
-    	RFC 3262 - 3 UAS Behavior
+        RFC 3262 - 3 UAS Behavior
 
-    	The provisional response to be sent reliably is constructed by the
-    	UAS core according to the procedures of Section 8.2.6 of RFC 3261.
-    	In addition, it MUST contain a Require header field containing the
-    	option tag 100rel, and MUST include an RSeq header field.  The value
-    	of the header field for the first reliable provisional response in a
-    	transaction MUST be between 1 and 2**31 - 1.
+        The provisional response to be sent reliably is constructed by the
+        UAS core according to the procedures of Section 8.2.6 of RFC 3261.
+        In addition, it MUST contain a Require header field containing the
+        option tag 100rel, and MUST include an RSeq header field.  The value
+        of the header field for the first reliable provisional response in a
+        transaction MUST be between 1 and 2**31 - 1.
     */
     self->rseq = (rand() ^ rand()) % (0x00000001 << 31);
     self->required._100rel = tsk_true;
@@ -482,9 +482,9 @@ int s0000_InProgress_2_InProgress_X_iPRACK(va_list *app)
     }
 
     /*
-    	1. Alice sends an initial INVITE without offer
-    	2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
-    	3. Alice's answer is sent in the PRACK response
+        1. Alice sends an initial INVITE without offer
+        2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
+        3. Alice's answer is sent in the PRACK response
     */
     if(!self->msession_mgr->sdp.ro) {
         if(TSIP_MESSAGE_HAS_CONTENT(request)) {
@@ -521,9 +521,9 @@ int s0000_InProgress_2_Ringing_X_iPRACK(va_list *app)
     }
 
     /*
-    	1. Alice sends an initial INVITE without offer
-    	2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
-    	3. Alice's answer is sent in the PRACK response
+        1. Alice sends an initial INVITE without offer
+        2. Bob's answer is sent in the first reliable provisional response, in this case it's a 1xx INVITE response
+        3. Alice's answer is sent in the PRACK response
     */
     if(self->msession_mgr && !self->msession_mgr->sdp.ro) {
         if(TSIP_MESSAGE_HAS_CONTENT(request)) {
@@ -719,8 +719,8 @@ int s0000_Ringing_2_Connected_X_Accept(va_list *app)
     if(self->stimers.timer.timeout) {
         if(self->stimers.is_refresher) {
             /* RFC 4028 - 9. UAS Behavior
-            	It is RECOMMENDED that this refresh be sent oncehalf the session interval has elapsed.
-            	Additional procedures for this refresh are described in Section 10.
+                It is RECOMMENDED that this refresh be sent oncehalf the session interval has elapsed.
+                Additional procedures for this refresh are described in Section 10.
             */
             tsip_dialog_invite_stimers_schedule(self, (self->stimers.timer.timeout*1000)/2);
         }
@@ -830,7 +830,7 @@ int s0000_Any_2_Any_X_timer100rel(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 int send_UNSUPPORTED(tsip_dialog_invite_t* self, const tsip_request_t* request, const char* option)

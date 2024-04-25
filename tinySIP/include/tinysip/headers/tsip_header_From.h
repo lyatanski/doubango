@@ -36,16 +36,16 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_FROM_VA_ARGS(display_name, uri, tag)	tsip_header_From_def_t, (const char*)display_name, (const tsip_uri_t*)uri, (const char*)tag
+#define TSIP_HEADER_FROM_VA_ARGS(display_name, uri, tag)    tsip_header_From_def_t, (const char*)display_name, (const tsip_uri_t*)uri, (const char*)tag
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'From' .
+/// @brief  SIP header 'From' .
 ///
-/// @par ABNF: From	= 	( "From" / "f" ) HCOLON from-spec
-/// from-spec	= 	( name-addr / addr-spec ) *( SEMI from-param )
-/// from-param	= 	tag-param / generic-param
-/// tag-param	= 	"tag" EQUAL token
+/// @par ABNF: From =   ( "From" / "f" ) HCOLON from-spec
+/// from-spec   =   ( name-addr / addr-spec ) *( SEMI from-param )
+/// from-param  =   tag-param / generic-param
+/// tag-param   =   "tag" EQUAL token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_From_s {

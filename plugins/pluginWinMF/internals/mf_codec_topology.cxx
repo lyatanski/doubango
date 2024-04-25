@@ -22,7 +22,7 @@
 #include "tsk_debug.h"
 
 //
-//	 MFCodecTopologySampleGrabberCB
+//   MFCodecTopologySampleGrabberCB
 //
 
 class MFCodecTopologySampleGrabberCB : public IMFSampleGrabberSinkCallback
@@ -31,17 +31,20 @@ class MFCodecTopologySampleGrabberCB : public IMFSampleGrabberSinkCallback
     MFCodecTopology *m_pCodecTopology;
 
     MFCodecTopologySampleGrabberCB(MFCodecTopology *pCodecTopology)
-        : m_cRef(1) {
+        : m_cRef(1)
+    {
         m_pCodecTopology = pCodecTopology;
         m_pCodecTopology->AddRef();
     }
-    virtual ~MFCodecTopologySampleGrabberCB() {
+    virtual ~MFCodecTopologySampleGrabberCB()
+    {
         SafeRelease(&m_pCodecTopology);
     }
 
 public:
     // Create a new instance of the object.
-    static HRESULT MFCodecTopologySampleGrabberCB::CreateInstance(MFCodecTopology *pCodecTopology, MFCodecTopologySampleGrabberCB **ppCB) {
+    static HRESULT MFCodecTopologySampleGrabberCB::CreateInstance(MFCodecTopology *pCodecTopology, MFCodecTopologySampleGrabberCB **ppCB)
+    {
         *ppCB = new (std::nothrow) MFCodecTopologySampleGrabberCB(pCodecTopology);
 
         if (ppCB == NULL) {
@@ -50,7 +53,8 @@ public:
         return S_OK;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::QueryInterface(REFIID riid, void** ppv) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::QueryInterface(REFIID riid, void** ppv)
+    {
         static const QITAB qit[] = {
             QITABENT(MFCodecTopologySampleGrabberCB, IMFSampleGrabberSinkCallback),
             QITABENT(MFCodecTopologySampleGrabberCB, IMFClockStateSink),
@@ -59,11 +63,13 @@ public:
         return QISearch(this, qit, riid, ppv);
     }
 
-    STDMETHODIMP_(ULONG) MFCodecTopologySampleGrabberCB::AddRef() {
+    STDMETHODIMP_(ULONG) MFCodecTopologySampleGrabberCB::AddRef()
+    {
         return InterlockedIncrement(&m_cRef);
     }
 
-    STDMETHODIMP_(ULONG) MFCodecTopologySampleGrabberCB::Release() {
+    STDMETHODIMP_(ULONG) MFCodecTopologySampleGrabberCB::Release()
+    {
         ULONG cRef = InterlockedDecrement(&m_cRef);
         if (cRef == 0) {
             delete this;
@@ -74,34 +80,40 @@ public:
 
     // IMFClockStateSink methods
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockStart(MFTIME hnsSystemTime, LONGLONG llClockStartOffset) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockStart(MFTIME hnsSystemTime, LONGLONG llClockStartOffset)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnClockStart(%lld, %lld)", hnsSystemTime, llClockStartOffset);
         return S_OK;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockStop(MFTIME hnsSystemTime) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockStop(MFTIME hnsSystemTime)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnClockStop(%lld)", hnsSystemTime);
         return S_OK;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockPause(MFTIME hnsSystemTime) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockPause(MFTIME hnsSystemTime)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnClockPause(%lld)", hnsSystemTime);
         return S_OK;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockRestart(MFTIME hnsSystemTime) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockRestart(MFTIME hnsSystemTime)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnClockRestart(%lld)", hnsSystemTime);
         return S_OK;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockSetRate(MFTIME hnsSystemTime, float flRate) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnClockSetRate(MFTIME hnsSystemTime, float flRate)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnClockSetRate(%lld, %f)", hnsSystemTime, flRate);
         return S_OK;
     }
 
     // IMFSampleGrabberSink methods.
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnSetPresentationClock(IMFPresentationClock* pClock) {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnSetPresentationClock(IMFPresentationClock* pClock)
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnSetPresentationClock");
         return S_OK;
     }
@@ -109,7 +121,8 @@ public:
     STDMETHODIMP MFCodecTopologySampleGrabberCB::OnProcessSample(
         REFGUID guidMajorMediaType, DWORD dwSampleFlags,
         LONGLONG llSampleTime, LONGLONG llSampleDuration, const BYTE * pSampleBuffer,
-        DWORD dwSampleSize) {
+        DWORD dwSampleSize)
+    {
         HRESULT hr = S_OK;
         IMFSample *pSample = NULL;
         IMFMediaBuffer* pMediaBuffer = NULL;
@@ -132,14 +145,15 @@ bail:
         return hr;
     }
 
-    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnShutdown() {
+    STDMETHODIMP MFCodecTopologySampleGrabberCB::OnShutdown()
+    {
         TSK_DEBUG_INFO("MFCodecTopologySampleGrabberCB::OnShutdown");
         return S_OK;
     }
 };
 
 //
-//	 MFCodecTopology
+//   MFCodecTopology
 //
 
 
@@ -416,7 +430,7 @@ bail:
 }
 
 //
-//	MFCodecVideoTopology
+//  MFCodecVideoTopology
 //
 
 

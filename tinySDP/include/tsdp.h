@@ -35,7 +35,7 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_CTX_CREATE()	tsk_object_new(tsdp_ctx_def_t)
+#define TSDP_CTX_CREATE()   tsk_object_new(tsdp_ctx_def_t)
 
 typedef void tsdp_ctx_handle_t;
 

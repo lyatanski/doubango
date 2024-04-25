@@ -28,28 +28,28 @@
 #include "tinynet_config.h"
 
 #if TNET_UNDER_WINDOWS
-#	include	<winsock2.h>
-#	include	<ws2tcpip.h>
-#	if !TNET_UNDER_WINDOWS_RT
-#		include <iphlpapi.h>
-#	endif
+#   include <winsock2.h>
+#   include <ws2tcpip.h>
+#   if !TNET_UNDER_WINDOWS_RT
+#       include <iphlpapi.h>
+#   endif
 #else
-#	include <sys/types.h>
-#	include <sys/socket.h>
-#	include <sys/select.h>
-#	include <netinet/in.h>
-#	include <arpa/inet.h>
-#	include <netdb.h>
-#	include <fcntl.h>
-#	include <sys/ioctl.h>
-#	include <unistd.h>
-#	include <net/if.h>
-#	if HAVE_IFADDRS_H
-#		include <ifaddrs.h>
-#	endif
-#	if HAVE_POLL_H
-#		include <poll.h>
-#	endif /* HAVE_POLL_H */
+#   include <sys/types.h>
+#   include <sys/socket.h>
+#   include <sys/select.h>
+#   include <netinet/in.h>
+#   include <arpa/inet.h>
+#   include <netdb.h>
+#   include <fcntl.h>
+#   include <sys/ioctl.h>
+#   include <unistd.h>
+#   include <net/if.h>
+#   if HAVE_IFADDRS_H
+#       include <ifaddrs.h>
+#   endif
+#   if HAVE_POLL_H
+#       include <poll.h>
+#   endif /* HAVE_POLL_H */
 #endif
 
 #if defined(TNET_HAVE_SCTP)
@@ -62,11 +62,11 @@
 TNET_BEGIN_DECLS
 
 #if !defined(TNET_FINGERPRINT_MAX)
-#	define TNET_FINGERPRINT_MAX	256
+#   define TNET_FINGERPRINT_MAX 256
 #endif /* TNET_FINGERPRINT_MAX */
 
 #if !defined(TNET_DTLS_MTU)
-#	define TNET_DTLS_MTU 900
+#   define TNET_DTLS_MTU 900
 #endif /* TNET_DTLS_MTU */
 
 typedef int tnet_fd_t;
@@ -123,18 +123,18 @@ static const char* TNET_DTLS_HASH_NAMES[TNET_DTLS_HASH_TYPE_MAX] = {
 };
 
 #if TNET_UNDER_WINDOWS
-#	define TNET_INVALID_SOCKET				INVALID_SOCKET
-#	define TNET_ERROR_WOULDBLOCK			WSAEWOULDBLOCK
-#	define TNET_ERROR_INPROGRESS			WSAEINPROGRESS
-#	define TNET_ERROR_CONNRESET				WSAECONNRESET
-#	define TNET_ERROR_INTR					WSAEINTR
-#	define TNET_ERROR_ISCONN				WSAEISCONN
-#	define TNET_ERROR_EAGAIN				TNET_ERROR_WOULDBLOCK /* WinSock FIX */
-#	define TNET_ERROR_BROKENPIPE            WSAECONNABORTED
-#	if (TNET_UNDER_WINDOWS_RT || TNET_UNDER_WINDOWS_CE) /* gai_strerrorA() links against FormatMessageA which is not allowed on the store */
-#		if !defined (WC_ERR_INVALID_CHARS)
-#			define WC_ERR_INVALID_CHARS 0
-#		endif
+#   define TNET_INVALID_SOCKET              INVALID_SOCKET
+#   define TNET_ERROR_WOULDBLOCK            WSAEWOULDBLOCK
+#   define TNET_ERROR_INPROGRESS            WSAEINPROGRESS
+#   define TNET_ERROR_CONNRESET             WSAECONNRESET
+#   define TNET_ERROR_INTR                  WSAEINTR
+#   define TNET_ERROR_ISCONN                WSAEISCONN
+#   define TNET_ERROR_EAGAIN                TNET_ERROR_WOULDBLOCK /* WinSock FIX */
+#   define TNET_ERROR_BROKENPIPE            WSAECONNABORTED
+#   if (TNET_UNDER_WINDOWS_RT || TNET_UNDER_WINDOWS_CE) /* gai_strerrorA() links against FormatMessageA which is not allowed on the store */
+#       if !defined (WC_ERR_INVALID_CHARS)
+#           define WC_ERR_INVALID_CHARS 0
+#       endif
 static TNET_INLINE const char* tnet_gai_strerror(int ecode)
 {
     static char aBuff[1024] = {0};
@@ -149,21 +149,21 @@ static TNET_INLINE const char* tnet_gai_strerror(int ecode)
     }
     return aBuff;
 }
-#	else
-#		define tnet_gai_strerror			gai_strerrorA
-#	endif
+#   else
+#       define tnet_gai_strerror            gai_strerrorA
+#   endif
 #else
-#	define TNET_INVALID_SOCKET				-1
-#	define TNET_ERROR_WOULDBLOCK			EWOULDBLOCK
-#	define TNET_ERROR_INPROGRESS			EINPROGRESS
-#	define TNET_ERROR_CONNRESET				ECONNRESET
-#	define TNET_ERROR_INTR					EINTR
-#	define TNET_ERROR_ISCONN				EISCONN
-#	define TNET_ERROR_EAGAIN				EAGAIN
-#	define TNET_ERROR_BROKENPIPE            EPIPE
-#	define tnet_gai_strerror				gai_strerror
+#   define TNET_INVALID_SOCKET              -1
+#   define TNET_ERROR_WOULDBLOCK            EWOULDBLOCK
+#   define TNET_ERROR_INPROGRESS            EINPROGRESS
+#   define TNET_ERROR_CONNRESET             ECONNRESET
+#   define TNET_ERROR_INTR                  EINTR
+#   define TNET_ERROR_ISCONN                EISCONN
+#   define TNET_ERROR_EAGAIN                EAGAIN
+#   define TNET_ERROR_BROKENPIPE            EPIPE
+#   define tnet_gai_strerror                gai_strerror
 #endif
-#define TNET_INVALID_FD				TNET_INVALID_SOCKET
+#define TNET_INVALID_FD             TNET_INVALID_SOCKET
 
 #ifdef _WIN32_WCE
 typedef TCHAR tnet_error_t[512];

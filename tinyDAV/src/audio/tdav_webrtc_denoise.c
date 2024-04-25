@@ -36,13 +36,13 @@
 #include <string.h>
 
 #if !defined(WEBRTC_AEC_AGGRESSIVE)
-#	define WEBRTC_AEC_AGGRESSIVE		0
+#   define WEBRTC_AEC_AGGRESSIVE        0
 #endif
 #if !defined(WEBRTC_MAX_ECHO_TAIL)
-#	define WEBRTC_MAX_ECHO_TAIL		500
+#   define WEBRTC_MAX_ECHO_TAIL     500
 #endif
 #if !defined(WEBRTC_MIN_ECHO_TAIL)
-#	define WEBRTC_MIN_ECHO_TAIL		20 // 0 will cause random crashes
+#   define WEBRTC_MIN_ECHO_TAIL     20 // 0 will cause random crashes
 #endif
 
 #if TDAV_UNDER_MOBILE || 1 // FIXME
@@ -162,7 +162,7 @@ static int tdav_webrtc_denoise_open(tmedia_denoise_t* self, uint32_t record_fram
     TSK_DEBUG_INFO("echo_tail=%d, echo_skew=%d, echo_supp_enabled=%d, noise_supp_enabled=%d", denoiser->echo_tail, denoiser->echo_skew, self->echo_supp_enabled, self->noise_supp_enabled);
 
     //
-    //	DENOISER
+    //  DENOISER
     //
 #if TDAV_UNDER_MOBILE // AECM= [8-16]k, AEC=[8-32]k
     denoiser->neg.sampling_rate = TSK_MIN(TSK_MAX(record_sampling_rate, playback_sampling_rate), 16000);
@@ -173,7 +173,7 @@ static int tdav_webrtc_denoise_open(tmedia_denoise_t* self, uint32_t record_fram
     denoiser->neg.channels = 1;
 
     //
-    //	RECORD
+    //  RECORD
     //
     TSK_OBJECT_SAFE_FREE(denoiser->record.p_rpl_den2in);
     TSK_OBJECT_SAFE_FREE(denoiser->record.p_rpl_in2den);
@@ -195,7 +195,7 @@ static int tdav_webrtc_denoise_open(tmedia_denoise_t* self, uint32_t record_fram
         }
     }
     //
-    //	PLAYBACK
+    //  PLAYBACK
     //
     TSK_OBJECT_SAFE_FREE(denoiser->playback.p_rpl_den2in);
     TSK_OBJECT_SAFE_FREE(denoiser->playback.p_rpl_in2den);
@@ -217,7 +217,7 @@ static int tdav_webrtc_denoise_open(tmedia_denoise_t* self, uint32_t record_fram
     }
 
     //
-    //	AEC instance
+    //  AEC instance
     //
     if ((ret = TDAV_WebRtcAec_Create(&denoiser->AEC_inst))) {
         TSK_DEBUG_ERROR("WebRtcAec_Create failed with error code = %d", ret);
@@ -248,7 +248,7 @@ static int tdav_webrtc_denoise_open(tmedia_denoise_t* self, uint32_t record_fram
 
 
     //
-    //	Noise Suppression instance
+    //  Noise Suppression instance
     //
     if (TMEDIA_DENOISE(denoiser)->noise_supp_enabled) {
 #if HAVE_SPEEX_DSP && PREFER_SPEEX_DENOISER
@@ -527,7 +527,7 @@ static int _tdav_webrtc_resampler_process(tdav_webrtc_resampler_t *p_self, const
 }
 
 //
-//	WEBRTC resampler object definition
+//  WEBRTC resampler object definition
 //
 static tsk_object_t* tdav_webrtc_resampler_ctor(tsk_object_t * self, va_list * app)
 {
@@ -557,7 +557,7 @@ const tsk_object_def_t *tdav_webrtc_resampler_def_t = &tdav_webrtc_resampler_def
 
 
 //
-//	WEBRTC denoiser Plugin definition
+//  WEBRTC denoiser Plugin definition
 //
 
 /* constructor */

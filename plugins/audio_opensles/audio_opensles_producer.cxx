@@ -180,7 +180,7 @@ static int audio_producer_opensles_stop(tmedia_producer_t* _self)
 
 
 //
-//	SLES audio producer object definition
+//  SLES audio producer object definition
 //
 /* constructor */
 static tsk_object_t* audio_producer_opensles_ctor(tsk_object_t *_self, va_list * app)

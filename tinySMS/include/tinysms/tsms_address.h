@@ -52,29 +52,29 @@ tsms_address_type_t;
 */
 typedef enum tsms_address_ton_e {
     /** "Unknown" is used when the user or network has no a priori information about the numbering plan. In
-    	this case, the Address-Value field is organized according to the network dialling plan, e.g. prefix or
-    	escape digits might be present.*/
-    tsms_addr_ton_unknown			= 0x00, // 0b000
+        this case, the Address-Value field is organized according to the network dialling plan, e.g. prefix or
+        escape digits might be present.*/
+    tsms_addr_ton_unknown           = 0x00, // 0b000
     /** International number
-    	The international format shall be accepted also when the message is destined to a recipient in the
-    	same country as the MSC. */
-    tsms_addr_ton_international		= 0x01, // 0b001
+        The international format shall be accepted also when the message is destined to a recipient in the
+        same country as the MSC. */
+    tsms_addr_ton_international     = 0x01, // 0b001
     /** National number
-    	Prefix or escape digits shall not be included */
-    tsms_addr_ton_national			= 0x02, // 0b010
+        Prefix or escape digits shall not be included */
+    tsms_addr_ton_national          = 0x02, // 0b010
     /** "Network specific number" is used to indicate administration/service number specific to the serving
-    	network, e.g. used to access an operator. */
-    tsms_addr_ton_network_specific	= 0x03, // 0b011
+        network, e.g. used to access an operator. */
+    tsms_addr_ton_network_specific  = 0x03, // 0b011
     /** "Subscriber number" is used when a specific short number representation is stored in one or more
-    	SCs as part of a higher layer application. (Note that "Subscriber number" shall only be used in
-    	connection with the proper PID referring to this application). */
-    tsms_addr_ton_subscriber		= 0x04, // 0b100
+        SCs as part of a higher layer application. (Note that "Subscriber number" shall only be used in
+        connection with the proper PID referring to this application). */
+    tsms_addr_ton_subscriber        = 0x04, // 0b100
     /** Alphanumeric, (coded according to GSM TS 03.38 7-bit default alphabet) */
-    tsms_addr_ton_alphanumeric		= 0x05, // 0b101
+    tsms_addr_ton_alphanumeric      = 0x05, // 0b101
     /** Abbreviated number */
-    tsms_addr_ton_abbreviated		= 0x06, // 0b110
+    tsms_addr_ton_abbreviated       = 0x06, // 0b110
     /** Reserved for extension */
-    tsms_addr_ton_reserved			= 0x07, // 0b111
+    tsms_addr_ton_reserved          = 0x07, // 0b111
 }
 tsms_address_ton_t;
 
@@ -82,14 +82,14 @@ tsms_address_ton_t;
 * 3GPP TS 23.040 v910 section 9.1.2.5.
 */
 typedef enum tsms_address_npi_e {
-    /* 0000 */ tsms_addr_npi_unknown	= 0x00,	/**< Unknown */
-    /* 0001 */ tsms_addr_npi_isdn		= 0x01, /**< ISDN/telephone numbering plan (E.164/E.163) */
-    /* 0011 */ tsms_addr_npi_x121		= 0x03,	/**< Data numbering plan (X.121) */
-    /* 0100 */ tsms_addr_npi_telex		= 0x04,	/**< Telex numbering plan */
-    /* 1000 */ tsms_addr_npi_national	= 0x08,	/**< National numbering plan */
-    /* 1001 */ tsms_addr_npi_private	= 0x09,	/**< Private numbering plan */
-    /* 1010 */ tsms_addr_npi_ermes		= 0x0A,	/**< ERMES numbering plan (ETSI DE/PS 3 01-3) */
-    /* 1111 */ tsms_addr_npi_reserved	= 0x0F,	/**< Reserved for extension */
+    /* 0000 */ tsms_addr_npi_unknown    = 0x00, /**< Unknown */
+    /* 0001 */ tsms_addr_npi_isdn       = 0x01, /**< ISDN/telephone numbering plan (E.164/E.163) */
+    /* 0011 */ tsms_addr_npi_x121       = 0x03, /**< Data numbering plan (X.121) */
+    /* 0100 */ tsms_addr_npi_telex      = 0x04, /**< Telex numbering plan */
+    /* 1000 */ tsms_addr_npi_national   = 0x08, /**< National numbering plan */
+    /* 1001 */ tsms_addr_npi_private    = 0x09, /**< Private numbering plan */
+    /* 1010 */ tsms_addr_npi_ermes      = 0x0A, /**< ERMES numbering plan (ETSI DE/PS 3 01-3) */
+    /* 1111 */ tsms_addr_npi_reserved   = 0x0F, /**< Reserved for extension */
 }
 tsms_address_npi_t;
 

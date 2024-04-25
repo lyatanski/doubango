@@ -29,7 +29,7 @@
 
 TRTP_BEGIN_DECLS
 
-#define TRTP_RTCP_PACKET(self)	((trtp_rtcp_packet_t*)(self))
+#define TRTP_RTCP_PACKET(self)  ((trtp_rtcp_packet_t*)(self))
 #define TRTP_DECLARE_RTCP_PACKET trtp_rtcp_packet_t __packet__
 
 // RFC 3550 12.1 RTCP Packet Types

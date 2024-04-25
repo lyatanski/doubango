@@ -38,12 +38,12 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_INVITE_EVENT(self)		((tsip_invite_event_t*)(self))
+#define TSIP_INVITE_EVENT(self)     ((tsip_invite_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_invite_event_type_e {
     // ============================
-    //	Sip Events
+    //  Sip Events
     //
     tsip_i_newcall,
     tsip_i_prechecking,
@@ -65,7 +65,7 @@ typedef enum tsip_invite_event_type_e {
     tsip_i_ect_notify,
 
     // ============================
-    //	Media Events
+    //  Media Events
     //
 
     tsip_m_early_media,
@@ -92,7 +92,7 @@ typedef struct tsip_invite_event_e {
     } av;
 
     /*struct{
-    	char* dir;
+        char* dir;
     } msrp;*/
 }
 tsip_invite_event_t;
@@ -114,14 +114,14 @@ TINYSIP_API int tsip_api_invite_send_bye(const tsip_ssession_handle_t *ss, ...);
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_invite_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_INVITE	tsip_api_invite_send_invite
-#	define tsip_action_HOLD	tsip_api_invite_send_hold
-#	define tsip_action_RESUME	tsip_api_invite_send_resume
-#	define tsip_action_LARGE_MESSAGE	tsip_api_invite_send_large_message
-#	define tsip_action_ECT	tsip_api_invite_send_ect
-#	define tsip_action_SOS	tsip_api_invite_send_sos
-#	define tsip_action_DTMF	tsip_api_invite_send_dtmf
-#	define tsip_action_BYE	tsip_api_invite_send_bye
+#   define tsip_action_INVITE   tsip_api_invite_send_invite
+#   define tsip_action_HOLD tsip_api_invite_send_hold
+#   define tsip_action_RESUME   tsip_api_invite_send_resume
+#   define tsip_action_LARGE_MESSAGE    tsip_api_invite_send_large_message
+#   define tsip_action_ECT  tsip_api_invite_send_ect
+#   define tsip_action_SOS  tsip_api_invite_send_sos
+#   define tsip_action_DTMF tsip_api_invite_send_dtmf
+#   define tsip_action_BYE  tsip_api_invite_send_bye
 #endif
 
 

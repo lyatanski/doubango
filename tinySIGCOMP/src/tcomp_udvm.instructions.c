@@ -35,7 +35,7 @@
 
 #include <string.h> /* memcpy */
 #include <stdlib.h> /* qsort */
-#include <math.h>	/* ceil, log ... */
+#include <math.h>   /* ceil, log ... */
 
 /*
 * IMPORTANT: MSBs are stored before LSBs in the UDVM memory --> BIG ENDIAN
@@ -49,38 +49,38 @@
 #define CEILLINGLOG2(x) ceil( (log((double)x)/log(2.0)) )
 
 /*
-*	Consume cycles
+*   Consume cycles
 */
-#define CONSUME_CYCLES(cycles)										\
-	udvm->consumed_cycles += (uint64_t)(cycles);					\
-	if( udvm->consumed_cycles > udvm->maximum_UDVM_cycles )			\
-	{																\
-		TSK_DEBUG_ERROR("%s (%lu > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_CYCLES_EXHAUSTED].desc, udvm->consumed_cycles, udvm->maximum_UDVM_cycles);					\
-		tcomp_udvm_createNackInfo2(udvm, NACK_CYCLES_EXHAUSTED);	\
-		return tsk_false;													\
-	}
+#define CONSUME_CYCLES(cycles)                                      \
+    udvm->consumed_cycles += (uint64_t)(cycles);                    \
+    if( udvm->consumed_cycles > udvm->maximum_UDVM_cycles )         \
+    {                                                               \
+        TSK_DEBUG_ERROR("%s (%lu > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_CYCLES_EXHAUSTED].desc, udvm->consumed_cycles, udvm->maximum_UDVM_cycles);                   \
+        tcomp_udvm_createNackInfo2(udvm, NACK_CYCLES_EXHAUSTED);    \
+        return tsk_false;                                                   \
+    }
 
 #define SET_2BYTES_VAL(position, value) \
-	if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
-	{ \
-		TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
-		tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);	\
-		return tsk_false;	\
-	}\
-	TCOMP_UDVM_SET_2BYTES_VAL(position, value);\
- 
+    if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
+    { \
+        TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
+        tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);    \
+        return tsk_false;   \
+    }\
+    TCOMP_UDVM_SET_2BYTES_VAL(position, value);\
+
 #define GET_2BYTES_VAL(position, ret_val) \
-	if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
-	{ \
-		TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
-		tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);	\
-		return tsk_false;	\
-	}\
-	ret_val = TCOMP_UDVM_GET_2BYTES_VAL((position));
+    if(((position) + 1) >= TCOMP_UDVM_GET_SIZE()) \
+    { \
+        TSK_DEBUG_ERROR("%s (%u > %lu)", TCOMP_NACK_DESCRIPTIONS[NACK_SEGFAULT].desc, ((position) + 1), TCOMP_UDVM_GET_SIZE()); \
+        tcomp_udvm_createNackInfo2(udvm, NACK_SEGFAULT);    \
+        return tsk_false;   \
+    }\
+    ret_val = TCOMP_UDVM_GET_2BYTES_VAL((position));
 
 
 /**
-	This structure is used to keep index-value pairs after sorting.
+    This structure is used to keep index-value pairs after sorting.
 */
 typedef struct IndexValuePair_s {
     uint16_t index;
@@ -89,12 +89,12 @@ typedef struct IndexValuePair_s {
 IndexValuePair_t;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief	Predicate to sort integers in ascending order.
+/// @brief  Predicate to sort integers in ascending order.
 ///
-/// @param [in,out]	a	First integer.
-/// @param [in,out]	b	Second integer.
+/// @param [in,out] a   First integer.
+/// @param [in,out] b   Second integer.
 ///
-/// @retval	Zero if @a a == @a b; negative if @a a < @a b and positive otherwise..
+/// @retval Zero if @a a == @a b; negative if @a a < @a b and positive otherwise..
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int SortAscendingPredicate(const void *a, const void *b)
@@ -114,11 +114,11 @@ static int SortAscendingPredicate(const void *a, const void *b)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	Predicate to sort integers in descending order.
-/// @param [in,out]	a	First integer.
-/// @param [in,out]	b	Second integer.
+/// @brief  Predicate to sort integers in descending order.
+/// @param [in,out] a   First integer.
+/// @param [in,out] b   Second integer.
 ///
-/// @retval	Zero if @a a == @a b; negative if @a a > @a b and positive otherwise.
+/// @retval Zero if @a a == @a b; negative if @a a > @a b and positive otherwise.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 static int SortDescendingPredicate(const void *a, const void *b)
 {
@@ -135,15 +135,15 @@ static int SortDescendingPredicate(const void *a, const void *b)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	DECOMPRESSION-FAILURE
+/// @brief  DECOMPRESSION-FAILURE
 /// Reference:  RFC3320 Section 9.4.1
 /// This instruction triggers a manual decompression failure.  This is useful if the UDVM bytecode discovers that it
 /// cannot successfully decompress the message (e.g., by using the CRC instruction).
 
 
-/// @param [in,out]	udvm	The udvm state machine entity.
+/// @param [in,out] udvm    The udvm state machine entity.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__DECOMPRESSION_FAILURE(tcomp_udvm_t *udvm)
 {
@@ -155,16 +155,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__DECOMPRESSION_FAILURE(tcomp_udvm_t *udvm)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	AND ($operand_1, %operand_2)
+/// @brief  AND ($operand_1, %operand_2)
 /// Reference:  RFC3320 Section 9.1.1
 /// Formula: [operand_1 := operand_1 & operand_2].
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
-/// @param	operand_2		The second operand.
+/// @param  operand_2       The second operand.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__AND(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
@@ -182,16 +182,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__AND(tcomp_udvm_t *udvm, uint32_t operand_1, uin
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	OR ($operand_1, %operand_2)
+/// @brief  OR ($operand_1, %operand_2)
 /// Reference:  RFC3320 Section 9.1.1
 /// Formula: [operand_1 := operand_1 | operand_2].
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///    this operand is overwritten with the result.
-/// @param	operand_2		The second operand.
+/// @param  operand_2       The second operand.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__OR(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
@@ -209,15 +209,15 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__OR(tcomp_udvm_t *udvm, uint32_t operand_1, uint
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>NOT ($operand_1)</i><br><br>
+/// @brief  <i>NOT ($operand_1)</i><br><br>
 ///  Reference:  RFC3320 Section 9.1.1<br>
 ///  Formula: [operand_1 := ~operand_1]. <br>
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__NOT(tcomp_udvm_t *udvm, uint32_t operand_1)
@@ -235,16 +235,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__NOT(tcomp_udvm_t *udvm, uint32_t operand_1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>LSHIFT ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>LSHIFT ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.1<br>
 /// Formula: [LSHIFT (m, n) := m * 2^n (modulo 2^16)]. <br>
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///  this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand.
+/// @param  operand_2       2-byte value encoded by the operand.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__LSHIFT(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
@@ -265,16 +265,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__LSHIFT(tcomp_udvm_t *udvm, uint32_t operand_1, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>RSHIFT ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>RSHIFT ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.1<br>
 /// Formula: [RSHIFT (m, n) := floor(m / 2^n)]. <br>
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 //     this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand.
+/// @param  operand_2       2-byte value encoded by the operand.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__RSHIFT(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
@@ -293,17 +293,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__RSHIFT(tcomp_udvm_t *udvm, uint32_t operand_1, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>ADD ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>ADD ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.2<br>
 /// Formula: [ADD (m, n) := m + n (modulo 2^16)]<br>
 ///
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand.
+/// @param  operand_2       2-byte value encoded by the operand.
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__ADD(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
 {
@@ -320,16 +320,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__ADD(tcomp_udvm_t *udvm, uint32_t operand_1, uin
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>SUBTRACT ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>SUBTRACT ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.2<br>
 /// Formula: [SUBTRACT (m, n)  := m - n (modulo 2^16)]<br>
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand.
+/// @param  operand_2       2-byte value encoded by the operand.
 ///
-/// @retval	1 if succeed, otherwise returns 0.
+/// @retval 1 if succeed, otherwise returns 0.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__SUBTRACT(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
 {
@@ -346,16 +346,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__SUBTRACT(tcomp_udvm_t *udvm, uint32_t operand_1
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>MULTIPLY ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>MULTIPLY ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.2<br>
 /// Formula: [MULTIPLY (m, n)  := m * n (modulo 2^16)]<br>
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///  this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand.
+/// @param  operand_2       2-byte value encoded by the operand.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__MULTIPLY(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
 {
@@ -372,17 +372,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__MULTIPLY(tcomp_udvm_t *udvm, uint32_t operand_1
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>DIVIDE ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>DIVIDE ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.2<br>
 /// Formula: [DIVIDE (m, n) := floor(m / n)]<br>
 ///
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand. Decompression failure occurs if this operand is zero.
+/// @param  operand_2       2-byte value encoded by the operand. Decompression failure occurs if this operand is zero.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__DIVIDE(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
 {
@@ -405,17 +405,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__DIVIDE(tcomp_udvm_t *udvm, uint32_t operand_1, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>REMAINDER ($operand_1, %operand_2)</i><br><br>
+/// @brief  <i>REMAINDER ($operand_1, %operand_2)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.2<br>
 /// Formula: [REMAINDER (m, n) := m - n * floor(m / n)]<br>
 ///
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	operand_1		2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  operand_1       2-byte value encoded by the operand. After the operation is complete, the 2-byte word at the memory address specified by
 ///   this operand is overwritten with the result.
-/// @param	operand_2		2-byte value encoded by the operand. Decompression failure occurs if this operand is zero.
+/// @param  operand_2       2-byte value encoded by the operand. Decompression failure occurs if this operand is zero.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__REMAINDER(tcomp_udvm_t *udvm, uint32_t operand_1, uint32_t operand_2)
 {
@@ -437,17 +437,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__REMAINDER(tcomp_udvm_t *udvm, uint32_t operand_
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>SORT-ASCENDING (%start, %n, %k)</i><br><br>
+/// @brief  <i>SORT-ASCENDING (%start, %n, %k)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.3<br>
 ///
 /// This instruction sort lists of 2-byte words in ascending order.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	start			The starting memory address of the block of data to be sorted.
-/// @param	n				Number of lists.
-/// @param	k				Lists length (2-byte words).
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  start           The starting memory address of the block of data to be sorted.
+/// @param  n               Number of lists.
+/// @param  k               Lists length (2-byte words).
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__SORT_ASCENDING(tcomp_udvm_t *udvm, uint32_t start, uint32_t n, uint32_t k)
 {
@@ -512,17 +512,17 @@ __SEGFAULT:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>SORT-DESCENDING (%start, %n, %k)</i><br><br>
+/// @brief  <i>SORT-DESCENDING (%start, %n, %k)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.3<br>
 ///
 /// This instruction sort lists of 2-byte words in descending order.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	start			The starting memory address of the block of data to be sorted.
-/// @param	n				Number of lists.
-/// @param	k				Lists length (2-byte words).
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  start           The starting memory address of the block of data to be sorted.
+/// @param  n               Number of lists.
+/// @param  k               Lists length (2-byte words).
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__SORT_DESCENDING(tcomp_udvm_t *udvm, uint32_t start, uint32_t n, uint32_t k)
 {
@@ -586,16 +586,16 @@ __SEGFAULT:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>SHA-1 (%position, %length, %destination)</i><br><br>
+/// @brief  <i>SHA-1 (%position, %length, %destination)</i><br><br>
 /// Reference:  RFC3320 Section 9.1.4<br>
 /// This instruction calculates a 20-byte SHA-1 hash [RFC-3174] over the specified area of UDVM memory.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	position		The starting memory address.
-/// @param	length			The length of the byte string over which the SHA-1 hash is calculated.
-/// @param	destination		The starting address to which the resulting 20-byte hash will be copied.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  position        The starting memory address.
+/// @param  length          The length of the byte string over which the SHA-1 hash is calculated.
+/// @param  destination     The starting address to which the resulting 20-byte hash will be copied.
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__SHA_1(tcomp_udvm_t *udvm, uint32_t position, uint32_t length, uint32_t destination)
 {
@@ -654,16 +654,16 @@ bail:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>LOAD(%address, %value)</i><br><br>
+/// @brief  <i>LOAD(%address, %value)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.1<br>
 /// This instruction sets a 2-byte word to a certain specified value
 /// As usual, MSBs are stored before LSBs in the UDVM memory.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	address			Specifies the starting address of a 2-byte word.
-/// @param	value			Specifies the value to be loaded into this word.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  address         Specifies the starting address of a 2-byte word.
+/// @param  value           Specifies the value to be loaded into this word.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__LOAD(tcomp_udvm_t *udvm, uint32_t address, uint32_t value)
 {
@@ -683,17 +683,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__LOAD(tcomp_udvm_t *udvm, uint32_t address, uint
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>MULTILOAD(%address, \#n, %value_0, ..., %value_n-1)</i><br><br>
+/// @brief  <i>MULTILOAD(%address, \#n, %value_0, ..., %value_n-1)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.2<br>
 /// This instruction sets a contiguous block of 2-byte words in the UDVM memory to specified values.
 /// value_0 through to value_n-1 specify the values to load into these words (in the same order as
-/// 	they appear in the instruction).
+///     they appear in the instruction).
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	address			Starting address of the contiguous 2-byte words.
-/// @param	n				Number of 2-bytes values to load.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  address         Starting address of the contiguous 2-byte words.
+/// @param  n               Number of 2-bytes values to load.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__MULTILOAD(tcomp_udvm_t *udvm, uint32_t address, uint32_t n)
 {
@@ -706,17 +706,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__MULTILOAD(tcomp_udvm_t *udvm, uint32_t address,
     CONSUME_CYCLES(1 + n);
 
 #define CHECK_MULTILOAD_OVERWRITTEN(__start, __address, __end) \
-		if(( (__start) <= (__address) && (__address) <= (__end) ) || ( (__start) <= ((__address) + 1) && ((__address) + 1) <= (__end) )){ \
-			TSK_DEBUG_ERROR("%s", TCOMP_NACK_DESCRIPTIONS[NACK_MULTILOAD_OVERWRITTEN].desc); \
-			tcomp_udvm_createNackInfo2(udvm, NACK_MULTILOAD_OVERWRITTEN); \
-			return tsk_false; \
-		}
+        if(( (__start) <= (__address) && (__address) <= (__end) ) || ( (__start) <= ((__address) + 1) && ((__address) + 1) <= (__end) )){ \
+            TSK_DEBUG_ERROR("%s", TCOMP_NACK_DESCRIPTIONS[NACK_MULTILOAD_OVERWRITTEN].desc); \
+            tcomp_udvm_createNackInfo2(udvm, NACK_MULTILOAD_OVERWRITTEN); \
+            return tsk_false; \
+        }
 
     // tcomp_udvm_opget_multitype_param() will move the execPtr => make the test before the for loop
     CHECK_MULTILOAD_OVERWRITTEN(overlap_start, address, overlap_end);
     CHECK_MULTILOAD_OVERWRITTEN(write_start, udvm->executionPointer, write_end);
 
-    for(index = 0, _address = address; index < n; index++ , _address += 2) {
+    for(index = 0, _address = address; index < n; index++, _address += 2) {
         uint32_t value_n = tcomp_udvm_opget_multitype_param(udvm);
         CHECK_MULTILOAD_OVERWRITTEN(overlap_start, _address, overlap_end);
         CHECK_MULTILOAD_OVERWRITTEN(write_start, udvm->executionPointer, write_end);
@@ -729,17 +729,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__MULTILOAD(tcomp_udvm_t *udvm, uint32_t address,
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>PUSH (%value)</i><br><br>
+/// @brief  <i>PUSH (%value)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.3<br>
 /// This instruction pushes the value specified by its operand on the stack..
 ///
 
-/// @date	11/27/2009
+/// @date   11/27/2009
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	value			2-byte word to push.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  value           2-byte word to push.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__PUSH(tcomp_udvm_t *udvm, int16_t value)
 {
@@ -771,14 +771,14 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__PUSH(tcomp_udvm_t *udvm, int16_t value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>POP (%address)</i><br><br>
+/// @brief  <i>POP (%address)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.3<br>
 /// This instruction pops a value from the stack and then copies the value to the specified memory address..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param [in,out]	value	2-byte word to pop from the stack.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param [in,out] value   2-byte word to pop from the stack.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__POP(tcomp_udvm_t *udvm, uint32_t* value)
 {
@@ -829,16 +829,16 @@ end:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>COPY(%position, %length, %destination)</i><br><br>
+/// @brief  <i>COPY(%position, %length, %destination)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.4<br>
 /// This instruction is used to copy a string of bytes from one part of the UDVM memory to another.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	position			Specifies the memory address of the first byte in the string to be copied.
-/// @param	length			Specifies the number of bytes to be copied.
-/// @param	destination		Gives the address to which the first byte in the string will be copied.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  position            Specifies the memory address of the first byte in the string to be copied.
+/// @param  length          Specifies the number of bytes to be copied.
+/// @param  destination     Gives the address to which the first byte in the string will be copied.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY(tcomp_udvm_t *udvm, uint32_t position, uint32_t length, uint32_t destination)
 {
@@ -864,18 +864,18 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY(tcomp_udvm_t *udvm, uint32_t position, uin
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>COPY-LITERAL(%position, %length, $destination)</i><br><br>
+/// @brief  <i>COPY-LITERAL(%position, %length, $destination)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.5<br>
 /// The COPY-LITERAL instruction behaves as a COPY instruction except
 /// that after copying is completed, the value of the destination operand
 /// is replaced by the address to which the next byte of data would be copied..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	position		Specifies the memory address of the first byte in the string to be copied.
-/// @param	length			Specifies the number of bytes to be copied.
-/// @param	destination		Gives the address to which the first byte in the string will be copied.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  position        Specifies the memory address of the first byte in the string to be copied.
+/// @param  length          Specifies the number of bytes to be copied.
+/// @param  destination     Gives the address to which the first byte in the string will be copied.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY_LITERAL(tcomp_udvm_t *udvm, uint32_t position, uint32_t length, uint32_t destination)
 {
@@ -897,17 +897,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY_LITERAL(tcomp_udvm_t *udvm, uint32_t posit
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>COPY-OFFSET(%offset, %length, $destination)</i><br><br>
+/// @brief  <i>COPY-OFFSET(%offset, %length, $destination)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.6<br>
 /// This instruction behaves as a COPY-LITERAL instruction
 /// except that an offset operand is given instead of a position operand..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	offset			The offset value.
-/// @param	length			Specifies the number of bytes to be copied.
-/// @param	destination		Gives the address to which the first byte in the string will be copied.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  offset          The offset value.
+/// @param  length          Specifies the number of bytes to be copied.
+/// @param  destination     Gives the address to which the first byte in the string will be copied.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY_OFFSET(tcomp_udvm_t *udvm, uint32_t offset, uint32_t length, uint32_t destination)
 {
@@ -989,21 +989,21 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__COPY_OFFSET(tcomp_udvm_t *udvm, uint32_t offset
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>MEMSET(%address, %length, %start_value, %offset)</i><br><br>
+/// @brief  <i>MEMSET(%address, %length, %start_value, %offset)</i><br><br>
 /// Reference:  RFC3320 Section 9.2.7<br>
 /// Formula: Seq[n] := (start_value + n * offset) modulo 256<br>
 /// This instruction initializes an area of UDVM memory to a specified sequence of values.
 ///
 
-/// @date	11/27/2009
+/// @date   11/27/2009
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	address			The destination address.
-/// @param	length			The number of 1-byte values to set.
-/// @param	start_value		The starting value.
-/// @param	offset			The offset used for computation.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  address         The destination address.
+/// @param  length          The number of 1-byte values to set.
+/// @param  start_value     The starting value.
+/// @param  offset          The offset used for computation.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__MEMSET(tcomp_udvm_t *udvm, uint32_t address, uint32_t length, uint32_t start_value, uint32_t offset)
 {
@@ -1045,7 +1045,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__MEMSET(tcomp_udvm_t *udvm, uint32_t address, ui
 * This instruction moves program execution to the specified memory address.
 * Decompression failure occurs if the value of the address operand lies
 *    beyond the overall UDVM memory size.
-* @param [in,out]	udvm	The udvm state machine entity.
+* @param [in,out]   udvm    The udvm state machine entity.
 * @param address defines the address to jump to
 * @retval 1 if succeed, otherwise returns 0
 */
@@ -1071,23 +1071,23 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__JUMP(tcomp_udvm_t *udvm, int16_t address)
 
 /**
  *
- * @brief	<i>COMPARE(%value_1, %value_2, \@address_1, \@address_2, \@address_3)</i><br><br>
- * 			Reference:  RFC3320 Section 9.3.2<br>
+ * @brief   <i>COMPARE(%value_1, %value_2, \@address_1, \@address_2, \@address_3)</i><br><br>
+ *          Reference:  RFC3320 Section 9.3.2<br>
  *
- * 			This instruction compares two operands and then jumps to one of three specified
- * 			memory addresses depending on the result.<br>
- * 			if(value_1 < value_2) --> address_1<br>
- * 			elif(value_1 = value_2) --> address_2<br>
- * 			elif(value_1 > value_2) --> address_3. <br>
+ *          This instruction compares two operands and then jumps to one of three specified
+ *          memory addresses depending on the result.<br>
+ *          if(value_1 < value_2) --> address_1<br>
+ *          elif(value_1 = value_2) --> address_2<br>
+ *          elif(value_1 > value_2) --> address_3. <br>
  *
  *
- * @param [in,out]	udvm	The udvm state machine entity.
- * @param	value_1			The first value to compare.
- * @param	value_2			The second value to compare.
- * @param	address_1		The address to jump to if (value_1 < value_2).
- * @param	address_2		The address to jump to if (value_1 = value_2).
- * @param	address_3		address to jump to if (value_1 > value_2).
- * @retval	1	if succeed, otherwise returns 0.
+ * @param [in,out]  udvm    The udvm state machine entity.
+ * @param   value_1         The first value to compare.
+ * @param   value_2         The second value to compare.
+ * @param   address_1       The address to jump to if (value_1 < value_2).
+ * @param   address_2       The address to jump to if (value_1 = value_2).
+ * @param   address_3       address to jump to if (value_1 > value_2).
+ * @retval  1   if succeed, otherwise returns 0.
 **/
 tsk_bool_t TCOMP_UDVM_EXEC_INST__COMPARE(tcomp_udvm_t *udvm, uint32_t value_1, uint32_t value_2, uint32_t address_1, uint32_t address_2, uint32_t address_3)
 {
@@ -1117,16 +1117,16 @@ end:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>CALL(\@address)</i><br><br>
+/// @brief  <i>CALL(\@address)</i><br><br>
 /// Reference:  RFC3320 Section 9.3.3<br>
 /// This instruction finds the memory address of the instruction immediately following
 /// the CALL instruction and pushes this 2-byte value on the stack, ready for later retrieval.
 /// It then continues instruction execution at the memory address specified by the address operand..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	address			The next address.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  address         The next address.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__CALL(tcomp_udvm_t *udvm, uint32_t address)
 {
@@ -1139,14 +1139,14 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__CALL(tcomp_udvm_t *udvm, uint32_t address)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>RETURN</i><br><br>
+/// @brief  <i>RETURN</i><br><br>
 /// Reference:  RFC3320 Section 9.3.3<br>
 /// This instruction pops a value from the stack and then continues instruction
 /// execution at the memory address just popped..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
+/// @param [in,out] udvm    The udvm state machine entity.
 ///
-/// @retval	True if succeed, otherwise return false .
+/// @retval True if succeed, otherwise return false .
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__RETURN(tcomp_udvm_t *udvm)
 {
@@ -1165,17 +1165,17 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__RETURN(tcomp_udvm_t *udvm)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>SWITCH(\#n, %j, \@address_0, \@address_1, ... , \@address_n-1)</i><br><br>
+/// @brief  <i>SWITCH(\#n, %j, \@address_0, \@address_1, ... , \@address_n-1)</i><br><br>
 /// Reference:  RFC3320 Section 9.3.4<br>
 /// This instruction performs a conditional jump based on the value of one of its operands.
 /// Decompression failure occurs if j specifies a value of n or more, or
 ///    if the address lies beyond the overall UDVM memory size..
 
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	n				The number of possibilities.
-/// @param	j				The possibility.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  n               The number of possibilities.
+/// @param  j               The possibility.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__SWITCH(tcomp_udvm_t *udvm, uint32_t n, uint32_t j)
 {
@@ -1208,18 +1208,18 @@ end:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>CRC(%value, %position, %length, \@address)</i><br><br>
+/// @brief  <i>CRC(%value, %position, %length, \@address)</i><br><br>
 /// Reference:  RFC3320 Section 9.3.5<br>
 /// This instruction verifies a string of bytes using a 2-byte CRC.
 /// The CRC value is computed exactly as defined for the 16-bit FCS calculation in [RFC-1662]..
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	value			Contains the expected integer value of the 2-byte CRC.
-/// @param	position		Defines the position of the string of bytes over which the CRC is evaluated.
-/// @param	length			Defines the length of the string of bytes over which the CRC is evaluated.
-/// @param	address			The address to jump to if the calculated CRC value do not match.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  value           Contains the expected integer value of the 2-byte CRC.
+/// @param  position        Defines the position of the string of bytes over which the CRC is evaluated.
+/// @param  length          Defines the length of the string of bytes over which the CRC is evaluated.
+/// @param  address         The address to jump to if the calculated CRC value do not match.
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__CRC(tcomp_udvm_t *udvm, uint32_t value, uint32_t position, uint32_t length, uint32_t address)
 {
@@ -1264,16 +1264,16 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__CRC(tcomp_udvm_t *udvm, uint32_t value, uint32_
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>INPUT-BYTES (%length, %destination, \@address)</i><br><br>
+/// @brief  <i>INPUT-BYTES (%length, %destination, \@address)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.2<br>
 /// This instruction requests a certain number of bytes of compressed data from the decompressor dispatcher.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	length			Indicates the requested number of bytes of compressed data.
-/// @param	destination		Specifies the starting memory address to which they should be copied.
-/// @param	address			Defines the address to jump to if the instruction requests data that lies beyond the end of the SigComp message.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  length          Indicates the requested number of bytes of compressed data.
+/// @param  destination     Specifies the starting memory address to which they should be copied.
+/// @param  address         Defines the address to jump to if the instruction requests data that lies beyond the end of the SigComp message.
 ///
-/// @retval	True if succeed, otherwise return false.
+/// @retval True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__INPUT_BYTES(tcomp_udvm_t *udvm, uint32_t length, uint32_t destination, uint32_t address)
 {
@@ -1315,24 +1315,24 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__INPUT_BYTES(tcomp_udvm_t *udvm, uint32_t length
 
 /**
  *
- * @brief	<i>INPUT-BITS (%length, %destination, \@address)</i><br><br>
+ * @brief   <i>INPUT-BITS (%length, %destination, \@address)</i><br><br>
  * Reference:  RFC3320 Section 9.4.3<br>
  * The INPUT-BITS instruction requests a certain number of bits of
  *  compressed data from the decompressor dispatcher.
  *
  *
- * @param [in,out]	udvm	The udvm state machine entity.
- * @param	length			The length operand indicates the requested number of bits.
+ * @param [in,out]  udvm    The udvm state machine entity.
+ * @param   length          The length operand indicates the requested number of bits.
    Decompression failure occurs if this operand does not lie between 0
    and 16 inclusive.
- * @param	destination		The destination operand specifies the memory address to which the
+ * @param   destination     The destination operand specifies the memory address to which the
    compressed data should be copied.  Note that the requested bits are
    interpreted as a 2-byte integer ranging from 0 to 2^length - 1, as
    explained in Section 8.2.
 
- * @param	address			The address of the destination.
+ * @param   address         The address of the destination.
  *
- * @retval	1 if succeed, otherwise returns 0.
+ * @retval  1 if succeed, otherwise returns 0.
 **/
 tsk_bool_t TCOMP_UDVM_EXEC_INST__INPUT_BITS(tcomp_udvm_t *udvm, uint32_t length, uint32_t destination, uint32_t address)
 {
@@ -1438,19 +1438,19 @@ end:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>INPUT-HUFFMAN(%destination, \@address, \#n, %bits_1, %lower_bound_1, %upper_bound_1, %uncompressed_1, ... , %bits_n, %lower_bound_n, %upper_bound_n, %uncompressed_n)</i><br><br>
+/// @brief  <i>INPUT-HUFFMAN(%destination, \@address, \#n, %bits_1, %lower_bound_1, %upper_bound_1, %uncompressed_1, ... , %bits_n, %lower_bound_n, %upper_bound_n, %uncompressed_n)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.4<br>
 ///
 /// This instruction requests a variable number of bits of compressed data from the decompressor dispatcher.  The instruction
 /// initially requests a small number of bits and compares the result against a certain criterion; if the criterion is not met, then
 /// additional bits are requested until the criterion is achieved.
 ///
-/// @param [in,out]	udvm	The udvm state machine entity.
-/// @param	destination		The udvm destination address.
-/// @param	address			Address to jump to if data is requested that lies beyond the end of the SigComp message.
-/// @param	n				Additional sets of operands count.
+/// @param [in,out] udvm    The udvm state machine entity.
+/// @param  destination     The udvm destination address.
+/// @param  address         Address to jump to if data is requested that lies beyond the end of the SigComp message.
+/// @param  n               Additional sets of operands count.
 ///
-/// @retval	 True if succeed, otherwise return false.
+/// @retval  True if succeed, otherwise return false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__INPUT_HUFFMAN(tcomp_udvm_t *udvm, uint32_t destination, uint32_t address, uint32_t n)
 {
@@ -1514,7 +1514,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__INPUT_HUFFMAN(tcomp_udvm_t *udvm, uint32_t dest
     }
 
     /*
-    *	HUFFMAN COMPUTATION
+    *   HUFFMAN COMPUTATION
     */
 
     /* 1. Set j := 1 and set H := 0. */
@@ -1609,19 +1609,19 @@ end:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>STATE-ACCESS(%partial_identifier_start, %partial_identifier_length, %state_begin, %state_length, %state_address, %state_instruction)</i><br><br>
+/// @brief  <i>STATE-ACCESS(%partial_identifier_start, %partial_identifier_length, %state_begin, %state_length, %state_address, %state_instruction)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.5<br>
 /// This instruction retrieves some previously stored state information..
 
-/// @param [in,out]	udvm				If non-null, the udvm.
-/// @param	partial_identifier_start	Specifies the location of the partial state identifier used to retrieve the state information.
-/// @param	partial_identifier_length	Specifies the length of the partial state identifier used to retrieve the state information.
-/// @param	state_begin					Defines the starting byte to copy from the state_value contained in the returned item of state.
-/// @param	state_length				Defines the number of bytes to copy from the state_value contained in the returned item of state.
-/// @param	state_address				Contains a UDVM memory address.
-/// @param	state_instruction			Next instruction to jump to.
+/// @param [in,out] udvm                If non-null, the udvm.
+/// @param  partial_identifier_start    Specifies the location of the partial state identifier used to retrieve the state information.
+/// @param  partial_identifier_length   Specifies the length of the partial state identifier used to retrieve the state information.
+/// @param  state_begin                 Defines the starting byte to copy from the state_value contained in the returned item of state.
+/// @param  state_length                Defines the number of bytes to copy from the state_value contained in the returned item of state.
+/// @param  state_address               Contains a UDVM memory address.
+/// @param  state_instruction           Next instruction to jump to.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_ACCESS(tcomp_udvm_t *udvm, uint32_t partial_identifier_start, uint32_t partial_identifier_length, uint32_t state_begin, uint32_t state_length, uint32_t state_address, uint32_t state_instruction)
 {
@@ -1729,25 +1729,25 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_ACCESS(tcomp_udvm_t *udvm, uint32_t parti
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>STATE-CREATE (%state_length, %state_address, %state_instruction, %minimum_access_length, %state_retention_priority)</i><br><br>
+/// @brief  <i>STATE-CREATE (%state_length, %state_address, %state_instruction, %minimum_access_length, %state_retention_priority)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.6<br>
 /// This instruction requests the creation of a state item at the receiving endpoint..
 
-/// @param [in,out]	udvm				If non-null, the udvm.
-/// @param	state_length				Defines the length of the state to create.
-/// @param	state_address				Defines the udvm address of the state to create.
-/// @param	state_instruction			Defines the state instruction.
-/// @param	minimum_access_length		Defines the minimun access length.
-/// @param	state_retention_priority	Defines the state retenion priority.
+/// @param [in,out] udvm                If non-null, the udvm.
+/// @param  state_length                Defines the length of the state to create.
+/// @param  state_address               Defines the udvm address of the state to create.
+/// @param  state_instruction           Defines the state instruction.
+/// @param  minimum_access_length       Defines the minimun access length.
+/// @param  state_retention_priority    Defines the state retenion priority.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_CREATE(tcomp_udvm_t *udvm, uint32_t state_length, uint32_t state_address, uint32_t state_instruction, uint32_t minimum_access_length, uint32_t state_retention_priority)
 {
     CONSUME_CYCLES(1 + state_length);
 
     /*
-    *	Create temporary state?
+    *   Create temporary state?
     */
     if(!tcomp_udvm_createTempState(udvm, state_length, state_address, state_instruction,
                                    minimum_access_length, state_retention_priority, 0)) {
@@ -1760,15 +1760,15 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_CREATE(tcomp_udvm_t *udvm, uint32_t state
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i>STATE-FREE(%partial_identifier_start, %partial_identifier_length)</i><br><br>
+/// @brief  <i>STATE-FREE(%partial_identifier_start, %partial_identifier_length)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.7<br>
 /// This instruction informs the receiving endpoint that the sender no longer wishes to use a particular state item..
 
-/// @param [in,out]	udvm				If non-null, the udvm.
-/// @param	partial_identifier_start	Defines the first byte address of partial start identifier.
-/// @param	partial_identifier_length	Defines the partial identifier length.
+/// @param [in,out] udvm                If non-null, the udvm.
+/// @param  partial_identifier_start    Defines the first byte address of partial start identifier.
+/// @param  partial_identifier_length   Defines the partial identifier length.
 ///
-/// @retval	True if succeed, otherwise return false .
+/// @retval True if succeed, otherwise return false .
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_FREE(tcomp_udvm_t *udvm, uint32_t partial_identifier_start, uint32_t partial_identifier_length)
 {
@@ -1810,7 +1810,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__STATE_FREE(tcomp_udvm_t *udvm, uint32_t partial
 * @brief <i>OUTPUT (%output_start, %output_length)</i><br><br>
 * Reference:  RFC3320 Section 9.4.8<br>
 * This instruction provides successfully decompressed data to the dispatcher.
-* @param [in,out]	udvm	The udvm state machine entity.
+* @param [in,out]   udvm    The udvm state machine entity.
 * @param output_start defines the starting memory address of the byte string to be provided to the dispatcher
 * @param output_length defines the length of the byte string to be provided to the dispatcher
 * @retval 1 if succeed, otherwise returns 0
@@ -1847,21 +1847,21 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__OUTPUT(tcomp_udvm_t *udvm, uint32_t output_star
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///
-/// @brief	<i> END-MESSAGE (%requested_feedback_location, %returned_parameters_location, %state_length, %state_address, %state_instruction, %minimum_access_length, %state_retention_priority)</i><br><br>
+/// @brief  <i> END-MESSAGE (%requested_feedback_location, %returned_parameters_location, %state_length, %state_address, %state_instruction, %minimum_access_length, %state_retention_priority)</i><br><br>
 /// Reference:  RFC3320 Section 9.4.9<br>
 /// This instruction successfully terminates the UDVM and forwards the state creation and state free requests to the state
 /// handler together with any supplied feedback data.
 ///
-/// @param [in,out]	udvm					Defines the requested feedback location.
-/// @param	requested_feedback_location		The requested feedback location.
-/// @param	returned_parameters_location	Defines the returned parameters location which contains remote party capabilities.
-/// @param	state_length					Length of the state to create.
-/// @param	state_address					UDVM memory address of the state to create.
-/// @param	state_instruction				Defines the state instruction.
-/// @param	minimum_access_length			Defines the state's minimum access length.
-/// @param	state_retention_priority		Determines the order in which state will be deleted when the compartment exceeds its allocated state memory.
+/// @param [in,out] udvm                    Defines the requested feedback location.
+/// @param  requested_feedback_location     The requested feedback location.
+/// @param  returned_parameters_location    Defines the returned parameters location which contains remote party capabilities.
+/// @param  state_length                    Length of the state to create.
+/// @param  state_address                   UDVM memory address of the state to create.
+/// @param  state_instruction               Defines the state instruction.
+/// @param  minimum_access_length           Defines the state's minimum access length.
+/// @param  state_retention_priority        Determines the order in which state will be deleted when the compartment exceeds its allocated state memory.
 ///
-/// @retval	@a tsk_true if succeed, otherwise returns @a tsk_false.
+/// @retval @a tsk_true if succeed, otherwise returns @a tsk_false.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 tsk_bool_t TCOMP_UDVM_EXEC_INST__END_MESSAGE(tcomp_udvm_t *udvm, uint32_t requested_feedback_location, uint32_t returned_parameters_location, uint32_t state_length, uint32_t state_address, uint32_t state_instruction, uint32_t minimum_access_length, uint32_t state_retention_priority)
@@ -1873,7 +1873,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__END_MESSAGE(tcomp_udvm_t *udvm, uint32_t reques
     udvm_size = TCOMP_UDVM_GET_SIZE();
 
     /*
-    *	Create temporary state provided by END_MESSAGE?
+    *   Create temporary state provided by END_MESSAGE?
     */
     if(!tcomp_udvm_createTempState(udvm, state_length, state_address, state_instruction, minimum_access_length, state_retention_priority, 1)) {
         return tsk_false;
@@ -1889,7 +1889,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__END_MESSAGE(tcomp_udvm_t *udvm, uint32_t reques
     }
 
     /*
-    *	Feedback has been requested?
+    *   Feedback has been requested?
     */
     if(requested_feedback_location) {
         uint8_t r_f_l;
@@ -1939,7 +1939,7 @@ tsk_bool_t TCOMP_UDVM_EXEC_INST__END_MESSAGE(tcomp_udvm_t *udvm, uint32_t reques
     }
 
     //
-    //	SigComp parameters have been returned?
+    //  SigComp parameters have been returned?
     //
     if(returned_parameters_location) {
         uint8_t r_p_l, SigComp_version;

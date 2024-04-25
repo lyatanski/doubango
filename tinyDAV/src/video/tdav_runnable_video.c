@@ -64,7 +64,7 @@ int tdav_runnable_video_stop(tdav_runnable_video_t* self)
 
 
 //=================================================================================================
-//	Video Runable object definition
+//  Video Runable object definition
 //
 static tsk_object_t* tdav_runnable_video_ctor(tsk_object_t * self, va_list * app)
 {

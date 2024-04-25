@@ -40,7 +40,7 @@
 
 TDAV_BEGIN_DECLS
 
-#define TDAV_WAVEAPI_CONSUMER_NOTIF_POS_COUNT		4
+#define TDAV_WAVEAPI_CONSUMER_NOTIF_POS_COUNT       4
 
 typedef struct tdav_consumer_waveapi_s {
     TDAV_DECLARE_CONSUMER_AUDIO;

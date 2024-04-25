@@ -292,18 +292,18 @@ tsk_params_L_t* tsk_params_fromstring(const char* string, const char* separator,
     tsk_size_t size = tsk_strlen(string);
 
 #define PUSH_PARAM() \
-	if(!params){ \
-		params = tsk_list_create(); \
-	} \
-	if(trim){ \
-		if(param->name){ \
-			tsk_strtrim(&param->name); \
-		} \
-		if(param->value){ \
-			tsk_strtrim(&param->value); \
-		} \
-	} \
-	tsk_list_push_back_data(params, (void**)&param);
+    if(!params){ \
+        params = tsk_list_create(); \
+    } \
+    if(trim){ \
+        if(param->name){ \
+            tsk_strtrim(&param->name); \
+        } \
+        if(param->value){ \
+            tsk_strtrim(&param->value); \
+        } \
+    } \
+    tsk_list_push_back_data(params, (void**)&param);
 
     while((index = tsk_strindexOf((string + i), (size - i), separator)) != -1) {
         if((param = tsk_params_parse_param((string + i), index))) {
@@ -343,7 +343,7 @@ tsk_params_L_t* tsk_params_fromstring(const char* string, const char* separator,
 
 
 //=================================================================================================
-//	param object definition
+//  param object definition
 //
 static tsk_object_t* tsk_param_ctor(tsk_object_t* self, va_list * app)
 {

@@ -115,9 +115,9 @@ bail:
 // Retrieve the entry with: uri='sip:bob@example.com' and list='rcs'
 // Expected node: /resource-lists/list[@name="rcs"]/entry[@uri="sip:bob@example.com"]
 char* urlstring = txcap_selector_get_url(stack, "resource-lists",
-	TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
-	TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", "sip:bob@example.com"),
-	TXCAP_SELECTOR_NODE_SET_NULL());
+    TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("list", "name", "rcs"),
+    TXCAP_SELECTOR_NODE_SET_ATTRIBUTE("entry", "uri", "sip:bob@example.com"),
+    TXCAP_SELECTOR_NODE_SET_NULL());
 TSK_DEBUG_INFO("%s\n", urlstring);
 TSK_FREE(urlstring);
 * @endcode

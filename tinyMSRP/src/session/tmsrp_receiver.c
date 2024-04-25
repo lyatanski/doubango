@@ -97,7 +97,7 @@ int tmsrp_receiver_recv(tmsrp_receiver_t* self, const void* data, tsk_size_t siz
         _tmsrp_receiver_alert_user(self, tsk_false, message);
 
         //
-        //	REQUEST
+        //  REQUEST
         //
         if(TMSRP_MESSAGE_IS_REQUEST(message)) {
             /* ============= SEND =============== */
@@ -144,7 +144,7 @@ int tmsrp_receiver_recv(tmsrp_receiver_t* self, const void* data, tsk_size_t siz
             /* ============= METHOD =============== */
         }
         //
-        //	RESPONSE
+        //  RESPONSE
         //
         else {
             //short code = TMSRP_RESPONSE_CODE(message);
@@ -162,7 +162,7 @@ int tmsrp_receiver_recv(tmsrp_receiver_t* self, const void* data, tsk_size_t siz
 
 
 //=================================================================================================
-//	MSRP receiver object definition
+//  MSRP receiver object definition
 //
 static void* tmsrp_receiver_ctor(tsk_object_t * self, va_list *app)
 {

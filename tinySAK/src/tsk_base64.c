@@ -39,9 +39,9 @@
 #define TSK_BASE64_PAD '='
 
 /** Encoding block size. */
-#define TSK_BASE64_ENCODE_BLOCK_SIZE	3 /* 24-bit input group */
+#define TSK_BASE64_ENCODE_BLOCK_SIZE    3 /* 24-bit input group */
 /** Decoding block size. */
-#define TSK_BASE64_DECODE_BLOCK_SIZE	4
+#define TSK_BASE64_DECODE_BLOCK_SIZE    4
 
 /*==================================================================
      Value Encoding  Value Encoding  Value Encoding  Value Encoding
@@ -63,7 +63,7 @@
         15 P            32 g            49 x
         16 Q            33 h            50 y
 
-		RFC 4548 - Table 1: The Base 64 Alphabet
+        RFC 4548 - Table 1: The Base 64 Alphabet
 */
 
 /**@ingroup tsk_base64_group
@@ -82,14 +82,14 @@ tsk_size_t tsk_base64_encode(const uint8_t* input, tsk_size_t input_size, char *
     static const char* TSK_BASE64_ENCODE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     /*=================================================================================
-    	content					T					S					K
-    	ASCII					0x54				0x53				0x4B
-    	Binary					0101 0100			0101 0011			0100 1011
-    	------------------------------------------------------------------------------
-    	------------------------------------------------------------------------------
-    	Packs of 6bits			010101			000101			001101			001011
-    	Indexes					21				5				13				11
-    	Base64 encoded			V				F				N				L			<=== HERE IS THE RESULT OF tsk_base64_encode("TSK")
+        content                 T                   S                   K
+        ASCII                   0x54                0x53                0x4B
+        Binary                  0101 0100           0101 0011           0100 1011
+        ------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------
+        Packs of 6bits          010101          000101          001101          001011
+        Indexes                 21              5               13              11
+        Base64 encoded          V               F               N               L           <=== HERE IS THE RESULT OF tsk_base64_encode("TSK")
     */
 
     tsk_size_t i = 0;
@@ -127,9 +127,9 @@ quantum:
         *(*output + output_size++) = TSK_BASE64_PAD, *(*output + output_size++) = TSK_BASE64_PAD;
     }
     else if ((input_size - i) == 2) {
-        /*	The final quantum of encoding input is exactly 16 bits; here, the
-        	final unit of encoded output will be three characters followed by
-        	one "=" padding character.
+        /*  The final quantum of encoding input is exactly 16 bits; here, the
+            final unit of encoded output will be three characters followed by
+            one "=" padding character.
         */
         *(*output + output_size++) = TSK_BASE64_ENCODE_ALPHABET [ (input[i]>> 2) & 0x3F ];
         *(*output + output_size++) = TSK_BASE64_ENCODE_ALPHABET [ ((input[i]<<4) | (input[i+1]>>4)) & 0x3F ];
@@ -155,31 +155,31 @@ tsk_size_t tsk_base64_decode(const uint8_t* input, tsk_size_t input_size, char *
 {
     static const uint8_t TSK_BASE64_DECODE_ALPHABET[256] = {
         -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1,
-        62,
-        -1, -1, -1,
-        63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
-        -1, -1, -1, -1, -1, -1, -1,
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-        -1, -1, -1, -1, -1, -1,
-        26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-        -1,
-    };
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1,
+            62,
+            -1, -1, -1,
+            63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+            -1, -1, -1, -1, -1, -1, -1,
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+            -1, -1, -1, -1, -1, -1,
+            26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1,
+        };
 
     tsk_size_t i, pay_size;
     tsk_size_t output_size = 0;

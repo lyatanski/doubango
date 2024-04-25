@@ -34,10 +34,10 @@
 
 TDAV_BEGIN_DECLS
 
-unsigned char linear2alaw(short	pcm_val);
-short alaw2linear(unsigned char	a_val);
-unsigned char linear2ulaw(short	pcm_val);
-short ulaw2linear(unsigned char	u_val);
+unsigned char linear2alaw(short pcm_val);
+short alaw2linear(unsigned char a_val);
+unsigned char linear2ulaw(short pcm_val);
+short ulaw2linear(unsigned char u_val);
 
 TDAV_END_DECLS
 

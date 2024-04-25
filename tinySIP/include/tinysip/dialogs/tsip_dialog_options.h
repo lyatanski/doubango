@@ -35,7 +35,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_DIALOG_OPTIONS(self)							((tsip_dialog_options_t*)(self))
+#define TSIP_DIALOG_OPTIONS(self)                           ((tsip_dialog_options_t*)(self))
 
 typedef struct tsip_dialog_options {
     TSIP_DECLARE_DIALOG;

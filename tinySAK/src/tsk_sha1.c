@@ -5,7 +5,7 @@
  * Full Copyright Statement
  *
  *  Copyright (C) The Internet Society (2001).  All Rights Reserved.
- *  Copyright (C) Mamadou Diop		   (2009)
+ *  Copyright (C) Mamadou Diop         (2009)
  *
  *  This document and translations of it may be copied and furnished to
  *  others, and derivative works that comment on or otherwise explain it
@@ -34,30 +34,30 @@
  *
  *
  *  Description:
- *	  This file implements the Secure Hashing Algorithm 1 as
- *	  defined in FIPS PUB 180-1 published April 17, 1995.
+ *    This file implements the Secure Hashing Algorithm 1 as
+ *    defined in FIPS PUB 180-1 published April 17, 1995.
  *
- *	  The SHA-1, produces a 160-bit message digest for a given
- *	  data stream.  It should take about 2**n steps to find a
- *	  message with the same digest as a given message and
- *	  2**(n/2) to find any two messages with the same digest,
- *	  when n is the digest size in bits.  Therefore, this
- *	  algorithm can serve as a means of providing a
- *	  "fingerprint" for a message.
+ *    The SHA-1, produces a 160-bit message digest for a given
+ *    data stream.  It should take about 2**n steps to find a
+ *    message with the same digest as a given message and
+ *    2**(n/2) to find any two messages with the same digest,
+ *    when n is the digest size in bits.  Therefore, this
+ *    algorithm can serve as a means of providing a
+ *    "fingerprint" for a message.
  *
  *  Portability Issues:
- *	  SHA-1 is defined in terms of 32-bit "words".  This code
- *	  uses <stdint.h> (included via "sha1.h" to define 32 and 8
- *	  bit unsigned integer types.  If your C compiler does not
- *	  support 32 bit unsigned integers, this code is not
- *	  appropriate.
+ *    SHA-1 is defined in terms of 32-bit "words".  This code
+ *    uses <stdint.h> (included via "sha1.h" to define 32 and 8
+ *    bit unsigned integer types.  If your C compiler does not
+ *    support 32 bit unsigned integers, this code is not
+ *    appropriate.
  *
  *  Caveats:
- *	  SHA-1 is designed to work with messages less than 2^64 bits
- *	  long.  Although SHA-1 allows a message digest to be generated
- *	  for messages of any number of bits less than 2^64, this
- *	  implementation only works with messages with a length that is
- *	  a multiple of the size of an 8-bit character.
+ *    SHA-1 is designed to work with messages less than 2^64 bits
+ *    long.  Although SHA-1 allows a message digest to be generated
+ *    for messages of any number of bits less than 2^64, this
+ *    implementation only works with messages with a length that is
+ *    a multiple of the size of an 8-bit character.
  *
  */
 
@@ -96,18 +96,18 @@
 
 /**@defgroup tsk_sha1_group Utility SHA1 (RFC 3174)
  *  Copyright (C) The Internet Society (2001).  All Rights Reserved.<br>
- *  Copyright (C) Mamadou Diop		   (2009)<br>
+ *  Copyright (C) Mamadou Diop         (2009)<br>
  *
- *	This file implements the Secure Hashing Algorithm 1 as
- *	defined in FIPS PUB 180-1 published April 17, 1995.
+ *  This file implements the Secure Hashing Algorithm 1 as
+ *  defined in FIPS PUB 180-1 published April 17, 1995.
  *
- *	  The SHA-1, produces a 160-bit message digest for a given
- *	  data stream.  It should take about 2**n steps to find a
- *	  message with the same digest as a given message and
- *	  2**(n/2) to find any two messages with the same digest,
- *	  when n is the digest size in bits.  Therefore, this
- *	  algorithm can serve as a means of providing a
- *	  "fingerprint" for a message.
+ *    The SHA-1, produces a 160-bit message digest for a given
+ *    data stream.  It should take about 2**n steps to find a
+ *    message with the same digest as a given message and
+ *    2**(n/2) to find any two messages with the same digest,
+ *    when n is the digest size in bits.  Therefore, this
+ *    algorithm can serve as a means of providing a
+ *    "fingerprint" for a message.
  *
 */
 
@@ -420,10 +420,10 @@ void tsk_sha1final(uint8_t *Message_Digest, tsk_sha1context_t *context)
 
 
 /**@ingroup tsk_sha1_group
- *	Calculates sha1 digest result (hexadecimal string).
+ *  Calculates sha1 digest result (hexadecimal string).
  *
- * @param input	The input data for which to calculate the SHA-1 hash.
- * @param size	The size of the input data.
+ * @param input The input data for which to calculate the SHA-1 hash.
+ * @param size  The size of the input data.
  * @param result SHA-1 hash result as a hexadecimal string.
  *
  * @retval @ref tsk_sha1_errcode_t code.

@@ -17,7 +17,7 @@
 */
 /**@file tdav_producer_video_mf.h
  * @brief Microsoft Media Foundation video producer (header).
- *	http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
+ *  http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
  */
 #ifndef TINYDAV_PRODUCER_VIDEO_MF_H
 #define TINYDAV_PRODUCER_VIDEO_MF_H

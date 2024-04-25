@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 96 "./ragel/tsip_parser_header_Date.rl" */
@@ -371,7 +371,7 @@ _match:
             {
             }
             break;
-            /* #line 368 "./src/headers/tsip_header_Date.c" */
+                /* #line 368 "./src/headers/tsip_header_Date.c" */
             }
         }
 
@@ -409,7 +409,7 @@ _out: {
 
 
 //========================================================
-//	Date header object definition
+//  Date header object definition
 //
 
 static tsk_object_t* tsip_header_Date_ctor(tsk_object_t *self, va_list * app)

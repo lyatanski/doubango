@@ -31,7 +31,7 @@
 #include <Mferror.h>
 
 #if !defined(PLUGIN_AUDIO_DSP_RESAMPLER_MAX_QUALITY)
-#	define PLUGIN_AUDIO_DSP_RESAMPLER_MAX_QUALITY 60 /* [1 - 60]: http://msdn.microsoft.com/en-us/library/windows/desktop/ff819449(v=vs.85).aspx */
+#   define PLUGIN_AUDIO_DSP_RESAMPLER_MAX_QUALITY 60 /* [1 - 60]: http://msdn.microsoft.com/en-us/library/windows/desktop/ff819449(v=vs.85).aspx */
 #endif
 
 static const UINT32 g_nBitsPerSample = 16;
@@ -306,7 +306,7 @@ bail:
 
 
 //
-//	Speex resamplerr Plugin definition
+//  Speex resamplerr Plugin definition
 //
 
 /* constructor */

@@ -18,7 +18,7 @@
 */
 /**@file tdav_producer_video_mf.cxx
  * @brief Microsoft Media Foundation video producer (source).
- *	http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
+ *  http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
  */
 #include "tinydav/video/mf/tdav_producer_video_mf.h"
 
@@ -33,10 +33,10 @@
 #define _WIN32_WINNT _WIN32_WINNT_WIN7 /* must be re-defined before include Media Doundation headers */
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "mfplat.lib")
-#	pragma comment(lib, "mf.lib")
-#	pragma comment(lib, "mfuuid.lib")
-#	pragma comment(lib, "shlwapi.lib")
+#   pragma comment(lib, "mfplat.lib")
+#   pragma comment(lib, "mf.lib")
+#   pragma comment(lib, "mfuuid.lib")
+#   pragma comment(lib, "shlwapi.lib")
 #endif
 
 #include <new>
@@ -78,7 +78,7 @@ static const VideoSubTypeGuidPair g_VideoSubTypeGuidPairs[] = {
 #define DEFAULT_SUBTYPE_INDEX 0
 
 //
-//	DeviceList [Declaration]
+//  DeviceList [Declaration]
 //
 class DeviceList
 {
@@ -86,14 +86,17 @@ class DeviceList
     IMFActivate **m_ppDevices;
 
 public:
-    DeviceList() : m_ppDevices(NULL), m_cDevices(0) {
+    DeviceList() : m_ppDevices(NULL), m_cDevices(0)
+    {
 
     }
-    ~DeviceList() {
+    ~DeviceList()
+    {
         Clear();
     }
 
-    UINT32  Count() const {
+    UINT32  Count() const
+    {
         return m_cDevices;
     }
 
@@ -106,8 +109,8 @@ public:
 
 
 //
-//	SampleGrabberCB [Declaration]
-//	http://msdn.microsoft.com/en-us/library/windows/desktop/hh184779(v=vs.85).aspx
+//  SampleGrabberCB [Declaration]
+//  http://msdn.microsoft.com/en-us/library/windows/desktop/hh184779(v=vs.85).aspx
 //
 class SampleGrabberCB : public IMFSampleGrabberSinkCallback
 {
@@ -141,7 +144,7 @@ public:
 
 
 //
-//	tdav_producer_video_mf_t
+//  tdav_producer_video_mf_t
 //
 typedef struct tdav_producer_video_mf_s {
     TMEDIA_DECLARE_PRODUCER;
@@ -375,7 +378,7 @@ static int tdav_producer_video_mf_stop(tmedia_producer_t* self)
 }
 
 //
-//	Windows Media Foundation video producer object definition
+//  Windows Media Foundation video producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_video_mf_ctor(tsk_object_t * self, va_list * app)
@@ -458,7 +461,7 @@ const tmedia_producer_plugin_def_t *tdav_producer_video_mf_plugin_def_t = &tdav_
 
 
 //
-//	DeviceList [Implementation]
+//  DeviceList [Implementation]
 //
 void DeviceList::Clear()
 {
@@ -634,7 +637,7 @@ STDMETHODIMP SampleGrabberCB::OnShutdown()
 
 
 //
-//	Global functions
+//  Global functions
 //
 
 // Create the topology.

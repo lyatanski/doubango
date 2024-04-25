@@ -38,8 +38,8 @@
 
 TCOMP_BEGIN_DECLS
 
-#define TCOMP_PARTIAL_ID_LEN_CODE		0x01
-#define TCOMP_PARTIAL_ID_LEN_VALUE		0x06
+#define TCOMP_PARTIAL_ID_LEN_CODE       0x01
+#define TCOMP_PARTIAL_ID_LEN_VALUE      0x06
 
 /**For the purpose of calculation, each state item is considered to cost (state_length + 64) bytes.
 */
@@ -50,16 +50,16 @@ TCOMP_BEGIN_DECLS
 typedef struct tcomp_state_s {
     TSK_DECLARE_OBJECT;
 
-    tcomp_buffer_handle_t *value;		/**< State's value. */
-    tcomp_buffer_handle_t *identifier;	/**< State's identifier. */
+    tcomp_buffer_handle_t *value;       /**< State's value. */
+    tcomp_buffer_handle_t *identifier;  /**< State's identifier. */
 
-    uint32_t length;					/**< State's length. */
-    uint32_t address;					/**< State's address. */
-    uint32_t instruction;				/**< State's instruction. */
-    uint32_t minimum_access_length;		/**< State's minimum access length. */
-    uint32_t retention_priority;		/**< State's retention priority. */
+    uint32_t length;                    /**< State's length. */
+    uint32_t address;                   /**< State's address. */
+    uint32_t instruction;               /**< State's instruction. */
+    uint32_t minimum_access_length;     /**< State's minimum access length. */
+    uint32_t retention_priority;        /**< State's retention priority. */
 
-    int32_t usage_count;				/**< State's usage count (to avoid duplication). */
+    int32_t usage_count;                /**< State's usage count (to avoid duplication). */
 
     TSK_DECLARE_SAFEOBJ;
 }

@@ -84,12 +84,12 @@ void test_base64()
     for(i=0; i<sizeof(b64_msgs)/sizeof(struct b64_msg); i++) {
         size = tsk_base64_encode((const uint8_t*)b64_msgs[i].ascii, strlen(b64_msgs[i].ascii), &output_e);
         TSK_DEBUG_INFO("[BASE64-%ld encoding] ==> %s",
-            i, tsk_striequals(b64_msgs[i].base64, output_e)? "PASS": "FAIL");
+                       i, tsk_striequals(b64_msgs[i].base64, output_e)? "PASS": "FAIL");
         TSK_FREE(output_e);
 
         size = tsk_base64_decode((const uint8_t*)b64_msgs[i].base64, strlen(b64_msgs[i].base64), &output_d);
         TSK_DEBUG_INFO("[BASE64-%ld decoding] ==> %s",
-            i, tsk_striequals(b64_msgs[i].ascii, output_d)? "PASS": "FAIL");
+                       i, tsk_striequals(b64_msgs[i].ascii, output_d)? "PASS": "FAIL");
         TSK_FREE(output_d);
     }
 }

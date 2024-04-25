@@ -87,10 +87,10 @@ thttp_message_t* thttp_message_create()
 thttp_url_t* url;
 thttp_request_t* request;
 if((url = thttp_url_parse("http://www.google.com", tsk_strlen("http://www.google.com")))){
-	request = thttp_request_create("GET", url);
-	// ...
-	TSK_OBJECT_SAFE_FREE(url);
-	TSK_OBJECT_SAFE_FREE(request);
+    request = thttp_request_create("GET", url);
+    // ...
+    TSK_OBJECT_SAFE_FREE(url);
+    TSK_OBJECT_SAFE_FREE(request);
 }
 * @endcode
 */
@@ -113,7 +113,7 @@ thttp_request_t* thttp_request_create(const char* method, const thttp_url_t* url
 //thttp_request_t* request;
 thttp_response_t* response;
 if((response = thttp_response_create(request, 200, "OK"))){
-	TSK_OBJECT_SAFE_FREE(response);
+    TSK_OBJECT_SAFE_FREE(response);
 }
 * @endcode
 */
@@ -125,18 +125,18 @@ thttp_response_t* thttp_response_create(const thttp_request_t* request, short st
 
 /**@ingroup thttp_message_group
 */
-int	thttp_message_add_header(thttp_message_t *self, const thttp_header_t *hdr)
+int thttp_message_add_header(thttp_message_t *self, const thttp_header_t *hdr)
 {
 #define ADD_HEADER(type, field) \
-		case thttp_htype_##type: \
-			{ \
-				if(!self->field) \
-				{ \
-					self->field = (thttp_header_##type##_t*)header; \
-					return 0; \
-				} \
-				break; \
-			}
+        case thttp_htype_##type: \
+            { \
+                if(!self->field) \
+                { \
+                    self->field = (thttp_header_##type##_t*)header; \
+                    return 0; \
+                } \
+                break; \
+            }
 
     if(self && hdr) {
         thttp_header_t *header = tsk_object_ref((void*)hdr);
@@ -421,7 +421,7 @@ thttp_response_t *thttp_response_new(short status_code, const char* reason_phras
         response = thttp_response_create(request, status_code, reason_phrase);
         THTTP_MESSAGE_ADD_HEADER(response, THTTP_HEADER_CONTENT_LENGTH_VA_ARGS(0));
         /*
-        	Copy other headers
+            Copy other headers
         */
     }
 
@@ -437,7 +437,7 @@ thttp_response_t *thttp_response_new(short status_code, const char* reason_phras
 
 
 //========================================================
-//	HTTP message object definition
+//  HTTP message object definition
 //
 
 /**@ingroup thttp_message_group

@@ -37,9 +37,9 @@ TSIP_BEGIN_DECLS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Accept-Encoding'.
-/// @author	Mamadou
-/// @date	12/3/2009
+/// @brief  SIP header 'Accept-Encoding'.
+/// @author Mamadou
+/// @date   12/3/2009
 ///
 /// @par ABNF
 ///

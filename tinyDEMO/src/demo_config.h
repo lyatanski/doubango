@@ -28,16 +28,16 @@
 
 /* Guards against C++ name mangling  */
 #ifdef __cplusplus
-#	define _BEGIN_DECLS extern "C" {
-#	define _END_DECLS }
+#   define _BEGIN_DECLS extern "C" {
+#   define _END_DECLS }
 #else
-#	define _BEGIN_DECLS
-#	define _END_DECLS
+#   define _BEGIN_DECLS
+#   define _END_DECLS
 #endif
 
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
-#	pragma warning( disable : 4996 )
+#   define _CRT_SECURE_NO_WARNINGS
+#   pragma warning( disable : 4996 )
 #endif
 
 /* use SIP OPTIONS and "rport" to hack  the AOR

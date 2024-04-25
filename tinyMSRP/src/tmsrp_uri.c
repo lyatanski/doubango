@@ -75,7 +75,7 @@ int tmsrp_uri_serialize(const tmsrp_uri_t *uri, tsk_buffer_t *output)
 
     /* msrp://atlanta.example.com:7654/jshA7weztas;tcp
     * msrp-scheme  "://" authority  ["/" session-id] ";" transport  *( ";" URI-parameter)
-    * authority	=  	[ userinfo  "@" ]   host    [ ":"   port ]
+    * authority =   [ userinfo  "@" ]   host    [ ":"   port ]
     */
     tsk_buffer_append_2(output, "%s://%s%s%s%s%s%s%s%s%s;%s",
 
@@ -143,7 +143,7 @@ tmsrp_uri_t *tmsrp_uri_clone(const tmsrp_uri_t *uri)
 
 
 //========================================================
-//	MSRP/MSRPS/TEL URI object definition
+//  MSRP/MSRPS/TEL URI object definition
 //
 static tsk_object_t* tmsrp_uri_ctor(tsk_object_t *self, va_list * app)
 {

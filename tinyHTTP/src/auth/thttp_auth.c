@@ -38,11 +38,11 @@
  *
  * Generates HTTP-basic response as per RFC 2617.
  *
- * @param [in,out]	userid		The user-id.
- * @param [in,out]	password	The user-password.
- * @param [in,out]	response	A pointer to the response. It will be up to the caller to free the newly allocated buffer.
+ * @param [in,out]  userid      The user-id.
+ * @param [in,out]  password    The user-password.
+ * @param [in,out]  response    A pointer to the response. It will be up to the caller to free the newly allocated buffer.
  *
- * @return	The size of the response.
+ * @return  The size of the response.
  **/
 tsk_size_t thttp_auth_basic_response(const char* userid, const char* password, char** response)
 {
@@ -68,20 +68,20 @@ tsk_size_t thttp_auth_basic_response(const char* userid, const char* password, c
  * Generates digest HA1 value as per RFC 2617 subclause 3.2.2.2.
  *
  *
- * @param [in,out]	username	The user's name (unquoted) in the specified @a realm.
- * @param [in,out]	realm		The realm. (unquoted)
- * @param [in,out]	password	The user's password.
- * @param [in,out]	ha1			A pointer to the result.
+ * @param [in,out]  username    The user's name (unquoted) in the specified @a realm.
+ * @param [in,out]  realm       The realm. (unquoted)
+ * @param [in,out]  password    The user's password.
+ * @param [in,out]  ha1         A pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
  **/
 int thttp_auth_digest_HA1(const char* username, const char* realm, const char* password, tsk_md5string_t* ha1)
 {
     int ret;
 
     /* RFC 2617 - 3.2.2.2 A1
-    	A1       = unq(username-value) ":" unq(realm-value) ":" passwd
-    	*/
+        A1       = unq(username-value) ":" unq(realm-value) ":" passwd
+        */
     char *a1 = tsk_null;
     tsk_sprintf(&a1, "%s:%s:%s", username, realm, password);
     ret = tsk_md5compute(a1, tsk_strlen(a1), ha1);
@@ -95,24 +95,24 @@ int thttp_auth_digest_HA1(const char* username, const char* realm, const char* p
  * Generates digest HA1 value for 'MD5-sess' algo as per RFC 2617 subclause 3.2.2.2.
  *
  *
- * @param [in,out]	username	The user's name (unquoted) in the specified @a realm.
- * @param [in,out]	realm		The realm (unquoted).
- * @param [in,out]	password	The user's password.
- * @param [in,out]	nonce		The nonce (unquoted).
- * @param [in,out]	cnonce		The client nonce (unquoted).
- * @param [in,out]	ha1sess		A pointer to the result.
+ * @param [in,out]  username    The user's name (unquoted) in the specified @a realm.
+ * @param [in,out]  realm       The realm (unquoted).
+ * @param [in,out]  password    The user's password.
+ * @param [in,out]  nonce       The nonce (unquoted).
+ * @param [in,out]  cnonce      The client nonce (unquoted).
+ * @param [in,out]  ha1sess     A pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
  **/
 int thttp_auth_digest_HA1sess(const char* username, const char* realm, const char* password, const char* nonce, const char* cnonce, tsk_md5string_t* ha1sess)
 {
     int ret;
 
     /* RFC 2617 - 3.2.2.2 A1
-    		A1       = H( unq(username-value) ":" unq(realm-value)
-    		":" passwd )
-    		":" unq(nonce-value) ":" unq(cnonce-value)
-    		*/
+            A1       = H( unq(username-value) ":" unq(realm-value)
+            ":" passwd )
+            ":" unq(nonce-value) ":" unq(cnonce-value)
+            */
 
     char *a1sess = tsk_null;
     tsk_sprintf(&a1sess, "%s:%s:%s:%s:%s", username, realm, password, nonce, cnonce);
@@ -126,13 +126,13 @@ int thttp_auth_digest_HA1sess(const char* username, const char* realm, const cha
  * Generates digest HA2 value as per RFC 2617 subclause 3.2.2.3.
  *
  *
- * @param [in,out]	method		The HTTP/SIP method name.
- * @param [in,out]	url			The HTTP URL or SIP URI of the request.
- * @param [in,out]	entity_body	The entity body.
- * @param [in,out]	qop			The Quality Of Protection.
- * @param [in,out]	ha2			A pointer to the response.
+ * @param [in,out]  method      The HTTP/SIP method name.
+ * @param [in,out]  url         The HTTP URL or SIP URI of the request.
+ * @param [in,out]  entity_body The entity body.
+ * @param [in,out]  qop         The Quality Of Protection.
+ * @param [in,out]  ha2         A pointer to the response.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
  **/
 int thttp_auth_digest_HA2(const char* method, const char* url, const tsk_buffer_t* entity_body, const char* qop, tsk_md5string_t* ha2)
 {
@@ -178,15 +178,15 @@ bail:
  *
  * Generates HTTP digest response as per RFC 2617 subclause 3.2.2.1.
  *
- * @param [in,out]	ha1			HA1 string generated using  @ref thttp_auth_digest_HA1 or @ref thttp_auth_digest_HA1sess.
- * @param [in,out]	nonce		The nonce value.
- * @param [in,out]	noncecount	The nonce count.
- * @param [in,out]	cnonce		The client nounce (unquoted).
- * @param [in,out]	qop			The Quality Of Protection (unquoted).
- * @param [in,out]	ha2			HA2 string generated using @ref thttp_auth_digest_HA2.
- * @param [in,out]	response	A pointer to the response.
+ * @param [in,out]  ha1         HA1 string generated using  @ref thttp_auth_digest_HA1 or @ref thttp_auth_digest_HA1sess.
+ * @param [in,out]  nonce       The nonce value.
+ * @param [in,out]  noncecount  The nonce count.
+ * @param [in,out]  cnonce      The client nounce (unquoted).
+ * @param [in,out]  qop         The Quality Of Protection (unquoted).
+ * @param [in,out]  ha2         HA2 string generated using @ref thttp_auth_digest_HA2.
+ * @param [in,out]  response    A pointer to the response.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
  **/
 int thttp_auth_digest_response(const tsk_md5string_t *ha1, const char* nonce, const nonce_count_t noncecount, const char* cnonce,
                                const char* qop, const tsk_md5string_t* ha2, tsk_md5string_t* response)
@@ -231,10 +231,10 @@ int thttp_auth_digest_response(const tsk_md5string_t *ha1, const char* nonce, co
 /**@ingroup thttp_auth_group
  *
  * Generates WebSocket Accept key.
- * @param [in]	key		The value of the key received from the client ("Sec-WebSocket-Key" header). Must be null-terminated.
- * @param [in,out]	response		The response ("Sec-WebSocket-Value" header).
+ * @param [in]  key     The value of the key received from the client ("Sec-WebSocket-Key" header). Must be null-terminated.
+ * @param [in,out]  response        The response ("Sec-WebSocket-Value" header).
  *
- * @return	The size of the response. Zero if error.
+ * @return  The size of the response. Zero if error.
  */
 tsk_size_t thttp_auth_ws_response(const char* key, thttp_auth_ws_keystring_t* response)
 {

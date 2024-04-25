@@ -25,7 +25,7 @@
 
 using namespace std;
 
-#define DEFAULT_FPS	15
+#define DEFAULT_FPS 15
 
 #define MEMCPY_WORKAROUND 1
 
@@ -121,18 +121,18 @@ HRESULT DSOutputStream::GetMediaType(CMediaType *pMediaType)
 
     pvi->bmiHeader.biCompression = BI_RGB;
     pvi->bmiHeader.biBitCount = 24;
-    pvi->bmiHeader.biSize			= sizeof(BITMAPINFOHEADER);
-    pvi->bmiHeader.biWidth			= this->width;
-    pvi->bmiHeader.biHeight			= this->height;
-    pvi->bmiHeader.biPlanes			= 1;
-    pvi->bmiHeader.biSizeImage		= GetBitmapSize(&pvi->bmiHeader);
-    pvi->bmiHeader.biClrImportant	= 0;
+    pvi->bmiHeader.biSize           = sizeof(BITMAPINFOHEADER);
+    pvi->bmiHeader.biWidth          = this->width;
+    pvi->bmiHeader.biHeight         = this->height;
+    pvi->bmiHeader.biPlanes         = 1;
+    pvi->bmiHeader.biSizeImage      = GetBitmapSize(&pvi->bmiHeader);
+    pvi->bmiHeader.biClrImportant   = 0;
 
     // Frame rate
-    pvi->AvgTimePerFrame			= DS_MILLIS_TO_100NS(1000/this->fps);
+    pvi->AvgTimePerFrame            = DS_MILLIS_TO_100NS(1000/this->fps);
 
-    SetRectEmpty(&(pvi->rcSource));	// we want the whole image area rendered.
-    SetRectEmpty(&(pvi->rcTarget));	// no particular destination rectangle
+    SetRectEmpty(&(pvi->rcSource)); // we want the whole image area rendered.
+    SetRectEmpty(&(pvi->rcTarget)); // no particular destination rectangle
 
     pMediaType->SetType(&MEDIATYPE_Video);
     pMediaType->SetFormatType(&FORMAT_VideoInfo);
@@ -242,14 +242,14 @@ static __inline void TransfertBuffer(void* src, void* dest, long lSize)
         //#ifdef _WIN32_WCE
         memmove(dest, src, lSize);
         /*#else
-        		unsigned char * pDst = (unsigned char *) dest;
+                unsigned char * pDst = (unsigned char *) dest;
 
-        		if(src){
-        			unsigned char const * pSrc = (unsigned char const *) src;
-        			for( register int i=0; ((i< lSize) && src); i++) *pDst++ = *pSrc++;
-        		}else{
-        			for( register int i=0; i< lSize; i++) *pDst++ = 0;
-        		}
+                if(src){
+                    unsigned char const * pSrc = (unsigned char const *) src;
+                    for( register int i=0; ((i< lSize) && src); i++) *pDst++ = *pSrc++;
+                }else{
+                    for( register int i=0; i< lSize; i++) *pDst++ = 0;
+                }
         #endif*/
 #else
         CopyMemory(dest, src, lSize); //BUGGY

@@ -24,27 +24,27 @@
 
 
 /* stretch proportions */
-#define STRETCH_1_1	1
-#define STRETCH_1_2	2
-#define STRETCH_1_4	3
-#define STRETCH_1_N	4
-#define STRETCH_N_1	5
-#define STRETCH_4_1	6
-#define STRETCH_2_1	7
+#define STRETCH_1_1 1
+#define STRETCH_1_2 2
+#define STRETCH_1_4 3
+#define STRETCH_1_N 4
+#define STRETCH_N_1 5
+#define STRETCH_4_1 6
+#define STRETCH_2_1 7
 
 void __stdcall StretchDIB(
-    LPBITMAPINFOHEADER biDst,   //	--> BITMAPINFO of destination
-    LPVOID	lpvDst,		    //	--> to destination bits
-    int	DstX,		    //	Destination origin - x coordinate
-    int	DstY,		    //	Destination origin - y coordinate
-    int	DstXE,		    //	x extent of the BLT
-    int	DstYE,		    //	y extent of the BLT
-    LPBITMAPINFOHEADER biSrc,   //	--> BITMAPINFO of source
-    LPVOID	lpvSrc,		    //	--> to source bits
-    int	SrcX,		    //	Source origin - x coordinate
-    int	SrcY,		    //	Source origin - y coordinate
-    int	SrcXE,		    //	x extent of the BLT
-    int	SrcYE	 	    //	y extent of the BLT
+    LPBITMAPINFOHEADER biDst,   //  --> BITMAPINFO of destination
+    LPVOID  lpvDst,         //  --> to destination bits
+    int DstX,           //  Destination origin - x coordinate
+    int DstY,           //  Destination origin - y coordinate
+    int DstXE,          //  x extent of the BLT
+    int DstYE,          //  y extent of the BLT
+    LPBITMAPINFOHEADER biSrc,   //  --> BITMAPINFO of source
+    LPVOID  lpvSrc,         //  --> to source bits
+    int SrcX,           //  Source origin - x coordinate
+    int SrcY,           //  Source origin - y coordinate
+    int SrcXE,          //  x extent of the BLT
+    int SrcYE           //  y extent of the BLT
 );
 
 /*
@@ -129,18 +129,18 @@ void ResizeRGB( BITMAPINFOHEADER *pbiIn,    //Src's BitMapInFoHeader
                 int iNewWidth,            //new W in pixel
                 int iNewHeight)           //new H in pixel
 {
-    StretchDIB(	pbiOut,				//	--> BITMAPINFO of destination
+    StretchDIB( pbiOut,             //  --> BITMAPINFO of destination
                 pFrame,             //  --> to destination bits
                 0,                  //  Destination origin - x coordinate
                 0,                  //  Destination origin - y coordinate
                 iNewWidth,          //  x extent of the BLT
                 iNewHeight,         //  y extent of the BLT
-                pbiIn,   			//	--> BITMAPINFO of destination
+                pbiIn,              //  --> BITMAPINFO of destination
                 (void*) dibBits,    //  --> to source bits
                 0,                  //  Source origin - x coordinate
                 0,                  //  Source origin - y coordinate
-                pbiIn->biWidth,		//  x extent of the BLT
-                pbiIn->biHeight		//  y extent of the BLT
+                pbiIn->biWidth,     //  x extent of the BLT
+                pbiIn->biHeight     //  y extent of the BLT
               );
 
     return;
@@ -221,18 +221,18 @@ StretchFactor(int SrcE, int DstE, int *pfract)
 
 void FAR PASCAL
 StretchDIB(
-    LPBITMAPINFOHEADER biDst,   //	--> BITMAPINFO of destination
-    LPVOID	lpvDst,		    //	--> to destination bits
-    int	DstX,		    //	Destination origin - x coordinate
-    int	DstY,		    //	Destination origin - y coordinate
-    int	DstXE,		    //	x extent of the BLT
-    int	DstYE,		    //	y extent of the BLT
-    LPBITMAPINFOHEADER biSrc,   //	--> BITMAPINFO of source
-    LPVOID	lpvSrc,		    //	--> to source bits
-    int	SrcX,		    //	Source origin - x coordinate
-    int	SrcY,		    //	Source origin - y coordinate
-    int	SrcXE,		    //	x extent of the BLT
-    int	SrcYE	 	    //	y extent of the BLT
+    LPBITMAPINFOHEADER biDst,   //  --> BITMAPINFO of destination
+    LPVOID  lpvDst,         //  --> to destination bits
+    int DstX,           //  Destination origin - x coordinate
+    int DstY,           //  Destination origin - y coordinate
+    int DstXE,          //  x extent of the BLT
+    int DstYE,          //  y extent of the BLT
+    LPBITMAPINFOHEADER biSrc,   //  --> BITMAPINFO of source
+    LPVOID  lpvSrc,         //  --> to source bits
+    int SrcX,           //  Source origin - x coordinate
+    int SrcY,           //  Source origin - y coordinate
+    int SrcXE,          //  x extent of the BLT
+    int SrcYE           //  y extent of the BLT
 )
 {
 

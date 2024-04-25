@@ -41,13 +41,13 @@
 
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "../thirdparties/win32/lib/g729b/g729b.a")
+#   pragma comment(lib, "../thirdparties/win32/lib/g729b/g729b.a")
 #endif
 
 int16_t bad_lsf;        /* bad LSF indicator   */
 
 #ifndef G729_ENABLE_VAD
-#	define G729_ENABLE_VAD		0 // FIXME: speexJB not prepared for such feature
+#   define G729_ENABLE_VAD      0 // FIXME: speexJB not prepared for such feature
 #endif
 
 static int16_t bin2int(int16_t no_of_bits, const int16_t *bitstream);
@@ -397,7 +397,7 @@ static void pack_SID(const int16_t ituBits[], uint8_t bitstream[])
 
 
 //
-//	g729ab Plugin definition
+//  g729ab Plugin definition
 //
 
 /* constructor */

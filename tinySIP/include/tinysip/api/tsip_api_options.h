@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_OPTIONS_EVENT(self)		((tsip_options_event_t*)(self))
+#define TSIP_OPTIONS_EVENT(self)        ((tsip_options_event_t*)(self))
 
 //@tinyWRAP
 typedef enum tsip_options_event_type_e {
@@ -61,7 +61,7 @@ TINYSIP_API int tsip_api_options_send_options(const tsip_ssession_handle_t *ss, 
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_options_event_def_t;
 
 #if 1 // Backward Compatibility
-#	define tsip_action_OPTIONS	tsip_api_options_send_options
+#   define tsip_action_OPTIONS  tsip_api_options_send_options
 #endif
 
 TSIP_END_DECLS

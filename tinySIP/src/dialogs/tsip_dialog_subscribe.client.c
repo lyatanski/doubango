@@ -43,10 +43,10 @@
 
 
 
-#define DEBUG_STATE_MACHINE											1
-#define TSIP_DIALOG_SUBSCRIBE_TIMER_SCHEDULE(TX)						TSIP_DIALOG_TIMER_SCHEDULE(subscribe, TX)
-#define TSIP_DIALOG_SUBSCRIBE_SIGNAL(self, type, code, phrase, message)	\
-	tsip_subscribe_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, message)
+#define DEBUG_STATE_MACHINE                                         1
+#define TSIP_DIALOG_SUBSCRIBE_TIMER_SCHEDULE(TX)                        TSIP_DIALOG_TIMER_SCHEDULE(subscribe, TX)
+#define TSIP_DIALOG_SUBSCRIBE_SIGNAL(self, type, code, phrase, message) \
+    tsip_subscribe_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, message)
 
 /* ======================== internal functions ======================== */
 static int process_i_notify(tsip_dialog_subscribe_t *self, const tsip_request_t* notify);
@@ -140,11 +140,11 @@ _fsm_state_t;
 /**
  * Callback function called to alert the dialog for new events from the transaction/transport layers.
  *
- * @param [in,out]	self	A reference to the dialog.
- * @param	type		The event type.
- * @param [in,out]	msg	The incoming SIP/IMS message.
+ * @param [in,out]  self    A reference to the dialog.
+ * @param   type        The event type.
+ * @param [in,out]  msg The incoming SIP/IMS message.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_subscribe_event_callback(const tsip_dialog_subscribe_t *self, tsip_dialog_event_type_t type, const tsip_message_t *msg)
 {
@@ -154,7 +154,7 @@ int tsip_dialog_subscribe_event_callback(const tsip_dialog_subscribe_t *self, ts
     case tsip_dialog_i_msg: {
         if(msg && TSIP_MESSAGE_IS_RESPONSE(msg)) {
             //
-            //	RESPONSE
+            //  RESPONSE
             //
             const tsip_action_t* action = tsip_dialog_keep_action(TSIP_DIALOG(self), msg) ? TSIP_DIALOG(self)->curr_action : tsk_null;
             if(TSIP_RESPONSE_IS_1XX(msg)) {
@@ -177,7 +177,7 @@ int tsip_dialog_subscribe_event_callback(const tsip_dialog_subscribe_t *self, ts
         }
         else {
             //
-            //	REQUEST
+            //  REQUEST
             //
             if(TSIP_REQUEST_IS_NOTIFY(msg)) {
                 ret = tsip_dialog_fsm_act(TSIP_DIALOG(self), _fsm_action_notify, msg, tsk_null);
@@ -208,10 +208,10 @@ int tsip_dialog_subscribe_event_callback(const tsip_dialog_subscribe_t *self, ts
 
 /** Timer manager callback.
  *
- * @param [in,out]	self	The owner of the signaled timer.
- * @param	timer_id		The identifier of the signaled timer.
+ * @param [in,out]  self    The owner of the signaled timer.
+ * @param   timer_id        The identifier of the signaled timer.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_subscribe_timer_callback(const tsip_dialog_subscribe_t* self, tsk_timer_id_t timer_id)
 {
@@ -234,9 +234,9 @@ tsip_dialog_subscribe_t* tsip_dialog_subscribe_create(const tsip_ssession_handle
     return tsk_object_new(tsip_dialog_subscribe_def_t, ss);
 }
 
-/**	Initializes the dialog.
+/** Initializes the dialog.
  *
- * @param [in,out]	self	The dialog to initialize.
+ * @param [in,out]  self    The dialog to initialize.
 **/
 int tsip_dialog_subscribe_init(tsip_dialog_subscribe_t *self)
 {
@@ -323,7 +323,7 @@ int tsip_dialog_subscribe_init(tsip_dialog_subscribe_t *self)
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 /* Started -> (SUBSCRIBE) -> Trying
@@ -478,8 +478,8 @@ int tsip_dialog_subscribe_Trying_2_Terminated_X_cancel(va_list *app)
     /* Cancel all transactions associated to this dialog (will also be done when the dialog is destroyed (worth nothing)) */
     ret = tsip_transac_layer_cancel_by_dialog(TSIP_DIALOG_GET_STACK(self)->layer_transac, TSIP_DIALOG(self));
 
-    /*	RFC 3261 - 9.1 Client Behavior
-    	A CANCEL request SHOULD NOT be sent to cancel a request other than INVITE.
+    /*  RFC 3261 - 9.1 Client Behavior
+        A CANCEL request SHOULD NOT be sent to cancel a request other than INVITE.
     */
 
     /* alert the user */
@@ -610,15 +610,15 @@ int tsip_dialog_subscribe_Any_2_Terminated_X_Error(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 /**
  * Sends a SUBSCRIBE request.
  *
- * @param [in,out]	self	The caller.
+ * @param [in,out]  self    The caller.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int send_SUBSCRIBE(tsip_dialog_subscribe_t *self)
 {
@@ -676,7 +676,7 @@ int process_i_notify(tsip_dialog_subscribe_t *self, const tsip_request_t* notify
 /**
  * Callback function called by the state machine manager to signal that the final state has been reached.
  *
- * @param [in,out]	self	The state machine owner.
+ * @param [in,out]  self    The state machine owner.
 **/
 int tsip_dialog_subscribe_OnTerminated(tsip_dialog_subscribe_t *self)
 {
@@ -705,7 +705,7 @@ int tsip_dialog_subscribe_OnTerminated(tsip_dialog_subscribe_t *self)
 
 
 //========================================================
-//	SIP dialog SUBSCRIBE object definition
+//  SIP dialog SUBSCRIBE object definition
 //
 static tsk_object_t* tsip_dialog_subscribe_ctor(tsk_object_t * self, va_list * app)
 {

@@ -35,7 +35,7 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TDAV_ILBC_MODE			20
+#define TDAV_ILBC_MODE          20
 
 /* ============ iLBC Plugin interface ================= */
 
@@ -171,22 +171,22 @@ static char* tdav_codec_ilbc_sdp_att_get(const tmedia_codec_t* codec, const char
 static tsk_bool_t tdav_codec_ilbc_sdp_att_match(const tmedia_codec_t* codec, const char* att_name, const char* att_value)
 {
     if(tsk_striequals(att_name, "fmtp")) {
-        /*	RFC 3952 - 5. Mapping To SDP Parameters
+        /*  RFC 3952 - 5. Mapping To SDP Parameters
 
-        	The offer contains the preferred mode of the offerer.  The answerer
-        	may agree to that mode by including the same mode in the answer, or
-        	may include a different mode.  The resulting mode used by both
-        	parties SHALL be the lower of the bandwidth modes in the offer and
-        	answer.
+            The offer contains the preferred mode of the offerer.  The answerer
+            may agree to that mode by including the same mode in the answer, or
+            may include a different mode.  The resulting mode used by both
+            parties SHALL be the lower of the bandwidth modes in the offer and
+            answer.
 
-        	That is, an offer of "mode=20" receiving an answer of "mode=30" will
-        	result in "mode=30" being used by both participants.  Similarly, an
-        	offer of "mode=30" and an answer of "mode=20" will result in
-        	"mode=30" being used by both participants.
+            That is, an offer of "mode=20" receiving an answer of "mode=30" will
+            result in "mode=30" being used by both participants.  Similarly, an
+            offer of "mode=30" and an answer of "mode=20" will result in
+            "mode=30" being used by both participants.
 
-        	This is important when one end point utilizes a bandwidth constrained
-        	link (e.g., 28.8k modem link or slower), where only the lower frame
-        	size will work.
+            This is important when one end point utilizes a bandwidth constrained
+            link (e.g., 28.8k modem link or slower), where only the lower frame
+            size will work.
         */
         return tsk_true; // FIXME
     }
@@ -195,7 +195,7 @@ static tsk_bool_t tdav_codec_ilbc_sdp_att_match(const tmedia_codec_t* codec, con
 
 
 //
-//	iLBC Plugin definition
+//  iLBC Plugin definition
 //
 
 /* constructor */

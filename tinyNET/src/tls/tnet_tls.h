@@ -29,18 +29,18 @@
 #include "tnet_types.h"
 
 #if HAVE_OPENSSL
-#	include <openssl/ssl.h>
-#	include <openssl/err.h>
-#	if !defined (HAVE_OPENSSL_DTLS_SRTP) /* try to guess if DTLS/SRTP is supported by ourself if not specified in CFLAGS */
-#		if OPENSSL_VERSION_NUMBER >= 0x10001000L
-#			define HAVE_OPENSSL_DTLS_SRTP	1
-#		endif
-#	endif
-#	if !defined (HAVE_OPENSSL_DTLS) /* try to guess if DTLS is supported by ourself if not specified in CFLAGS */
-#		if OPENSSL_VERSION_NUMBER >= 0x10000000L
-#			define HAVE_OPENSSL_DTLS		1
-#		endif
-#	endif
+#   include <openssl/ssl.h>
+#   include <openssl/err.h>
+#   if !defined (HAVE_OPENSSL_DTLS_SRTP) /* try to guess if DTLS/SRTP is supported by ourself if not specified in CFLAGS */
+#       if OPENSSL_VERSION_NUMBER >= 0x10001000L
+#           define HAVE_OPENSSL_DTLS_SRTP   1
+#       endif
+#   endif
+#   if !defined (HAVE_OPENSSL_DTLS) /* try to guess if DTLS is supported by ourself if not specified in CFLAGS */
+#       if OPENSSL_VERSION_NUMBER >= 0x10000000L
+#           define HAVE_OPENSSL_DTLS        1
+#       endif
+#   endif
 #endif
 
 TNET_BEGIN_DECLS

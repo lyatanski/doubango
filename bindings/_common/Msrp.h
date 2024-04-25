@@ -54,7 +54,8 @@ public:
     unsigned getMsrpContentLength();
     unsigned getMsrpContent(void* output, unsigned maxsize);
 #if !defined(SWIG)
-    const tmsrp_message_t* getWrappedMsrpMessage() {
+    const tmsrp_message_t* getWrappedMsrpMessage()
+    {
         return m_pMessage;
     }
 #endif
@@ -88,7 +89,8 @@ class TINYWRAP_API MsrpCallback
 public:
     MsrpCallback() {  }
     virtual ~MsrpCallback() {}
-    virtual int OnEvent(const MsrpEvent* e) {
+    virtual int OnEvent(const MsrpEvent* e)
+    {
         return -1;
     }
 };

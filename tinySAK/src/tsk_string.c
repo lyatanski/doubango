@@ -39,16 +39,16 @@
 
 
 #if defined(_MSC_VER)
-#	define snprintf		_snprintf
-#	define vsnprintf	_vsnprintf
-#	define strdup		_strdup
-#	define stricmp		_stricmp
-#	define strnicmp		_strnicmp
+#   define snprintf     _snprintf
+#   define vsnprintf    _vsnprintf
+#   define strdup       _strdup
+#   define stricmp      _stricmp
+#   define strnicmp     _strnicmp
 #else
-#	if !HAVE_STRNICMP && !HAVE_STRICMP
-#	define stricmp		strcasecmp
-#	define strnicmp		strncasecmp
-#	endif
+#   if !HAVE_STRNICMP && !HAVE_STRICMP
+#   define stricmp      strcasecmp
+#   define strnicmp     strncasecmp
+#   endif
 #endif
 
 /**@defgroup tsk_string_group Utillity String functions
@@ -114,8 +114,8 @@ int tsk_stricmp(const char * str1, const char * str2)
 {
     return (str1 && str2) ?
            ((tolower(*str1) == tolower(*str2)) ? stricmp(str1, str2) : (*str1 - *str2))  /* Compare first charaters before doing complete comparison */
-               :
-               ((!str1 && !str2) ? 0 : -1);
+           :
+           ((!str1 && !str2) ? 0 : -1);
 }
 
 /**@ingroup tsk_string_group
@@ -135,8 +135,8 @@ int tsk_strnicmp(const char * str1, const char * str2, tsk_size_t n)
 {
     return (str1 && str2 && n) ?
            ((tolower(*str1) == tolower(*str2)) ? strnicmp(str1, str2, n) : (*str1 - *str2))  /* Compare first charaters before doing complete comparison */
-               :
-               ((!str1 && !str2) ? 0 : -1);
+           :
+           ((!str1 && !str2) ? 0 : -1);
 }
 
 /**@ingroup tsk_string_group
@@ -145,8 +145,8 @@ int tsk_strcmp(const char * str1, const char * str2)
 {
     return (str1 && str2) ?
            ((*str1 == *str2) ? stricmp(str1, str2) : (*str1 - *str2))  /* Compare first charaters before doing complete comparison */
-               :
-               ((!str1 && !str2) ? 0 : -1);
+           :
+           ((!str1 && !str2) ? 0 : -1);
 }
 
 /**@ingroup tsk_string_group
@@ -180,10 +180,10 @@ char* tsk_strdup(const char *s1)
     return tsk_null;
 }
 
-/**	Duplicates the first @a n chars of @a s1.
+/** Duplicates the first @a n chars of @a s1.
  * @param s1 The string to duplicate.
  * @param n The number of characters to copy to the new string.
- * @retval	null A copy of @a s1.
+ * @retval  null A copy of @a s1.
  **/
 char* tsk_strndup(const char *s1, tsk_size_t n)
 {
@@ -556,7 +556,7 @@ long tsk_atox(const char* str)
 /**@ingroup tsk_string_group
  * Generates a random string.
  *
- * @param result	A pointer to the result.
+ * @param result    A pointer to the result.
  **/
 void tsk_strrandom(tsk_istr_t *result)
 {
@@ -568,10 +568,10 @@ void tsk_strrandom(tsk_istr_t *result)
  *
  * Converts hexadecimal bytes into string representation.
  *
- * @param hex	The hexadecimal bytes to convert.
- * @param	size		The size of the hexadecimal bytes.
- * @param str	The pointer to the result. MUST be enought large to hold the result.
- *						It is up to you to add the final '\\0'.
+ * @param hex   The hexadecimal bytes to convert.
+ * @param   size        The size of the hexadecimal bytes.
+ * @param str   The pointer to the result. MUST be enought large to hold the result.
+ *                      It is up to you to add the final '\\0'.
  * @sa @ref tsk_str_to_hex
  **/
 void tsk_str_from_hex(const uint8_t *hex, tsk_size_t size, char* str)
@@ -588,24 +588,38 @@ void tsk_str_from_hex(const uint8_t *hex, tsk_size_t size, char* str)
 /**@ingroup tsk_string_group
  * Converts string chars into hexadecimal bytes.
  *
- * @param str	If non-null, the string.
- * @param	size		The size.
- * @param hex	If non-null, the hexadecimal.
+ * @param str   If non-null, the string.
+ * @param   size        The size.
+ * @param hex   If non-null, the hexadecimal.
  **/
 void tsk_str_to_hex(const char *str, tsk_size_t size, uint8_t* hex)
 {
     for (tsk_size_t i = 0; i < size; i+=2) {
         switch(str[i]) {
-        case '0' ... '9': hex[i/2] = (str[i] - '0'     ) << 4; break;
-        case 'A' ... 'F': hex[i/2] = (str[i] - 'A' + 10) << 4; break;
-        case 'a' ... 'f': hex[i/2] = (str[i] - 'a' + 10) << 4; break;
-        default: TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i);
+        case '0' ... '9':
+            hex[i/2] = (str[i] - '0'     ) << 4;
+            break;
+        case 'A' ... 'F':
+            hex[i/2] = (str[i] - 'A' + 10) << 4;
+            break;
+        case 'a' ... 'f':
+            hex[i/2] = (str[i] - 'a' + 10) << 4;
+            break;
+        default:
+            TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i);
         }
         switch(str[i+1]) {
-        case '0' ... '9': hex[i/2] |= (str[i+1] - '0'     ); break;
-        case 'A' ... 'F': hex[i/2] |= (str[i+1] - 'A' + 10); break;
-        case 'a' ... 'f': hex[i/2] |= (str[i+1] - 'a' + 10); break;
-        default: TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i+1);
+        case '0' ... '9':
+            hex[i/2] |= (str[i+1] - '0'     );
+            break;
+        case 'A' ... 'F':
+            hex[i/2] |= (str[i+1] - 'A' + 10);
+            break;
+        case 'a' ... 'f':
+            hex[i/2] |= (str[i+1] - 'a' + 10);
+            break;
+        default:
+            TSK_DEBUG_FATAL("parsing hex %s at [%ld]", str, i+1);
         }
     }
 }
@@ -650,7 +664,7 @@ TINYSAK_API Platform::String^  rt_tsk_str_to_managed(char const* str)
 
 
 //=================================================================================================
-//	String object definition
+//  String object definition
 //
 static tsk_object_t* tsk_string_ctor(tsk_object_t * self, va_list * app)
 {

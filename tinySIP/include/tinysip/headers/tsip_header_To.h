@@ -37,14 +37,14 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_TO_VA_ARGS(display_name, uri, tag)			tsip_header_To_def_t, (const char*)display_name, (const tsip_uri_t*)uri, (const char*)tag
+#define TSIP_HEADER_TO_VA_ARGS(display_name, uri, tag)          tsip_header_To_def_t, (const char*)display_name, (const tsip_uri_t*)uri, (const char*)tag
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'To' .
+/// @brief  SIP header 'To' .
 ///
-/// @par ABNF: To	= 	To	= 	( "To" / "t" ) HCOLON ( name-addr / addr-spec ) *( SEMI to-param )
-/// to-param	= 	tag-param / generic-param
+/// @par ABNF: To   =   To  =   ( "To" / "t" ) HCOLON ( name-addr / addr-spec ) *( SEMI to-param )
+/// to-param    =   tag-param / generic-param
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_To_s {

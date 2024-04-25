@@ -101,7 +101,7 @@ int tnet_stun_utils_send_unreliably(tnet_fd_t localFD, uint16_t RTO, uint16_t Rc
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    /*	RFC 5389 - 7.2.1.  Sending over UDP
+    /*  RFC 5389 - 7.2.1.  Sending over UDP
     STUN indications are not retransmitted; thus, indication transactions over UDP
     are not reliable.
     */
@@ -120,12 +120,12 @@ int tnet_stun_utils_send_unreliably(tnet_fd_t localFD, uint16_t RTO, uint16_t Rc
         goto bail;
     }
 
-    /*	RFC 5389 - 7.2.1.  Sending over UDP
-    	A client SHOULD retransmit a STUN request message starting with an
-    	interval of RTO ("Retransmission TimeOut"), doubling after each
-    	retransmission.
+    /*  RFC 5389 - 7.2.1.  Sending over UDP
+        A client SHOULD retransmit a STUN request message starting with an
+        interval of RTO ("Retransmission TimeOut"), doubling after each
+        retransmission.
 
-    	e.g. 0 ms, 500 ms, 1500 ms, 3500 ms, 7500ms, 15500 ms, and 31500 ms
+        e.g. 0 ms, 500 ms, 1500 ms, 3500 ms, 7500ms, 15500 ms, and 31500 ms
     */
     for (i = 0; i < Rc; i++) {
         tv.tv_sec += rto/1000;

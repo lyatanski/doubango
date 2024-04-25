@@ -46,21 +46,21 @@ TNET_BEGIN_DECLS
 
 /**@ingroup tnet_dns_group
 */
-#define TNET_DNS_CACHE_TTL						(15000 * 1000)
+#define TNET_DNS_CACHE_TTL                      (15000 * 1000)
 
 /**@ingroup tnet_dns_group
 * Default timeout (in milliseconds) value for DNS queries.
 */
-#define TNET_DNS_TIMEOUT_DEFAULT				5000 //(5 seconds)
+#define TNET_DNS_TIMEOUT_DEFAULT                5000 //(5 seconds)
 
 /**@ingroup tnet_dns_group
 * Maximum supported Dgram size to advertise using EDNS0.
 */
-#define TNET_DNS_DGRAM_SIZE_DEFAULT				4096
+#define TNET_DNS_DGRAM_SIZE_DEFAULT             4096
 
 /**@ingroup tnet_dns_group
 */
-#define TNET_DNS_SERVER_PORT_DEFAULT			53
+#define TNET_DNS_SERVER_PORT_DEFAULT            53
 
 /**DNS cache entry.
 */

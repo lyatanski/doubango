@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 97 "./ragel/tsip_parser_header_P_Charging_Function_Addresses.rl" */
@@ -681,7 +681,7 @@ _match:
             {
             }
             break;
-            /* #line 678 "./src/headers/tsip_header_P_Charging_Function_Addresses.c" */
+                /* #line 678 "./src/headers/tsip_header_P_Charging_Function_Addresses.c" */
             }
         }
 
@@ -718,7 +718,7 @@ _out: {
 
 
 //========================================================
-//	P_Charging_Function_Addresses header object definition
+//  P_Charging_Function_Addresses header object definition
 //
 
 static tsk_object_t* tsip_header_P_Charging_Function_Addresses_ctor(tsk_object_t *self, va_list * app)

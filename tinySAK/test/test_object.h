@@ -92,7 +92,7 @@ static const tsk_object_def_t person_def_t = {
 };
 
 // create a person
-#define PERSON_CREATE(name)				tsk_object_new(&person_def_t, (const char*)name)
+#define PERSON_CREATE(name)             tsk_object_new(&person_def_t, (const char*)name)
 
 /* test object */
 void test_object()

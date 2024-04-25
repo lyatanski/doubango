@@ -35,13 +35,13 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_HEADER_CONTENT_LENGTH_VA_ARGS(length)	thttp_header_Content_Length_def_t, (uint32_t)length
+#define THTTP_HEADER_CONTENT_LENGTH_VA_ARGS(length) thttp_header_Content_Length_def_t, (uint32_t)length
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// HTTP header 'Content-Length'.
 ///
 /// @par ABNF: Content-Length / l
-/// Content-Length	= 	"Content-Length" HCOLON 1*DIGIT
+/// Content-Length  =   "Content-Length" HCOLON 1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct thttp_header_Content_Length_s {

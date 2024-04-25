@@ -45,7 +45,7 @@ typedef void* (TSK_STDCALL *tsk_runnable_func_run)(void* self);
 
 /**@ingroup tsk_runnable_group
 */
-#define TSK_RUNNABLE(self)	((tsk_runnable_t*)(self))
+#define TSK_RUNNABLE(self)  ((tsk_runnable_t*)(self))
 
 /**@ingroup tsk_runnable_group
 * Runnable.
@@ -98,18 +98,18 @@ TINYSAK_GEXTERN const tsk_object_def_t *tsk_runnable_def_t;
 * @def TSK_RUNNABLE_RUN_END
 */
 #define TSK_RUNNABLE_RUN_BEGIN(self) \
-	TSK_RUNNABLE(self)->running = tsk_true;	\
-	TSK_RUNNABLE(self)->id_thread = tsk_thread_get_id(); \
-	for(;;) { \
-		tsk_semaphore_decrement(TSK_RUNNABLE(self)->semaphore); \
-		if(!TSK_RUNNABLE(self)->running &&  \
-			(!TSK_RUNNABLE(self)->important || (TSK_RUNNABLE(self)->important && TSK_LIST_IS_EMPTY(TSK_RUNNABLE(self)->objects)))) \
-			break;
+    TSK_RUNNABLE(self)->running = tsk_true; \
+    TSK_RUNNABLE(self)->id_thread = tsk_thread_get_id(); \
+    for(;;) { \
+        tsk_semaphore_decrement(TSK_RUNNABLE(self)->semaphore); \
+        if(!TSK_RUNNABLE(self)->running &&  \
+            (!TSK_RUNNABLE(self)->important || (TSK_RUNNABLE(self)->important && TSK_LIST_IS_EMPTY(TSK_RUNNABLE(self)->objects)))) \
+            break;
 
 
 #define TSK_RUNNABLE_RUN_END(self) \
-	} \
-	TSK_RUNNABLE(self)->running = tsk_false;
+    } \
+    TSK_RUNNABLE(self)->running = tsk_false;
 
 /**@ingroup tsk_runnable_group
 * @def TSK_RUNNABLE_ENQUEUE
@@ -117,48 +117,48 @@ TINYSAK_GEXTERN const tsk_object_def_t *tsk_runnable_def_t;
 /**@ingroup tsk_runnable_group
 * @def TSK_RUNNABLE_ENQUEUE_OBJECT
 */
-#define TSK_RUNNABLE_ENQUEUE(self, ...)												\
-{																					\
-	if((self) && TSK_RUNNABLE(self)->initialized){												\
-		tsk_object_t *object = tsk_object_new(TSK_RUNNABLE(self)->objdef, ##__VA_ARGS__);		\
-		tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);							\
-		tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);									\
-	}																				\
-	else{																			\
-		TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");					\
-	}																				\
+#define TSK_RUNNABLE_ENQUEUE(self, ...)                                             \
+{                                                                                   \
+    if((self) && TSK_RUNNABLE(self)->initialized){                                              \
+        tsk_object_t *object = tsk_object_new(TSK_RUNNABLE(self)->objdef, ##__VA_ARGS__);       \
+        tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);                          \
+        tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);                                 \
+    }                                                                               \
+    else{                                                                           \
+        TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");                   \
+    }                                                                               \
 }
 
-#define TSK_RUNNABLE_ENQUEUE_OBJECT(self, object)									\
-{																					\
-	if((self) && TSK_RUNNABLE(self)->initialized){									\
-		tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);		\
-		tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);						\
-	}																				\
-	else{																			\
-		TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");					\
-		TSK_OBJECT_SAFE_FREE(object);												\
-	}																				\
+#define TSK_RUNNABLE_ENQUEUE_OBJECT(self, object)                                   \
+{                                                                                   \
+    if((self) && TSK_RUNNABLE(self)->initialized){                                  \
+        tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);      \
+        tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);                     \
+    }                                                                               \
+    else{                                                                           \
+        TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");                   \
+        TSK_OBJECT_SAFE_FREE(object);                                               \
+    }                                                                               \
 }
 
-#define TSK_RUNNABLE_ENQUEUE_OBJECT_SAFE(self, object)								\
-{																					\
-	if((self) && TSK_RUNNABLE(self)->initialized){									\
-		tsk_list_lock(TSK_RUNNABLE(self)->objects);									\
-		tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);		\
-		tsk_list_unlock(TSK_RUNNABLE(self)->objects);								\
-		tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);						\
-	}																				\
-	else{																			\
-		TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");					\
-		TSK_OBJECT_SAFE_FREE(object);												\
-	}																				\
+#define TSK_RUNNABLE_ENQUEUE_OBJECT_SAFE(self, object)                              \
+{                                                                                   \
+    if((self) && TSK_RUNNABLE(self)->initialized){                                  \
+        tsk_list_lock(TSK_RUNNABLE(self)->objects);                                 \
+        tsk_list_push_back_data(TSK_RUNNABLE(self)->objects, (void**)&object);      \
+        tsk_list_unlock(TSK_RUNNABLE(self)->objects);                               \
+        tsk_semaphore_increment(TSK_RUNNABLE(self)->semaphore);                     \
+    }                                                                               \
+    else{                                                                           \
+        TSK_DEBUG_WARN("Invalid/uninitialized runnable object.");                   \
+        TSK_OBJECT_SAFE_FREE(object);                                               \
+    }                                                                               \
 }
 
 /**@ingroup tsk_runnable_group
 */
 #define TSK_RUNNABLE_POP_FIRST(self) \
-	tsk_list_pop_first_item(TSK_RUNNABLE(self)->objects)
+    tsk_list_pop_first_item(TSK_RUNNABLE(self)->objects)
 
 TSK_GCC_DISABLE_WARNINGS_BEGIN("-Wunused-function")
 static tsk_list_item_t* TSK_RUNNABLE_POP_FIRST_SAFE(tsk_runnable_t* self)

@@ -38,15 +38,15 @@ THTTP_BEGIN_DECLS
 
 typedef char nonce_count_t[9];
 typedef char thttp_auth_ws_keystring_t[255];
-#define THTTP_NCOUNT_2_STRING(nc_int32, nc_string)							\
-	{																		\
-		tsk_size_t i = 7;														\
-		do{																	\
-			nc_string[7-i]= "0123456789abcdef"[(nc_int32 >> i*4) & 0xF];	\
-		}																	\
-		while(i--);															\
-		nc_string[8] = '\0';												\
-	}
+#define THTTP_NCOUNT_2_STRING(nc_int32, nc_string)                          \
+    {                                                                       \
+        tsk_size_t i = 7;                                                       \
+        do{                                                                 \
+            nc_string[7-i]= "0123456789abcdef"[(nc_int32 >> i*4) & 0xF];    \
+        }                                                                   \
+        while(i--);                                                         \
+        nc_string[8] = '\0';                                                \
+    }
 
 TINYHTTP_API tsk_size_t thttp_auth_basic_response(const char* userid, const char* password, char** response);
 

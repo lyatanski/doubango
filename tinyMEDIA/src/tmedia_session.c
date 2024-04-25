@@ -41,15 +41,15 @@
 */
 
 #if !defined(va_copy)
-#	define va_copy(D, S)       ((D) = (S))
+#   define va_copy(D, S)       ((D) = (S))
 #endif
 
-#define kSkipSessionLoadTrue	tsk_true
-#define kSkipSessionLoadFalse	tsk_false
-#define kForceUpdateLOTrue		tsk_true
-#define kForceUpdateLOFalse		tsk_false
+#define kSkipSessionLoadTrue    tsk_true
+#define kSkipSessionLoadFalse   tsk_false
+#define kForceUpdateLOTrue      tsk_true
+#define kForceUpdateLOFalse     tsk_false
 
-#define kSessionIndexAll		-1
+#define kSessionIndexAll        -1
 
 extern const tmedia_codec_plugin_def_t* __tmedia_codec_plugins[TMED_CODEC_MAX_PLUGINS];
 
@@ -57,7 +57,7 @@ extern const tmedia_codec_plugin_def_t* __tmedia_codec_plugins[TMED_CODEC_MAX_PL
 const tmedia_session_plugin_def_t* __tmedia_session_plugins[TMED_SESSION_MAX_PLUGINS] = { 0 };
 
 #if !defined(TMEDIA_SESSION_MAX_LINES)
-#	define TMEDIA_SESSION_MAX_LINES 64 // too high to but who knows
+#   define TMEDIA_SESSION_MAX_LINES 64 // too high to but who knows
 #endif /* TMEDIA_SESSION_MAX_LINES */
 
 /* === local functions === */
@@ -236,7 +236,7 @@ tsk_bool_t tmedia_session_set_2(tmedia_session_t* self, const tmedia_param_t* pa
         if (param->value_type == tmedia_pvt_int32) {
             if (tsk_striequals(param->key, "codecs-supported")) {
                 //if(self->M.lo){
-                //	TSK_DEBUG_WARN("Cannot change codec values at this stage");
+                //  TSK_DEBUG_WARN("Cannot change codec values at this stage");
                 //}
                 //else{
                 int32_t codecs_allowed = *((int32_t*)param->value);
@@ -830,9 +830,9 @@ tmedia_session_mgr_t* tmedia_session_mgr_create(tmedia_type_t type, const char* 
     /* init */
     mgr->type = type;
     mgr->addr = tsk_strdup(addr);
-	mgr->addr_type = tsk_strnullORempty(mgr->addr) 
-		? (use_ipv6 ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4) 
-		: (tnet_is_ipv6(mgr->addr, 0) ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4);
+    mgr->addr_type = tsk_strnullORempty(mgr->addr)
+                     ? (use_ipv6 ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4)
+                     : (tnet_is_ipv6(mgr->addr, 0) ? tnet_socket_type_udp_ipv6 : tnet_socket_type_udp_ipv4);
     mgr->use_ipv6 = use_ipv6;
 
     /* load sessions (will allow us to generate lo) */
@@ -840,7 +840,7 @@ tmedia_session_mgr_t* tmedia_session_mgr_create(tmedia_type_t type, const char* 
         mgr->offerer = tsk_true;
         //if(_tmedia_session_mgr_load_sessions(mgr)){
         /* Do nothing */
-        //	TSK_DEBUG_ERROR("Failed to load sessions");
+        //  TSK_DEBUG_ERROR("Failed to load sessions");
         //}
     }
 
@@ -918,7 +918,7 @@ int tmedia_session_mgr_set_natt_ctx(tmedia_session_mgr_t* self, struct tnet_nat_
     TSK_OBJECT_SAFE_FREE(self->natt_ctx);
     self->natt_ctx = tsk_object_ref(natt_ctx);
     tsk_strupdate(&self->public_addr, public_addr);
-	tnet_nat_get_socket_type(natt_ctx, &self->public_addr_type);
+    tnet_nat_get_socket_type(natt_ctx, &self->public_addr_type);
 
     tmedia_session_mgr_set(self,
                            TMEDIA_SESSION_SET_POBJECT(self->type, "natt-ctx", self->natt_ctx),
@@ -1207,12 +1207,12 @@ int tmedia_session_mgr_set_ro(tmedia_session_mgr_t* self, const tsdp_message_t* 
         }
     }
 
-    /*	RFC 3264 subcaluse 8
-    	When issuing an offer that modifies the session, the "o=" line of the new SDP MUST be identical to that in the previous SDP,
-    	except that the version in the origin field MUST increment by one from the previous SDP. If the version in the origin line
-    	does not increment, the SDP MUST be identical to the SDP with that version number. The answerer MUST be prepared to receive
-    	an offer that contains SDP with a version that has not changed; this is effectively a no-op.
-    	*/
+    /*  RFC 3264 subcaluse 8
+        When issuing an offer that modifies the session, the "o=" line of the new SDP MUST be identical to that in the previous SDP,
+        except that the version in the origin field MUST increment by one from the previous SDP. If the version in the origin line
+        does not increment, the SDP MUST be identical to the SDP with that version number. The answerer MUST be prepared to receive
+        an offer that contains SDP with a version that has not changed; this is effectively a no-op.
+        */
     if ((O = (const tsdp_header_O_t*)tsdp_message_get_header(sdp, tsdp_htype_O))) {
         tsk_bool_t is_ro_provisional;
         if (self->sdp.ro_ver == (int32_t)O->sess_version) {
@@ -1446,9 +1446,9 @@ int tmedia_session_mgr_set_ro(tmedia_session_mgr_t* self, const tsdp_message_t* 
     self->sdp.ro = tsk_object_ref((void*)sdp);
 
     /*  - if the session is running this means no session update is required unless some important changes
-    	- this check must be done after the "ro" update
-    	- "is_ro_hold_resume_changed" do not restart the session but updates the SDP
-    	*/
+        - this check must be done after the "ro" update
+        - "is_ro_hold_resume_changed" do not restart the session but updates the SDP
+        */
     if (self->started && !(__flags_sum((const tsk_bool_t*)&is_ro_hold_resume_changed, m_lines_count) || __flags_sum((const tsk_bool_t*)&stopped_to_reconf, m_lines_count) || is_ro_media_lines_changed)) {
         goto end_of_sessions_update;
     }
@@ -1484,7 +1484,7 @@ int tmedia_session_mgr_set_ro(tmedia_session_mgr_t* self, const tsdp_message_t* 
                                TMEDIA_SESSION_SET_NULL());
     }
 
-    /*	pass complete remote sdp to the sessions to allow them to use session-level attributes
+    /*  pass complete remote sdp to the sessions to allow them to use session-level attributes
     */
     tmedia_session_mgr_set(self,
                            TMEDIA_SESSION_SET_POBJECT(self->type, "remote-sdp-message", self->sdp.ro),
@@ -1550,13 +1550,13 @@ int tmedia_session_mgr_set_ro(tmedia_session_mgr_t* self, const tsdp_message_t* 
         if (!found /*&& (self->sdp.lo == tsk_null)*/) {
             /* Session not supported and we are not the initial offerer ==> add ghost session */
             /*
-            	An offered stream MAY be rejected in the answer, for any reason.  If
-            	a stream is rejected, the offerer and answerer MUST NOT generate
-            	media (or RTCP packets) for that stream.  To reject an offered
-            	stream, the port number in the corresponding stream in the answer
-            	MUST be set to zero.  Any media formats listed are ignored.  AT LEAST
-            	ONE MUST BE PRESENT, AS SPECIFIED BY SDP.
-            	*/
+                An offered stream MAY be rejected in the answer, for any reason.  If
+                a stream is rejected, the offerer and answerer MUST NOT generate
+                media (or RTCP packets) for that stream.  To reject an offered
+                stream, the port number in the corresponding stream in the answer
+                MUST be set to zero.  Any media formats listed are ignored.  AT LEAST
+                ONE MUST BE PRESENT, AS SPECIFIED BY SDP.
+                */
             tmedia_session_ghost_t* ghost;
             if ((ghost = (tmedia_session_ghost_t*)tmedia_session_create(tmedia_ghost))) {
                 tsk_strupdate(&ghost->media, M->media); /* copy media */
@@ -2356,8 +2356,8 @@ static const tsdp_message_t* _tmedia_session_mgr_get_lo(tmedia_session_mgr_t* se
         goto bail;
     }
     else {
-		const char* addr = self->public_addr ? self->public_addr : self->addr;
-		tsk_bool_t ipv6 = self->public_addr ? TNET_SOCKET_TYPE_IS_IPV6(self->public_addr_type) : TNET_SOCKET_TYPE_IS_IPV6(self->addr_type);
+        const char* addr = self->public_addr ? self->public_addr : self->addr;
+        tsk_bool_t ipv6 = self->public_addr ? TNET_SOCKET_TYPE_IS_IPV6(self->public_addr_type) : TNET_SOCKET_TYPE_IS_IPV6(self->addr_type);
         if ((self->sdp.lo = tsdp_message_create_empty(addr, ipv6, new_ver_num))) {
             /* Set connection "c=" */
             tsdp_message_add_headers(self->sdp.lo,
@@ -2373,7 +2373,7 @@ static const tsdp_message_t* _tmedia_session_mgr_get_lo(tmedia_session_mgr_t* se
         }
     }
 
-    /*	pass complete local sdp to the sessions to allow them to use session-level attributes */
+    /*  pass complete local sdp to the sessions to allow them to use session-level attributes */
     tmedia_session_mgr_set(self,
                            TMEDIA_SESSION_SET_POBJECT(self->type, "local-sdp-message", self->sdp.lo),
                            TMEDIA_SESSION_SET_NULL());
@@ -2543,7 +2543,7 @@ static int _tmedia_session_mgr_apply_params(tmedia_session_mgr_t* self)
 }
 
 //=================================================================================================
-//	Media Session Manager object definition
+//  Media Session Manager object definition
 //
 static tsk_object_t* tmedia_session_mgr_ctor(tsk_object_t * self, va_list * app)
 {

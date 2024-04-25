@@ -39,7 +39,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 108 "./ragel/tsip_parser_header_Contact.rl" */
@@ -589,7 +589,7 @@ _match:
             {
             }
             break;
-            /* #line 586 "./src/headers/tsip_header_Contact.c" */
+                /* #line 586 "./src/headers/tsip_header_Contact.c" */
             }
         }
 
@@ -625,7 +625,7 @@ _out: {
 
 
 //========================================================
-//	Contact header object definition
+//  Contact header object definition
 //
 
 static tsk_object_t* tsip_header_Contact_ctor(tsk_object_t *self, va_list * app)
@@ -668,45 +668,45 @@ const tsk_object_def_t *tsip_header_Contact_def_t = &tsip_header_Contact_def_s;
 
 
 ////========================================================
-////	Contact object definition
+////    Contact object definition
 ////
 //
 ///**@ingroup tsip_header_Contact_group
 //*/
 //static tsk_object_t* tsip_contact_ctor(tsk_object_t *self, va_list * app)
 //{
-//	tsip_contact_t *contact = self;
-//	if(contact)
-//	{
-//		contact->expires = -1;
-//	}
-//	else
-//	{
-//		TSK_DEBUG_ERROR("Failed to create new Contact object.");
-//	}
-//	return self;
+//  tsip_contact_t *contact = self;
+//  if(contact)
+//  {
+//      contact->expires = -1;
+//  }
+//  else
+//  {
+//      TSK_DEBUG_ERROR("Failed to create new Contact object.");
+//  }
+//  return self;
 //}
 //
 //static tsk_object_t* tsip_contact_dtor(tsk_object_t *self)
 //{
-//	tsip_contact_t *contact = self;
-//	if(contact)
-//	{
-//		TSK_FREE(contact->display_name);
-//		TSK_OBJECT_SAFE_FREE(TSIP_HEADER_PARAMS(contact));
+//  tsip_contact_t *contact = self;
+//  if(contact)
+//  {
+//      TSK_FREE(contact->display_name);
+//      TSK_OBJECT_SAFE_FREE(TSIP_HEADER_PARAMS(contact));
 //
-//		TSK_OBJECT_SAFE_FREE(contact->uri);
-//	}
-//	else TSK_DEBUG_ERROR("Null Contact object.");
+//      TSK_OBJECT_SAFE_FREE(contact->uri);
+//  }
+//  else TSK_DEBUG_ERROR("Null Contact object.");
 //
-//	return self;
+//  return self;
 //}
 //
 //static const tsk_object_def_t tsip_contact_def_s =
 //{
-//	sizeof(tsip_contact_t),
-//	tsip_contact_ctor,
-//	tsip_contact_dtor,
-//	0
+//  sizeof(tsip_contact_t),
+//  tsip_contact_ctor,
+//  tsip_contact_dtor,
+//  0
 //};
 //const void *tsip_contact_def_t = &tsip_contact_def_s;

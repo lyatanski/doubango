@@ -117,11 +117,11 @@ static int _tbfcp_session_transport_layer_dgram_cb(const tnet_transport_event_t*
 static int _tbfcp_session_transport_layer_stream_cb(const tnet_transport_event_t* e);
 
 #define _tbfcp_session_raise(_p_self, _e_type, _pc_pkt) \
-	if ((_p_self)->cb.f_fun) { \
-		(_p_self)->cb.e.e_type = (_e_type); \
-		(_p_self)->cb.e.pc_pkt = (_pc_pkt); \
-		(_p_self)->cb.f_fun(&_p_self->cb.e); \
-	}
+    if ((_p_self)->cb.f_fun) { \
+        (_p_self)->cb.e.e_type = (_e_type); \
+        (_p_self)->cb.e.pc_pkt = (_pc_pkt); \
+        (_p_self)->cb.f_fun(&_p_self->cb.e); \
+    }
 #define _tbfcp_session_raise_inf_inc_msg(_p_self, _pc_pkt) _tbfcp_session_raise(_p_self, tbfcp_session_event_type_inf_inc_msg, _pc_pkt)
 #define _tbfcp_session_raise_err_send_timedout(_p_self, _pc_pkt) _tbfcp_session_raise(_p_self, tbfcp_session_event_type_err_send_timedout, _pc_pkt)
 
@@ -335,9 +335,9 @@ int tbfcp_session_start(tbfcp_session_t* p_self)
 
     // Send hello now if UDP/DTLS. Otherwise (TCP/TLS), wait for the connection to complete.
     //if (TNET_SOCKET_TYPE_IS_DGRAM(p_self->e_socket_type)) {
-    //	if ((ret = _tbfcp_session_send_Hello(p_self))) {
-    //		goto bail;
-    //	}
+    //  if ((ret = _tbfcp_session_send_Hello(p_self))) {
+    //      goto bail;
+    //  }
     //}
 
 bail:

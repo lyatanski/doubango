@@ -35,76 +35,76 @@
 #include "tsk_debug.h"
 
 /* Compact headers: http://www.cs.columbia.edu/sip/compact.html
-Abbreviation 	Header 					defined by 					origin (mnemonic)
-a 				Accept-Contact 			draft-ietf-sip-callerprefs 	--
-b 				Referred-By 			-refer- 					"by"
-c 				Content-Type 			RFC 3261
-d				Request-Disposition
-e 				Content-Encoding 		RFC 3261
-f 				From 					RFC 3261
-i 				Call-ID 				RFC 3261
-j				Reject-Contact
-k 				Supported 				RFC 3261 					"know"
-l 				Content-Length 			RFC 3261
-m 				Contact 				RFC 3261 					"moved"
-n				Identity-Info
-o 				Event 					-event- 					"occurance"
-r 				Refer-To 				-refer-
-s 				Subject 				RFC 3261
-t 				To 						RFC 3261
-u 				Allow-Events 			-events- 					"understand"
-v 				Via 					RFC 3261
-y				Identity
+Abbreviation    Header                  defined by                  origin (mnemonic)
+a               Accept-Contact          draft-ietf-sip-callerprefs  --
+b               Referred-By             -refer-                     "by"
+c               Content-Type            RFC 3261
+d               Request-Disposition
+e               Content-Encoding        RFC 3261
+f               From                    RFC 3261
+i               Call-ID                 RFC 3261
+j               Reject-Contact
+k               Supported               RFC 3261                    "know"
+l               Content-Length          RFC 3261
+m               Contact                 RFC 3261                    "moved"
+n               Identity-Info
+o               Event                   -event-                     "occurance"
+r               Refer-To                -refer-
+s               Subject                 RFC 3261
+t               To                      RFC 3261
+u               Allow-Events            -events-                    "understand"
+v               Via                     RFC 3261
+y               Identity
 */
 
 #if TSIP_COMPACT_HEADERS
-#	define _Accept_Contact "a"
-#	define _Referred_By  "b"
-#	define _Content_Type  "c"
-#	define _Request_Disposition "d"
-#	define _Content_Encoding  "e"
-#	define _From  "f"
-#	define _Call_ID  "i"
-#	define _Reject_Contact "j";
-#	define _Supported  "k"
-#	define _Content_Length  "l"
-#	define _Contact  "m"
-#	define _Identity_Info  "n"
-#	define _Event  "o"
-#	define _Refer_To  "r"
-#	define _Subject  "s"
-#	define _To  "t";
-#	define _Allow_Events  "u"
-#	define _Via  "v"
-#	define _Session_Expires "x"
-#	define _Identity  "y"
+#   define _Accept_Contact "a"
+#   define _Referred_By  "b"
+#   define _Content_Type  "c"
+#   define _Request_Disposition "d"
+#   define _Content_Encoding  "e"
+#   define _From  "f"
+#   define _Call_ID  "i"
+#   define _Reject_Contact "j";
+#   define _Supported  "k"
+#   define _Content_Length  "l"
+#   define _Contact  "m"
+#   define _Identity_Info  "n"
+#   define _Event  "o"
+#   define _Refer_To  "r"
+#   define _Subject  "s"
+#   define _To  "t";
+#   define _Allow_Events  "u"
+#   define _Via  "v"
+#   define _Session_Expires "x"
+#   define _Identity  "y"
 #else
-#	define _Accept_Contact "Accept-Contact"
-#	define _Referred_By  "Referred-By"
-#	define _Content_Type  "Content-Type"
-#	define _Request_Disposition "Request-Disposition"
-#	define _Content_Encoding  "Content-Encoding"
-#	define _From  "From"
-#	define _Call_ID  "Call-ID"
-#	define _Reject_Contact "Reject-Contact"
-#	define _Supported  "Supported"
-#	define _Content_Length  "Content-Length"
-#	define _Contact  "Contact"
-#	define _Identity_Info  "Identity-Info"
-#	define _Event  "Event"
-#	define _Refer_To  "Refer-To"
-#	define _Subject  "Subject"
-#	define _To  "To"
-#	define _Allow_Events  "Allow-Events"
-#	define _Via  "Via"
-#	define _Session_Expires "Session-Expires"
-#	define _Identity  "Identity"
+#   define _Accept_Contact "Accept-Contact"
+#   define _Referred_By  "Referred-By"
+#   define _Content_Type  "Content-Type"
+#   define _Request_Disposition "Request-Disposition"
+#   define _Content_Encoding  "Content-Encoding"
+#   define _From  "From"
+#   define _Call_ID  "Call-ID"
+#   define _Reject_Contact "Reject-Contact"
+#   define _Supported  "Supported"
+#   define _Content_Length  "Content-Length"
+#   define _Contact  "Contact"
+#   define _Identity_Info  "Identity-Info"
+#   define _Event  "Event"
+#   define _Refer_To  "Refer-To"
+#   define _Subject  "Subject"
+#   define _To  "To"
+#   define _Allow_Events  "Allow-Events"
+#   define _Via  "Via"
+#   define _Session_Expires "Session-Expires"
+#   define _Identity  "Identity"
 #endif
 
 /** Gets the name of the SIP header with a type equal to @a type.
- * @param	type	The @a type of the header for which to retrieve the name.
+ * @param   type    The @a type of the header for which to retrieve the name.
  *
- * @return	The name of the header.
+ * @return  The name of the header.
 **/
 const char *tsip_header_get_name(tsip_header_type_t type)
 {

@@ -25,11 +25,11 @@
 #include "internals/DSFrameRateFilter.h"
 
 #if defined(_WIN32_WCE)
-#	include "internals/wince/DSSampleGrabber.h"
-#	include "internals/wince/DSNullFilter.h"
-#	include "internals/wince/DSISampleGrabberCB.h"
+#   include "internals/wince/DSSampleGrabber.h"
+#   include "internals/wince/DSNullFilter.h"
+#   include "internals/wince/DSISampleGrabberCB.h"
 #else
-#	include <qedit.h>
+#   include <qedit.h>
 #endif
 
 
@@ -43,7 +43,8 @@ public:
 #endif
     virtual ~DSCaptureGraph();
 
-    std::vector<DSCaptureFormat> *getFormats() {
+    std::vector<DSCaptureFormat> *getFormats()
+    {
         return &this->supportedFormats;
     };
 
@@ -59,7 +60,8 @@ public:
     bool isRunning();
     bool isPaused();
 
-    std::string getDeviceId() const {
+    std::string getDeviceId() const
+    {
         return this->deviceId;
     };
 
@@ -70,41 +72,41 @@ private:
 
 private:
 #ifdef _WIN32_WCE
-    DSISampleGrabberCB			*grabberCallback;
+    DSISampleGrabberCB          *grabberCallback;
 #else
-    ISampleGrabberCB				*grabberCallback;
+    ISampleGrabberCB                *grabberCallback;
 #endif
 
-    ICaptureGraphBuilder2			*captureGraphBuilder;
-    IGraphBuilder					*graphBuilder;
+    ICaptureGraphBuilder2           *captureGraphBuilder;
+    IGraphBuilder                   *graphBuilder;
 
-    IBaseFilter						*sourceFilter;
-    IBaseFilter						*nullRendererFilter;
-    IBaseFilter						*sampleGrabberFilter;
+    IBaseFilter                     *sourceFilter;
+    IBaseFilter                     *nullRendererFilter;
+    IBaseFilter                     *sampleGrabberFilter;
 
 #ifdef _WIN32_WCE
-    IBaseFilter						*colorConvertor565; //http://msdn.microsoft.com/en-us/library/aa926076.aspx
+    IBaseFilter                     *colorConvertor565; //http://msdn.microsoft.com/en-us/library/aa926076.aspx
 #else
-    DSFrameRateFilter				*frameRateFilter;
+    DSFrameRateFilter               *frameRateFilter;
 #endif
 
 #ifdef _WIN32_WCE
-    DSSampleGrabber					*grabberController;
+    DSSampleGrabber                 *grabberController;
 #else
-    ISampleGrabber					*grabberController;
+    ISampleGrabber                  *grabberController;
 #endif
 
-    IMediaControl					*mediaController;
-    IMediaEventEx					*mediaEventController;
+    IMediaControl                   *mediaController;
+    IMediaEventEx                   *mediaEventController;
 
-    IAMStreamConfig					*streamConfiguration;
+    IAMStreamConfig                 *streamConfiguration;
 
-    std::vector<DSCaptureFormat>	supportedFormats;
-    DSCaptureFormat					*captureFormat;
+    std::vector<DSCaptureFormat>    supportedFormats;
+    DSCaptureFormat                 *captureFormat;
 
-    bool							running;
-    bool							paused;
-    std::string						deviceId;
+    bool                            running;
+    bool                            paused;
+    std::string                     deviceId;
 };
 
 #endif

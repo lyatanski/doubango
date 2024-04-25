@@ -23,29 +23,29 @@
 #include "tinynet.h"
 #include "tsk.h"
 
-#define kConfId				1927375685
-#define kTransacId			32871
-#define kUserId				18177
-#define kFloorId			10665
-#define kFloorReqId			2
-#define kReqStatus			3 // Granted
-#define kQueuePosition		0
-#define kUserDisplayName	"Mamadou DIOP"
-#define kUserUri			"Mamadou DIOP@TEST.COM"
-#define kRemoteIP			"192.168.0.28"
-#define kRemotePort			5060
-#define kLocalIP			"192.168.0.37"
-#define kLocalPort			5060
+#define kConfId             1927375685
+#define kTransacId          32871
+#define kUserId             18177
+#define kFloorId            10665
+#define kFloorReqId         2
+#define kReqStatus          3 // Granted
+#define kQueuePosition      0
+#define kUserDisplayName    "Mamadou DIOP"
+#define kUserUri            "Mamadou DIOP@TEST.COM"
+#define kRemoteIP           "192.168.0.28"
+#define kRemotePort         5060
+#define kLocalIP            "192.168.0.37"
+#define kLocalPort          5060
 
 #define kNullOctetStringPtr 0
 
 #define BAIL_IF_ERR(expr) { int _ret_; if ((_ret_) = (expr)) { TSK_DEBUG_ERROR("Error %d", (_ret_)); goto bail; } }
 
-#define LOOP						0
+#define LOOP                        0
 
-#define RUN_TEST_ALL				0
-#define RUN_TEST_PARSER				0
-#define RUN_TEST_SESSION			1
+#define RUN_TEST_ALL                0
+#define RUN_TEST_PARSER             0
+#define RUN_TEST_SESSION            1
 
 #include "test_parser.h"
 #include "test_session.h"

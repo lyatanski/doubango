@@ -40,7 +40,7 @@
 TMSRP_BEGIN_DECLS
 
 #ifndef TMSRP_MAX_CHUNK_SIZE
-#	define TMSRP_MAX_CHUNK_SIZE				2048
+#   define TMSRP_MAX_CHUNK_SIZE             2048
 #endif
 
 typedef struct tmsrp_config_s {

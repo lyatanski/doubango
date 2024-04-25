@@ -36,7 +36,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_INFO_EVENT(self)		((tsip_info_event_t*)(self))
+#define TSIP_INFO_EVENT(self)       ((tsip_info_event_t*)(self))
 
 //@rinyWRAP
 typedef enum tsip_info_event_type_e {

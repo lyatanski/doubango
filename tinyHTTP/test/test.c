@@ -32,14 +32,14 @@
 //#include "tinyHTTP/thttp_message.h"
 //#include "tinyHTTP/auth/thttp_auth.h"
 
-#define LOOP						0
+#define LOOP                        0
 
-#define RUN_TEST_ALL				0
-#define RUN_TEST_AUTH				1
-#define RUN_TEST_STACK				0
-#define RUN_TEST_URL				1
-#define RUN_TEST_MSGS				1
-#define RUN_TEST_TRANSPORT			0
+#define RUN_TEST_ALL                0
+#define RUN_TEST_AUTH               1
+#define RUN_TEST_STACK              0
+#define RUN_TEST_URL                1
+#define RUN_TEST_MSGS               1
+#define RUN_TEST_TRANSPORT          0
 
 #include "test_auth.h"
 #include "test_stack.h"

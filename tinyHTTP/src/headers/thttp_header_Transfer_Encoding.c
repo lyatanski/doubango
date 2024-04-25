@@ -31,7 +31,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 60 "./ragel/thttp_parser_header_Transfer_Encoding.rl" */
@@ -302,7 +302,7 @@ _match:
             {
             }
             break;
-            /* #line 299 "./src/headers/thttp_header_Transfer_Encoding.c" */
+                /* #line 299 "./src/headers/thttp_header_Transfer_Encoding.c" */
             }
         }
 
@@ -341,7 +341,7 @@ _out: {
 
 
 //========================================================
-//	Transfer_Encoding header object definition
+//  Transfer_Encoding header object definition
 //
 
 static tsk_object_t* thttp_header_Transfer_Encoding_ctor(tsk_object_t *self, va_list * app)

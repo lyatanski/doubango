@@ -34,7 +34,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 88 "./ragel/tsdp_parser_header_Z.rl" */
@@ -311,7 +311,7 @@ _match:
                 }
             }
             break;
-            /* #line 308 "./src/headers/tsdp_header_Z.c" */
+                /* #line 308 "./src/headers/tsdp_header_Z.c" */
             }
         }
 
@@ -353,7 +353,7 @@ _test_eof: {
                     }
                 }
                 break;
-                /* #line 348 "./src/headers/tsdp_header_Z.c" */
+                    /* #line 348 "./src/headers/tsdp_header_Z.c" */
                 }
             }
         }
@@ -388,7 +388,7 @@ _out: {
 
 
 //========================================================
-//	Z header object definition
+//  Z header object definition
 //
 
 static tsk_object_t* tsdp_header_Z_ctor(tsk_object_t *self, va_list * app)
@@ -453,7 +453,7 @@ const tsk_object_def_t *tsdp_header_Z_def_t = &tsdp_header_Z_def_s;
 
 
 //========================================================
-//	Zone object definition
+//  Zone object definition
 //
 
 static tsk_object_t* tsdp_zone_ctor(tsk_object_t *self, va_list * app)

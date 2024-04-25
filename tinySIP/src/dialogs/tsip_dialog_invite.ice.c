@@ -48,7 +48,7 @@ tsip_dialog_invite_ice_set_silent_mode_ctx((_self), tsk_true); \
 tsip_dialog_invite_ice_cancel_ctx((_self));  /* "cancelled" event will not be sent and we're sure that cancel operation will be done when the function exit */ \
 tsip_dialog_invite_ice_set_sync_mode_ctx((_self), tsk_false); \
 tsip_dialog_invite_ice_set_silent_mode_ctx((_self), tsk_false); \
- 
+
 /* ======================== transitions ======================== */
 // Use "Current" instead of "Any" to avoid priority reordering
 static int x0500_Current_2_Current_X_oINVITE(va_list *app);
@@ -452,7 +452,7 @@ int tsip_dialog_invite_ice_process_ro(tsip_dialog_invite_t * self, const tsdp_me
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 
@@ -549,7 +549,7 @@ static int x0500_Current_2_Current_X_iINVITE(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 static int tsip_dialog_invite_ice_callback(const tnet_ice_event_t *e)

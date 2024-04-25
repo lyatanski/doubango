@@ -34,7 +34,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 78 "./ragel/tsdp_parser_header_M.rl" */
@@ -67,15 +67,15 @@ int tsdp_header_M_tostring(const tsdp_header_t* header, tsk_buffer_t* output)
 
         tsk_itoa(M->nports, &nports);
 
-        /*	IMPORTANT: Keep the order.
+        /*  IMPORTANT: Keep the order.
 
-        	m=  (media name and transport address)
-        	i=* (media title)
-        	c=* (connection information -- optional if included at
-        		 session level)
-        	b=* (zero or more bandwidth information lines)
-        	k=* (encryption key)
-        	a=* (zero or more media attribute lines)
+            m=  (media name and transport address)
+            i=* (media title)
+            c=* (connection information -- optional if included at
+                 session level)
+            b=* (zero or more bandwidth information lines)
+            k=* (encryption key)
+            a=* (zero or more media attribute lines)
         */
         tsk_buffer_append_2(output, "%s %u%s%s %s",
                             M->media,
@@ -387,7 +387,7 @@ _match:
                 TSK_PARSER_ADD_STRING(hdr_M->FMTs);
             }
             break;
-            /* #line 384 "./src/headers/tsdp_header_M.c" */
+                /* #line 384 "./src/headers/tsdp_header_M.c" */
             }
         }
 
@@ -417,7 +417,7 @@ _test_eof: {
                     TSK_PARSER_ADD_STRING(hdr_M->FMTs);
                 }
                 break;
-                /* #line 412 "./src/headers/tsdp_header_M.c" */
+                    /* #line 412 "./src/headers/tsdp_header_M.c" */
                 }
             }
         }
@@ -979,49 +979,49 @@ int tsdp_header_M_diff(const tsdp_header_M_t* M_old, const tsdp_header_M_t* M_ne
 //
 //int tsdp_header_M_set(tsdp_header_M_t* self, ...)
 //{
-//	int ret = -1;
-//	va_list params;
-//	int type;
+//  int ret = -1;
+//  va_list params;
+//  int type;
 //
-//	va_start(params, self);
+//  va_start(params, self);
 //
-//	if(!m){
-//		goto bail;
-//	}
+//  if(!m){
+//      goto bail;
+//  }
 //
-//	while((type=va_arg(params, int))){
-//		switch(type){
-//			case 0x01: /* FMT */
-//			{
-//				tsk_string_t* fmt = tsk_string_create(va_arg(values, const char *));
-//				if(fmt){
-//					tsk_list_push_back_data(sefl->FMTs, (void**)&fmt);
-//				}
-//				break;
-//			}
-//			case 0x02: /* A */
-//			{
-//				tsdp_header_A_t* A = tsdp_header_A_create(va_arg(values, const char *), va_arg(values, const char *));
-//				if(A){
-//					if(!M->Attributes){
-//						M->Attributes = tsk_list_create();
-//					}
-//					tsk_list_push_back_data(M->Attributes, (void**)&A);
-//				}
-//				break;
-//			}
-//		}
-//	}
+//  while((type=va_arg(params, int))){
+//      switch(type){
+//          case 0x01: /* FMT */
+//          {
+//              tsk_string_t* fmt = tsk_string_create(va_arg(values, const char *));
+//              if(fmt){
+//                  tsk_list_push_back_data(sefl->FMTs, (void**)&fmt);
+//              }
+//              break;
+//          }
+//          case 0x02: /* A */
+//          {
+//              tsdp_header_A_t* A = tsdp_header_A_create(va_arg(values, const char *), va_arg(values, const char *));
+//              if(A){
+//                  if(!M->Attributes){
+//                      M->Attributes = tsk_list_create();
+//                  }
+//                  tsk_list_push_back_data(M->Attributes, (void**)&A);
+//              }
+//              break;
+//          }
+//      }
+//  }
 //
 //bail:
-//	va_end(params);
-//	return ret;
+//  va_end(params);
+//  return ret;
 //}
 
 
 
 //========================================================
-//	M header object definition
+//  M header object definition
 //
 
 static tsk_object_t* tsdp_header_M_ctor(tsk_object_t *self, va_list * app)

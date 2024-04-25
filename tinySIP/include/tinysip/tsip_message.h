@@ -55,52 +55,52 @@
 TSIP_BEGIN_DECLS
 
 ///**
-// * @struct	tsip_request_line_t
+// * @struct    tsip_request_line_t
 // *
-// * @brief	Defines SIP request header line.
+// * @brief Defines SIP request header line.
 // * ABNF: Request-Line  =  Method SP Request-URI SP SIP-Version CRLF
 // * Ref: RFC 3261 subclause 7.1.
-// * @sa		tsip_status_line_t.
+// * @sa        tsip_status_line_t.
 // *
-// * @author	Mamadou
-// * @date	12/3/2009
+// * @author    Mamadou
+// * @date  12/3/2009
 //**/
 //typedef struct tsip_request_line_s
 //{
-//	char *method; /**< SIP method name. e.g REGISTER, ACK or INVITE.*/
-//	tsip_uri_t *uri;	/**< The Request-URI is a SIP or SIPS URI as described in Section 19.1 or a general URI (RFC 2396 [5]).  It indicates
+//  char *method; /**< SIP method name. e.g REGISTER, ACK or INVITE.*/
+//  tsip_uri_t *uri;    /**< The Request-URI is a SIP or SIPS URI as described in Section 19.1 or a general URI (RFC 2396 [5]).  It indicates
 //           the user or service to which this request is being addressed. The Request-URI MUST NOT contain unescaped spaces or control
 //           characters and MUST NOT be enclosed in "<>". */
 //}
 //tsip_request_line_t;
 //
 ///**
-// * @struct	tsip_status_line_t
+// * @struct    tsip_status_line_t
 // *
-// * @brief	Defines SIP response status line.
+// * @brief Defines SIP response status line.
 // * ABNF: Status-Line  =  SIP-Version SP Status-Code SP Reason-Phrase CRLF
 // * Ref: RFC 3261 subclause 7.2.
-// * @sa		tsip_request_line_t.
+// * @sa        tsip_request_line_t.
 // *
-// * @author	Mamadou
-// * @date	12/3/2009
+// * @author    Mamadou
+// * @date  12/3/2009
 //**/
 //typedef struct tsip_status_line_s
 //{
-//	short status_code; /**< 3-digit integer result code that indicates the outcome of an attempt to understand and satisfy a request. */
-//	char *reason_phrase; /**< Textual description related to the status code. */
+//  short status_code; /**< 3-digit integer result code that indicates the outcome of an attempt to understand and satisfy a request. */
+//  char *reason_phrase; /**< Textual description related to the status code. */
 //}
 //tsip_status_line_t;
 
 /**
- * @struct	tsip_message_t
+ * @struct  tsip_message_t
  *
- * @brief	Represents a SIP message. A SIP message is either a request from a client to a server,
- * 			or a response from a server to a client. See RFC 3261 suc-bclause 7.
- *			You must call @ref tsip_message_create to create a sip message and TSK_OBJECT_SAFE_FREE to free the message.
+ * @brief   Represents a SIP message. A SIP message is either a request from a client to a server,
+ *          or a response from a server to a client. See RFC 3261 suc-bclause 7.
+ *          You must call @ref tsip_message_create to create a sip message and TSK_OBJECT_SAFE_FREE to free the message.
  *
- * @author	Mamadou
- * @date	12/2/2009
+ * @author  Mamadou
+ * @date    12/2/2009
 **/
 typedef struct tsip_message_s {
     TSK_DECLARE_OBJECT;
@@ -112,9 +112,9 @@ typedef struct tsip_message_s {
     union {
         struct {
             char *method; /**< SIP method name. e.g REGISTER, ACK or INVITE.*/
-            tsip_uri_t *uri;	/**< The Request-URI is a SIP or SIPS URI as described in Section 19.1 or a general URI (RFC 2396 [5]).  It indicates
-				   the user or service to which this request is being addressed. The Request-URI MUST NOT contain unescaped spaces or control
-				   characters and MUST NOT be enclosed in "<>". */
+            tsip_uri_t *uri;    /**< The Request-URI is a SIP or SIPS URI as described in Section 19.1 or a general URI (RFC 2396 [5]).  It indicates
+                   the user or service to which this request is being addressed. The Request-URI MUST NOT contain unescaped spaces or control
+                   characters and MUST NOT be enclosed in "<>". */
             tsip_request_type_t request_type;
         } request;
         struct {
@@ -156,7 +156,7 @@ typedef tsip_message_t tsip_request_t; /**< SIP request message. */
 typedef tsip_message_t tsip_response_t; /**< SIP response message. */
 
 
-TINYSIP_API int	tsip_message_add_header(tsip_message_t *self, const tsip_header_t *hdr);
+TINYSIP_API int tsip_message_add_header(tsip_message_t *self, const tsip_header_t *hdr);
 TINYSIP_API int tsip_message_add_headers(tsip_message_t *self, ...);
 TINYSIP_API int tsip_message_add_content(tsip_message_t *self, const char* content_type, const void* content, tsk_size_t size);
 
@@ -176,12 +176,12 @@ static void TSIP_MESSAGE_ADD_HEADER(tsip_message_t *self, ...)
     tsk_object_unref(header);
 }
 #else
-#define TSIP_MESSAGE_ADD_HEADER(self, objdef, ...)										\
-	{																					\
-		tsip_header_t *header = (tsip_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);	\
-		tsip_message_add_header(self, header);											\
-		tsk_object_unref(header);														\
-	}
+#define TSIP_MESSAGE_ADD_HEADER(self, objdef, ...)                                      \
+    {                                                                                   \
+        tsip_header_t *header = (tsip_header_t *)tsk_object_new(objdef, ##__VA_ARGS__); \
+        tsip_message_add_header(self, header);                                          \
+        tsk_object_unref(header);                                                       \
+    }
 #endif
 
 TINYSIP_API const tsip_header_t *tsip_message_get_headerAt(const tsip_message_t *self, tsip_header_type_t type, tsk_size_t index);
@@ -193,9 +193,9 @@ TINYSIP_API tsk_bool_t tsip_message_required(const tsip_message_t *self, const c
 
 
 
-TINYSIP_API int64_t		tsip_message_getExpires(const tsip_message_t *message);
-TINYSIP_API uint32_t	tsip_message_getContent_length(const tsip_message_t *message);
-TINYSIP_API int32_t		tsip_message_getCSeq(const tsip_message_t *message);
+TINYSIP_API int64_t     tsip_message_getExpires(const tsip_message_t *message);
+TINYSIP_API uint32_t    tsip_message_getContent_length(const tsip_message_t *message);
+TINYSIP_API int32_t     tsip_message_getCSeq(const tsip_message_t *message);
 
 TINYSIP_API int tsip_message_tostring(const tsip_message_t *self, tsk_buffer_t *output);
 

@@ -28,7 +28,7 @@
 #include "tsk_debug.h"
 
 // RFC 4103 - 6.  Parameter for Character Transmission Rate
-#define TDAV_CODEC_T140_CPS	30
+#define TDAV_CODEC_T140_CPS 30
 
 static int tdav_codec_t140_set(tmedia_codec_t* self, const struct tmedia_param_s* param)
 {
@@ -113,7 +113,7 @@ static char* tdav_codec_t140_sdp_att_get(const tmedia_codec_t* self, const char*
 
 
 //
-//	G.711u Plugin definition
+//  G.711u Plugin definition
 //
 
 /* constructor */

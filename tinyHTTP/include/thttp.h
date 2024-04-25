@@ -48,8 +48,8 @@
 *
 * @code
 * thttp_stack_create(callback,
-*	THTTP_STACK_SET_LOCAL_IP("192.168.0.15"),
-*	THTTP_STACK_SET_NULL());
+*   THTTP_STACK_SET_LOCAL_IP("192.168.0.15"),
+*   THTTP_STACK_SET_NULL());
 * @endcode
 *
 * @sa @ref THTTP_STACK_SET_LOCAL_PORT<br>@ref thttp_stack_create<br>@ref thttp_stack_set
@@ -61,8 +61,8 @@
 *
 * @code
 * thttp_stack_create(callback,
-*	THTTP_STACK_SET_LOCAL_PORT(1234),
-*	THTTP_STACK_SET_NULL());
+*   THTTP_STACK_SET_LOCAL_PORT(1234),
+*   THTTP_STACK_SET_NULL());
 * @endcode
 * @sa @ref THTTP_STACK_SET_LOCAL_IP<br>@ref thttp_stack_create<br>@ref thttp_stack_set
 */
@@ -76,8 +76,8 @@
 *
 * @code
 * thttp_stack_create(callback,
-*	THTTP_STACK_SET_TLS_CERTS("C:\\tls\\ca.pki-crt.pem", "C:\\tls\\pub-crt.pem", "C:\\tls\\priv-key.pem"),
-*	THTTP_STACK_SET_NULL());
+*   THTTP_STACK_SET_TLS_CERTS("C:\\tls\\ca.pki-crt.pem", "C:\\tls\\pub-crt.pem", "C:\\tls\\priv-key.pem"),
+*   THTTP_STACK_SET_NULL());
 * @endcode
 */
 
@@ -85,33 +85,33 @@ THTTP_BEGIN_DECLS
 
 typedef enum thttp_stack_param_type_e {
     thttp_pname_null = 0,
-#define THTTP_STACK_SET_NULL()																thttp_pname_null
+#define THTTP_STACK_SET_NULL()                                                              thttp_pname_null
 
     /* Network */
     thttp_pname_local_ip,
     thttp_pname_local_port,
     thttp_pname_proxy,
-#define THTTP_STACK_SET_LOCAL_IP(IP_STR)														thttp_pname_local_ip, (const char*)IP_STR
-#define THTTP_STACK_SET_LOCAL_PORT(PORT_INT)													thttp_pname_local_port, (int)PORT_INT
-#define THTTP_STACK_SET_PROXY(IP_STR, PORT_INT)													thttp_pname_proxy, (const char*)IP_STR, (int)PORT_INT
+#define THTTP_STACK_SET_LOCAL_IP(IP_STR)                                                        thttp_pname_local_ip, (const char*)IP_STR
+#define THTTP_STACK_SET_LOCAL_PORT(PORT_INT)                                                    thttp_pname_local_port, (int)PORT_INT
+#define THTTP_STACK_SET_PROXY(IP_STR, PORT_INT)                                                 thttp_pname_proxy, (const char*)IP_STR, (int)PORT_INT
 
     /* Modes */
     thttp_pname_mode_client,
     thttp_pname_mode_server,
-#define THTTP_STACK_SET_MODE_CLIENT()												thttp_pname_mode_client
-#define THTTP_STACK_SET_MODE_SERVER()												thttp_pname_mode_server
+#define THTTP_STACK_SET_MODE_CLIENT()                                               thttp_pname_mode_client
+#define THTTP_STACK_SET_MODE_SERVER()                                               thttp_pname_mode_server
 
     /* TLS */
     thttp_pname_tls_enabled,
-#define THTTP_STACK_SET_TLS_ENABLED(ENABLED_BOOL)									thttp_pname_tls_enabled, (tsk_bool_t)ENABLED_BOOL
+#define THTTP_STACK_SET_TLS_ENABLED(ENABLED_BOOL)                                   thttp_pname_tls_enabled, (tsk_bool_t)ENABLED_BOOL
     thttp_pname_tls_certs_verify,
-#define THTTP_STACK_SET_TLS_CERTS_VERIFY(CERTS_VERIFY_BOOL)							thttp_pname_tls_certs_verify, (tsk_bool_t)CERTS_VERIFY_BOOL
+#define THTTP_STACK_SET_TLS_CERTS_VERIFY(CERTS_VERIFY_BOOL)                         thttp_pname_tls_certs_verify, (tsk_bool_t)CERTS_VERIFY_BOOL
     thttp_pname_tls_certs,
-#define THTTP_STACK_SET_TLS_CERTS(CA_FILE_STR, PUB_FILE_STR, PRIV_FILE_STR)			thttp_pname_tls_certs, (const char*)CA_FILE_STR, (const char*)PUB_FILE_STR, (const char*)PRIV_FILE_STR
+#define THTTP_STACK_SET_TLS_CERTS(CA_FILE_STR, PUB_FILE_STR, PRIV_FILE_STR)         thttp_pname_tls_certs, (const char*)CA_FILE_STR, (const char*)PUB_FILE_STR, (const char*)PRIV_FILE_STR
 
     /* User Data */
     thttp_pname_userdata,
-#define THTTP_STACK_SET_USERDATA(USERDATA_PTR)	thttp_pname_userdata, (const void*)USERDATA_PTR
+#define THTTP_STACK_SET_USERDATA(USERDATA_PTR)  thttp_pname_userdata, (const void*)USERDATA_PTR
 
 }
 thttp_stack_param_type_t;

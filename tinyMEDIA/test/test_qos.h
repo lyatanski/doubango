@@ -112,9 +112,9 @@ void test_qos_e2e_neg()
     char* temp = tsk_null;
 
     /* SDP1: A includes end-to-end quality of service preconditions in the
-    	initial offer.
+        initial offer.
 
-    	m=audio 20000 RTP/AVP 0
+        m=audio 20000 RTP/AVP 0
         c=IN IP4 192.0.2.1
         a=curr:qos e2e none
         a=des:qos mandatory e2e sendrecv
@@ -125,14 +125,14 @@ void test_qos_e2e_neg()
         TSK_FREE(temp);
     }
 
-    /*	SDP2: Since B uses RSVP, it can know when resources in its "send"
-    	direction are available, because it will receive RESV messages from
-    	the network.  However, it does not know the status of the
-    	reservations in the other direction.  B requests confirmation for
-    	resource reservations in its "recv" direction to the peer user agent
-    	A in its answer.
+    /*  SDP2: Since B uses RSVP, it can know when resources in its "send"
+        direction are available, because it will receive RESV messages from
+        the network.  However, it does not know the status of the
+        reservations in the other direction.  B requests confirmation for
+        resource reservations in its "recv" direction to the peer user agent
+        A in its answer.
 
-    	m=audio 30000 RTP/AVP 0
+        m=audio 30000 RTP/AVP 0
         c=IN IP4 192.0.2.4
         a=curr:qos e2e none
         a=des:qos mandatory e2e sendrecv
@@ -147,10 +147,10 @@ void test_qos_e2e_neg()
 
     /* SDP3: When A receives RESV messages, it sends an updated offer (5) to B:
 
-    	m=audio 20000 RTP/AVP 0
-    	c=IN IP4 192.0.2.1
-    	a=curr:qos e2e send
-    	a=des:qos mandatory e2e sendrecv
+        m=audio 20000 RTP/AVP 0
+        c=IN IP4 192.0.2.1
+        a=curr:qos e2e send
+        a=des:qos mandatory e2e sendrecv
     */
     tmedia_qos_tline_e2e_set_ro(e2eA, e2eB);
     if((temp = test_qos_tostring((const tmedia_qos_tline_t*)e2eA))) {
@@ -159,12 +159,12 @@ void test_qos_e2e_neg()
     }
 
     /* SDP4: B responds with an answer (6) which contains the current status
-    	of the resource reservation (i.e., sendrecv):
+        of the resource reservation (i.e., sendrecv):
 
-    	m=audio 30000 RTP/AVP 0
-    	c=IN IP4 192.0.2.4
-    	a=curr:qos e2e sendrecv
-    	a=des:qos mandatory e2e sendrecv
+        m=audio 30000 RTP/AVP 0
+        c=IN IP4 192.0.2.4
+        a=curr:qos e2e sendrecv
+        a=des:qos mandatory e2e sendrecv
     */
     tmedia_qos_tline_e2e_set_ro(e2eB, e2eA);
     if((temp = test_qos_tostring((const tmedia_qos_tline_t*)e2eB))) {
@@ -203,11 +203,11 @@ void test_qos_segmented_neg()
     tmedia_qos_tline_segmented_t *segA = tsk_null, *segB = tsk_null;
     char* temp = tsk_null;
 
-    /*	INVITE
-    	a=curr:qos local none
-    	a=curr:qos remote none
-    	a=des:qos mandatory local sendrecv
-    	a=des:qos mandatory remote sendrecv
+    /*  INVITE
+        a=curr:qos local none
+        a=curr:qos remote none
+        a=des:qos mandatory local sendrecv
+        a=des:qos mandatory remote sendrecv
     */
     segA = tmedia_qos_tline_segmented_create(tmedia_qos_strength_mandatory);
     if((temp = test_qos_tostring((const tmedia_qos_tline_t*)segA))) {
@@ -215,12 +215,12 @@ void test_qos_segmented_neg()
         TSK_FREE(temp);
     }
 
-    /*	183 Sesson progress
-    	a=curr:qos local none
-    	a=curr:qos remote none
-    	a=des:qos mandatory local sendrecv
-    	a=des:qos mandatory remote sendrecv
-    	a=conf:qos remote sendrecv
+    /*  183 Sesson progress
+        a=curr:qos local none
+        a=curr:qos remote none
+        a=des:qos mandatory local sendrecv
+        a=des:qos mandatory remote sendrecv
+        a=conf:qos remote sendrecv
     */
     segB = tmedia_qos_tline_segmented_create(tmedia_qos_strength_mandatory);
     tmedia_qos_tline_segmented_set_ro(segB, segA);
@@ -229,11 +229,11 @@ void test_qos_segmented_neg()
         TSK_FREE(temp);
     }
 
-    /*	UPDATE
-    	a=curr:qos local sendrecv
-    	a=curr:qos remote none
-    	a=des:qos mandatory local sendrecv
-    	a=des:qos mandatory remote sendrecv
+    /*  UPDATE
+        a=curr:qos local sendrecv
+        a=curr:qos remote none
+        a=des:qos mandatory local sendrecv
+        a=des:qos mandatory remote sendrecv
     */
     tmedia_qos_tline_segmented_set_ro(segA, segB);
     if((temp = test_qos_tostring((const tmedia_qos_tline_t*)segA))) {
@@ -242,10 +242,10 @@ void test_qos_segmented_neg()
     }
 
     /* 200 OK
-    	a=curr:qos local sendrecv
-    	a=curr:qos remote sendrecv
-    	a=des:qos mandatory local sendrecv
-    	a=des:qos mandatory remote sendrecv
+        a=curr:qos local sendrecv
+        a=curr:qos remote sendrecv
+        a=des:qos mandatory local sendrecv
+        a=des:qos mandatory remote sendrecv
     */
     tmedia_qos_tline_segmented_set_ro(segB, segA);
     if((temp = test_qos_tostring((const tmedia_qos_tline_t*)segB))) {

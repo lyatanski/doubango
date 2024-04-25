@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_E_VA_ARGS(value)		tsdp_header_E_def_t, (const char*)value
+#define TSDP_HEADER_E_VA_ARGS(value)        tsdp_header_E_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "e=" header (Email Address).
+/// @brief  SDP "e=" header (Email Address).
 ///
 /// The "e=" line specifies contact information for the person
 ///   responsible for the conference.  This is not necessarily the same

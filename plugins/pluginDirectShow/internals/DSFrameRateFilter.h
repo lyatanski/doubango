@@ -35,8 +35,8 @@ public:
 
 public:
     /**
-    * \def		SetFps
-    * \brief	fps1 define source .
+    * \def      SetFps
+    * \brief    fps1 define source .
     */
     HRESULT SetFps(int inputFps, int outputFps);
 
@@ -45,19 +45,19 @@ public:
 
     /*STDMETHODIMP_(ULONG) NonDelegatingRelease()
     {
-    	if(InterlockedDecrement(&m_cRef) == 0)
-    	{
-    		delete this;
-    		return 0;
-    	}
-    	return m_cRef;
+        if(InterlockedDecrement(&m_cRef) == 0)
+        {
+            delete this;
+            return 0;
+        }
+        return m_cRef;
     }*/
 
 private:
     int m_progress;
     int m_inputFps, m_outputFps;
     bool m_bProcessFrame;
-    REFERENCE_TIME m_rtFrameLength;		// UNITS/fps
+    REFERENCE_TIME m_rtFrameLength;     // UNITS/fps
     LONGLONG m_iFrameNumber;
 };
 

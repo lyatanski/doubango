@@ -73,8 +73,8 @@ typedef int (*trtp_srtp_dtls_cb_f)(const void* usrdata,  enum trtp_srtp_dtls_eve
 #define TRTP_SRTP_AES_CM_128_HMAC_SHA1_80 "AES_CM_128_HMAC_SHA1_80"
 #define TRTP_SRTP_AES_CM_128_HMAC_SHA1_32 "AES_CM_128_HMAC_SHA1_32"
 
-#define TRTP_SRTP_LINE_IDX_LOCAL	0
-#define TRTP_SRTP_LINE_IDX_REMOTE	1
+#define TRTP_SRTP_LINE_IDX_LOCAL    0
+#define TRTP_SRTP_LINE_IDX_REMOTE   1
 
 static const char* trtp_srtp_crypto_type_strings[2] = {
     TRTP_SRTP_AES_CM_128_HMAC_SHA1_80, TRTP_SRTP_AES_CM_128_HMAC_SHA1_32

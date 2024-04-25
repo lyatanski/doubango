@@ -35,14 +35,14 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_MIN_EXPIRES_VA_ARGS(value)		tmsrp_header_Min_Expires_def_t, (int64_t)value
+#define TMSRP_HEADER_MIN_EXPIRES_VA_ARGS(value)     tmsrp_header_Min_Expires_def_t, (int64_t)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Min-Expires' header.
+/// @brief  MSRP 'Min-Expires' header.
 ///
-/// @par ABNF :  Min-Expires	=  	"Min-Expires:" SP 1*DIGIT
+/// @par ABNF :  Min-Expires    =   "Min-Expires:" SP 1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Min_Expires_s {

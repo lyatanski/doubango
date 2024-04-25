@@ -735,7 +735,7 @@ static int __socks5_gss_import_name(tnet_proxy_node_t* self)
         goto bail;
     }
     /* debug */{
-        gss_OID	output_name_type;
+        gss_OID output_name_type;
         gss_buffer_desc output_name = GSS_C_EMPTY_BUFFER;
         node->handshacking.gss.status_major = gss_display_name(&node->handshacking.gss.status_minor,
                                               node->handshacking.gss.server_name,

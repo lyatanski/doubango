@@ -27,7 +27,7 @@
 #include "internals/DSDisplayGraph.h"
 #include "internals/DSDisplayOverlay.h"
 
-#define WM_FULLSCREEN_SET	(WM_USER + 401)
+#define WM_FULLSCREEN_SET   (WM_USER + 401)
 
 class DSDisplay
 {

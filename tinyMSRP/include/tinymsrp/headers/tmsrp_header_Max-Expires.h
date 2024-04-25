@@ -35,14 +35,14 @@
 
 TMSRP_BEGIN_DECLS
 
-#define TMSRP_HEADER_MAX_EXPIRES_VA_ARGS(value)		tmsrp_header_Max_Expires_def_t, (int64_t)value
+#define TMSRP_HEADER_MAX_EXPIRES_VA_ARGS(value)     tmsrp_header_Max_Expires_def_t, (int64_t)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	MSRP 'Max-Expires' header.
+/// @brief  MSRP 'Max-Expires' header.
 ///
-/// @par ABNF :  Max-Expires	=  	"Max-Expires:" SP 1*DIGIT
+/// @par ABNF :  Max-Expires    =   "Max-Expires:" SP 1*DIGIT
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tmsrp_header_Max_Expires_s {

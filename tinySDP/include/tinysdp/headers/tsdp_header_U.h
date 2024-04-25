@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_U_VA_ARGS(value)		tsdp_header_U_def_t, (const char*)value
+#define TSDP_HEADER_U_VA_ARGS(value)        tsdp_header_U_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "u=" header (URI).
+/// @brief  SDP "u=" header (URI).
 ///
 /// @par ABNF : u=uri
 ///

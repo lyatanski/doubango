@@ -36,7 +36,7 @@
 
 TDAV_BEGIN_DECLS
 
-#define TDAV_CONSUMER_AUDIO(self)		((tdav_consumer_audio_t*)(self))
+#define TDAV_CONSUMER_AUDIO(self)       ((tdav_consumer_audio_t*)(self))
 
 typedef struct tdav_consumer_audio_s {
     TMEDIA_DECLARE_CONSUMER;

@@ -288,36 +288,36 @@ char packet_10[] = {
 };
 
 #define MAKE_TEST(n) \
-	/* deserialize the packet*/ \
-	if((packet = trtp_rtp_packet_deserialize(packet_##n, sizeof(packet_##n)))){ \
-		/* serialize the packet */ \
-		if((buffer = trtp_rtp_packet_serialize(packet, 0))){ \
-			/* compare data */ \
-			if(sizeof(packet_##n) != buffer->size){ \
-				TSK_DEBUG_ERROR("Test-%d: Sizes are different", n); \
-			} \
-			else{ \
-				for(i=0; i<buffer->size; i++){ \
-					if(packet_##n[i] != ((char*)buffer->data)[i]){ \
-						TSK_DEBUG_ERROR("Test-%d: Data is different", n); \
-						break; \
-					} \
-				} \
-				if(i==buffer->size){ \
-					TSK_DEBUG_INFO("Test-%d: OK", n); \
-				} \
-			} \
-		} \
-		else{ \
-			TSK_DEBUG_ERROR("Failed to serialize packet-%d", n); \
-		} \
-		\
-		TSK_OBJECT_SAFE_FREE(buffer); \
-		TSK_OBJECT_SAFE_FREE(packet); \
-	} \
-	else{ \
-		TSK_DEBUG_ERROR("Failed to deserialize packet-%d", n); \
-	}
+    /* deserialize the packet*/ \
+    if((packet = trtp_rtp_packet_deserialize(packet_##n, sizeof(packet_##n)))){ \
+        /* serialize the packet */ \
+        if((buffer = trtp_rtp_packet_serialize(packet, 0))){ \
+            /* compare data */ \
+            if(sizeof(packet_##n) != buffer->size){ \
+                TSK_DEBUG_ERROR("Test-%d: Sizes are different", n); \
+            } \
+            else{ \
+                for(i=0; i<buffer->size; i++){ \
+                    if(packet_##n[i] != ((char*)buffer->data)[i]){ \
+                        TSK_DEBUG_ERROR("Test-%d: Data is different", n); \
+                        break; \
+                    } \
+                } \
+                if(i==buffer->size){ \
+                    TSK_DEBUG_INFO("Test-%d: OK", n); \
+                } \
+            } \
+        } \
+        else{ \
+            TSK_DEBUG_ERROR("Failed to serialize packet-%d", n); \
+        } \
+        \
+        TSK_OBJECT_SAFE_FREE(buffer); \
+        TSK_OBJECT_SAFE_FREE(packet); \
+    } \
+    else{ \
+        TSK_DEBUG_ERROR("Failed to deserialize packet-%d", n); \
+    }
 
 void test_parser()
 {

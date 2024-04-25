@@ -23,25 +23,25 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define kWithoutPadding		tsk_false
-#define kWithPadding		tsk_true
+#define kWithoutPadding     tsk_false
+#define kWithPadding        tsk_true
 
 #define ALIGN_ON_32BITS(size_in_octes) if (((size_in_octes) & 3)) (size_in_octes) += (4 - ((size_in_octes) & 3));
 #define ALIGN_ON_32BITS_AND_SET_PADDING_ZEROS(p_buffer, size_in_octes) \
-	if (((size_in_octes) & 3)) { \
-		int c = (4 - ((size_in_octes) & 3)); \
-		memset(p_buffer, 0, c); \
-		(size_in_octes) += c; \
-	}
+    if (((size_in_octes) & 3)) { \
+        int c = (4 - ((size_in_octes) & 3)); \
+        memset(p_buffer, 0, c); \
+        (size_in_octes) += c; \
+    }
 
 
 static enum tbfcp_attribute_format_e _tbfcp_attr_get_format(enum tbfcp_attribute_type_e type)
 {
     switch (type) {
     case tbfcp_attribute_type_BENEFICIARY_ID:
-        case tbfcp_attribute_type_FLOOR_ID:
-            case tbfcp_attribute_type_FLOOR_REQUEST_ID:
-                    return tbfcp_attribute_format_Unsigned16;
+            case tbfcp_attribute_type_FLOOR_ID:
+                case tbfcp_attribute_type_FLOOR_REQUEST_ID:
+                        return tbfcp_attribute_format_Unsigned16;
     case tbfcp_attribute_type_PRIORITY:
     case tbfcp_attribute_type_REQUEST_STATUS:
         return tbfcp_attribute_format_OctetString16;

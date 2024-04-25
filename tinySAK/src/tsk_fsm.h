@@ -41,7 +41,7 @@
 
 TSK_BEGIN_DECLS
 
-#define TSK_FSM_ONTERMINATED_F(self)				(tsk_fsm_onterminated_f)(self)
+#define TSK_FSM_ONTERMINATED_F(self)                (tsk_fsm_onterminated_f)(self)
 
 /**@ingroup tsk_fsm_group
 * @def tsk_fsm_state_any
@@ -107,19 +107,19 @@ typedef int (*tsk_fsm_onterminated_f)(const void*);
 * @def TSK_FSM_ADD_NULL
 */
 #define TSK_FSM_ADD(from, action, cond, to, exec, desc)\
-	1,\
-	(tsk_fsm_state_id)from, \
-	(tsk_fsm_action_id)action, \
-	(tsk_fsm_cond)cond, \
-	(tsk_fsm_state_id)to, \
-	(tsk_fsm_exec)exec, \
-	(const char*)desc
+    1,\
+    (tsk_fsm_state_id)from, \
+    (tsk_fsm_action_id)action, \
+    (tsk_fsm_cond)cond, \
+    (tsk_fsm_state_id)to, \
+    (tsk_fsm_exec)exec, \
+    (const char*)desc
 #define TSK_FSM_ADD_ALWAYS(from, action, to, exec, desc) TSK_FSM_ADD(from, action, tsk_fsm_cond_always, to, exec, desc)
 #define TSK_FSM_ADD_NOTHING(from, action, cond, desc) TSK_FSM_ADD(from, action, cond, from, tsk_fsm_exec_nothing, desc)
-#define TSK_FSM_ADD_ALWAYS_NOTHING(from, desc)	TSK_FSM_ADD(from, tsk_fsm_action_any, tsk_fsm_cond_always, from, tsk_fsm_exec_nothing, desc)
+#define TSK_FSM_ADD_ALWAYS_NOTHING(from, desc)  TSK_FSM_ADD(from, tsk_fsm_action_any, tsk_fsm_cond_always, from, tsk_fsm_exec_nothing, desc)
 #define TSK_FSM_ADD_DEFAULT()
 #define TSK_FSM_ADD_NULL()\
-	tsk_null
+    tsk_null
 
 /**@ingroup tsk_fsm_group
 * FSM entry.

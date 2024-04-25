@@ -29,7 +29,7 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TDAV_FEC_PKT_HDR_SIZE	10
+#define TDAV_FEC_PKT_HDR_SIZE   10
 
 typedef struct tdav_codec_ulpfec_s {
     TMEDIA_DECLARE_CODEC_VIDEO;
@@ -41,7 +41,7 @@ typedef struct tdav_codec_ulpfec_s {
 tdav_codec_ulpfec_t;
 
 //
-//	FEC LEVEL
+//  FEC LEVEL
 //
 typedef struct tdav_fec_level_s {
     TSK_DECLARE_OBJECT;
@@ -84,7 +84,7 @@ const tsk_object_def_t *tdav_fec_level_def_t = &tdav_fec_level_def_s;
 
 
 //
-//	FEC PACKET
+//  FEC PACKET
 //
 typedef struct tdav_fec_pkt_s {
     TSK_DECLARE_OBJECT;

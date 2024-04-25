@@ -38,14 +38,14 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_ROUTE_VA_ARGS(uri)		tsip_header_Route_def_t, (const tsip_uri_t*)uri
+#define TSIP_HEADER_ROUTE_VA_ARGS(uri)      tsip_header_Route_def_t, (const tsip_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Route'.
+/// @brief  SIP header 'Route'.
 ///
-/// @par ABNF : Route	= 	"Route" HCOLON route-param *(COMMA route-param)
-///							route-param	= 	name-addr *( SEMI rr-param )
+/// @par ABNF : Route   =   "Route" HCOLON route-param *(COMMA route-param)
+///                         route-param =   name-addr *( SEMI rr-param )
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_Route_s {

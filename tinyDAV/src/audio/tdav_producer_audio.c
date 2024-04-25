@@ -31,11 +31,11 @@
 
 #include "tinymedia/tmedia_defaults.h"
 
-#define TDAV_PRODUCER_BITS_PER_SAMPLE_DEFAULT	16
-#define TDAV_PRODUCER_CHANNELS_DEFAULT			1
-#define TDAV_PRODUCER_RATE_DEFAULT				8000
-#define TDAV_PRODUCER_PTIME_DEFAULT				20
-#define TDAV_PRODUCER_AUDIO_GAIN_MAX			15
+#define TDAV_PRODUCER_BITS_PER_SAMPLE_DEFAULT   16
+#define TDAV_PRODUCER_CHANNELS_DEFAULT          1
+#define TDAV_PRODUCER_RATE_DEFAULT              8000
+#define TDAV_PRODUCER_PTIME_DEFAULT             20
+#define TDAV_PRODUCER_AUDIO_GAIN_MAX            15
 
 #include "tsk_string.h"
 #include "tsk_debug.h"

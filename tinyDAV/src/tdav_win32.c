@@ -36,7 +36,7 @@
 
 /* https://msdn.microsoft.com/en-us/library/windows/desktop/ms724834%28v=vs.85%29.aspx
 Version Number    Description
-6.2				  Windows 8 / Windows Server 2012
+6.2               Windows 8 / Windows Server 2012
 6.1               Windows 7     / Windows 2008 R2
 6.0               Windows Vista / Windows 2008
 5.2               Windows 2003

@@ -127,21 +127,21 @@ tsk_bool_t tcomp_deflatedata_zCompress(tcomp_deflatedata_t *deflatedata, const v
 {
     int ret = tsk_false;
     /*
-    	Two streams [1] and [2]
+        Two streams [1] and [2]
 
-    	* ZINIT/ZUNINIT/ZRESET
-    		XXX([1])
-    		XXX([2])
+        * ZINIT/ZUNINIT/ZRESET
+            XXX([1])
+            XXX([2])
 
-    	* COMPRESSION
-    		[1]->END()
-    		[1]<-COPY-[2]
-    		[1]->COMPRESS()
+        * COMPRESSION
+            [1]->END()
+            [1]<-COPY-[2]
+            [1]->COMPRESS()
 
-    	* ACK
-    		[2]->END()
-    		[2]<-COPY-[1]
-    		updateGhost([1])
+        * ACK
+            [2]->END()
+            [2]<-COPY-[1]
+            updateGhost([1])
     */
     if(!deflatedata) {
         TSK_DEBUG_ERROR("Invalid parameter");

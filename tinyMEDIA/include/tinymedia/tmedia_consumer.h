@@ -37,22 +37,22 @@
 
 TMEDIA_BEGIN_DECLS
 
-#define TMEDIA_CONSUMER_BITS_PER_SAMPLE_DEFAULT		16
-#define TMEDIA_CONSUMER_CHANNELS_DEFAULT			2
-#define TMEDIA_CONSUMER_RATE_DEFAULT				8000
+#define TMEDIA_CONSUMER_BITS_PER_SAMPLE_DEFAULT     16
+#define TMEDIA_CONSUMER_CHANNELS_DEFAULT            2
+#define TMEDIA_CONSUMER_RATE_DEFAULT                8000
 
 
 /**Max number of plugins (consumer types) we can create */
 #if !defined(TMED_CONSUMER_MAX_PLUGINS)
-#	define TMED_CONSUMER_MAX_PLUGINS			0x0F
+#   define TMED_CONSUMER_MAX_PLUGINS            0x0F
 #endif
 
 /** cast any pointer to @ref tmedia_consumer_t* object */
-#define TMEDIA_CONSUMER(self)		((tmedia_consumer_t*)(self))
+#define TMEDIA_CONSUMER(self)       ((tmedia_consumer_t*)(self))
 
 /**  Default Video chroma */
 #if !defined(TMEDIA_CONSUMER_CHROMA_DEFAULT)
-#	define TMEDIA_CONSUMER_CHROMA_DEFAULT tmedia_chroma_yuv420p
+#   define TMEDIA_CONSUMER_CHROMA_DEFAULT tmedia_chroma_yuv420p
 #endif
 
 /** Base object for all Consumers */
@@ -115,7 +115,7 @@ typedef struct tmedia_consumer_plugin_def_s {
     //! full description (usefull for debugging)
     const char* desc;
 
-    int (*set) (tmedia_consumer_t* , const tmedia_param_t*);
+    int (*set) (tmedia_consumer_t*, const tmedia_param_t*);
     int (* prepare) (tmedia_consumer_t*, const tmedia_codec_t* );
     int (* start) (tmedia_consumer_t* );
     int (* consume) (tmedia_consumer_t*, const void* buffer, tsk_size_t size, const tsk_object_t* proto_hdr);

@@ -73,7 +73,7 @@ tsk_bool_t tcomp_deflatedata_isStateful(tcomp_deflatedata_t *deflatedata)
 
 
 //========================================================
-//	Deflate compressor data object definition
+//  Deflate compressor data object definition
 //
 
 static void* tcomp_deflatedata_ctor(void * self, va_list * app)

@@ -35,8 +35,8 @@ tsk_bool_t tnet_proxy_node_is_nettransport_supported(enum tnet_proxy_type_e prox
 {
     switch (proxy_type) {
     case tnet_proxy_type_http:
-        case tnet_proxy_type_https:
-                return TNET_SOCKET_TYPE_IS_STREAM(socket_type);
+    case tnet_proxy_type_https:
+        return TNET_SOCKET_TYPE_IS_STREAM(socket_type);
 
     case tnet_proxy_type_socks4:
     case tnet_proxy_type_socks4a:

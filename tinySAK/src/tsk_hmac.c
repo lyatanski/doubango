@@ -43,7 +43,7 @@ typedef enum tsk_hash_type_e { md5, sha1 } tsk_hash_type_t;
 
 int tsk_hmac_xxxcompute(const uint8_t* input, tsk_size_t input_size, const char* key, tsk_size_t key_size, tsk_hash_type_t type, uint8_t* digest)
 {
-#define TSK_MAX_BLOCK_SIZE	TSK_SHA1_BLOCK_SIZE
+#define TSK_MAX_BLOCK_SIZE  TSK_SHA1_BLOCK_SIZE
 
     tsk_size_t i, newkey_size;
 
@@ -59,7 +59,7 @@ int tsk_hmac_xxxcompute(const uint8_t* input, tsk_size_t input_size, const char*
     memset(opad, 0, sizeof(ipad));
 
     /*
-    *	H(K XOR opad, H(K XOR ipad, input))
+    *   H(K XOR opad, H(K XOR ipad, input))
     */
 
     // Check key len
@@ -131,16 +131,16 @@ pass1_and_pass2_done:
  *
  * Calculate HMAC-MD5 hash (hexa-string) as per RFC 2104.
  *
- * @author	Mamadou
- * @date	12/29/2009
+ * @author  Mamadou
+ * @date    12/29/2009
  *
- * @param [in,out]	input	The input data.
- * @param	input_size		The size of the input.
- * @param [in,out]	key		The input key.
- * @param	key_size		The size of the input key.
- * @param [out]	result		Pointer to the result.
+ * @param [in,out]  input   The input data.
+ * @param   input_size      The size of the input.
+ * @param [in,out]  key     The input key.
+ * @param   key_size        The size of the input key.
+ * @param [out] result      Pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int hmac_md5_compute(const uint8_t* input, tsk_size_t input_size, const char* key, tsk_size_t key_size, tsk_md5string_t *result)
 {
@@ -161,16 +161,16 @@ int hmac_md5_compute(const uint8_t* input, tsk_size_t input_size, const char* ke
  *
  * Calculate HMAC-MD5 hash (bytes) as per RFC 2104.
  *
- * @author	Mamadou
- * @date	12/29/2009
+ * @author  Mamadou
+ * @date    12/29/2009
  *
- * @param [in,out]	input	The input data.
- * @param	input_size		The Size of the input.
- * @param [in,out]	key		The input key.
- * @param	key_size		The size of the input key.
- * @param	result			Pointer to the result.
+ * @param [in,out]  input   The input data.
+ * @param   input_size      The Size of the input.
+ * @param [in,out]  key     The input key.
+ * @param   key_size        The size of the input key.
+ * @param   result          Pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int hmac_md5digest_compute(const uint8_t* input, tsk_size_t input_size, const char* key, tsk_size_t key_size, tsk_md5digest_t result)
 {
@@ -181,16 +181,16 @@ int hmac_md5digest_compute(const uint8_t* input, tsk_size_t input_size, const ch
  *
  * Calculate HMAC-SHA-1 hash (hexa-string) as per RFC 2104.
  *
- * @author	Mamadou
- * @date	12/29/2009
+ * @author  Mamadou
+ * @date    12/29/2009
  *
- * @param [in,out]	input	The input data.
- * @param	input_size		The Size of the input.
- * @param [in,out]	key		The input key.
- * @param	key_size		The size of the input key.
- * @param [out]	result		Pointer to the result.
+ * @param [in,out]  input   The input data.
+ * @param   input_size      The Size of the input.
+ * @param [in,out]  key     The input key.
+ * @param   key_size        The size of the input key.
+ * @param [out] result      Pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int hmac_sha1_compute(const uint8_t* input, tsk_size_t input_size, const char* key, tsk_size_t key_size, tsk_sha1string_t *result)
 {
@@ -210,16 +210,16 @@ int hmac_sha1_compute(const uint8_t* input, tsk_size_t input_size, const char* k
  *
  * Calculate HMAC-SHA-1 hash (bytes) as per RFC 2104.
  *
- * @author	Mamadou
- * @date	12/29/2009
+ * @author  Mamadou
+ * @date    12/29/2009
  *
- * @param [in,out]	input	If non-null, the input.
- * @param	input_size		The size of the input.
- * @param [in,out]	key		The input key.
- * @param	key_size		The size of the input key.
- * @param	result			Pointer to the result.
+ * @param [in,out]  input   If non-null, the input.
+ * @param   input_size      The size of the input.
+ * @param [in,out]  key     The input key.
+ * @param   key_size        The size of the input key.
+ * @param   result          Pointer to the result.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int hmac_sha1digest_compute(const uint8_t* input, tsk_size_t input_size, const char* key, tsk_size_t key_size, tsk_sha1digest_t result)
 {

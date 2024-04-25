@@ -37,26 +37,29 @@ protected:
         Node *next;
         IMFSample*  item;
 
-        Node() : prev(NULL), next(NULL) {
+        Node() : prev(NULL), next(NULL)
+        {
         }
 
-        Node(IMFSample* item) : prev(NULL), next(NULL) {
+        Node(IMFSample* item) : prev(NULL), next(NULL)
+        {
             this->item = item;
         }
 
-        IMFSample* Item() const {
+        IMFSample* Item() const
+        {
             return item;
         }
     };
 
 
 protected:
-    Node						m_anchor;
-    long						m_nCount;
+    Node                        m_anchor;
+    long                        m_nCount;
     CRITICAL_SECTION            m_critSec;
 
 private:
-    long						m_nRefCount;
+    long                        m_nRefCount;
 
 public:
 
@@ -72,10 +75,12 @@ public:
     HRESULT Dequeue(IMFSample**ppItem);
     HRESULT Clear();
 
-    inline BOOL IsEmpty() const {
+    inline BOOL IsEmpty() const
+    {
         return m_anchor.next == &m_anchor;
     }
-    inline long Count() {
+    inline long Count()
+    {
         return m_nCount;
     }
 };

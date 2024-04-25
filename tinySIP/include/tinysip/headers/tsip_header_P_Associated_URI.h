@@ -37,15 +37,15 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_P_ASSOCIATED_URI_VA_ARGS(uri)		tsip_header_P_Associated_URI_def_t, (const tsip_uri_t*)uri
+#define TSIP_HEADER_P_ASSOCIATED_URI_VA_ARGS(uri)       tsip_header_P_Associated_URI_def_t, (const tsip_uri_t*)uri
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'P-Associated-URI' as per RFC 3455.
+/// @brief  SIP header 'P-Associated-URI' as per RFC 3455.
 ///
-/// @par ABNF: P-Associated-URI	= 	"P-Associated-URI" HCOLON p-aso-uri-spec *(COMMA p-aso-uri-spec)
-/// p-aso-uri-spec	= 	name-addr *( SEMI ai-param )
-/// ai-param	= 	generic-param
+/// @par ABNF: P-Associated-URI =   "P-Associated-URI" HCOLON p-aso-uri-spec *(COMMA p-aso-uri-spec)
+/// p-aso-uri-spec  =   name-addr *( SEMI ai-param )
+/// ai-param    =   generic-param
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsip_header_P_Associated_URI_s {

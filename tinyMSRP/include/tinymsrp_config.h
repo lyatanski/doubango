@@ -40,37 +40,37 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TMSRP_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TMSRP_UNDER_WINDOWS_RT		1
-#	endif
+#   define TMSRP_UNDER_WINDOWS  1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TMSRP_UNDER_WINDOWS_RT       1
+#   endif
 #endif
 
 /* Used on Windows and Symbian systems to export/import public functions and global variables.
 */
 #if !defined(__GNUC__)
-# 	define TINYMSRP_API		__declspec(dllexport)
-#	define TINYMSRP_GEXTERN	extern __declspec(dllexport)
+#   define TINYMSRP_API     __declspec(dllexport)
+#   define TINYMSRP_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYMSRP_API
-#	define TINYMSRP_GEXTERN	extern
+#   define TINYMSRP_API
+#   define TINYMSRP_GEXTERN extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TMSRP_BEGIN_DECLS extern "C" {
-#	define TMSRP_END_DECLS }
+#   define TMSRP_BEGIN_DECLS extern "C" {
+#   define TMSRP_END_DECLS }
 #else
-#	define TMSRP_BEGIN_DECLS
-#	define TMSRP_END_DECLS
+#   define TMSRP_BEGIN_DECLS
+#   define TMSRP_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
-#	pragma warning( disable : 4996 )
+#   define _CRT_SECURE_NO_WARNINGS
+#   pragma warning( disable : 4996 )
 #endif
 
 #include <stdint.h>

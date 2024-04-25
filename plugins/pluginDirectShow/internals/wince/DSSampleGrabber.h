@@ -43,20 +43,24 @@ public:
     HRESULT SetFps(int inputFps, int outputFps);
 
     // DECLARE_IUNKNOWN;
-    STDMETHODIMP QueryInterface(REFIID riid, void **ppv) {
+    STDMETHODIMP QueryInterface(REFIID riid, void **ppv)
+    {
         return GetOwner()->QueryInterface(riid,ppv);
     };
-    STDMETHODIMP_(ULONG) AddRef() {
+    STDMETHODIMP_(ULONG) AddRef()
+    {
         return InterlockedIncrement(&m_cRef);
     };
-    STDMETHODIMP_(ULONG) Release() {
+    STDMETHODIMP_(ULONG) Release()
+    {
         return GetOwner()->Release();
     };
 
     STDMETHODIMP SetCallback(DSISampleGrabberCB* callback_);
     HRESULT SetSize(int width, int height);
 
-    inline AM_MEDIA_TYPE GetMediaType() {
+    inline AM_MEDIA_TYPE GetMediaType()
+    {
         return  (AM_MEDIA_TYPE)this->mt;
     }
 
@@ -64,7 +68,7 @@ private:
     int m_progress;
     int m_inputFps, m_outputFps;
     bool m_bProcessFrame;
-    REFERENCE_TIME m_rtFrameLength;		// UNITS/fps
+    REFERENCE_TIME m_rtFrameLength;     // UNITS/fps
     LONGLONG m_iFrameNumber;
 
     DSISampleGrabberCB* callback;

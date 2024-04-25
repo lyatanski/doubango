@@ -105,11 +105,11 @@ tsk_buffer_t* tnet_dhcp_message_serialize(const tnet_dhcp_ctx_t *ctx, const tnet
     tnet_dhcp_option_serializeex(dhcp_code_DHCP_Msg_Type, 1, &message->type, output);
 
     /*== Client Identifier (option 61) ==> RFC 2132 - 9.14. Client-identifier
-    	Code   Len   Type  Client-Identifier
-    	+-----+-----+-----+-----+-----+---
-    	|  61 |  n  |  t1 |  i1 |  i2 | ...
-    	+-----+-----+-----+-----+-----+---
-    	*/
+        Code   Len   Type  Client-Identifier
+        +-----+-----+-----+-----+-----+---
+        |  61 |  n  |  t1 |  i1 |  i2 | ...
+        +-----+-----+-----+-----+-----+---
+        */
     if (message->hlen) {
         uint8_t client_id[17]; // 16 /*sizeof(chaddr)*/+ 1/*htype*/
         /*if(client_id)*/{
@@ -119,30 +119,30 @@ tsk_buffer_t* tnet_dhcp_message_serialize(const tnet_dhcp_ctx_t *ctx, const tnet
         }
     }
     /*== Host name(10) ==> RFC 2132 - 3.14. Host Name Option
-    	Code   Len                 Host Name
-    	+-----+-----+-----+-----+-----+-----+-----+-----+--
-    	|  12 |  n  |  h1 |  h2 |  h3 |  h4 |  h5 |  h6 |  ...
-    	+-----+-----+-----+-----+-----+-----+-----+-----+--
-    	*/
+        Code   Len                 Host Name
+        +-----+-----+-----+-----+-----+-----+-----+-----+--
+        |  12 |  n  |  h1 |  h2 |  h3 |  h4 |  h5 |  h6 |  ...
+        +-----+-----+-----+-----+-----+-----+-----+-----+--
+        */
     if (TNET_DHCP_MESSAGE_IS_REQUEST(message) && ctx->hostname) {
         tnet_dhcp_option_serializeex(dhcp_code_Hostname, (uint8_t)tsk_strlen(ctx->hostname), ctx->hostname, output);
     }
     /*== Vendor classId(60) ==> RFC 2132 - 9.13. Vendor class identifier
-    	Code   Len   Vendor class Identifier
-    	+-----+-----+-----+-----+---
-    	|  60 |  n  |  i1 |  i2 | ...
-    	+-----+-----+-----+-----+---
-    	*/
+        Code   Len   Vendor class Identifier
+        +-----+-----+-----+-----+---
+        |  60 |  n  |  i1 |  i2 | ...
+        +-----+-----+-----+-----+---
+        */
     if (TNET_DHCP_MESSAGE_IS_REQUEST(message) && ctx->vendor_id) {
         tnet_dhcp_option_serializeex(dhcp_code_Class_Id, (uint8_t)tsk_strlen(ctx->vendor_id), ctx->vendor_id, output);
     }
 
     /*== RFC 2132 - 9.10. Maximum DHCP Message Size (57)
-    	Code   Len     Length
-    	+-----+-----+-----+-----+
-    	|  57 |  2  |  l1 |  l2 |
-    	+-----+-----+-----+-----+
-    	*/
+        Code   Len     Length
+        +-----+-----+-----+-----+
+        |  57 |  2  |  l1 |  l2 |
+        +-----+-----+-----+-----+
+        */
     if (TNET_DHCP_MESSAGE_IS_REQUEST(message) && ctx->max_msg_size) {
         _2bytes = tnet_ntohs(ctx->max_msg_size);
         tnet_dhcp_option_serializeex(dhcp_code_DHCP_Max_Msg_Size, 2, &_2bytes, output);
@@ -161,9 +161,9 @@ tsk_buffer_t* tnet_dhcp_message_serialize(const tnet_dhcp_ctx_t *ctx, const tnet
         }
     }
 
-    /*	RFC 2131 - 4.1 Constructing and sending DHCP messages
-    	The last option must always be the 'end' option.
-    	*/
+    /*  RFC 2131 - 4.1 Constructing and sending DHCP messages
+        The last option must always be the 'end' option.
+        */
     _1byte = dhcp_code_End;
     tsk_buffer_append(output, &(_1byte), 1);
 
@@ -309,7 +309,7 @@ bail:
 
 
 //=================================================================================================
-//	[[DHCP MESSAGE]] object definition
+//  [[DHCP MESSAGE]] object definition
 //
 static tsk_object_t* tnet_dhcp_message_ctor(tsk_object_t * self, va_list * app)
 {

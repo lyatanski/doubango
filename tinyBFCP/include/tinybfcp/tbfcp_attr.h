@@ -28,7 +28,7 @@
 TBFCP_BEGIN_DECLS
 
 #if !defined(TBFCP_ATTR_HDR_SIZE_IN_OCTETS)
-#	define TBFCP_ATTR_HDR_SIZE_IN_OCTETS 2 /* 2 Octets: Type(7bits),M(1bit),Length(8bits) */
+#   define TBFCP_ATTR_HDR_SIZE_IN_OCTETS 2 /* 2 Octets: Type(7bits),M(1bit),Length(8bits) */
 #endif /* TBFCP_ATTR_HDR_SIZE_IN_OCTETS */
 
 // RFC4582 - 5.2.  Attribute Format

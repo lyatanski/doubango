@@ -35,12 +35,12 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_I_VA_ARGS(value)		tsdp_header_I_def_t, (const char*)value
+#define TSDP_HEADER_I_VA_ARGS(value)        tsdp_header_I_def_t, (const char*)value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "i=" header (Session Information).
+/// @brief  SDP "i=" header (Session Information).
 ///
 /// @par ABNF : i=text
 ///

@@ -34,7 +34,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 63 "./ragel/tsdp_parser_header_B.rl" */
@@ -262,7 +262,7 @@ _match:
                 TSK_PARSER_SET_UINT(hdr_B->bandwidth);
             }
             break;
-            /* #line 259 "./src/headers/tsdp_header_B.c" */
+                /* #line 259 "./src/headers/tsdp_header_B.c" */
             }
         }
 
@@ -286,7 +286,7 @@ _test_eof: {
                     TSK_PARSER_SET_UINT(hdr_B->bandwidth);
                 }
                 break;
-                /* #line 281 "./src/headers/tsdp_header_B.c" */
+                    /* #line 281 "./src/headers/tsdp_header_B.c" */
                 }
             }
         }
@@ -317,7 +317,7 @@ _out: {
 
 
 //========================================================
-//	B header object definition
+//  B header object definition
 //
 
 static tsk_object_t* tsdp_header_B_ctor(tsk_object_t *self, va_list * app)

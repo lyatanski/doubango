@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 79 "./ragel/tsip_parser_header_Session_Expires.rl" */
@@ -494,7 +494,7 @@ _match:
             {
             }
             break;
-            /* #line 491 "./src/headers/tsip_header_Session_Expires.c" */
+                /* #line 491 "./src/headers/tsip_header_Session_Expires.c" */
             }
         }
 
@@ -532,7 +532,7 @@ _out: {
 
 
 //========================================================
-//	Session_Expires header object definition
+//  Session_Expires header object definition
 //
 
 static tsk_object_t* tsip_header_Session_Expires_ctor(tsk_object_t *self, va_list * app)

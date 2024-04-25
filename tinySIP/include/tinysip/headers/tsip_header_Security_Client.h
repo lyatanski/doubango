@@ -36,21 +36,21 @@
 TSIP_BEGIN_DECLS
 
 
-#define TSIP_HEADER_SECURITY_CLIENT_VA_ARGS(mech, alg, prot, mod, ealg, port_c, port_s, spi_c, spi_s)		tsip_header_Security_Client_def_t, (const char*)mech, (const char*)alg, (const char*)prot, (const char*)mod, (const char*)ealg, (tnet_port_t)port_c, (tnet_port_t)port_s, (uint32_t)spi_c, (uint32_t)spi_s
+#define TSIP_HEADER_SECURITY_CLIENT_VA_ARGS(mech, alg, prot, mod, ealg, port_c, port_s, spi_c, spi_s)       tsip_header_Security_Client_def_t, (const char*)mech, (const char*)alg, (const char*)prot, (const char*)mod, (const char*)ealg, (tnet_port_t)port_c, (tnet_port_t)port_s, (uint32_t)spi_c, (uint32_t)spi_s
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Security-Client' as per RFC 3329.
+/// @brief  SIP header 'Security-Client' as per RFC 3329.
 ///
-/// @par ABNF : Security-Client	= 	"Security-Client" HCOLON sec-mechanism *(COMMA sec-mechanism)
-/// sec-mechanism	= 	mechanism-name *( SEMI mech-parameters )
-/// mechanism-name	= 	( "digest" / "tls" / "ipsec-ike" / "ipsec-man" / token )
-/// mech-parameters	= 	( preference / digest-algorithm / digest-qop / digest-verify / mech-extension )
-/// preference	= 	"q" EQUAL qvalue
-/// digest-algorithm	= 	"d-alg" EQUAL token
-/// digest-qop	= 	"d-qop" EQUAL token
-/// digest-verify	= 	"d-ver" EQUAL LDQUOT 32LHEX RDQUOT
-/// mech-extension	= 	generic-param
+/// @par ABNF : Security-Client =   "Security-Client" HCOLON sec-mechanism *(COMMA sec-mechanism)
+/// sec-mechanism   =   mechanism-name *( SEMI mech-parameters )
+/// mechanism-name  =   ( "digest" / "tls" / "ipsec-ike" / "ipsec-man" / token )
+/// mech-parameters =   ( preference / digest-algorithm / digest-qop / digest-verify / mech-extension )
+/// preference  =   "q" EQUAL qvalue
+/// digest-algorithm    =   "d-alg" EQUAL token
+/// digest-qop  =   "d-qop" EQUAL token
+/// digest-verify   =   "d-ver" EQUAL LDQUOT 32LHEX RDQUOT
+/// mech-extension  =   generic-param
 ///
 /// mechanism-name   = ( "ipsec-3gpp" )
 /// mech-parameters    = ( algorithm / protocol /mode /

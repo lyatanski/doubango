@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 75 "./ragel/tsip_parser_header_Event.rl" */
@@ -393,7 +393,7 @@ _match:
             {
             }
             break;
-            /* #line 390 "./src/headers/tsip_header_Event.c" */
+                /* #line 390 "./src/headers/tsip_header_Event.c" */
             }
         }
 
@@ -431,7 +431,7 @@ _out: {
 
 
 //========================================================
-//	Event header object definition
+//  Event header object definition
 //
 
 static tsk_object_t* tsip_header_Event_ctor(tsk_object_t *self, va_list * app)

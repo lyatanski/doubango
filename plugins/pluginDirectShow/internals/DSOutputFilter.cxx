@@ -61,7 +61,7 @@ void DSOutputFilter::getMediaType(AM_MEDIA_TYPE* &pmt)
 {
     //if(pmt)
     //{
-    //	memcpy(pmt, &this->outputStream->pmt, sizeof(AM_MEDIA_TYPE));
+    //  memcpy(pmt, &this->outputStream->pmt, sizeof(AM_MEDIA_TYPE));
     //}
 }
 

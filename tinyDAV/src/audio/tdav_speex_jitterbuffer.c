@@ -255,7 +255,7 @@ static int tdav_speex_jitterbuffer_close(tmedia_jitterbuffer_t* self)
 
 
 //
-//	Speex jitterbufferr Plugin definition
+//  Speex jitterbufferr Plugin definition
 //
 
 /* constructor */

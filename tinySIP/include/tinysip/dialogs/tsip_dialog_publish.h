@@ -35,7 +35,7 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_DIALOG_PUBLISH(self)							((tsip_dialog_publish_t*)(self))
+#define TSIP_DIALOG_PUBLISH(self)                           ((tsip_dialog_publish_t*)(self))
 
 typedef struct tsip_dialog_publish {
     TSIP_DECLARE_DIALOG;

@@ -42,8 +42,8 @@
 THTTP_BEGIN_DECLS
 
 typedef uint64_t thttp_action_id_t;
-#define THTTP_ACTION_INVALID_ID				0
-#define THTTP_ACTION_INVALID_HANDLE			tsk_null
+#define THTTP_ACTION_INVALID_ID             0
+#define THTTP_ACTION_INVALID_HANDLE         tsk_null
 
 /** List of all supported options.
 * To pass an option to the sesion, use @ref THTTP_ACTION_SET_OPTION() macro.
@@ -90,8 +90,8 @@ thttp_action_param_type_t;
 *
 * @code
 thttp_action_GET(session, "http://www.google.com",
-	THTTP_ACTION_SET_PARAM("timeout", "6000"),
-	THTTP_ACTION_SET_NULL());
+    THTTP_ACTION_SET_PARAM("timeout", "6000"),
+    THTTP_ACTION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_action_group
@@ -103,9 +103,9 @@ thttp_action_GET(session, "http://www.google.com",
 *
 * @code
 thttp_action_GET(session, "http://www.doubango.org"
-	THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_ACTION_SET_NULL());
+    THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_ACTION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_action_group
@@ -118,23 +118,23 @@ thttp_action_GET(session, "http://www.doubango.org"
 *
 * @code
 thttp_action_PUT(session, "http://www.doubango.org"
-	THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_ACTION_SET_HEADER("Content-length", "application/mytype"),
+    THTTP_ACTION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_ACTION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_ACTION_SET_HEADER("Content-length", "application/mytype"),
 
-	THTTP_ACTION_SET_PAYLOAD("Salut", 5),
+    THTTP_ACTION_SET_PAYLOAD("Salut", 5),
 
-	THTTP_ACTION_SET_NULL());
+    THTTP_ACTION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_action_group
 * @def THTTP_ACTION_SET_NULL
 * Ends action parameters. Must always be the last one.
 */
-#define THTTP_ACTION_SET_OPTION(ID_ENUM, VALUE_STR)			thttp_aptype_option, (thttp_action_option_t)ID_ENUM, (const char*)VALUE_STR
-#define THTTP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)		thttp_aptype_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define THTTP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)			thttp_aptype_payload, (const void*)PAY_PTR, (tsk_size_t)PAY_SIZE
-#define THTTP_ACTION_SET_NULL()								thttp_aptype_null
+#define THTTP_ACTION_SET_OPTION(ID_ENUM, VALUE_STR)         thttp_aptype_option, (thttp_action_option_t)ID_ENUM, (const char*)VALUE_STR
+#define THTTP_ACTION_SET_HEADER(NAME_STR, VALUE_STR)        thttp_aptype_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define THTTP_ACTION_SET_PAYLOAD(PAY_PTR, PAY_SIZE)         thttp_aptype_payload, (const void*)PAY_PTR, (tsk_size_t)PAY_SIZE
+#define THTTP_ACTION_SET_NULL()                             thttp_aptype_null
 
 typedef struct thttp_action_s {
     TSK_DECLARE_OBJECT;

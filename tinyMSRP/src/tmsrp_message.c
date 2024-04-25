@@ -98,15 +98,15 @@ tmsrp_message_t* tmsrp_message_create_null()
 int tmsrp_message_add_header(tmsrp_message_t *self, const tmsrp_header_t *hdr)
 {
 #define ADD_HEADER(type, field) \
-		case tmsrp_htype_##type: \
-			{ \
-				if(!self->field) \
-				{ \
-					self->field = (tmsrp_header_##type##_t*)header; \
-					return 0; \
-				} \
-				break; \
-			}
+        case tmsrp_htype_##type: \
+            { \
+                if(!self->field) \
+                { \
+                    self->field = (tmsrp_header_##type##_t*)header; \
+                    return 0; \
+                } \
+                break; \
+            }
 
     if(self && hdr) {
         tmsrp_header_t *header = tsk_object_ref((void*)hdr);
@@ -310,11 +310,11 @@ int tmsrp_message_serialize(const tmsrp_message_t *self, tsk_buffer_t *output)
     }
 
     if(TMSRP_MESSAGE_IS_REQUEST(self)) {
-        /* 	pMSRP    SP    transact-id    SP    method    CRLF */
+        /*  pMSRP    SP    transact-id    SP    method    CRLF */
         tsk_buffer_append_2(output, "MSRP %s %s\r\n", self->tid, self->line.request.method);
     }
     else {
-        /* 	pMSRP    SP    transact-id    SP    status-code    [SP comment]   CRLF */
+        /*  pMSRP    SP    transact-id    SP    status-code    [SP comment]   CRLF */
         tsk_buffer_append_2(output, "MSRP %s %3hi%s%s\r\n",
                             self->tid,
                             self->line.response.status,
@@ -353,7 +353,7 @@ int tmsrp_message_serialize(const tmsrp_message_t *self, tsk_buffer_t *output)
     }
 
     /* All other headers (Other-Mime-headers)
-    	- Should be empty if no content is added (see below) but ...
+        - Should be empty if no content is added (see below) but ...
     */
     {
         tsk_list_item_t *item;
@@ -364,10 +364,10 @@ int tmsrp_message_serialize(const tmsrp_message_t *self, tsk_buffer_t *output)
     }
 
     /* RFC 4975 - 7.1. Constructing Requests
-    	A request with no body MUST NOT include a Content-Type or any other
-    	MIME-specific header fields.  A request without a body MUST contain
-    	an end-line after the final header field.  No extra CRLF will be
-    	present between the header section and the end-line.
+        A request with no body MUST NOT include a Content-Type or any other
+        MIME-specific header fields.  A request without a body MUST contain
+        an end-line after the final header field.  No extra CRLF will be
+        present between the header section and the end-line.
     */
     /* CONTENT */
     if(TMSRP_MESSAGE_HAS_CONTENT(self)) {
@@ -429,7 +429,7 @@ char* tmsrp_message_tostring(const tmsrp_message_t *self)
 
 
 //=================================================================================================
-//	MSRP object definition
+//  MSRP object definition
 //
 static void* tmsrp_message_ctor(tsk_object_t * self, va_list * app)
 {

@@ -44,20 +44,25 @@ public:
     ProxyAudioProducerCallback() { }
     virtual ~ProxyAudioProducerCallback() { }
 
-    virtual int prepare(int ptime, int rate, int channels) {
+    virtual int prepare(int ptime, int rate, int channels)
+    {
         return -1;
     }
-    virtual int start() {
+    virtual int start()
+    {
         return -1;
     }
-    virtual int pause() {
+    virtual int pause()
+    {
         return -1;
     }
-    virtual int stop() {
+    virtual int stop()
+    {
         return -1;
     }
     // this function is called to signal that it's time to copy push data
-    virtual int fillPushBuffer() {
+    virtual int fillPushBuffer()
+    {
         return -1;
     }
 };
@@ -77,21 +82,26 @@ public:
     int push(const void* pBuffer=tsk_null, unsigned nSize=0);
     bool setGain(unsigned nGain);
     unsigned getGain();
-    void setCallback(ProxyAudioProducerCallback* pCallback) {
+    void setCallback(ProxyAudioProducerCallback* pCallback)
+    {
         m_pCallback = pCallback;
     }
 #if !defined(SWIG)
-    inline bool usePushCallback() {
+    inline bool usePushCallback()
+    {
         return m_bUsePushCallback;
     }
-    inline ProxyAudioProducerCallback* getCallback()const {
+    inline ProxyAudioProducerCallback* getCallback()const
+    {
         return m_pCallback;
     }
-    virtual inline bool isWrapping(tsk_object_t* pWrappedPlugin) {
+    virtual inline bool isWrapping(tsk_object_t* pWrappedPlugin)
+    {
         return m_pWrappedPlugin == pWrappedPlugin;
     }
 #endif
-    virtual inline uint64_t getMediaSessionId() {
+    virtual inline uint64_t getMediaSessionId()
+    {
         return m_pWrappedPlugin ? TMEDIA_PRODUCER(m_pWrappedPlugin)->session_id : 0;
     }
 
@@ -125,16 +135,20 @@ public:
     ProxyVideoProducerCallback() { }
     virtual ~ProxyVideoProducerCallback() { }
 
-    virtual int prepare(int width, int height, int fps) {
+    virtual int prepare(int width, int height, int fps)
+    {
         return -1;
     }
-    virtual int start() {
+    virtual int start()
+    {
         return -1;
     }
-    virtual int pause() {
+    virtual int pause()
+    {
         return -1;
     }
-    virtual int stop() {
+    virtual int stop()
+    {
         return -1;
     }
 };
@@ -154,35 +168,42 @@ public:
     bool setMirror(bool bMirror);
     bool setActualCameraOutputSize(unsigned nWidth, unsigned nHeight);
     int push(const void* pBuffer, unsigned nSize);
-    void setCallback(ProxyVideoProducerCallback* pCallback) {
+    void setCallback(ProxyVideoProducerCallback* pCallback)
+    {
         m_pCallback = pCallback;
     }
 #if !defined(SWIG)
     int sendRaw(const void* pBuffer, unsigned nSize, unsigned nDuration, bool bMarker);
     int sendRaw(const void* pBuffer, unsigned nSize, const void* proto_hdr);
-    inline ProxyVideoProducerCallback* getCallback()const {
+    inline ProxyVideoProducerCallback* getCallback()const
+    {
         return m_pCallback;
     }
-    virtual inline bool isWrapping(tsk_object_t* wrapped_plugin) {
+    virtual inline bool isWrapping(tsk_object_t* wrapped_plugin)
+    {
         return m_pWrappedPlugin == wrapped_plugin;
     }
-    virtual inline const tmedia_producer_t* getWrappedPlugin()const {
+    virtual inline const tmedia_producer_t* getWrappedPlugin()const
+    {
         return (tmedia_producer_t*)m_pWrappedPlugin;
     }
 #endif
-    virtual inline uint64_t getMediaSessionId() {
+    virtual inline uint64_t getMediaSessionId()
+    {
         return m_pWrappedPlugin ? TMEDIA_PRODUCER(m_pWrappedPlugin)->session_id : 0;
     }
 
 public:
     static bool registerPlugin();
-    static void setDefaultChroma(tmedia_chroma_t eChroma) {
+    static void setDefaultChroma(tmedia_chroma_t eChroma)
+    {
         s_eDefaultChroma =  eChroma;
     }
 
 #if !defined(SWIG)
     tmedia_chroma_t getChroma()const;
-    static tmedia_chroma_t getDefaultChroma() {
+    static tmedia_chroma_t getDefaultChroma()
+    {
         return s_eDefaultChroma;
     }
 #endif

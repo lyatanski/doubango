@@ -48,7 +48,7 @@ tmsrp_event_t* tmsrp_event_create(const void* callback_data, tsk_bool_t outgoing
 }
 
 //========================================================
-//	MSRP Event definition
+//  MSRP Event definition
 //
 
 /**@ingroup tmsrp_event_group

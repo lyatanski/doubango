@@ -47,13 +47,13 @@ struct tsip_message_s;
 struct tsip_action_s;
 
 typedef uint64_t tsip_ssession_id_t;
-#define TSIP_SSESSION_INVALID_ID				0
-#define TSIP_SSESSION_INVALID_HANDLE			tsk_null
+#define TSIP_SSESSION_INVALID_ID                0
+#define TSIP_SSESSION_INVALID_HANDLE            tsk_null
 
 #if defined(DEBUG) || defined(_DEBUG)
-#	define TSIP_SSESSION_EXPIRES_DEFAULT		3600000 /* miliseconds. */
+#   define TSIP_SSESSION_EXPIRES_DEFAULT        3600000 /* miliseconds. */
 #else
-#	define TSIP_SSESSION_EXPIRES_DEFAULT		600000000
+#   define TSIP_SSESSION_EXPIRES_DEFAULT        600000000
 #endif
 
 
@@ -81,28 +81,28 @@ typedef enum tsip_ssession_param_type_e {
 }
 tsip_ssession_param_type_t;
 
-#define TSIP_SSESSION_SET_PARENT_ID(PARENT_ID_SSID)										sstype_parent_id, ((tsip_ssession_id_t)PARENT_ID_SSID)
-#define TSIP_SSESSION_SET_HEADER(NAME_STR, VALUE_STR)									sstype_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define TSIP_SSESSION_UNSET_HEADER(NAME_STR)											TSIP_SSESSION_SET_HEADER(NAME_STR, (const char*)-1)
-#define TSIP_SSESSION_SET_CAPS(NAME_STR, VALUE_STR)										sstype_caps, (const char*)NAME_STR, (const char*)VALUE_STR /* RFC 3840 */
-#define TSIP_SSESSION_UNSET_CAPS(NAME_STR)												TSIP_SSESSION_SET_CAPS(NAME_STR, (const char*)-1)
-#define TSIP_SSESSION_SET_USERDATA(DATA_PTR)											sstype_userdata, (const void*)DATA_PTR
-#define TSIP_SSESSION_SET_TO_STR(URI_STR)												sstype_to_str, (const char*)URI_STR
-#define TSIP_SSESSION_SET_FROM_STR(URI_STR)												sstype_from_str, (const char*)URI_STR
-#define TSIP_SSESSION_SET_TO(URI_STR)													TSIP_SSESSION_SET_TO_STR(URI_STR)
-#define TSIP_SSESSION_SET_FROM(URI_STR)													TSIP_SSESSION_SET_FROM_STR(URI_STR)
-#define TSIP_SSESSION_SET_TO_OBJ(URI_OBJ)												sstype_to_obj, (const tsip_uri_t*)URI_OBJ
-#define TSIP_SSESSION_SET_FROM_OBJ(URI_OBJ)												sstype_from_obj, (const tsip_uri_t*)URI_OBJ
-#define TSIP_SSESSION_SET_NO_CONTACT(ENABLED_BOOL)										sstype_nocontact, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_SSESSION_SET_EXPIRES(VALUE_UINT)											sstype_expires, (unsigned)VALUE_UINT
-#define TSIP_SSESSION_SET_SILENT_HANGUP(ENABLED_BOOL)									sstype_silent_hangup, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_SSESSION_SET_SIGCOMP_COMPARTMENT(COMPARTMENT_ID_STR)						sstype_sigcomp_id, (const char*)COMPARTMENT_ID_STR
-#define TSIP_SSESSION_UNSET_SIGCOMP_COMPARTMENT()										TSIP_SSESSION_SET_SIGCOMP_COMPARTMENT((const char*)-1)
-#define TSIP_SSESSION_SET_AUTH_HA1(AUTH_HA1_STR)										sstype_auth_ha1, (const char*)AUTH_HA1_STR
-#define TSIP_SSESSION_SET_AUTH_IMPI(AUTH_IMPI_STR)										sstype_auth_impi, (const char*)AUTH_IMPI_STR
-#define TSIP_SSESSION_SET_WEBSOCKET_SRC(SRC_HOST_STR, SRC_PORT_INT, SRC_PROTO_STR)		sstype_ws_src, (const char*)SRC_HOST_STR, (int32_t)SRC_PORT_INT, (const char*)SRC_PROTO_STR
-#define TSIP_SSESSION_SET_MEDIA(...)													sstype_media, ##__VA_ARGS__
-#define TSIP_SSESSION_SET_NULL()														sstype_null
+#define TSIP_SSESSION_SET_PARENT_ID(PARENT_ID_SSID)                                     sstype_parent_id, ((tsip_ssession_id_t)PARENT_ID_SSID)
+#define TSIP_SSESSION_SET_HEADER(NAME_STR, VALUE_STR)                                   sstype_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define TSIP_SSESSION_UNSET_HEADER(NAME_STR)                                            TSIP_SSESSION_SET_HEADER(NAME_STR, (const char*)-1)
+#define TSIP_SSESSION_SET_CAPS(NAME_STR, VALUE_STR)                                     sstype_caps, (const char*)NAME_STR, (const char*)VALUE_STR /* RFC 3840 */
+#define TSIP_SSESSION_UNSET_CAPS(NAME_STR)                                              TSIP_SSESSION_SET_CAPS(NAME_STR, (const char*)-1)
+#define TSIP_SSESSION_SET_USERDATA(DATA_PTR)                                            sstype_userdata, (const void*)DATA_PTR
+#define TSIP_SSESSION_SET_TO_STR(URI_STR)                                               sstype_to_str, (const char*)URI_STR
+#define TSIP_SSESSION_SET_FROM_STR(URI_STR)                                             sstype_from_str, (const char*)URI_STR
+#define TSIP_SSESSION_SET_TO(URI_STR)                                                   TSIP_SSESSION_SET_TO_STR(URI_STR)
+#define TSIP_SSESSION_SET_FROM(URI_STR)                                                 TSIP_SSESSION_SET_FROM_STR(URI_STR)
+#define TSIP_SSESSION_SET_TO_OBJ(URI_OBJ)                                               sstype_to_obj, (const tsip_uri_t*)URI_OBJ
+#define TSIP_SSESSION_SET_FROM_OBJ(URI_OBJ)                                             sstype_from_obj, (const tsip_uri_t*)URI_OBJ
+#define TSIP_SSESSION_SET_NO_CONTACT(ENABLED_BOOL)                                      sstype_nocontact, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_SSESSION_SET_EXPIRES(VALUE_UINT)                                           sstype_expires, (unsigned)VALUE_UINT
+#define TSIP_SSESSION_SET_SILENT_HANGUP(ENABLED_BOOL)                                   sstype_silent_hangup, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_SSESSION_SET_SIGCOMP_COMPARTMENT(COMPARTMENT_ID_STR)                       sstype_sigcomp_id, (const char*)COMPARTMENT_ID_STR
+#define TSIP_SSESSION_UNSET_SIGCOMP_COMPARTMENT()                                       TSIP_SSESSION_SET_SIGCOMP_COMPARTMENT((const char*)-1)
+#define TSIP_SSESSION_SET_AUTH_HA1(AUTH_HA1_STR)                                        sstype_auth_ha1, (const char*)AUTH_HA1_STR
+#define TSIP_SSESSION_SET_AUTH_IMPI(AUTH_IMPI_STR)                                      sstype_auth_impi, (const char*)AUTH_IMPI_STR
+#define TSIP_SSESSION_SET_WEBSOCKET_SRC(SRC_HOST_STR, SRC_PORT_INT, SRC_PROTO_STR)      sstype_ws_src, (const char*)SRC_HOST_STR, (int32_t)SRC_PORT_INT, (const char*)SRC_PROTO_STR
+#define TSIP_SSESSION_SET_MEDIA(...)                                                    sstype_media, ##__VA_ARGS__
+#define TSIP_SSESSION_SET_NULL()                                                        sstype_null
 
 typedef enum tsip_msession_param_type_e {
     mstype_null = 0,
@@ -142,36 +142,36 @@ typedef enum tsip_msession_param_type_e {
 }
 tsip_msession_param_type_t;
 
-#define TSIP_MSESSION_SET_SRTP_MODE(SRTP_MODE_ENUM)											mstype_set_srtp_mode, (tmedia_srtp_mode_t)SRTP_MODE_ENUM
-#define TSIP_MSESSION_SET_AVPF_MODE(MEDIA_MODE_ENUM)										mstype_set_avpf_mode, (tmedia_mode_t)MEDIA_MODE_ENUM
-#define TSIP_MSESSION_SET_PROFILE(PROFILE_ENUM)												mstype_set_srtp_mode, (tmedia_profile_t)PROFILE_ENUM
-#define TSIP_MSESSION_SET_100rel(ENABLED_BOOL)												mstype_set_100rel, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_RTCP(ENABLED_BOOL)												mstype_set_rtcp, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_RTCPMUX(ENABLED_BOOL)												mstype_set_rtcpmux, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_ICE(ENABLED_BOOL)													mstype_set_ice, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_ICE_STUN(ENABLED_BOOL)											mstype_set_ice_stun, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_ICE_TURN(ENABLED_BOOL)											mstype_set_ice_turn, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_STUN_SERVER(HOSTNAME, PORT)										mstype_set_stun_server, (const char*)HOSTNAME, (uint16_t)PORT
-#define TSIP_MSESSION_SET_STUN_CRED(USERNAME, PASSWORD)										mstype_set_stun_cred, (const char*)USERNAME, (const char*)PASSWORD
-#define TSIP_MSESSION_SET_QOS(TYPE_ENUM, STRENGTH_ENUM)										mstype_set_qos, (tmedia_qos_stype_t)TYPE_ENUM, (tmedia_qos_strength_t)STRENGTH_ENUM
-#define TSIP_MSESSION_UNSET_QOS()															mstype_unset_qos
-#define TSIP_MSESSION_SET_VIDEO_FPS(FPS_INT)												mstype_set_video_fps, (int32_t)FPS_INT
-#define TSIP_MSESSION_SET_VIDEO_BW_UP(BW_INT)												mstype_set_video_bw_up, (int32_t)(BW_INT)
-#define TSIP_MSESSION_SET_VIDEO_BW_DOWN(BW_INT)												mstype_set_video_bw_down, (int32_t)(BW_INT)
-#define TSIP_MSESSION_SET_VIDEO_PREFSIZE(PREFSIZE_ENUM)										mstype_set_video_prefsize, (int32_t)(PREFSIZE_ENUM)
-#define TSIP_MSESSION_SET_TIMERS(TIMEOUT_UINT, REFRESHER_STR)								mstype_set_timers, (unsigned)TIMEOUT_UINT, (const char*)REFRESHER_STR
-#define TSIP_MSESSION_UNSET_TIMERS()														mstype_unset_timers
-#define TSIP_MSESSION_SET_CODECS(CODECS_INT)												mstype_set_codecs, (signed)CODECS_INT
-#define TSIP_MSESSION_SET_BYPASS_ENCODING(ENABLED_BOOL)										mstype_set_bypass_encoding, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_UNSET_BYPASS_ENCODING()												TSIP_MSESSION_SET_BYPASS_ENCODING(tsk_false)
-#define TSIP_MSESSION_SET_BYPASS_DECODING(ENABLED_BOOL)										mstype_set_bypass_decoding, (tsk_bool_t)ENABLED_BOOL
-#define TSIP_MSESSION_SET_RTP_SSRC(MEDIA_ENUM, SSRC_UINT)									mstype_set_rtp_ssrc, (tmedia_type_t)MEDIA_ENUM, (uint32_t)SSRC_UINT
-#define TSIP_MSESSION_SET_RTP_SSRC_AUDIO(SSRC_UINT)											TSIP_MSESSION_SET_RTP_SSRC(tmedia_audio, (SSRC_UINT))
-#define TSIP_MSESSION_SET_RTP_SSRC_VIDEO(SSRC_UINT)											TSIP_MSESSION_SET_RTP_SSRC(tmedia_video, (SSRC_UINT))
-#define TSIP_MSESSION_UNSET_BYPASS_DECODING()												TSIP_MSESSION_SET_BYPASS_DECODING(tsk_false)
-#define TSIP_MSESSION_SET_MSRP_CB(TMEDIA_SESSION_MSRP_CB_F)									mstype_set_msrp_cb, (tmedia_session_msrp_cb_f)TMEDIA_SESSION_MSRP_CB_F
+#define TSIP_MSESSION_SET_SRTP_MODE(SRTP_MODE_ENUM)                                         mstype_set_srtp_mode, (tmedia_srtp_mode_t)SRTP_MODE_ENUM
+#define TSIP_MSESSION_SET_AVPF_MODE(MEDIA_MODE_ENUM)                                        mstype_set_avpf_mode, (tmedia_mode_t)MEDIA_MODE_ENUM
+#define TSIP_MSESSION_SET_PROFILE(PROFILE_ENUM)                                             mstype_set_srtp_mode, (tmedia_profile_t)PROFILE_ENUM
+#define TSIP_MSESSION_SET_100rel(ENABLED_BOOL)                                              mstype_set_100rel, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_RTCP(ENABLED_BOOL)                                                mstype_set_rtcp, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_RTCPMUX(ENABLED_BOOL)                                             mstype_set_rtcpmux, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_ICE(ENABLED_BOOL)                                                 mstype_set_ice, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_ICE_STUN(ENABLED_BOOL)                                            mstype_set_ice_stun, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_ICE_TURN(ENABLED_BOOL)                                            mstype_set_ice_turn, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_STUN_SERVER(HOSTNAME, PORT)                                       mstype_set_stun_server, (const char*)HOSTNAME, (uint16_t)PORT
+#define TSIP_MSESSION_SET_STUN_CRED(USERNAME, PASSWORD)                                     mstype_set_stun_cred, (const char*)USERNAME, (const char*)PASSWORD
+#define TSIP_MSESSION_SET_QOS(TYPE_ENUM, STRENGTH_ENUM)                                     mstype_set_qos, (tmedia_qos_stype_t)TYPE_ENUM, (tmedia_qos_strength_t)STRENGTH_ENUM
+#define TSIP_MSESSION_UNSET_QOS()                                                           mstype_unset_qos
+#define TSIP_MSESSION_SET_VIDEO_FPS(FPS_INT)                                                mstype_set_video_fps, (int32_t)FPS_INT
+#define TSIP_MSESSION_SET_VIDEO_BW_UP(BW_INT)                                               mstype_set_video_bw_up, (int32_t)(BW_INT)
+#define TSIP_MSESSION_SET_VIDEO_BW_DOWN(BW_INT)                                             mstype_set_video_bw_down, (int32_t)(BW_INT)
+#define TSIP_MSESSION_SET_VIDEO_PREFSIZE(PREFSIZE_ENUM)                                     mstype_set_video_prefsize, (int32_t)(PREFSIZE_ENUM)
+#define TSIP_MSESSION_SET_TIMERS(TIMEOUT_UINT, REFRESHER_STR)                               mstype_set_timers, (unsigned)TIMEOUT_UINT, (const char*)REFRESHER_STR
+#define TSIP_MSESSION_UNSET_TIMERS()                                                        mstype_unset_timers
+#define TSIP_MSESSION_SET_CODECS(CODECS_INT)                                                mstype_set_codecs, (signed)CODECS_INT
+#define TSIP_MSESSION_SET_BYPASS_ENCODING(ENABLED_BOOL)                                     mstype_set_bypass_encoding, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_UNSET_BYPASS_ENCODING()                                               TSIP_MSESSION_SET_BYPASS_ENCODING(tsk_false)
+#define TSIP_MSESSION_SET_BYPASS_DECODING(ENABLED_BOOL)                                     mstype_set_bypass_decoding, (tsk_bool_t)ENABLED_BOOL
+#define TSIP_MSESSION_SET_RTP_SSRC(MEDIA_ENUM, SSRC_UINT)                                   mstype_set_rtp_ssrc, (tmedia_type_t)MEDIA_ENUM, (uint32_t)SSRC_UINT
+#define TSIP_MSESSION_SET_RTP_SSRC_AUDIO(SSRC_UINT)                                         TSIP_MSESSION_SET_RTP_SSRC(tmedia_audio, (SSRC_UINT))
+#define TSIP_MSESSION_SET_RTP_SSRC_VIDEO(SSRC_UINT)                                         TSIP_MSESSION_SET_RTP_SSRC(tmedia_video, (SSRC_UINT))
+#define TSIP_MSESSION_UNSET_BYPASS_DECODING()                                               TSIP_MSESSION_SET_BYPASS_DECODING(tsk_false)
+#define TSIP_MSESSION_SET_MSRP_CB(TMEDIA_SESSION_MSRP_CB_F)                                 mstype_set_msrp_cb, (tmedia_session_msrp_cb_f)TMEDIA_SESSION_MSRP_CB_F
 
-#define TSIP_MSESSION_SET_NULL()			mstype_null
+#define TSIP_MSESSION_SET_NULL()            mstype_null
 
 typedef struct tsip_ssession_s {
     TSK_DECLARE_OBJECT;

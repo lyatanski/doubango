@@ -29,7 +29,7 @@
 
 TSK_BEGIN_DECLS
 
-#define TSK_LIST_IS_EMPTY(list)				((list) ? (!(list)->head) : tsk_true)
+#define TSK_LIST_IS_EMPTY(list)             ((list) ? (!(list)->head) : tsk_true)
 /**@ingroup tsk_list_group
 * @def TSK_LIST_IS_EMPTY
 * Checks if the the @ref _Page_TinySAK_AnsiC_Linked_List "linked-list" is empty or not.
@@ -52,8 +52,8 @@ TSK_BEGIN_DECLS
 * @param item The @ref tsk_list_item_t "item" to check.
 * @return @ref tsk_true if the item is the last element in the list, othersise @ref tsk_false.
 */
-#define TSK_LIST_IS_FIRST(list, item)		((list) ? ((list)->head == item) : tsk_false)
-#define TSK_LIST_IS_LAST(list, item)		((list) ? ((list)->tail == item) : tsk_false)
+#define TSK_LIST_IS_FIRST(list, item)       ((list) ? ((list)->head == item) : tsk_false)
+#define TSK_LIST_IS_LAST(list, item)        ((list) ? ((list)->tail == item) : tsk_false)
 
 /**@ingroup tsk_list_group
 * @def TSK_LIST_FIRST_DATA
@@ -67,8 +67,8 @@ TSK_BEGIN_DECLS
 * @param list The @ref tsk_list_t "list" from which to get the last data element.
 * @return The last @ref tsk_object_t "data" element. The @ref tsk_object_t "data" element is a @ref _Page_TinySAK_AnsiC_Object_Programming "well-defined" object.
 */
-#define TSK_LIST_FIRST_DATA(list)			(((list) && (list)->head) ? (list)->head->data : tsk_null)
-#define TSK_LIST_LAST_DATA(list)			(((list) && (list)->tail) ? (list)->tail->data : tsk_null)
+#define TSK_LIST_FIRST_DATA(list)           (((list) && (list)->head) ? (list)->head->data : tsk_null)
+#define TSK_LIST_LAST_DATA(list)            (((list) && (list)->tail) ? (list)->tail->data : tsk_null)
 
 /**@ingroup tsk_list_group
 * Item for @ref tsk_list_t "linked list".

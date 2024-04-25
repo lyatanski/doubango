@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 67 "./ragel/tsip_parser_header_SIP_If_Match.rl" */
@@ -269,7 +269,7 @@ _match:
             {
             }
             break;
-            /* #line 266 "./src/headers/tsip_header_SIP_If_Match.c" */
+                /* #line 266 "./src/headers/tsip_header_SIP_If_Match.c" */
             }
         }
 
@@ -307,7 +307,7 @@ _out: {
 
 
 //========================================================
-//	SIP_If_Match header object definition
+//  SIP_If_Match header object definition
 //
 
 static tsk_object_t* tsip_header_SIP_If_Match_ctor(tsk_object_t *self, va_list * app)

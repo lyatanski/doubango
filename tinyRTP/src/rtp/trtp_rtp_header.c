@@ -34,8 +34,8 @@
 #include "tsk_debug.h"
 
 /* RFC 3550 section 5.1 - RTP Fixed Header Fields
-	0                   1                   2                   3
-	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |V=2|P|X|  CC   |M|     PT      |       sequence number         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -230,7 +230,7 @@ trtp_rtp_header_t* trtp_rtp_header_deserialize(const void *data, tsk_size_t size
 
 
 //=================================================================================================
-//	RTP header object definition
+//  RTP header object definition
 //
 static tsk_object_t* trtp_rtp_header_ctor(tsk_object_t * self, va_list * app)
 {

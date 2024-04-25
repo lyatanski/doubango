@@ -86,7 +86,7 @@ static int plugin_audio_dsp_denoise_set(tmedia_denoise_t* _self, const tmedia_pa
                     PROPVARIANT var = {0};
                     var.vt = VT_UI4;
                     var.ulVal = _self->echo_tail;
-                    hr = pPropStore->SetValue(MFPKEY_WMAAECMA_FEATR_ECHO_LENGTH , var);
+                    hr = pPropStore->SetValue(MFPKEY_WMAAECMA_FEATR_ECHO_LENGTH, var);
                 }
                 SafeRelease(&pPropStore);
             }
@@ -322,7 +322,7 @@ static int plugin_audio_dsp_denoise_close(tmedia_denoise_t* self)
 
 
 //
-//	MS Voice Capture DSP Plugin definition
+//  MS Voice Capture DSP Plugin definition
 //
 
 /* constructor */

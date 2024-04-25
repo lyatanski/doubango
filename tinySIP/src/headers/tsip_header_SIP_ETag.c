@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 67 "./ragel/tsip_parser_header_SIP_ETag.rl" */
@@ -265,7 +265,7 @@ _match:
             {
             }
             break;
-            /* #line 262 "./src/headers/tsip_header_SIP_ETag.c" */
+                /* #line 262 "./src/headers/tsip_header_SIP_ETag.c" */
             }
         }
 
@@ -303,7 +303,7 @@ _out: {
 
 
 //========================================================
-//	SIP_ETag header object definition
+//  SIP_ETag header object definition
 //
 
 static tsk_object_t* tsip_header_SIP_ETag_ctor(tsk_object_t *self, va_list * app)

@@ -39,7 +39,7 @@
 extern tsip_request_type_t tsip_request_get_type(const char* method);
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 68 "./ragel/tsip_parser_header_CSeq.rl" */
@@ -264,7 +264,7 @@ _match:
             {
             }
             break;
-            /* #line 261 "./src/headers/tsip_header_CSeq.c" */
+                /* #line 261 "./src/headers/tsip_header_CSeq.c" */
             }
         }
 
@@ -305,7 +305,7 @@ _out: {
 
 
 //========================================================
-//	CSeq header object definition
+//  CSeq header object definition
 //
 
 static tsk_object_t* tsip_header_CSeq_ctor(tsk_object_t *self, va_list * app)

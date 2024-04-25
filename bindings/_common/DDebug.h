@@ -29,16 +29,20 @@ public:
     virtual ~DDebugCallback() {}
 
 
-    virtual int OnDebugInfo(const char* message) {
+    virtual int OnDebugInfo(const char* message)
+    {
         return -1;
     }
-    virtual int OnDebugWarn(const char* message) {
+    virtual int OnDebugWarn(const char* message)
+    {
         return -1;
     }
-    virtual int OnDebugError(const char* message) {
+    virtual int OnDebugError(const char* message)
+    {
         return -1;
     }
-    virtual int OnDebugFatal(const char* message) {
+    virtual int OnDebugFatal(const char* message)
+    {
         return -1;
     }
 

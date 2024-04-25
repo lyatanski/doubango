@@ -173,15 +173,15 @@ trtp_rtp_packet_t* trtp_rtp_packet_deserialize(const void *data, tsk_size_t size
         payload_size = (size - TRTP_RTP_HEADER_MIN_SIZE - (packet->header->csrc_count << 2));
         pdata = ((const uint8_t*)data) + (size - payload_size);
 
-        /*	RFC 3550 - 5.3.1 RTP Header Extension
-        	If the X bit in the RTP header is one, a variable-length header
-        	extension MUST be appended to the RTP header, following the CSRC list
-        	if present.  The header extension contains a 16-bit length field that
-        	counts the number of 32-bit words in the extension, excluding the
-        	four-octet extension header (therefore zero is a valid length).  Only
-        	a single extension can be appended to the RTP data header.
-        	0                   1                   2                   3
-        	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        /*  RFC 3550 - 5.3.1 RTP Header Extension
+            If the X bit in the RTP header is one, a variable-length header
+            extension MUST be appended to the RTP header, following the CSRC list
+            if present.  The header extension contains a 16-bit length field that
+            counts the number of 32-bit words in the extension, excluding the
+            four-octet extension header (therefore zero is a valid length).  Only
+            a single extension can be appended to the RTP data header.
+            0                   1                   2                   3
+            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
            |      defined by profile       |           length              |
            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -218,7 +218,7 @@ trtp_rtp_packet_t* trtp_rtp_packet_deserialize(const void *data, tsk_size_t size
 
 
 //=================================================================================================
-//	RTP packet object definition
+//  RTP packet object definition
 //
 static tsk_object_t* trtp_rtp_packet_ctor(tsk_object_t * self, va_list * app)
 {

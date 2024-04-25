@@ -63,10 +63,10 @@
 
 THTTP_BEGIN_DECLS
 
-#define THTTP_MESSAGE_VERSION_10					"HTTP/1.0"
-#define THTTP_MESSAGE_VERSION_11					"HTTP/1.1"
-#define THTTP_MESSAGE_VERSION_20					"HTTP/2.0"
-#define THTTP_MESSAGE_VERSION_DEFAULT			THTTP_MESSAGE_VERSION_11
+#define THTTP_MESSAGE_VERSION_10                    "HTTP/1.0"
+#define THTTP_MESSAGE_VERSION_11                    "HTTP/1.1"
+#define THTTP_MESSAGE_VERSION_20                    "HTTP/2.0"
+#define THTTP_MESSAGE_VERSION_DEFAULT           THTTP_MESSAGE_VERSION_11
 
 /**@ingroup thttp_message_group
 * @def THTTP_MESSAGE_IS_REQUEST
@@ -98,9 +98,9 @@ THTTP_BEGIN_DECLS
 * Casts any pointer to a pointer to @ref thttp_request_t.
 * @retval A pointer to @ref thttp_request_t.
 */
-#define THTTP_MESSAGE(self)				((thttp_message_t*)(self))
-#define THTTP_MESSAGE_AS_RESPONSE(self)	((thttp_response_t*)(self))
-#define THTTP_MESSAGE_AS_REQUEST(self)	((thttp_request_t*)(self))
+#define THTTP_MESSAGE(self)             ((thttp_message_t*)(self))
+#define THTTP_MESSAGE_AS_RESPONSE(self) ((thttp_response_t*)(self))
+#define THTTP_MESSAGE_AS_REQUEST(self)  ((thttp_request_t*)(self))
 
 
 /**@ingroup thttp_message_group
@@ -116,8 +116,8 @@ THTTP_BEGIN_DECLS
 * @retval The phrase (const char*).
 */
 
-#define THTTP_RESPONSE_CODE(self)			 (THTTP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.status_code : 0)
-#define THTTP_RESPONSE_PHRASE(self)			 ((self)->line.response.reason_phrase)
+#define THTTP_RESPONSE_CODE(self)            (THTTP_MESSAGE_IS_RESPONSE((self)) ? (self)->line.response.status_code : 0)
+#define THTTP_RESPONSE_PHRASE(self)          ((self)->line.response.reason_phrase)
 
 /**@ingroup thttp_message_group
 *@def THTTP_REQUEST_METHOD
@@ -131,8 +131,8 @@ THTTP_BEGIN_DECLS
 * @param self A pointer to a @ref thttp_request_t object.
 * @retval The Url (@ref thttp_url_t).
 */
-#define THTTP_REQUEST_METHOD(self)			 ((self) ? (self)->line.request.method : tsk_null)
-#define THTTP_REQUEST_URL(self)				 ((self) ? (self)->line.request.url : tsk_null)
+#define THTTP_REQUEST_METHOD(self)           ((self) ? (self)->line.request.method : tsk_null)
+#define THTTP_REQUEST_URL(self)              ((self) ? (self)->line.request.url : tsk_null)
 
 /**@ingroup thttp_message_group
 *@def THTTP_MESSAGE_CONTENT_LENGTH
@@ -153,18 +153,18 @@ THTTP_BEGIN_DECLS
 * @retval @ref tsk_true if the message has a content and @a tsk_false otherwise.
 */
 #define THTTP_MESSAGE_CONTENT_LENGTH(self) (uint32_t)(((self) && (self)->Content_Length) ? (self)->Content_Length->length : 0)
-#define THTTP_MESSAGE_CONTENT(self)		 (THTTP_MESSAGE_HAS_CONTENT(self) ? (self)->Content->data : 0)
-#define THTTP_MESSAGE_HAS_CONTENT(self)	 ((self) && (self)->Content)
+#define THTTP_MESSAGE_CONTENT(self)      (THTTP_MESSAGE_HAS_CONTENT(self) ? (self)->Content->data : 0)
+#define THTTP_MESSAGE_HAS_CONTENT(self)  ((self) && (self)->Content)
 
-#define THTTP_RESPONSE_IS(self, code)		(THTTP_RESPONSE_CODE((self)) == code)
-#define THTTP_RESPONSE_IS_NXX(self, N)		(N##00<= THTTP_RESPONSE_CODE((self)) && THTTP_RESPONSE_CODE((self)) <= N##99)
-#define THTTP_RESPONSE_IS_1XX(self)			THTTP_RESPONSE_IS_NXX(self, 1)
-#define THTTP_RESPONSE_IS_2XX(self)			THTTP_RESPONSE_IS_NXX(self, 2)
-#define THTTP_RESPONSE_IS_3XX(self)			THTTP_RESPONSE_IS_NXX(self, 3)
-#define THTTP_RESPONSE_IS_4XX(self)			THTTP_RESPONSE_IS_NXX(self, 4)
-#define THTTP_RESPONSE_IS_5XX(self)			THTTP_RESPONSE_IS_NXX(self, 5)
-#define THTTP_RESPONSE_IS_6XX(self)			THTTP_RESPONSE_IS_NXX(self, 6)
-#define THTTP_RESPONSE_IS_23456(self)		(200<= THTTP_RESPONSE_CODE((self)) && THTTP_RESPONSE_CODE((self)) <= 699)
+#define THTTP_RESPONSE_IS(self, code)       (THTTP_RESPONSE_CODE((self)) == code)
+#define THTTP_RESPONSE_IS_NXX(self, N)      (N##00<= THTTP_RESPONSE_CODE((self)) && THTTP_RESPONSE_CODE((self)) <= N##99)
+#define THTTP_RESPONSE_IS_1XX(self)         THTTP_RESPONSE_IS_NXX(self, 1)
+#define THTTP_RESPONSE_IS_2XX(self)         THTTP_RESPONSE_IS_NXX(self, 2)
+#define THTTP_RESPONSE_IS_3XX(self)         THTTP_RESPONSE_IS_NXX(self, 3)
+#define THTTP_RESPONSE_IS_4XX(self)         THTTP_RESPONSE_IS_NXX(self, 4)
+#define THTTP_RESPONSE_IS_5XX(self)         THTTP_RESPONSE_IS_NXX(self, 5)
+#define THTTP_RESPONSE_IS_6XX(self)         THTTP_RESPONSE_IS_NXX(self, 6)
+#define THTTP_RESPONSE_IS_23456(self)       (200<= THTTP_RESPONSE_CODE((self)) && THTTP_RESPONSE_CODE((self)) <= 699)
 
 /**Defines the message type (Request or Response).
 **/
@@ -176,7 +176,7 @@ typedef enum thttp_message_type_e {
 thttp_message_type_t;
 
 /**Represents a HTTP message. A HTTP message is either a request from a client to a server,
- * 	or a response from a server to a client.
+ *  or a response from a server to a client.
 **/
 typedef struct thttp_message_s {
     TSK_DECLARE_OBJECT;
@@ -232,12 +232,12 @@ static void THTTP_MESSAGE_ADD_HEADER(thttp_message_t *self, ...)
     tsk_object_unref(header);
 }
 #else
-#define THTTP_MESSAGE_ADD_HEADER(self, objdef, ...)											\
-	{																						\
-		thttp_header_t *header = (thttp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);	\
-		thttp_message_add_header(self, header);												\
-		tsk_object_unref(header);															\
-	}
+#define THTTP_MESSAGE_ADD_HEADER(self, objdef, ...)                                         \
+    {                                                                                       \
+        thttp_header_t *header = (thttp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);   \
+        thttp_message_add_header(self, header);                                             \
+        tsk_object_unref(header);                                                           \
+    }
 #endif
 
 TINYHTTP_API const thttp_header_t *thttp_message_get_headerAt(const thttp_message_t *self, thttp_header_type_t type, tsk_size_t index);

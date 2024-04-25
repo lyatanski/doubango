@@ -35,15 +35,15 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_MIN_SE_VA_ARGS(delta_seconds)		tsip_header_Min_SE_def_t, (int64_t)delta_seconds
+#define TSIP_HEADER_MIN_SE_VA_ARGS(delta_seconds)       tsip_header_Min_SE_def_t, (int64_t)delta_seconds
 
-#define TSIP_SESSION_EXPIRES_MIN_VALUE					90
+#define TSIP_SESSION_EXPIRES_MIN_VALUE                  90
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'Min-SE'.
+/// @brief  SIP header 'Min-SE'.
 ///
-/// @par ABNF : Min-SE	= 	"Min-SE" HCOLON delta-seconds *(SEMI generic-param)
+/// @par ABNF : Min-SE  =   "Min-SE" HCOLON delta-seconds *(SEMI generic-param)
 ///
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////

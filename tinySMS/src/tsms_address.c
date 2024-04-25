@@ -92,14 +92,14 @@ int tsms_address_serialize(const tsms_address_t* address, tsk_buffer_t* output)
         return -1;
     }
 
-    /*	For more information see 3GPP TS 23.040 v910 section 9.1.2.5
+    /*  For more information see 3GPP TS 23.040 v910 section 9.1.2.5
 
-    	1 - Address-Length
-    	2 - Type-of-Address
-    	+----+----+----+----+----+----+----+----+
-    	| 1  |     TON      |		 NPI        |
-    	+----+----+----+----+----+----+----+----+
-    	3 - Phone number in semi octets
+        1 - Address-Length
+        2 - Type-of-Address
+        +----+----+----+----+----+----+----+----+
+        | 1  |     TON      |        NPI        |
+        +----+----+----+----+----+----+----+----+
+        3 - Phone number in semi octets
     */
     number = tsms_address_swap(address ? address->digits : tsk_null, address ? strlen(address->digits) : 0);
 
@@ -172,10 +172,10 @@ tsms_address_t* tsms_address_deserialize(const void* data, tsk_size_t size, tsms
         *length = 1 /*Address-Length*/ + 1 /*Type-of-Address*/ + addr_len /* digits */;
     }
 
-    /*	2 - Type-of-Address
-    	+----+----+----+----+----+----+----+----+
-    	| 1  |     TON      |		 NPI        |
-    	+----+----+----+----+----+----+----+----+
+    /*  2 - Type-of-Address
+        +----+----+----+----+----+----+----+----+
+        | 1  |     TON      |        NPI        |
+        +----+----+----+----+----+----+----+----+
     */
     address->ton = ((*pdata &0x70) >> 4);
     address->npi = (*pdata &0x0F);
@@ -199,7 +199,7 @@ bail:
 }
 
 //=================================================================================================
-//	SMS Address object definition
+//  SMS Address object definition
 //
 static tsk_object_t* tsms_address_ctor(tsk_object_t * self, va_list * app)
 {

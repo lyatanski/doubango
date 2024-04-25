@@ -73,7 +73,7 @@ tcomp_udvm_t* tcomp_udvm_create(tcomp_message_t* _sigCompMessage, tcomp_statehan
         }
 
         /*
-        *	Has state?
+        *   Has state?
         */
         if(tcomp_buffer_getSize(udvm->sigCompMessage->stateId)) {
             /* Find the provided state */
@@ -132,7 +132,7 @@ tcomp_udvm_t* tcomp_udvm_create(tcomp_message_t* _sigCompMessage, tcomp_statehan
         udvm->maximum_UDVM_cycles = ( (8 * udvm->sigCompMessage->header_size + 1000) * udvm->stateHandler->sigcomp_parameters->cpbValue );
 
         //
-        //	RFC 3320 - 7.2.  Useful values
+        //  RFC 3320 - 7.2.  Useful values
         //
         TCOMP_UDVM_SET_2BYTES_VAL(TCOMP_UDVM_HEADER_UDVM_MEMORY_SIZE_INDEX, TCOMP_UDVM_GET_SIZE());
         TCOMP_UDVM_SET_2BYTES_VAL(TCOMP_UDVM_HEADER_CYCLES_PER_BIT_INDEX, udvm->stateHandler->sigcomp_parameters->cpbValue);
@@ -478,7 +478,7 @@ tsk_bool_t tcomp_udvm_decompress(tcomp_udvm_t *udvm)
 
 
 //========================================================
-//	UDVM machine definition
+//  UDVM machine definition
 //
 static tsk_object_t* tcomp_udvm_ctor(tsk_object_t * self, va_list * app)
 {

@@ -50,31 +50,31 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_DIALOG(self)													((tsip_dialog_t*)(self))
-#define TSIP_DIALOG_GET_STATE(self)											TSIP_DIALOG((self))->state
-#define TSIP_DIALOG_GET_FSM(self)											TSIP_DIALOG((self))->fsm
-#define TSIP_DIALOG_GET_SS(self)											TSIP_DIALOG((self))->ss
-#define TSIP_DIALOG_GET_STACK(self)											TSIP_STACK(TSIP_DIALOG_GET_SS((self))->stack)
+#define TSIP_DIALOG(self)                                                   ((tsip_dialog_t*)(self))
+#define TSIP_DIALOG_GET_STATE(self)                                         TSIP_DIALOG((self))->state
+#define TSIP_DIALOG_GET_FSM(self)                                           TSIP_DIALOG((self))->fsm
+#define TSIP_DIALOG_GET_SS(self)                                            TSIP_DIALOG((self))->ss
+#define TSIP_DIALOG_GET_STACK(self)                                         TSIP_STACK(TSIP_DIALOG_GET_SS((self))->stack)
 
 #define TSIP_DIALOG_TIMER_CANCEL(TX) \
-	tsk_timer_mgr_global_cancel(self->timer##TX.id)
+    tsk_timer_mgr_global_cancel(self->timer##TX.id)
 
 // TX MUST be in seconds
-#define TSIP_DIALOG_TIMER_SCHEDULE(name, TX)								\
-	self->timer##TX.id = tsk_timer_mgr_global_schedule(self->timer##TX.timeout, TSK_TIMER_CALLBACK_F(tsip_dialog_##name##_timer_callback), self)
+#define TSIP_DIALOG_TIMER_SCHEDULE(name, TX)                                \
+    self->timer##TX.id = tsk_timer_mgr_global_schedule(self->timer##TX.timeout, TSK_TIMER_CALLBACK_F(tsip_dialog_##name##_timer_callback), self)
 
-#define TSIP_DIALOG_SIGNAL(self, code, phrase)	\
-	tsip_event_signal(tsip_event_dialog, TSIP_DIALOG(self)->ss, code, phrase)
+#define TSIP_DIALOG_SIGNAL(self, code, phrase)  \
+    tsip_event_signal(tsip_event_dialog, TSIP_DIALOG(self)->ss, code, phrase)
 
-#define TSIP_DIALOG_SIGNAL_2(self, code, phrase, message)	\
-	tsip_event_signal_2(tsip_event_dialog, TSIP_DIALOG(self)->ss, code, phrase, message)
+#define TSIP_DIALOG_SIGNAL_2(self, code, phrase, message)   \
+    tsip_event_signal_2(tsip_event_dialog, TSIP_DIALOG(self)->ss, code, phrase, message)
 
 #if !defined(TSIP_DIALOG_SHUTDOWN_TIMEOUT)
-#	define TSIP_DIALOG_SHUTDOWN_TIMEOUT	2000 /* miliseconds. */
+#   define TSIP_DIALOG_SHUTDOWN_TIMEOUT 2000 /* miliseconds. */
 #endif
 
 #if !defined(TSIP_DIALOG_INVALID_ID)
-#	define TSIP_DIALOG_INVALID_ID 0
+#   define TSIP_DIALOG_INVALID_ID 0
 #endif
 
 typedef uint64_t tsip_dialog_id_t;
@@ -183,7 +183,7 @@ int tsip_dialog_update_2(tsip_dialog_t *self, const tsip_request_t* invite);
 int tsip_dialog_getCKIK(tsip_dialog_t *self, AKA_CK_T *ck, AKA_IK_T *ik);
 
 int tsip_dialog_init(tsip_dialog_t *self, tsip_dialog_type_t type, const char* call_id, tsip_ssession_t* ss, tsk_fsm_state_id curr, tsk_fsm_state_id term);
-int tsip_dialog_fsm_act(tsip_dialog_t* self, tsk_fsm_action_id , const tsip_message_t* , const tsip_action_handle_t*);
+int tsip_dialog_fsm_act(tsip_dialog_t* self, tsk_fsm_action_id, const tsip_message_t*, const tsip_action_handle_t*);
 #define tsip_dialog_fsm_act_2(self, action_id) tsip_dialog_fsm_act((self), (action_id), tsk_null, tsk_null)
 tsk_bool_t tsip_dialog_keep_action(const tsip_dialog_t* self, const tsip_response_t *response);
 int tsip_dialog_set_connected_fd(tsip_dialog_t* self, tnet_fd_t fd);

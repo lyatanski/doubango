@@ -43,11 +43,11 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_M_VA_ARGS(media, port, proto)		tsdp_header_M_def_t, (const char*)media, (uint32_t)port, (const char*)proto
+#define TSDP_HEADER_M_VA_ARGS(media, port, proto)       tsdp_header_M_def_t, (const char*)media, (uint32_t)port, (const char*)proto
 
-#define TSDP_HEADER_M(self)					((tsdp_header_M_t*)(self))
+#define TSDP_HEADER_M(self)                 ((tsdp_header_M_t*)(self))
 
-#define TSDP_FMT_VA_ARGS(fmt)				tsdp_fmt_def_t, (const char*)fmt
+#define TSDP_FMT_VA_ARGS(fmt)               tsdp_fmt_def_t, (const char*)fmt
 
 typedef tsk_string_t tsdp_fmt_t;
 typedef tsk_strings_L_t tsk_fmts_L_t;
@@ -56,14 +56,14 @@ typedef tsk_strings_L_t tsk_fmts_L_t;
 
 TINYSDP_API tsdp_fmt_t* tsdp_fmt_create(const char* fmt);
 
-//#define TSDP_HEADER_M_SET_FMT(fmt)			(int)0x01, (const char*)fmt
-//#define TSDP_HEADER_M_SET_A(field, value)	(int)0x02, (const char*)field, (const char*)value
-//#define TSDP_HEADER_M_SET_NULL()			(int)0x00
+//#define TSDP_HEADER_M_SET_FMT(fmt)            (int)0x01, (const char*)fmt
+//#define TSDP_HEADER_M_SET_A(field, value) (int)0x02, (const char*)field, (const char*)value
+//#define TSDP_HEADER_M_SET_NULL()          (int)0x00
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "m=" header (Media Descriptions).
+/// @brief  SDP "m=" header (Media Descriptions).
 ///
 /// @par ABNF :  m=*(media-field
 /// information-field
@@ -72,11 +72,11 @@ TINYSDP_API tsdp_fmt_t* tsdp_fmt_create(const char* fmt);
 /// key-field
 /// attribute-fields)
 ///
-/// media-field	=  	%x6d "=" media SP port ["/" integer] SP proto 1*(SP fmt) CRLF
-/// media	=  	token
-/// port	=  	1*DIGIT
-/// proto	=  	token *("/" token)
-/// fmt	=  	token
+/// media-field =   %x6d "=" media SP port ["/" integer] SP proto 1*(SP fmt) CRLF
+/// media   =   token
+/// port    =   1*DIGIT
+/// proto   =   token *("/" token)
+/// fmt =   token
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct tsdp_header_M_s {

@@ -28,8 +28,8 @@
 
 using namespace std;
 
-#define ALPHA_VALUE_START	0.8f
-#define ALPHA_VALUE_STOP	0.0f
+#define ALPHA_VALUE_START   0.8f
+#define ALPHA_VALUE_STOP    0.0f
 
 
 // Hack to get module of the current code

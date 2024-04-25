@@ -44,10 +44,12 @@ public:
     STDMETHODIMP_(ULONG) AddRef();
     STDMETHODIMP_(ULONG) Release();
 
-    inline BOOL isStarted() {
+    inline BOOL isStarted()
+    {
         return m_bStarted;
     }
-    inline BOOL isInitialized() {
+    inline BOOL isInitialized()
+    {
         return m_bInitialized;
     }
 

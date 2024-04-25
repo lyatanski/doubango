@@ -116,10 +116,10 @@ void tcomp_compartment_setRemoteParams(tcomp_compartment_t *compartment, tcomp_p
     }
 
     /*
-    *	Returned states
-    *	FIXME: check states about quota
-    *	FIXME: not tic tac
-    *	FIXME: what about returned feedback?
+    *   Returned states
+    *   FIXME: check states about quota
+    *   FIXME: not tic tac
+    *   FIXME: what about returned feedback?
     */
     if(lpParams->returnedStates && tcomp_buffer_getSize(lpParams->returnedStates)) {
         TSK_OBJECT_SAFE_FREE(compartment->remote_parameters->returnedStates);
@@ -484,7 +484,7 @@ tsk_bool_t tcomp_compartment_hasNack(tcomp_compartment_t *compartment, const tco
 
 
 //========================================================
-//	State object definition
+//  State object definition
 //
 
 static tsk_object_t* tcomp_compartment_ctor(tsk_object_t* self, va_list * app)

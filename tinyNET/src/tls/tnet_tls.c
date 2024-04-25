@@ -31,8 +31,8 @@
 #include "tsk_debug.h"
 #include "tsk_safeobj.h"
 
-#define TNET_TLS_TIMEOUT		2000
-#define TNET_TLS_RETRY_COUNT	10
+#define TNET_TLS_TIMEOUT        2000
+#define TNET_TLS_RETRY_COUNT    10
 
 typedef struct tnet_tls_socket_s {
     TSK_DECLARE_OBJECT;
@@ -301,7 +301,7 @@ bail:
 
 
 //=================================================================================================
-//	TLS socket object definition
+//  TLS socket object definition
 //
 static tsk_object_t* tnet_tls_socket_ctor(tsk_object_t * self, va_list * app)
 {

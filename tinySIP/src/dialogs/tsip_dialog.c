@@ -60,29 +60,29 @@ extern tsip_uri_t* tsip_stack_get_pcscf_uri(const tsip_stack_t *self, tnet_socke
 extern tsip_uri_t* tsip_stack_get_contacturi(const tsip_stack_t *self, const char* protocol);
 
 #define TSIP_DIALOG_ADD_HEADERS(headers) {\
-		const tsk_list_item_t* item;\
-		tsk_list_foreach(item, headers){ \
-			if(!TSK_PARAM(item->data)->tag){ \
-				/* 'Route' is special header as it's used to find next destination address */ \
-				if(tsk_striequals(TSK_PARAM(item->data)->name, "route")){ \
-					tsip_uri_t* route_uri; \
-					char* route_uri_str = tsk_strdup(TSK_PARAM(item->data)->value); \
-					tsk_strunquote_2(&route_uri_str, '<', '>'); \
-					route_uri = tsip_uri_parse(route_uri_str, tsk_strlen(route_uri_str)); \
-					if(route_uri){ \
-						tsip_message_add_headers(request, \
-							TSIP_HEADER_ROUTE_VA_ARGS(route_uri), \
-							tsk_null); \
-						TSK_OBJECT_SAFE_FREE(route_uri); \
-					} \
-					TSK_FREE(route_uri_str); \
-				} \
-				else{ \
-					TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_DUMMY_VA_ARGS(TSK_PARAM(item->data)->name, TSK_PARAM(item->data)->value)); \
-				} \
-			} \
-		}\
-	}
+        const tsk_list_item_t* item;\
+        tsk_list_foreach(item, headers){ \
+            if(!TSK_PARAM(item->data)->tag){ \
+                /* 'Route' is special header as it's used to find next destination address */ \
+                if(tsk_striequals(TSK_PARAM(item->data)->name, "route")){ \
+                    tsip_uri_t* route_uri; \
+                    char* route_uri_str = tsk_strdup(TSK_PARAM(item->data)->value); \
+                    tsk_strunquote_2(&route_uri_str, '<', '>'); \
+                    route_uri = tsip_uri_parse(route_uri_str, tsk_strlen(route_uri_str)); \
+                    if(route_uri){ \
+                        tsip_message_add_headers(request, \
+                            TSIP_HEADER_ROUTE_VA_ARGS(route_uri), \
+                            tsk_null); \
+                        TSK_OBJECT_SAFE_FREE(route_uri); \
+                    } \
+                    TSK_FREE(route_uri_str); \
+                } \
+                else{ \
+                    TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_DUMMY_VA_ARGS(TSK_PARAM(item->data)->name, TSK_PARAM(item->data)->value)); \
+                } \
+            } \
+        }\
+    }
 
 
 tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* method)
@@ -113,7 +113,7 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
     */
     /*if(!tsk_striequals(method, "ACK") && !tsk_striequals(method, "CANCEL"))
     {
-    	TSIP_DIALOG(self)->cseq_value +=1;
+        TSIP_DIALOG(self)->cseq_value +=1;
     }
     ===> See send method (cseq will be incremented before sending the request)
     */
@@ -243,8 +243,8 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
             /**** without expires */
             if(request->line.request.request_type == tsip_SUBSCRIBE) {
                 /* RFC 3265 - 3.1.1. Subscription Duration
-                	An "expires" parameter on the "Contact" header has no semantics for SUBSCRIBE and is explicitly
-                	not equivalent to an "Expires" header in a SUBSCRIBE request or response.
+                    An "expires" parameter on the "Contact" header has no semantics for SUBSCRIBE and is explicitly
+                    not equivalent to an "Expires" header in a SUBSCRIBE request or response.
                 */
                 TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_EXPIRES_VA_ARGS(TSK_TIME_MS_2_S(self->expires)));
             }
@@ -277,7 +277,7 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
             tsk_list_foreach(item, self->ss->caps) {
                 tsk_params_add_param(&TSIP_HEADER(request->Contact)->params, TSK_PARAM(item->data)->name, TSK_PARAM(item->data)->value);
             }
-			tsk_strupdate(&(request->Contact->uri->display_name), TSIP_DIALOG_GET_STACK(self)->identity.display_name);
+            tsk_strupdate(&(request->Contact->uri->display_name), TSIP_DIALOG_GET_STACK(self)->identity.display_name);
         }
 
         break;
@@ -287,18 +287,18 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
     /* Update authorizations */
     if(self->state == tsip_initial && TSK_LIST_IS_EMPTY(self->challenges)) {
         /* 3GPP TS 33.978 6.2.3.1 Procedures at the UE
-        	On sending a REGISTER request in order to indicate support for early IMS security procedures, the UE shall not
-        	include an Authorization header field and not include header fields or header field values as required by RFC3329.
+            On sending a REGISTER request in order to indicate support for early IMS security procedures, the UE shall not
+            include an Authorization header field and not include header fields or header field values as required by RFC3329.
         */
         if(TSIP_REQUEST_IS_REGISTER(request) && !TSIP_DIALOG_GET_STACK(self)->security.earlyIMS) {
-            /*	3GPP TS 24.229 - 5.1.1.2.2 Initial registration using IMS AKA
-            	On sending a REGISTER request, the UE shall populate the header fields as follows:
-            		a) an Authorization header field, with:
-            		- the "username" header field parameter, set to the value of the private user identity;
-            		- the "realm" header field parameter, set to the domain name of the home network;
-            		- the "uri" header field parameter, set to the SIP URI of the domain name of the home network;
-            		- the "nonce" header field parameter, set to an empty value; and
-            		- the "response" header field parameter, set to an empty value;
+            /*  3GPP TS 24.229 - 5.1.1.2.2 Initial registration using IMS AKA
+                On sending a REGISTER request, the UE shall populate the header fields as follows:
+                    a) an Authorization header field, with:
+                    - the "username" header field parameter, set to the value of the private user identity;
+                    - the "realm" header field parameter, set to the domain name of the home network;
+                    - the "uri" header field parameter, set to the SIP URI of the domain name of the home network;
+                    - the "nonce" header field parameter, set to an empty value; and
+                    - the "response" header field parameter, set to an empty value;
             */
             const char* realm = TSIP_DIALOG_GET_STACK(self)->network.realm ? TSIP_DIALOG_GET_STACK(self)->network.realm->host : "(null)";
             char* request_uri = tsip_uri_tostring(request->line.request.uri, tsk_false, tsk_false);
@@ -322,7 +322,7 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
     }
 
     /* Update CSeq */
-    /*	RFC 3261 - 13.2.2.4 2xx Responses
+    /*  RFC 3261 - 13.2.2.4 2xx Responses
        Generating ACK: The sequence number of the CSeq header field MUST be
        the same as the INVITE being acknowledged, but the CSeq method MUST
        be ACK.  The ACK MUST contain the same credentials as the INVITE.  If
@@ -336,22 +336,22 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
     }
 
     /* Route generation
-    	*	==> http://betelco.blogspot.com/2008/11/proxy-and-service-route-discovery-in.html
-    	* The dialog Routes have been copied above.
+        *   ==> http://betelco.blogspot.com/2008/11/proxy-and-service-route-discovery-in.html
+        * The dialog Routes have been copied above.
 
-    	3GPP TS 24.229 - 5.1.2A.1 UE-originating case
+        3GPP TS 24.229 - 5.1.2A.1 UE-originating case
 
-    	The UE shall build a proper preloaded Route header field value for all new dialogs and standalone transactions. The UE
-    	shall build a list of Route header field values made out of the following, in this order:
-    	a) the P-CSCF URI containing the IP address or the FQDN learnt through the P-CSCF discovery procedures; and
-    	b) the P-CSCF port based on the security mechanism in use:
+        The UE shall build a proper preloaded Route header field value for all new dialogs and standalone transactions. The UE
+        shall build a list of Route header field values made out of the following, in this order:
+        a) the P-CSCF URI containing the IP address or the FQDN learnt through the P-CSCF discovery procedures; and
+        b) the P-CSCF port based on the security mechanism in use:
 
-    	- if IMS AKA or SIP digest with TLS is in use as a security mechanism, the protected server port learnt during
-    	the registration procedure;
-    	- if SIP digest without TLS, NASS-IMS bundled authentciation or GPRS-IMS-Bundled authentication is in
-    	use as a security mechanism, the unprotected server port used during the registration procedure;
-    	c) and the values received in the Service-Route header field saved from the 200 (OK) response to the last
-    	registration or re-registration of the public user identity with associated contact address.
+        - if IMS AKA or SIP digest with TLS is in use as a security mechanism, the protected server port learnt during
+        the registration procedure;
+        - if SIP digest without TLS, NASS-IMS bundled authentciation or GPRS-IMS-Bundled authentication is in
+        use as a security mechanism, the unprotected server port used during the registration procedure;
+        c) and the values received in the Service-Route header field saved from the 200 (OK) response to the last
+        registration or re-registration of the public user identity with associated contact address.
     */
     if(!TSIP_REQUEST_IS_REGISTER(request)) {
         // According to the above link ==> Initial/Re/De registration do not have routes.
@@ -385,17 +385,17 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
         else {
             /* No routes associated to this dialog. */
             if(self->state == tsip_initial || self->state == tsip_early) {
-                /*	GPP TS 24.229 section 5.1.2A [Generic procedures applicable to all methods excluding the REGISTER method]:
-                	The UE shall build a proper preloaded Route header field value for all new dialogs and standalone transactions. The UE
-                	shall build a list of Route header field values made out of the following, in this order:
-                	a) the P-CSCF URI containing the IP address or the FQDN learnt through the P-CSCF discovery procedures; and
-                	b) the P-CSCF port based on the security mechanism in use:
-                		- if IMS AKA or SIP digest with TLS is in use as a security mechanism, the protected server port learnt during
-                		the registration procedure;
-                		- if SIP digest without TLS, NASS-IMS bundled authentciation or GPRS-IMS-Bundled authentication is in
-                		use as a security mechanism, the unprotected server port used during the registration procedure;
-                	c) and the values received in the Service-Route header field saved from the 200 (OK) response to the last
-                	registration or re-registration of the public user identity with associated contact address.
+                /*  GPP TS 24.229 section 5.1.2A [Generic procedures applicable to all methods excluding the REGISTER method]:
+                    The UE shall build a proper preloaded Route header field value for all new dialogs and standalone transactions. The UE
+                    shall build a list of Route header field values made out of the following, in this order:
+                    a) the P-CSCF URI containing the IP address or the FQDN learnt through the P-CSCF discovery procedures; and
+                    b) the P-CSCF port based on the security mechanism in use:
+                        - if IMS AKA or SIP digest with TLS is in use as a security mechanism, the protected server port learnt during
+                        the registration procedure;
+                        - if SIP digest without TLS, NASS-IMS bundled authentciation or GPRS-IMS-Bundled authentication is in
+                        use as a security mechanism, the unprotected server port used during the registration procedure;
+                    c) and the values received in the Service-Route header field saved from the 200 (OK) response to the last
+                    registration or re-registration of the public user identity with associated contact address.
                 */
 #if _DEBUG && defined(SDS_HACK)/* FIXME: remove this */
                 /* Ericsson SDS hack (INVITE with Proxy-CSCF as First route fail) */
@@ -448,10 +448,10 @@ tsip_request_t *tsip_dialog_request_new(const tsip_dialog_t *self, const char* m
 
 /** Sends a SIP/IMS request. This function is responsible for transaction creation.
  *
- * @param self	The parent dialog. All callback events will be notified to this dialog.
- * @param request	The request to send.
+ * @param self  The parent dialog. All callback events will be notified to this dialog.
+ * @param request   The request to send.
  *
- * @return	Zero if succeed and no-zero error code otherwise.
+ * @return  Zero if succeed and no-zero error code otherwise.
 **/
 int tsip_dialog_request_send(const tsip_dialog_t *self, tsip_request_t* request)
 {
@@ -460,10 +460,10 @@ int tsip_dialog_request_send(const tsip_dialog_t *self, tsip_request_t* request)
     if(self && TSIP_DIALOG_GET_STACK(self)) {
         const tsip_transac_layer_t *layer = TSIP_DIALOG_GET_STACK(self)->layer_transac;
         if(layer) {
-            /*	Create new transaction. The new transaction will be added to the transaction layer.
-            	The transaction has all information to create the right transaction type (NICT or ICT).
-            	As this is an outgoing request ==> It shall be a client transaction (NICT or ICT).
-            	For server transactions creation see @ref tsip_dialog_response_send.
+            /*  Create new transaction. The new transaction will be added to the transaction layer.
+                The transaction has all information to create the right transaction type (NICT or ICT).
+                As this is an outgoing request ==> It shall be a client transaction (NICT or ICT).
+                For server transactions creation see @ref tsip_dialog_response_send.
             */
             static const tsk_bool_t isCT = tsk_true;
             tsip_transac_t* transac;
@@ -604,18 +604,18 @@ int tsip_dialog_apply_action(tsip_message_t* message, const tsip_action_t* actio
 
 /**
  * Gets the number of milliseconds to wait before retransmission.
- *			e.g. ==> delay before refreshing registrations (REGISTER), subscribtions (SUBSCRIBE), publication (PUBLISH) ...
+ *          e.g. ==> delay before refreshing registrations (REGISTER), subscribtions (SUBSCRIBE), publication (PUBLISH) ...
  *
  *
- * @param [in,out]	self		The calling dialog.
- * @param [in,out]	response	The SIP/IMS response containing the new delay (expires, subscription-state ...).
+ * @param [in,out]  self        The calling dialog.
+ * @param [in,out]  response    The SIP/IMS response containing the new delay (expires, subscription-state ...).
  *
- * @return	Zero if succeed and no-zero error code otherwise.
+ * @return  Zero if succeed and no-zero error code otherwise.
 **/
 int64_t tsip_dialog_get_newdelay(tsip_dialog_t *self, const tsip_message_t* message)
 {
     int64_t expires = self->expires;
-    int64_t newdelay = expires;	/* default value */
+    int64_t newdelay = expires; /* default value */
     const tsip_header_t* hdr;
     tsk_size_t i;
 
@@ -662,11 +662,11 @@ int64_t tsip_dialog_get_newdelay(tsip_dialog_t *self, const tsip_message_t* mess
     }
 
     /*
-    *	3GPP TS 24.229 -
+    *   3GPP TS 24.229 -
     *
-    *	The UE shall reregister the public user identity either 600 seconds before the expiration time if the initial
-    *	registration was for greater than 1200 seconds, or when half of the time has expired if the initial registration
-    *	was for 1200 seconds or less.
+    *   The UE shall reregister the public user identity either 600 seconds before the expiration time if the initial
+    *   registration was for greater than 1200 seconds, or when half of the time has expired if the initial registration
+    *   was for 1200 seconds or less.
     */
 compute:
     expires = TSK_TIME_MS_2_S(expires);
@@ -678,16 +678,16 @@ compute:
 /**
  *
  * Updates the dialog state:
- *			- Authorizations (using challenges from the @a response message)
- *			- State (early, established, disconnected, ...)
- *			- Routes (and Service-Route)
- *			- Target (remote)
- *			- ...
+ *          - Authorizations (using challenges from the @a response message)
+ *          - State (early, established, disconnected, ...)
+ *          - Routes (and Service-Route)
+ *          - Target (remote)
+ *          - ...
  *
- * @param [in,out]	self		The calling dialog.
- * @param [in,out]	response	The SIP/IMS response from which to get the new information.
+ * @param [in,out]  self        The calling dialog.
+ * @param [in,out]  response    The SIP/IMS response from which to get the new information.
  *
- * @return	Zero if succeed and no-zero error code otherwise.
+ * @return  Zero if succeed and no-zero error code otherwise.
 **/
 int tsip_dialog_update(tsip_dialog_t *self, const tsip_response_t* response)
 {
@@ -696,16 +696,16 @@ int tsip_dialog_update(tsip_dialog_t *self, const tsip_response_t* response)
         const char *tag = response->To->tag;
 
         /*
-        *	1xx (!100) or 2xx
+        *   1xx (!100) or 2xx
         */
         /*
-        *	401 or 407 or 421 or 494
+        *   401 or 407 or 421 or 494
         */
         if(code == 401 || code == 407 || code == 421 || code == 494) {
             tsk_bool_t acceptNewVector;
 
             /* 3GPP IMS - Each authentication vector is used only once.
-            *	==> Re-registration/De-registration ==> Allow 401/407 challenge.
+            *   ==> Re-registration/De-registration ==> Allow 401/407 challenge.
             */
             acceptNewVector = (TSIP_RESPONSE_IS_TO_REGISTER(response) && self->state == tsip_established);
             return tsip_dialog_update_challenges(self, response, acceptNewVector);
@@ -728,13 +728,13 @@ int tsip_dialog_update(tsip_dialog_t *self, const tsip_response_t* response)
 
             /* Remote target */
             {
-                /*	RFC 3261 12.2.1.2 Processing the Responses
-                	When a UAC receives a 2xx response to a target refresh request, it
-                	MUST replace the dialog's remote target URI with the URI from the
-                	Contact header field in that response, if present.
+                /*  RFC 3261 12.2.1.2 Processing the Responses
+                    When a UAC receives a 2xx response to a target refresh request, it
+                    MUST replace the dialog's remote target URI with the URI from the
+                    Contact header field in that response, if present.
 
-                	FIXME: Because PRACK/UPDATE sent before the session is established MUST have
-                	the rigth target URI to be delivered to the UAS ==> Do not not check that we are connected
+                    FIXME: Because PRACK/UPDATE sent before the session is established MUST have
+                    the rigth target URI to be delivered to the UAS ==> Do not not check that we are connected
                 */
                 if(!TSIP_RESPONSE_IS_TO_REGISTER(response) && response->Contact && response->Contact->uri) {
                     TSK_OBJECT_SAFE_FREE(self->uri_remote_target);
@@ -769,7 +769,7 @@ int tsip_dialog_update(tsip_dialog_t *self, const tsip_response_t* response)
                 if(!TSIP_RESPONSE_IS_TO_REGISTER(response) && !TSIP_RESPONSE_IS_TO_PUBLISH(response)) { /* REGISTER and PUBLISH don't establish dialog */
                     tsk_strupdate(&self->tag_remote, tag);
                 }
-#if 0			// PRACK and BYE will have same CSeq value ==> Let CSeq value to be incremented by "tsip_dialog_request_new()"
+#if 0           // PRACK and BYE will have same CSeq value ==> Let CSeq value to be incremented by "tsip_dialog_request_new()"
                 self->cseq_value = response->CSeq ? response->CSeq->seq : self->cseq_value;
 #endif
             }
@@ -859,18 +859,18 @@ int tsip_dialog_update_challenges(tsip_dialog_t *self, const tsip_response_t* re
 
     /* RFC 2617 - HTTP Digest Session
 
-    *	(A) The client response to a WWW-Authenticate challenge for a protection
-    	space starts an authentication session with that protection space.
-    	The authentication session lasts until the client receives another
-    	WWW-Authenticate challenge from any server in the protection space.
+    *   (A) The client response to a WWW-Authenticate challenge for a protection
+        space starts an authentication session with that protection space.
+        The authentication session lasts until the client receives another
+        WWW-Authenticate challenge from any server in the protection space.
 
-    	(B) The server may return a 401 response with a new nonce value, causing the client
-    	to retry the request; by specifying stale=TRUE with this response,
-    	the server tells the client to retry with the new nonce, but without
-    	prompting for a new username and password.
+        (B) The server may return a 401 response with a new nonce value, causing the client
+        to retry the request; by specifying stale=TRUE with this response,
+        the server tells the client to retry with the new nonce, but without
+        prompting for a new username and password.
     */
     /* RFC 2617 - 1.2 Access Authentication Framework
-    	The realm directive (case-insensitive) is required for all authentication schemes that issue a challenge.
+        The realm directive (case-insensitive) is required for all authentication schemes that issue a challenge.
     */
 
     /* FIXME: As we perform the same task ==> Use only one loop.
@@ -1008,12 +1008,12 @@ int tsip_dialog_add_common_headers(const tsip_dialog_t *self, tsip_request_t* re
     preferred_identity = TSIP_DIALOG_GET_STACK(self)->identity.preferred;
 
     //
-    //	P-Preferred-Identity
+    //  P-Preferred-Identity
     //
     if(preferred_identity && TSIP_STACK_MODE_IS_CLIENT(TSIP_DIALOG_GET_STACK(self))) {
-        /*	3GPP TS 33.978 6.2.3.1 Procedures at the UE
-        	The UE shall use the temporary public user identity (IMSI-derived IMPU, cf. section 6.1.2) only in registration
-        	messages (i.e. initial registration, re-registration or de-registration), but not in any other type of SIP requests.
+        /*  3GPP TS 33.978 6.2.3.1 Procedures at the UE
+            The UE shall use the temporary public user identity (IMSI-derived IMPU, cf. section 6.1.2) only in registration
+            messages (i.e. initial registration, re-registration or de-registration), but not in any other type of SIP requests.
         */
         switch(request->line.request.request_type) {
         case tsip_BYE:
@@ -1038,7 +1038,7 @@ int tsip_dialog_add_common_headers(const tsip_dialog_t *self, tsip_request_t* re
     }
 
     //
-    //	P-Access-Network-Info
+    //  P-Access-Network-Info
     //
     if(netinfo) {
         switch(request->line.request.request_type) {

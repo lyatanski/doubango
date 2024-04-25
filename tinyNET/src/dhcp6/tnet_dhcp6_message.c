@@ -95,7 +95,7 @@ tnet_dhcp6_message_t* tnet_dhcp6_message_deserialize(const tnet_dhcp6_ctx_t *ctx
 
 
 //=================================================================================================
-//	[[DHCPv6 MESSAGE]] object definition
+//  [[DHCPv6 MESSAGE]] object definition
 //
 static tsk_object_t* tnet_dhcp6_message_ctor(tsk_object_t * self, va_list * app)
 {

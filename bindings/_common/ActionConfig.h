@@ -42,7 +42,8 @@ private:
 
 #if !defined(SWIG)
 public:
-    const inline tsip_action_handle_t* getHandle()const {
+    const inline tsip_action_handle_t* getHandle()const
+    {
         return m_pHandle;
     }
 #endif

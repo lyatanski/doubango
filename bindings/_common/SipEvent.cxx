@@ -29,16 +29,16 @@
 #define takeOwnership_Implement(cls, name, session) \
 name##Session* cls##Event::take##session##Ownership() const \
 { \
-	if(this->sipevent && this->sipevent->ss /*&& !tsip_ssession_have_ownership(this->sipevent->ss)*/){ \
-		SipStack* stack = this->getStack(); \
-		if(stack){ \
-			/* The constructor will call take_ownerhip() */ \
-			return new name##Session(stack, this->sipevent->ss); \
-		} \
-	} \
-	return tsk_null; \
+    if(this->sipevent && this->sipevent->ss /*&& !tsip_ssession_have_ownership(this->sipevent->ss)*/){ \
+        SipStack* stack = this->getStack(); \
+        if(stack){ \
+            /* The constructor will call take_ownerhip() */ \
+            return new name##Session(stack, this->sipevent->ss); \
+        } \
+    } \
+    return tsk_null; \
 } \
- 
+
 /* ======================== SipEvent ========================*/
 SipEvent::SipEvent(const tsip_event_t *_sipevent)
 {

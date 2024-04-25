@@ -40,102 +40,102 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition.
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TNET_UNDER_WINDOWS	1
-#	if defined(_WIN32_WCE) || defined(UNDER_CE)
-#		define TNET_UNDER_WINDOWS_CE	1
-#	endif
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TNET_UNDER_WINDOWS_RT		1
-#		if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-#			define TNET_UNDER_WINDOWS_PHONE		1
-#		endif
-#	endif
+#   define TNET_UNDER_WINDOWS   1
+#   if defined(_WIN32_WCE) || defined(UNDER_CE)
+#       define TNET_UNDER_WINDOWS_CE    1
+#   endif
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TNET_UNDER_WINDOWS_RT        1
+#       if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+#           define TNET_UNDER_WINDOWS_PHONE     1
+#       endif
+#   endif
 #   define TNET_UNDER_WINDOWS_DESKTOP (TNET_UNDER_WINDOWS && !TNET_UNDER_WINDOWS_CE && !TNET_UNDER_WINDOWS_RT && !TNET_UNDER_WINDOWS_PHONE)
 #endif
 
 // OS X or iOS
 #if defined(__APPLE__)
-#	define TNET_UNDER_APPLE				1
+#   define TNET_UNDER_APPLE             1
 #   include <TargetConditionals.h>
 #   include <Availability.h>
 #endif
 #if TARGET_OS_MAC
-#	define TNET_UNDER_MAC				1
+#   define TNET_UNDER_MAC               1
 #endif
 #if TARGET_OS_IPHONE
-#	define TNET_UNDER_IPHONE			1
+#   define TNET_UNDER_IPHONE            1
 #endif
 #if TARGET_IPHONE_SIMULATOR
-#	define TNET_UNDER_IPHONE_SIMULATOR	1
+#   define TNET_UNDER_IPHONE_SIMULATOR  1
 #endif
 
 /**@def  TINYNET_API
 * Used on Windows and Sysbian systems to export public functions.
 */
 #if !defined(__GNUC__)
-# 	define TINYNET_API __declspec(dllexport)
-# 	define TINYNET_GEXTERN extern __declspec(dllexport)
+#   define TINYNET_API __declspec(dllexport)
+#   define TINYNET_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYNET_API
-#	define TINYNET_GEXTERN	extern
+#   define TINYNET_API
+#   define TINYNET_GEXTERN  extern
 #endif
 
 /* define "TNET_DEPRECATED(func)" macro */
 #if defined(__GNUC__)
-#	define TNET_DEPRECATED(func) __attribute__ ((deprecated)) func
+#   define TNET_DEPRECATED(func) __attribute__ ((deprecated)) func
 #elif defined(_MSC_VER)
-#	define TNET_DEPRECATED(func) __declspec(deprecated) func
+#   define TNET_DEPRECATED(func) __declspec(deprecated) func
 #else
-#	pragma message("WARNING: Deprecated not supported for this compiler")
-#	define TNET_DEPRECATED(func) func
+#   pragma message("WARNING: Deprecated not supported for this compiler")
+#   define TNET_DEPRECATED(func) func
 #endif
 
 /* Guards against C++ name mangling  */
 #ifdef __cplusplus
-#	define TNET_BEGIN_DECLS extern "C" {
-#	define TNET_END_DECLS }
+#   define TNET_BEGIN_DECLS extern "C" {
+#   define TNET_END_DECLS }
 #else
-#	define TNET_BEGIN_DECLS
-#	define TNET_END_DECLS
+#   define TNET_BEGIN_DECLS
+#   define TNET_END_DECLS
 #endif
 
 #if defined(_MSC_VER)
-#	define TNET_INLINE	__forceinline
+#   define TNET_INLINE  __forceinline
 #else
-#	define TNET_INLINE
+#   define TNET_INLINE
 #endif
 
 /* have poll()? */
 /* Do not use WSAPoll event if it's supported under Vista */
 #if !HAVE_CONFIG_H
-#	if defined(__ANDROID__) || defined(ANDROID) || defined(__APPLE__) || defined(__linux__)
-#		define USE_POLL	1
-#		define HAVE_POLL	1
-#		define HAVE_POLL_H	1
-#	endif
+#   if defined(__ANDROID__) || defined(ANDROID) || defined(__APPLE__) || defined(__linux__)
+#       define USE_POLL 1
+#       define HAVE_POLL    1
+#       define HAVE_POLL_H  1
+#   endif
 #endif
 
 /* Used in TURN/STUN2 attributes. */
-#define TNET_SOFTWARE	"IM-client/OMA1.0 doubango/v2.0.0"
-#define TNET_IANA_PEN		35368 /**< PEN number assigned by the IANA.
-	The list of assigned numbers could be found here http://www.iana.org/assignments/enterprise-numbers. */
+#define TNET_SOFTWARE   "IM-client/OMA1.0 doubango/v2.0.0"
+#define TNET_IANA_PEN       35368 /**< PEN number assigned by the IANA.
+    The list of assigned numbers could be found here http://www.iana.org/assignments/enterprise-numbers. */
 #define TNET_RESOLV_CONF_PATH "/etc/resolv.conf" /**< Path to "/resolv.conf". */
 
 #include <stdint.h>
 
 #if HAVE_CONFIG_H
-#	include <config.h>
+#   include <config.h>
 #elif defined(__APPLE__)
-#	define HAVE_GETIFADDRS		1
-#	define HAVE_IFADDRS_H		1
-#	define HAVE_DNS_H			1
-#	define HAVE_NET_ROUTE_H		1
-#	define HAVE_NET_IF_DL_H		1
-#	define HAVE_STRUCT_RT_METRICS	1
-#	define HAVE_STRUCT_SOCKADDR_DL	1
-#	define HAVE_SYS_PARAM_H		1
-#	define TNET_HAVE_SS_LEN		1
-#	define TNET_HAVE_SA_LEN		0
+#   define HAVE_GETIFADDRS      1
+#   define HAVE_IFADDRS_H       1
+#   define HAVE_DNS_H           1
+#   define HAVE_NET_ROUTE_H     1
+#   define HAVE_NET_IF_DL_H     1
+#   define HAVE_STRUCT_RT_METRICS   1
+#   define HAVE_STRUCT_SOCKADDR_DL  1
+#   define HAVE_SYS_PARAM_H     1
+#   define TNET_HAVE_SS_LEN     1
+#   define TNET_HAVE_SA_LEN     0
 #   if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 50000)
 #       define HAVE_GSSAPI_H 1
 #   endif

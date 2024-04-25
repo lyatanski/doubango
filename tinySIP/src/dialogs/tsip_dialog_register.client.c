@@ -69,7 +69,7 @@ static tsk_bool_t _fsm_cond_client_registering(tsip_dialog_register_t* dialog, t
 
 /** Initializes the dialog.
  *
- * @param [in,out]	self	The dialog to initialize.
+ * @param [in,out]  self    The dialog to initialize.
 **/
 int tsip_dialog_register_client_init(tsip_dialog_register_t *self)
 {
@@ -123,7 +123,7 @@ int tsip_dialog_register_client_init(tsip_dialog_register_t *self)
 }
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 /* Started -> (REGISTER) -> InProgress
@@ -167,9 +167,9 @@ int tsip_dialog_register_InProgress_2_Connected_X_2xx(va_list *app)
 
     tsk_bool_t first_time_to_connect = (TSIP_DIALOG(self)->state == tsip_initial);
 
-    /*	- Set P-associated-uriS
-    *	- Update service-routes
-    *	- Update Pats
+    /*  - Set P-associated-uriS
+    *   - Update service-routes
+    *   - Update Pats
     */
     {
         tsk_size_t index;
@@ -192,10 +192,10 @@ int tsip_dialog_register_InProgress_2_Connected_X_2xx(va_list *app)
             tsk_list_push_back_data(TSIP_DIALOG_GET_STACK(self)->associated_uris, (void**)&uri);
         }
 
-        /*	Service-Route (3GPP TS 24.229)
-        	store the list of service route values contained in the Service-Route header field and bind the list to the contact
-        	address used in registration, in order to build a proper preloaded Route header field value for new dialogs and
-        	standalone transactions when using the respective contact address.
+        /*  Service-Route (3GPP TS 24.229)
+            store the list of service route values contained in the Service-Route header field and bind the list to the contact
+            address used in registration, in order to build a proper preloaded Route header field value for new dialogs and
+            standalone transactions when using the respective contact address.
         */
         for(index = 0; (hdr_Service_Route = (const tsip_header_Service_Route_t*)tsip_message_get_headerAt(response, tsip_htype_Service_Route, index)); index++) {
             if(!TSIP_DIALOG_GET_STACK(self)->service_routes) {
@@ -223,15 +223,15 @@ int tsip_dialog_register_InProgress_2_Connected_X_2xx(va_list *app)
         const tsip_uri_t *uri_first = 0;
 
         /*
-        	b) store as the default public user identity the first URI on the list of URIs present in the P-Associated-URI header
-        	field and bind it to the respective contact address of the UE and the associated set of security associations or TLS
-        	session;
-        	NOTE 4: When using the respective contact address and associated set of security associations or TLS session, the
-        	UE can utilize additional URIs contained in the P-Associated-URI header field and bound it to the
-        	respective contact address of the UE and the associated set of security associations or TLS session, e.g. for
-        	application purposes.
-        	c) treat the identity under registration as a barred public user identity, if it is not included in the P-Associated-URI
-        	header field;
+            b) store as the default public user identity the first URI on the list of URIs present in the P-Associated-URI header
+            field and bind it to the respective contact address of the UE and the associated set of security associations or TLS
+            session;
+            NOTE 4: When using the respective contact address and associated set of security associations or TLS session, the
+            UE can utilize additional URIs contained in the P-Associated-URI header field and bound it to the
+            respective contact address of the UE and the associated set of security associations or TLS session, e.g. for
+            application purposes.
+            c) treat the identity under registration as a barred public user identity, if it is not included in the P-Associated-URI
+            header field;
         */
         tsk_list_foreach(item, TSIP_DIALOG_GET_STACK(self)->associated_uris) {
             uri = item->data;
@@ -290,7 +290,7 @@ int tsip_dialog_register_InProgress_2_Terminated_X_2xx(va_list *app)
     return 0;
 }
 
-/*	InProgress --> (401/407/421/494) --> InProgress
+/*  InProgress --> (401/407/421/494) --> InProgress
 */
 int tsip_dialog_register_InProgress_2_InProgress_X_401_407_421_494(va_list *app)
 {
@@ -317,7 +317,7 @@ int tsip_dialog_register_InProgress_2_InProgress_X_401_407_421_494(va_list *app)
     return tsip_dialog_register_send_REGISTER(self, tsk_false);
 }
 
-/*	InProgress -> (423) -> InProgress
+/*  InProgress -> (423) -> InProgress
 */
 int tsip_dialog_register_InProgress_2_InProgress_X_423(va_list *app)
 {

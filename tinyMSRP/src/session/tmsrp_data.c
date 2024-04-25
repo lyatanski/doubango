@@ -175,7 +175,7 @@ tsk_buffer_t* tmsrp_data_out_get(tmsrp_data_out_t* self)
 
 
 //=================================================================================================
-//	MSRP incoming data object definition
+//  MSRP incoming data object definition
 //
 static void* tmsrp_data_in_ctor(tsk_object_t * self, va_list * app)
 {
@@ -206,7 +206,7 @@ static const tsk_object_def_t tmsrp_data_in_def_s = {
 const tsk_object_def_t *tmsrp_data_in_def_t = &tmsrp_data_in_def_s;
 
 //=================================================================================================
-//	MSRP outgoing data object definition
+//  MSRP outgoing data object definition
 //
 static void* tmsrp_data_out_ctor(tsk_object_t * self, va_list * app)
 {

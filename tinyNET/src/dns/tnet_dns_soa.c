@@ -40,7 +40,7 @@ tnet_dns_soa_t* tnet_dns_soa_create(const char* name, tnet_dns_qclass_t qclass, 
 }
 
 //=================================================================================================
-//	[[DNS SOA]] object definition
+//  [[DNS SOA]] object definition
 //
 static tsk_object_t* tnet_dns_soa_ctor(tsk_object_t * self, va_list * app)
 {

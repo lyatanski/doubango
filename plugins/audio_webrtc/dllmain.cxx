@@ -18,7 +18,7 @@
 #include "audio_webrtc_config.h"
 
 #if DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif /* DOUBANGO_AUDIO_WEBRTC_UNDER_WINDOWS */
 
 BOOL APIENTRY DllMain( HMODULE hModule,

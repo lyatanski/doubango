@@ -222,7 +222,7 @@ static int plugin_win_mf_producer_audio_stop(tmedia_producer_t* self)
 
 
 //
-//	WaveAPI producer object definition
+//  WaveAPI producer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_win_mf_producer_audio_ctor(tsk_object_t * self, va_list * app)

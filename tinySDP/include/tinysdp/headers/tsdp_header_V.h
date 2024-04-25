@@ -35,14 +35,14 @@
 
 TSDP_BEGIN_DECLS
 
-#define TSDP_HEADER_V_VA_ARGS(version)		tsdp_header_V_def_t, (int32_t)version
+#define TSDP_HEADER_V_VA_ARGS(version)      tsdp_header_V_def_t, (int32_t)version
 
-#define TSDP_HEADER_V_DEFAULT				0
+#define TSDP_HEADER_V_DEFAULT               0
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "v=" header (Protocol Version).
+/// @brief  SDP "v=" header (Protocol Version).
 /// The "v=" field gives the version of the Session Description Protocol.
 ///   This memo (RFC 4566) defines version 0.  There is no minor version number.
 ///

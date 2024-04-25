@@ -39,11 +39,11 @@
 TMEDIA_BEGIN_DECLS
 
 /** cast any pointer to @ref tmedia_jitterbuffer_t* object */
-#define TMEDIA_JITTER_BUFFER(self)		((tmedia_jitterbuffer_t*)(self))
+#define TMEDIA_JITTER_BUFFER(self)      ((tmedia_jitterbuffer_t*)(self))
 
 /**Max number of plugins (jb types) we can create */
 #if !defined(TMED_JITTER_BUFFER_MAX_PLUGINS)
-#	define TMED_JITTER_BUFFER_MAX_PLUGINS			0x0F
+#   define TMED_JITTER_BUFFER_MAX_PLUGINS           0x0F
 #endif
 
 /** Base object for all JitterBuffers */
@@ -69,7 +69,7 @@ typedef struct tmedia_jitterbuffer_plugin_def_s {
     //! full description (usefull for debugging)
     const char* desc;
 
-    int (*set) (tmedia_jitterbuffer_t* , const tmedia_param_t*);
+    int (*set) (tmedia_jitterbuffer_t*, const tmedia_param_t*);
     int (* open) (tmedia_jitterbuffer_t*, uint32_t frame_duration, uint32_t rate, uint32_t channels);
     int (* tick) (tmedia_jitterbuffer_t*);
     int (* put) (tmedia_jitterbuffer_t*, void* data, tsk_size_t data_size, const tsk_object_t* proto_hdr);

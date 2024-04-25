@@ -89,9 +89,9 @@ tsip_action_handle_t* tsip_action_create(tsip_action_type_t type, ...)
 * @code
 int ret = tsip_action_set(handle,
                                   TSIP_ACTION_SET_HEADER("User-Agent", "IM-client/OMA1.0 doubango/v1.0.0"),
-								  TSIP_ACTION_SET_HEADER("Supported", "precondition"),
-								  TSIP_ACTION_SET_PAYLOAD("my payload", strlen("my payload")),
-								  TSIP_ACTION_SET_NULL());
+                                  TSIP_ACTION_SET_HEADER("Supported", "precondition"),
+                                  TSIP_ACTION_SET_PAYLOAD("my payload", strlen("my payload")),
+                                  TSIP_ACTION_SET_NULL());
 //... whatever
 
 // To destroy the handle
@@ -244,7 +244,7 @@ tsip_action_t* _tsip_action_create(tsip_action_type_t type, va_list* app)
 
 
 //=================================================================================================
-//	SIP action object definition
+//  SIP action object definition
 //
 static tsk_object_t* tsip_action_ctor(tsk_object_t * self, va_list * app)
 {

@@ -26,20 +26,20 @@
 // Only include that header if running version 5 or 6. (When this
 // class's implementation is complete, we'll need to revisit how
 // this entire file is compiled.)
-#	if _WIN32_WCE >= 0x0500 && _WIN32_WCE < 0x0700
-#		include <D3dm.h>
-#	endif
+#   if _WIN32_WCE >= 0x0500 && _WIN32_WCE < 0x0700
+#       include <D3dm.h>
+#   endif
 #else
-#	include <d3d9.h>
+#   include <d3d9.h>
 #endif
 
 #ifdef _MSC_VER
-#	if TDAV_UNDER_WINDOWS_CE
-#		pragma comment(lib, "D3dm")
-#		pragma comment(lib, "D3dmguid")
-#	else
-#		pragma comment(lib, "d3d9")
-#	endif
+#   if TDAV_UNDER_WINDOWS_CE
+#       pragma comment(lib, "D3dm")
+#       pragma comment(lib, "D3dmguid")
+#   else
+#       pragma comment(lib, "d3d9")
+#   endif
 #endif
 
 #include "tsk_thread.h"
@@ -111,7 +111,7 @@ static int _tdav_producer_screencast_d3d9_stop(tmedia_producer_t* p_self)
 }
 
 //
-//	d3d9 screencast producer object definition
+//  d3d9 screencast producer object definition
 //
 /* constructor */
 static tsk_object_t* _tdav_producer_screencast_d3d9_ctor(tsk_object_t *self, va_list * app)

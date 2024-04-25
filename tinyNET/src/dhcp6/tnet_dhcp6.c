@@ -21,7 +21,7 @@
 */
 /**@file tnet_dhcp6.c
  * @brief Dynamic Host Configuration Protocol for IPv6 (DHCPv6) as per RFC 3315.
- *		  Also implement: RFC 3319, 3633, 3646, 3736, 4242, 5007 ...
+ *        Also implement: RFC 3319, 3633, 3646, 3736, 4242, 5007 ...
  *
  * @author Mamadou Diop <diopmamadou(at)doubango[dot]org>
  *
@@ -104,11 +104,11 @@ tnet_dhcp6_reply_t* tnet_dhcp6_send_request(const tnet_dhcp6_ctx_t* ctx, tnet_dh
 
             ///* ciaddr */
             //if(request->type == dhcp_type_inform){
-            //	struct sockaddr_storage ss;
-            //	if(!tnet_get_sockaddr(localsocket4->fd, &ss)){
-            //		uint32_t addr = tnet_htonl_2(&((struct sockaddr_in*)&ss)->sin_addr);
-            //		memcpy(&request->ciaddr, &addr, 4);
-            //	}
+            //  struct sockaddr_storage ss;
+            //  if(!tnet_get_sockaddr(localsocket4->fd, &ss)){
+            //      uint32_t addr = tnet_htonl_2(&((struct sockaddr_in*)&ss)->sin_addr);
+            //      memcpy(&request->ciaddr, &addr, 4);
+            //  }
             //}
 
             ///* chaddr */
@@ -129,14 +129,14 @@ tnet_dhcp6_reply_t* tnet_dhcp6_send_request(const tnet_dhcp6_ctx_t* ctx, tnet_dh
                 goto next_iface;
             }
             /* wait for response */
-            if((ret = select(localsocket6->fd+1, &set, NULL, NULL, &tv))<0) {	/* Error */
+            if((ret = select(localsocket6->fd+1, &set, NULL, NULL, &tv))<0) {   /* Error */
                 TNET_PRINT_LAST_ERROR("select have failed.");
                 tsk_thread_sleep(150); // wait 150ms before trying the next iface.
                 goto next_iface;
             }
-            else if(ret == 0) {	/* timeout ==> do nothing */
+            else if(ret == 0) { /* timeout ==> do nothing */
             }
-            else {	/* there is data to read. */
+            else {  /* there is data to read. */
                 unsigned int len = 0;
                 void* data = 0;
 
@@ -221,7 +221,7 @@ bail:
 
 
 //=================================================================================================
-//	[[DHCPv6 CONTEXT]] object definition
+//  [[DHCPv6 CONTEXT]] object definition
 //
 static tsk_object_t* tnet_dhcp6_ctx_ctor(tsk_object_t * self, va_list * app)
 {

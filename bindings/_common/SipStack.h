@@ -103,13 +103,16 @@ public: /* API functions */
 
 public: /* Public helper function */
 #if !defined(SWIG)
-    inline tsip_stack_handle_t* getHandle()const {
+    inline tsip_stack_handle_t* getHandle()const
+    {
         return m_pHandle;
     }
-    inline SipCallback* getCallback()const {
+    inline SipCallback* getCallback()const
+    {
         return m_pCallback;
     }
-    inline DDebugCallback* getDebugCallback() const {
+    inline DDebugCallback* getDebugCallback() const
+    {
         return m_pDebugCallback;
     }
 #endif

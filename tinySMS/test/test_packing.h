@@ -52,10 +52,10 @@ void test_7bit()
     for(i=0; i<sizeof(test_messages_7bit)/sizeof(test_message_7bit_t); i++) {
         if((buffer = tsms_pack_to_7bit(test_messages_7bit[i].ascii))) {
             /*if((temp = tohex(buffer->data, buffer->size))){
-            	if(!tsk_striequals(temp, test_messages_7bit[i]._7bit)){
-            		TSK_DEBUG_ERROR("tsms_pack_to_7bit(\"%s\") Failed.\n", test_messages_7bit[i].ascii);
-            	}
-            	TSK_FREE(temp);
+                if(!tsk_striequals(temp, test_messages_7bit[i]._7bit)){
+                    TSK_DEBUG_ERROR("tsms_pack_to_7bit(\"%s\") Failed.\n", test_messages_7bit[i].ascii);
+                }
+                TSK_FREE(temp);
             }*/
             if(!bin_equals(buffer->data, test_messages_7bit[i]._7bit, buffer->size)) {
                 TSK_DEBUG_ERROR("tsms_pack_to_7bit(\"%s\") Failed.\n", test_messages_7bit[i].ascii);

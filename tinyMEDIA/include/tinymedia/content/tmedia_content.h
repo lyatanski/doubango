@@ -38,10 +38,10 @@
 TMEDIA_BEGIN_DECLS
 
 /**Max number of plugins (content types) we can create */
-#define TMEDIA_CONTENT_MAX_PLUGINS			0x0F
+#define TMEDIA_CONTENT_MAX_PLUGINS          0x0F
 
 /** cast any pointer to @ref tmedia_content_t* object */
-#define TMEDIA_CONTENT(self)		((tmedia_content_t*)(self))
+#define TMEDIA_CONTENT(self)        ((tmedia_content_t*)(self))
 
 /** Base object for all contents */
 typedef struct tmedia_content_s {
@@ -91,7 +91,7 @@ typedef struct tmedia_content_dummy_s {
 }
 tmedia_content_dummy_t;
 
-#define TMEDIA_CONTENT_DUMMY(self)	((tmedia_content_dummy_t*)(self))
+#define TMEDIA_CONTENT_DUMMY(self)  ((tmedia_content_dummy_t*)(self))
 #define TMEDIA_CONTENT_IS_DUMMY(self) ( (self) && (TMEDIA_CONTENT((self))->plugin==tmedia_content_dummy_plugin_def_t) )
 
 TINYMEDIA_GEXTERN const tmedia_content_plugin_def_t *tmedia_content_dummy_plugin_def_t;
@@ -111,7 +111,7 @@ tmedia_content_header_t* tmedia_content_header_create(const char* name, const ch
 int tmedia_content_header_deinit(tmedia_content_header_t* self);
 char* tmedia_content_header_tostring(const tmedia_content_header_t* self);
 
-#define TMEDIA_CONTENT_HEADER(self)	((tmedia_content_header_t*)(self))
+#define TMEDIA_CONTENT_HEADER(self) ((tmedia_content_header_t*)(self))
 #define TMEDIA_DECLARE_CONTENT_HEADER tmedia_content_header_t __content_header__
 typedef tsk_list_t tmedia_content_headers_L_t;
 

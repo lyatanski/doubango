@@ -43,10 +43,10 @@
 #include "tsk_debug.h"
 #include "tsk_time.h"
 
-#define DEBUG_STATE_MACHINE											0
-#define TSIP_DIALOG_PUBLISH_TIMER_SCHEDULE(TX)						TSIP_DIALOG_TIMER_SCHEDULE(publish, TX)
-#define TSIP_DIALOG_PUBLISH_SIGNAL(self, type, code, phrase, message)	\
-	tsip_publish_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, message)
+#define DEBUG_STATE_MACHINE                                         0
+#define TSIP_DIALOG_PUBLISH_TIMER_SCHEDULE(TX)                      TSIP_DIALOG_TIMER_SCHEDULE(publish, TX)
+#define TSIP_DIALOG_PUBLISH_SIGNAL(self, type, code, phrase, message)   \
+    tsip_publish_event_signal(type, TSIP_DIALOG(self)->ss, code, phrase, message)
 
 /* ======================== internal functions ======================== */
 static int send_PUBLISH(tsip_dialog_publish_t *self);
@@ -119,13 +119,13 @@ _fsm_state_t;
 
 
 /**
- * 	Callback function called to alert the dialog for new events from the transaction/transport layers.
+ *  Callback function called to alert the dialog for new events from the transaction/transport layers.
  *
- * @param [in,out]	self	A reference to the dialog.
- * @param	type		The event type.
- * @param [in,out]	msg	The incoming SIP/IMS message.
+ * @param [in,out]  self    A reference to the dialog.
+ * @param   type        The event type.
+ * @param [in,out]  msg The incoming SIP/IMS message.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_publish_event_callback(const tsip_dialog_publish_t *self, tsip_dialog_event_type_t type, const tsip_message_t *msg)
 {
@@ -135,7 +135,7 @@ int tsip_dialog_publish_event_callback(const tsip_dialog_publish_t *self, tsip_d
     case tsip_dialog_i_msg: {
         if(msg && TSIP_MESSAGE_IS_RESPONSE(msg)) {
             //
-            //	RESPONSE
+            //  RESPONSE
             //
             const tsip_action_t* action = tsip_dialog_keep_action(TSIP_DIALOG(self), msg) ? TSIP_DIALOG(self)->curr_action : tsk_null;
             if(TSIP_RESPONSE_IS_1XX(msg)) {
@@ -158,7 +158,7 @@ int tsip_dialog_publish_event_callback(const tsip_dialog_publish_t *self, tsip_d
         }
         else {
             //
-            //	REQUEST
+            //  REQUEST
             //
         }
         break;
@@ -187,10 +187,10 @@ int tsip_dialog_publish_event_callback(const tsip_dialog_publish_t *self, tsip_d
 /**
  * Timer manager callback.
  *
- * @param [in,out]	self	The owner of the signaled timer.
- * @param	timer_id		The identifier of the signaled timer.
+ * @param [in,out]  self    The owner of the signaled timer.
+ * @param   timer_id        The identifier of the signaled timer.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_publish_timer_callback(const tsip_dialog_publish_t* self, tsk_timer_id_t timer_id)
 {
@@ -217,7 +217,7 @@ tsip_dialog_publish_t* tsip_dialog_publish_create(const tsip_ssession_handle_t* 
 /**
  * Initializes the dialog.
  *
- * @param [in,out]	self	The dialog to initialize.
+ * @param [in,out]  self    The dialog to initialize.
 **/
 int tsip_dialog_publish_init(tsip_dialog_publish_t *self)
 {
@@ -297,7 +297,7 @@ int tsip_dialog_publish_init(tsip_dialog_publish_t *self)
 }
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
 
@@ -351,10 +351,10 @@ int tsip_dialog_publish_Trying_2_Connected_X_2xx(va_list *app)
 
     tsk_bool_t first_time_to_connect = (TSIP_DIALOG(self)->state == tsip_initial);
 
-    /*	RFC 3903 - 4.1.  Identification of Published Event State
-    	For each successful PUBLISH request, the ESC will generate and assign
-    	an entity-tag and return it in the SIP-ETag header field of the 2xx
-    	response.
+    /*  RFC 3903 - 4.1.  Identification of Published Event State
+        For each successful PUBLISH request, the ESC will generate and assign
+        an entity-tag and return it in the SIP-ETag header field of the 2xx
+        response.
     */
     const tsip_header_SIP_ETag_t *SIP_ETag;
     if((SIP_ETag = (const tsip_header_SIP_ETag_t*)tsip_message_get_header(response, tsip_htype_SIP_ETag))) {
@@ -463,8 +463,8 @@ int tsip_dialog_publish_Trying_2_Terminated_X_cancel(va_list *app)
     /* Cancel all transactions associated to this dialog (will also be done when the dialog is destroyed (worth nothing)) */
     ret = tsip_transac_layer_cancel_by_dialog(TSIP_DIALOG_GET_STACK(self)->layer_transac, TSIP_DIALOG(self));
 
-    /*	RFC 3261 - 9.1 Client Behavior
-    	A CANCEL request SHOULD NOT be sent to cancel a request other than INVITE.
+    /*  RFC 3261 - 9.1 Client Behavior
+        A CANCEL request SHOULD NOT be sent to cancel a request other than INVITE.
     */
 
     /* Alert the user */
@@ -550,7 +550,7 @@ int tsip_dialog_publish_Any_2_Terminated_X_Error(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -574,18 +574,18 @@ int send_PUBLISH(tsip_dialog_publish_t *self)
         TSIP_DIALOG(self)->expires = 0;
     }
 
-    /*	RFC 3903 - 4.1.  Identification of Published Event State
-    	The presence of a body and the SIP-If-Match header field determine
-    	the specific SSESSION that the request is performing, as described in Table 1.
-    	+-----------+-------+---------------+---------------+
-    	| SSESSION | Body? | SIP-If-Match? | Expires Value |
-    	+-----------+-------+---------------+---------------+
-    	| Initial   | yes   | no            | > 0           |
-    	| Refresh   | no    | yes           | > 0           |
-    	| Modify    | yes   | yes           | > 0           |
-    	| Remove    | no    | yes           | 0             |
-    	+-----------+-------+---------------+---------------+
-    	Table 1: Publication ssessions
+    /*  RFC 3903 - 4.1.  Identification of Published Event State
+        The presence of a body and the SIP-If-Match header field determine
+        the specific SSESSION that the request is performing, as described in Table 1.
+        +-----------+-------+---------------+---------------+
+        | SSESSION | Body? | SIP-If-Match? | Expires Value |
+        +-----------+-------+---------------+---------------+
+        | Initial   | yes   | no            | > 0           |
+        | Refresh   | no    | yes           | > 0           |
+        | Modify    | yes   | yes           | > 0           |
+        | Remove    | no    | yes           | 0             |
+        +-----------+-------+---------------+---------------+
+        Table 1: Publication ssessions
     */
     if((request = tsip_dialog_request_new(TSIP_DIALOG(self), "PUBLISH"))) {
         /*Etag. If initial then etag is null. */
@@ -613,7 +613,7 @@ int send_PUBLISH(tsip_dialog_publish_t *self)
 /**
  * Callback function called by the state machine manager to signal that the final state has been reached.
  *
- * @param [in,out]	self	The state machine owner.
+ * @param [in,out]  self    The state machine owner.
 **/
 int tsip_dialog_publish_OnTerminated(tsip_dialog_publish_t *self)
 {
@@ -640,7 +640,7 @@ int tsip_dialog_publish_OnTerminated(tsip_dialog_publish_t *self)
 
 
 //========================================================
-//	SIP dialog PUBLISH object definition
+//  SIP dialog PUBLISH object definition
 //
 static tsk_object_t* tsip_dialog_publish_ctor(tsk_object_t * self, va_list * app)
 {

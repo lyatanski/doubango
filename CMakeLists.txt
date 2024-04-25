@@ -8,6 +8,7 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 #include(GetOpenSSL)
 #include(GetSRTP)
 #include(GetiLBC)
+include(AStyle)
 
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 

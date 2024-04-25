@@ -30,14 +30,14 @@
 #include "test_qos.h"
 #include "test_contents.h"
 
-#define RUN_TEST_LOOP		0
+#define RUN_TEST_LOOP       0
 
-#define RUN_TEST_ALL		0
-#define RUN_TEST_CODECS		0
-#define RUN_TEST_SESSIONS	0
-#define RUN_TEST_QOS		0
-#define RUN_TEST_IMAGEATTR	1
-#define RUN_TEST_CONTENTS	0
+#define RUN_TEST_ALL        0
+#define RUN_TEST_CODECS     0
+#define RUN_TEST_SESSIONS   0
+#define RUN_TEST_QOS        0
+#define RUN_TEST_IMAGEATTR  1
+#define RUN_TEST_CONTENTS   0
 
 
 static void test_register_dummy_plugins();
@@ -130,41 +130,41 @@ void test_register_dummy_plugins()
 //int main()
 //#endif
 //{
-//	while(1)
-//	{
-//		tmedia_t* dummy = tsk_null;
+//  while(1)
+//  {
+//      tmedia_t* dummy = tsk_null;
 //
-//		// Register dummy media
-//		tmedia_plugin_register(dummy_plugin_def_t);
-//		// ...if you have another one to register
-//		// ...and another
-//		// ...again and again
+//      // Register dummy media
+//      tmedia_plugin_register(dummy_plugin_def_t);
+//      // ...if you have another one to register
+//      // ...and another
+//      // ...again and again
 //
-//		// Create dummy media
-//		if((dummy = tmedia_factory_create("dummy plugin", "127.0.0.1", tnet_socket_type_udp_ipv4))){
+//      // Create dummy media
+//      if((dummy = tmedia_factory_create("dummy plugin", "127.0.0.1", tnet_socket_type_udp_ipv4))){
 //
-//			tmedia_get_local_offer(dummy,
-//				TSDP_HEADER_A_VA_ARGS("file-disposition", "attachment"),
+//          tmedia_get_local_offer(dummy,
+//              TSDP_HEADER_A_VA_ARGS("file-disposition", "attachment"),
 //
-//				tsk_null
-//				);
-//			tmedia_get_negotiated_offer(dummy);
-//			tmedia_set_remote_offer(dummy, tsk_null);
+//              tsk_null
+//              );
+//          tmedia_get_negotiated_offer(dummy);
+//          tmedia_set_remote_offer(dummy, tsk_null);
 //
-//			tmedia_start(dummy);
-//			tmedia_pause(dummy);
+//          tmedia_start(dummy);
+//          tmedia_pause(dummy);
 //
-//			tmedia_perform(dummy, tma_dummy_say_hello,
-//				TSK_PARAM_VA_ARGS("to", "doubango"),
+//          tmedia_perform(dummy, tma_dummy_say_hello,
+//              TSK_PARAM_VA_ARGS("to", "doubango"),
 //
-//				tsk_null);
+//              tsk_null);
 //
-//			tmedia_stop(dummy);
+//          tmedia_stop(dummy);
 //
-//			TSK_OBJECT_SAFE_FREE(dummy);
-//		}
-//	}
+//          TSK_OBJECT_SAFE_FREE(dummy);
+//      }
+//  }
 //
-//	return 0;
+//  return 0;
 //}
 

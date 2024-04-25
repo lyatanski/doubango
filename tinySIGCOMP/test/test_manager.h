@@ -21,15 +21,15 @@
 #ifndef TEST_TINYSIGCOMP_MANAGER_H
 #define TEST_TINYSIGCOMP_MANAGER_H
 
-#define SIGCOMP_TESTS				SIGCOMP_TESTS_CALL
+#define SIGCOMP_TESTS               SIGCOMP_TESTS_CALL
 
-#define COMPARTMENT_ID_CLIENT		"urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a474"
-#define COMPARTMENT_ID_SERVER		"urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a475"
-#define SIGCOMP_DMS					8192//4096//8192//65536
-#define SIGCOMP_SMS					8192//4096//8192//65536
-#define SIGCOMP_CPB					64
-#define SIGCOMP_LOOP_COUNT			10
-#define USE_ONLY_ACKED_STATES		tsk_false // Should be false unless you know what you're doing
+#define COMPARTMENT_ID_CLIENT       "urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a474"
+#define COMPARTMENT_ID_SERVER       "urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a475"
+#define SIGCOMP_DMS                 8192//4096//8192//65536
+#define SIGCOMP_SMS                 8192//4096//8192//65536
+#define SIGCOMP_CPB                 64
+#define SIGCOMP_LOOP_COUNT          10
+#define USE_ONLY_ACKED_STATES       tsk_false // Should be false unless you know what you're doing
 
 
 typedef struct sigcomp_test_s {
@@ -40,10 +40,10 @@ typedef struct sigcomp_test_s {
 }
 sigcomp_test_t;
 
-#define IS_CLIENT_YES			tsk_true
-#define IS_CLIENT_NO			tsk_false
-#define TOBE_LOST_YES			tsk_true
-#define TOBE_LOST_NO			tsk_false
+#define IS_CLIENT_YES           tsk_true
+#define IS_CLIENT_NO            tsk_false
+#define TOBE_LOST_YES           tsk_true
+#define TOBE_LOST_NO            tsk_false
 
 static const sigcomp_test_t SIGCOMP_TESTS_CALL[]= {
     {

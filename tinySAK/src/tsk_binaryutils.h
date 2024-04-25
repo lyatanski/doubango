@@ -72,30 +72,30 @@ TSK_GCC_DISABLE_WARNINGS_END()
 */
 
 #if 0 /*BIG_ENDIAN*/// Do not change this (it's for my own tests)
-#	define	TSK_BINARY_GET_2BYTES(buffer) *((uint16_t*)buffer)
-#	define  TSK_BINARY_SET_2BYTES(buffer, value) *((uint16_t*)buffer)=value
+#   define  TSK_BINARY_GET_2BYTES(buffer) *((uint16_t*)buffer)
+#   define  TSK_BINARY_SET_2BYTES(buffer, value) *((uint16_t*)buffer)=value
 #else
-#	define	TSK_BINARY_GET_2BYTES(buffer) TSK_LSB_2_MSB(buffer)
-#	define  TSK_BINARY_SET_2BYTES(buffer, value)							\
-				{uint16_t __value__ = value;							\
-				uint8_t*__buffer__ = buffer;							\
-				(__buffer__[0]) = (__value__ >> 8);					\
-				(__buffer__[1]) = (__value__ & 0xff);}
+#   define  TSK_BINARY_GET_2BYTES(buffer) TSK_LSB_2_MSB(buffer)
+#   define  TSK_BINARY_SET_2BYTES(buffer, value)                            \
+                {uint16_t __value__ = value;                            \
+                uint8_t*__buffer__ = buffer;                            \
+                (__buffer__[0]) = (__value__ >> 8);                 \
+                (__buffer__[1]) = (__value__ & 0xff);}
 #endif
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
-//	RFC 3320 - 7.3.  Uploading UDVM bytecode
+//  RFC 3320 - 7.3.  Uploading UDVM bytecode
 static const uint16_t sigcomp_encoding_destination[]
     = { 0, 128, 192, 256, 320, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960, 1024 };
 
-//	RFC 3320 - 7.2.  Accessing Stored State
+//  RFC 3320 - 7.2.  Accessing Stored State
 static const uint8_t sigcomp_encoding_partial_id_length[]
     = { 0, 6, 9, 12 };
 
-//	RFC 3320 - 3.3.1.  Memory Size and UDVM Cycles
+//  RFC 3320 - 3.3.1.  Memory Size and UDVM Cycles
 static const uint8_t sigcomp_encoding_cycles_per_bit[]
     = { 16, 32, 64, 128 };
 static const uint32_t sigcomp_encoding_state_memory_size[]
@@ -103,8 +103,8 @@ static const uint32_t sigcomp_encoding_state_memory_size[]
 static const uint32_t sigcomp_encoding_decompression_memory_size[]
     = { 0, 2048, 4096, 8192, 16384, 32768, 65536, 131072 }; // the bit pattern 000 cannot be used.
 
-//	3.3.1.  Memory Size and UDVM Cycles
-//	3.3.  SigComp Parameters
+//  3.3.1.  Memory Size and UDVM Cycles
+//  3.3.  SigComp Parameters
 static const uint8_t sigcomp_encoding_cpb[]
     = { 16, 32, 64, 128 };
 static const uint32_t sigcomp_encoding_sms[]
@@ -113,7 +113,7 @@ static const uint32_t sigcomp_encoding_dms[]
     = { 0, 2048, 4096, 8192, 16384, 32768, 65536, 131072 }; // the bit pattern 000 cannot be used.
 
 
-//	RFC 3320: Figure 10: Bytecode for a multitype (%) operand
+//  RFC 3320: Figure 10: Bytecode for a multitype (%) operand
 static const int8_t operand_multitype_indexes [256] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -128,7 +128,7 @@ static const int8_t operand_multitype_indexes [256] = {
     5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
 };
 
-//	Used LSB<->MSB bits reverse/swap
+//  Used LSB<->MSB bits reverse/swap
 /**@ingroup tsk_binaryutils_group
 * Lookup table for bit reversing.
 */

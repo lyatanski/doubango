@@ -17,7 +17,7 @@
 */
 /**@file tdav_consumer_video_mf.cxx
  * @brief Microsoft Media Foundation video consumer (source).
- *	http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
+ *  http://msdn.microsoft.com/en-us/library/windows/desktop/ms694197(v=vs.85).aspx
  */
 #include "tinydav/video/mf/tdav_consumer_video_mf.h"
 
@@ -119,7 +119,7 @@ int tdav_consumer_video_mf_stop(tmedia_consumer_t* self)
 
 
 //
-//	Windows Media Foundation video consumer object definition
+//  Windows Media Foundation video consumer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_consumer_video_mf_ctor(tsk_object_t * self, va_list * app)

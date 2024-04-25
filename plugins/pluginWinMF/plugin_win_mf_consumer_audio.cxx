@@ -102,7 +102,7 @@ static int plugin_win_mf_consumer_audio_stop(tmedia_consumer_t* self)
 
 
 //
-//	WaveAPI consumer object definition
+//  WaveAPI consumer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_win_mf_consumer_audio_ctor(tsk_object_t * self, va_list * app)

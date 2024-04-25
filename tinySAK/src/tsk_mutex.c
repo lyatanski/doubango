@@ -32,16 +32,16 @@
 #include "tsk_debug.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
-#	include "tsk_errno.h"
-typedef HANDLE	MUTEX_T;
-#	define MUTEX_S void
-#	define TSK_ERROR_NOT_OWNER ERROR_NOT_OWNER
+#   include <windows.h>
+#   include "tsk_errno.h"
+typedef HANDLE  MUTEX_T;
+#   define MUTEX_S void
+#   define TSK_ERROR_NOT_OWNER ERROR_NOT_OWNER
 #else
-#	include <pthread.h>
-#	define MUTEX_S pthread_mutex_t
+#   include <pthread.h>
+#   define MUTEX_S pthread_mutex_t
 typedef MUTEX_S* MUTEX_T;
-#	define TSK_ERROR_NOT_OWNER EPERM
+#   define TSK_ERROR_NOT_OWNER EPERM
 #   if !defined(TSK_RECURSIVE_MUTEXATTR)
 #       if defined(PTHREAD_MUTEX_RECURSIVE)
 #           define TSK_RECURSIVE_MUTEXATTR PTHREAD_MUTEX_RECURSIVE
@@ -52,7 +52,7 @@ typedef MUTEX_S* MUTEX_T;
 #endif
 
 #if defined(__GNUC__) || defined(__SYMBIAN32__)
-#	include <errno.h>
+#   include <errno.h>
 #endif
 
 /**@defgroup tsk_mutex_group Pthread/Windows Mutex utility functions.
@@ -79,11 +79,11 @@ tsk_mutex_handle_t* tsk_mutex_create_2(tsk_bool_t recursive)
     MUTEX_T handle = tsk_null;
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
     handle = CreateMutexEx(NULL, NULL, 0x00000000, MUTEX_ALL_ACCESS);
-#	else
+#   else
     handle = CreateMutex(NULL, FALSE, NULL);
-#	endif
+#   endif
 #else
     int ret;
     pthread_mutexattr_t   mta;
@@ -124,9 +124,9 @@ int tsk_mutex_lock(tsk_mutex_handle_t* handle)
     if(handle) {
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
         if((ret = WaitForSingleObjectEx((MUTEX_T)handle, INFINITE, TRUE)) == WAIT_FAILED)
-#	else
+#   else
         if((ret = WaitForSingleObject((MUTEX_T)handle, INFINITE)) == WAIT_FAILED)
 #endif
 #else

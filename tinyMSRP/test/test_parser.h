@@ -25,35 +25,35 @@
 #include "tinymsrp/headers/tmsrp_header_Dummy.h"
 
 #define MSRP_MSG_REQUEST \
-	"MSRP a786hjs2 SEND\r\n" \
-	"To-Path: msrp://biloxi.example.com:12763/kjhd37s2s20w2a;tcp\r\n" \
-	"From-Path: msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
-	"Message-ID: 87652491\r\n" \
-	"Byte-Dummy: 1-25/25\r\n" \
-	"Byte-Range: 1-5/3\r\n" \
-	"Byte-Range: 1-25/*\r\n" \
-	"Byte-Range: 1-*/*\r\n" \
-	"Failure-Report: partial\r\n" \
+    "MSRP a786hjs2 SEND\r\n" \
+    "To-Path: msrp://biloxi.example.com:12763/kjhd37s2s20w2a;tcp\r\n" \
+    "From-Path: msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
+    "Message-ID: 87652491\r\n" \
+    "Byte-Dummy: 1-25/25\r\n" \
+    "Byte-Range: 1-5/3\r\n" \
+    "Byte-Range: 1-25/*\r\n" \
+    "Byte-Range: 1-*/*\r\n" \
+    "Failure-Report: partial\r\n" \
     "Success-Report: yes\r\n" \
-	"Content-Type: text/plain;charset=utf8\r\n" \
-	"\r\n" \
-	"ab\r\nc\r\n" \
-	"-------a786hjs2$\r\nMSRP"
+    "Content-Type: text/plain;charset=utf8\r\n" \
+    "\r\n" \
+    "ab\r\nc\r\n" \
+    "-------a786hjs2$\r\nMSRP"
 
 #define MSRP_MSG_RESPONSE \
-	"MSRP a786hjs2 200 OK\r\n" \
-	"To-Path: msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
-	"From-Path: msrp://biloxi.example.com:12763/kjhd37s2s20w2a;tcp\r\n" \
-	"-------a786hjs2$\r\nMSRP 000"
+    "MSRP a786hjs2 200 OK\r\n" \
+    "To-Path: msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
+    "From-Path: msrp://biloxi.example.com:12763/kjhd37s2s20w2a;tcp\r\n" \
+    "-------a786hjs2$\r\nMSRP 000"
 
 #define MSRP_MSG_REPORT \
-	"MSRP dkei38sd REPORT\r\n" \
-	"To-Path: msrp://alicepc.example.com:7777/iau39soe2843z;tcp\r\n" \
-	"From-Path: msrp://bob.example.com:8888/9di4eae923wzd;tcp\r\n" \
-	"Message-ID: 12339sdqwer\r\n" \
-	"Byte-Range: 1-106/106\r\n" \
-	"Status: 000 200 OK\r\n" \
-	"-------dkei38sd$\r\nMSRP 000"
+    "MSRP dkei38sd REPORT\r\n" \
+    "To-Path: msrp://alicepc.example.com:7777/iau39soe2843z;tcp\r\n" \
+    "From-Path: msrp://bob.example.com:8888/9di4eae923wzd;tcp\r\n" \
+    "Message-ID: 12339sdqwer\r\n" \
+    "Byte-Range: 1-106/106\r\n" \
+    "Status: 000 200 OK\r\n" \
+    "-------dkei38sd$\r\nMSRP 000"
 
 #define MSRP_MSG_TO_TEST MSRP_MSG_REQUEST
 
@@ -65,7 +65,7 @@ void test_parser()
     char* str;
 
     //
-    //	Serialization / Deserialization
+    //  Serialization / Deserialization
     //
     /* deserialize the message */
     if((message = tmsrp_message_parse_2(MSRP_MSG_TO_TEST, strlen(MSRP_MSG_TO_TEST), &msg_size))) {
@@ -97,7 +97,7 @@ void test_parser()
     TSK_OBJECT_SAFE_FREE(message);
 
     //
-    //	Create Response from Request
+    //  Create Response from Request
     //
     if((message = tmsrp_message_parse(MSRP_MSG_REQUEST, strlen(MSRP_MSG_REQUEST)))) {
         tmsrp_response_t* response = tmsrp_create_response(message, 202, "Accepted");
@@ -115,7 +115,7 @@ void test_parser()
     TSK_OBJECT_SAFE_FREE(message);
 
     //
-    //	Create Report from Request
+    //  Create Report from Request
     //
     if((message = tmsrp_message_parse(MSRP_MSG_REQUEST, strlen(MSRP_MSG_REQUEST)))) {
         tmsrp_request_t* report = tmsrp_create_report(message, 403, "Stop-sending-message");

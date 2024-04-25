@@ -67,7 +67,8 @@ public:
     int removePlugin(uint64_t id);
     int removePlugin(ProxyPlugin**);
 
-    inline ProxyPluginMgrCallback* getCallback() {
+    inline ProxyPluginMgrCallback* getCallback()
+    {
         return this->callback;
     }
 #endif
@@ -94,10 +95,12 @@ public:
     ProxyPluginMgrCallback() { }
     virtual ~ProxyPluginMgrCallback() { }
 
-    virtual int OnPluginCreated(uint64_t id, enum twrap_proxy_plugin_type_e type) {
+    virtual int OnPluginCreated(uint64_t id, enum twrap_proxy_plugin_type_e type)
+    {
         return -1;
     }
-    virtual int OnPluginDestroyed(uint64_t id, enum twrap_proxy_plugin_type_e type) {
+    virtual int OnPluginDestroyed(uint64_t id, enum twrap_proxy_plugin_type_e type)
+    {
         return -1;
     }
 };
@@ -107,7 +110,8 @@ class ProxyPlugin
 {
 public:
 #if !defined SWIG
-    ProxyPlugin(twrap_proxy_plugin_type_t _type) {
+    ProxyPlugin(twrap_proxy_plugin_type_t _type)
+    {
         this->type=_type;
         this->id = ProxyPluginMgr::getUniqueId();
     }
@@ -115,17 +119,20 @@ public:
     virtual ~ProxyPlugin() {}
 
 #if !defined(SWIG)
-    virtual bool operator ==(const ProxyPlugin &plugin)const {
+    virtual bool operator ==(const ProxyPlugin &plugin)const
+    {
         return this->getId() == plugin.getId();
     }
     virtual inline bool isWrapping(tsk_object_t* wrapped_plugin) = 0;
     virtual inline uint64_t getMediaSessionId() = 0;
 #endif
 
-    inline twrap_proxy_plugin_type_t getType()const {
+    inline twrap_proxy_plugin_type_t getType()const
+    {
         return this->type;
     }
-    inline uint64_t getId()const {
+    inline uint64_t getId()const
+    {
         return this->id;
     }
 

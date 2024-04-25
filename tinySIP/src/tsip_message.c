@@ -83,18 +83,18 @@ tsip_response_t* tsip_response_create(const tsip_request_t* request, short statu
 }
 
 
-int	tsip_message_add_header(tsip_message_t *self, const tsip_header_t *hdr)
+int tsip_message_add_header(tsip_message_t *self, const tsip_header_t *hdr)
 {
 #define ADD_HEADER(type, field) \
-		case tsip_htype_##type: \
-			{ \
-				if(!self->field) \
-				{ \
-					self->field = (tsip_header_##type##_t*)header; \
-					return 0; \
-				} \
-				break; \
-			}
+        case tsip_htype_##type: \
+            { \
+                if(!self->field) \
+                { \
+                    self->field = (tsip_header_##type##_t*)header; \
+                    return 0; \
+                } \
+                break; \
+            }
 
     if(self && hdr) {
         tsip_header_t *header = tsk_object_ref((void*)hdr);
@@ -290,10 +290,10 @@ const tsip_header_t *tsip_message_get_header(const tsip_message_t *self, tsip_he
 /**
 * Indicates whether the sepecified method is listed in the SIP 'Allow' header.
 *
-* @param [in,out]	self	The SIP message holding the 'Allow' header.
-* @param [in,out]	method	The method to look for.
+* @param [in,out]   self    The SIP message holding the 'Allow' header.
+* @param [in,out]   method  The method to look for.
 *
-* @return	@a tsk_true if succeed and @a tsk_false otherwise.
+* @return   @a tsk_true if succeed and @a tsk_false otherwise.
 */
 tsk_bool_t tsip_message_allowed(const tsip_message_t *self, const char* method)
 {
@@ -495,16 +495,16 @@ tsip_request_t *tsip_request_new(const char* method, const tsip_uri_t *request_u
     tsip_request_t* request;
 
     /* RFC 3261 8.1.1 Generating the Request
-    	A valid SIP request formulated by a UAC MUST, at a minimum, contain
-    	the following header fields: To, From, CSeq, Call-ID, Max-Forwards,
-    	and Via; all of these header fields are mandatory in all SIP
-    	requests.  These six header fields are the fundamental building
-    	blocks of a SIP message, as they jointly provide for most of the
-    	critical message routing services including the addressing of
-    	messages, the routing of responses, limiting message propagation,
-    	ordering of messages, and the unique identification of transactions.
-    	These header fields are in addition to the mandatory request line,
-    	which contains the method, Request-URI, and SIP version.
+        A valid SIP request formulated by a UAC MUST, at a minimum, contain
+        the following header fields: To, From, CSeq, Call-ID, Max-Forwards,
+        and Via; all of these header fields are mandatory in all SIP
+        requests.  These six header fields are the fundamental building
+        blocks of a SIP message, as they jointly provide for most of the
+        critical message routing services including the addressing of
+        messages, the routing of responses, limiting message propagation,
+        ordering of messages, and the unique identification of transactions.
+        These header fields are in addition to the mandatory request line,
+        which contains the method, Request-URI, and SIP version.
     */
 
     if((request = tsip_request_create(method, request_uri))) {
@@ -550,7 +550,7 @@ tsip_response_t *tsip_response_new(short status_code, const char* reason_phrase,
 
 
 //========================================================
-//	SIP message object definition
+//  SIP message object definition
 //
 
 /**@ingroup tsip_message_group

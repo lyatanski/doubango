@@ -29,40 +29,40 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define TXCAP_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define TXCAP_UNDER_WINDOWS_RT		1
-#	endif
+#   define TXCAP_UNDER_WINDOWS  1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define TXCAP_UNDER_WINDOWS_RT       1
+#   endif
 #endif
 
 #if (TXCAP_UNDER_WINDOWS || defined(__SYMBIAN32__))
-# 	define TINYXCAP_API		__declspec(dllexport)
-# 	define TINYXCAP_GEXTERN extern __declspec(dllexport)
+#   define TINYXCAP_API     __declspec(dllexport)
+#   define TINYXCAP_GEXTERN extern __declspec(dllexport)
 #else
-#	define TINYXCAP_API
-#	define TINYXCAP_GEXTERN	extern
+#   define TINYXCAP_API
+#   define TINYXCAP_GEXTERN extern
 #endif
 
 /* Guards against C++ name mangling
 */
 #ifdef __cplusplus
-#	define TXCAP_BEGIN_DECLS extern "C" {
-#	define TXCAP_END_DECLS }
+#   define TXCAP_BEGIN_DECLS extern "C" {
+#   define TXCAP_END_DECLS }
 #else
-#	define TXCAP_BEGIN_DECLS
-#	define TXCAP_END_DECLS
+#   define TXCAP_BEGIN_DECLS
+#   define TXCAP_END_DECLS
 #endif
 
 /* Disable some well-known warnings
 */
 #ifdef _MSC_VER
-#	define _CRT_SECURE_NO_WARNINGS
+#   define _CRT_SECURE_NO_WARNINGS
 #endif
 
 /* Detecting C99 compilers
  */
 #if (__STDC_VERSION__ == 199901L) && !defined(__C99__)
-#	define __C99__
+#   define __C99__
 #endif
 
 #include <stdint.h>

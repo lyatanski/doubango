@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 55 "./ragel/tmsrp_parser_header_Min-Expires.rl" */
@@ -250,7 +250,7 @@ _match:
                 TSK_PARSER_SET_INTEGER_EX(hdr_Min_Expires->value, int64_t, atoi64)
             }
             break;
-            /* #line 247 "./src/headers/tmsrp_header_Min-Expires.c" */
+                /* #line 247 "./src/headers/tmsrp_header_Min-Expires.c" */
             }
         }
 
@@ -274,7 +274,7 @@ _test_eof: {
                     TSK_PARSER_SET_INTEGER_EX(hdr_Min_Expires->value, int64_t, atoi64)
                 }
                 break;
-                /* #line 269 "./src/headers/tmsrp_header_Min-Expires.c" */
+                    /* #line 269 "./src/headers/tmsrp_header_Min-Expires.c" */
                 }
             }
         }
@@ -305,7 +305,7 @@ _out: {
 
 
 //========================================================
-//	Min-Expires header object definition
+//  Min-Expires header object definition
 //
 
 static tsk_object_t* tmsrp_header_Min_Expires_ctor(tsk_object_t *self, va_list * app)

@@ -29,8 +29,8 @@
 #include <Rpc.h>
 
 #if defined(_MSC_VER)
-#	pragma comment(lib, "Fwpuclnt.lib")
-#	pragma comment(lib, "Rpcrt4.lib")
+#   pragma comment(lib, "Fwpuclnt.lib")
+#   pragma comment(lib, "Rpcrt4.lib")
 #endif
 
 typedef FWP_BYTE_BLOB* PFWP_BYTE_BLOB;
@@ -41,18 +41,18 @@ static const IPSEC_CIPHER_TRANSFORM_ID0 IPSEC_CIPHER_TRANSFORM_ID_NULL_NULL= {
     (IPSEC_CIPHER_TYPE)NULL
 };
 
-#define TINYIPSEC_FILTER_NAME					TEXT("Doubango Telecom tinyIPSec (Windows Vista)")
-#define TINYIPSEC_PROVIDER_KEY					NULL
+#define TINYIPSEC_FILTER_NAME                   TEXT("Doubango Telecom tinyIPSec (Windows Vista)")
+#define TINYIPSEC_PROVIDER_KEY                  NULL
 
-#define TINYIPSEC_SA_NUM_ENTRIES_TO_REQUEST		INT_MAX
-#define TINYIPSEC_SA_MAX_LIFETIME				172799
+#define TINYIPSEC_SA_NUM_ENTRIES_TO_REQUEST     INT_MAX
+#define TINYIPSEC_SA_MAX_LIFETIME               172799
 
 #define TINYIPSEC_VISTA_GET_ALGO(algo) (algo ==  tipsec_alg_hmac_md5_96) ? IPSEC_AUTH_TRANSFORM_ID_HMAC_MD5_96 : IPSEC_AUTH_TRANSFORM_ID_HMAC_SHA_1_96
-#define TINYIPSEC_VISTA_GET_EALGO(ealg)	 (ealg == tipsec_ealg_des_ede3_cbc) ? IPSEC_CIPHER_TRANSFORM_ID_CBC_3DES : ( (ealg == tipsec_ealg_aes) ? IPSEC_CIPHER_TRANSFORM_ID_AES_128 : IPSEC_CIPHER_TRANSFORM_ID_NULL_NULL )
-#define TINYIPSEC_VISTA_GET_MODE(mode)	 (mode == tipsec_mode_tun) ? IPSEC_TRAFFIC_TYPE_TUNNEL : IPSEC_TRAFFIC_TYPE_TRANSPORT
-#define TINYIPSEC_VISTA_GET_IPPROTO(ipproto)	 (ipproto == tipsec_ipproto_tcp) ? IPPROTO_TCP : ((ipproto == tipsec_ipproto_icmp) ? IPPROTO_ICMP : IPPROTO_UDP)
-#define TINYIPSEC_VISTA_GET_IPVER(ipv6)	 (ipv6) ? FWP_IP_VERSION_V6 : FWP_IP_VERSION_V4
-#define TINYIPSEC_VISTA_GET_PROTO(proto, ealg)	 (proto == tipsec_proto_ah) ? IPSEC_TRANSFORM_AH : ( (proto == tipsec_proto_esp) ? (ealg == tipsec_ealg_null ? IPSEC_TRANSFORM_ESP_AUTH : IPSEC_TRANSFORM_ESP_AUTH_AND_CIPHER) : IPSEC_TRANSFORM_ESP_AUTH_AND_CIPHER );
+#define TINYIPSEC_VISTA_GET_EALGO(ealg)  (ealg == tipsec_ealg_des_ede3_cbc) ? IPSEC_CIPHER_TRANSFORM_ID_CBC_3DES : ( (ealg == tipsec_ealg_aes) ? IPSEC_CIPHER_TRANSFORM_ID_AES_128 : IPSEC_CIPHER_TRANSFORM_ID_NULL_NULL )
+#define TINYIPSEC_VISTA_GET_MODE(mode)   (mode == tipsec_mode_tun) ? IPSEC_TRAFFIC_TYPE_TUNNEL : IPSEC_TRAFFIC_TYPE_TRANSPORT
+#define TINYIPSEC_VISTA_GET_IPPROTO(ipproto)     (ipproto == tipsec_ipproto_tcp) ? IPPROTO_TCP : ((ipproto == tipsec_ipproto_icmp) ? IPPROTO_ICMP : IPPROTO_UDP)
+#define TINYIPSEC_VISTA_GET_IPVER(ipv6)  (ipv6) ? FWP_IP_VERSION_V6 : FWP_IP_VERSION_V4
+#define TINYIPSEC_VISTA_GET_PROTO(proto, ealg)   (proto == tipsec_proto_ah) ? IPSEC_TRANSFORM_AH : ( (proto == tipsec_proto_esp) ? (ealg == tipsec_ealg_null ? IPSEC_TRANSFORM_ESP_AUTH : IPSEC_TRANSFORM_ESP_AUTH_AND_CIPHER) : IPSEC_TRANSFORM_ESP_AUTH_AND_CIPHER );
 
 typedef struct plugin_win_ipsec_vista_ctx_s {
     TIPSEC_DECLARE_CTX;
@@ -77,7 +77,7 @@ static int _vista_flushAll(const plugin_win_ipsec_vista_ctx_t* p_ctx);
 static void _vista_deleteSaContextAndFilters(__in HANDLE engine, __in UINT64 inFilterId, __in UINT64 outFilterId, __in UINT64 saId);
 
 //
-//	Plugin implementation
+//  Plugin implementation
 //
 
 static tipsec_error_t _plugin_win_ipsec_vista_ctx_init(tipsec_ctx_t* _p_ctx)
@@ -246,12 +246,12 @@ static tipsec_error_t _plugin_win_ipsec_vista_ctx_start(tipsec_ctx_t* _p_ctx)
     int ret;
 
     /* VERY IMPORTANT: The SA context functions must be called in a specific order:
-    		(http://msdn.microsoft.com/en-us/library/bb540652(VS.85).aspx).
+            (http://msdn.microsoft.com/en-us/library/bb540652(VS.85).aspx).
 
-    	IPsecSaContextCreate0
-    	IPsecSaContextGetSpi0
-    	IPsecSaContextAddInbound0
-    	IPsecSaContextAddOutbound0
+        IPsecSaContextCreate0
+        IPsecSaContextGetSpi0
+        IPsecSaContextAddInbound0
+        IPsecSaContextAddOutbound0
     */
 
     /* US <- PC */
@@ -301,7 +301,7 @@ static tipsec_error_t _plugin_win_ipsec_vista_ctx_stop(tipsec_ctx_t* _p_ctx)
 }
 
 //
-//	Private functions
+//  Private functions
 //
 static int _vista_createLocalSA(__in const plugin_win_ipsec_vista_ctx_t* p_ctx, __in tipsec_port_t local_port, __out tipsec_spi_t *spi, __out UINT64 *saId, __out UINT64 *filterId_in, __out UINT64 *filterId_out)
 {
@@ -458,7 +458,7 @@ static int _vista_boundSA(__in const plugin_win_ipsec_vista_ctx_t* p_ctx, __in U
     sa.saTransformType = TINYIPSEC_VISTA_GET_PROTO(p_ctx->pc_base->protocol, p_ctx->pc_base->ealg);
 
     //
-    //	Keys padding
+    //  Keys padding
     //
     if (p_ctx->pc_base->alg == tipsec_alg_hmac_sha_1_96) {
         if (ik->size < TIPSEC_IK_LEN) {
@@ -478,7 +478,7 @@ static int _vista_boundSA(__in const plugin_win_ipsec_vista_ctx_t* p_ctx, __in U
     }
 
     //
-    //	In all case create Authentication info
+    //  In all case create Authentication info
     //
     memset(&authInfo, 0, sizeof(authInfo));
     authInfo.authTransform.authTransformId = TINYIPSEC_VISTA_GET_ALGO(p_ctx->pc_base->alg);
@@ -640,7 +640,7 @@ static void _vista_deleteSaContextAndFilters(__in HANDLE engine, __in UINT64 inF
 }
 
 //
-//	Windows Vista IPSec Plugin definition
+//  Windows Vista IPSec Plugin definition
 //
 
 /* constructor */

@@ -22,7 +22,7 @@
 
 /*=============================================================================
 
-									   |INVITE
+                                       |INVITE
                                        |pass INV to TU
                     INVITE             V send 100 if TU won't in 200ms
                     send response+------------+
@@ -84,14 +84,14 @@
 
 #include "tsk_debug.h"
 
-#define DEBUG_STATE_MACHINE						1
+#define DEBUG_STATE_MACHINE                     1
 
-#define TRANSAC_IST_TIMER_SCHEDULE(TX)			TRANSAC_TIMER_SCHEDULE(ist, TX)
+#define TRANSAC_IST_TIMER_SCHEDULE(TX)          TRANSAC_TIMER_SCHEDULE(ist, TX)
 #define TRANSAC_IST_SET_LAST_RESPONSE(self, response) \
-	if(response){ \
-		TSK_OBJECT_SAFE_FREE(self->lastResponse); \
-		self->lastResponse = tsk_object_ref((void*)response); \
-	}
+    if(response){ \
+        TSK_OBJECT_SAFE_FREE(self->lastResponse); \
+        self->lastResponse = tsk_object_ref((void*)response); \
+    }
 
 /* ======================== internal functions ======================== */
 static int tsip_transac_ist_init(tsip_transac_ist_t *self);
@@ -308,8 +308,8 @@ int tsip_transac_ist_init(tsip_transac_ist_t *self)
     TSIP_TRANSAC(self)->callback = TSIP_TRANSAC_EVENT_CALLBACK_F(tsip_transac_ist_event_callback);
 
     /* Set Timers
-    	* RFC 3261 17.2.1: For unreliable transports, timer G is set to fire in T1 seconds, and is not set to fire for
-    	reliable transports.
+        * RFC 3261 17.2.1: For unreliable transports, timer G is set to fire in T1 seconds, and is not set to fire for
+        reliable transports.
     */
     self->timerH.timeout = TSIP_TIMER_GET(H);
     self->timerG.timeout = TSIP_TIMER_GET(G);
@@ -354,10 +354,10 @@ int tsip_transac_ist_start(tsip_transac_ist_t *self, const tsip_request_t* reque
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 
-/*	Started --> (recv INVITE) --> Proceeding
+/*  Started --> (recv INVITE) --> Proceeding
 */
 int tsip_transac_ist_Started_2_Proceeding_X_INVITE(va_list *app)
 {
@@ -372,15 +372,15 @@ int tsip_transac_ist_Started_2_Proceeding_X_INVITE(va_list *app)
     /* Set Timers */
     self->timerI.timeout =  TSIP_TRANSAC(self)->reliable ? 0 : TSIP_TIMER_GET(I);
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	When a server transaction is constructed for a request, it enters the
-    	"Proceeding" state.  The server transaction MUST generate a 100
-    	(Trying) response unless it knows that the TU will generate a
-    	provisional or final response within 200 ms, in which case it MAY
-    	generate a 100 (Trying) response.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        When a server transaction is constructed for a request, it enters the
+        "Proceeding" state.  The server transaction MUST generate a 100
+        (Trying) response unless it knows that the TU will generate a
+        provisional or final response within 200 ms, in which case it MAY
+        generate a 100 (Trying) response.
 
-    	RFC 3262 - 3. UAS Behavior
-    	A UAS MUST NOT attempt to send a 100 (Trying) response reliably.
+        RFC 3262 - 3. UAS Behavior
+        A UAS MUST NOT attempt to send a 100 (Trying) response reliably.
     */
     if(request) {
         tsip_response_t* response;
@@ -396,7 +396,7 @@ int tsip_transac_ist_Started_2_Proceeding_X_INVITE(va_list *app)
     return ret;
 }
 
-/*	Proceeding --> (recv INVITE) --> Proceeding
+/*  Proceeding --> (recv INVITE) --> Proceeding
 */
 int tsip_transac_ist_Proceeding_2_Proceeding_X_INVITE(va_list *app)
 {
@@ -404,10 +404,10 @@ int tsip_transac_ist_Proceeding_2_Proceeding_X_INVITE(va_list *app)
     //const tsip_request_t *request = va_arg(*app, const tsip_request_t *);
     int ret = -1;
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	If a request retransmission is received while in the "Proceeding" state, the most
-    	recent provisional response that was received from the TU MUST be
-    	passed to the transport layer for retransmission.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        If a request retransmission is received while in the "Proceeding" state, the most
+        recent provisional response that was received from the TU MUST be
+        passed to the transport layer for retransmission.
     */
     if(self->lastResponse) {
         ret = tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->lastResponse);
@@ -416,7 +416,7 @@ int tsip_transac_ist_Proceeding_2_Proceeding_X_INVITE(va_list *app)
     return ret;
 }
 
-/*	Proceeding --> (send 1xx) --> Proceeding
+/*  Proceeding --> (send 1xx) --> Proceeding
 */
 int tsip_transac_ist_Proceeding_2_Proceeding_X_1xx(va_list *app)
 {
@@ -433,7 +433,7 @@ int tsip_transac_ist_Proceeding_2_Proceeding_X_1xx(va_list *app)
     return ret;
 }
 
-/*	Proceeding --> (send 300-699) --> Completed
+/*  Proceeding --> (send 300-699) --> Completed
 */
 int tsip_transac_ist_Proceeding_2_Completed_X_300_to_699(va_list *app)
 {
@@ -441,12 +441,12 @@ int tsip_transac_ist_Proceeding_2_Completed_X_300_to_699(va_list *app)
     const tsip_response_t *response = va_arg(*app, const tsip_response_t *);
     int ret;
 
-    /*	RFC 3264 17.2.1 INVITE Server Transaction
-    	While in the "Proceeding" state, if the TU passes a response with
-    	status code from 300 to 699 to the server transaction, the response
-    	MUST be passed to the transport layer for transmission, and the state
-    	machine MUST enter the "Completed" state. For unreliable transports, timer G is set to fire in T1 seconds,
-    	and is not set to fire for reliable transports.
+    /*  RFC 3264 17.2.1 INVITE Server Transaction
+        While in the "Proceeding" state, if the TU passes a response with
+        status code from 300 to 699 to the server transaction, the response
+        MUST be passed to the transport layer for transmission, and the state
+        machine MUST enter the "Completed" state. For unreliable transports, timer G is set to fire in T1 seconds,
+        and is not set to fire for reliable transports.
     */
     if(!TSIP_TRANSAC(self)->reliable) {
         TRANSAC_IST_TIMER_SCHEDULE(G);
@@ -459,15 +459,15 @@ int tsip_transac_ist_Proceeding_2_Completed_X_300_to_699(va_list *app)
     TRANSAC_IST_SET_LAST_RESPONSE(self, response);
 
     /* RFC 3261 - 17.2.1 INVITE Server Transaction
-    	When the "Completed" state is entered, timer H MUST be set to fire in
-    	64*T1 seconds for all transports.
+        When the "Completed" state is entered, timer H MUST be set to fire in
+        64*T1 seconds for all transports.
     */
     TRANSAC_IST_TIMER_SCHEDULE(H);
 
     return ret;
 }
 
-/*	Proceeding --> (send 2xx) --> Accepted
+/*  Proceeding --> (send 2xx) --> Accepted
 */
 int tsip_transac_ist_Proceeding_2_Accepted_X_2xx(va_list *app)
 {
@@ -475,13 +475,13 @@ int tsip_transac_ist_Proceeding_2_Accepted_X_2xx(va_list *app)
     const tsip_response_t *response = va_arg(*app, const tsip_response_t *);
     int ret = -1;
 
-    /*	draft-sparks-sip-invfix-03 - 8.5. Pages 134 to 135
-    	If, while in the "Proceeding" state, the TU passes a 2xx response
-    	to the server transaction, the server transaction MUST pass this
-    	response to the transport layer for transmission.  It is not
-    	retransmitted by the server transaction; retransmissions of 2xx
-    	responses are handled by the TU.  The server transaction MUST then
-    	transition to the "Accepted" state.
+    /*  draft-sparks-sip-invfix-03 - 8.5. Pages 134 to 135
+        If, while in the "Proceeding" state, the TU passes a 2xx response
+        to the server transaction, the server transaction MUST pass this
+        response to the transport layer for transmission.  It is not
+        retransmitted by the server transaction; retransmissions of 2xx
+        responses are handled by the TU.  The server transaction MUST then
+        transition to the "Accepted" state.
     */
     ret = tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, TSIP_MESSAGE(response));
 
@@ -489,29 +489,29 @@ int tsip_transac_ist_Proceeding_2_Accepted_X_2xx(va_list *app)
     TRANSAC_IST_SET_LAST_RESPONSE(self, response);
 
     /* RFC 3261 - 13.3.1.4 The INVITE is Accepted
-    	Since 2xx is retransmitted end-to-end, there may be hops between
-    	UAS and UAC that are UDP.  To ensure reliable delivery across
-    	these hops, the response is retransmitted periodically even if the
-    	transport at the UAS is reliable.
+        Since 2xx is retransmitted end-to-end, there may be hops between
+        UAS and UAC that are UDP.  To ensure reliable delivery across
+        these hops, the response is retransmitted periodically even if the
+        transport at the UAS is reliable.
     */
     TRANSAC_IST_TIMER_SCHEDULE(X);
     self->timerX.timeout <<= 1;
 
-    /*	draft-sparks-sip-invfix-03 - 8.7. Page 137
-    	When the INVITE server transaction enters the "Accepted" state,
-    	Timer L MUST be set to fire in 64*T1 for all transports.  This
-    	value matches both Timer B in the next upstream client state
-    	machine (the amount of time the previous hop will wait for a
-    	response when no provisionals have been sent) and the amount of
-    	time this (or any downstream) UAS core might be retransmitting the
-    	2xx while waiting for an ACK.
+    /*  draft-sparks-sip-invfix-03 - 8.7. Page 137
+        When the INVITE server transaction enters the "Accepted" state,
+        Timer L MUST be set to fire in 64*T1 for all transports.  This
+        value matches both Timer B in the next upstream client state
+        machine (the amount of time the previous hop will wait for a
+        response when no provisionals have been sent) and the amount of
+        time this (or any downstream) UAS core might be retransmitting the
+        2xx while waiting for an ACK.
     */
     TRANSAC_IST_TIMER_SCHEDULE(L);
 
     return ret;
 }
 
-/*	Completed --> (recv INVITE) --> Completed
+/*  Completed --> (recv INVITE) --> Completed
 */
 int tsip_transac_ist_Completed_2_Completed_INVITE(va_list *app)
 {
@@ -519,10 +519,10 @@ int tsip_transac_ist_Completed_2_Completed_INVITE(va_list *app)
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
     int ret = -1;
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	Furthermore, while in the "Completed" state, if a request retransmission is
-    	received, the server SHOULD pass the response to the transport for
-    	retransmission.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        Furthermore, while in the "Completed" state, if a request retransmission is
+        received, the server SHOULD pass the response to the transport for
+        retransmission.
     */
     if(self->lastResponse) {
         ret = tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->lastResponse);
@@ -531,7 +531,7 @@ int tsip_transac_ist_Completed_2_Completed_INVITE(va_list *app)
     return ret;
 }
 
-/*	Completed --> (timerG) --> Completed
+/*  Completed --> (timerG) --> Completed
 */
 int tsip_transac_ist_Completed_2_Completed_timerG(va_list *app)
 {
@@ -539,12 +539,12 @@ int tsip_transac_ist_Completed_2_Completed_timerG(va_list *app)
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
     int ret = -1;
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	If timer G fires, the response is passed to the transport layer once
-    	more for retransmission, and timer G is set to fire in MIN(2*T1, T2) seconds.
-    	From then on, when timer G fires, the response is passed to the transport again for
-    	transmission, and timer G is reset with a value that doubles, unless
-    	that value exceeds T2, in which case it is reset with the value of T2.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        If timer G fires, the response is passed to the transport layer once
+        more for retransmission, and timer G is set to fire in MIN(2*T1, T2) seconds.
+        From then on, when timer G fires, the response is passed to the transport again for
+        transmission, and timer G is reset with a value that doubles, unless
+        that value exceeds T2, in which case it is reset with the value of T2.
     */
     if(self->lastResponse) {
         ret = tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->lastResponse);
@@ -555,43 +555,43 @@ int tsip_transac_ist_Completed_2_Completed_timerG(va_list *app)
     return ret;
 }
 
-/*	Completed --> (timerH) --> Terminated
+/*  Completed --> (timerH) --> Terminated
 */
 int tsip_transac_ist_Completed_2_Terminated_timerH(va_list *app)
 {
     tsip_transac_ist_t *self = va_arg(*app, tsip_transac_ist_t *);
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	If timer H fires while in the "Completed" state, it implies that the
-    	ACK was never received.  In this case, the server transaction MUST
-    	transition to the "Terminated" state, and MUST indicate to the TU
-    	that a transaction failure has occurred.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        If timer H fires while in the "Completed" state, it implies that the
+        ACK was never received.  In this case, the server transaction MUST
+        transition to the "Terminated" state, and MUST indicate to the TU
+        that a transaction failure has occurred.
     */
     return tsip_transac_deliver(TSIP_TRANSAC(self), tsip_dialog_transport_error, tsk_null);
 }
 
-/*	Completed --> (recv ACK) --> Confirmed
+/*  Completed --> (recv ACK) --> Confirmed
 */
 int tsip_transac_ist_Completed_2_Confirmed_ACK(va_list *app)
 {
     tsip_transac_ist_t *self = va_arg(*app, tsip_transac_ist_t *);
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	If an ACK is received while the server transaction is in the
-    	"Completed" state, the server transaction MUST transition to the
-    	"Confirmed" state.  As Timer G is ignored in this state, any
-    	retransmissions of the response will cease
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        If an ACK is received while the server transaction is in the
+        "Completed" state, the server transaction MUST transition to the
+        "Confirmed" state.  As Timer G is ignored in this state, any
+        retransmissions of the response will cease
     */
     TRANSAC_TIMER_CANCEL(G);/* To avoid warnings from FSM manager. */
 
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	The purpose of the "Confirmed" state is to absorb any additional ACK
-    	messages that arrive, triggered from retransmissions of the final
-    	response.  When this state is entered, timer I is set to fire in T4
-    	seconds for unreliable transports, and zero seconds for reliable
-    	transports.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        The purpose of the "Confirmed" state is to absorb any additional ACK
+        messages that arrive, triggered from retransmissions of the final
+        response.  When this state is entered, timer I is set to fire in T4
+        seconds for unreliable transports, and zero seconds for reliable
+        transports.
     */
     TRANSAC_IST_TIMER_SCHEDULE(I); /* Has the right value (zero of reliable and ...) */
 
@@ -599,23 +599,23 @@ int tsip_transac_ist_Completed_2_Confirmed_ACK(va_list *app)
     return 0;
 }
 
-/*	Accepted --> (recv INVITE) --> Accepted
+/*  Accepted --> (recv INVITE) --> Accepted
 */
 int tsip_transac_ist_Accepted_2_Accepted_INVITE(va_list *app)
 {
     tsip_transac_ist_t *self = va_arg(*app, tsip_transac_ist_t *);
 
-    /*	draft-sparks-sip-invfix-03 - 8.7. Page 137
-    	The purpose of the "Accepted" state is to absorb retransmissions
-    	of an accepted INVITE request.  Any such retransmissions are
-    	absorbed entirely within the server transaction.  They are not
-    	passed up to the TU since any downstream UAS cores that accepted
-    	the request have taken responsibility for reliability and will
-    	already retransmit their 2xx responses if neccessary.
+    /*  draft-sparks-sip-invfix-03 - 8.7. Page 137
+        The purpose of the "Accepted" state is to absorb retransmissions
+        of an accepted INVITE request.  Any such retransmissions are
+        absorbed entirely within the server transaction.  They are not
+        passed up to the TU since any downstream UAS cores that accepted
+        the request have taken responsibility for reliability and will
+        already retransmit their 2xx responses if neccessary.
     */
 
-    /*	Do not pass to the TU (see above)
-    	VERY IMPORTANT: INVITE dialog is responsible for reliability of the 2xx response.
+    /*  Do not pass to the TU (see above)
+        VERY IMPORTANT: INVITE dialog is responsible for reliability of the 2xx response.
     */
     if(self->lastResponse) {
         return tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->lastResponse);
@@ -623,17 +623,17 @@ int tsip_transac_ist_Accepted_2_Accepted_INVITE(va_list *app)
     return 0;
 }
 
-/*	Accepted --> (send 2xx) --> Accepted
+/*  Accepted --> (send 2xx) --> Accepted
 */
 int tsip_transac_ist_Accepted_2_Accepted_2xx(va_list *app)
 {
     tsip_transac_ist_t *self = va_arg(*app, tsip_transac_ist_t *);
     const tsip_response_t *response = va_arg(*app, const tsip_response_t *);
     int ret;
-    /*	draft-sparks-sip-invfix-03 - 8.7. Page 137
-    	While in the "Accepted" state, if the TU passes a 2xx response,
-    	the server transaction MUST pass the response to the transport
-    	layer for transmission.
+    /*  draft-sparks-sip-invfix-03 - 8.7. Page 137
+        While in the "Accepted" state, if the TU passes a 2xx response,
+        the server transaction MUST pass the response to the transport
+        layer for transmission.
     */
     ret = tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, TSIP_MESSAGE(response));
 
@@ -643,7 +643,7 @@ int tsip_transac_ist_Accepted_2_Accepted_2xx(va_list *app)
     return ret;
 }
 
-/*	Accepted --> (timer X) --> Accepted
+/*  Accepted --> (timer X) --> Accepted
 * Doubango specific
 */
 static int tsip_transac_ist_Accepted_2_Accepted_timerX(va_list *app)
@@ -658,7 +658,7 @@ static int tsip_transac_ist_Accepted_2_Accepted_timerX(va_list *app)
     return 0;
 }
 
-/*	Accepted --> (Recv ACK) --> Accepted
+/*  Accepted --> (Recv ACK) --> Accepted
 * Doubango specific
 */
 int tsip_transac_ist_Accepted_2_Accepted_iACK(va_list *app)
@@ -670,17 +670,17 @@ int tsip_transac_ist_Accepted_2_Accepted_iACK(va_list *app)
     return tsip_transac_deliver(TSIP_TRANSAC(self), tsip_dialog_i_msg, request);
 }
 
-/*	Accepted --> (timerL) --> Terminated
+/*  Accepted --> (timerL) --> Terminated
 */
 static int tsip_transac_ist_Accepted_2_Terminated_timerL(va_list *app)
 {
     tsip_transac_ist_t *self = va_arg(*app, tsip_transac_ist_t *);
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	draft-sparks-sip-invfix-03 - 8.7. Page 137
-    	If Timer L fires while the INVITE server transaction is in the "Accepted" state, the transaction
-    	MUST transition to the "Terminated" state. Once the transaction is in the "Terminated" state, it MUST be
-    	destroyed immediately.
+    /*  draft-sparks-sip-invfix-03 - 8.7. Page 137
+        If Timer L fires while the INVITE server transaction is in the "Accepted" state, the transaction
+        MUST transition to the "Terminated" state. Once the transaction is in the "Terminated" state, it MUST be
+        destroyed immediately.
     */
     if(!self->acked) {
         TSK_DEBUG_ERROR("ACK not received");
@@ -689,17 +689,17 @@ static int tsip_transac_ist_Accepted_2_Terminated_timerL(va_list *app)
     return 0;
 }
 
-/*	Confirmed --> (timerI) --> Terminated
+/*  Confirmed --> (timerI) --> Terminated
 */
 static int tsip_transac_ist_Confirmed_2_Terminated_timerI(va_list *app)
 {
-    /*	RFC 3261 - 17.2.1 INVITE Server Transaction
-    	Once timer I fires, the server MUST transition to the
-    	"Terminated" state.
+    /*  RFC 3261 - 17.2.1 INVITE Server Transaction
+        Once timer I fires, the server MUST transition to the
+        "Terminated" state.
 
-    	Once the transaction is in the "Terminated" state, it MUST be
-    	destroyed immediately.  As with client transactions, this is needed
-    	to ensure reliability of the 2xx responses to INVITE.
+        Once the transaction is in the "Terminated" state, it MUST be
+        destroyed immediately.  As with client transactions, this is needed
+        to ensure reliability of the 2xx responses to INVITE.
     */
     return 0;
 }
@@ -737,7 +737,7 @@ static int tsip_transac_ist_Any_2_Terminated_X_cancel(va_list *app)
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -765,7 +765,7 @@ static int tsip_transac_ist_OnTerminated(tsip_transac_ist_t *self)
 
 
 //========================================================
-//	IST object definition
+//  IST object definition
 //
 static tsk_object_t* tsip_transac_ist_ctor(tsk_object_t * self, va_list * app)
 {

@@ -33,7 +33,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 66 "./ragel/tsdp_parser_header_C.rl" */
@@ -259,7 +259,7 @@ _match:
                 TSK_PARSER_SET_STRING(hdr_C->addr);
             }
             break;
-            /* #line 256 "./src/headers/tsdp_header_C.c" */
+                /* #line 256 "./src/headers/tsdp_header_C.c" */
             }
         }
 
@@ -289,7 +289,7 @@ _test_eof: {
                     TSK_PARSER_SET_STRING(hdr_C->addr);
                 }
                 break;
-                /* #line 284 "./src/headers/tsdp_header_C.c" */
+                    /* #line 284 "./src/headers/tsdp_header_C.c" */
                 }
             }
         }
@@ -320,7 +320,7 @@ _out: {
 
 
 //========================================================
-//	E header object definition
+//  E header object definition
 //
 
 static tsk_object_t* tsdp_header_C_ctor(tsk_object_t *self, va_list * app)

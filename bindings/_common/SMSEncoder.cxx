@@ -323,8 +323,8 @@ SMSData* SMSEncoder::decode(const void* data, unsigned size, bool MobOrig)
                 }
                 /* IMPORTANT: to not uncomment
                 else if(TSK_OBJECT_DEF(tpdu) == tsms_tpdu_submit_def_t){
-                	tsms_tpdu_submit_t* tpdu_submit = (tsms_tpdu_submit_t*)tpdu;
-                	decodedData->setDA(tpdu_submit->da ? tpdu_submit->da->digits : tsk_null);
+                    tsms_tpdu_submit_t* tpdu_submit = (tsms_tpdu_submit_t*)tpdu;
+                    decodedData->setDA(tpdu_submit->da ? tpdu_submit->da->digits : tsk_null);
                 }*/
                 TSK_FREE(ascii);
             }

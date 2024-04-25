@@ -35,7 +35,7 @@
 #include "tsk_memory.h"
 #include "tsk_debug.h"
 
-#define TDAV_GSM_FRAME_SIZE			33
+#define TDAV_GSM_FRAME_SIZE         33
 
 /* ============ GSM Plugin interface ================= */
 
@@ -136,7 +136,7 @@ tsk_bool_t tdav_codec_gsm_sdp_att_match(const tmedia_codec_t* codec, const char*
 
 
 //
-//	GSM Plugin definition
+//  GSM Plugin definition
 //
 
 /* constructor */

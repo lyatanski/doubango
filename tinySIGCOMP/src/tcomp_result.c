@@ -177,7 +177,7 @@ uint8_t tcomp_result_getTempStatesToFreeSize(const tcomp_result_t *result)
 
 
 //========================================================
-//	SigComp result object definition
+//  SigComp result object definition
 //
 
 static tsk_object_t* tcomp_result_ctor(tsk_object_t *self, va_list * app)
@@ -231,7 +231,7 @@ const tsk_object_def_t *tcomp_result_def_t = &tcomp_result_def_s;
 
 
 //========================================================
-//	SigComp temporary state object definition
+//  SigComp temporary state object definition
 //
 
 static tsk_object_t* tcomp_tempstate_to_free_ctor(tsk_object_t* self, va_list * app)

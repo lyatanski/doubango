@@ -130,7 +130,7 @@ int tsk_fsm_act(tsk_fsm_t* self, tsk_fsm_action_id action, const void* cond_data
     tsk_bool_t found = tsk_false;
     tsk_bool_t terminates = tsk_false; /* thread-safeness -> DO NOT REMOVE THIS VARIABLE */
     int ret_exec = 0; /* success */
-	tsk_fsm_entry_t* entry;
+    tsk_fsm_entry_t* entry;
 
     if(!self) {
         TSK_DEBUG_ERROR("Invalid parameter");
@@ -146,9 +146,9 @@ int tsk_fsm_act(tsk_fsm_t* self, tsk_fsm_action_id action, const void* cond_data
 
     va_start(ap, cond_data2);
     tsk_list_foreach(item, self->entries) {
-		if (!item || !item->data) {
-			continue;
-		}
+        if (!item || !item->data) {
+            continue;
+        }
         entry = (tsk_fsm_entry_t*)item->data;
         if(((entry->from != tsk_fsm_state_any) && (entry->from != tsk_fsm_state_current)) && (entry->from != self->current)) {
             continue;
@@ -234,7 +234,7 @@ tsk_bool_t tsk_fsm_terminated(tsk_fsm_t* self)
 
 
 //=================================================================================================
-//	fsm object definition
+//  fsm object definition
 //
 static tsk_object_t* tsk_fsm_ctor(tsk_object_t * self, va_list * app)
 {
@@ -260,11 +260,11 @@ static tsk_object_t* tsk_fsm_dtor(tsk_object_t * self)
     if(fsm) {
         /* If not in the terminal state ==>do it */
         /*if(fsm->current != fsm->term){
-        	tsk_safeobj_lock(fsm);
-        	if(fsm->callback_term){
-        		fsm->callback_term(fsm->callback_data);
-        	}
-        	tsk_safeobj_unlock(fsm);
+            tsk_safeobj_lock(fsm);
+            if(fsm->callback_term){
+                fsm->callback_term(fsm->callback_data);
+            }
+            tsk_safeobj_unlock(fsm);
         }*/
         tsk_safeobj_deinit(fsm);
 
@@ -283,7 +283,7 @@ static const tsk_object_def_t tsk_fsm_def_s = {
 const tsk_object_def_t *tsk_fsm_def_t = &tsk_fsm_def_s;
 
 //=================================================================================================
-//	fsm entry object definition
+//  fsm entry object definition
 //
 static tsk_object_t* tsk_fsm_entry_ctor(tsk_object_t * self, va_list * app)
 {

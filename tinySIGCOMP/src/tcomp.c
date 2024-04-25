@@ -117,7 +117,7 @@
 * Compartment Identifier: Used in SIP messages (sigomp-id) and tinySigComp to allocate/deallocate memory associated
 * to a compartment.
 * @code
-* #define COMPARTMENT_ID		"urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a475"
+* #define COMPARTMENT_ID        "urn:uuid:2e5fdc76-00be-4314-8202-1116fa82a475"
 * @endcode
 *
 * Preparation:
@@ -159,11 +159,11 @@
 * );
 *
 * if(outLen){
-* 		// send SigComp message over UDP connection
-* 		sendto(sock, outputBuffer, outLen , 0, (SOCKADDR *)address, sizeof(address));
-* 	}
-* 	else{
-* 		// MUST never happen.
+*       // send SigComp message over UDP connection
+*       sendto(sock, outputBuffer, outLen , 0, (SOCKADDR *)address, sizeof(address));
+*   }
+*   else{
+*       // MUST never happen.
 * }
 * @endcode
 * To safely release all resources:

@@ -66,16 +66,16 @@ extern int tsip_dialog_register_client_init(tsip_dialog_register_t *self);
 extern int tsip_dialog_register_server_init(tsip_dialog_register_t *self);
 
 /**
- * @fn	int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip_dialog_event_type_t type,
- * 		const tsip_message_t *msg)
+ * @fn  int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip_dialog_event_type_t type,
+ *      const tsip_message_t *msg)
  *
- * @brief	Callback function called to alert the dialog for new events from the transaction/transport layers.
+ * @brief   Callback function called to alert the dialog for new events from the transaction/transport layers.
  *
- * @param [in,out]	self	A reference to the dialog.
- * @param	type		The event type.
- * @param [in,out]	msg	The incoming SIP/IMS message.
+ * @param [in,out]  self    A reference to the dialog.
+ * @param   type        The event type.
+ * @param [in,out]  msg The incoming SIP/IMS message.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip_dialog_event_type_t type, const tsip_message_t *msg)
 {
@@ -86,7 +86,7 @@ int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip
         if(msg) {
             if(TSIP_MESSAGE_IS_RESPONSE(msg)) {
                 //
-                //	RESPONSE
+                //  RESPONSE
                 //
                 const tsip_action_t* action = tsip_dialog_keep_action(TSIP_DIALOG(self), msg) ? TSIP_DIALOG(self)->curr_action : tsk_null;
                 if(TSIP_RESPONSE_IS_1XX(msg)) {
@@ -109,7 +109,7 @@ int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip
             }
             else {
                 //
-                //	REQUEST
+                //  REQUEST
                 //
                 if(TSIP_REQUEST_IS_REGISTER(msg)) {
                     ret = tsip_dialog_fsm_act(TSIP_DIALOG(self), _fsm_action_iREGISTER, msg, tsk_null);
@@ -141,10 +141,10 @@ int tsip_dialog_register_event_callback(const tsip_dialog_register_t *self, tsip
 
 /**Timer manager callback.
  *
- * @param self	The owner of the signaled timer.
- * @param	timer_id		The identifier of the signaled timer.
+ * @param self  The owner of the signaled timer.
+ * @param   timer_id        The identifier of the signaled timer.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_register_timer_callback(const tsip_dialog_register_t* self, tsk_timer_id_t timer_id)
 {
@@ -170,7 +170,7 @@ tsip_dialog_register_t* tsip_dialog_register_create(const tsip_ssession_handle_t
 
 /** Initializes the dialog.
  *
- * @param [in,out]	self	The dialog to initialize.
+ * @param [in,out]  self    The dialog to initialize.
 **/
 int tsip_dialog_register_init(tsip_dialog_register_t *self)
 {
@@ -285,7 +285,7 @@ int tsip_dialog_register_Any_2_Terminated_X_Error(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -293,11 +293,11 @@ int tsip_dialog_register_Any_2_Terminated_X_Error(va_list *app)
  *
  * Sends a REGISTER request.
  *
- * @param [in,out]	self	The caller.
+ * @param [in,out]  self    The caller.
  * @param [in] initial Indicates whether it's an initial (new CSeq) REGISTER or not.
  * Initial REGISTER request will creates new IPSec temporary SAs.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_dialog_register_send_REGISTER(tsip_dialog_register_t *self, tsk_bool_t initial)
 {
@@ -314,39 +314,39 @@ int tsip_dialog_register_send_REGISTER(tsip_dialog_register_t *self, tsk_bool_t 
         /* == RCS phase 2
         */
         /*if(TSIP_DIALOG_GET_STACK(self)->enable_gsmarcs){
-        	TSIP_HEADER_ADD_PARAM(request->Contact, "+g.oma.sip-im.large-message", 0);
-        	TSIP_HEADER_ADD_PARAM(request->Contact, "audio", 0);
-        	TSIP_HEADER_ADD_PARAM(request->Contact, "video", 0);
-        	TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.cs-voice", 0);
-        	TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.icsi-ref", TSIP_ICSI_QUOTED_MMTEL_PSVOICE);
+            TSIP_HEADER_ADD_PARAM(request->Contact, "+g.oma.sip-im.large-message", 0);
+            TSIP_HEADER_ADD_PARAM(request->Contact, "audio", 0);
+            TSIP_HEADER_ADD_PARAM(request->Contact, "video", 0);
+            TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.cs-voice", 0);
+            TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.icsi-ref", TSIP_ICSI_QUOTED_MMTEL_PSVOICE);
         }*/
 
         ///* mobility */
         //if(TSIP_DIALOG_GET_STACK(self)->mobility){
-        //	TSIP_HEADER_ADD_PARAM(request->Contact, "mobility", TSIP_DIALOG_GET_STACK(self)->mobility);
+        //  TSIP_HEADER_ADD_PARAM(request->Contact, "mobility", TSIP_DIALOG_GET_STACK(self)->mobility);
         //}
 
         ///* deviceID - FIXME: find reference. */
         //if(TSIP_DIALOG_GET_STACK(self)->device_id){
-        //	TSIP_HEADER_ADD_PARAM(request->Contact, "+deviceID", TSIP_DIALOG_GET_STACK(self)->device_id);
+        //  TSIP_HEADER_ADD_PARAM(request->Contact, "+deviceID", TSIP_DIALOG_GET_STACK(self)->device_id);
         //}
 
         ///* GSMA Image Sharing */
         //if(TSIP_DIALOG_GET_STACK(self)->enable_gsmais){
-        //	TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.app_ref", TSIP_IARI_QUOTED_GSMAIS);
+        //  TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.app_ref", TSIP_IARI_QUOTED_GSMAIS);
         //}
 
         ///* 3GPP TS 24.341 subclause 5.3.2.2 */
         //if(TSIP_DIALOG_GET_STACK(self)->enable_3gppsms){
-        //	TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.smsip", 0);
+        //  TSIP_HEADER_ADD_PARAM(request->Contact, "+g.3gpp.smsip", 0);
         //}
 
         /* 3GPP TS 24.229 - 5.1.1.2 Initial registration */
         if(TSIP_DIALOG(self)->state ==tsip_initial) {
             /*
-            	g) the Supported header field containing the option-tag "path", and
-            	1) if GRUU is supported, the option-tag "gruu"; and
-            	2) if multiple registrations is supported, the option-tag "outbound".
+                g) the Supported header field containing the option-tag "path", and
+                1) if GRUU is supported, the option-tag "gruu"; and
+                2) if multiple registrations is supported, the option-tag "outbound".
             */
             TSIP_MESSAGE_ADD_HEADER(request, TSIP_HEADER_SUPPORTED_VA_ARGS("path"));
             //if(1==2/* gruu*/){
@@ -417,11 +417,11 @@ int tsip_dialog_register_send_RESPONSE(tsip_dialog_register_t *self, const tsip_
 
 
 /**
- * @fn	int tsip_dialog_register_OnTerminated(tsip_dialog_register_t *self)
+ * @fn  int tsip_dialog_register_OnTerminated(tsip_dialog_register_t *self)
  *
- * @brief	Callback function called by the state machine manager to signal that the final state has been reached.
+ * @brief   Callback function called by the state machine manager to signal that the final state has been reached.
  *
- * @param [in,out]	self	The state machine owner.
+ * @param [in,out]  self    The state machine owner.
 **/
 int tsip_dialog_register_OnTerminated(tsip_dialog_register_t *self)
 {
@@ -448,7 +448,7 @@ int tsip_dialog_register_OnTerminated(tsip_dialog_register_t *self)
 
 
 //========================================================
-//	SIP dialog REGISTER object definition
+//  SIP dialog REGISTER object definition
 //
 static tsk_object_t* tsip_dialog_register_ctor(tsk_object_t * self, va_list * app)
 {

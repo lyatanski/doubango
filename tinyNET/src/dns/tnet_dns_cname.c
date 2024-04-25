@@ -43,7 +43,7 @@ tnet_dns_cname_t* tnet_dns_cname_create(const char* name, tnet_dns_qclass_t qcla
 
 
 //=================================================================================================
-//	[[DNS CNAME]] object definition
+//  [[DNS CNAME]] object definition
 //
 static tsk_object_t* tnet_dns_cname_ctor(tsk_object_t * self, va_list * app)
 {

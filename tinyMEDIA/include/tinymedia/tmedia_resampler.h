@@ -33,13 +33,13 @@
 #include "tsk_object.h"
 
 #ifndef TMEDIA_RESAMPLER_QUALITY
-#	define TMEDIA_RESAMPLER_QUALITY 5
+#   define TMEDIA_RESAMPLER_QUALITY 5
 #endif
 
 TMEDIA_BEGIN_DECLS
 
 /** cast any pointer to @ref tmedia_resampler_t* object */
-#define TMEDIA_RESAMPLER(self)		((tmedia_resampler_t*)(self))
+#define TMEDIA_RESAMPLER(self)      ((tmedia_resampler_t*)(self))
 
 /** Base object for all resamplers */
 typedef struct tmedia_resampler_s {

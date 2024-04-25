@@ -223,7 +223,8 @@ public:
     static HWND GetConsoleHwnd(void);
 
     template <class Q>
-    static HRESULT GetTopoNodeObject(IMFTopologyNode *pNode, Q **ppObject) {
+    static HRESULT GetTopoNodeObject(IMFTopologyNode *pNode, Q **ppObject)
+    {
         IUnknown *pUnk = NULL;   // zero output
 
         HRESULT hr = pNode->GetObject(&pUnk);

@@ -23,16 +23,16 @@
 #define TEST_TLS_REMOTE_PORT 4061
 
 #define TLS_TEST_SIP_MESSAGE \
-	"REGISTER sip:micromethod.com SIP/2.0\r\n" \
-	"Via: SIP/2.0/%s %s:%d;rport;branch=z9hG4bK1245420841406%d\r\n" \
-	"From: <sip:mamadou@micromethod.com>;tag=29358\r\n" \
-	"To: <sip:mamadou@micromethod.com>\r\n" \
-	"Call-ID: M-fa53180346f7f55ceb8d8670f9223dbb\r\n" \
-	"CSeq: 201 REGISTER\r\n" \
-	"Max-Forwards: 70\r\n" \
-	"Contact: <sip:mamadou@%s:%d;transport=%s>\r\n" \
-	"Expires: 10\r\n" \
-	"\r\n"
+    "REGISTER sip:micromethod.com SIP/2.0\r\n" \
+    "Via: SIP/2.0/%s %s:%d;rport;branch=z9hG4bK1245420841406%d\r\n" \
+    "From: <sip:mamadou@micromethod.com>;tag=29358\r\n" \
+    "To: <sip:mamadou@micromethod.com>\r\n" \
+    "Call-ID: M-fa53180346f7f55ceb8d8670f9223dbb\r\n" \
+    "CSeq: 201 REGISTER\r\n" \
+    "Max-Forwards: 70\r\n" \
+    "Contact: <sip:mamadou@%s:%d;transport=%s>\r\n" \
+    "Expires: 10\r\n" \
+    "\r\n"
 
 static int tnet_tls_cb(const tnet_transport_event_t* e)
 {

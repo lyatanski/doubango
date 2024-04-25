@@ -49,7 +49,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 74 "./ragel/tsip_parser_header_P_Access_Network_Info.rl" */
@@ -278,7 +278,7 @@ _match:
             {
             }
             break;
-            /* #line 275 "./src/headers/tsip_header_P_Access_Network_Info.c" */
+                /* #line 275 "./src/headers/tsip_header_P_Access_Network_Info.c" */
             }
         }
 
@@ -316,7 +316,7 @@ _out: {
 
 
 //========================================================
-//	P_Access_Network_Info header object definition
+//  P_Access_Network_Info header object definition
 //
 
 static tsk_object_t* tsip_header_P_Access_Network_Info_ctor(tsk_object_t *self, va_list * app)

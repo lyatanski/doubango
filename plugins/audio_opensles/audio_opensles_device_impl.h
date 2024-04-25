@@ -40,10 +40,12 @@ public:
                                      void* audioSamples,
                                      uint32_t& nSamplesOut);
 
-    inline void SetConsumer(const struct audio_consumer_opensles_s* pConsumer) {
+    inline void SetConsumer(const struct audio_consumer_opensles_s* pConsumer)
+    {
         m_pConsumer = pConsumer;
     }
-    inline void SetProducer(const struct audio_producer_opensles_s* pProducer) {
+    inline void SetProducer(const struct audio_producer_opensles_s* pProducer)
+    {
         m_pProducer = pProducer;
     }
 

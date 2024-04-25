@@ -48,10 +48,10 @@
 
 #include <libavcodec/avcodec.h>
 
-#define TDAV_H263_GOP_SIZE_IN_SECONDS		25
-#define RTP_PAYLOAD_SIZE	750
+#define TDAV_H263_GOP_SIZE_IN_SECONDS       25
+#define RTP_PAYLOAD_SIZE    750
 
-#define H263P_HEADER_SIZE		2
+#define H263P_HEADER_SIZE       2
 #define H263_HEADER_MODE_A_SIZE 4
 #define H263_HEADER_MODE_B_SIZE 8
 #define H263_HEADER_MODE_C_SIZE 12
@@ -231,7 +231,7 @@ int tdav_codec_h263_deinit(tdav_codec_h263_t* self)
 /* ============ H.263-1996 Plugin interface ================= */
 
 //
-//	H.263-1996 object definition
+//  H.263-1996 object definition
 //
 static int tdav_codec_h263_open(tmedia_codec_t* self)
 {
@@ -246,12 +246,12 @@ static int tdav_codec_h263_open(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is not opened */
 
-    //	Encoder
+    //  Encoder
     if((ret = tdav_codec_h263_open_encoder(h263))) {
         return ret;
     }
 
-    //	Decoder
+    //  Decoder
     if((ret = tdav_codec_h263_open_decoder(h263))) {
         return ret;
     }
@@ -271,9 +271,9 @@ static int tdav_codec_h263_close(tmedia_codec_t* self)
 
     /* the caller (base class) already checked that the codec is opened */
 
-    //	Encoder
+    //  Encoder
     ret = tdav_codec_h263_close_encoder(h263);
-    //	Decoder
+    //  Decoder
     ret = tdav_codec_h263_close_decoder(h263);
 
     return ret;
@@ -334,17 +334,17 @@ static tsk_size_t tdav_codec_h263_decode(tmedia_codec_t* self, const void* in_da
         return 0;
     }
 
-    /*	RFC 2190
-    	get F and P bits, used to determine the header Mode (A, B or C)
-    	F: 1 bit
-    	The flag bit indicates the mode of the payload header. F=0, mode A;
-    	F=1, mode B or mode C depending on P bit defined below.
-    	P: 1 bit
-    	Optional PB-frames mode as defined by the H.263 [4]. "0" implies
-    	normal I or P frame, "1" PB-frames. When F=1, P also indicates modes:
-    	mode B if P=0, mode C if P=1.
+    /*  RFC 2190
+        get F and P bits, used to determine the header Mode (A, B or C)
+        F: 1 bit
+        The flag bit indicates the mode of the payload header. F=0, mode A;
+        F=1, mode B or mode C depending on P bit defined below.
+        P: 1 bit
+        Optional PB-frames mode as defined by the H.263 [4]. "0" implies
+        normal I or P frame, "1" PB-frames. When F=1, P also indicates modes:
+        mode B if P=0, mode C if P=1.
 
-    	I:  1 bit.
+        I:  1 bit.
        Picture coding type, bit 9 in PTYPE defined by H.263[4], "0" is
        intra-coded, "1" is inter-coded.
     */
@@ -356,40 +356,40 @@ static tsk_size_t tdav_codec_h263_decode(tmedia_codec_t* self, const void* in_da
     ebit = (*pdata & 0x07);
 
     if(F == 0) {
-        /*	MODE A
-        	0                   1                   2                   3
-        	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|F|P|SBIT |EBIT | SRC |I|U|S|A|R      |DBQ| TRB |    TR         |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        /*  MODE A
+            0                   1                   2                   3
+            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |F|P|SBIT |EBIT | SRC |I|U|S|A|R      |DBQ| TRB |    TR         |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         */
         hdr_size = H263_HEADER_MODE_A_SIZE;
         is_idr = (in_size >= 2) && !(pdata[1] & 0x10) /* I==1 */;
     }
     else if(P == 0) { // F=1 and P=0
         /* MODE B
-        	 0                   1                   2                   3
-        	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|F|P|SBIT |EBIT | SRC | QUANT   |  GOBN   |   MBA           |R  |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|I|U|S|A| HMV1        | VMV1        | HMV2        | VMV2        |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+             0                   1                   2                   3
+            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |F|P|SBIT |EBIT | SRC | QUANT   |  GOBN   |   MBA           |R  |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |I|U|S|A| HMV1        | VMV1        | HMV2        | VMV2        |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         */
         hdr_size = H263_HEADER_MODE_B_SIZE;
         is_idr = (in_size >= 5) && !(pdata[4] & 0x80) /* I==1 */;
     }
     else { // F=1 and P=1
         /* MODE C
-        	 0                   1                   2                   3
-        	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|F|P|SBIT |EBIT | SRC | QUANT   |  GOBN   |   MBA           |R  |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|I|U|S|A| HMV1        | VMV1        | HMV2        | VMV2        |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	| RR                                  |DBQ| TRB |    TR         |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+             0                   1                   2                   3
+            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |F|P|SBIT |EBIT | SRC | QUANT   |  GOBN   |   MBA           |R  |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |I|U|S|A| HMV1        | VMV1        | HMV2        | VMV2        |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            | RR                                  |DBQ| TRB |    TR         |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         */
         hdr_size = H263_HEADER_MODE_C_SIZE;
         is_idr = (in_size >= 5) && !(pdata[4] & 0x80) /* I==1 */;
@@ -615,7 +615,7 @@ const tmedia_codec_plugin_def_t *tdav_codec_h263_plugin_def_t = &tdav_codec_h263
 /* ============ H.263-1998 Plugin interface ================= */
 
 //
-//	H.263-1998 object definition
+//  H.263-1998 object definition
 //
 
 static tsk_size_t tdav_codec_h263p_decode(tmedia_codec_t* self, const void* in_data, tsk_size_t in_size, void** out_data, tsk_size_t* out_max_size, const tsk_object_t* proto_hdr)
@@ -638,7 +638,7 @@ static tsk_size_t tdav_codec_h263p_decode(tmedia_codec_t* self, const void* in_d
     }
 
     /*
-    	rfc4629 - 5.1.  General H.263+ Payload Header
+        rfc4629 - 5.1.  General H.263+ Payload Header
 
              0                   1
              0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
@@ -653,39 +653,39 @@ static tsk_size_t tdav_codec_h263p_decode(tmedia_codec_t* self, const void* in_d
 
     if(V) {
         /*
-        	Indicates the presence of an 8-bit field containing information
-        	for Video Redundancy Coding (VRC), which follows immediately after
-        	the initial 16 bits of the payload header, if present.  For syntax
-        	and semantics of that 8-bit VRC field, see Section 5.2.
+            Indicates the presence of an 8-bit field containing information
+            for Video Redundancy Coding (VRC), which follows immediately after
+            the initial 16 bits of the payload header, if present.  For syntax
+            and semantics of that 8-bit VRC field, see Section 5.2.
         */
     }
     if(PLEN) {
         /*
-        	Length, in bytes, of the extra picture header.  If no extra
-        	picture header is attached, PLEN is 0.  If PLEN>0, the extra
-        	picture header is attached immediately following the rest of the
-        	payload header.  Note that the length reflects the omission of the
-        	first two bytes of the picture start code (PSC).  See Section 6.1.
+            Length, in bytes, of the extra picture header.  If no extra
+            picture header is attached, PLEN is 0.  If PLEN>0, the extra
+            picture header is attached immediately following the rest of the
+            payload header.  Note that the length reflects the omission of the
+            first two bytes of the picture start code (PSC).  See Section 6.1.
         */
         hdr_size += PLEN;
         if(PEBIT) {
             /*
-            	Indicates the number of bits that shall be ignored in the last
-            	byte of the picture header.  If PLEN is not zero, the ignored bits
-            	shall be the least significant bits of the byte.  If PLEN is zero,
-            	then PEBIT shall also be zero.
+                Indicates the number of bits that shall be ignored in the last
+                byte of the picture header.  If PLEN is not zero, the ignored bits
+                shall be the least significant bits of the byte.  If PLEN is zero,
+                then PEBIT shall also be zero.
             */
             TSK_DEBUG_WARN("PEBIT ignored");
         }
     }
     if(P) { /* MUST be done after PLEN and PEBIT */
         /*
-        	Indicates the picture start or a picture segment (GOB/Slice) start
-        	or a video sequence end (EOS or EOSBS).  Two bytes of zero bits
-        	then have to be prefixed to the payload of such a packet to
-        	compose a complete picture/GOB/slice/EOS/EOSBS start code.  This
-        	bit allows the omission of the two first bytes of the start codes,
-        	thus improving the compression ratio.
+            Indicates the picture start or a picture segment (GOB/Slice) start
+            or a video sequence end (EOS or EOSBS).  Two bytes of zero bits
+            then have to be prefixed to the payload of such a packet to
+            compose a complete picture/GOB/slice/EOS/EOSBS start code.  This
+            bit allows the omission of the two first bytes of the start codes,
+            thus improving the compression ratio.
         */
         hdr_size -= 2;
         pdata[hdr_size] = 0x00, pdata[hdr_size + 1] = 0x00;
@@ -829,7 +829,7 @@ const tmedia_codec_plugin_def_t *tdav_codec_h263p_plugin_def_t = &tdav_codec_h26
 /* ============ H.263-2000 Plugin interface ================= */
 
 //
-//	H.263-2000 object definition
+//  H.263-2000 object definition
 //
 
 /* constructor */
@@ -906,7 +906,7 @@ int tdav_codec_h263_open_encoder(tdav_codec_h263_t* self)
     self->encoder.context = avcodec_alloc_context();
     avcodec_get_context_defaults(self->encoder.context);
 
-    self->encoder.context->pix_fmt		= PIX_FMT_YUV420P;
+    self->encoder.context->pix_fmt      = PIX_FMT_YUV420P;
     self->encoder.context->time_base.num  = 1;
     self->encoder.context->time_base.den  = TMEDIA_CODEC_VIDEO(self)->out.fps;
     self->encoder.context->width = TMEDIA_CODEC_VIDEO(self)->out.width;
@@ -940,8 +940,8 @@ int tdav_codec_h263_open_encoder(tdav_codec_h263_t* self)
     }
     avcodec_get_frame_defaults(self->encoder.picture);
     //if((ret = avpicture_alloc((AVPicture*)self->encoder.picture, PIX_FMT_YUV420P, self->encoder.context->width, self->encoder.context->height))){
-    //	TSK_DEBUG_ERROR("Failed to allocate encoder picture");
-    //	return ret;
+    //  TSK_DEBUG_ERROR("Failed to allocate encoder picture");
+    //  return ret;
     //}
 
     size = avpicture_get_size(PIX_FMT_YUV420P, self->encoder.context->width, self->encoder.context->height);
@@ -960,30 +960,30 @@ int tdav_codec_h263_open_encoder(tdav_codec_h263_t* self)
     case tdav_codec_h263_1998: {
         // H263 - 1998
 #if defined(CODEC_FLAG_H263P_UMV)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_UMV;		// Annex D+
+        self->encoder.context->flags |= CODEC_FLAG_H263P_UMV;       // Annex D+
 #endif
-        self->encoder.context->flags |= CODEC_FLAG_AC_PRED;			// Annex I and T
-        self->encoder.context->flags |= CODEC_FLAG_LOOP_FILTER;		// Annex J
+        self->encoder.context->flags |= CODEC_FLAG_AC_PRED;         // Annex I and T
+        self->encoder.context->flags |= CODEC_FLAG_LOOP_FILTER;     // Annex J
 #if defined(CODEC_FLAG_H263P_SLICE_STRUCT)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_SLICE_STRUCT;	// Annex K
+        self->encoder.context->flags |= CODEC_FLAG_H263P_SLICE_STRUCT;  // Annex K
 #endif
 #if defined(CODEC_FLAG_H263P_AIV)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_AIV;			// Annex S
+        self->encoder.context->flags |= CODEC_FLAG_H263P_AIV;           // Annex S
 #endif
         break;
     }
     case tdav_codec_h263_2000: {
         // H263 - 2000
 #if defined(CODEC_FLAG_H263P_UMV)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_UMV;		// Annex D+
+        self->encoder.context->flags |= CODEC_FLAG_H263P_UMV;       // Annex D+
 #endif
-        self->encoder.context->flags |= CODEC_FLAG_AC_PRED;			// Annex I and T
-        self->encoder.context->flags |= CODEC_FLAG_LOOP_FILTER;		// Annex J
+        self->encoder.context->flags |= CODEC_FLAG_AC_PRED;         // Annex I and T
+        self->encoder.context->flags |= CODEC_FLAG_LOOP_FILTER;     // Annex J
 #if defined(CODEC_FLAG_H263P_SLICE_STRUCT)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_SLICE_STRUCT;	// Annex K
+        self->encoder.context->flags |= CODEC_FLAG_H263P_SLICE_STRUCT;  // Annex K
 #endif
 #if defined(CODEC_FLAG_H263P_AIV)
-        self->encoder.context->flags |= CODEC_FLAG_H263P_AIV;			// Annex S
+        self->encoder.context->flags |= CODEC_FLAG_H263P_AIV;           // Annex S
 #endif
         break;
     }
@@ -1139,29 +1139,29 @@ static void tdav_codec_h263_rtp_callback(tdav_codec_h263_t *self, const void *da
     * 5.1.1 Picture Start Code (PSC) (22 bits)
     * 5.1.2 Temporal Reference (TR) (8 bits)
     * 5.1.3 Type Information (PTYPE) (Variable Length)
-    *	– Bit 1: Always "1", in order to avoid start code emulation.
-    *	– Bit 2: Always "0", for distinction with Recommendation H.261.
+    *   – Bit 1: Always "1", in order to avoid start code emulation.
+    *   – Bit 2: Always "0", for distinction with Recommendation H.261.
 
-    *	– Bit 3: Split screen indicator, "0" off, "1" on.
-    *	– Bit 4: Document camera indicator, "0" off, "1" on.
-    *	– Bit 5: Full Picture Freeze Release, "0" off, "1" on.
-    *	– Bits 6-8: Source Format, "000" forbidden, "001" sub-QCIF, "010" QCIF, "011" CIF,
-    	"100" 4CIF, "101" 16CIF, "110" reserved, "111" extended PTYPE.
-    	If bits 6-8 are not equal to "111", which indicates an extended PTYPE (PLUSPTYPE), the following
-    	five bits are also present in PTYPE:
-    	– Bit 9: Picture Coding Type, "0" INTRA (I-picture), "1" INTER (P-picture).
-    	– Bit 10: Optional Unrestricted Motion Vector mode (see Annex D), "0" off, "1" on.
-    	– Bit 11: Optional Syntax-based Arithmetic Coding mode (see Annex E), "0" off, "1" on.
-    	– Bit 12: Optional Advanced Prediction mode (see Annex F), "0" off, "1" on.
-    	– Bit 13: Optional PB-frames mode (see Annex G), "0" normal I- or P-picture, "1" PB-frame.
+    *   – Bit 3: Split screen indicator, "0" off, "1" on.
+    *   – Bit 4: Document camera indicator, "0" off, "1" on.
+    *   – Bit 5: Full Picture Freeze Release, "0" off, "1" on.
+    *   – Bits 6-8: Source Format, "000" forbidden, "001" sub-QCIF, "010" QCIF, "011" CIF,
+        "100" 4CIF, "101" 16CIF, "110" reserved, "111" extended PTYPE.
+        If bits 6-8 are not equal to "111", which indicates an extended PTYPE (PLUSPTYPE), the following
+        five bits are also present in PTYPE:
+        – Bit 9: Picture Coding Type, "0" INTRA (I-picture), "1" INTER (P-picture).
+        – Bit 10: Optional Unrestricted Motion Vector mode (see Annex D), "0" off, "1" on.
+        – Bit 11: Optional Syntax-based Arithmetic Coding mode (see Annex E), "0" off, "1" on.
+        – Bit 12: Optional Advanced Prediction mode (see Annex F), "0" off, "1" on.
+        – Bit 13: Optional PB-frames mode (see Annex G), "0" normal I- or P-picture, "1" PB-frame.
     */
     if(pdata[0] == 0x00 && pdata[1] == 0x00 && (pdata[2] & 0xfc)==0x80) { /* PSC */
         /* RFC 2190 -5.1 Mode A
-        	0                   1                   2                   3
-        	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        	|F|P|SBIT |EBIT | SRC |I|U|S|A|R      |DBQ| TRB |    TR         |
-        	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            0                   1                   2                   3
+            0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            |F|P|SBIT |EBIT | SRC |I|U|S|A|R      |DBQ| TRB |    TR         |
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
         SRC : 3 bits
         Source format, bit 6,7 and 8 in PTYPE defined by H.263 [4], specifies
@@ -1208,7 +1208,7 @@ static void tdav_codec_h263p_rtp_callback(tdav_codec_h263_t *self, const void *d
     //tsk_bool_t found_gob = tsk_false;
 
     /* RFC 4629 - 5.1. General H.263+ Payload Header
-    	The H.263+ payload header is structured as follows:
+        The H.263+ payload header is structured as follows:
          0                   1
          0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1219,110 +1219,110 @@ static void tdav_codec_h263p_rtp_callback(tdav_codec_h263_t *self, const void *d
     /* http://eu.sabotage.org/www/ITU/H/H0263e.pdf
     *
     * 5.1.1 Picture Start Code (PSC) (22 bits)
-    *	->PSC is a word of 22 bits. Its value is 0000 0000 0000 0000 1 00000.
+    *   ->PSC is a word of 22 bits. Its value is 0000 0000 0000 0000 1 00000.
     * 5.1.27 End Of Sequence (EOS) (22 bits)
-    *	->A codeword of 22 bits. Its value is 0000 0000 0000 0000 1 11111
+    *   ->A codeword of 22 bits. Its value is 0000 0000 0000 0000 1 11111
     * 5.2.2 Group of Block Start Code (GBSC) (17 bits)
-    *	->A word of 17 bits. Its value is 0000 0000 0000 0000 1
+    *   ->A word of 17 bits. Its value is 0000 0000 0000 0000 1
     * C.4.1 End Of Sub-Bitstream code (EOSBS) (23 bits)
-    *	->The EOSBS code is a codeword of 23 bits. Its value is 0000 0000 0000 0000 1 11110 0
+    *   ->The EOSBS code is a codeword of 23 bits. Its value is 0000 0000 0000 0000 1 11110 0
     *
     *
     * 5.2.3 Group Number (GN) (5 bits)
-    *	-> last 5 bits
+    *   -> last 5 bits
     */
     //if(pdata[0] == 0x00 && pdata[1] == 0x00 && pdata[2] >= 0x80){ /* PSC or EOS or GBSC */
-    //	uint8_t GN = ((pdata[2]>>2) & 0x1F);
-    //	found_gob = tsk_true;
-    //	//TSK_DEBUG_INFO("GN=%u", pdata[2]);
+    //  uint8_t GN = ((pdata[2]>>2) & 0x1F);
+    //  found_gob = tsk_true;
+    //  //TSK_DEBUG_INFO("GN=%u", pdata[2]);
     //
-    //	/*	RFC 4629 - 6.1.1. Packets that begin with a Picture Start Code
-    //		A packet that begins at the location of a Picture, GOB, slice, EOS,
-    //		or EOSBS start code shall omit the first two (all zero) bytes from
-    //		the H.263+ bitstream and signify their presence by setting P=1 in the
-    //		payload header.
-    //	*/
+    //  /*  RFC 4629 - 6.1.1. Packets that begin with a Picture Start Code
+    //      A packet that begins at the location of a Picture, GOB, slice, EOS,
+    //      or EOSBS start code shall omit the first two (all zero) bytes from
+    //      the H.263+ bitstream and signify their presence by setting P=1 in the
+    //      payload header.
+    //  */
 
-    //	if(GN == 0x00){ /* PSC 00000 */
-    //		/* Use the two first bytes as RTP header */
-    //		//pdata[0] |= 0x04; // P=1
+    //  if(GN == 0x00){ /* PSC 00000 */
+    //      /* Use the two first bytes as RTP header */
+    //      //pdata[0] |= 0x04; // P=1
 
-    //		/*
-    //		 0                   1                   2                   3
-    //		0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    //		+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //		|   RR    |1|V|0|0|0|0|0|0|0|0|0| bitstream data without the    :
-    //		+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //		: first two 0 bytes of the PSC
-    //		+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //		*/
+    //      /*
+    //       0                   1                   2                   3
+    //      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    //      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //      |   RR    |1|V|0|0|0|0|0|0|0|0|0| bitstream data without the    :
+    //      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //      : first two 0 bytes of the PSC
+    //      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //      */
 
-    //		//TSK_DEBUG_INFO("H263 - PSC");
-    //	}
-    //	else if(GN == 0x1F){ /* EOS 11111 */
-    //		/* Use the two first bytes as RTP header */
-    //		//pdata[0] |= 0x04; // P=1
-    //		eos = tsk_true;
-    //		/* RFC 4629 - 6.1.3. Packets that begin with an EOS or EOSBS Code
-    //			0                   1                   2
-    //			0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
-    //			+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //			|   RR    |1|V|0|0|0|0|0|0|0|0|0|1|1|1|1|1|1|0|0|
-    //			+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //		*/
-    //		//TSK_DEBUG_INFO("H263 - EOS");
-    //	}
-    //	else /*if((GN >> 4) == 0x01)*/{ /* GBSC  10000 */
-    //		/* Use the two first bytes as RTP header */
-    //		//pdata[0] |= 0x04; // P=1
+    //      //TSK_DEBUG_INFO("H263 - PSC");
+    //  }
+    //  else if(GN == 0x1F){ /* EOS 11111 */
+    //      /* Use the two first bytes as RTP header */
+    //      //pdata[0] |= 0x04; // P=1
+    //      eos = tsk_true;
+    //      /* RFC 4629 - 6.1.3. Packets that begin with an EOS or EOSBS Code
+    //          0                   1                   2
+    //          0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+    //          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //          |   RR    |1|V|0|0|0|0|0|0|0|0|0|1|1|1|1|1|1|0|0|
+    //          +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //      */
+    //      //TSK_DEBUG_INFO("H263 - EOS");
+    //  }
+    //  else /*if((GN >> 4) == 0x01)*/{ /* GBSC  10000 */
+    //      /* Use the two first bytes as RTP header */
+    //      //pdata[0] |= 0x04; // P=1
     //
-    //		/* RFC 4629 - 6.1.2. Packets that begin with GBSC or SSC
-    //	0                   1                   2                   3
-    //	0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    //	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //	|   RR    |1|V|0 0 1 0 0 1|PEBIT|1 0 0 0 0 0| picture header    :
-    //	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //	: starting with TR, PTYPE ...                                   |
-    //	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //	| ...                                           | bitstream     :
-    //	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //	: data starting with GBSC/SSC without its first two 0 bytes
-    //	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    //		*/
-    //		//TSK_DEBUG_INFO("H263 - GBSC");
-    //		found_gob = tsk_false;
-    //	}
-    //	//else if(EOSBS) -> Not Supported
+    //      /* RFC 4629 - 6.1.2. Packets that begin with GBSC or SSC
+    //  0                   1                   2                   3
+    //  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //  |   RR    |1|V|0 0 1 0 0 1|PEBIT|1 0 0 0 0 0| picture header    :
+    //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //  : starting with TR, PTYPE ...                                   |
+    //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //  | ...                                           | bitstream     :
+    //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //  : data starting with GBSC/SSC without its first two 0 bytes
+    //  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    //      */
+    //      //TSK_DEBUG_INFO("H263 - GBSC");
+    //      found_gob = tsk_false;
+    //  }
+    //  //else if(EOSBS) -> Not Supported
     //}
     //else{
-    //	/* 6.2. Encapsulating Follow-on Packet (P=0) */
-    //	int i = 0;
-    //	i++;
+    //  /* 6.2. Encapsulating Follow-on Packet (P=0) */
+    //  int i = 0;
+    //  i++;
     //}
 
     //if(/*eos*/!found_gob && frag){
-    //	if(self->rtp.size < (size + 2/* H263+ Header size */)){
-    //		if(!(self->rtp.ptr = tsk_realloc(self->rtp.ptr, (size + 2)))){
-    //			TSK_DEBUG_ERROR("Failed to allocate new buffer");
-    //			return;
-    //		}
-    //		self->rtp.size = (size + 2);
-    //	}
-    //	/* RFC 4629 - 6. Packetization Schemes */
-    //	//rtp_hdr[0] |= 0x00;
-    //	//memcpy(self->rtp.ptr, rtp_hdr/* zeros-> is it corretc? */, 2);
-    //	//memcpy((self->rtp.ptr + 2), pdata, size);
-    //	//_ptr = self->rtp.ptr;
-    //	//_size = (size + 2);
+    //  if(self->rtp.size < (size + 2/* H263+ Header size */)){
+    //      if(!(self->rtp.ptr = tsk_realloc(self->rtp.ptr, (size + 2)))){
+    //          TSK_DEBUG_ERROR("Failed to allocate new buffer");
+    //          return;
+    //      }
+    //      self->rtp.size = (size + 2);
+    //  }
+    //  /* RFC 4629 - 6. Packetization Schemes */
+    //  //rtp_hdr[0] |= 0x00;
+    //  //memcpy(self->rtp.ptr, rtp_hdr/* zeros-> is it corretc? */, 2);
+    //  //memcpy((self->rtp.ptr + 2), pdata, size);
+    //  //_ptr = self->rtp.ptr;
+    //  //_size = (size + 2);
 
-    //	pdata[0] |= pdata[2] > 0x80 ? 0x04 : 0x04;
-    //	_ptr = pdata;
-    //	_size = size;
+    //  pdata[0] |= pdata[2] > 0x80 ? 0x04 : 0x04;
+    //  _ptr = pdata;
+    //  _size = size;
     //}
     //else{
-    //	pdata[0] |= pdata[2] > 0x80 ? 0x04 : 0x04;
-    //	_ptr = pdata;
-    //	_size = size;
+    //  pdata[0] |= pdata[2] > 0x80 ? 0x04 : 0x04;
+    //  _ptr = pdata;
+    //  _size = size;
     //}
 
 // FIXME

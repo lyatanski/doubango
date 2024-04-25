@@ -31,9 +31,9 @@
 * C version of stretch.asm: StretchDIB optimised for AVI.
 *
 * NOTES
-*	- does not handle mirroring in x or y
-*	- does not handle pixel translation
-*	- will not work in place.
+*   - does not handle mirroring in x or y
+*   - does not handle pixel translation
+*   - will not work in place.
 */
 
 
@@ -49,18 +49,18 @@
 * both x and y stretching functions use the following basic model for deciding
 * when to insert/omit elements:
 *
-* 	delta = <larger extent> -1;
+*   delta = <larger extent> -1;
 *
 *      for (number of destination elements) {
 *
-*		copy one element
-*		advance pointer to larger region
-*		delta -= <smaller extent>
-*		if (delta < 0) {
-*			delta += <larger extent>;
-*			advance pointer to smaller region
-*		}
-*	}
+*       copy one element
+*       advance pointer to larger region
+*       delta -= <smaller extent>
+*       if (delta < 0) {
+*           delta += <larger extent>;
+*           advance pointer to smaller region
+*       }
+*   }
 */
 
 #include <streams.h>

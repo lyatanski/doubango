@@ -42,7 +42,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 107 "./ragel/tsip_parser_header_Path.rl" */
@@ -470,7 +470,7 @@ _match:
             {
             }
             break;
-            /* #line 467 "./src/headers/tsip_header_Path.c" */
+                /* #line 467 "./src/headers/tsip_header_Path.c" */
             }
         }
 
@@ -507,7 +507,7 @@ _out: {
 
 
 //========================================================
-//	Path header object definition
+//  Path header object definition
 //
 
 static tsk_object_t* tsip_header_Path_ctor(tsk_object_t *self, va_list * app)

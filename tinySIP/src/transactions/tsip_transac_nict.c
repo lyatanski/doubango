@@ -74,9 +74,9 @@
 
 #include "tsk_debug.h"
 
-#define DEBUG_STATE_MACHINE						1
+#define DEBUG_STATE_MACHINE                     1
 
-#define TRANSAC_NICT_TIMER_SCHEDULE(TX)			TRANSAC_TIMER_SCHEDULE(nict, TX)
+#define TRANSAC_NICT_TIMER_SCHEDULE(TX)         TRANSAC_TIMER_SCHEDULE(nict, TX)
 
 /* ======================== internal functions ======================== */
 static int tsip_transac_nict_init(tsip_transac_nict_t *self);
@@ -129,13 +129,13 @@ _fsm_state_t;
 
 /**
  * Callback function called by the transport layer to alert the transaction for incoming messages
- *			or errors (e.g. transport error).
+ *          or errors (e.g. transport error).
  *
- * @param [in,out]	self	A pointer to the NIC transaction.
- * @param	type		The event type.
- * @param [in,out]	msg	The incoming message.
+ * @param [in,out]  self    A pointer to the NIC transaction.
+ * @param   type        The event type.
+ * @param [in,out]  msg The incoming message.
  *
- * @return	Zero if succeed and no-zero error code otherwise.
+ * @return  Zero if succeed and no-zero error code otherwise.
 **/
 int tsip_transac_nict_event_callback(const tsip_transac_nict_t *self, tsip_transac_event_type_t type, const tsip_message_t *msg)
 {
@@ -200,10 +200,10 @@ int tsip_transac_nict_timer_callback(const tsip_transac_nict_t* self, tsk_timer_
 
 /** Initializes the transaction.
  *
- * @author	Mamadou
- * @date	12/24/2009
+ * @author  Mamadou
+ * @date    12/24/2009
  *
- * @param [in,out]	self	The transaction to initialize.
+ * @param [in,out]  self    The transaction to initialize.
 **/
 int tsip_transac_nict_init(tsip_transac_nict_t *self)
 {
@@ -299,10 +299,10 @@ tsip_transac_nict_t* tsip_transac_nict_create(int32_t cseq_value, const char* cs
 /**
  * Starts the client transaction.
  *
- * @param [in,out]	self	The client transaction to start.
- * @param [in,out]	request	The SIP/IMS request to send.
+ * @param [in,out]  self    The client transaction to start.
+ * @param [in,out]  request The SIP/IMS request to send.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tsip_transac_nict_start(tsip_transac_nict_t *self, const tsip_request_t* request)
 {
@@ -339,7 +339,7 @@ int tsip_transac_nict_start(tsip_transac_nict_t *self, const tsip_request_t* req
 
 
 //--------------------------------------------------------
-//				== STATE MACHINE BEGIN ==
+//              == STATE MACHINE BEGIN ==
 //--------------------------------------------------------
 /* Started -> (send) -> Trying
 */
@@ -357,16 +357,16 @@ int tsip_transac_nict_Started_2_Trying_X_send(va_list *app)
         self->timerK.timeout = TSIP_TRANSAC(self)->reliable ? 0 : TSIP_TIMER_GET(K); /* RFC 3261 - 17.1.2.2*/
     }
 
-    /*	RFC 3261 - 17.1.2.2
-    	The "Trying" state is entered when the TU initiates a new client
-    	transaction with a request.  When entering this state, the client
-    	transaction SHOULD set timer F to fire in 64*T1 seconds.
+    /*  RFC 3261 - 17.1.2.2
+        The "Trying" state is entered when the TU initiates a new client
+        transaction with a request.  When entering this state, the client
+        transaction SHOULD set timer F to fire in 64*T1 seconds.
     */
     TRANSAC_NICT_TIMER_SCHEDULE(F);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If an  unreliable transport is in use, the client transaction MUST set timer
-    	E to fire in T1 seconds.
+    /*  RFC 3261 - 17.1.2.2
+        If an  unreliable transport is in use, the client transaction MUST set timer
+        E to fire in T1 seconds.
     */
     if(!TSIP_TRANSAC(self)->reliable) {
         TRANSAC_NICT_TIMER_SCHEDULE(E);
@@ -385,9 +385,9 @@ int tsip_transac_nict_Trying_2_Trying_X_timerE(va_list *app)
     //== Send the request
     tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->request);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If timer E fires while still in this (Trying) state, the timer is reset, but this time with a value of MIN(2*T1, T2).
-    	When the timer fires again, it is reset to a MIN(4*T1, T2).  This process continues so that retransmissions occur with an exponentially
+    /*  RFC 3261 - 17.1.2.2
+        If timer E fires while still in this (Trying) state, the timer is reset, but this time with a value of MIN(2*T1, T2).
+        When the timer fires again, it is reset to a MIN(4*T1, T2).  This process continues so that retransmissions occur with an exponentially
         increasing interval that caps at T2.  The default value of T2 is 4s, and it represents the amount of time a non-INVITE server transaction
         will take to respond to a request, if it does not respond immediately.  For the default values of T1 and T2, this results in
         intervals of 500 ms, 1 s, 2 s, 4 s, 4 s, 4 s, etc.
@@ -405,10 +405,10 @@ int tsip_transac_nict_Trying_2_Terminated_X_timerF(va_list *app)
     tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     /*const tsip_message_t *message = va_arg(*app, const tsip_message_t *);*/
 
-    /*	RFC 3261 - 17.1.2.2
-    	If Timer F fires while the client transaction is still in the
-    	"Trying" state, the client transaction SHOULD inform the TU about the
-    	timeout, and then it SHOULD enter the "Terminated" state.
+    /*  RFC 3261 - 17.1.2.2
+        If Timer F fires while the client transaction is still in the
+        "Trying" state, the client transaction SHOULD inform the TU about the
+        timeout, and then it SHOULD enter the "Terminated" state.
     */
 
     /* Timers will be canceled by "tsip_transac_nict_OnTerminated" */
@@ -439,10 +439,10 @@ int tsip_transac_nict_Trying_2_Proceedding_X_1xx(va_list *app)
     tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If a provisional response is received while in the "Trying" state, the
-    	response MUST be passed to the TU, and then the client transaction
-    	SHOULD move to the "Proceeding" state.
+    /*  RFC 3261 - 17.1.2.2
+        If a provisional response is received while in the "Trying" state, the
+        response MUST be passed to the TU, and then the client transaction
+        SHOULD move to the "Proceeding" state.
     */
 
     /* Cancel timers */
@@ -464,12 +464,12 @@ int tsip_transac_nict_Trying_2_Completed_X_200_to_699(va_list *app)
     tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If a final response (status codes 200-699) is received while in the "Trying" state, the response
-    	MUST be passed to the TU, and the client transaction MUST transition
-    	to the "Completed" state.
+    /*  RFC 3261 - 17.1.2.2
+        If a final response (status codes 200-699) is received while in the "Trying" state, the response
+        MUST be passed to the TU, and the client transaction MUST transition
+        to the "Completed" state.
 
-    	If Timer K fires while in this state (Completed), the client transaction MUST transition to the "Terminated" state.
+        If Timer K fires while in this state (Completed), the client transaction MUST transition to the "Terminated" state.
     */
 
     if(!TSIP_TRANSAC(self)->reliable) {
@@ -495,10 +495,10 @@ int tsip_transac_nict_Proceeding_2_Proceeding_X_timerE(va_list *app)
     //== Send the request
     tsip_transac_send(TSIP_TRANSAC(self), TSIP_TRANSAC(self)->branch, self->request);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If Timer E fires while in the "Proceeding" state, the request MUST be
-    	passed to the transport layer for retransmission, and Timer E MUST be
-    	reset with a value of T2 seconds.
+    /*  RFC 3261 - 17.1.2.2
+        If Timer E fires while in the "Proceeding" state, the request MUST be
+        passed to the transport layer for retransmission, and Timer E MUST be
+        reset with a value of T2 seconds.
     */
     self->timerE.timeout = TSK_MIN(self->timerE.timeout*2, TSIP_TIMER_GET(T2));
     TRANSAC_NICT_TIMER_SCHEDULE(E);
@@ -513,9 +513,9 @@ int tsip_transac_nict_Proceeding_2_Terminated_X_timerF(va_list *app)
     tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If timer F fires while in the "Proceeding" state, the TU MUST be informed of a timeout, and the
-    	client transaction MUST transition to the terminated state.
+    /*  RFC 3261 - 17.1.2.2
+        If timer F fires while in the "Proceeding" state, the TU MUST be informed of a timeout, and the
+        client transaction MUST transition to the terminated state.
     */
 
     /* Timers will be canceled by "tsip_transac_nict_OnTerminated" */
@@ -560,22 +560,22 @@ int tsip_transac_nict_Proceeding_2_Completed_X_200_to_699(va_list *app)
     tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If a final response (status codes 200-699) is received while in the
-    	"Proceeding" state, the response MUST be passed to the TU, and the
-    	client transaction MUST transition to the "Completed" state.
+    /*  RFC 3261 - 17.1.2.2
+        If a final response (status codes 200-699) is received while in the
+        "Proceeding" state, the response MUST be passed to the TU, and the
+        client transaction MUST transition to the "Completed" state.
     */
 
-    /*	RFC 3261 - 17.1.2.2
-    	Once the client transaction enters the "Completed" state, it MUST set
-    	Timer K to fire in T4 seconds for unreliable transports, and zero
-    	seconds for reliable transports.  The "Completed" state exists to
-    	buffer any additional response retransmissions that may be received
-    	(which is why the client transaction remains there only for
+    /*  RFC 3261 - 17.1.2.2
+        Once the client transaction enters the "Completed" state, it MUST set
+        Timer K to fire in T4 seconds for unreliable transports, and zero
+        seconds for reliable transports.  The "Completed" state exists to
+        buffer any additional response retransmissions that may be received
+        (which is why the client transaction remains there only for
 
-    	unreliable transports).  T4 represents the amount of time the network
-    	will take to clear messages between client and server transactions.
-    	The default value of T4 is 5s.
+        unreliable transports).  T4 represents the amount of time the network
+        will take to clear messages between client and server transactions.
+        The default value of T4 is 5s.
     */
 
     if(!TSIP_TRANSAC(self)->reliable) {
@@ -597,13 +597,13 @@ int tsip_transac_nict_Completed_2_Terminated_X_timerK(va_list *app)
     //tsip_transac_nict_t *self = va_arg(*app, tsip_transac_nict_t *);
     //const tsip_message_t *message = va_arg(*app, const tsip_message_t *);
 
-    /*	RFC 3261 - 17.1.2.2
-    	If Timer K fires while in this state (Completed), the client transaction
-    	MUST transition to the "Terminated" state.
+    /*  RFC 3261 - 17.1.2.2
+        If Timer K fires while in this state (Completed), the client transaction
+        MUST transition to the "Terminated" state.
     */
 
-    /*	RFC 3261 - 17.1.2.2
-    	ONCE THE TRANSACTION IS IN THE TERMINATED STATE, IT MUST BE DESTROYED IMMEDIATELY.
+    /*  RFC 3261 - 17.1.2.2
+        ONCE THE TRANSACTION IS IN THE TERMINATED STATE, IT MUST BE DESTROYED IMMEDIATELY.
     */
 
     /* Timers will be canceled by "tsip_transac_nict_OnTerminated" */
@@ -647,7 +647,7 @@ int tsip_transac_nict_Any_2_Terminated_X_cancel(va_list *app)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//				== STATE MACHINE END ==
+//              == STATE MACHINE END ==
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -679,7 +679,7 @@ int tsip_transac_nict_OnTerminated(tsip_transac_nict_t *self)
 
 
 //========================================================
-//	NICT object definition
+//  NICT object definition
 //
 static tsk_object_t* tsip_transac_nict_ctor(tsk_object_t * self, va_list * app)
 {

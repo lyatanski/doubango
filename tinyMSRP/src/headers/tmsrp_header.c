@@ -34,9 +34,9 @@
 #include "tsk_string.h"
 
 /** Gets the name of the MSRP header with a type equal to @a type.
- * @param	type	The @a type of the header for which to retrieve the name.
+ * @param   type    The @a type of the header for which to retrieve the name.
  *
- * @return	The name of the header.
+ * @return  The name of the header.
 **/
 const char* tmsrp_header_get_name(tmsrp_header_type_t type)
 {

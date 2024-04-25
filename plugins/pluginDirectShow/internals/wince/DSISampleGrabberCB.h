@@ -21,7 +21,8 @@
 
 #include "plugin_dshow_config.h"
 
-interface DSISampleGrabberCB {
+interface DSISampleGrabberCB
+{
     virtual HRESULT STDMETHODCALLTYPE SampleCB(double SampleTime, IMediaSample *pSample) = 0;
     virtual HRESULT STDMETHODCALLTYPE BufferCB(double SampleTime, BYTE *pBuffer, long BufferLen) = 0;
 };

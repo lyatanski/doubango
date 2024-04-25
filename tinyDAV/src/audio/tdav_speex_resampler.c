@@ -195,7 +195,7 @@ static int tdav_speex_resampler_close(tmedia_resampler_t* self)
 
 
 //
-//	Speex resamplerr Plugin definition
+//  Speex resamplerr Plugin definition
 //
 
 /* constructor */

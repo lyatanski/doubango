@@ -40,7 +40,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 69 "./ragel/tsip_parser_header_Allow_Events.rl" */
@@ -285,7 +285,7 @@ _match:
             {
             }
             break;
-            /* #line 282 "./src/headers/tsip_header_Allow_Events.c" */
+                /* #line 282 "./src/headers/tsip_header_Allow_Events.c" */
             }
         }
 
@@ -323,7 +323,7 @@ _out: {
 
 
 //========================================================
-//	Allow_events header object definition
+//  Allow_events header object definition
 //
 
 static tsk_object_t* tsip_header_Allow_Events_ctor(tsk_object_t *self, va_list * app)

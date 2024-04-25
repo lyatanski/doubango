@@ -64,12 +64,12 @@ static void TSDP_MESSAGE_ADD_HEADER(tsdp_message_t *self, ...)
     tsk_object_unref(header);
 }
 #else
-#define TSDP_MESSAGE_ADD_HEADER(self, objdef, ...)						\
-	{																	\
-		tsdp_header_t *header = (tsdp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__);	\
-		tsdp_message_add_header(self, header);							\
-		tsk_object_unref(header);										\
-	}
+#define TSDP_MESSAGE_ADD_HEADER(self, objdef, ...)                      \
+    {                                                                   \
+        tsdp_header_t *header = (tsdp_header_t *)tsk_object_new(objdef, ##__VA_ARGS__); \
+        tsdp_message_add_header(self, header);                          \
+        tsk_object_unref(header);                                       \
+    }
 #endif
 
 TINYSDP_API const tsdp_header_t *tsdp_message_get_headerAt(const tsdp_message_t *self, tsdp_header_type_t type, tsk_size_t index);

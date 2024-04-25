@@ -26,15 +26,15 @@ typedef tsk_plugin_def_type_t (*symbol_get_def_type_at)(int index);
 typedef tsk_plugin_def_media_type_t (*symbol_get_def_media_type_at)(int index);
 typedef tsk_plugin_def_ptr_const_t (*symbol_get_def_at)(int index);
 
-#define TSK_PLUGIN_FUNC_NAME_DEF_COUNT				"__plugin_get_def_count"
-#define TSK_PLUGIN_FUNC_NAME_DEF_TYPE_AT			"__plugin_get_def_type_at"
-#define TSK_PLUGIN_FUNC_NAME_DEF_MEDIA_TYPE_AT		"__plugin_get_def_media_type_at"
-#define TSK_PLUGIN_FUNC_NAME_DEF_AT					"__plugin_get_def_at"
+#define TSK_PLUGIN_FUNC_NAME_DEF_COUNT              "__plugin_get_def_count"
+#define TSK_PLUGIN_FUNC_NAME_DEF_TYPE_AT            "__plugin_get_def_type_at"
+#define TSK_PLUGIN_FUNC_NAME_DEF_MEDIA_TYPE_AT      "__plugin_get_def_media_type_at"
+#define TSK_PLUGIN_FUNC_NAME_DEF_AT                 "__plugin_get_def_at"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #else
-#	include <dlfcn.h>
+#   include <dlfcn.h>
 #endif
 
 #if !TSK_UNDER_WINDOWS_CE
@@ -89,12 +89,12 @@ tsk_plugin_t* tsk_plugin_create(const char* path)
     tsk_plugin_handle_t* handle;
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
     wchar_t* szPath = (wchar_t*)tsk_calloc(tsk_strlen(path) + 1, sizeof(wchar_t));
     swprintf(szPath, tsk_strlen(path) * sizeof(wchar_t), szFormat, path);
     handle = LoadPackagedLibrary(szPath, 0x00000000);
     TSK_FREE(szPath);
-#	else /* Windows desktop/CE */
+#   else /* Windows desktop/CE */
 #if TSK_UNDER_WINDOWS_CE
     wchar_t* szPath = (wchar_t*)tsk_calloc(tsk_strlen(path) + 1, sizeof(wchar_t));
     swprintf_s(szPath, tsk_strlen(path) * sizeof(wchar_t), szFormat, path);
@@ -106,7 +106,7 @@ tsk_plugin_t* tsk_plugin_create(const char* path)
     handle = LoadLibraryA(path);
     SetErrorMode(currErrMode); // restore ErrorMode
 #endif /* !TSK_UNDER_WINDOWS_CE */
-#	endif /*end-of-else-TSK_UNDER_WINDOWS_RT*/
+#   endif /*end-of-else-TSK_UNDER_WINDOWS_RT*/
 #else
     handle = dlopen(path, RTLD_NOW);
 #endif
@@ -215,11 +215,11 @@ static tsk_plugin_symbol_t* _tsk_plugin_handle_get_symbol(tsk_plugin_handle_t* h
         return tsk_null;
     }
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_CE
+#   if TSK_UNDER_WINDOWS_CE
     return (tsk_plugin_symbol_t*)GetProcAddressA((HMODULE)handle, symbol_name);
-#	else
+#   else
     return (tsk_plugin_symbol_t*)GetProcAddress((HMODULE)handle, symbol_name);
-#	endif
+#   endif
 #else
     return (tsk_plugin_symbol_t*)dlsym(handle, symbol_name);
 #endif

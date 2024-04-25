@@ -32,7 +32,7 @@
 #include <string.h>
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 58 "./ragel/tsdp_parser_header_Dummy.rl" */
@@ -244,7 +244,7 @@ _match:
                 TSK_PARSER_SET_STRING(hdr_Dummy->value);
             }
             break;
-            /* #line 242 "./src/headers/tsdp_header_Dummy.c" */
+                /* #line 242 "./src/headers/tsdp_header_Dummy.c" */
             }
         }
 
@@ -274,7 +274,7 @@ _test_eof: {
                     TSK_PARSER_SET_STRING(hdr_Dummy->value);
                 }
                 break;
-                /* #line 270 "./src/headers/tsdp_header_Dummy.c" */
+                    /* #line 270 "./src/headers/tsdp_header_Dummy.c" */
                 }
             }
         }
@@ -305,7 +305,7 @@ _out: {
 
 
 //========================================================
-//	Dummy header object definition
+//  Dummy header object definition
 //
 
 static tsk_object_t* tsdp_header_Dummy_ctor(tsk_object_t *self, va_list * app)

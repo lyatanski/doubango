@@ -28,19 +28,19 @@
 #include "tinysdp/parsers/tsdp_parser_message.h"
 
 #define REMOTE_SDP1 \
-	"c=IN IP4 192.168.0.15\r\n" \
+    "c=IN IP4 192.168.0.15\r\n" \
     "m=message 2000 TCP/MSRP *\r\n" \
     "a=accept-types:text/plain\r\n" \
     "a=path:msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
-	"a=setup:passive\r\n" \
+    "a=setup:passive\r\n" \
     "a=connection:new\r\n"
 
 #define REMOTE_SDP2 \
     "m=message 2000 TCP/MSRP *\r\n" \
-	"c=IN IP4 192.168.0.15\r\n" \
+    "c=IN IP4 192.168.0.15\r\n" \
     "a=accept-types:text/plain\r\n" \
     "a=path:msrp://atlanta.example.com:7654/jshA7weztas;tcp\r\n" \
-	"a=setup:passive\r\n" \
+    "a=setup:passive\r\n" \
     "a=connection:new\r\n"
 
 #define REMOTE_SDP REMOTE_SDP1
@@ -79,15 +79,15 @@ void test_session()
         }
 
         /*if((m = tmedia_get_local_offer(msrp,
-        		TSDP_HEADER_I_VA_ARGS("Message Transfer"),
-        		TSDP_HEADER_A_VA_ARGS("accept-types", "text/plain")
+                TSDP_HEADER_I_VA_ARGS("Message Transfer"),
+                TSDP_HEADER_A_VA_ARGS("accept-types", "text/plain")
 
-        		tsk_null
-        	))){
-        	if((str = tsdp_header_tostring(TSDP_HEADER(m)))){
-        		TSK_DEBUG_INFO("m(offer)=%s", str);
-        		TSK_FREE(str);
-        	}
+                tsk_null
+            ))){
+            if((str = tsdp_header_tostring(TSDP_HEADER(m)))){
+                TSK_DEBUG_INFO("m(offer)=%s", str);
+                TSK_FREE(str);
+            }
         }*/
 
         // Set offer
@@ -103,9 +103,9 @@ void test_session()
 
         /*
         tmedia_perform(msrp, tma_msrp_send_data,
-        		TSK_PARAM_VA_ARGS("Content", "hello world!"),
+                TSK_PARAM_VA_ARGS("Content", "hello world!"),
 
-        		tsk_null);
+                tsk_null);
         */
 
         tmedia_perform(msrp, tma_msrp_send_file,

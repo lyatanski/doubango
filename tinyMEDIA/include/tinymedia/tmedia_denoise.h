@@ -33,7 +33,7 @@
 TMEDIA_BEGIN_DECLS
 
 /** cast any pointer to @ref tmedia_denoise_t* object */
-#define TMEDIA_DENOISE(self)		((tmedia_denoise_t*)(self))
+#define TMEDIA_DENOISE(self)        ((tmedia_denoise_t*)(self))
 
 /** Base object for all Denoisers */
 typedef struct tmedia_denoise_s {
@@ -65,7 +65,7 @@ typedef struct tmedia_denoise_plugin_def_s {
     //! full description (usefull for debugging)
     const char* desc;
 
-    int (*set) (tmedia_denoise_t* , const tmedia_param_t*);
+    int (*set) (tmedia_denoise_t*, const tmedia_param_t*);
     int (* open) (tmedia_denoise_t*, uint32_t record_frame_size_samples, uint32_t record_sampling_rate, uint32_t record_channels, uint32_t playback_frame_size_samples, uint32_t playback_sampling_rate, uint32_t playback_channels);
     int (*echo_playback) (tmedia_denoise_t* self, const void* echo_frame, uint32_t echo_frame_size_bytes);
     //! aec, vad, noise suppression, echo cancellation before sending packet over network

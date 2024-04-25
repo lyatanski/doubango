@@ -258,7 +258,7 @@ void tcomp_params_reset(tcomp_params_t* params)
 
 
 //========================================================
-//	SigComp parameters object definition
+//  SigComp parameters object definition
 //
 static tsk_object_t* tcomp_params_ctor(tsk_object_t *self, va_list * app)
 {

@@ -45,8 +45,8 @@ THTTP_BEGIN_DECLS
 struct thttp_message_s;
 
 typedef uint64_t thttp_session_id_t;
-#define THTTP_SESSION_INVALID_ID				0
-#define THTTP_SESSION_INVALID_HANDLE			tsk_null
+#define THTTP_SESSION_INVALID_ID                0
+#define THTTP_SESSION_INVALID_HANDLE            tsk_null
 
 /** List of all supported options.
 * To pass an option to the sesion, use @ref THTTP_SESSION_SET_OPTION() macro.
@@ -78,8 +78,8 @@ thttp_session_param_type_t;
 * @code
 // session = thttp_session_create(stack,
 thttp_session_set(session,
-	THTTP_SESSION_SET_PARAM(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_PARAM(THTTP_SESSION_OPTION_TIMEOUT, "6000"),
+    THTTP_SESSION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_session_group
@@ -92,8 +92,8 @@ thttp_session_set(session,
 * @code
 // session = thttp_session_create(stack,
 thttp_session_set(session,
-	THTTP_SESSION_SET_CRED("ali baba", "open sesame"),
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_CRED("ali baba", "open sesame"),
+    THTTP_SESSION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_session_group
@@ -107,9 +107,9 @@ thttp_session_set(session,
 * @code
 // session = thttp_session_create(stack,
 thttp_session_set(session,
-	THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
-	THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_HEADER("Pragma", "No-Cache"),
+    THTTP_SESSION_SET_HEADER("Connection", "Keep-Alive"),
+    THTTP_SESSION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_session_group
@@ -122,9 +122,9 @@ thttp_session_set(session,
 * @code
 // session = thttp_session_create(stack,
 thttp_session_set(session,
-	THTTP_SESSION_UNSET_HEADER("Pragma"),
-	THTTP_SESSION_UNSET_HEADER("Connection"),
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_UNSET_HEADER("Pragma"),
+    THTTP_SESSION_UNSET_HEADER("Connection"),
+    THTTP_SESSION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_session_group
@@ -136,20 +136,20 @@ thttp_session_set(session,
 * @code
 // session = thttp_session_create(stack,
 thttp_session_set(session,
-	THTTP_SESSION_SET_USERDATA(ctx),
-	THTTP_SESSION_SET_NULL());
+    THTTP_SESSION_SET_USERDATA(ctx),
+    THTTP_SESSION_SET_NULL());
 * @endcode
 */
 /**@ingroup thttp_session_group
 * @def THTTP_SESSION_SET_NULL
 * Ends session parameters. Must always be the last one.
 */
-#define THTTP_SESSION_SET_OPTION(ID_ENUM, VALUE_STR)			httpp_option, (thttp_session_option_t)ID_ENUM, (const char*)VALUE_STR
-#define THTTP_SESSION_SET_CRED(USERNAME_STR, PASSWORD_STR)		httpp_cred, (const char*)USERNAME_STR, (const char*)PASSWORD_STR
-#define THTTP_SESSION_SET_HEADER(NAME_STR, VALUE_STR)			httpp_header, (const char*)NAME_STR, (const char*)VALUE_STR
-#define THTTP_SESSION_UNSET_HEADER(NAME_STR)					THTTP_SESSION_SET_HEADER(NAME_STR, (const char*)-1)
-#define THTTP_SESSION_SET_USERDATA(USERDATA_PTR)				httpp_userdata, (const void*)USERDATA_PTR
-#define THTTP_SESSION_SET_NULL()								httpp_null
+#define THTTP_SESSION_SET_OPTION(ID_ENUM, VALUE_STR)            httpp_option, (thttp_session_option_t)ID_ENUM, (const char*)VALUE_STR
+#define THTTP_SESSION_SET_CRED(USERNAME_STR, PASSWORD_STR)      httpp_cred, (const char*)USERNAME_STR, (const char*)PASSWORD_STR
+#define THTTP_SESSION_SET_HEADER(NAME_STR, VALUE_STR)           httpp_header, (const char*)NAME_STR, (const char*)VALUE_STR
+#define THTTP_SESSION_UNSET_HEADER(NAME_STR)                    THTTP_SESSION_SET_HEADER(NAME_STR, (const char*)-1)
+#define THTTP_SESSION_SET_USERDATA(USERDATA_PTR)                httpp_userdata, (const void*)USERDATA_PTR
+#define THTTP_SESSION_SET_NULL()                                httpp_null
 
 typedef struct thttp_session_s {
     TSK_DECLARE_OBJECT;

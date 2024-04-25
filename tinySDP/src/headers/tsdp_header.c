@@ -52,9 +52,9 @@ tsdp_header_t* tsdp_header_clone(const tsdp_header_t* self)
 }
 
 /** Gets the name of the SDP header with a type equal to @a type.
- * @param	type	The @a type of the header for which to retrieve the name.
+ * @param   type    The @a type of the header for which to retrieve the name.
  *
- * @return	The name of the header.
+ * @return  The name of the header.
 **/
 char tsdp_header_get_name(tsdp_header_type_t type)
 {

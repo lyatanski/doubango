@@ -41,7 +41,7 @@
 
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 66 "./ragel/tsip_parser_header_Proxy_Require.rl" */
@@ -289,7 +289,7 @@ _match:
             {
             }
             break;
-            /* #line 286 "./src/headers/tsip_header_Proxy_Require.c" */
+                /* #line 286 "./src/headers/tsip_header_Proxy_Require.c" */
             }
         }
 
@@ -327,7 +327,7 @@ _out: {
 
 
 //========================================================
-//	Proxy_Require header object definition
+//  Proxy_Require header object definition
 //
 
 static tsk_object_t* tsip_header_Proxy_Require_ctor(tsk_object_t *self, va_list * app)

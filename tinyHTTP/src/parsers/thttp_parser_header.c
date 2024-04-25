@@ -63,25 +63,25 @@
 #undef ADD_HEADER
 
 #define ADD_HEADERS(headers)\
-	if(headers)\
-	{\
-		tsk_list_item_t *item;\
-		tsk_list_foreach(item, headers)\
-		{\
-			thttp_header_t *hdr = tsk_object_ref(item->data);\
-			tsk_list_push_back_data(message->headers, ((void**) &hdr));\
-		}\
-		\
-		TSK_OBJECT_SAFE_FREE(headers);\
-	}
+    if(headers)\
+    {\
+        tsk_list_item_t *item;\
+        tsk_list_foreach(item, headers)\
+        {\
+            thttp_header_t *hdr = tsk_object_ref(item->data);\
+            tsk_list_push_back_data(message->headers, ((void**) &hdr));\
+        }\
+        \
+        TSK_OBJECT_SAFE_FREE(headers);\
+    }
 #define ADD_HEADER(header)\
-	if(header)\
-	{\
-		tsk_list_push_back_data(message->headers, ((void**) &header));\
-	}
+    if(header)\
+    {\
+        tsk_list_push_back_data(message->headers, ((void**) &header));\
+    }
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 502 "./ragel/thttp_parser_header.rl" */
@@ -2829,7 +2829,7 @@ _match:
                 //TSK_DEBUG_WARN("parse_header_extension_header NOT IMPLEMENTED. Will be added as Dummy header.");
             }
             break;
-            /* #line 2826 "./src/parsers/thttp_parser_header.c" */
+                /* #line 2826 "./src/parsers/thttp_parser_header.c" */
             }
         }
 

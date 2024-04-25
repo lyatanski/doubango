@@ -46,7 +46,7 @@ typedef struct tnet_nat_ctx_s {
     tnet_socket_type_t socket_type;
 
     char* username; /**< The username to use to authenticate against the TURN/STUN server. */
-    char* password;	/**< The password to use to authenticate against the TURN/STUN server. */
+    char* password; /**< The password to use to authenticate against the TURN/STUN server. */
 
     char* server_address; /**< TURN/STUN server address (could be FQDN or IP) */
     tnet_port_t server_port; /**< TURN/STUN server port. */
@@ -79,12 +79,12 @@ struct tnet_nat_ctx_s* tnet_nat_context_create(tnet_socket_type_t socket_type, c
     p_ctx->username = tsk_strdup(pc_username);
     p_ctx->password = tsk_strdup(pc_password);
     p_ctx->server_port = kStunPortDefaultTcpUdp;
-    /*	7.2.1.  Sending over UDP
-    	In fixed-line access links, a value of 500 ms is RECOMMENDED.
+    /*  7.2.1.  Sending over UDP
+        In fixed-line access links, a value of 500 ms is RECOMMENDED.
     */
     p_ctx->RTO = kStunRTO;
-    /*	7.2.1.  Sending over UDP
-    	Rc SHOULD be configurable and SHOULD have a default of 7.
+    /*  7.2.1.  Sending over UDP
+        Rc SHOULD be configurable and SHOULD have a default of 7.
     */
     p_ctx->Rc = kStunRC;
 
@@ -93,10 +93,10 @@ struct tnet_nat_ctx_s* tnet_nat_context_create(tnet_socket_type_t socket_type, c
 
 /** Predicate function to find stun binding by id.
  *
- * @param [in,out]	item	The current list item.
- * @param [in,out]	id		A pointer to the binding identifier.
+ * @param [in,out]  item    The current list item.
+ * @param [in,out]  id      A pointer to the binding identifier.
  *
- * @return	Zero if current list item hold a binding with the same id and -1 otherwise.
+ * @return  Zero if current list item hold a binding with the same id and -1 otherwise.
 **/
 int __pred_find_stun_binding(const tsk_list_item_t* item, const void* id)
 {
@@ -114,10 +114,10 @@ int __pred_find_stun_binding(const tsk_list_item_t* item, const void* id)
  *
  * Sets the address of the STUN/TURN server.
  *
- * @param [in,out]	p_self			The NAT context.
- * @param [in,out]	pc_server_address	The address of server.
+ * @param [in,out]  p_self          The NAT context.
+ * @param [in,out]  pc_server_address   The address of server.
  *
- * @return	Zero if succeed and non zero error code otherwise.
+ * @return  Zero if succeed and non zero error code otherwise.
 **/
 int tnet_nat_set_server_address(struct tnet_nat_ctx_s* p_self, const char* pc_server_address)
 {
@@ -131,11 +131,11 @@ int tnet_nat_set_server_address(struct tnet_nat_ctx_s* p_self, const char* pc_se
 
 int tnet_nat_get_socket_type(const struct tnet_nat_ctx_s* p_self, enum tnet_socket_type_e* type)
 {
-	if (!p_self || !type) {
+    if (!p_self || !type) {
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-	*type = p_self->socket_type;
+    *type = p_self->socket_type;
     return 0;
 }
 
@@ -143,11 +143,11 @@ int tnet_nat_get_socket_type(const struct tnet_nat_ctx_s* p_self, enum tnet_sock
  *
  * Sets the address and port of the STUN/TURN server.
  *
- * @param [in,out]	p_self			The NAT context.
- * @param [in,out]	pc_server_address	The address of server.
- * @param	u_server_port				The server port.
+ * @param [in,out]  p_self          The NAT context.
+ * @param [in,out]  pc_server_address   The address of server.
+ * @param   u_server_port               The server port.
  *
- * @return	Zero if succeed and non zero error code otherwise.
+ * @return  Zero if succeed and non zero error code otherwise.
 **/
 int tnet_nat_set_server(struct tnet_nat_ctx_s* p_self, const char* pc_server_address,  tnet_port_t u_server_port)
 {
@@ -163,13 +163,13 @@ int tnet_nat_set_server(struct tnet_nat_ctx_s* p_self, const char* pc_server_add
 /**@ingroup tnet_nat_group
  *
  * Creates and sends a STUN2 binding request to the STUN/TURN server in order to get the server reflexive
- *			address associated to this file descriptor (or socket). The caller should call @ref tnet_nat_stun_unbind to destroy the binding.
+ *          address associated to this file descriptor (or socket). The caller should call @ref tnet_nat_stun_unbind to destroy the binding.
  *
- * @param [in,out]	p_self	The NAT context.
- * @param	localFD			The local file descriptor (or socket) for which to get the reflexive server address.
+ * @param [in,out]  p_self  The NAT context.
+ * @param   localFD         The local file descriptor (or socket) for which to get the reflexive server address.
  *
- * @return	A valid binding id if succeed and @ref kStunBindingInvalidId otherwise. If the returned id is valid then
- *			the newly created binding will contain the server-reflexive address associated to the local file descriptor.
+ * @return  A valid binding id if succeed and @ref kStunBindingInvalidId otherwise. If the returned id is valid then
+ *          the newly created binding will contain the server-reflexive address associated to the local file descriptor.
  *
  * @sa @ref tnet_nat_stun_unbind.
 **/
@@ -198,12 +198,12 @@ bail:
 
 
 /**@ingroup tnet_nat_group
- * 	Internal function to send a STUN2 binding request over the network.
+ *  Internal function to send a STUN2 binding request over the network.
  *
- * @param [in,out]	p_self	The NAT context holding the user preferences.
- * @param [in,out]	p_binding	The STUN binding object used to create the message to send.
+ * @param [in,out]  p_self  The NAT context holding the user preferences.
+ * @param [in,out]  p_binding   The STUN binding object used to create the message to send.
  *
- * @return	Zero if succeed and non-zero error code otherwise.
+ * @return  Zero if succeed and non-zero error code otherwise.
 **/
 int tnet_nat_stun_send_bind(const struct tnet_nat_ctx_s* pc_self, struct tnet_stun_binding_s *p_binding)
 {
@@ -225,13 +225,13 @@ int tnet_nat_stun_send_bind(const struct tnet_nat_ctx_s* pc_self, struct tnet_st
         goto bail;
     }
 
-    /*	RFC 5389 - 10.2.1.1.  First Request
-    	If the client has not completed a successful request/response
-    	transaction with the server (as identified by hostname, if the DNS
-    	procedures of Section 9 are used, else IP address if not), it SHOULD
-    	omit the USERNAME, MESSAGE-INTEGRITY, REALM, and NONCE attributes.
-    	In other words, the very first request is sent as if there were no
-    	authentication or message integrity applied.
+    /*  RFC 5389 - 10.2.1.1.  First Request
+        If the client has not completed a successful request/response
+        transaction with the server (as identified by hostname, if the DNS
+        procedures of Section 9 are used, else IP address if not), it SHOULD
+        omit the USERNAME, MESSAGE-INTEGRITY, REALM, and NONCE attributes.
+        In other words, the very first request is sent as if there were no
+        authentication or message integrity applied.
     */
 stun_phase0: {
         if ((ret = tnet_stun_utils_send_unreliably(p_binding->localFD, pc_self->RTO, pc_self->Rc, p_pkt_req, (struct sockaddr*)&p_binding->addr_server, &p_pkt_resp))) {
@@ -294,12 +294,12 @@ bail:
  * Gets the server reflexive address associated to this STUN2 binding.
  *
  *
- * @param [in,out]	p_self		The NAT context.
- * @param	id					The id of the STUN2 binding conetxt (obtained using @ref tnet_nat_stun_bind) holding the server-reflexive address.
- * @param [in,out]	pp_ip	The reflexive IP address. It is up the the caller to free the returned string
- * @param [in,out]	pu_port		The reflexive port.
+ * @param [in,out]  p_self      The NAT context.
+ * @param   id                  The id of the STUN2 binding conetxt (obtained using @ref tnet_nat_stun_bind) holding the server-reflexive address.
+ * @param [in,out]  pp_ip   The reflexive IP address. It is up the the caller to free the returned string
+ * @param [in,out]  pu_port     The reflexive port.
  *
- * @return	Zero if succeed and non zero error code otherwise.
+ * @return  Zero if succeed and non zero error code otherwise.
 **/
 int tnet_nat_stun_get_reflexive_address(const struct tnet_nat_ctx_s* p_self, tnet_stun_binding_id_t id, char** pp_ip, tnet_port_t *pu_port)
 {
@@ -337,10 +337,10 @@ int tnet_nat_stun_get_reflexive_address(const struct tnet_nat_ctx_s* p_self, tne
  *
  * Removes a STUN2 binding from the NAT context.
  *
- * @param [in,out]	p_self	The NAT context from which to remove the STUN2 binding.
- * @param	id				The id of the STUN2 binding to remove.
+ * @param [in,out]  p_self  The NAT context from which to remove the STUN2 binding.
+ * @param   id              The id of the STUN2 binding to remove.
  *
- * @return	Zero if succeed and non zero error code otherwise.
+ * @return  Zero if succeed and non zero error code otherwise.
  *
  *
  * @sa @ref tnet_nat_stun_bind.
@@ -357,7 +357,7 @@ int tnet_nat_stun_unbind(const struct tnet_nat_ctx_s* p_self, tnet_stun_binding_
 
 
 //=================================================================================================
-//	NAT CONTEXT object definition
+//  NAT CONTEXT object definition
 //
 static tsk_object_t* tnet_nat_context_ctor(tsk_object_t * self, va_list * app)
 {

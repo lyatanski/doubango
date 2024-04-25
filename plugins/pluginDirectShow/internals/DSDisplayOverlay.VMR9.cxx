@@ -25,9 +25,9 @@
 
 using namespace std;
 
-#define FILENAME			_T("Overlay.png")
-#define ALPHA_VALUE_START	0.8f
-#define ALPHA_VALUE_STOP	0.0f
+#define FILENAME            _T("Overlay.png")
+#define ALPHA_VALUE_START   0.8f
+#define ALPHA_VALUE_STOP    0.0f
 
 
 DSDisplayOverlay::DSDisplayOverlay()

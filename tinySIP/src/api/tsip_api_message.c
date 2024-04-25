@@ -37,7 +37,7 @@
 #include "tsk_runnable.h"
 #include "tsk_debug.h"
 
-#define TSIP_MESSAGE_EVENT_CREATE( type)		tsk_object_new(tsip_message_event_def_t, type)
+#define TSIP_MESSAGE_EVENT_CREATE( type)        tsk_object_new(tsip_message_event_def_t, type)
 
 extern tsip_action_t* _tsip_action_create(tsip_action_type_t type, va_list* app);
 
@@ -99,7 +99,7 @@ int tsip_api_message_send_message(const tsip_ssession_handle_t *ss, ...)
 
 
 //========================================================
-//	SIP MESSAGE event object definition
+//  SIP MESSAGE event object definition
 //
 static tsk_object_t* tsip_message_event_ctor(tsk_object_t * self, va_list * app)
 {

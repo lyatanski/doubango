@@ -24,8 +24,8 @@
  * @brief Audio Producer for MacOSX and iOS platforms using AudioQueue.
  *
  * @authors
- *	- Laurent Etiemble <laurent.etiemble(at)gmail.com>
- *	- Mamadou Diop <diopmamadou(at)doubango(dot)org>
+ *  - Laurent Etiemble <laurent.etiemble(at)gmail.com>
+ *  - Mamadou Diop <diopmamadou(at)doubango(dot)org>
  *
  * @date Created: Sat Nov 8 16:54:58 2009 letiemble
  */
@@ -187,7 +187,7 @@ static int tdav_producer_audioqueue_stop(tmedia_producer_t* self)
 
 
 //
-//	CoreAudio producer object definition
+//  CoreAudio producer object definition
 //
 /* constructor */
 static tsk_object_t* tdav_producer_audioqueue_ctor(tsk_object_t * self, va_list * app)

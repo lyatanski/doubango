@@ -35,14 +35,14 @@
 
 TSIP_BEGIN_DECLS
 
-#define TSIP_HEADER_RSEQ_VA_ARGS(seq)		tsip_header_RSeq_def_t, (int32_t) seq
+#define TSIP_HEADER_RSEQ_VA_ARGS(seq)       tsip_header_RSeq_def_t, (int32_t) seq
 
-#define TSIP_HEADER_RSEQ_NONE						0
-#define TSIP_HEADER_RSEQ_DEFAULT					1
+#define TSIP_HEADER_RSEQ_NONE                       0
+#define TSIP_HEADER_RSEQ_DEFAULT                    1
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
-/// @brief	SIP header 'RSeq' as per RFC 3262.
+/// @brief  SIP header 'RSeq' as per RFC 3262.
 ///
 /// @par ABNF: "RSeq" HCOLON response-num
 ///

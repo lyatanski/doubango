@@ -183,7 +183,7 @@ bail:
 }
 
 #if defined(_WIN32_WCE)
-#	include "internals/wince/DSNullFilter.h"
+#   include "internals/wince/DSNullFilter.h"
 #endif
 
 HRESULT DSCaptureGraph::connect()
@@ -207,12 +207,12 @@ HRESULT DSCaptureGraph::connect()
 
     if (this->captureFormat->isRGB()) {
 #if defined(_WIN32_WCE)
-        hr = ConnectFilters(this->graphBuilder, this->sourceFilter, this->colorConvertor565)		;
+        hr = ConnectFilters(this->graphBuilder, this->sourceFilter, this->colorConvertor565)        ;
         if(FAILED(hr)) {
             TSK_DEBUG_ERROR("ConnectFilters failed");
             return hr;
         }
-        hr = ConnectFilters(this->graphBuilder, this->colorConvertor565, this->sampleGrabberFilter)	;
+        hr = ConnectFilters(this->graphBuilder, this->colorConvertor565, this->sampleGrabberFilter) ;
         if(FAILED(hr)) {
             TSK_DEBUG_ERROR("ConnectFilters failed");
             return hr;
@@ -242,11 +242,11 @@ HRESULT DSCaptureGraph::connect()
     }
     else {
 #if defined(_WIN32_WCE)
-        hr = ConnectFilters(this->graphBuilder, this->sourceFilter, this->colorConvertor565)		;
+        hr = ConnectFilters(this->graphBuilder, this->sourceFilter, this->colorConvertor565)        ;
         if(FAILED(hr)) {
             return hr;
         }
-        hr = ConnectFilters(this->graphBuilder, this->colorConvertor565, this->sampleGrabberFilter)	;
+        hr = ConnectFilters(this->graphBuilder, this->colorConvertor565, this->sampleGrabberFilter) ;
         if(FAILED(hr)) {
             return hr;
         }
@@ -338,10 +338,10 @@ HRESULT DSCaptureGraph::start()
     hr = this->mediaController ? this->mediaController->Run() : E_POINTER;
     /*if (hr == S_FALSE)
     {
-    	cerr << "DSCaptureGraph::mediaController->Start() has failed with " << hr << ". Waiting for transition." << endl;
-    	FILTER_STATE pfs;
-    	hr = this->mediaController->GetState(2500, (OAFilterState*) &pfs);
-    	hr = this->mediaController->Run();
+        cerr << "DSCaptureGraph::mediaController->Start() has failed with " << hr << ". Waiting for transition." << endl;
+        FILTER_STATE pfs;
+        hr = this->mediaController->GetState(2500, (OAFilterState*) &pfs);
+        hr = this->mediaController->Run();
     }*/
 
     if (!SUCCEEDED(hr)) {

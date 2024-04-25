@@ -40,7 +40,7 @@
 #include <limits.h> /* INT_MIN, INT_MAX */
 
 #if !defined(TNET_ICE_PAIR_FULL_DEBUG)
-#	define TNET_ICE_PAIR_FULL_DEBUG 0
+#   define TNET_ICE_PAIR_FULL_DEBUG 0
 #endif /* TNET_ICE_PAIR_FULL_DEBUG */
 
 #if TNET_ICE_PAIR_FULL_DEBUG
@@ -53,7 +53,7 @@
 // 8.1.1.2.  Aggressive Nomination : https://tools.ietf.org/html/rfc5245#section-8.1.1.2
 // Issues with chrome on some restrictive networks (GE-issue)
 #if !defined(TNET_ICE_AGGRESSIVE_NOMINATION)
-#	define TNET_ICE_AGGRESSIVE_NOMINATION 0
+#   define TNET_ICE_AGGRESSIVE_NOMINATION 0
 #endif /* TNET_ICE_AGGRESSIVE_NOMINATION */
 
 static int __pred_find_by_pair(const tsk_list_item_t *item, const void *pair)
@@ -808,8 +808,8 @@ static tsk_bool_t _tnet_ice_pairs_none_succeed(const tnet_ice_pairs_L_t* pairs, 
 #define _tnet_ice_pairs_none_succeed_offer(pairs, comp_id, foundation) _tnet_ice_pairs_none_succeed((pairs), (comp_id), (foundation), tsk_false)
 
 // both RTP and RTCP have succeeded
-#define _tnet_ice_pairs_get_nominated_offer_at(pairs, index, comp_id, check_fullness, ret)	_tnet_ice_pairs_get_nominated_at((pairs), offer, answer, (index), (comp_id), (check_fullness), (ret))
-#define _tnet_ice_pairs_get_nominated_answer_at(pairs, index, comp_id, check_fullness, ret)	_tnet_ice_pairs_get_nominated_at((pairs), answer, offer, (index), (comp_id), (check_fullness), (ret))
+#define _tnet_ice_pairs_get_nominated_offer_at(pairs, index, comp_id, check_fullness, ret)  _tnet_ice_pairs_get_nominated_at((pairs), offer, answer, (index), (comp_id), (check_fullness), (ret))
+#define _tnet_ice_pairs_get_nominated_answer_at(pairs, index, comp_id, check_fullness, ret) _tnet_ice_pairs_get_nominated_at((pairs), answer, offer, (index), (comp_id), (check_fullness), (ret))
 #define _tnet_ice_pairs_get_nominated_at(pairs, dir_1, dir_2, index, _comp_id, check_fullness, ret) \
 { \
 ret = tsk_null; \
@@ -853,7 +853,7 @@ break; \
 } \
 } \
 } \
- 
+
 // true only if both RTP and RTCP are nominated
 tsk_bool_t tnet_ice_pairs_have_nominated_offer(const tnet_ice_pairs_L_t* pairs, tsk_bool_t check_rtcp)
 {

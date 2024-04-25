@@ -43,7 +43,7 @@
 #include "tsk_debug.h"
 
 #if !defined(TSIP_CONNECT_TIMEOUT)
-#	define	TSIP_CONNECT_TIMEOUT 1000
+#   define  TSIP_CONNECT_TIMEOUT 1000
 #endif
 
 TINYSIP_GEXTERN const tsk_object_def_t *tsip_ipsec_association_def_t;
@@ -130,10 +130,10 @@ int tsip_transport_ipsec_ensureTempSAs(tsip_transport_ipsec_t* self, const tsip_
     /* Cleanup old Security-Verifies */
     TSK_OBJECT_SAFE_FREE(self->secVerifies);
 
-    /*	RFC 3329 - 2.3.1 Client Initiated
+    /*  RFC 3329 - 2.3.1 Client Initiated
 
-    	When the client receives a response with a Security-Server header field, it MUST choose the security mechanism in the server's list
-    	with the highest "q" value among all the mechanisms that are known to the client.
+        When the client receives a response with a Security-Server header field, it MUST choose the security mechanism in the server's list
+        with the highest "q" value among all the mechanisms that are known to the client.
     */
     for (index = 0; (ssHdr = (const tsip_header_Security_Server_t *)tsip_message_get_headerAt(r401_407, tsip_htype_Security_Server, index)); index++) {
         tsip_header_Security_Verify_t* svHdr;
@@ -226,7 +226,7 @@ int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key
         goto bail;
     }
     if((ret = tnet_sockfd_waitUntilWritable(self->asso_active->socket_uc->fd, TSIP_CONNECT_TIMEOUT))
-    || (ret = tnet_sockfd_waitUntilReadable(self->asso_active->socket_uc->fd, TSIP_CONNECT_TIMEOUT))) {
+            || (ret = tnet_sockfd_waitUntilReadable(self->asso_active->socket_uc->fd, TSIP_CONNECT_TIMEOUT))) {
         TSK_DEBUG_WARN("%d milliseconds elapsed and the socket is still not connected.", TSIP_CONNECT_TIMEOUT);
         // dot not exit, store the outgoing data until connection succeed
     }
@@ -300,13 +300,13 @@ int tsip_transport_ipsec_updateMSG(tsip_transport_ipsec_t* self, tsip_message_t 
                                 asso->ctx->spi_uc,
                                 asso->ctx->spi_us
                                                                         ));
-        /*	RFC 3329 - 2.3.1 Client Initiated
-        	All the subsequent SIP requests sent by the client to that server
-        	SHOULD make use of the security mechanism initiated in the previous
-        	step.  These requests MUST contain a Security-Verify header field
-        	that mirrors the server's list received previously in the Security-
-        	Server header field.  These requests MUST also have both a Require
-        	and Proxy-Require header fields with the value "sec-agree".
+        /*  RFC 3329 - 2.3.1 Client Initiated
+            All the subsequent SIP requests sent by the client to that server
+            SHOULD make use of the security mechanism initiated in the previous
+            step.  These requests MUST contain a Security-Verify header field
+            that mirrors the server's list received previously in the Security-
+            Server header field.  These requests MUST also have both a Require
+            and Proxy-Require header fields with the value "sec-agree".
         */
         tsk_list_foreach(item, self->secVerifies) {
             tsip_message_add_header(msg, (const tsip_header_t*)item->data);
@@ -340,26 +340,26 @@ tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest
         // return TSIP_TRANSPORT(self)->connectedFD;
     }
 
-    /*	IPSec ports management
-    	For more information: http://betelco.blogspot.com/2008/09/ipsec-using-security-agreement-in-3gpp.html
+    /*  IPSec ports management
+        For more information: http://betelco.blogspot.com/2008/09/ipsec-using-security-agreement-in-3gpp.html
     */
 
     if (TNET_SOCKET_TYPE_IS_DGRAM(TSIP_TRANSPORT(self)->type)) {
         /*
-        	=== UDP ===
-        	port_uc -> REGISTER -> port_ps
-        	port_uc <- 200 OK <- port_ps
+            === UDP ===
+            port_uc -> REGISTER -> port_ps
+            port_uc <- 200 OK <- port_ps
         */
         return self->asso_active->socket_uc->fd;
     }
     else {
         /*
-        	=== TCP ===
-        	port_uc -> REGISTER -> port_ps
-        	port_uc <- 200 OK <- port_ps
+            === TCP ===
+            port_uc -> REGISTER -> port_ps
+            port_uc <- 200 OK <- port_ps
 
-        	port_us <- NOTIFY <- port_pc
-        	port_us -> 200 OK -> port_pc
+            port_us <- NOTIFY <- port_pc
+            port_us -> 200 OK -> port_pc
         */
         if (isRequest) {
             return self->asso_active->socket_uc->fd;
@@ -373,7 +373,7 @@ tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest
 }
 
 //========================================================
-//	SIP/IPSec transport object definition
+//  SIP/IPSec transport object definition
 //
 static tsk_object_t* tsip_transport_ipsec_ctor(tsk_object_t * self, va_list * app)
 {
@@ -431,7 +431,7 @@ static const tsk_object_def_t tsip_transport_ipsec_def_s = {
 const tsk_object_def_t *tsip_transport_ipsec_def_t = &tsip_transport_ipsec_def_s;
 
 //=================================================================================================
-//	IPSec association object definition
+//  IPSec association object definition
 //
 static tsk_object_t* tsip_ipsec_association_ctor(tsk_object_t * self, va_list * app)
 {

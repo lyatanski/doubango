@@ -45,7 +45,7 @@ tnet_dns_aaaa_t* tnet_dns_aaaa_create(const char* name, tnet_dns_qclass_t qclass
 
 
 //=================================================================================================
-//	[[DNS AAAA]] object definition
+//  [[DNS AAAA]] object definition
 //
 static tsk_object_t* tnet_dns_aaaa_ctor(tsk_object_t * self, va_list * app)
 {

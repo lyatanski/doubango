@@ -37,25 +37,25 @@
 #include "tsk_time.h"
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
+#   include <windows.h>
 #endif /* TSK_UNDER_WINDOWS */
 
 
 /**@defgroup tsk_timer_group Utility Timers Management
 */
 
-#define TSK_TIMER_CREATE(timeout, callback, arg)	tsk_object_new(tsk_timer_def_t, timeout, callback, arg)
-#define TSK_TIMER_TIMEOUT(self)						((tsk_timer_t*)self)->timeout
-#define TSK_TIMER_GET_FIRST()						(manager->timers && manager->timers->head) ? (tsk_timer_t*)(((tsk_list_item_t*)(manager->timers->head))->data) : 0
+#define TSK_TIMER_CREATE(timeout, callback, arg)    tsk_object_new(tsk_timer_def_t, timeout, callback, arg)
+#define TSK_TIMER_TIMEOUT(self)                     ((tsk_timer_t*)self)->timeout
+#define TSK_TIMER_GET_FIRST()                       (manager->timers && manager->timers->head) ? (tsk_timer_t*)(((tsk_list_item_t*)(manager->timers->head))->data) : 0
 
 /**
- * @struct	tsk_timer_s
- * @brief	Timer.
+ * @struct  tsk_timer_s
+ * @brief   Timer.
 **/
 typedef struct tsk_timer_s {
     TSK_DECLARE_OBJECT;
 
-    tsk_timer_id_t id;	/**< Unique timer identifier. */
+    tsk_timer_id_t id;  /**< Unique timer identifier. */
     const void *arg; /**< Opaque data to return with the callback function. */
     uint64_t timeout; /**< When the timer will timeout(as EPOCH time). */
     tsk_timer_callback_f callback; /**< The callback function to call after @ref timeout milliseconds. */
@@ -66,9 +66,9 @@ tsk_timer_t;
 typedef tsk_list_t tsk_timers_L_t; /**< List of @ref tsk_timer_t elements. */
 
 /**
- * @struct	tsk_timer_manager_s
+ * @struct  tsk_timer_manager_s
  *
- * @brief	Timer manager.
+ * @brief   Timer manager.
 **/
 typedef struct tsk_timer_manager_s {
     TSK_DECLARE_RUNNABLE;
@@ -429,7 +429,7 @@ int tsk_timer_mgr_global_unref(tsk_timer_manager_handle_t** mgr_global)
 
 
 //=================================================================================================
-//	Timer manager object definition
+//  Timer manager object definition
 //
 static tsk_object_t* tsk_timer_manager_ctor(tsk_object_t * self, va_list * app)
 {
@@ -473,7 +473,7 @@ const tsk_object_def_t * tsk_timer_manager_def_t = &tsk_timer_manager_def_s;
 
 
 //=================================================================================================
-//	Timer object definition
+//  Timer object definition
 //
 static tsk_object_t* tsk_timer_ctor(tsk_object_t * self, va_list * app)
 {

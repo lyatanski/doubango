@@ -23,9 +23,9 @@
 #include "tsk_debug.h"
 
 #define SWITCH_CASE_TAKE_ATTR(type, cat, field) \
-		case (type): \
-		if (!p_self->##field) { \
-			p_self->##field = (cat)*pp_attr, *pp_attr = tsk_null; \
+        case (type): \
+        if (!p_self->##field) { \
+            p_self->##field = (cat)*pp_attr, *pp_attr = tsk_null; \
             return 0; \
         } \
         break;

@@ -26,44 +26,44 @@
 
 // Windows (XP/Vista/7/CE and Windows Mobile) macro definition
 #if defined(WIN32)|| defined(_WIN32) || defined(_WIN32_WCE)
-#	define PLUGIN_WASAPI_UNDER_WINDOWS	1
-#	if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
-#		define PLUGIN_WASAPI_UNDER_WINDOWS_RT		1
-#		if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-#			define PLUGIN_WASAPI_UNDER_WINDOWS_PHONE		1
-#		endif
-#	endif
+#   define PLUGIN_WASAPI_UNDER_WINDOWS  1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP || WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define PLUGIN_WASAPI_UNDER_WINDOWS_RT       1
+#       if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+#           define PLUGIN_WASAPI_UNDER_WINDOWS_PHONE        1
+#       endif
+#   endif
 #endif
 
 #if (PLUGIN_WASAPI_UNDER_WINDOWS || defined(__SYMBIAN32__)) && defined(PLUGIN_WASAPI_EXPORTS)
-# 	define PLUGIN_WASAPI_API		__declspec(dllexport)
-# 	define PLUGIN_WASAPI_GEXTERN extern __declspec(dllexport)
+#   define PLUGIN_WASAPI_API        __declspec(dllexport)
+#   define PLUGIN_WASAPI_GEXTERN extern __declspec(dllexport)
 #elif (PLUGIN_WASAPI_UNDER_WINDOWS || defined(__SYMBIAN32__)) && !defined(PLUGIN_WASAPI_IMPORTS_IGNORE)
-# 	define PLUGIN_WASAPI_API __declspec(dllimport)
-# 	define PLUGIN_WASAPI_GEXTERN __declspec(dllimport)
+#   define PLUGIN_WASAPI_API __declspec(dllimport)
+#   define PLUGIN_WASAPI_GEXTERN __declspec(dllimport)
 #else
-#	define PLUGIN_WASAPI_API
-#	define PLUGIN_WASAPI_GEXTERN	extern
+#   define PLUGIN_WASAPI_API
+#   define PLUGIN_WASAPI_GEXTERN    extern
 #endif
 
 // x86
 #if defined(__x86_64__) || defined(__x86__) || defined(__i386__)
-#	define PLUGIN_WASAPI_UNDER_X86				1
+#   define PLUGIN_WASAPI_UNDER_X86              1
 #endif
 
 // Guards against C++ name mangling
 #ifdef __cplusplus
-#	define PLUGIN_WASAPI_BEGIN_DECLS extern "C" {
-#	define PLUGIN_WASAPI_END_DECLS }
+#   define PLUGIN_WASAPI_BEGIN_DECLS extern "C" {
+#   define PLUGIN_WASAPI_END_DECLS }
 #else
-#	define PLUGIN_WASAPI_BEGIN_DECLS
-#	define PLUGIN_WASAPI_END_DECLS
+#   define PLUGIN_WASAPI_BEGIN_DECLS
+#   define PLUGIN_WASAPI_END_DECLS
 #endif
 
 #ifdef _MSC_VER
-#	define inline __inline
-#	define _CRT_SECURE_NO_WARNINGS
-#	define _ALLOW_KEYWORD_MACROS
+#   define inline __inline
+#   define _CRT_SECURE_NO_WARNINGS
+#   define _ALLOW_KEYWORD_MACROS
 #endif
 
 #include <stdint.h>

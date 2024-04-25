@@ -35,21 +35,21 @@
 #include <time.h>
 
 #if TSK_UNDER_WINDOWS
-#	include <windows.h>
-#	include "tsk_errno.h"
-#	define CONDWAIT_S void
-typedef HANDLE	CONDWAIT_T;
-#	define TIMED_OUT	WAIT_TIMEOUT
+#   include <windows.h>
+#   include "tsk_errno.h"
+#   define CONDWAIT_S void
+typedef HANDLE  CONDWAIT_T;
+#   define TIMED_OUT    WAIT_TIMEOUT
 #else
-#	include <sys/time.h>
-#	include <pthread.h>
-#	define CONDWAIT_S pthread_cond_t
+#   include <sys/time.h>
+#   include <pthread.h>
+#   define CONDWAIT_S pthread_cond_t
 typedef CONDWAIT_S* CONDWAIT_T;
-#	define TIMED_OUT	ETIMEDOUT
+#   define TIMED_OUT    ETIMEDOUT
 #endif
 
 #if defined(__GNUC__) || defined (__SYMBIAN32__)
-#	include <errno.h>
+#   include <errno.h>
 #endif
 
 /**@defgroup tsk_condwait_group Pthread/Windows functions for waiting and signaling on condition variables (conwait).
@@ -98,11 +98,11 @@ tsk_condwait_handle_t* tsk_condwait_create()
 
     if(condwait) {
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
         condwait->pcond = CreateEventEx(NULL, NULL, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
 #else
         condwait->pcond = CreateEvent(NULL, TRUE, FALSE, NULL);
-#	endif
+#   endif
         if(!condwait->pcond) {
             TSK_FREE(condwait);
         }
@@ -143,9 +143,9 @@ int tsk_condwait_wait(tsk_condwait_handle_t* handle)
     }
 
 #if TSK_UNDER_WINDOWS
-#	if TSK_UNDER_WINDOWS_RT
+#   if TSK_UNDER_WINDOWS_RT
     if((ret = (WaitForSingleObjectEx(condwait->pcond, INFINITE, TRUE) == WAIT_FAILED) ? -1 : 0)) {
-#	else
+#   else
     if((ret = (WaitForSingleObject(condwait->pcond, INFINITE) == WAIT_FAILED) ? -1 : 0)) {
 #endif
         TSK_DEBUG_ERROR("WaitForSingleObject function failed: %d", ret);
@@ -179,9 +179,9 @@ int tsk_condwait_timedwait(tsk_condwait_handle_t* handle, uint64_t ms)
     tsk_condwait_t *condwait = (tsk_condwait_t*)handle;
 
 #if TSK_UNDER_WINDOWS
-#	   if TSK_UNDER_WINDOWS_RT
+#      if TSK_UNDER_WINDOWS_RT
     if((ret = WaitForSingleObjectEx(condwait->pcond, (DWORD)ms, TRUE)) != WAIT_OBJECT_0) {
-#	   else
+#      else
     if((ret = WaitForSingleObject(condwait->pcond, (DWORD)ms)) != WAIT_OBJECT_0) {
 #endif
         if(ret == TIMED_OUT) {

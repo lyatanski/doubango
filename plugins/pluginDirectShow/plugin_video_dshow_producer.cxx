@@ -24,7 +24,7 @@
 #include "tsk_string.h"
 #include "tsk_debug.h"
 
-#define DSPRODUCER(self)		((plugin_video_dshow_producer_t*)(self))
+#define DSPRODUCER(self)        ((plugin_video_dshow_producer_t*)(self))
 
 typedef struct plugin_video_dshow_producer_s {
     TMEDIA_DECLARE_PRODUCER;
@@ -214,7 +214,7 @@ static int plugin_video_dshow_producer_stop(tmedia_producer_t* self)
 
 
 //
-//	WaveAPI producer object definition
+//  WaveAPI producer object definition
 //
 /* constructor */
 static tsk_object_t* plugin_video_dshow_producer_ctor(tsk_object_t * self, va_list * app)

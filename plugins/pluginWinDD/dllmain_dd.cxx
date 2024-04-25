@@ -79,7 +79,7 @@ tsk_plugin_def_type_t __plugin_get_def_type_at(int index)
     }
 }
 
-tsk_plugin_def_media_type_t	__plugin_get_def_media_type_at(int index)
+tsk_plugin_def_media_type_t __plugin_get_def_media_type_at(int index)
 {
     switch (index) {
     case PLUGIN_INDEX_PRODUCER: {

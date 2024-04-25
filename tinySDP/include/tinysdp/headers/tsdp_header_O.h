@@ -36,27 +36,27 @@
 TSDP_BEGIN_DECLS
 
 
-#define TSDP_HEADER_O_VA_ARGS(username, sess_id, sess_version, nettype, addrtype, addr)			tsdp_header_O_def_t, (const char*)username, (uint32_t)sess_id, (uint32_t)sess_version, (const char*)nettype, (const char*)addrtype, (const char*)addr
-#define TSDP_HEADER_O_VA_ARGS_DEFAULT(username, nettype, addrtype, addr)						TSDP_HEADER_O_VA_ARGS(username, TSDP_HEADER_O_SESS_ID_DEFAULT, TSDP_HEADER_O_SESS_VERSION_DEFAULT, nettype, addrtype, addr)
+#define TSDP_HEADER_O_VA_ARGS(username, sess_id, sess_version, nettype, addrtype, addr)         tsdp_header_O_def_t, (const char*)username, (uint32_t)sess_id, (uint32_t)sess_version, (const char*)nettype, (const char*)addrtype, (const char*)addr
+#define TSDP_HEADER_O_VA_ARGS_DEFAULT(username, nettype, addrtype, addr)                        TSDP_HEADER_O_VA_ARGS(username, TSDP_HEADER_O_SESS_ID_DEFAULT, TSDP_HEADER_O_SESS_VERSION_DEFAULT, nettype, addrtype, addr)
 
-#define TSDP_HEADER_O_SESS_ID_DEFAULT		123456
-#define TSDP_HEADER_O_SESS_VERSION_DEFAULT	678901
+#define TSDP_HEADER_O_SESS_ID_DEFAULT       123456
+#define TSDP_HEADER_O_SESS_VERSION_DEFAULT  678901
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct
 ///
-/// @brief	SDP "o=" header (Origin).
+/// @brief  SDP "o=" header (Origin).
 ///  The "o=" field gives the originator of the session (her username and
 ///     the address of the user's host) plus a session identifier and version number.
 ///
 /// @par ABNF : u=username SP
 /// sess-id SP sess-version SP nettype SP addrtype SP unicast-address
 ///
-/// username	=  	non-ws-string
-/// sess-id	=  	1*DIGIT
-/// sess-version	=  	1*DIGIT
-/// nettype	=  	token
-/// addrtype	=  	token
+/// username    =   non-ws-string
+/// sess-id =   1*DIGIT
+/// sess-version    =   1*DIGIT
+/// nettype =   token
+/// addrtype    =   token
 /// unicast-address = FQDN
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////

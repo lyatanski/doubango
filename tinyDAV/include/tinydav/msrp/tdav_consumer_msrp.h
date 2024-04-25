@@ -36,7 +36,7 @@
 TDAV_BEGIN_DECLS
 
 
-#define TDAV_CONSUMER_MSRP(self)		((tdav_consumer_msrp_t*)(self))
+#define TDAV_CONSUMER_MSRP(self)        ((tdav_consumer_msrp_t*)(self))
 
 
 typedef struct tdav_consumer_msrp_s {

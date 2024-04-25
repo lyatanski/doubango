@@ -29,7 +29,7 @@
 #include "tsk_memory.h"
 
 /***********************************
-*	Ragel state machine.
+*   Ragel state machine.
 */
 
 /* #line 54 "./ragel/thttp_parser_header_Content_Length.rl" */
@@ -244,7 +244,7 @@ _match:
             {
             }
             break;
-            /* #line 241 "./src/headers/thttp_header_Content_Length.c" */
+                /* #line 241 "./src/headers/thttp_header_Content_Length.c" */
             }
         }
 
@@ -282,7 +282,7 @@ _out: {
 
 
 //========================================================
-//	Content_Length header object definition
+//  Content_Length header object definition
 //
 
 static tsk_object_t* thttp_header_Content_Length_ctor(tsk_object_t *self, va_list * app)
