@@ -216,7 +216,7 @@ int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key
         ret = tipsec_ctx_start(self->asso_active->ctx);
     }
 
-    /* Connect Sockets: port_uc to port_ps*/
+    /* Connect Socket: port_uc to port_ps */
     if((ret = tnet_sockaddr_init(self->asso_active->ip_remote, self->asso_active->ctx->port_ps, TSIP_TRANSPORT(self)->type, &to))) {
         TSK_DEBUG_ERROR("Invalid HOST/PORT [%s/%u].", (const char*)self->asso_active->ctx->addr_remote, self->asso_active->ctx->port_ps);
         goto bail;
@@ -234,6 +234,7 @@ int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key
     /* Add client and server sockets to the network transport */
     tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_us->fd, TSIP_TRANSPORT(self)->type, 0, 0);
     tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_uc->fd, TSIP_TRANSPORT(self)->type, 0, 1);
+    tnet_sockfd_listen(self->asso_active->socket_us->fd, 3);
 
 bail:
     return ret;
