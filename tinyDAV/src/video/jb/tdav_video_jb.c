@@ -315,7 +315,7 @@ int tdav_video_jb_put(tdav_video_jb_t* self, trtp_rtp_packet_t* rtp_pkt)
                     }
                 }
                 else {
-                    TSK_DEBUG_INFO("Dropping video frame because frames_count(%lld)>=tail_max(%d)", self->frames_count, self->tail_max);
+                    TSK_DEBUG_INFO("Dropping video frame because frames_count(%ld)>=tail_max(%d)", self->frames_count, self->tail_max);
                     tsk_list_remove_first_item(self->frames);
                 }
                 tdav_video_jb_reset_fps_prob(self);
@@ -505,7 +505,7 @@ static void* TSK_STDCALL _tdav_video_jb_decode_thread_func(void *arg)
                 }
             }
             else {
-                TSK_DEBUG_INFO("frames_count(%lld)>=latency_max(%u)...decoding video frame even if pkts are missing :(", jb->frames_count, (unsigned)jb->latency_max);
+                TSK_DEBUG_INFO("frames_count(%ld)>=latency_max(%u)...decoding video frame even if pkts are missing :(", jb->frames_count, (unsigned)jb->latency_max);
                 jb->decode_last_seq_num_with_mark = -1; // unset()
                 // postpone is equal to "tsk_false" which means the pending frame will be displayed in all cases
             }

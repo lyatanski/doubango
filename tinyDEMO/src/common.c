@@ -482,7 +482,7 @@ int session_tostring(const session_t* session)
     printf("== Session: ");
     if(session) {
         /* Session Id */
-        printf("sid=%llu", tsip_ssession_get_id(session->handle));
+        printf("sid=%lu", tsip_ssession_get_id(session->handle));
         /* Type */
         printf(" type=");
         switch(session->type) {
@@ -739,7 +739,7 @@ int session_hangup(tsip_ssession_id_t sid)
         return 0;
     }
     else {
-        TSK_DEBUG_WARN("Failed to find session with sid=%llu", sid);
+        TSK_DEBUG_WARN("Failed to find session with sid=%lu", sid);
         return -1;
     }
 }

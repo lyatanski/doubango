@@ -1134,7 +1134,7 @@ static t140_block_t* _tdav_session_t140_block_create(uint8_t pt, uint16_t seq_nu
 
     if(data_ptr && data_size) {
         if(!(_data_ptr = tsk_malloc(data_size))) {
-            TSK_DEBUG_ERROR("Failed to alloc data with size = %u", data_size);
+            TSK_DEBUG_ERROR("Failed to alloc data with size = %lu", data_size);
             goto bail;
         }
         memcpy(_data_ptr, data_ptr, data_size);

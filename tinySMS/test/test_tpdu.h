@@ -63,8 +63,6 @@ void test_submit()
 
     TSK_OBJECT_SAFE_FREE(submit);
     TSK_OBJECT_SAFE_FREE(buffer);
-
-    printf("==========\n");
 }
 
 void test_deliver()
@@ -113,8 +111,6 @@ void test_deliver()
 
     TSK_OBJECT_SAFE_FREE(deliver);
     TSK_OBJECT_SAFE_FREE(buffer);
-
-    printf("==========\n");
 }
 
 
@@ -153,8 +149,6 @@ void test_report()
 
     TSK_OBJECT_SAFE_FREE(report);
     TSK_OBJECT_SAFE_FREE(buffer);
-
-    printf("==========\n");
 }
 
 void test_command()
@@ -188,8 +182,6 @@ void test_command()
 
     TSK_OBJECT_SAFE_FREE(command);
     TSK_OBJECT_SAFE_FREE(buffer);
-
-    printf("==========\n");
 }
 
 void test_sreport()
@@ -234,8 +226,6 @@ void test_sreport()
 
     TSK_OBJECT_SAFE_FREE(sreport);
     TSK_OBJECT_SAFE_FREE(buffer);
-
-    printf("==========\n");
 }
 
 void test_tpdu()

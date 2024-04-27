@@ -267,7 +267,7 @@ int invite_msrp_cb(const tmsrp_event_t* _event)
         case tmsrp_response: {
             /* MSRP Response */
             if(_event->message->ByteRange) {
-                TSK_DEBUG_INFO("MSRP Response code=%hi %lld-%lld/%lld", TMSRP_RESPONSE_CODE(_event->message),
+                TSK_DEBUG_INFO("MSRP Response code=%hi %ld-%ld/%ld", TMSRP_RESPONSE_CODE(_event->message),
                                _event->message->ByteRange->start, _event->message->ByteRange->end, _event->message->ByteRange->total);
             }
             break;

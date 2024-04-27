@@ -80,7 +80,7 @@ uint64_t __now = tsk_time_now(); \
 tsk_bool_t too_close = tsk_false; \
 if((__now - (__self)->avpf.last_fir_time) > TDAV_SESSION_VIDEO_AVPF_FIR_HONOR_INTERVAL_MIN){ /* guard to avoid sending too many FIR */ \
 _tdav_session_video_codec_set_int32((__self), "action", __action_encode_idr); \
-}else { too_close = tsk_true; TSK_DEBUG_INFO("***IDR request tooo close(%llu ms)...ignoring****", (__now - (__self)->avpf.last_fir_time)); } \
+}else { too_close = tsk_true; TSK_DEBUG_INFO("***IDR request tooo close(%lu ms)...ignoring****", (__now - (__self)->avpf.last_fir_time)); } \
 if((__self)->cb_rtcpevent.func){ \
 (__self)->cb_rtcpevent.func((__self)->cb_rtcpevent.context, tmedia_rtcp_event_type_fir, (__ssrc_media)); \
 } \
