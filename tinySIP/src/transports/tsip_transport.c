@@ -530,7 +530,7 @@ tsk_size_t tsip_transport_send(const tsip_transport_t* self, const char *branch,
         if((buffer = tsk_buffer_create_null())) {
             tsip_message_tostring(msg, buffer);
 
-            TSK_DEBUG_INFO("\nSEND: %.*s\n", buffer->size, (const char*)buffer->data);
+            TSK_DEBUG_INFO("\nSEND: %.*s\n", (int)buffer->size, (const char*)buffer->data);
 
             if(buffer->size >1300) {
                 /*  RFC 3261 - 18.1.1 Sending Requests (FIXME)

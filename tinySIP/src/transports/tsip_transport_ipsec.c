@@ -366,7 +366,8 @@ tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest
             return self->asso_active->socket_uc->fd;
         }
         else {
-            return self->asso_active->socket_us->fd;
+            return TSIP_TRANSPORT(self)->connectedFD;
+            //return self->asso_active->socket_us->fd;
         }
     }
 

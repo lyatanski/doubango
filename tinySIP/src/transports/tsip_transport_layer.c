@@ -140,6 +140,7 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
     switch(e->type) {
     case event_data: {
         TSK_DEBUG_INFO("\nRECV:%.*s\n", e->size, (const char*)e->data);
+        transport->connectedFD = e->local_fd;
         break;
     }
     case event_closed:
@@ -174,7 +175,7 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
     case event_connected:
     case event_accepted: {
         tsip_transport_stream_peer_t* peer;
-        TSK_DEBUG_INFO("Stream Peer accepted/connected - %d", e->local_fd);
+        TSK_DEBUG_INFO("Stream Peer accepted/connected fd = %d", e->local_fd);
         // find peer
         if((peer = tsip_transport_find_stream_peer_by_local_fd(transport, e->local_fd))) {
             peer->connected = tsk_true;
