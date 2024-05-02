@@ -11,11 +11,12 @@ ExternalProject_Add(libmnl
     URL https://www.netfilter.org/projects/libmnl/files/libmnl-1.0.5.tar.bz2
     URL_HASH SHA256=274b9b919ef3152bfb3da3a13c950dd60d6e2bcd54230ffeca298d03b40d0525
     BUILD_IN_SOURCE ON
-    CONFIGURE_COMMAND ./configure --prefix=${MNL_INSTALL_DIR}
+    CONFIGURE_COMMAND ./configure --prefix=${MNL_INSTALL_DIR} --with-doxygen=no
     BUILD_COMMAND make
     TEST_EXCLUDE_FROM_MAIN ON
     INSTALL_COMMAND make install
     INSTALL_DIR ${MNL_INSTALL_DIR}
+    BUILD_BYPRODUCTS ${MNL_INSTALL_DIR}/lib/libmnl.${MNL_LIBRARY_SUFFIX}
 )
 
 file(MAKE_DIRECTORY ${MNL_INCLUDE_DIR})
