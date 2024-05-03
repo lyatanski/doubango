@@ -297,8 +297,6 @@ void test_fsm()
         }
 
         TSK_OBJECT_SAFE_FREE(fsm);
-
-        printf("\n\n");
     }
 }
 

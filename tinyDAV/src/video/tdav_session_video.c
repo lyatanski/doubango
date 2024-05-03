@@ -598,12 +598,12 @@ static int tdav_session_video_rtcp_cb(const void* callback_data, const trtp_rtcp
         case trtp_rtcp_psfb_fci_type_afb: {
             if (psfb->afb.type == trtp_rtcp_psfb_afb_type_remb) {
                 uint64_t bw_up_reported_kpbs = ((psfb->afb.remb.mantissa << psfb->afb.remb.exp) >> 10);
-                TSK_DEBUG_INFO("Receiving RTCP-AFB-REMB (%u), exp=%u, mantissa=%u, bandwidth=%llukbps", ((const trtp_rtcp_report_fb_t*)psfb)->ssrc_media, psfb->afb.remb.exp, psfb->afb.remb.mantissa, bw_up_reported_kpbs);
+                TSK_DEBUG_INFO("Receiving RTCP-AFB-REMB (%u), exp=%u, mantissa=%u, bandwidth=%lukbps", ((const trtp_rtcp_report_fb_t*)psfb)->ssrc_media, psfb->afb.remb.exp, psfb->afb.remb.mantissa, bw_up_reported_kpbs);
                 if (base->congestion_ctrl_enabled) {
                     if (session->qos_metrics.bw_up_est_kbps != 0) {
                         float q3 = bw_up_reported_kpbs / (float)session->qos_metrics.bw_up_est_kbps;
                         q3 = TSK_CLAMP(0.f, q3, 1.f);
-                        TSK_DEBUG_INFO("bw_up_estimated_kbps=%u, bw_up_reported_kpbs=%llu, q3=%f", session->qos_metrics.bw_up_est_kbps, bw_up_reported_kpbs, q3);
+                        TSK_DEBUG_INFO("bw_up_estimated_kbps=%u, bw_up_reported_kpbs=%lu, q3=%f", session->qos_metrics.bw_up_est_kbps, bw_up_reported_kpbs, q3);
                         tsk_mutex_lock(video->h_mutex_qos);
                         session->qos_metrics.q3 = (session->qos_metrics.q3 + q3) / (video->q3_n++ ? 2.f : 1.f);
                         tsk_mutex_unlock(video->h_mutex_qos);
@@ -940,7 +940,7 @@ static int _tdav_session_video_decode(tdav_session_video_t* self, const trtp_rtp
         if (self->zero_artifacts && self->decoder.stream_corrupted && (__codecs_supporting_zero_artifacts & self->decoder.codec->id)) {
             TSK_DEBUG_INFO("Do not render video frame because stream is corrupted and 'zero-artifacts' is enabled. Last seqnum=%u", video->decoder.last_seqnum);
             if (video->decoder.stream_corrupted && (tsk_time_now() - video->decoder.stream_corrupted_since) > TDAV_SESSION_VIDEO_AVPF_FIR_REQUEST_INTERVAL_MIN) {
-                TSK_DEBUG_INFO("Sending FIR to request IDR because frame corrupted since %llu...", video->decoder.stream_corrupted_since);
+                TSK_DEBUG_INFO("Sending FIR to request IDR because frame corrupted since %lu...", video->decoder.stream_corrupted_since);
                 _tdav_session_video_local_request_idr(TMEDIA_SESSION(video), "ZERO_ART_CORRUPTED", packet->header->ssrc);
             }
             goto bail;

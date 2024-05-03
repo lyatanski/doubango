@@ -139,7 +139,7 @@ static int tsip_transport_layer_stream_cb(const tnet_transport_event_t* e)
 
     switch(e->type) {
     case event_data: {
-        TSK_DEBUG_INFO("\nRECV:%.*s\n", e->size, (const char*)e->data);
+        TSK_DEBUG_INFO("\nRECV:%.*s\n", (int)e->size, (const char*)e->data);
         transport->connectedFD = e->local_fd;
         break;
     }
@@ -296,7 +296,7 @@ parse_buffer:
         }
         else { /* There is a content */
             if((endOfheaders + 4/*2CRLF*/ + clen) > TSK_BUFFER_SIZE(peer->rcv_buff_stream)) { /* There is content but not all the content. */
-                TSK_DEBUG_INFO("No all SIP content in the TCP buffer (clen=%u and %u > %u).", clen, (endOfheaders + 4/*2CRLF*/ + clen), TSK_BUFFER_SIZE(peer->rcv_buff_stream));
+                TSK_DEBUG_INFO("No all SIP content in the TCP buffer (clen=%lu and %lu > %lu).", clen, (endOfheaders + 4/*2CRLF*/ + clen), TSK_BUFFER_SIZE(peer->rcv_buff_stream));
                 goto bail;
             }
             else {
@@ -433,7 +433,7 @@ parse_buffer:
             int32_t idx;
 
             if((idx = tsk_strindexOf(msg_start, (msg_end - msg_start), "\r\n")) > 2) {
-                TSK_DEBUG_INFO("WebSocket handshake message: %.*s", (msg_end - msg_start), msg_start);
+                TSK_DEBUG_INFO("WebSocket handshake message: %.*s", (int)(msg_end - msg_start), msg_start);
                 msg_start += (idx + 2); // skip request header
                 while(msg_start < msg_end) {
                     if((idx = tsk_strindexOf(msg_start, (msg_end - msg_start), "\r\n")) <= 2) {
@@ -604,7 +604,7 @@ parse_buffer:
 
     // If we are there this mean that we have all SIP headers.
     //  ==> Parse the SIP message without the content.
-    TSK_DEBUG_INFO("Receiving SIP o/ WebSocket message: %.*s", pay_len, (const char*)peer->ws.rcv_buffer);
+    TSK_DEBUG_INFO("Receiving SIP o/ WebSocket message: %.*s", (int)pay_len, (const char*)peer->ws.rcv_buffer);
     tsk_ragel_state_init(&state, peer->ws.rcv_buffer, (tsk_size_t)pay_len);
     if (tsip_message_parse(&state, &message, tsk_false/* do not extract the content */) == tsk_true) {
         const uint8_t* body_start = (const uint8_t*)state.eoh;
@@ -658,7 +658,7 @@ static int tsip_transport_layer_dgram_cb(const tnet_transport_event_t* e)
 
     switch(e->type) {
     case event_data: {
-        TSK_DEBUG_INFO("\nRECV:%.*s\n", e->size, (const char*)e->data);
+        TSK_DEBUG_INFO("\nRECV:%.*s\n", (int)e->size, (const char*)e->data);
         break;
     }
     case event_closed:

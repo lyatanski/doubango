@@ -2182,7 +2182,7 @@ static int _sdp_tcaps_from_sdp(const sdp_headerM_Or_Message* sdp, sdp_tcap_xt (*
 
         profiles_count = 0;
         tag_fake = tag;
-        while(sscanf(&A->value[index], "%255s", &tcap) != EOF) {
+        while(sscanf(&A->value[index], "%255s", tcap) != EOF) {
             if(tag_fake < SDP_CAPS_COUNT_MAX) {
                 (*tcaps)[tcaps_count + profiles_count].tag = tag_fake;
                 (*tcaps)[tcaps_count + profiles_count].profile = _sdp_profile_from_string(tcap); // split profiles
@@ -2298,7 +2298,7 @@ static int _sdp_pcfgs_from_sdp(const sdp_headerM_Or_Message* sdp, sdp_acap_xt (*
 
         index = _sdp_integer_length(tag) + 1/*SPACE*/;
 
-        while(sscanf(&A->value[index], "%255s", &pcfg) != EOF) {
+        while(sscanf(&A->value[index], "%255s", pcfg) != EOF) {
             if(_sdp_str_starts_with(&A->value[index], "t=") && sscanf(pcfg, "t=%d", &t) != EOF) {
                 if(t <= 0 || t + 1 >= SDP_CAPS_COUNT_MAX) {
                     TSK_DEBUG_ERROR("t = %d ignored", t);

@@ -337,7 +337,7 @@ tsk_size_t tsip_transport_send_raw(const tsip_transport_t* self, const char* dst
             }
         }
         if(!(ret = tnet_transport_sendto(self->net_transport, self->connectedFD, (const struct sockaddr*)to, data, size))) {
-            TSK_DEBUG_ERROR("Send(%u) returns zero", size);
+            TSK_DEBUG_ERROR("Send(%lu) returns zero", size);
         }
     }
     else { // "sctp", "tcp" or "tls"

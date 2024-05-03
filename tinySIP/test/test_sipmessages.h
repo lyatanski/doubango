@@ -197,7 +197,7 @@ void test_parser()
 
     for(i = 0; (header_contact = (const tsip_header_Contact_t*)tsip_message_get_headerAt(message, tsip_htype_Contact, i)); ++i) {
         const char* pub_gruu = TSIP_HEADER_GET_PARAM_VALUE(header_contact, "pub-gruu");
-        TSK_DEBUG_INFO("pub-gruu for contact header at index %d = %s", i, (pub_gruu ? pub_gruu : "null"));
+        TSK_DEBUG_INFO("pub-gruu for contact header at index %ld = %s", i, (pub_gruu ? pub_gruu : "null"));
     }
 
     tsip_message_tostring(message, buffer);
