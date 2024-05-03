@@ -91,8 +91,8 @@ void test_o_rpdata_submit()
     tsk_buffer_t* buffer = tsk_null;
     tsms_tpdu_submit_t* sms_submit = tsk_null;
     tsms_rpdu_data_t* rp_data = tsk_null;
-    const char* smsc = "+331000009";
-    const char* destination = "+333361234567";
+    const tsms_address_string_t smsc = "+331000009";
+    const tsms_address_string_t destination = "+333361234567";
     const char* short_message = "hello world";
     uint8_t mr = 0xF5;
     uint8_t message_number = 0xF8;
@@ -116,7 +116,6 @@ void test_o_rpdata_submit()
     // serialize
     buffer = tsk_buffer_create_null();
     ret = tsms_rpdu_data_serialize(rp_data, buffer);
-    // send(socket, buffer->data, buffer->size);
     // print result (hex) to the console
     printhex("==RP-DATA(SMS-SUBMIT):", buffer->data, buffer->size);
 
@@ -135,8 +134,8 @@ void test_o_rpdata_deliver()
     tsk_buffer_t* buffer = tsk_null;
     tsms_tpdu_deliver_t* sms_deliver = tsk_null;
     tsms_rpdu_data_t* rp_data = tsk_null;
-    const char* smsc = "+331000000";
-    const char* originator = "+3361234567";
+    const tsms_address_string_t smsc = "+331000000";
+    const tsms_address_string_t originator = "+3361234567";
     const char* content = "hello world!";
 
     // create SMS-DELIVER message
@@ -151,7 +150,6 @@ void test_o_rpdata_deliver()
     // serialize
     buffer = tsk_buffer_create_null();
     ret = tsms_rpdu_data_serialize(rp_data, buffer);
-    // send(socket, buffer->data, buffer->size);
     // print result (hex) to the console
     printhex("==RP-DATA(SMS-DELIVER):", buffer->data, buffer->size);
 
@@ -176,7 +174,6 @@ void test_o_rpdata_smma()
     // serialize
     buffer = tsk_buffer_create_null();
     ret = tsms_rpdu_data_serialize(rp_smma, buffer);
-    // send(socket, buffer->data, buffer->size);
     // print result (hex) to the console
     printhex("==RP-SMMA:", buffer->data, buffer->size);
 
@@ -194,7 +191,7 @@ void test_o_rpdata_ack()
     tsk_buffer_t* buffer = tsk_null;
     tsms_tpdu_report_t* sms_report = tsk_null;
     tsms_rpdu_ack_t* rp_ack= tsk_null;
-    const char* smsc = "+331000000";
+    const tsms_address_string_t smsc = "+331000000";
     tsk_bool_t isSUBMIT = tsk_false; /* isDELIVER */
     tsk_bool_t isERROR = tsk_false;
     uint8_t mr = 0xF5;
@@ -206,7 +203,6 @@ void test_o_rpdata_ack()
     // serialize
     buffer = tsk_buffer_create_null();
     if(!(ret = tsms_rpdu_data_serialize(rp_ack, buffer))) {
-        // send(socket, buffer->data, buffer->size);
         // print result (hex) to the console
         printhex("==RP-ACK(SMS-DELIVER-REPORT):", buffer->data, buffer->size);
     }
@@ -228,7 +224,7 @@ void test_o_rpdata_error()
     tsms_rpdu_error_t* rp_error= tsk_null;
     tsk_bool_t isSUBMIT = tsk_false; /* isDELIVER */
     tsk_bool_t isERROR = tsk_true;
-    const char* smsc = "+331000000";
+    const tsms_address_string_t smsc = "+331000000";
     uint8_t mr = 0xF5;
 
     // create SMS-DELIVER-REPORT message
@@ -238,7 +234,6 @@ void test_o_rpdata_error()
     // serialize
     buffer = tsk_buffer_create_null();
     if(!(ret = tsms_rpdu_data_serialize(rp_error, buffer))) {
-        // send(socket, buffer->data, buffer->size);
         // print result (hex) to the console
         printhex("==RP-ERROR(SMS-DELIVER-REPORT):", buffer->data, buffer->size);
     }
@@ -255,13 +250,13 @@ void test_o_rpdata_error()
 void test_rpdu()
 {
     test_o_rpdata_submit();
-    //test_o_rpdata_deliver();
-    //test_o_rpdata_smma();
-    //test_o_rpdata_ack();
-    //test_o_rpdata_error();
+    test_o_rpdata_deliver();
+    test_o_rpdata_smma();
+    test_o_rpdata_ack();
+    test_o_rpdata_error();
 
-    //const char* data = "\x03\x01\x41\x09\x01\x00\x01\x80\x01\x32\x42\x00\x69";
-    //test_i_rpdata(data, 13, tsk_false);
+    const char* data = "\x03\x01\x41\x09\x01\x00\x01\x80\x01\x32\x42\x00\x69";
+    test_i_rpdata(data, 13, tsk_false);
 }
 
 #endif /* _TEST_SMSRPDU_H */

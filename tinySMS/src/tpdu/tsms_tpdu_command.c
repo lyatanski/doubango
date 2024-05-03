@@ -182,8 +182,10 @@ int _tsms_tpdu_command_serialize(const tsms_tpdu_command_t* self, tsk_buffer_t* 
     /* 3GPP TS 23.040 ==> 9.2.3.20  TP Command Data Length (TP CDL) */
     tsk_buffer_append(output, &TSMS_TPDU_MESSAGE(self)->udl, 1); /*1o*/
 
-    /* 3GPP TS 23.040 ==> 9.2.3.21  TP Command Data (TP CD) */
-    tsk_buffer_append(output, TSK_BUFFER_DATA(TSMS_TPDU_MESSAGE(self)->ud), TSK_BUFFER_SIZE(TSMS_TPDU_MESSAGE(self)->ud));
+    if(TSMS_TPDU_MESSAGE(self)->udl) {
+        /* 3GPP TS 23.040 ==> 9.2.3.21  TP Command Data (TP CD) */
+        tsk_buffer_append(output, TSK_BUFFER_DATA(TSMS_TPDU_MESSAGE(self)->ud), TSK_BUFFER_SIZE(TSMS_TPDU_MESSAGE(self)->ud));
+    }
 
     return 0;
 }

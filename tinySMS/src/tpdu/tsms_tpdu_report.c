@@ -196,22 +196,17 @@ int _tsms_tpdu_report_serialize(const tsms_tpdu_report_t* self, tsk_buffer_t* ou
     /* 3GPP TS 23.040 ==> 9.2.3.16 TP-User-Data-Length (TP-UDL) */
     tsk_buffer_append(output, &TSMS_TPDU_MESSAGE(self)->udl, 1); /*1o*/
 
-    /* 3GPP TS 23.040 ==> 9.2.3.24 TP-User Data (TP-UD) */
-    tsk_buffer_append(output, TSK_BUFFER_DATA(TSMS_TPDU_MESSAGE(self)->ud), TSK_BUFFER_SIZE(TSMS_TPDU_MESSAGE(self)->ud));
+    if(TSMS_TPDU_MESSAGE(self)->udl) {
+        /* 3GPP TS 23.040 ==> 9.2.3.24 TP-User Data (TP-UD) */
+        tsk_buffer_append(output, TSK_BUFFER_DATA(TSMS_TPDU_MESSAGE(self)->ud), TSK_BUFFER_SIZE(TSMS_TPDU_MESSAGE(self)->ud));
+    }
 
     return 0;
 }
 
 tsms_tpdu_report_t* tsms_tpdu_report_create(const tsms_address_string_t smsc, tsk_bool_t submit, tsk_bool_t error)
 {
-    tsms_tpdu_report_t* ret = tsk_null;
-
-    if(!(ret = tsk_object_new(tsms_tpdu_report_def_t, smsc, submit, error))) {
-        goto bail;
-    }
-
-bail:
-    return ret;
+    return tsk_object_new(tsms_tpdu_report_def_t, smsc, submit, error);
 }
 
 

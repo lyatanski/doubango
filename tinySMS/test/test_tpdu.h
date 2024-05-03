@@ -32,8 +32,8 @@ void test_submit()
     tsms_tpdu_submit_t* submit = tsk_null;
     tsk_buffer_t* buffer = tsk_null;
     char* hex;
-    const char* smsc = "+331000009";
-    const char* destination = "+333361234567";
+    const tsms_address_string_t smsc = "+331000009";
+    const tsms_address_string_t destination = "+333361234567";
     const char* short_message = "hello world";
     uint8_t mr = 0xF5;
 
@@ -120,7 +120,7 @@ void test_report()
     tsms_tpdu_report_t* report = tsk_null;
     tsk_buffer_t* buffer = tsk_null;
     char* hex;
-    const char* smsc = "+331000009";
+    const tsms_address_string_t smsc = "+331000009";
     tsk_bool_t isSUBMIT = tsk_false;
     tsk_bool_t isERROR = tsk_false;
 
@@ -156,8 +156,8 @@ void test_command()
     tsms_tpdu_command_t* command = tsk_null;
     char* hex;
     tsk_buffer_t* buffer = tsk_null;
-    const char* smsc = "+331000009";
-    const char* destination = "+333361234567";
+    const tsms_address_string_t smsc = "+331000009";
+    const tsms_address_string_t destination = "+333361234567";
     uint8_t mr = 0xF5;
     uint8_t message_number = 0xF8;
 
@@ -189,8 +189,10 @@ void test_sreport()
     tsms_tpdu_status_report_t* sreport = tsk_null;
     char* hex;
     tsk_buffer_t* buffer = tsk_null;
+    const tsms_address_string_t smsc = "+3310000";
+    const tsms_address_string_t recipient = "+332666";
 
-    sreport = tsms_tpdu_status_report_create(__pdu_last_mr++, "+3310000", "+332666", tsms_tpdu_status_busy, tsk_true);
+    sreport = tsms_tpdu_status_report_create(__pdu_last_mr++, smsc, recipient, tsms_tpdu_status_busy, tsk_true);
 
     if((hex = tsms_tpdu_report_tohexastring(sreport))) {
         TSK_DEBUG_INFO("SMS-STATUS-REPORT=%s", hex);

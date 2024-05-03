@@ -107,7 +107,7 @@ tsk_buffer_t* tsms_pack_to_7bit(const char* ascii)
         goto bail;
     }
 
-    retlen = len - (len/7) + 1;
+    retlen = (len * 8) / 7 + 1;
     if(!(_ret = tsk_calloc(retlen, sizeof(uint8_t)))) {
         goto bail;
     }

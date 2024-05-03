@@ -23,16 +23,6 @@
 #include "tsk.h"
 #include "tinysms.h"
 
-char* tohex(uint8_t* ptr, size_t size)
-{
-    char* ret = tsk_null;
-    size_t i;
-    for(i=0; i<size; i++) {
-        tsk_strcat_2(&ret, "%.2X", *ptr++);
-    }
-    return ret;
-}
-
 void printhex(const char* what, uint8_t* ptr, size_t size)
 {
     size_t i;
@@ -42,23 +32,6 @@ void printhex(const char* what, uint8_t* ptr, size_t size)
     }
     printf("\n");
 }
-
-tsk_bool_t bin_equals(const uint8_t* b1, const uint8_t* b2, size_t size)
-{
-    size_t i;
-
-    // we assume that sizeof(b1)==sizeof(b2)
-    if(!b1 || !b2 || !size) {
-        return tsk_false;
-    }
-    for(i=0; i<size; i++) {
-        if(b1[i] != b2[i]) {
-            return tsk_false;
-        }
-    }
-    return tsk_true;
-}
-
 
 #include "test_packing.h"
 #include "test_tpdu.h"
@@ -73,11 +46,7 @@ tsk_bool_t bin_equals(const uint8_t* b1, const uint8_t* b2, size_t size)
 #define RUN_TEST_RPDU       1
 
 
-#ifdef _WIN32_WCE
-int _tmain(int argc, _TCHAR* argv[])
-#else
 int main()
-#endif
 {
     do {
 #if RUN_TEST_ALL  || RUN_TEST_PACKING
@@ -94,3 +63,4 @@ int main()
     }
     while(RUN_TEST_LOOP);
 }
+
