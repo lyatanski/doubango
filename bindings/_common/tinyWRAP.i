@@ -1,5 +1,5 @@
 /* File : tinyWRAP.i */
-%module(directors="1") tinyWRAP
+%module(directors="1",threads="1") tinyWRAP
 %include "typemaps.i"
 %include <stdint.i>
 
@@ -17,9 +17,6 @@
 %include "AudioResampler.h"
 %include "Common.h"
 %clearnodefaultctor;
-
-
-
 
 
 /* ========== Sip/Sdp Stack ========== */

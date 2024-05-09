@@ -109,7 +109,7 @@ typedef int (*tsk_debug_f)(const void* arg, const char* fmt, ...);
 #define TSK_DEBUG_INFO(FMT, ...)        \
     if(tsk_debug_get_level() >= DEBUG_LEVEL_INFO){ \
         if(tsk_debug_get_info_cb()) \
-            tsk_debug_get_info_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
+            tsk_debug_get_info_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT, __FILE__, __LINE__, ##__VA_ARGS__); \
         else \
             fprintf(stderr, "\e[1;32mINFO\e[0m %s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
     }
@@ -119,7 +119,7 @@ typedef int (*tsk_debug_f)(const void* arg, const char* fmt, ...);
 #define TSK_DEBUG_WARN(FMT, ...)        \
     if(tsk_debug_get_level() >= DEBUG_LEVEL_WARN){ \
         if(tsk_debug_get_warn_cb()) \
-            tsk_debug_get_warn_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
+            tsk_debug_get_warn_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT, __FILE__, __LINE__, ##__VA_ARGS__); \
         else \
             fprintf(stderr, "\e[1;33mWARN\e[0m %s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
     }
@@ -128,7 +128,7 @@ typedef int (*tsk_debug_f)(const void* arg, const char* fmt, ...);
 #define TSK_DEBUG_ERROR(FMT, ...)       \
     if(tsk_debug_get_level() >= DEBUG_LEVEL_ERROR){ \
         if(tsk_debug_get_error_cb()) \
-            tsk_debug_get_error_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
+            tsk_debug_get_error_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT, __FILE__, __LINE__, ##__VA_ARGS__); \
         else \
             fprintf(stderr, "\e[1;31mFAIL\e[0m %s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
     }
@@ -138,7 +138,7 @@ typedef int (*tsk_debug_f)(const void* arg, const char* fmt, ...);
 #define TSK_DEBUG_FATAL(FMT, ...)       \
     if(tsk_debug_get_level() >= DEBUG_LEVEL_FATAL){ \
         if(tsk_debug_get_fatal_cb()) \
-            tsk_debug_get_fatal_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
+            tsk_debug_get_fatal_cb()(tsk_debug_get_arg_data(), "%s+%u> " FMT, __FILE__, __LINE__, ##__VA_ARGS__); \
         else \
             fprintf(stderr, "\e[1;41mDEAD\e[0m %s+%u> " FMT "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
     }

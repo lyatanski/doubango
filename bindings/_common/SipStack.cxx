@@ -28,6 +28,7 @@
 
 #include "Common.h"
 #include "tipsec.h"
+#include <memory>
 
 bool SipStack::g_bInitialized = false;
 
@@ -39,7 +40,6 @@ static int session_handle_event(const tsip_event_t *sipevent);
 SipStack::SipStack(SipCallback* pCallback, const char* realm_uri, const char* impi_uri, const char* impu_uri)
     :SafeObject()
 {
-    m_pDebugCallback = tsk_null;
     m_pCallback = pCallback;
 
     /* Initialize network and media layers */
@@ -65,28 +65,6 @@ bool SipStack::start()
 {
     bool ret = (tsip_stack_start(m_pHandle) == 0);
     return ret;
-}
-
-bool SipStack::setDebugCallback(DDebugCallback* pCallback)
-{
-    if(pCallback) {
-        m_pDebugCallback = pCallback;
-        tsk_debug_set_arg_data(this);
-        tsk_debug_set_info_cb(DDebugCallback::debug_info_cb);
-        tsk_debug_set_warn_cb(DDebugCallback::debug_warn_cb);
-        tsk_debug_set_error_cb(DDebugCallback::debug_error_cb);
-        tsk_debug_set_fatal_cb(DDebugCallback::debug_fatal_cb);
-    }
-    else {
-        m_pDebugCallback = tsk_null;
-        tsk_debug_set_arg_data(tsk_null);
-        tsk_debug_set_info_cb(tsk_null);
-        tsk_debug_set_warn_cb(tsk_null);
-        tsk_debug_set_error_cb(tsk_null);
-        tsk_debug_set_fatal_cb(tsk_null);
-    }
-
-    return true;
 }
 
 bool SipStack::setDisplayName(const char* display_name)
@@ -447,6 +425,7 @@ bool SipStack::isValid()
 
 bool SipStack::stop()
 {
+    m_pCallback = tsk_null;
     return !tsip_stack_stop(m_pHandle);
 }
 
@@ -517,7 +496,6 @@ static int stack_callback(const tsip_event_t *sipevent)
 {
     int ret = 0;
     const SipStack* sipStack = tsk_null;
-    SipEvent* e = tsk_null;
 
     if(!sipevent) { /* should never happen ...but who know? */
         TSK_DEBUG_WARN("Null SIP event.");
@@ -545,95 +523,75 @@ static int stack_callback(const tsip_event_t *sipevent)
 
     sipStack->Lock();
 
+    SipCallback* cb = sipStack->getCallback();
+    if(!cb) {
+        TSK_DEBUG_WARN("Callback not registered");
+        return -3;
+    }
+
     switch(sipevent->type) {
     case tsip_event_register: {
         /* REGISTER */
-        if(sipStack->getCallback()) {
-            e = new RegistrationEvent(sipevent);
-            sipStack->getCallback()->OnRegistrationEvent((const RegistrationEvent*)e);
-        }
+        auto e = std::make_shared<RegistrationEvent>(sipevent);
+        cb->OnRegistrationEvent(e.get());
         break;
     }
     case tsip_event_invite: {
         /* INVITE */
-        if(sipStack->getCallback()) {
-            e = new InviteEvent(sipevent);
-            sipStack->getCallback()->OnInviteEvent((const InviteEvent*)e);
-        }
+        auto e = std::make_shared<InviteEvent>(sipevent);
+        cb->OnInviteEvent(e.get());
         break;
     }
     case tsip_event_message: {
         /* MESSAGE */
-        if(sipStack->getCallback()) {
-            e = new MessagingEvent(sipevent);
-            sipStack->getCallback()->OnMessagingEvent((const MessagingEvent*)e);
-        }
+        auto e = std::make_shared<MessagingEvent>(sipevent);
+        cb->OnMessagingEvent(e.get());
         break;
     }
     case tsip_event_info: {
         /* INFO */
-        if(sipStack->getCallback()) {
-            e = new InfoEvent(sipevent);
-            sipStack->getCallback()->OnInfoEvent((const InfoEvent*)e);
-        }
+        auto e = std::make_shared<InfoEvent>(sipevent);
+        cb->OnInfoEvent(e.get());
         break;
     }
     case tsip_event_options: {
         /* OPTIONS */
-        if(sipStack->getCallback()) {
-            e = new OptionsEvent(sipevent);
-            sipStack->getCallback()->OnOptionsEvent((const OptionsEvent*)e);
-        }
+        auto e = std::make_shared<OptionsEvent>(sipevent);
+        cb->OnOptionsEvent(e.get());
         break;
     }
     case tsip_event_publish: {
         /* PUBLISH */
-        if(sipStack->getCallback()) {
-            e = new PublicationEvent(sipevent);
-            sipStack->getCallback()->OnPublicationEvent((const PublicationEvent*)e);
-        }
+        auto e = std::make_shared<PublicationEvent>(sipevent);
+        cb->OnPublicationEvent(e.get());
         break;
     }
     case tsip_event_subscribe: {
         /* SUBSCRIBE */
-        if(sipStack->getCallback()) {
-            e = new SubscriptionEvent(sipevent);
-            sipStack->getCallback()->OnSubscriptionEvent((const SubscriptionEvent*)e);
-        }
+        auto e = std::make_shared<SubscriptionEvent>(sipevent);
+        cb->OnSubscriptionEvent(e.get());
         break;
     }
-
     case tsip_event_dialog: {
         /* Common to all dialogs */
-        if(sipStack->getCallback()) {
-            e = new DialogEvent(sipevent);
-            sipStack->getCallback()->OnDialogEvent((const DialogEvent*)e);
-        }
+        auto e = std::make_shared<DialogEvent>(sipevent);
+        cb->OnDialogEvent(e.get());
         break;
     }
-
     case tsip_event_stack: {
         /* Stack event */
-        if(sipStack->getCallback()) {
-            e = new StackEvent(sipevent);
-            sipStack->getCallback()->OnStackEvent((const StackEvent*)e);
-        }
+        auto e = std::make_shared<StackEvent>(sipevent);
+        cb->OnStackEvent(e.get());
         break;
     }
-
-    default: {
+    default: 
         /* Unsupported */
         TSK_DEBUG_WARN("%d not supported as SIP event.", sipevent->type);
         ret = -3;
         break;
     }
-    }
 
     sipStack->UnLock();
-
-    if(e) {
-        delete e;
-    }
 
     return ret;
 }

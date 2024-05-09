@@ -25,15 +25,6 @@
 
 #include "Common.h"
 
-#if defined(__ANDROID__) || defined(ANDROID) /* callbacks will fail with jni */
-#   include <android/log.h>
-#   define ANDROID_DEBUG_TAG "tinyWRAP"
-#endif
-
-/* Very Important ==> never call functions which could raise debug callbacks into callback functions
-*  Callbacks should not be used with Android (JNI).
-*/
-
 enum cb_type {
     cb_info,
     cb_warn,
@@ -48,44 +39,24 @@ int debug_xxx_cb(const void* arg, const char* fmt, enum cb_type type, va_list *a
         return -1;
     }
 
-    const SipStack* stack = static_cast<const SipStack*>((const SipStack*)arg);
+    const DDebugCallback* stack = static_cast<const DDebugCallback*>(arg);
 
-    if(stack && stack->getDebugCallback()) {
+    if(stack) {
         char* message = tsk_null;
         tsk_sprintf_2(&message, fmt, app);
 
         switch(type) {
         case cb_info:
-            ret=
-#if defined(__ANDROID__) || defined(ANDROID)
-                __android_log_write(ANDROID_LOG_INFO, ANDROID_DEBUG_TAG, message);
-#else
-                stack->getDebugCallback()-> OnDebugInfo(message);
-#endif
+            ret = stack->OnDebugInfo(message);
             break;
         case cb_warn:
-            ret=
-#if defined(__ANDROID__) || defined(ANDROID)
-                __android_log_write(ANDROID_LOG_WARN, ANDROID_DEBUG_TAG, message);
-#else
-                stack->getDebugCallback()-> OnDebugWarn(message);
-#endif
+            ret = stack->OnDebugWarn(message);
             break;
         case cb_error:
-            ret=
-#if defined(__ANDROID__) || defined(ANDROID)
-                __android_log_write(ANDROID_LOG_ERROR, ANDROID_DEBUG_TAG, message);
-#else
-                stack->getDebugCallback()-> OnDebugError(message);
-#endif
+            ret = stack->OnDebugError(message);
             break;
         case cb_fatal:
-            ret=
-#if defined(__ANDROID__) || defined(ANDROID)
-                __android_log_write(ANDROID_LOG_FATAL, ANDROID_DEBUG_TAG, message);
-#else
-                stack->getDebugCallback()-> OnDebugFatal(message);
-#endif
+            ret = stack->OnDebugFatal(message);
             break;
         }
 
@@ -93,6 +64,24 @@ int debug_xxx_cb(const void* arg, const char* fmt, enum cb_type type, va_list *a
     }
 
     return ret;
+}
+
+DDebugCallback::DDebugCallback()
+{
+    tsk_debug_set_arg_data(this);
+    tsk_debug_set_info_cb(DDebugCallback::debug_info_cb);
+    tsk_debug_set_warn_cb(DDebugCallback::debug_warn_cb);
+    tsk_debug_set_error_cb(DDebugCallback::debug_error_cb);
+    tsk_debug_set_fatal_cb(DDebugCallback::debug_fatal_cb);
+}
+
+DDebugCallback::~DDebugCallback()
+{
+    tsk_debug_set_arg_data(tsk_null);
+    tsk_debug_set_info_cb(tsk_null);
+    tsk_debug_set_warn_cb(tsk_null);
+    tsk_debug_set_error_cb(tsk_null);
+    tsk_debug_set_fatal_cb(tsk_null);
 }
 
 int DDebugCallback::debug_info_cb(const void* arg, const char* fmt, ...)

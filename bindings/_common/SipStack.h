@@ -41,7 +41,6 @@ public: /* ctor() and dtor() */
 
 public: /* API functions */
     bool start();
-    bool setDebugCallback(DDebugCallback* pCallback);
     bool setDisplayName(const char* display_name);
     bool setRealm(const char* realm_uri);
     bool setIMPI(const char* impi);
@@ -111,15 +110,10 @@ public: /* Public helper function */
     {
         return m_pCallback;
     }
-    inline DDebugCallback* getDebugCallback() const
-    {
-        return m_pDebugCallback;
-    }
 #endif
 
 private:
     SipCallback* m_pCallback;
-    DDebugCallback* m_pDebugCallback;
     tsip_stack_handle_t* m_pHandle;
     tsk_plugin_s* m_ipsec;
 
