@@ -80,7 +80,7 @@ int twrap_consumer_proxy_audio_prepare(tmedia_consumer_t* self, const tmedia_cod
         }
     }
     else {
-        TSK_DEBUG_ERROR("Invalid parameter/state: codec=%d, manager=%s", codec, manager ? "no-null" : "null");
+        TSK_DEBUG_ERROR("Invalid parameter/state: codec=%d, manager=%s", codec->type, manager ? "no-null" : "null");
     }
 
     return ret;

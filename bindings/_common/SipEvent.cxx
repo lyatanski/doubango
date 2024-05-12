@@ -70,11 +70,7 @@ const char* SipEvent::getPhrase() const
 
 const SipSession* SipEvent::getBaseSession() const
 {
-    const void* userdata = tsip_ssession_get_userdata(this->sipevent->ss);
-    if(userdata) {
-        return static_cast<const SipSession*>((const SipSession*)userdata);
-    }
-    return tsk_null;
+    return static_cast<const SipSession*>(tsip_ssession_get_userdata(this->sipevent->ss));
 }
 
 const SipMessage* SipEvent::getSipMessage() const
@@ -84,12 +80,7 @@ const SipMessage* SipEvent::getSipMessage() const
 
 SipStack* SipEvent::getStack()const
 {
-    const tsip_stack_handle_t* stack_handle = tsip_ssession_get_stack(sipevent->ss);
-    const void* userdata;
-    if(stack_handle && (userdata = tsip_stack_get_userdata(stack_handle))) {
-        return static_cast<SipStack*>((SipStack*)userdata);
-    }
-    return tsk_null;
+    return static_cast<SipStack*>(const_cast<void*>(sipevent->userdata));
 }
 
 

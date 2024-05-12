@@ -35,6 +35,7 @@ setup(name='tinyWRAP',
     package_data={'': ['_pyWRAP.so']},
 )
 ]])
+    install(CODE "execute_process(COMMAND ${Python_EXECUTABLE} -m pip install ${CMAKE_CURRENT_BINARY_DIR}/python)")
     endif()
 
     if(JNI_FOUND)

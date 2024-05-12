@@ -63,9 +63,7 @@ public:
         return sipevent;
     }
 #endif
-#if !defined(SWIG)
-    SipStack* getStack()const;
-#endif
+    SipStack* getStack() const;
 
 protected:
     const tsip_event_t *sipevent;
