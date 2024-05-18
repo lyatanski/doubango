@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Doubango C CXX)
 
 option(GENDOC "Generate Doxygen Documentation" ON)
+option(WITH_OPUS "Opus audio codec" ON)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
@@ -12,9 +13,9 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-#include(GetOpenSSL)
-#include(GetSRTP)
-#include(GetiLBC)
+if(WITH_OPUS)
+    include(GetOpus)
+endif()
 include(AStyle)
 
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
