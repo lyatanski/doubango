@@ -20,7 +20,6 @@
 #include "tinydav/tdav.h"
 
 static tsk_bool_t __b_initialized = tsk_false;
-static tsk_bool_t __b_ipsec_supported = tsk_false;
 static const struct tmedia_codec_plugin_def_s* __codec_plugins_all[0xFF] = { tsk_null }; // list of all codecs BEFORE filtering
 static const tsk_size_t __codec_plugins_all_count = sizeof(__codec_plugins_all)/sizeof(__codec_plugins_all[0]);
 
@@ -41,17 +40,11 @@ static struct tsk_plugin_s* __dll_plugin_mf = tsk_null; /* Media Foundation and 
 static struct tsk_plugin_s* __dll_plugin_dd = tsk_null; /* Microsoft Desktop Duplication API : Windows [8 - ] */
 static struct tsk_plugin_s* __dll_plugin_cuda = tsk_null; /* Media Foundation and WASAPI : Windows [XP - 8] */
 static struct tsk_plugin_s* __dll_plugin_audio_dsp = tsk_null; /* Audio DSP, Resampler, AEC, NS, AGC...: Windows [Vista - 8] */
-static struct tsk_plugin_s* __dll_plugin_ipsec_wfp = tsk_null; /* IPSec implementation using WFP (Windows Filtering platform): Windows [Vista - 8] */
 #   endif /* TDAV_UNDER_WINDOWS */
 #endif
 
 // Media Contents, plugins defintion...
 #include "tinymedia.h"
-
-// IPSec
-#if !defined(HAVE_TINYIPSEC) || HAVE_TINYIPSEC
-#include "tipsec.h"
-#endif
 
 // Converters
 #include "tinymedia/tmedia_converter_video.h"
@@ -230,16 +223,6 @@ int tdav_init()
                 plugins_count += tmedia_plugin_register(__dll_plugin_audio_dsp, tsk_plugin_def_type_all, tsk_plugin_def_media_type_all);
             }
         }
-        /* IPSec implementation using Windows Filtering Platform (WFP) */
-#if !defined(HAVE_TINYIPSEC) || HAVE_TINYIPSEC
-        if (tdav_win32_is_winvista_or_later()) {
-            tsk_sprintf(&full_path, "%s/pluginWinIPSecVista.dll", tdav_get_current_directory_const());
-            if (tsk_plugin_file_exist(full_path) && (tipsec_plugin_register_file(full_path, &__dll_plugin_ipsec_wfp) == 0)) {
-                plugins_count += 1; // at least one
-                __b_ipsec_supported = tsk_true;
-            }
-        }
-#endif
 
         TSK_FREE(full_path);
         TSK_DEBUG_INFO("Windows stand-alone plugins loaded = %u", plugins_count);
@@ -589,15 +572,6 @@ tsk_bool_t tdav_codec_is_enabled(tdav_codec_id_t codec)
     return tmedia_codec_plugin_is_registered_2((tmedia_codec_id_t)codec);
 }
 
-/**
-* Checks whether a IPSec is supported.
-* @return @ref tsk_true if supported and @tsk_false otherwise.
-*/
-tsk_bool_t tdav_ipsec_is_supported()
-{
-    return __b_ipsec_supported;
-}
-
 int tdav_deinit()
 {
     int ret = 0;
@@ -747,7 +721,6 @@ int tdav_deinit()
         TSK_OBJECT_SAFE_FREE(__dll_plugin_dd);
         TSK_OBJECT_SAFE_FREE(__dll_plugin_dshow);
         TSK_OBJECT_SAFE_FREE(__dll_plugin_audio_dsp);
-        TSK_OBJECT_SAFE_FREE(__dll_plugin_ipsec_wfp);
     }
 #endif
 

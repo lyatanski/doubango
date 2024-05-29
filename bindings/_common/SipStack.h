@@ -66,14 +66,10 @@ public: /* API functions */
     bool addSigCompCompartment(const char* compId);
     bool removeSigCompCompartment(const char* compId);
 
-    bool setSTUNEnabledForICE(bool enabled);  // @deprecated
-    bool setSTUNServer(const char* hostname, unsigned short port);  // @deprecated
-    bool setSTUNCred(const char* login, const char* password);  // @deprecated
     bool setSTUNEnabled(bool enabled);
 
     bool setTLSSecAgree(bool enabled);
     bool setSSLCertificates(const char* privKey, const char* pubKey, const char* caKey, bool verify = false);
-    bool setSSLCretificates(const char* privKey, const char* pubKey, const char* caKey, bool verify = false); /*@deprecated: typo */
     bool setIPsecPlugin(const char* name);
     bool setIPSecSecAgree(bool enabled);
     bool setIPSecParameters(const char* algo, const char* ealgo, const char* mode, const char* proto);
@@ -98,7 +94,6 @@ public: /* API functions */
     static bool setCodecPriority(tdav_codec_id_t codec_id, int priority);
     static bool setCodecPriority_2(int codec, int priority);// For stupid languages
     static bool isCodecSupported(tdav_codec_id_t codec_id);
-    static bool isIPSecSupported();
 
 public: /* Public helper function */
 #if !defined(SWIG)

@@ -227,50 +227,6 @@ bool SipStack::removeSigCompCompartment(const char* compId)
                            TSIP_STACK_SET_NULL()) == 0);
 }
 
-// @deprecated
-bool SipStack::setSTUNEnabledForICE(bool enabled)
-{
-#if 0
-    tsk_bool_t _enabled = enabled ? tsk_true : tsk_false;
-    return (tsip_stack_set(m_pHandle,
-                           TSIP_STACK_SET_ICE_STUN_ENABLED(_enabled),
-                           TSIP_STACK_SET_NULL()) == 0);
-#else
-    // set global value
-    return (tmedia_defaults_set_icestun_enabled(enabled ? tsk_true : tsk_false) == 0);
-    // to set the value per session, use "CallSession::setICEStun()"
-#endif
-}
-
-// @deprecated
-bool SipStack::setSTUNServer(const char* hostname, unsigned short port)
-{
-#if 0
-    unsigned _port = port;//promote
-    return (tsip_stack_set(m_pHandle,
-                           TSIP_STACK_SET_STUN_SERVER(hostname, _port),
-                           TSIP_STACK_SET_NULL()) == 0);
-#else
-    // set global value
-    return (tmedia_defaults_set_stun_server(hostname, port) == 0);
-    // to set the value per session, use "CallSession::setSTUNServer()"
-#endif
-}
-
-// @deprecated
-bool SipStack::setSTUNCred(const char* login, const char* password)
-{
-#if 0
-    return (tsip_stack_set(m_pHandle,
-                           TSIP_STACK_SET_STUN_CRED(login, password),
-                           TSIP_STACK_SET_NULL()) == 0);
-#else
-    // set global value
-    return (tmedia_defaults_set_stun_cred(login, password) == 0);
-    // to set the value per session, use "CallSession::setSTUNCred()"
-#endif
-}
-
 bool SipStack::setSTUNEnabled(bool enabled)
 {
     tsk_bool_t _enabled = enabled ? tsk_true : tsk_false;
@@ -285,12 +241,6 @@ bool SipStack::setTLSSecAgree(bool enabled)
     return (tsip_stack_set(m_pHandle,
                            TSIP_STACK_SET_SECAGREE_TLS(_enable),
                            TSIP_STACK_SET_NULL()) == 0);
-}
-
-/*@deprecated: typo  */
-bool SipStack::setSSLCretificates(const char* privKey, const char* pubKey, const char* caKey, bool verify/* = false*/)
-{
-    return setSSLCertificates(privKey, pubKey, caKey, verify);
 }
 
 bool SipStack::setSSLCertificates(const char* privKey, const char* pubKey, const char* caKey, bool verify/* = false*/)
@@ -483,11 +433,6 @@ bool SipStack::setCodecPriority_2(int codec_id, int priority)// For stupid langu
 bool SipStack::isCodecSupported(tdav_codec_id_t codec_id)
 {
     return tdav_codec_is_supported(codec_id) ? true : false;
-}
-
-bool SipStack::isIPSecSupported()
-{
-    return tdav_ipsec_is_supported() ? true : false;
 }
 
 static int stack_callback(const tsip_event_t *sipevent)
