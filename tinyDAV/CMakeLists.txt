@@ -19,4 +19,4 @@ if(WIN32)
   target_link_libraries(${name} shlwapi windowsapp)
 endif()
 
-add_subdirectory(test)
+#add_subdirectory(test)

@@ -1,0 +1,29 @@
+include(ExternalProject)
+
+set(PREFIX ${CMAKE_CURRENT_BINARY_DIR}/_deps/libsrtp)
+set(INSTALL_DIR ${PREFIX}/usr)
+set(INCLUDE_DIR ${INSTALL_DIR}/include)
+set(LIBRARY_SUFFIX a)
+
+ExternalProject_Add(SRTP
+    PREFIX ${PREFIX}
+    DOWNLOAD_NO_PROGRESS ON
+    URL https://github.com/cisco/libsrtp/archive/refs/tags/v2.5.0.tar.gz
+    URL_HASH SHA256=8a43ef8e9ae2b665292591af62aa1a4ae41e468b6d98d8258f91478735da4e09
+    BUILD_IN_SOURCE ON
+    CONFIGURE_COMMAND ./configure --enable-pic --enable-openssl --prefix=${INSTALL_DIR}
+    BUILD_COMMAND make
+    TEST_EXCLUDE_FROM_MAIN ON
+    INSTALL_COMMAND make install
+    INSTALL_DIR ${INSTALL_DIR}
+    BUILD_BYPRODUCTS ${INSTALL_DIR}/lib/libsrtp2.${LIBRARY_SUFFIX}
+)
+
+file(MAKE_DIRECTORY ${INCLUDE_DIR})
+
+add_library(SRTP::lib STATIC IMPORTED GLOBAL)
+set_property(TARGET SRTP::lib PROPERTY IMPORTED_LOCATION ${INSTALL_DIR}/lib/libsrtp2.${LIBRARY_SUFFIX})
+set_property(TARGET SRTP::lib PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${INCLUDE_DIR})
+set_property(TARGET SRTP::lib PROPERTY INTERFACE_COMPILE_DEFINITIONS HAVE_SRTP)
+add_dependencies(SRTP::lib SRTP)
+
