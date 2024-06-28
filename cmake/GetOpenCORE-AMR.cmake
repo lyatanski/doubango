@@ -3,7 +3,7 @@ include(ExternalProject)
 set(PREFIX ${CMAKE_BINARY_DIR}/_deps/amr)
 set(INSTALL_DIR ${PREFIX}/usr)
 set(INCLUDE_DIR ${INSTALL_DIR}/include)
-set(LIBRARY_SUFFIX so)
+set(LIBRARY_SUFFIX a)
 
 ExternalProject_Add(opencore-amr
     PREFIX ${PREFIX}
@@ -11,7 +11,7 @@ ExternalProject_Add(opencore-amr
     URL https://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz
     URL_HASH SHA1=3c2c618a5a38757a530034f80aa5356789589bcc
     BUILD_IN_SOURCE ON
-    CONFIGURE_COMMAND ./configure --prefix=${INSTALL_DIR}
+    CONFIGURE_COMMAND ./configure --prefix=${INSTALL_DIR} --with-pic
     BUILD_COMMAND make
     TEST_EXCLUDE_FROM_MAIN ON
     INSTALL_COMMAND make install
