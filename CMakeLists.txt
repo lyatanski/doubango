@@ -67,8 +67,7 @@ add_subdirectory(tinyXCAP)
 add_subdirectory(tinyMSRP)
 add_subdirectory(tinyROHC)
 
-add_subdirectory(tinyDEMO)
-add_subdirectory(bindings)
+add_subdirectory(tinyWRAP)
 add_subdirectory(plugins)
 
 set(CMAKE_INSTALL_PREFIX /usr)
