@@ -169,7 +169,7 @@ tnet_transport_t* tnet_transport_create(const char* host, tnet_port_t port, tnet
         transport->type = type;
         transport->context = tnet_transport_context_create();
 
-        if ((transport->master = tnet_socket_create(transport->local_host, transport->req_local_port, transport->type))) {
+        if ((transport->master = tnet_socket_create_2(transport->local_host, transport->req_local_port, transport->type, tsk_true, tsk_false))) {
             transport->local_ip = tsk_strdup(transport->master->ip);
             transport->bind_local_port = transport->master->port;
             transport->type = transport->master->type;
@@ -850,7 +850,7 @@ tnet_fd_t tnet_transport_connectto_3(const tnet_transport_handle_t *handle, stru
      */
     if (fd == TNET_INVALID_FD) {
         // Create client socket descriptor.
-        if ((status = tnet_sockfd_init(transport->local_host, TNET_SOCKET_PORT_ANY, to_type, &fd))) {
+        if ((status = tnet_sockfd_init(transport->local_host, transport->req_local_port, to_type, &fd))) {
             TSK_DEBUG_ERROR("Failed to create new sockfd.");
             goto bail;
         }
