@@ -7,5 +7,6 @@ if(UNIX AND NOT APPLE)
 
     #add_executable(ipsectool tool.c netlink_xfrm.c)
     #target_link_libraries(ipsectool libMNL::nl tinySAK)
+    install(TARGETS ipsec DESTINATION lib)
 endif()
 
