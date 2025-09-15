@@ -8,6 +8,7 @@ set(MNL_LIBRARY_SUFFIX so)
 ExternalProject_Add(libmnl
     PREFIX ${PREFIX}
     DOWNLOAD_NO_PROGRESS ON
+    DOWNLOAD_EXTRACT_TIMESTAMP ON
     URL https://www.netfilter.org/projects/libmnl/files/libmnl-1.0.5.tar.bz2
     URL_HASH SHA256=274b9b919ef3152bfb3da3a13c950dd60d6e2bcd54230ffeca298d03b40d0525
     BUILD_IN_SOURCE ON

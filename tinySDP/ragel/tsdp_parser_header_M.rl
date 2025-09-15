@@ -38,7 +38,7 @@
 	machine tsdp_machine_parser_header_M;
 
 	# Includes
-	include tsdp_machine_utils "./ragel/tsdp_machine_utils.rl";
+	include tsdp_machine_utils "tsdp_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;
@@ -422,7 +422,7 @@ removeAttributes:
 	return 0;
 }
 
-tsk_bool_t tsdp_header_M_have_fmt(tsdp_header_M_t* self, const char* fmt)
+tsk_bool_t tsdp_header_M_have_fmt(const tsdp_header_M_t* self, const char* fmt)
 {
 	if(self &&! tsk_strnullORempty(fmt)){
 		const tsk_list_item_t* item;

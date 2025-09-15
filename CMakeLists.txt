@@ -4,7 +4,7 @@ project(Doubango C CXX)
 option(GENDOC "Generate Doxygen Documentation" ON)
 option(WITH_SRTP "Secure Real-time Transport Protocol " OFF)
 option(WITH_OPUS "Opus audio codec" OFF)
-option(WITH_AMR "AMR audio codec" ON)
+option(WITH_AMR "AMR audio codec" OFF)
 option(WITH_FFMPEG "FFmpeg is the leading multimedia framework, able to decode, encode" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
@@ -30,6 +30,7 @@ if(WITH_FFMPEG)
     include(GetFFmpeg)
 endif()
 
+find_package(Ragel)
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 
 if(GENDOC AND DOXYGEN_FOUND)
