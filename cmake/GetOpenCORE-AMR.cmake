@@ -8,6 +8,7 @@ set(LIBRARY_SUFFIX a)
 ExternalProject_Add(opencore-amr
     PREFIX ${PREFIX}
     DOWNLOAD_NO_PROGRESS ON
+    DOWNLOAD_EXTRACT_TIMESTAMP ON
     URL https://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz
     URL_HASH SHA1=3c2c618a5a38757a530034f80aa5356789589bcc
     BUILD_IN_SOURCE ON
