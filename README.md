@@ -169,6 +169,9 @@ Prefix: trohc
 Dependencies: None
 
 Features:
+* 3GPP TS 36.323
+* RFC 3095 (RFC 4995)
+* RFC 4815
 
 ### tinyRTP (Real-time Transport Protocol)
 Prefix: trtp
@@ -216,6 +219,45 @@ Features:
 * Session Timers
 * File transfer (RFC 5547) and Image Sharing(GSMA IR.79)
 * Large Message IM (OMA SIMPLE IM)
+
+### tinyBFCP (Binary Floor Control Protocol)
+Prefix: tbfcp
+
+Dependencies:
+* tinyNET
+
+Features:
+* RFC 8855
+
+### tinyDAV (Digital Audio and Video)
+Prefix: tdav
+
+Dependencies:
+* tinyRTP
+* tinyBFCP
+* tinyMSRP
+
+Features:
+* amr
+* bfcp
+* bv
+* dtmf
+* fec
+* g711
+* g722
+* g729
+* gsm
+* h261
+* h263
+* h264
+* ilbc
+* mp4ves
+* msrp
+* opus
+* speex
+* t140
+* theora
+* vpx
 
 
 ## Proof Of Concept

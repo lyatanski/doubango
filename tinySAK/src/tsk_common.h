@@ -52,7 +52,7 @@ typedef int tsk_ssize_t; /**< Signed size */
 #if defined (_SIZE_T_DEFINED) || defined(_SIZE_T)
 typedef size_t tsk_size_t;
 #else
-typedef unsigned int tsk_size_t;
+typedef unsigned long tsk_size_t;
 #endif
 
 

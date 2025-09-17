@@ -21,6 +21,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Requirements
+      run: |
+        sudo apt update
+        sudo apt install -y ragel
+
     - name: Configure
       run: cmake -S . -B out -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 

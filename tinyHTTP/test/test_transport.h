@@ -148,7 +148,7 @@ static tsk_size_t test_http_transport_send_data(test_http_transport_t* self, tne
 static void test_http_transport_add_peer(test_http_transport_t* self, test_http_peer_t* peer)
 {
     tsk_list_lock(self->peers);
-    tsk_list_push_back_data(self->peers, &peer);
+    tsk_list_push_back_data(self->peers, (void**)&peer);
     tsk_list_unlock(self->peers);
 }
 

@@ -38,7 +38,7 @@
 	machine tsdp_machine_parser_header_B;
 
 	# Includes
-	include tsdp_machine_utils "./ragel/tsdp_machine_utils.rl";
+	include tsdp_machine_utils "tsdp_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;

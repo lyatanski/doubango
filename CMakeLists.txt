@@ -30,6 +30,7 @@ if(WITH_FFMPEG)
     include(GetFFmpeg)
 endif()
 
+find_package(Ragel)
 find_package(Doxygen COMPONENTS dot OPTIONAL_COMPONENTS mscgen dia)
 
 if(GENDOC AND DOXYGEN_FOUND)

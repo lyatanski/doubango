@@ -16,6 +16,7 @@
  * along with DOUBANGO.
  */
 
+#include <arpa/inet.h>
 #include "tipsec.h"
 #include "netlink_xfrm.h"
 
@@ -24,7 +25,6 @@
 #include "tsk_debug.h"
 #include "tsk_plugin.h"
 
-#include <arpa/inet.h>
 
 #define LOGTIC(ctx, fmt, args...) TSK_DEBUG_INFO("%p " fmt, ctx, ## args)
 

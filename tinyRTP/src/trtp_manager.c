@@ -548,7 +548,7 @@ static int _trtp_manager_send_turn_dtls(struct tnet_ice_ctx_s* ice_ctx, const vo
         TSK_DEBUG_ERROR("Invalid parameter");
         return -1;
     }
-    while (records_len > 0 && (ret = tnet_dtls_socket_get_record_first(records_ptr, (tsk_size_t)records_len, &record_ptr, &record_size)) == 0) {
+    while (records_len > 0 && (ret = tnet_dtls_socket_get_record_first(records_ptr, (tsk_size_t)records_len, (const void**)&record_ptr, &record_size)) == 0) {
         ret = _ice_ctx_send_turn_data(ice_ctx, record_ptr, record_size);
 
         records_len -= (int)record_size;

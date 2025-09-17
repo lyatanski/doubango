@@ -6,7 +6,10 @@ find_file(IFADDR ifaddrs.h)
 find_package(OpenSSL REQUIRED)
 
 file(GLOB src src/*.c src/*/*.c)
-add_library(${name} ${src})
+ragel(${name} src/dns/tnet_dns_regexp.c ragel/tnet_dns_regexp.rl)
+ragel(${name} src/dns/tnet_dns_resolvconf.c ragel/tnet_dns_resolvconf.rl)
+
+add_library(${name} ${src} ${RAGEL_${name}_FILES})
 target_include_directories(${name} PUBLIC src)
 if(IFADDR)
     target_compile_definitions(${name} PRIVATE HAVE_IFADDRS_H HAVE_GETIFADDRS)
