@@ -35,7 +35,7 @@
 	machine tmedia_machine_imageattr;
 
 	# Includes
-	include tmedia_machine_utils "./ragel/tmedia_machine_utils.rl";
+	include tmedia_machine_utils "tmedia_machine_utils.rl";
 
 	action tag{
 		tag_start = p;

@@ -62,7 +62,7 @@ A complete message looks something like this:
 	machine tmedia_machine_content_cpim;
 
 	# Includes
-	include tmedia_machine_utils "./ragel/tmedia_machine_utils.rl";
+	include tmedia_machine_utils "tmedia_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;
