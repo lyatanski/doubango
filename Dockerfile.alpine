@@ -1,0 +1,14 @@
+FROM alpine AS build
+
+RUN apk add cmake make g++ ragel swig py3-pip \
+    openssl-dev linux-headers python3-dev libmnl-dev
+
+ADD . /doubango
+RUN cmake -S /doubango -B /build
+RUN cmake --build /build -j $(nproc)
+
+FROM alpine
+RUN apk add python3 py3-pip libmnl
+RUN --mount=type=bind,from=build,source=/build/tinyWRAP/python/,target=/opt/python,rw pip install --break-system-packages /opt/python
+COPY --from=build /build/plugins/ipsec_linux/ipsec.so /usr/lib/
+#COPY ./src/sip.py /opt/
