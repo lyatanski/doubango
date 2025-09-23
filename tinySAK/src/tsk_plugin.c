@@ -118,12 +118,12 @@ tsk_plugin_t* tsk_plugin_create(const char* path)
         return tsk_null;
     }
 
-    if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_info_cb"))) {
-        TSK_DEBUG_ERROR("Cannot find tsk_debug_set_info_cb");
-        _tsk_plugin_handle_destroy(&handle);
-        return tsk_null;
-    }
-    funcptr_debug_set_cb(tsk_debug_get_info_cb());
+    //if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_info_cb"))) {
+    //    TSK_DEBUG_ERROR("Cannot find tsk_debug_set_info_cb");
+    //    _tsk_plugin_handle_destroy(&handle);
+    //    return tsk_null;
+    //}
+    //funcptr_debug_set_cb(tsk_debug_get_info_cb());
 
     //if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_warn_cb"))) {
     //    TSK_DEBUG_ERROR("Cannot find tsk_debug_set_warn_cb");
