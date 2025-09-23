@@ -4,7 +4,7 @@ RUN apk add cmake make g++ ragel swig py3-pip \
     openssl-dev linux-headers python3-dev libmnl-dev
 
 ADD . /doubango
-RUN cmake -S /doubango -B /build
+RUN cmake -S /doubango -B /build -D CMAKE_BUILD_TYPE=Release
 RUN cmake --build /build -j $(nproc)
 
 FROM alpine
