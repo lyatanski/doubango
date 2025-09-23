@@ -87,6 +87,8 @@ tsk_plugin_t* tsk_plugin_create(const char* path)
     tsk_plugin_t* plugin;
     symbol_get_def_count funcptr_get_def_count;
     tsk_plugin_handle_t* handle;
+    typedef void (*debug_set_cb)(tsk_debug_f);
+    debug_set_cb funcptr_debug_set_cb;
 
 #if TSK_UNDER_WINDOWS
 #   if TSK_UNDER_WINDOWS_RT
@@ -115,6 +117,35 @@ tsk_plugin_t* tsk_plugin_create(const char* path)
         TSK_DEBUG_ERROR("Failed to load library with path=%s", path);
         return tsk_null;
     }
+
+    if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_info_cb"))) {
+        TSK_DEBUG_ERROR("Cannot find tsk_debug_set_info_cb");
+        _tsk_plugin_handle_destroy(&handle);
+        return tsk_null;
+    }
+    funcptr_debug_set_cb(tsk_debug_get_info_cb());
+
+    if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_warn_cb"))) {
+        TSK_DEBUG_ERROR("Cannot find tsk_debug_set_warn_cb");
+        _tsk_plugin_handle_destroy(&handle);
+        return tsk_null;
+    }
+    funcptr_debug_set_cb(tsk_debug_get_warn_cb());
+
+    if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_error_cb"))) {
+        TSK_DEBUG_ERROR("Cannot find tsk_debug_set_error_cb");
+        _tsk_plugin_handle_destroy(&handle);
+        return tsk_null;
+    }
+    funcptr_debug_set_cb(tsk_debug_get_error_cb());
+
+    if(!(funcptr_debug_set_cb = _tsk_plugin_handle_get_symbol(handle, "tsk_debug_set_fatal_cb"))) {
+        TSK_DEBUG_ERROR("Cannot find tsk_debug_set_fatal_cb");
+        _tsk_plugin_handle_destroy(&handle);
+        return tsk_null;
+    }
+    funcptr_debug_set_cb(tsk_debug_get_fatal_cb());
+
 
     if(!(funcptr_get_def_count = (symbol_get_def_count)_tsk_plugin_handle_get_symbol(handle, TSK_PLUGIN_FUNC_NAME_DEF_COUNT))) {
         TSK_DEBUG_ERROR("Cannot find function with name=%s", TSK_PLUGIN_FUNC_NAME_DEF_COUNT);
