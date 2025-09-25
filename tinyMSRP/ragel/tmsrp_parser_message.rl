@@ -47,7 +47,7 @@ static void set_payload(tmsrp_message_t* msrp_msg, const void* ptr, tsk_size_t l
 	###########################################
 	#	Includes
 	###########################################
-	include tmsrp_machine_utils "./ragel/tmsrp_machine_utils.rl";
+	include tmsrp_machine_utils "tmsrp_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;

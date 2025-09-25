@@ -36,7 +36,7 @@
 	machine tmsrp_machine_parser_header_Failure_Report;
 
 	# Includes
-	include tmsrp_machine_utils "./ragel/tmsrp_machine_utils.rl";
+	include tmsrp_machine_utils "tmsrp_machine_utils.rl";
 	
 	action is_yes{
 		hdr_Failure_Report->type = freport_yes;
