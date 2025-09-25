@@ -43,7 +43,7 @@ extern tsip_request_type_t tsip_request_get_type(const char* method);
 	machine tsip_machine_parser_header_CSeq;
 
 	# Includes
-	include tsip_machine_utils "./ragel/tsip_machine_utils.rl";
+	include tsip_machine_utils "tsip_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;

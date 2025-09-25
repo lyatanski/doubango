@@ -53,7 +53,7 @@
 	machine tsip_machine_parser_header_P_Access_Network_Info;
 
 	# Includes
-	include tsip_machine_utils "./ragel/tsip_machine_utils.rl";
+	include tsip_machine_utils "tsip_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;
