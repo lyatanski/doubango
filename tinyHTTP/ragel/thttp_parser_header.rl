@@ -494,8 +494,8 @@
 
 
 	# Includes
-	include thttp_machine_utils "./ragel/thttp_machine_utils.rl";
-	include thttp_machine_header "./ragel/thttp_machine_header.rl";
+	include thttp_machine_utils "thttp_machine_utils.rl";
+	include thttp_machine_header "thttp_machine_header.rl";
 
 	# Entry point
 	main := HEADER;
