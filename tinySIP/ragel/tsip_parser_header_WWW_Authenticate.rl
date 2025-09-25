@@ -45,7 +45,7 @@
 //	machine tsip_machine_parser_header_WWW_Authenticate;
 //
 //	# Includes
-//	include tsip_machine_utils "./ragel/tsip_machine_utils.rl";
+//	include tsip_machine_utils "tsip_machine_utils.rl";
 //	
 //	action tag
 //	{

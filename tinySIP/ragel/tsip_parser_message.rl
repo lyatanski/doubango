@@ -179,8 +179,8 @@ static void tsip_message_parser_eoh(tsk_ragel_state_t *state, tsip_message_t *me
 	}
 
 	# Includes
-	include tsip_machine_utils "./ragel/tsip_machine_utils.rl";
-	include tsip_machine_message "./ragel/tsip_machine_message.rl";
+	include tsip_machine_utils "tsip_machine_utils.rl";
+	include tsip_machine_message "tsip_machine_message.rl";
 	
 	# Entry point
 	main := SIP_message;

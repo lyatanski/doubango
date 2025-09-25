@@ -836,8 +836,8 @@
 	}
 
 	# Includes
-	include tsip_machine_utils "./ragel/tsip_machine_utils.rl";
-	include tsip_machine_header "./ragel/tsip_machine_header.rl";
+	include tsip_machine_utils "tsip_machine_utils.rl";
+	include tsip_machine_header "tsip_machine_header.rl";
 
 	# Entry point
 	main := HEADER;
