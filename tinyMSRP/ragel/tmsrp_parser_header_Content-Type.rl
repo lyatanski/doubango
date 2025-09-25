@@ -39,7 +39,7 @@
 	machine tmsrp_machine_parser_header_Content_Type;
 
 	# Includes
-	include tmsrp_machine_utils "./ragel/tmsrp_machine_utils.rl";
+	include tmsrp_machine_utils "tmsrp_machine_utils.rl";
 	
 	action tag{
 		tag_start = p;
