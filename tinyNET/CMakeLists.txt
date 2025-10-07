@@ -21,11 +21,5 @@ if(WIN32)
   target_link_libraries(${name} wsock32 ws2_32 Iphlpapi)
 endif()
 
-file(GLOB tests test/*.c)
-foreach(test_src ${tests})
-    get_filename_component(test ${test_src} NAME_WE)
-    add_executable(${test}-${name} ${test_src})
-    target_link_libraries(${test}-${name} ${name})
-    add_test(${name} ./${test}-${name})
-endforeach()
+test()
 

@@ -9,12 +9,5 @@ if(WIN32)
   target_link_libraries(${name} windowsapp)
 endif()
 
-file(GLOB tests test/*.c)
-foreach(test_src ${tests})
-    get_filename_component(test ${test_src} NAME_WE)
-    add_executable(${test}-${name} ${test_src})
-    target_link_libraries(${test}-${name} ${name})
-    add_test(${name} ./${test}-${name})
-    set_tests_properties(${name} PROPERTIES TIMEOUT 30)
-endforeach()
+test()
 
