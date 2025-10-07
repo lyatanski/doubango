@@ -4,6 +4,7 @@ project(${name})
 
 find_file(IFADDR ifaddrs.h)
 find_package(OpenSSL REQUIRED)
+find_package(Resolv)
 
 file(GLOB src src/*.c src/*/*.c)
 ragel(${name} src/dns/tnet_dns_regexp.c ragel/tnet_dns_regexp.rl)

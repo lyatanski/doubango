@@ -13,7 +13,7 @@ string(REGEX REPLACE "^Ragel State Machine Compiler version ([^ ]+) .*$"
 macro(RAGEL Target Output Input)
     add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${Output}
         COMMAND ${RAGEL_CMD}
-        ARGS    -C -L -T0 -o ${CMAKE_CURRENT_SOURCE_DIR}/${Output} ${Input}
+        ARGS    -L -T0 -o ${CMAKE_CURRENT_SOURCE_DIR}/${Output} ${Input}
         DEPENDS ${Input}
         COMMENT "[RAGEL] Compiling ${Input} state machine with Ragel"
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
