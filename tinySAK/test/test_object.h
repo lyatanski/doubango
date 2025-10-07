@@ -19,7 +19,7 @@
 * along with DOUBANGO.
 *
 */
-#if !defined(_TEST_OBJECT_H_) && 0
+#ifndef _TEST_OBJECT_H_
 #define _TEST_OBJECT_H_
 
 typedef struct person_s {
@@ -29,13 +29,6 @@ typedef struct person_s {
     struct person_s* girlfriend;
 }
 person_t;
-
-// (a student is a person)
-typedef struct student_s {
-    struct person_s* person; // Must be the first element
-    char* school;
-}
-student_t;
 
 //// (as a student is a person you can do)
 //student_t* s;
@@ -67,7 +60,7 @@ static tsk_object_t* person_destroy(tsk_object_t * self)
 static int person_cmp(const tsk_object_t *_p1, const tsk_object_t *_p2)
 {
     const person_t *p1 = _p1;
-    const person_t *p1 = _p2;
+    const person_t *p2 = _p2;
     int ret;
 
     // do they have the same name?
