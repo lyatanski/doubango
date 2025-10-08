@@ -10,15 +10,5 @@ if(NOT MSVC)
     target_link_libraries(${name} m)
 endif()
 
-
-file(GLOB tests test/*.c)
-foreach(test_src ${tests})
-    get_filename_component(test ${test_src} NAME_WE)
-    add_executable(${test}-${name} ${test_src})
-    target_link_libraries(${test}-${name} ${name})
-    if(APPLE)
-        target_link_libraries(${test}-${name} "-framework Foundation" "-framework IOKit")
-    endif()
-    add_test(${name} ./${test}-${name})
-endforeach()
+test()
 

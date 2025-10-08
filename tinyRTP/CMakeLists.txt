@@ -10,4 +10,4 @@ if(WITH_SRTP)
     target_link_libraries(${name} SRTP::lib)
 endif()
 
-add_subdirectory(test)
+test()

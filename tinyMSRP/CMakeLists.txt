@@ -25,4 +25,4 @@ add_library(${name} ${src} ${RAGEL_${name}_FILES})
 target_include_directories(${name} PUBLIC include)
 target_link_libraries(${name} tinyHTTP)
 
-add_subdirectory(test)
+test()

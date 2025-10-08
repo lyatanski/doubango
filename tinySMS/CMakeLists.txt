@@ -7,4 +7,4 @@ add_library(${name} ${src})
 target_include_directories(${name} PUBLIC include)
 target_link_libraries(${name} tinySAK)
 
-add_subdirectory(test)
+test()
