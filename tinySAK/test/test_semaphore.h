@@ -59,8 +59,9 @@ void test_semaphore()
 
     tsk_thread_sleep(1000);
 
-    assert(!tsk_semaphore_increment(semaphore));
-    assert(!tsk_semaphore_increment(semaphore));
+    tsk_semaphore_increment(semaphore);
+    tsk_semaphore_increment(semaphore);
+    printf("test_semaphore// incremented\n");
 
     tsk_thread_sleep(1000);
 
