@@ -29,18 +29,12 @@
 #define MAX_BUFFER_SIZE     0xfff0
 
 #include "test_manager.h"
-#include "test_osc.h"
 #include "test_tortures.h"
 
 #define TEST_TORTURES   1
 #define TEST_MANAGER    1
-#define TEST_OSC        0
 
-#ifdef _WIN32_WCE
-int _tmain(int argc, _TCHAR* argv[])
-#else
 int main()
-#endif
 {
 #if TEST_TORTURES
     test_tortures();
@@ -48,10 +42,6 @@ int main()
 
 #if TEST_MANAGER
     test_manager();
-#endif
-
-#if TEST_OSC
-    test_osc();
 #endif
 
     return 0;

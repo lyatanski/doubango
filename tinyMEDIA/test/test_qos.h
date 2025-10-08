@@ -259,8 +259,8 @@ void test_qos_segmented_neg()
 
 void test_qos()
 {
-    //test_qos_parser();
-    //test_qos_e2e_neg();
+    test_qos_parser();
+    test_qos_e2e_neg();
     test_qos_segmented_neg();
 }
 

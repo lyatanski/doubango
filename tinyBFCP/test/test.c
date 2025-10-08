@@ -44,7 +44,7 @@
 #define LOOP                        0
 
 #define RUN_TEST_ALL                0
-#define RUN_TEST_PARSER             0
+#define RUN_TEST_PARSER             1
 #define RUN_TEST_SESSION            1
 
 #include "test_parser.h"

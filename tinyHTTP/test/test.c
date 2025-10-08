@@ -36,10 +36,10 @@
 
 #define RUN_TEST_ALL                0
 #define RUN_TEST_AUTH               1
-#define RUN_TEST_STACK              0
+#define RUN_TEST_STACK              1
 #define RUN_TEST_URL                1
 #define RUN_TEST_MSGS               1
-#define RUN_TEST_TRANSPORT          0
+#define RUN_TEST_TRANSPORT          1
 
 #include "test_auth.h"
 #include "test_stack.h"

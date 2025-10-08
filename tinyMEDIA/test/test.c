@@ -33,11 +33,11 @@
 #define RUN_TEST_LOOP       0
 
 #define RUN_TEST_ALL        0
-#define RUN_TEST_CODECS     0
-#define RUN_TEST_SESSIONS   0
-#define RUN_TEST_QOS        0
+#define RUN_TEST_CODECS     1
+#define RUN_TEST_SESSIONS   1
+#define RUN_TEST_QOS        1
 #define RUN_TEST_IMAGEATTR  1
-#define RUN_TEST_CONTENTS   0
+#define RUN_TEST_CONTENTS   1
 
 
 static void test_register_dummy_plugins();
