@@ -232,8 +232,8 @@ int tsip_transport_ipsec_startSAs(tsip_transport_ipsec_t* self, const tipsec_key
     }
 
     /* Add client and server sockets to the network transport */
-    tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_us->fd, TSIP_TRANSPORT(self)->type, 0, 0);
     tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_uc->fd, TSIP_TRANSPORT(self)->type, 0, 1);
+    tsip_transport_add_socket(TSIP_TRANSPORT(self), self->asso_active->socket_us->fd, TSIP_TRANSPORT(self)->type, 0, 0);
     tnet_sockfd_listen(self->asso_active->socket_us->fd, 3);
 
 bail:
@@ -328,6 +328,12 @@ bail:
     return ret;
 }
 
+/**
+* Gets the file descriptor for IPSec client socket
+* @param self IPSec context
+* @param isRequest request or response
+* @retval The file descriptor for the socket to send the SIP message
+*/
 tnet_fd_t tsip_transport_ipsec_getFD(tsip_transport_ipsec_t* self, int isRequest)
 {
     if (!self) {
@@ -464,28 +470,19 @@ static tsk_object_t* tsip_ipsec_association_ctor(tsk_object_t * self, va_list * 
         association->socket_us = tnet_socket_create(association->ip_local, TNET_SOCKET_PORT_ANY, transport->type);
         association->socket_uc = tnet_socket_create(association->ip_local, TNET_SOCKET_PORT_ANY, transport->type);
 
-        /* Set local */
-        if (tnet_get_peerip(transport->connectedFD, &association->ip_remote) == 0) { /* Get remote IP string */
-            if (tipsec_ctx_set_local(association->ctx, association->ip_local, association->ip_remote, association->socket_uc->port, association->socket_us->port)) {
-                TSK_DEBUG_ERROR("Failed to set IPSec local info:%s,%s,%u,%u", association->ip_local, association->ip_remote, association->socket_uc->port, association->socket_us->port);
-                return tsk_null;
-            }
-        }
-        else {
-            // Resolve the HostName because "tipsec_ctx_set_local()" requires IP address instead of FQDN.
-            if (tnet_resolve(transport->stack->network.proxy_cscf[transport->stack->network.transport_idx_default],
+        /* Get remote IP */
+        if (tnet_get_peerip(transport->connectedFD, &association->ip_remote) &&
+            tnet_resolve(transport->stack->network.proxy_cscf[transport->stack->network.transport_idx_default],
                              transport->stack->network.proxy_cscf_port[transport->stack->network.transport_idx_default],
                              transport->stack->network.proxy_cscf_type[transport->stack->network.transport_idx_default],
                              &association->ip_remote, tsk_null)) {
-                return tsk_null;
-            }
-            if (tipsec_ctx_set_local(association->ctx,
-                                     association->ip_local,
-                                     association->ip_remote,
-                                     association->socket_uc->port,
-                                     association->socket_us->port)) {
-                return tsk_null;
-            }
+            return tsk_null;
+        }
+
+        /* Set local */
+        if (tipsec_ctx_set_local(association->ctx, association->ip_local, association->ip_remote, association->socket_uc->port, association->socket_us->port)) {
+            TSK_DEBUG_ERROR("Failed to set IPSec local info:%s,%s,%u,%u", association->ip_local, association->ip_remote, association->socket_uc->port, association->socket_us->port);
+            return tsk_null;
         }
     }
     return self;
