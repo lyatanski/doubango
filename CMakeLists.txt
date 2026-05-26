@@ -16,6 +16,14 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
         "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
+if (MSVC)
+    # warning level 4
+    add_compile_options(/W4)
+else()
+    # additional warnings
+    #add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
 include(Test)
 include(AStyle)
 if(WITH_SRTP)
