@@ -123,7 +123,7 @@ thttp_url_t *thttp_url_parse(const char *urlstring, tsk_size_t length)
 	TSK_RAGEL_DISABLE_WARNINGS_END()
 	
 	if( cs < %%{ write first_final; }%% ){
-		TSK_DEBUG_ERROR("Failed to parse HTTP/HTTPS URL: '%.*s'", length, urlstring);
+		TSK_DEBUG_ERROR("Failed to parse HTTP/HTTPS URL: '%.*s'", (int)length, urlstring);
 		TSK_OBJECT_SAFE_FREE(url);
 	}
 	else if(!have_port){

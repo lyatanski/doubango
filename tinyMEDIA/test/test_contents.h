@@ -41,7 +41,7 @@ static void test_content_dummy()
     tmedia_content_t* content = tmedia_content_parse(CONTENT_DUMMY_DATA, tsk_strlen(CONTENT_DUMMY_DATA), CONTENT_DUMMY_TYPE);
     if(content) {
         tsk_buffer_t* data = tmedia_content_get_data(content);
-        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_DATA(data));
+        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_TO_STRING(data));
         tsk_object_unref(data);
     }
 
@@ -55,7 +55,7 @@ static void test_content_text_plain()
     tmedia_content_t* content = tmedia_content_parse(CONTENT_TEXT_PLAIN_DATA, tsk_strlen(CONTENT_TEXT_PLAIN_DATA), CONTENT_TEXT_PLAIN_TYPE);
     if(content) {
         tsk_buffer_t* data = tmedia_content_get_data(content);
-        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_DATA(data));
+        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_TO_STRING(data));
         tsk_object_unref(data);
     }
 
@@ -78,7 +78,7 @@ static void test_content_cpim()
     tmedia_content_t* content = tmedia_content_parse(CONTENT_CPIM_DATA, tsk_strlen(CONTENT_CPIM_DATA), CONTENT_CPIM_TYPE);
     if(content) {
         tsk_buffer_t* data = tmedia_content_get_data(content);
-        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_DATA(data));
+        TSK_DEBUG_INFO("content-type=%s\n\ncontent=%s", TMEDIA_CONTENT(content)->type, TSK_BUFFER_TO_STRING(data));
         tsk_object_unref(data);
     }
 
