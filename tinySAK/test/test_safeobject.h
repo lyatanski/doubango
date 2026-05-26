@@ -35,11 +35,11 @@ mysafeobj_t;
 void *threadfunc_safeobj1(void *parm)
 {
     mysafeobj_t *safeobj = (mysafeobj_t *)parm;
-    int ret = 0;
 
+    int ret = tsk_safeobj_lock(safeobj);
+    printf("threadfunc_safeobj1/// locked %d\n", ret);
     so_mutex_count++;
-    ret =  tsk_safeobj_lock(safeobj);
-    printf("threadfunc_safeobj1/// %d\n", ret);
+    tsk_safeobj_unlock(safeobj);
 
     return 0;
 }
@@ -47,11 +47,11 @@ void *threadfunc_safeobj1(void *parm)
 void *threadfunc_safeobj2(void *parm)
 {
     mysafeobj_t *safeobj = (mysafeobj_t *)parm;
-    int ret = 0;
 
+    int ret = tsk_safeobj_lock(safeobj);
+    printf("threadfunc_safeobj2/// locked %d\n", ret);
     so_mutex_count++;
-    ret =  tsk_safeobj_lock(safeobj);
-    printf("threadfunc_safeobj2/// %d\n", ret);
+    tsk_safeobj_unlock(safeobj);
 
     return 0;
 }
@@ -61,26 +61,18 @@ void test_safeobject()
 {
     mysafeobj_t* obj = calloc(1, sizeof(mysafeobj_t));
     void*       tid[2] = {0, 0};
-    int i;
 
     printf("test_safeobject//\n");
 
     tsk_safeobj_init(obj);
 
-    //assert(!tsk_safeobj_lock(obj));
-
     tsk_thread_create(&tid[0], threadfunc_safeobj1, obj);
     tsk_thread_create(&tid[1], threadfunc_safeobj2, obj);
 
-    /* VERY BAD */
-    while(so_mutex_count<2);
-    for(i=0; i<10000000; i++);
-
-    /*assert(!*/tsk_safeobj_unlock(obj)/*)*/;
-    /*assert(!*/tsk_safeobj_unlock(obj)/*)*/;
-
     tsk_thread_join(&tid[0]);
     tsk_thread_join(&tid[1]);
+
+    assert(so_mutex_count == 2);
 
     tsk_safeobj_deinit(obj);
     tsk_free((void**)&obj);

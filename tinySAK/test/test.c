@@ -39,7 +39,7 @@
 #define RUN_TEST_MUTEX              1
 #define RUN_TEST_CONDWAIT           1
 #define RUN_TEST_SEMAPHORE          1
-#define RUN_TEST_SAFEOBJECT         0
+#define RUN_TEST_SAFEOBJECT         1
 #define RUN_TEST_OBJECT             1
 #define RUN_TEST_PARAMS             1
 #define RUN_TEST_OPTIONS            1
