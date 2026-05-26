@@ -90,7 +90,7 @@ TINYMEDIA_API int tmedia_jitterbuffer_close(tmedia_jitterbuffer_t* self);
 TINYMEDIA_API int tmedia_jitterbuffer_deinit(tmedia_jitterbuffer_t* self);
 
 TINYMEDIA_API int tmedia_jitterbuffer_plugin_register(const tmedia_jitterbuffer_plugin_def_t* plugin);
-TINYMEDIA_API int tmedia_jitterbuffer_plugin_unregister();
+TINYMEDIA_API int tmedia_jitterbuffer_plugin_unregister(const tmedia_jitterbuffer_plugin_def_t* plugin);
 TINYMEDIA_API int tmedia_jitter_buffer_plugin_unregister_by_type(tmedia_type_t type);
 TINYMEDIA_API tmedia_jitterbuffer_t* tmedia_jitterbuffer_create(tmedia_type_t type);
 
