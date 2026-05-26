@@ -71,7 +71,6 @@ tnet_socket_type_udp_ipv46 // the socket type (IPv4 or IPv6)
 * - The socket type (stream, dgram),
 * - The socket protocol (udp, tcp, tls, sctp, ipsec),
 * - The IP version (ipv6, ipv4),
-* - …
 * <br>
 * A socket is a well-defined object and should be destroyed using @a TSK_DECLARE_SAFE_FREE() macro.
 * A socket will be automatically closed when destroyed.
@@ -113,7 +112,7 @@ tnet_socket_t* tnet_socket_create_2(const char* host, tnet_port_t port_, tnet_so
             memcpy(local_hostname, host, tsk_strlen(host) > sizeof(local_hostname) - 1 ? sizeof(local_hostname) - 1 : tsk_strlen(host));
         }
         else {
-            if (TNET_SOCKET_TYPE_IS_IPV6(sock->type)) {
+            if (TNET_SOCKET_TYPE_IS_IPV6(sock->type) && !TNET_SOCKET_TYPE_IS_IPV46(sock->type)) {
                 memcpy(local_hostname, "::", 2);
             }
             else {

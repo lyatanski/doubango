@@ -1291,7 +1291,8 @@ int tsip_transport_layer_start(tsip_transport_layer_t* self)
                         // Between "tsip_transport_connectto_2()" and "tsip_transport_add_stream_peer_2()" the net callback could be called and
                         // off cource peer will not be found in the list. This is why the list is locked.
                         tsip_transport_stream_peers_lock(transport);
-                        if((transport->connectedFD = tsip_transport_connectto_2(transport, self->stack->network.proxy_cscf[transport_idx], self->stack->network.proxy_cscf_port[transport_idx])) == TNET_INVALID_FD) {
+                        tsip_transport_connectto_2(transport, self->stack->network.proxy_cscf[transport_idx], self->stack->network.proxy_cscf_port[transport_idx]);
+                        if(transport->connectedFD == TNET_INVALID_FD) {
                             TSK_DEBUG_ERROR("Failed to connect the SIP transport");
                             tsip_transport_stream_peers_unlock(transport);
                             return -3;

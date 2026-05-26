@@ -44,9 +44,9 @@
 	action is_https { url->scheme = tsk_strdup("https"), url->type = thttp_url_https; }
 
 	#/* Sets HOST type */
-	action is_ipv4 { url->host_type = url->host_type = thttp_host_ipv4; }
-	action is_ipv6 { url->host_type = url->host_type = thttp_host_ipv6; }
-	action is_hostname { url->host_type = url->host_type = thttp_host_hostname; }
+	action is_ipv4 { url->host_type = thttp_host_ipv4; }
+	action is_ipv6 { url->host_type = thttp_host_ipv6; }
+	action is_hostname { url->host_type = thttp_host_hostname; }
 
 	action parse_host{
 		TSK_PARSER_SET_STRING(url->host);

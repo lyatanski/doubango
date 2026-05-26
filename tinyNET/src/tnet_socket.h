@@ -125,7 +125,7 @@ tnet_socket_type_t;
 
 #define TNET_SOCKET_TYPE_IS_SECURE(type)    ( TNET_SOCKET_TYPE_IS_IPSEC(type) || TNET_SOCKET_TYPE_IS_TLS(type) || TNET_SOCKET_TYPE_IS_DTLS(type) || TNET_SOCKET_TYPE_IS_WSS(type) )
 
-#define TNET_SOCKET_TYPE_UNSET(type, OP)        (type = TNET_SOCKET_TYPE_IS_##OP(type) ? type ^= TNET_SOCKET_TYPE_##OP : type)
+#define TNET_SOCKET_TYPE_UNSET(type, OP)        (TNET_SOCKET_TYPE_IS_##OP(type) ? (type ^= TNET_SOCKET_TYPE_##OP) : type)
 #define TNET_SOCKET_TYPE_SET(type, OP)          (type |= TNET_SOCKET_TYPE_##OP)
 
 #define TNET_SOCKET_TYPE_SET_IPV4(type)     (type |= TNET_SOCKET_TYPE_IPV4)
