@@ -99,9 +99,9 @@ bool SipStack::setIMPU(const char* impu_uri)
 bool SipStack::setPassword(const char* password, bool hex /*=true*/)
 {
 
+    uint8_t Ki[16];
     char* pass = const_cast<char*>(password);
     if(hex) {
-        uint8_t Ki[16];
         tsk_str_to_hex(password, tsk_strlen(password), Ki);
         pass = reinterpret_cast<char*>(Ki);
     }

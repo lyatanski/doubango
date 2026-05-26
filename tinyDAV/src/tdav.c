@@ -461,7 +461,7 @@ int tdav_codec_set_priority(tdav_codec_id_t codec_id, int priority)
         return -1;
     }
     for (i = 0; i < __codec_plugins_all_count && __codec_plugins_all[i]; ++i) {
-        if(__codec_plugins_all[i]->codec_id == codec_id) {
+        if(__codec_plugins_all[i]->codec_id == (tmedia_codec_id_t)codec_id) {
             const struct tmedia_codec_plugin_def_s *codec_decl_1, *codec_decl_2;
             tsk_size_t max = tmedia_codec_plugin_registered_count(__codec_plugins_all, __codec_plugins_all_count);
             priority = TSK_CLAMP(0, priority, (int)(max > 0 ? (max - 1) : 0));
@@ -545,7 +545,7 @@ static inline tsk_bool_t _tdav_codec_is_supported(tdav_codec_id_t codec, const t
 {
     tsk_size_t i;
     for(i = 0; i < __codec_plugins_all_count && __codec_plugins_all[i]; ++i) {
-        if((plugin && __codec_plugins_all[i] == plugin) || __codec_plugins_all[i]->codec_id == codec) {
+        if((plugin && __codec_plugins_all[i] == plugin) || __codec_plugins_all[i]->codec_id == (tmedia_codec_id_t)codec) {
             return tsk_true;
         }
     }
